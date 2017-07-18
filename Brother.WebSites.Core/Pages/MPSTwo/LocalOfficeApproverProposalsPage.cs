@@ -75,14 +75,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
-        public LocalOfficeApprovalReportingDashboardPage NavigateToReportDashboardPage()
+        public ReportingDashboardPage NavigateToReportDashboardPage()
         {
             if (ReportTabElement == null)
                 throw new Exception("Approved Proposals Link Element is returned as null");
 
             ReportTabElement.Click();
 
-            return GetInstance<LocalOfficeApprovalReportingDashboardPage>();
+            return GetInstance<ReportingDashboardPage>();
         }
 
         private string Reason()

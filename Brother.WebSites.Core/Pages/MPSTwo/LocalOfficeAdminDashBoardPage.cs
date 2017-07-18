@@ -27,6 +27,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LOAdminProgramElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/admin\"] .media-body")]
         public IWebElement LOAdminAdministrationLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"] .media-body")]
+        public IWebElement LOAdminReportElement;
+        
 
       
 
@@ -56,6 +59,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminProgramPage>(Driver);
         }
 
+        public ReportingDashboardPage NavigateToReportPage()
+        {
+            if (LOAdminReportElement == null)
+                throw new NullReferenceException("Report link is not LOAdmin Dashboard");
+            LOAdminReportElement.Click();
+            return GetTabInstance<ReportingDashboardPage>(Driver);
+        }
         
 
         public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()

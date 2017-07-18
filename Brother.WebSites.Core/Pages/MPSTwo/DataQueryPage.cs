@@ -61,6 +61,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement MinimumVolumeElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-qa-usagetype-2")]
         public IWebElement PayAsYouGoElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-link")]
+        public IList<IWebElement> ProposalLinkElements;
             
         
         
@@ -378,6 +380,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Proposal Element is returned as null");
 
             proposalElement.Click();
+
+            return GetInstance<ReportProposalSummaryPage>();
+        }
+
+        public ReportProposalSummaryPage ClickOnTheFirstProposal()
+        {
+            if (ProposalLinkElements == null)
+                throw new Exception("Proposal Element is returned as null");
+
+            ProposalLinkElements.ElementAt(0).Click();
 
             return GetInstance<ReportProposalSummaryPage>();
         }

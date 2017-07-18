@@ -51,12 +51,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<LocalOfficeApproverApprovalPage>(Driver);
         }
 
-        public LocalOfficeApprovalReportingDashboardPage NavigateToLocalOfficeApproverReportingPage()
+        public ReportingDashboardPage NavigateToLocalOfficeApproverReportingPage()
         {
             IsApprovalLinkAvailable();
             LocalApprovalReportingElement.Click();
 
-            return GetInstance<LocalOfficeApprovalReportingDashboardPage>(Driver);
+            return GetInstance<ReportingDashboardPage>(Driver);
         }
 
         public void SwitchBetweenMultipleLanguages()

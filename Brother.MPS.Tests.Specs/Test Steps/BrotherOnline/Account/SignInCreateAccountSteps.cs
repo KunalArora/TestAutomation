@@ -1299,16 +1299,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                         NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToLocalOfficeApproverDashboard();
                         break;
 
+                    case "Cloud MPS Service Desk Customer":
                     case "Cloud MPS Customer":
                         NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
                         break;
 
-                    case "Cloud MPS Service Desk Customer":
-                        NextPage = CurrentPage.As<RegistrationPage>().ClickSignInButton();
-                        break;
                     case "Cloud MPS Service Desk":
                         NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToServiceDeskDashBoardPage();
                         break;
+
                     case "Cloud MPS BIE Admin":
                         NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBieAdminDashboardPage();
                         break;

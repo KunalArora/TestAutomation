@@ -28,6 +28,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement proposalTopElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body")]
         public IWebElement ExistingContractLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports\"] .media-body")]
+        public IWebElement DealerReportLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/customers'] .media-body")]
         public IWebElement ExistingCustomerLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/contracts\"] .media-heading")]
@@ -169,6 +171,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateProposalLinkElement);
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
+        }
+
+        public ReportingDashboardPage NavigateToReportPage()
+        {
+            IsCreateNewProposalLinkAvailable();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerReportLinkElement);
+            return GetTabInstance<ReportingDashboardPage>();
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()

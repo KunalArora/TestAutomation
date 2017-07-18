@@ -25,6 +25,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             MsgOutput("Validating if string is Null or Empty");
             Assert.IsNullOrEmpty(itemToValidate, validationMessage);
+           
         }
 
         public static void AssertIsEqual(object expectedValue, object actualValue, string validationMessage)
@@ -39,9 +40,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 throw new AssertionException(
                     string.Format(
-                        "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Null, Actual [{1}]",
+                        "AssertIsNotNull Failed: [{0}] validation didn't match expectations. Expected Not Null, Actual [{1}]",
                         validationMessage, itemToCheck));
             }
+        }
+
+        public static void AssertIsNull(object itemToCheck)
+        {
+            Assert.IsNull(itemToCheck);
         }
 
         public static void AssertFailTest(string validationMessage)

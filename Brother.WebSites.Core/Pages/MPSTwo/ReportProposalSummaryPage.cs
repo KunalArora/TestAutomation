@@ -43,6 +43,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryCustomerStreet;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SummaryTable_CustomerContact")]
         public IWebElement SummaryCustomerName;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonEditProposalNotes")]
+        public IWebElement SummaryCommentButtonName;
+        [FindsBy(How = How.CssSelector, Using = "#mps-proposal-notes")]
+        public IWebElement SummaryCommentBoxName;
+        
+
+        
 
 
 
@@ -91,6 +98,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
+        public DataQueryProposalNotePage NavigateToProposalNotePage()
+        {
+            if (SummaryCommentButtonName == null)
+                throw new Exception("Special Pricing Button is not displayed");
+
+            ScrollTo(SummaryCommentButtonName);
+            SummaryCommentButtonName.Click();
+
+            return GetInstance<DataQueryProposalNotePage>();
+        }
+
+        public void ProposalNoteButtonIsNotDisplayed()
+        {
+            ScrollDownOnAPage(Driver);
+            TestCheck.AssertIsNull(GetElementByCssSelector("#content_0_ButtonEditProposalNotes"));
+        }
+        
+
         public LocalOfficeApprovalCustomerInformationPage NavigateToLocalOfficeCustomerInformationPage()
         {
             WaitForElementToExistByCssSelector(".btn.btn-primary.pull-right.js-mps-special-pricing");
@@ -115,6 +140,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             TestCheck.AssertIsEqual(true, SpecialPricingAuditConfirmationTable.Displayed, "Confirmation page is not displayed");
         }
+
+        public void IsCommentSectionDisplayed()
+        {
+            if (SummaryCommentBoxName == null)
+                throw new Exception("Summary Comment Box is not displayed");
+
+            TestCheck.AssertIsEqual(true, SummaryCommentBoxName.Displayed, "Summary Comment Box Name is not displayed");
+        }
+
+
+        public void IsCommentTextDisplayed(string text)
+        {
+            if (SummaryCommentBoxName == null)
+                throw new Exception("Summary Comment Box is not displayed");
+
+            TestCheck.AssertIsEqual(true, SummaryCommentBoxName.Text.Trim().ToLower().Equals(text.ToLower()), "Summary Comment Box Name is not displayed");
+        }
+        
 
         private string GetElementText(IWebElement element)
         {

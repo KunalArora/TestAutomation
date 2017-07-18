@@ -34,10 +34,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<ServiceDeskServiceRequestsPage>();
         }
 
-        public ServiceDeskReportingPage NavigateToServiceDeskReportPage()
+        public ReportingDashboardPage NavigateToServiceDeskReportPage()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceReportLink);
-            return GetInstance<ServiceDeskReportingPage>();
+            return GetInstance<ReportingDashboardPage>();
         }
     }
 }

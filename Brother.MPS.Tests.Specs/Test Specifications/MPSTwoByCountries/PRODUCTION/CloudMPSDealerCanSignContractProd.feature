@@ -1,4 +1,4 @@
-﻿@ignore @MPS @PROD @UAT
+﻿@MPS @PROD @UAT
 Feature: CloudMPSDealerCanSignContractInProduction
 	In order to progress an approved proposal to contract
 	As a dealer
@@ -53,27 +53,18 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	Then I can start the process of signing the contract
 	And I can successfully sign the contract
 	And I sign out of Cloud MPS
-	And I sign back into "<Role2>" Cloud MPS as a "<Web>" from "<Country>"
-	And I navigate to Contract Awaiting Acceptance page from Local Office DashBoard
-	And the signed contract is displayed
-	And I sign out of Cloud MPS
 	#And I sign back into "<Role2>" Cloud MPS as a "<Web>" from "<Country>"
-	#And the contract created above is approved
-	#And I sign back into "<Role>" Cloud MPS as a "<Web>" from "<Country>"
-	#And I generate installation request for the contract with "<Method>" communication and "<Type>" installation
-	#And I extract the installer url from Installation Request
-	#And I navigate to the installer page
-	##And I enter the contract reference number
-	##And I enter device serial number for "<Type>" communication 
-	##And I enter the device IP address
+	#And I navigate to Contract Awaiting Acceptance page from Local Office DashBoard
+	#And I can view all the contracts that have been signed by dealer
 	#And I sign out of Cloud MPS
+	
 	
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                                               | ServerName | Method | Type |
 	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online.brother.co.uk | Web_1      | Cloud  | Web  |
 	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online.brother.co.uk | Web_2      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online.brother.co.uk | Web_5      | Cloud  | Web  |
+	#| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p3.online.brother.co.uk | Web_5      | Cloud  | Web  |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p4.online.brother.co.uk | Web_6      | Cloud  | Web  |
 	
 

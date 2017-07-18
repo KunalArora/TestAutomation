@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApprovalReportingDashboardPage : BasePage
+    public class ReportingDashboardPage : BasePage
     {
         private const string DownloadDirectory = @"C:\DataTest";
         
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"]")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"reports\"]")]
         public IWebElement ReportTabElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/data-query\"] .media-heading")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"data-query\"] .media-heading")]
         public IWebElement DataQueryElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/basic-data-report\"] .media-heading")]
         public IWebElement BasicDataReportElement;
@@ -32,7 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsReportingPageDisplayed()
         {
-            if(ReportTabElement == null)
+            if (ReportTabElement == null)
                 throw new Exception("Reporting page not displayed");
 
             AssertElementPresent(ReportTabElement, "reporting page is not available");
@@ -63,8 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DataQueryPage NavigateToDataQueryPage()
         {
             IsReportingPageDisplayed();
-            DataQueryElement.Click();
-
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DataQueryElement);
             return GetInstance<DataQueryPage>();
         }
 

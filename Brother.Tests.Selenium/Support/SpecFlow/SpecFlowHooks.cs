@@ -34,7 +34,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
         {
             try
             {
-                //TestController.SendEmail();
+                TestController.SendEmail();
 
             }
             catch (Exception)
