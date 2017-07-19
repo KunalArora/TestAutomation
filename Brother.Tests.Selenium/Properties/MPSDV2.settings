@@ -40,5 +40,11 @@
     <Setting Name="DV2MPSBIEPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">BIEadmin1</Value>
     </Setting>
+    <Setting Name="DV2MPSFinance" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-DV2-Finance1@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="DV2MPSFinancePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}finance1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

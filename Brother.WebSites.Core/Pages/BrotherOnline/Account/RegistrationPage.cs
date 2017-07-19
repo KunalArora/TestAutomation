@@ -268,6 +268,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             return GetInstance<DealerDashBoardPage>(Driver);
         }
 
+        
         public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard()
         {
             ScrollTo(SignInButton);
@@ -301,6 +302,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<BieAdminDashboardPage>(Driver);
+        }
+
+        public FinanceDashboardPage SignInButtonToFinanceDashboardPage()
+        {
+            ScrollTo(SignInButton); 
+            SignInButton.Click();
+            return GetInstance<FinanceDashboardPage>(Driver);
         }
 
         public RegistrationPage ClickSignUpButton()

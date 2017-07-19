@@ -12,7 +12,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class MPSQAS : global::System.Configuration.ApplicationSettingsBase {
         
         private static MPSQAS defaultInstance = ((MPSQAS)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MPSQAS())));
@@ -368,6 +368,30 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["QASMPSBIEPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-UAT-Finance1@brother.co.uk")]
+        public string QASMPSFinance {
+            get {
+                return ((string)(this["QASMPSFinance"]));
+            }
+            set {
+                this["QASMPSFinance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}finance1")]
+        public string QASMPSFinancePassword {
+            get {
+                return ((string)(this["QASMPSFinancePassword"]));
+            }
+            set {
+                this["QASMPSFinancePassword"] = value;
             }
         }
     }

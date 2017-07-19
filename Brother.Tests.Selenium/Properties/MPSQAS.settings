@@ -89,5 +89,11 @@
     <Setting Name="QASMPSBIEPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">BIEadmin1</Value>
     </Setting>
+    <Setting Name="QASMPSFinance" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MPS-{0}-UAT-Finance1@brother.co.uk</Value>
+    </Setting>
+    <Setting Name="QASMPSFinancePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}finance1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

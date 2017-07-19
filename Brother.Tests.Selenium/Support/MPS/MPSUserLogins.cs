@@ -239,6 +239,40 @@ namespace Brother.Tests.Selenium.Lib.Support
             return customer;
         }
 
+        private static string FinanceUser()
+        {
+            var finance = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    finance = MPSQAS.Default.QASMPSFinance;
+                    break;
+
+                case "DV2":
+                    finance = MPSDV2.Default.DV2MPSFinance;
+                    break;
+            }
+
+            return finance;
+        }
+
+        private static string FinanceUserPassword()
+        {
+            var pwd = "";
+
+            switch (Helper.GetRunTimeEnv())
+            {
+                case "UAT":
+                    pwd = MPSQAS.Default.QASMPSFinancePassword;
+                    break;
+                case "DV2":
+                    pwd = MPSDV2.Default.DV2MPSFinancePassword;
+                    break;
+            }
+            return pwd;
+        }
+
         private static string ServiceDeskUser()
         {
             var customer = "";
@@ -411,6 +445,9 @@ namespace Brother.Tests.Selenium.Lib.Support
 
                 case "Cloud MPS Local Office Approver":
                     finishedUsername = String.Format(ApproverUsername(), abbr);
+                    break;
+                case "Cloud MPS Finance":
+                    finishedUsername = String.Format(FinanceUser(), abbr);
                     break;
                 case "Cloud MPS Service Desk":
                     finishedUsername = String.Format(ServiceDeskUser(), abbr);

@@ -1311,6 +1311,10 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                     case "Cloud MPS BIE Admin":
                         NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToBieAdminDashboardPage();
                         break;
+                    case "Cloud MPS Finance":
+                        NextPage = CurrentPage.As<RegistrationPage>().SignInButtonToFinanceDashboardPage();
+                        break;
+                        
 
                 }
             }

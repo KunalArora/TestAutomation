@@ -12,7 +12,7 @@ namespace Brother.Tests.Selenium.Lib.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class MPSDV2 : global::System.Configuration.ApplicationSettingsBase {
         
         private static MPSDV2 defaultInstance = ((MPSDV2)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MPSDV2())));
@@ -164,6 +164,30 @@ namespace Brother.Tests.Selenium.Lib.Properties {
             }
             set {
                 this["DV2MPSBIEPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MPS-{0}-DV2-Finance1@brother.co.uk")]
+        public string DV2MPSFinance {
+            get {
+                return ((string)(this["DV2MPSFinance"]));
+            }
+            set {
+                this["DV2MPSFinance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}finance1")]
+        public string DV2MPSFinancePassword {
+            get {
+                return ((string)(this["DV2MPSFinancePassword"]));
+            }
+            set {
+                this["DV2MPSFinancePassword"] = value;
             }
         }
     }

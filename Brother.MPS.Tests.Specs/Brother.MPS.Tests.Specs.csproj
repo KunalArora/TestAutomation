@@ -276,6 +276,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSSubDealerOperations.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\Accruals\CloudMPSFinanceCanDownloadAccruals.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSFinanceCanDownloadAccruals.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC113\BIG_AT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1597,6 +1602,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC112\SubDealer\CloudMPSSubDealerOperations.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSSubDealerOperations.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\Accruals\CloudMPSFinanceCanDownloadAccruals.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSFinanceCanDownloadAccruals.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC113\BIG_AT\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

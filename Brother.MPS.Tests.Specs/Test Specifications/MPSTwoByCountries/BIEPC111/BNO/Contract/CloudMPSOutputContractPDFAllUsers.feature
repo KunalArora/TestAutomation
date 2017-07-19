@@ -28,7 +28,7 @@ Scenario Outline: Local Office Approver can download Contract PDFs on Rejected p
 	| Role                            | Country |
 	| Cloud MPS Local Office Approver | Norway  |
 	
-
+@ignore
 Scenario Outline: Dealer can download Contract PDFs on Approved proposal page
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Approved Acceptance page
