@@ -546,7 +546,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
-                driveLetter = "C";
+                driveLetter = "E";
             }
             else if (isOnBuildMachine.ToUpper().Equals("bro43dbs01dop"))
             {
