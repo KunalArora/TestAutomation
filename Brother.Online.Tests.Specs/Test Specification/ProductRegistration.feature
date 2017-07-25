@@ -13,7 +13,7 @@ Scenarios:
 | United Kingdom |
 
 
-@SMOKE_ProductRegistration @TEST
+@TEST
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" product registration page

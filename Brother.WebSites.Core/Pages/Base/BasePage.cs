@@ -29,6 +29,13 @@ namespace Brother.WebSites.Core.Pages.Base
 
         }
 
+        public static string MainSiteCMSUrl
+        {
+            get { return SetMainSiteCMSUrl(); }
+
+        }
+        
+
         // Home pages
         #region WebConferencing Home Page
         
@@ -76,6 +83,19 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
             var url = MainSiteBaseUrl;
+            NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
+            return GetInstance<LoginPage>(driver, baseUrl, "");
+        }
+
+        #endregion
+
+        #region BrotherMainSite CMSLogin Page
+
+        public static LoginPage LoadBrotherMainSiteCMSLoginPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
+            var url = MainSiteCMSUrl;
             NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }

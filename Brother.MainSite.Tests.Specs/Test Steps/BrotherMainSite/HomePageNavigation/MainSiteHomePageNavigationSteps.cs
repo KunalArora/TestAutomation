@@ -118,7 +118,7 @@ namespace Brother.Tests.Specs._80.BrotherMainSite.HomePageNavigation
         public void GivenThatINavigateToBrotherSiteCoreCMSSiteURLForToValidate(string url, string country)
         {
             Helper.SetCountry(country);
-            CurrentPage = BasePage.LoadBrotherMainSiteLoginPage(CurrentDriver, url);
+            CurrentPage = BasePage.LoadBrotherMainSiteCMSLoginPage(CurrentDriver, url);
             CurrentPage.As<LoginPage>().GetLoginpage(url);
         }
 
