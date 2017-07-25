@@ -410,7 +410,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             var logLocation = DefaultLogFolder;
             var isOnBuildMachine = Environment.MachineName;
             var driveLetter = "C";
-            if (isOnBuildMachine.ToLower().Equals("bro43dbs01dop") || isOnBuildMachine.ToLower().Equals("bro43dbs01dop"))
+            if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
                 driveLetter = "E";
             }
