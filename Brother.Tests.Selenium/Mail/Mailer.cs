@@ -150,7 +150,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
             {
                 driveLetter = "E";
             }
-            else if (isOnBuildMachine.ToUpper().Equals("bro43dbs01dop"))
+            else if (isOnBuildMachine.ToLower().Equals("bro43dbs01dop"))
             {
                 driveLetter = "D";
             }
