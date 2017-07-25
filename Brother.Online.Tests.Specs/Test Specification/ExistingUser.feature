@@ -5,7 +5,7 @@ Feature: Existing User Forgotten Password
 	I need to be able to have account management options
 
 
-@SMOKE_ExistingUserSignIn 
+@TEST
 Scenario Outline: Check Forget Password with various invalid scenarios options throws an error for existing user - Validation Checks
 	Given I navigate to "<Country>" Brother Online landing page
 	And I browse to the "<Site Url>" for existing user signin page

@@ -1,4 +1,5 @@
-﻿@UAT @TEST
+﻿@ignore
+#@UAT @TEST
 Feature: PublishedPages
 	In order to validate the success of a new build, 
 	previously published pages are verified to ensure 

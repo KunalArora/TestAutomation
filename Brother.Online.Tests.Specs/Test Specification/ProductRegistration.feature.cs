@@ -95,13 +95,11 @@ testRunner.Then("I should see the Header and the Footer appearing on the landing
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers and purchase dat" +
             "e")]
-        [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004731", "12/12/2013", "testemailidinputfield@guerrillamail.com", "Test", "Test", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDate(string country, string siteUrl, string serialNumber, string purchaseDate, string email, string firstName, string lastName, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE_ProductRegistration",
                     "TEST"};
             if ((exampleTags != null))
             {
