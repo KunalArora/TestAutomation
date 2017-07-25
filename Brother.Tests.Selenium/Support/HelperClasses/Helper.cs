@@ -210,7 +210,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static string GetSpecialEnvironmentVariable(string envVar)
         {
             var isOnBuildMachine = Environment.MachineName;
-            return isOnBuildMachine.ToLower().Equals("bro43dbs01dop") || isOnBuildMachine.ToLower().Equals("bro43dbs01dop") || isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP")
+            return isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V") || isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP")
                 ? Environment.GetEnvironmentVariable(envVar)
                 : Environment.GetEnvironmentVariable(envVar, EnvironmentVariableTarget.Machine);
         }
@@ -544,7 +544,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var isOnBuildMachine = Environment.MachineName;
             
             var driveLetter = "C";
-            if (isOnBuildMachine.ToLower().Equals("bro43dbs01dop") || isOnBuildMachine.ToLower().Equals("bro43dbs01dop"))
+            if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
                 driveLetter = "C";
             }
