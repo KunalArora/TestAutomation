@@ -146,11 +146,11 @@ namespace Brother.Tests.Selenium.Lib.Mail
             var newReportName = String.Format(NewReportName, timeNow);
 
             var driveLetter = "C";
-            if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
+            if (isOnBuildMachine.ToLower().Equals("bro43dbs01dop.4") || isOnBuildMachine.ToLower().Equals("bro43dbs01dop.4"))
             {
                 driveLetter = "E";
             }
-            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP.4"))
             {
                 driveLetter = "D";
             }

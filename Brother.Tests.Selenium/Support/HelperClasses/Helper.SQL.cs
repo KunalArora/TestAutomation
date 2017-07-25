@@ -55,7 +55,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             // Note, there is no local access to the TEST or UAT SQL boxes. If you need to access SQL locally, you'll have to 
             // add your local host name and remove it when pushing to GitHub
-            return GetRunTimeEnv() == "TEST" ? "PRDAT204V" : (GetRunTimeEnv() == "UAT" ? "PRDAT168V" : string.Empty);
+            return GetRunTimeEnv() == "TEST" ? "bro43dbs01dop.4" : (GetRunTimeEnv() == "UAT" ? "bro43dbs01dop.4" : string.Empty);
 
             //else
             //{
