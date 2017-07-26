@@ -360,5 +360,33 @@ namespace Brother.WebSites.Core.Pages.Base
 
             return url;
         }
+
+        public static string SetAtyoursideUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST":
+                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.AtyoursideUAT;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
+        }
+
+
+        
     }
 }
