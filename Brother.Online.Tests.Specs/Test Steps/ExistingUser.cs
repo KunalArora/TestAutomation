@@ -21,7 +21,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage = BasePage.LoadSignPage(CurrentDriver, url);
         }
-
+        [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
+        public void GivenIBrowseToForExistingUserSigninPageAtyourside(string url)
+        {
+            CurrentPage = BasePage.LoadAtyousideHomePage(CurrentDriver, url);
+        }
+        
         [Given(@"I click on existing customer log in option")]
         public void GivenIClickOnExistingCustomerLogInOption()
         {

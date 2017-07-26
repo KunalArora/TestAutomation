@@ -159,6 +159,24 @@ namespace Brother.Tests.Selenium.Lib.Properties
             get { return ((string)(this["MainSiteCMSUAT"])); }
             set { this["MainSiteCMSUAT"] = value; }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://atyourside.{0}.cds.test.brother.eu.com")]
+        public string AtyoursideTest
+        {
+            get { return ((string)(this["AtyoursideTest"])); }
+            set { this["AtyoursideTest"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://atyourside.{0}.cds.uat.brother.eu.com")]
+        public string AtyoursideUAT
+        {
+            get { return ((string)(this["AtyoursideUAT"])); }
+            set { this["AtyoursideUAT"] = value; }
+        }
     }
 }
 
