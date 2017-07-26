@@ -39,12 +39,14 @@ Scenario Outline: Service Desk  User Cannot Add Comment
 	When I navigate to Service Desk Reporting page
 	And Service Desk user navigate to Data Query page
 	And I click on the first proposal link displayed
-	Then Comment button is not displayed on Summary page
+	And I click on Edit Comment button on summary page
+	And I enter "<Text>" in the comment box
+	Then the "<Text>" added to the comment box is displayed on summary page
 	And I sign out of Cloud MPS
 
 	Scenarios: 
-	| Role                   | Country     |
-	| Cloud MPS Service Desk | Switzerland |
+	| Role                   | Country     | Text                                             |
+	| Cloud MPS Service Desk | Switzerland | Test Automation created this for testing purpose |
 
 Scenario Outline: Dealer Cannot Add Comment
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

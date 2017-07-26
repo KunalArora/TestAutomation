@@ -196,10 +196,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSSummaryCalculationsVerificationWithMultipleDevices.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature</DependentUpon>
+      <DependentUpon>CloudMPSSummaryCalculationsVerificationWithMultipleDevices.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSDataQuerySearchAndFilterVerification.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1539,9 +1539,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Proposal\CloudMPSSummaryCalculationsVerificationWithMultipleDevices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSSummaryCalculationsVerificationWithMultipleDevices.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BUK\Reporting\CloudMPSDataQuerySearchAndFilterVerification.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

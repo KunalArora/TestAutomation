@@ -22,7 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
     [NUnit.Framework.DescriptionAttribute("CloudMPSProductionRegressionTestServer3And4")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("SERVER34")]
     public partial class CloudMPSProductionRegressionTestServer3And4Feature
     {
         
@@ -39,7 +39,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
                     "able to sign an approve proposal", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "PROD",
-                        "UAT"});
+                        "SERVER34"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

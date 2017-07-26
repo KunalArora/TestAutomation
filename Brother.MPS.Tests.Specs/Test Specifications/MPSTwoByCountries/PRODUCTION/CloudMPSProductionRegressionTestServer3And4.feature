@@ -1,4 +1,4 @@
-﻿@MPS @PROD @UAT
+﻿@MPS @PROD @SERVER34
 Feature: CloudMPSProductionRegressionTestServer3And4
 	In order to progress an approved proposal to contract
 	As a dealer

@@ -131,8 +131,8 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Service Desk  User Cannot Add Comment")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Service Desk", "Switzerland", null)]
-        public virtual void ServiceDeskUserCannotAddComment(string role, string country, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Service Desk", "Switzerland", "Test Automation created this for testing purpose", null)]
+        public virtual void ServiceDeskUserCannotAddComment(string role, string country, string text, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Desk  User Cannot Add Comment", exampleTags);
 #line 37
@@ -146,8 +146,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
  testRunner.And("I click on the first proposal link displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
- testRunner.Then("Comment button is not displayed on Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I click on Edit Comment button on summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 43
+ testRunner.And(string.Format("I enter \"{0}\" in the comment box", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.Then(string.Format("the \"{0}\" added to the comment box is displayed on summary page", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 45
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -159,19 +163,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DealerCannotAddComment(string role, string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Cannot Add Comment", exampleTags);
-#line 49
-this.ScenarioSetup(scenarioInfo);
-#line 50
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 51
- testRunner.When("I navigate to Dealer Reporting page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 52
- testRunner.And("Service Desk user navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 53
- testRunner.And("I click on the first proposal link displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I navigate to Dealer Reporting page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 54
- testRunner.Then("Comment button is not displayed on Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Service Desk user navigate to Data Query page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 55
+ testRunner.And("I click on the first proposal link displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.Then("Comment button is not displayed on Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 57
  testRunner.And("I sign out of Cloud MPS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

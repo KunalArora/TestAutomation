@@ -1,11 +1,11 @@
 ﻿@TEST @UAT @MPS @BIEPC110
-Feature: CloudMPSMultiDeviceVerificationWithPrintCountValidationUK
+Feature: CloudMPSSummaryCalculationsVerificationWithMultipleDevices
 	In order to validate that number of devices influences the display of print counts on summary pages
 	As a dealer 
 	I want to create a proposal with multiple devices
 
 
-Scenario Outline: Dealer can create a proposal with multiple devices 
+Scenario Outline: Dealer can create a proposal with multiple devices with service pack In Click 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type
@@ -40,7 +40,7 @@ Scenario Outline: Dealer can create a proposal with multiple devices
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | MFC-L5750DW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront | 9           |
 	
 
-Scenario Outline: Dealer can create a proposal with multiple devices with upfront service pack upfront 
+Scenario Outline: Dealer can create a proposal with multiple devices with upfront service pack 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
 	When I fill Proposal Description for "<ContractType>" Contract type

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.Proposal
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.Proposal
 {
     using TechTalk.SpecFlow;
     
@@ -19,24 +19,24 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSMultiDeviceVerificationWithPrintCountValidationUK")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSSummaryCalculationsVerificationWithMultipleDevices")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
-    public partial class CloudMPSMultiDeviceVerificationWithPrintCountValidationUKFeature
+    public partial class CloudMPSSummaryCalculationsVerificationWithMultipleDevicesFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSMultiDeviceVerificationWithPrintCountValidation.feature"
+#line 1 "CloudMPSSummaryCalculationsVerificationWithMultipleDevices.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSMultiDeviceVerificationWithPrintCountValidationUK", "In order to validate that number of devices influences the display of print count" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSSummaryCalculationsVerificationWithMultipleDevices", "In order to validate that number of devices influences the display of print count" +
                     "s on summary pages\r\nAs a dealer \r\nI want to create a proposal with multiple devi" +
                     "ces", ProgrammingLanguage.CSharp, new string[] {
                         "TEST",
@@ -75,9 +75,9 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can create a proposal with multiple devices")]
+        [NUnit.Framework.DescriptionAttribute("Dealer can create a proposal with multiple devices with service pack In Click")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "MFC-L5750DW", "Full", "Included in Click Price", "800", "800", "Included in Click Price", "Pay upfront", "9", null)]
-        public virtual void DealerCanCreateAProposalWithMultipleDevices(
+        public virtual void DealerCanCreateAProposalWithMultipleDevicesWithServicePackInClick(
                     string role, 
                     string country, 
                     string contractType, 
@@ -96,7 +96,7 @@ namespace Brother.MPS.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.
                     string printerQty, 
                     string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create a proposal with multiple devices", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create a proposal with multiple devices with service pack In Click", exampleTags);
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
@@ -159,13 +159,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Dealer can create a proposal with multiple devices with upfront service pack upfr" +
-            "ont")]
+        [NUnit.Framework.DescriptionAttribute("Dealer can create a proposal with multiple devices with upfront service pack")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Pay As You Go", "3 years", "Quarterly in Arrears", "Tick", "MFC-L5750DW", "Full", "750", "9", null)]
-        public virtual void DealerCanCreateAProposalWithMultipleDevicesWithUpfrontServicePackUpfront(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer1, string deviceScreen, string clickVolume, string printerQty, string[] exampleTags)
+        public virtual void DealerCanCreateAProposalWithMultipleDevicesWithUpfrontServicePack(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer1, string deviceScreen, string clickVolume, string printerQty, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create a proposal with multiple devices with upfront service pack upfr" +
-                    "ont", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer can create a proposal with multiple devices with upfront service pack", exampleTags);
 #line 43
 this.ScenarioSetup(scenarioInfo);
 #line 44
