@@ -69,8 +69,7 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Customer creates an order and checkout as existing user on UK BOL site")]
         [NUnit.Framework.CategoryAttribute("SMOKE_Checkout")]
-        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.brotherdv2.eu/supplies/inkjet-supplies/lc1000bk", "http://atyourside.co.uk.brotherdv2.eu/qa/03-checkout/415existinguserdetailssectio" +
-            "n", "testdv2uk@guerrillamail.com", "Brother123", "01234567890", "01234567890", "4259917979151326", "07", "2019", null)]
+        [NUnit.Framework.TestCaseAttribute("http://main.co.uk.cds.test.brother.eu.com/supplies/inkjet-supplies/lc1000c", "http://online65.co.uk.cds.test.brother.eu.com/sign-in?ref=checkout", "testdv2uk@guerrillamail.com", "Brother123", "01234567890", "01234567890", "4259917979151326", "07", "2019", null)]
         public virtual void CustomerCreatesAnOrderAndCheckoutAsExistingUserOnUKBOLSite(string siteUrl, string url, string email, string password, string phoneNumber, string mobileNumber, string creditCardNumber, string month, string year, string[] exampleTags)
         {
             string[] @__tags = new string[] {

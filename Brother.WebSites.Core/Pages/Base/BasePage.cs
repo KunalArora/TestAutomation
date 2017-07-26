@@ -29,6 +29,18 @@ namespace Brother.WebSites.Core.Pages.Base
 
         }
 
+        public static string MainSiteCMSUrl
+        {
+            get { return SetMainSiteCMSUrl(); }
+
+        }
+
+        public static string AtyoursideUrl
+        {
+            get { return SetAtyoursideUrl(); }
+
+        }
+
         // Home pages
         #region WebConferencing Home Page
         
@@ -76,6 +88,19 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
             var url = MainSiteBaseUrl;
+            NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
+            return GetInstance<LoginPage>(driver, baseUrl, "");
+        }
+
+        #endregion
+
+        #region BrotherMainSite CMSLogin Page
+
+        public static LoginPage LoadBrotherMainSiteCMSLoginPage(IWebDriver driver, string baseUrl)
+        {
+            driver = SetDriver(driver);
+            //var url = ProcessUrlLocale(BrotherOnlineBaseUrl);
+            var url = MainSiteCMSUrl;
             NavigateToPageSitecore(driver, url + baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<LoginPage>(driver, baseUrl, "");
         }
@@ -143,11 +168,11 @@ namespace Brother.WebSites.Core.Pages.Base
             //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             if (baseUrl == null)
             {
-                NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
+                NavigateToPage(driver, AtyoursideUrl.TrimEnd(new[] { '/' }));
             }
             else
             {
-                NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
+                NavigateToPage(driver, AtyoursideUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             return GetInstance<ProductRegistrationPage>(driver, baseUrl, "");
         }
@@ -182,6 +207,23 @@ namespace Brother.WebSites.Core.Pages.Base
                 NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             
+
+            return GetInstance<SignInPage>(driver, baseUrl, "");
+        }
+
+        public static SignInPage LoadAtyousideHomePage(IWebDriver driver, string baseUrl = null)
+        {
+            driver = SetDriver(driver);
+            //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            if (baseUrl == null)
+            {
+                NavigateToPage(driver, AtyoursideUrl.TrimEnd(new[] { '/' }));
+            }
+            else
+            {
+                NavigateToPage(driver, AtyoursideUrl + baseUrl.TrimEnd(new[] { '/' }));
+            }
+
 
             return GetInstance<SignInPage>(driver, baseUrl, "");
         }

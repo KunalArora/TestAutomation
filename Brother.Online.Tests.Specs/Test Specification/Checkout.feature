@@ -70,11 +70,11 @@ Scenario Outline: Customer creates an order and checkout as existing user on UK 
 #	Then I should see created orders
 
  Examples:
- | Site Url                                                          | Url                                                                                | Email                       | Password   | PhoneNumber | MobileNumber | CreditCardNumber | Month | Year |
- | http://main.co.uk.brotherdv2.eu/supplies/inkjet-supplies/lc1000bk | http://atyourside.co.uk.brotherdv2.eu/qa/03-checkout/415existinguserdetailssection | testdv2uk@guerrillamail.com | Brother123 | 01234567890 | 01234567890  | 4259917979151326 | 07    | 2019 |
+ | Site Url																		| Url                                                                                | Email                       | Password   | PhoneNumber | MobileNumber | CreditCardNumber | Month | Year |
+ | http://main.co.uk.cds.test.brother.eu.com/supplies/inkjet-supplies/lc1000c	| http://online65.co.uk.cds.test.brother.eu.com/sign-in?ref=checkout | testdv2uk@guerrillamail.com | Brother123 | 01234567890 | 01234567890  | 4259917979151326 | 07    | 2019 |
  
-#| Site Url                                                       | Url                                                                                | Email                               | FirstName | LastName | PhoneNumber | MobileNumber | Postcode | House Number | CreditCardNumber |
-#| http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000 | http://atyourside.co.uk.brotherdv2.eu/qa/03-checkout/415existinguserdetailssection | testyourdetailsemail@mailinator.com | Test      | Test     | 01514236589 | 07894540846  | M34 5JE  | 1            | 4259917979151326 |
+#| Site Url																		| Url                                                                                | Email                               | FirstName | LastName | PhoneNumber | MobileNumber | Postcode | House Number | CreditCardNumber |
+#| http://main.co.uk.brotherdv2.eu/supplies/laser-supplies/tn2000				| http://atyourside.co.uk.brotherdv2.eu/qa/03-checkout/415existinguserdetailssection | testyourdetailsemail@mailinator.com | Test      | Test     | 01514236589 | 07894540846  | M34 5JE  | 1            | 4259917979151326 |
 	 
 # Examples:
 #| Country             |  | Price    | CountChange | FirstName | LastName | HouseNumber | AddressLine1 | CityTown   | PhoneNumber | CreditCardNumber | ExpiryMonth | ExpiryYear | CVV    |

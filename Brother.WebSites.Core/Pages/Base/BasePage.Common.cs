@@ -14,10 +14,10 @@ namespace Brother.WebSites.Core.Pages.Base
         public string BaseURL { get; set; }
 
 
-        const string TestEnvSuffix = RunTimeTest;
-        const string UatEnvSuffix = RunTimeUat;
-        const string LiveEnvSuffix = RunTimeLive;
-        const string DevEnvSuffix = RunTimeDev;
+        private const string TestEnvSuffix = RunTimeTest;
+        private const string UatEnvSuffix = RunTimeUat;
+        private const string LiveEnvSuffix = RunTimeLive;
+        private const string DevEnvSuffix = RunTimeDev;
 
         public virtual string DefaultTitle
         {
@@ -26,6 +26,7 @@ namespace Brother.WebSites.Core.Pages.Base
 
 
         #region Base GetInstance()
+
         public TPage GetInstance<TPage>(IWebDriver driver = null, string expectedTitle = "")
             where TPage : BasePage, new()
         {
@@ -53,7 +54,8 @@ namespace Brother.WebSites.Core.Pages.Base
             }
             catch (TimeoutException timeOut)
             {
-                MsgOutput("FATAL: (GetInstance<TPage>) Waiting for body tag element to appear on Page. This can be due to the current test not being on the correct page");
+                MsgOutput(
+                    "FATAL: (GetInstance<TPage>) Waiting for body tag element to appear on Page. This can be due to the current test not being on the correct page");
             }
 
             // Initialise the page instance with elements based on FindsBy entries
@@ -64,8 +66,11 @@ namespace Brother.WebSites.Core.Pages.Base
 
             return pageInstance;
         }
+
         #endregion
+
         #region IFrame GetInstance()
+
         protected TPage GetIFrameInstance<TPage>(IWebDriver driver = null, string expectedTitle = "")
             where TPage : BasePage, new()
         {
@@ -76,7 +81,7 @@ namespace Brother.WebSites.Core.Pages.Base
             where TPage : BasePage, new()
         {
             var timeSpan = WebDriver.DefaultTimeout;
-            
+
             var pageInstance = new TPage
             {
                 Driver = driver,
@@ -100,6 +105,7 @@ namespace Brother.WebSites.Core.Pages.Base
         }
 
         #endregion
+
         #region Tab GetInstance
 
         protected TPage GetTabInstance<TPage>(IWebDriver driver = null)
@@ -125,15 +131,16 @@ namespace Brother.WebSites.Core.Pages.Base
             var finalUrl = driver.Url;
 
             if (assertUrlHasChanged)
-                TestCheck.AssertIsEqual(false, initialUrl.Equals(finalUrl), 
+                TestCheck.AssertIsEqual(false, initialUrl.Equals(finalUrl),
                     String.Format("{0} did not redirected to expected new page", initialUrl));
 
             return pageInstance;
         }
+
         #endregion
 
 
-     
+
         /// <summary> 
         /// Asserts that the current page is of the given type 
         /// </summary> 
@@ -141,7 +148,8 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             if (!(this is TPage))
             {
-                TestCheck.AssertFailTest(string.Format("Page Type Mismatch: Current page is not a '{0}'", typeof(TPage).Name));
+                TestCheck.AssertFailTest(string.Format("Page Type Mismatch: Current page is not a '{0}'",
+                    typeof (TPage).Name));
             }
         }
 
@@ -150,14 +158,15 @@ namespace Brother.WebSites.Core.Pages.Base
         /// </summary> 
         public TPage As<TPage>() where TPage : BasePage, new()
         {
-            return (TPage)this;
+            return (TPage) this;
         }
 
         private static string ProcessMainSiteLiveUrl(string url)
         {
-            if ((CheckScenarioEnv(LiveEnvSuffix) || CheckFeatureEnv(LiveEnvSuffix)) && (GetRunTimeEnv().Equals(LiveEnvSuffix)) && url.Contains("online"))
+            if ((CheckScenarioEnv(LiveEnvSuffix) || CheckFeatureEnv(LiveEnvSuffix)) &&
+                (GetRunTimeEnv().Equals(LiveEnvSuffix)) && url.Contains("online"))
             {
-               return url.Replace("online.", "www.");
+                return url.Replace("online.", "www.");
             }
             // none live site so just replace "online"
             return url.Replace("online.", string.Empty);
@@ -169,15 +178,15 @@ namespace Brother.WebSites.Core.Pages.Base
             const string brother = @"brother";
             const string mainUrl = "main";
             const string local = @".local";
-            
+
             var urlParts = url.ToLower().Split('.');
-            
+
             if (url.ToLower().Contains(local)) return url;
             if (urlParts.Length == 0) return url;
 
             if (urlParts[1].ToLower().Contains(brother))
             {
-                if(Locale.ToUpper().Equals("UK"))
+                if (Locale.ToUpper().Equals("UK"))
                     url = url.Replace("eu", "co.uk");
                 else
                     url = url.Replace("eu", Locale);
@@ -188,7 +197,7 @@ namespace Brother.WebSites.Core.Pages.Base
             // generally for specific brother online sites, there is a locale between Online and Brother<server>.co.uk
             // check for its existence and update accordingly.
             // would not contain brother if locale present at this index
-            
+
             if (urlParts[2].ToLower().Contains(brother))
             {
                 return string.Format("{0}.{1}.{2}.{3}", urlParts[0], Locale, urlParts[2], urlParts[3]);
@@ -228,7 +237,7 @@ namespace Brother.WebSites.Core.Pages.Base
         {
             var brotherBaseHomePage = ConfigurationManager.AppSettings["BrotherOnlineHomePage_DefaultPage"];
 
-            const string mainUrl = "main"; 
+            const string mainUrl = "main";
 
             var urlParts = brotherBaseHomePage.ToLower().Split('.');
 
@@ -257,10 +266,10 @@ namespace Brother.WebSites.Core.Pages.Base
 
             if (runTimeEnv.Equals(RunTimeUat))
             {
-               // return "http://online.brother.co.uk.local";
+                // return "http://online.brother.co.uk.local";
                 return ProcessBaseUrl(brotherBaseHomePage, "qas");
             }
-            
+
             if (runTimeEnv.Equals(RunTimeDev))
             {
                 return ProcessBaseUrl(brotherBaseHomePage, "dev");
@@ -309,7 +318,7 @@ namespace Brother.WebSites.Core.Pages.Base
 
             switch (env)
             {
-                case "TEST" :
+                case "TEST":
                     url = SeleniumGlobal.Default.TestUrl65;
                     break;
                 case "UAT":
@@ -326,5 +335,58 @@ namespace Brother.WebSites.Core.Pages.Base
 
             return url;
         }
+
+        public static string SetMainSiteCMSUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST":
+                    url = SeleniumGlobal.Default.MainSiteCMSTest;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.MainSiteCMSUAT;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.MainSiteCMSTest;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
+        }
+
+        public static string SetAtyoursideUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST":
+                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.AtyoursideUAT;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
+        }
+
+
+        
     }
 }

@@ -96,13 +96,11 @@ testRunner.Then("I should see the Header and the Footer appearing on the landing
         [NUnit.Framework.DescriptionAttribute("New Customer wants to register product with their serial numbers and purchase dat" +
             "e")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
-        [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004731", "12/12/2013", "testemailidinputfield@guerrillamail.com", "Test", "Test", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "U1T004731", "12/12/2013", "testemailidinputfield@guerrillamail.com", "Test", "Test", "12bfeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersAndPurchaseDate(string country, string siteUrl, string serialNumber, string purchaseDate, string email, string firstName, string lastName, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE_ProductRegistration",
-                    "TEST"};
+                    "SMOKE_ProductRegistration"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -111,10 +109,8 @@ testRunner.Then("I should see the Header and the Footer appearing on the landing
                     "e", @__tags);
 #line 17
 this.ScenarioSetup(scenarioInfo);
-#line 18
- testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
- testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\" on Product Registration page", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
@@ -147,7 +143,7 @@ this.ScenarioSetup(scenarioInfo);
             "nd promo code")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004731", "12/12/2013", "warrantyup", "testemailidinputfield@mailinator.com", "Test", "Test", "M345JE", "1", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "U1T004732", "12/12/2013", "warrantyup", "testemailidinputfield@mailinator.com", "Test", "Test", "M345JE", "1", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void NewCustomerWantsToRegisterProductWithTheirSerialNumbersPurchaseDateAndPromoCode(string country, string siteUrl, string serialNumber, string purchaseDate, string promoCode, string email, string firstName, string lastName, string postcode, string houseNumber, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -294,7 +290,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 97
 this.ScenarioSetup(scenarioInfo);
 #line 98
-    testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 99
  testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 100
@@ -328,26 +324,8 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Deregister Serial Numbers using prod id")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "1c43ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "7343ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "c243ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "1144ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "6044ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "af44ec57-5cda-db34-e100-0000ac1b10d3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "A1D1EC57-45DA-D234-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "A5EEEC57-0DDB-5637-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "07EEEC57-0DDB-5637-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "E1ECEC57-0DDB-5537-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "EFACEC57-ABDA-FC35-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "02ACEC57-ABDA-FC35-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "35FDEC57-13D7-662B-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "AAFBEC57-13D7-662B-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "0CFBEC57-13D7-662B-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "B4A80058-9890-A70F-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "D0380058-F3BC-7F0C-E100-0000AC1B10D3", null)]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "81380058-F3BC-7F0C-E100-0000AC1B10D3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "12bfeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void DeregisterSerialNumbersUsingProdId(string country, string siteUrl, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -361,10 +339,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 119
 this.ScenarioSetup(scenarioInfo);
 #line 120
- testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 121
- testRunner.And(string.Format("I browse to the \"{0}\" product registration page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 122
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\" on Product Registration page", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

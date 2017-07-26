@@ -548,7 +548,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 driveLetter = "E";
             }
-            else if (isOnBuildMachine.ToUpper().Equals("BRO43DBS01DOP"))
+            else if (isOnBuildMachine.ToLower().Equals("bro43dbs01dop"))
             {
                 driveLetter = "D";
             }

@@ -71,7 +71,7 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options throws an error for " +
             "existing user - Validation Checks")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ExistingUserSignIn")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "InvalidEmailContaining aspace@mailinator.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sign-in", "InvalidEmailContaining aspace@mailinator.com", null)]
         public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsThrowsAnErrorForExistingUser_ValidationChecks(string country, string siteUrl, string invalidEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -85,16 +85,12 @@ namespace Brother.Online.Tests.Specs.TestSpecification
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
- testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
- testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I browse to \"{0}\" for existing user signin page atyourside", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.And("I click on existing customer log in option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
  testRunner.When("I click on Forgot Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 13
  testRunner.Then(string.Format("I enter an invalid email address as \"{0}\"", invalidEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
+#line 14
  testRunner.Then("I should see the Error Message activated and displaying an Error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -103,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forgotten Password email recieved to the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ExistingUserSignIn")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@guerrillamail.com", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sign-in", "123orderplacedukaccount@guerrillamail.com", null)]
         public virtual void CheckForgottenPasswordEmailRecievedToTheUser(string country, string siteUrl, string validEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -113,21 +109,17 @@ this.ScenarioSetup(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Forgotten Password email recieved to the user", @__tags);
-#line 23
+#line 22
 this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given(string.Format("I browse to \"{0}\" for existing user signin page atyourside", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 24
- testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
- testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
- testRunner.And("I click on existing customer log in option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
  testRunner.When("I click on Forgot Password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 28
+#line 25
  testRunner.Then(string.Format("I enter an email address as \"{0}\"", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 29
+#line 26
  testRunner.And("I press send email button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 27
  testRunner.And(string.Format("Once I have Validated \"{0}\" was received and verified my account", validEmailAddress), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

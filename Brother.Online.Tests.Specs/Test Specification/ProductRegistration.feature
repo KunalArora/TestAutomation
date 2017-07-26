@@ -13,10 +13,10 @@ Scenarios:
 | United Kingdom |
 
 
-@SMOKE_ProductRegistration @TEST
+@SMOKE_ProductRegistration
 Scenario Outline: New Customer wants to register product with their serial numbers and purchase date
-	Given I navigate to "<Country>" Brother Online landing page
-	And I browse to the "<Site Url>" product registration page
+	#Given I navigate to "<Country>" Brother Online landing page
+	Given I browse to the "<Site Url>" product registration page
 	And I deregister the serial number using the "<ProdId>" on Product Registration page
 	And I have entered my product "<SerialNumber>"
 	And clicked on Find Product Button
@@ -31,8 +31,8 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	#And Once I have Validated "<Email>" was received and verified my account for Product Registration Email
 	
 Scenarios: 
-| Country        | Site Url                  | SerialNumber | PurchaseDate | Email                                  | FirstName | LastName |ProdId  |
-| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com| Test      | Test     |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+| Country        | Site Url                           | SerialNumber | PurchaseDate | Email                                   | FirstName | LastName | ProdId                               |
+| United Kingdom | /register-your-device/your-product | U1T004731    | 12/12/2013   | testemailidinputfield@guerrillamail.com | Test      | Test      | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: New Customer wants to register product with their serial numbers, purchase date and promo code
@@ -59,7 +59,7 @@ Scenario Outline: New Customer wants to register product with their serial numbe
 	
 Scenarios: 
 | Country        | Site Url                  | SerialNumber | PurchaseDate | PromoCode  | Email                                | FirstName | LastName | Postcode | House Number |ProdId |
-| United Kingdom | /qa/eubol78/serial-number | U1T004731    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+| United Kingdom | /qa/eubol78/serial-number | U1T004732    | 12/12/2013   | warrantyup | testemailidinputfield@mailinator.com | Test      | Test     | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date and promo code and also bank details entered for the user
@@ -95,7 +95,7 @@ Scenarios:
 
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date
-    Given I navigate to "<Country>" Brother Online landing page
+   Given I browse to the "<Site Url>" product registration page
 	And I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
@@ -117,29 +117,31 @@ Scenarios:
 
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: Deregister Serial Numbers using prod id
-	Given I navigate to "<Country>" Brother Online landing page
-	And I browse to the "<Site Url>" product registration page
+	Given I browse to the "<Site Url>" product registration page
 	And I deregister the serial number using the "<ProdId>" on Product Registration page
 
 Scenarios:
-	| Country        | Site Url       | ProdId                               |
-	| United Kingdom | /qa/signintest | c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | 1c43ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | 7343ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | c243ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | 1144ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | 6044ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | af44ec57-5cda-db34-e100-0000ac1b10d3 |
-	| United Kingdom | /qa/signintest | A1D1EC57-45DA-D234-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | A5EEEC57-0DDB-5637-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 07EEEC57-0DDB-5637-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | E1ECEC57-0DDB-5537-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | EFACEC57-ABDA-FC35-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 02ACEC57-ABDA-FC35-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 35FDEC57-13D7-662B-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | AAFBEC57-13D7-662B-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 0CFBEC57-13D7-662B-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | B4A80058-9890-A70F-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | D0380058-F3BC-7F0C-E100-0000AC1B10D3 |
-	| United Kingdom | /qa/signintest | 81380058-F3BC-7F0C-E100-0000AC1B10D3 |
+	| Country        | Site Url							  | ProdId                               |
+	#U1T004732
+	| United Kingdom | /register-your-device/your-product | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	#U1T004731
+	| United Kingdom | /register-your-device/your-product | c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product| 1c43ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | 7343ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | c243ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product| 1144ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | 6044ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | af44ec57-5cda-db34-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | A1D1EC57-45DA-D234-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | A5EEEC57-0DDB-5637-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | 07EEEC57-0DDB-5637-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | AAB7EC57-E4BA-7B5D-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | E1ECEC57-0DDB-5537-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | EFACEC57-ABDA-FC35-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | 02ACEC57-ABDA-FC35-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | 35FDEC57-13D7-662B-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | AAFBEC57-13D7-662B-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | 0CFBEC57-13D7-662B-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | B4A80058-9890-A70F-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | D0380058-F3BC-7F0C-E100-0000AC1B10D3 |
+	#| United Kingdom | /register-your-device/your-product | 81380058-F3BC-7F0C-E100-0000AC1B10D3 |
