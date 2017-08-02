@@ -21,12 +21,17 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         //{
            // CurrentPage = BasePage.LoadSignPage(CurrentDriver, url);
         //}
-        [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
-        public void GivenIBrowseToForExistingUserSigninPageAtyourside(string url)
+        [Given(@"I browse to the existing customer log in page")]
+        public void GivenIBrowseToTheExistingCustomerLogInPage()
+        {
+            CurrentPage = BasePage.LoadAtyousideSignInPage(CurrentDriver);
+        }
+        [Then(@"I browse to the ""(.*)"" for existing user signin page")]
+        public void ThenIBrowseToTheForExistingUserSigninPage(string url)
         {
             CurrentPage = BasePage.LoadAtyousideHomePage(CurrentDriver, url);
         }
-        
+
         [Given(@"I click on existing customer log in option")]
         public void GivenIClickOnExistingCustomerLogInOption()
         {
@@ -72,11 +77,27 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             NextPage = CurrentPage.As<SignInPage>().ClickSignInButton();
         }
+        [Then(@"I browse to the ""(.*)"" product registration page")]
+        public void ThenIBrowseToTheProductRegistrationPage(string url)
+        {
+            CurrentPage = BasePage.LoadProductRegistrationPage(CurrentDriver, url);
+        }
+        [Then(@"I deregister the serial number using the ""(.*)""")]
+        public void ThenIDeregisterTheSerialNumberUsingThe(string productid)
+        {
+            CurrentPage.As<SignInPage>().DeregisterSerialNumber(productid);
+        }
         [Then(@"I have entered my product ""(.*)""")]
         public void ThenIHaveEnteredMyProduct(string serialnumber)
         {
             CurrentPage.As<ProductRegistrationPage>().PopulateSerialNumberTextBox(serialnumber);
         }
+        [Then(@"I deregister the serial number using the ""(.*)"" on Product Registration page")]
+        public void ThenIDeregisterTheSerialNumberUsingTheOnProductRegistrationPage(string productid)
+        {
+            CurrentPage.As<ProductRegistrationPage>().DeregisterSerialNumber(productid);
+        }
+
         [Then(@"clicked on Find Product Button")]
         public void ThenClickedOnFindProductButton()
         {
