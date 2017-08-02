@@ -207,7 +207,7 @@ this.ScenarioSetup(scenarioInfo);
             "ate and promo code and also bank details entered for the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/signintest", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004731", "cash50", "12/12/2013", "Test", "400699", "54116897", "M345JE", "1", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/qa/eubol78/serial-number", "123orderplacedukaccount@mailinator.com", "Hello123", "U1T004731", "cash50", "12/12/2013", "Test", "400699", "54116897", "M345JE", "1", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void ExistingCustomerWantsToRegisterProductWithTheirSerialNumbersPurchaseDateAndPromoCodeAndAlsoBankDetailsEnteredForTheUser(string country, string siteUrl, string validEmailAddress, string validPassword, string serialNumber, string promoCode, string purchaseDate, string accountHolderName, string sortCode, string accountNumber, string postcode, string houseNumber, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -221,10 +221,8 @@ this.ScenarioSetup(scenarioInfo);
                     "ate and promo code and also bank details entered for the user", @__tags);
 #line 65
 this.ScenarioSetup(scenarioInfo);
-#line 66
-    testRunner.Given(string.Format("I navigate to \"{0}\" Brother Online landing page", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 67
- testRunner.And(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I browse to the \"{0}\" for existing user signin page", siteUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 68
  testRunner.And(string.Format("I deregister the serial number using the \"{0}\"", prodId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 69
@@ -324,7 +322,6 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Deregister Serial Numbers using prod id")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "12bfeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void DeregisterSerialNumbersUsingProdId(string country, string siteUrl, string prodId, string[] exampleTags)
         {

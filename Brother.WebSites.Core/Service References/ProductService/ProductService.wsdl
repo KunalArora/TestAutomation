@@ -136,8 +136,8 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IProductService_DeregisterProduct_InputMessage">
@@ -169,9 +169,9 @@
   </wsdl:binding>
   <wsdl:service name="ProductService">
     <wsdl:port name="WSHttpBinding_IProductService" binding="tns:WSHttpBinding_IProductService">
-      <soap12:address location="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc" />
+      <soap12:address location="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc</wsa10:Address>
+        <wsa10:Address>http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Spn>host/bro43dbs01dop.BROTHERDC01.eu</Spn>
         </Identity>

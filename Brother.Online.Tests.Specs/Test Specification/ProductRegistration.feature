@@ -63,8 +63,8 @@ Scenarios:
 
 @SMOKE_ProductRegistration @TEST
 Scenario Outline: Existing Customer wants to register product with their serial numbers, purchase date and promo code and also bank details entered for the user
-    Given I navigate to "<Country>" Brother Online landing page
-	And I browse to the "<Site Url>" for existing user signin page
+    #Given I navigate to "<Country>" Brother Online landing page
+	Given I browse to the "<Site Url>" for existing user signin page
 	And I deregister the serial number using the "<ProdId>"
 	And I click on existing customer log in option
     Then I enter an email address as "<Valid Email Address>" on existing customer page
@@ -89,8 +89,8 @@ Scenario Outline: Existing Customer wants to register product with their serial 
 	#And I can verify registration confirmaiton message is present
 
 Scenarios:
-	| Country        | Site Url       | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |ProdId |
-	| United Kingdom | /qa/signintest | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	| Country        | Site Url					 | Valid Email Address                    | Valid Password | SerialNumber | PromoCode | PurchaseDate | Account Holder Name | Sort Code | Account Number | Postcode | House Number |ProdId |
+	| United Kingdom | /qa/eubol78/serial-number | 123orderplacedukaccount@mailinator.com | Hello123       | U1T004731   | cash50    | 12/12/2013   | Test                | 400699    | 54116897       | M345JE   | 1            |c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 
 
 @SMOKE_ProductRegistration @TEST
@@ -123,7 +123,7 @@ Scenario Outline: Deregister Serial Numbers using prod id
 Scenarios:
 	| Country        | Site Url							  | ProdId                               |
 	#U1T004732
-	| United Kingdom | /register-your-device/your-product | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	#| United Kingdom | /register-your-device/your-product | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
 	#U1T004731
 	| United Kingdom | /register-your-device/your-product | c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
 	#| United Kingdom | /register-your-device/your-product| 1c43ec57-5cda-db34-e100-0000ac1b10d3 |
