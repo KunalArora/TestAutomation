@@ -386,6 +386,31 @@ namespace Brother.WebSites.Core.Pages.Base
             return url;
         }
 
+        public static string SetAtyoursideSignInUrl()
+        {
+            var env = GetRunTimeEnv();
+            string url;
+
+            switch (env)
+            {
+                case "TEST":
+                    url = SeleniumGlobal.Default.AtyursideSignInTest;
+                    break;
+                case "UAT":
+                    url = SeleniumGlobal.Default.AtyoursideSignInUAT;
+                    break;
+                default:
+                    url = SeleniumGlobal.Default.AtyursideSignInTest;
+                    break;
+            }
+
+            var locale = Locale.ToLower().Equals("uk") ? "co.uk" : Locale;
+
+            url = String.Format(url, locale);
+
+            return url;
+        }
+
 
         
     }
