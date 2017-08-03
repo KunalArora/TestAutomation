@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ProductService.xsd" MetadataType="Schema" ID="3a6541b0-6515-427a-a1a8-98419a7587f2" SourceId="1" SourceUrl="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?xsd=xsd0" />
-    <MetadataFile FileName="ProductService.wsdl" MetadataType="Wsdl" ID="6d55337f-711d-4969-b711-ba282b80480d" SourceId="1" SourceUrl="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?wsdl" />
-    <MetadataFile FileName="ProductService.disco" MetadataType="Disco" ID="d2cd4e31-5d84-4809-9320-c229ff35d5b0" SourceId="1" SourceUrl="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?disco" />
-    <MetadataFile FileName="ProductService1.xsd" MetadataType="Schema" ID="d12bbc5d-9086-4737-9e06-84aacaffff26" SourceId="1" SourceUrl="http://testautomationsvc.brotherdv2.eu/Product/ProductService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductService.xsd" MetadataType="Schema" ID="3a6541b0-6515-427a-a1a8-98419a7587f2" SourceId="1" SourceUrl="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductService.wsdl" MetadataType="Wsdl" ID="6d55337f-711d-4969-b711-ba282b80480d" SourceId="1" SourceUrl="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?wsdl" />
+    <MetadataFile FileName="ProductService.disco" MetadataType="Disco" ID="d2cd4e31-5d84-4809-9320-c229ff35d5b0" SourceId="1" SourceUrl="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?disco" />
+    <MetadataFile FileName="ProductService1.xsd" MetadataType="Schema" ID="d12bbc5d-9086-4737-9e06-84aacaffff26" SourceId="1" SourceUrl="http://testautomationsvc.cms.test.brother.eu.com/Product/ProductService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

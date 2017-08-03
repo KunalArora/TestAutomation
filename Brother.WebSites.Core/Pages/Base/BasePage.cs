@@ -41,6 +41,11 @@ namespace Brother.WebSites.Core.Pages.Base
 
         }
 
+        public static string AtyoursideSignInUrl
+        {
+            get { return SetAtyoursideSignInUrl(); }
+
+        }
         // Home pages
         #region WebConferencing Home Page
         
@@ -222,6 +227,23 @@ namespace Brother.WebSites.Core.Pages.Base
             else
             {
                 NavigateToPage(driver, AtyoursideUrl + baseUrl.TrimEnd(new[] { '/' }));
+            }
+
+
+            return GetInstance<SignInPage>(driver, baseUrl, "");
+        }
+
+        public static SignInPage LoadAtyousideSignInPage(IWebDriver driver, string baseUrl = null)
+        {
+            driver = SetDriver(driver);
+            //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
+            if (baseUrl == null)
+            {
+                NavigateToPage(driver, AtyoursideSignInUrl.TrimEnd(new[] { '/' }));
+            }
+            else
+            {
+                NavigateToPage(driver, AtyoursideSignInUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
 
 
