@@ -111,6 +111,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InstallationSerialNumberCheckFailureIconElements;
         [FindsBy(How = How.CssSelector, Using = ".has-success .glyphicon.glyphicon-ok")]
         public IList<IWebElement> InstallationSerialNumberCheckSuccessIconElements;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SwapOldDeviceInputMono")]
+        public IWebElement SwapOldMonoElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SwapOldDeviceInputColour")]
+        public IWebElement SwapOldColourElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SwapNewDeviceInputMono")]
+        public IWebElement SwapNewMonoElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_0_SwapNewDeviceInputColour")]
+        public IWebElement SwapNewColourElement;
         
         
 
@@ -907,6 +915,56 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             }
             
+        }
+
+
+        public void IsSwapOldFieldMonoDisplayed()
+        {
+            if(SwapOldMonoElement == null)
+                throw new Exception("Old Mono field is not null");
+
+            TestCheck.AssertIsEqual(true, SwapOldMonoElement.Displayed, "Old Mono field is not displayed");
+        }
+
+        public void IsSwapOldFieldColourDisplayed()
+        {
+            if (SwapOldColourElement == null)
+                throw new Exception("Old Colour field is not null");
+
+            TestCheck.AssertIsEqual(true, SwapOldColourElement.Displayed, "Old Colour field is not displayed");
+        }
+
+        public void IsSwapNewFieldMonoEmpty()
+        {
+            if (SwapNewMonoElement == null)
+                throw new Exception("new Mono field is not null");
+
+            TestCheck.AssertIsEqual(true, SwapNewMonoElement.GetAttribute("value").Equals("0"), "new Mono field is not displayed");
+        }
+
+        public void IsSwapNewFieldColourEmpty()
+        {
+            if (SwapNewColourElement == null)
+                throw new Exception("new Colour field is not null");
+
+            TestCheck.AssertIsEqual(true, SwapNewColourElement.GetAttribute("value").Equals("0"), "new Colour field is not displayed");
+        }
+
+
+        public void EnterNewMonoSwapCount(string mono)
+        {
+            if (SwapNewMonoElement == null)
+                throw new Exception("new Mono field is not null");
+
+            ClearAndType(SwapNewMonoElement, mono);
+        }
+
+        public void EnterNewColourSwapCount(string colour)
+        {
+            if (SwapNewColourElement == null)
+                throw new Exception("new Mono field is not null");
+
+            ClearAndType(SwapNewColourElement, colour);
         }
 
         public void EnterIpAddress()

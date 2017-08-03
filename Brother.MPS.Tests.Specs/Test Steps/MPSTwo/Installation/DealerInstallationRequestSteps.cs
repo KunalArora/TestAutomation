@@ -536,6 +536,34 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
            // ThenICanCompleteDeviceInstallation();
         }
 
+
+        [When(@"I enter new swap mono print count as ""(.*)"" and colour print count as ""(.*)""")]
+        public void WhenIEnterNewSwapMonoPrintCountAsAndColourPrintCountAs(string mono, string colour)
+        {
+            ThenIVerifySwapFieldsAreDisplayed();
+            ThenIVerifyNewSwapFieldsAreEmpty();
+            ThenIEnterNewPrintCountToSwappedDevice(mono, colour);
+        }
+
+
+        public void ThenIVerifySwapFieldsAreDisplayed()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsSwapOldFieldColourDisplayed();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsSwapOldFieldMonoDisplayed();
+        }
+
+        public void ThenIVerifyNewSwapFieldsAreEmpty()
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsSwapNewFieldMonoEmpty();
+            CurrentPage.As<InstallerDeviceInstallationPage>().IsSwapNewFieldColourEmpty();
+        }
+
+        public void ThenIEnterNewPrintCountToSwappedDevice(string mono, string colour)
+        {
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterNewMonoSwapCount(mono);
+            CurrentPage.As<InstallerDeviceInstallationPage>().EnterNewColourSwapCount(colour);
+        }
+
         [Then(@"the newly installed device is displayed on Managed Device screen")]
         public void ThenTheNewlyInstalledDeviceIsDisplayedOnManagedDeviceScreen()
         {

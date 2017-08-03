@@ -433,6 +433,9 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                     //elementStatus = true;
                 }
             }
+
+            
+                
             WebDriver.SetWebDriverDefaultTimeOuts(WebDriver.DefaultTimeOut.Implicit);
             
         }

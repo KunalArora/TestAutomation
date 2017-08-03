@@ -16,8 +16,9 @@ Scenario Outline: MPS Swap Device
 	And I begin device swapping process for same device 
 	And I generate swapping device request with "<Method>" and "<Type>"
 	And installer installed the new swap device for "<Type>" communication
+	And I enter new swap mono print count as "700" and colour print count as "800"
 	Then the newly installed device is displayed on Managed Device screen
-	And I can complete the swap process
+	##And I can complete the swap process
 	And I can sign out of Brother Online
 
 	
@@ -27,7 +28,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 
-@ignore
+
 Scenario Outline: MPS PCB Swap Device
 	Given "<Country>" Dealer have created a "<ContractType>" contract with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -39,8 +40,9 @@ Scenario Outline: MPS PCB Swap Device
 	And I begin device PCB swapping process for same device 
 	And I generate PCB swapping device request with "<Method>" and "<Type>"
 	And installer installed new PCB swap device for "<Type>" communication
+	And I enter new swap mono print count as "700" and colour print count as "800"
 	Then the newly installed device is displayed on Managed Device screen
-	And I can complete PCB swap process
+	##And I can complete PCB swap process
 	And I can sign out of Brother Online
 
 	
@@ -62,8 +64,9 @@ Scenario Outline: MPS Swap Device with Different Device
 	And I begin device swapping process for different device "<NewDevice>" 
 	And I generate swapping device request with "<Method>" and "<Type>"
 	And installer installed the new swap device for "<Type>" communication
+	And I enter new swap mono print count as "700" and colour print count as "800"
 	Then the newly installed device is displayed on Managed Device screen
-	And I can complete the swap process
+	##And I can complete the swap process
 	And I can sign out of Brother Online
 
 	
@@ -136,7 +139,7 @@ Scenarios:
 
 	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              |
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
+	#| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 
 
 Scenario Outline: MPS Device Reinstallation Cancellation
