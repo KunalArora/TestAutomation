@@ -99,7 +99,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             PurchaseDateTextBox.SendKeys(purchasedate);
             Thread.Sleep(10000);
-            WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
+            //WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
         }
 
         public void EnterPromoCode(string promocode)
