@@ -296,6 +296,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("SMOKE_ProductRegistration")]
         [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "c3beeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "/register-your-device/your-product", "12bfeb53-d80a-1a4c-e100-0000ac1b10d3", null)]
         public virtual void DeregisterSerialNumbersUsingProdId(string country, string siteUrl, string prodId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
