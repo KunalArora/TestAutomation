@@ -98,6 +98,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void EnterProductDate(string purchasedate)
         {
             PurchaseDateTextBox.SendKeys(purchasedate);
+            Thread.Sleep(10000);
             WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
         }
 
