@@ -92,7 +92,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(CompleteRegistrationButton);
             CompleteRegistrationButton.Click();
+            System.Threading.Thread.Sleep(15000);
             RecycleSerialNumber(pId);
+            System.Threading.Thread.Sleep(15000);
             return GetInstance<ConfirmationPage>(Driver);
         }
         public AddressDetailsPage ClickContinueButtonOnUdPage()
