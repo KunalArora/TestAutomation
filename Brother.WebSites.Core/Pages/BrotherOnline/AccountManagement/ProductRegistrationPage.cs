@@ -98,8 +98,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         public void EnterProductDate(string purchasedate)
         {
             PurchaseDateTextBox.SendKeys(purchasedate);
-            Thread.Sleep(10000);
-            //WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
+            WaitForElementToBeClickableByCssSelector("#btn-apply-purchase-date", 5, 20);
         }
 
         public void EnterPromoCode(string promocode)
@@ -145,7 +144,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(Driver, ContinueButton);
             ContinueButton.Click();
+            System.Threading.Thread.Sleep(15000);
             RecycleSerialNumber(pId);
+            System.Threading.Thread.Sleep(15000);
             return GetInstance<MyPrintersAndDevicesPage>(Driver); 
         }
         
