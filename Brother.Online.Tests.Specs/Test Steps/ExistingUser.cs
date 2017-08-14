@@ -21,11 +21,12 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         //{
            // CurrentPage = BasePage.LoadSignPage(CurrentDriver, url);
         //}
-        [Given(@"I browse to the existing customer log in page")]
-        public void GivenIBrowseToTheExistingCustomerLogInPage()
+        [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
+        public void GivenIBrowseToForExistingUserSigninPageAtyourside(string url)
         {
-            CurrentPage = BasePage.LoadAtyousideSignInPage(CurrentDriver);
+            CurrentPage = BasePage.LoadAtyousideHomePage(CurrentDriver, url); ;
         }
+
         [Then(@"I browse to the ""(.*)"" for existing user signin page")]
         public void ThenIBrowseToTheForExistingUserSigninPage(string url)
         {
@@ -40,7 +41,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [When(@"I click on Forgot Password")]
         public void WhenIClickOnForgotPassword()
         {
-            Thread.Sleep(TimeSpan.FromSeconds(3));
+            Thread.Sleep(TimeSpan.FromSeconds(10));
             CurrentPage.As<SignInPage>().ClickForgottenPasswordLink();
         }
         [Then(@"I enter an invalid email address as (.*)")]

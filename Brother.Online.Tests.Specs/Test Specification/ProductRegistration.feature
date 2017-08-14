@@ -113,10 +113,10 @@ Scenario Outline: Deregister Serial Numbers using prod id
 
 Scenarios:
 	| Country        | Site Url							  | ProdId                               |
-	#U1T004732
-	#| United Kingdom | /register-your-device/your-product | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
 	#U1T004731
 	| United Kingdom | /register-your-device/your-product | c3beeb53-d80a-1a4c-e100-0000ac1b10d3 |
+	#U1T004732
+	| United Kingdom | /register-your-device/your-product | 12bfeb53-d80a-1a4c-e100-0000ac1b10d3 |
 	#| United Kingdom | /register-your-device/your-product| 1c43ec57-5cda-db34-e100-0000ac1b10d3 |
 	#| United Kingdom | /register-your-device/your-product | 7343ec57-5cda-db34-e100-0000ac1b10d3 |
 	#| United Kingdom | /register-your-device/your-product | c243ec57-5cda-db34-e100-0000ac1b10d3 |
