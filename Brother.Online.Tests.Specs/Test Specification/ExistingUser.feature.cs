@@ -71,11 +71,13 @@ namespace Brother.Online.Tests.Specs.TestSpecification
         [NUnit.Framework.DescriptionAttribute("Check Forget Password with various invalid scenarios options throws an error for " +
             "existing user - Validation Checks")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ExistingUserSignIn")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sign-in", "InvalidEmailContaining aspace@mailinator.com", null)]
         public virtual void CheckForgetPasswordWithVariousInvalidScenariosOptionsThrowsAnErrorForExistingUser_ValidationChecks(string country, string siteUrl, string invalidEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE_ExistingUserSignIn"};
+                    "SMOKE_ExistingUserSignIn",
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -99,11 +101,13 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Forgotten Password email recieved to the user")]
         [NUnit.Framework.CategoryAttribute("SMOKE_ExistingUserSignIn")]
+        [NUnit.Framework.CategoryAttribute("TEST")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "/sign-in", "123orderplacedukaccount@guerrillamail.com", null)]
         public virtual void CheckForgottenPasswordEmailRecievedToTheUser(string country, string siteUrl, string validEmailAddress, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "SMOKE_ExistingUserSignIn"};
+                    "SMOKE_ExistingUserSignIn",
+                    "TEST"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));

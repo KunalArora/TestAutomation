@@ -5,7 +5,7 @@ Feature: Existing User Forgotten Password
 	I need to be able to have account management options
 
 
-@SMOKE_ExistingUserSignIn
+@SMOKE_ExistingUserSignIn @TEST
 Scenario Outline: Check Forget Password with various invalid scenarios options throws an error for existing user - Validation Checks
 	Given I browse to "<Site Url>" for existing user signin page atyourside
 	#And I click on existing customer log in option
@@ -18,7 +18,7 @@ Scenarios:
 	| United Kingdom | /sign-in | InvalidEmailContaining aspace@mailinator.com   |
 
 
-@SMOKE_ExistingUserSignIn
+@SMOKE_ExistingUserSignIn @TEST
 Scenario Outline: Check Forgotten Password email recieved to the user
 	Given I browse to "<Site Url>" for existing user signin page atyourside
 	When I click on Forgot Password
