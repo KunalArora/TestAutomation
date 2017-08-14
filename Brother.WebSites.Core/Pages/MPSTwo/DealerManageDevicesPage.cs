@@ -333,7 +333,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ReplaceWithSameModelElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
             ReplaceWithSameModelElement.Click();
+            WebDriver.Wait(DurationType.Millisecond, 5);
             SwapTypeNextButtonElement.Click();
+
 
             return GetInstance<DealerSetCommunicationMethodPage>();
         }
@@ -344,6 +346,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ReplacePcbElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
             ReplacePcbElement.Click();
+            WebDriver.Wait(DurationType.Millisecond, 5);
             SwapTypeNextButtonElement.Click();
 
             return GetInstance<DealerSetCommunicationMethodPage>();
@@ -355,7 +358,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ReplaceWithDifferentModelElement == null)
                 throw new Exception("Swap different device pop up not displayed");
             ReplaceWithDifferentModelElement.Click();
-            SwapTypeNextButtonElement.Click();
+            WaitForElementToExistByCssSelector("#MeterReadingLabel");
+            try
+            {
+                SwapTypeNextButtonElement.Click();
+            }
+            catch (InvalidOperationException ioe)
+            {
+                ReplaceWithSameModelElement.Click();
+                ReplaceWithDifferentModelElement.Click();
+                WebDriver.Wait(DurationType.Millisecond, 3);
+                SwapTypeNextButtonElement.Click();
+            }
+            
         }
 
         public DealerSetCommunicationMethodPage SelectANewSwapDevice(string device)

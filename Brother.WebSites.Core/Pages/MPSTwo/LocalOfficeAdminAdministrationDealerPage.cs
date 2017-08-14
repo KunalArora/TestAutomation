@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -38,8 +39,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(LOAdminDealershipFilterElement == null)
                 throw new Exception("Can't see LOAdmin Dealership Filter Element");
-
-            ClearAndType(LOAdminDealershipFilterElement, dealership);
+            try
+            {
+                ClearAndType(LOAdminDealershipFilterElement, dealership);
+            }
+            catch (StaleElementReferenceException stale)
+            {
+                WebDriver.Wait(DurationType.Second, 5);
+                ClearAndType(LOAdminDealershipFilterElement, dealership);
+            }
+            
         }
 
         public LocalOfficeAdminExistingDealershipUsersPage NavigateToDealershipUsersPage()
