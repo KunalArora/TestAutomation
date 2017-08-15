@@ -1167,6 +1167,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Method() == "Email")
             {
                 ActionsModule.ModifyXmlValues(model, serial, totalPrint, colourPrint, monoPrint);
+                WebDriver.Wait(DurationType.Second, 10);
                 ActionsModule.SendXml(emailAddress, subject);
             }
         }
