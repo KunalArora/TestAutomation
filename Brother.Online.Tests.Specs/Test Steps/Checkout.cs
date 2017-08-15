@@ -130,14 +130,21 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             CurrentPage.As<BasketPage>().ClickOnCheckboxUseSameDeliveryAddress();
         }
-
+        //continue to payment
         [Given(@"I click on Continue to Payment Button")]
         public void GivenIClickOnContinueToPaymentButton()
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
             NextPage = CurrentPage.As<BasketPage>().ClickOnContinueToPayment();
         }
-        
+
+        //radio
+        [Given(@"I select Cash On Delivery radio button for the payment")]
+        public void GivenISelectCashOnDeliveryRadioButtonForThePayment()
+        {
+            CurrentPage.As<BasketPage>().ClickOnCashOnDeliveryRadioButton();
+        }
+
         [When(@"I fill in creditCard details ""(.*)""")]
         public void WhenIFillInCreditCardDetails(string number)
         {
