@@ -182,7 +182,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
 
         public void ClickOnCashOnDeliveryRadioButton()
         {   
-            WebDriver.Wait(DurationType.Second, 5);
+            WaitForElementToExistByCssSelector("[for='optpaymentmethod3']", 10, 10);
             CashOnDeliveryRadioButton.Click();
         }
 
