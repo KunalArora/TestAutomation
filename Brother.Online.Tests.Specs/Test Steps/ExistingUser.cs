@@ -24,7 +24,7 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
         public void GivenIBrowseToForExistingUserSigninPageAtyourside(string url)
         {
-            CurrentPage = BasePage.LoadAtyousideHomePage(CurrentDriver, url); ;
+            CurrentPage = BasePage.LoadBasketPage(CurrentDriver, url); ;
         }
 
         [Then(@"I browse to the ""(.*)"" for existing user signin page")]

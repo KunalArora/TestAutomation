@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
@@ -38,8 +39,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Checkout
         public IWebElement ConfirmPaymentButton;
 
         public void EnterTheCardNumber(string number)
-        {
+        {   
             ScrollTo(CardNumberTxt);
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             CardNumberTxt.SendKeys(number);
         }
 

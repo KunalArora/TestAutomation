@@ -49,7 +49,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ExistingUserTab.Click();
         }
         public void ClickForgottenPasswordLink()
-        {
+        {   
+            //WaitForElementTextToExist(ForgottenPasswordLink, )
             ForgottenPasswordLink.Click();
         }
         public void PopulateInvalidEmailAddress(string emailid)

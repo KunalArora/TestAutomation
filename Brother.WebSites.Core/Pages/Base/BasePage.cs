@@ -188,11 +188,11 @@ namespace Brother.WebSites.Core.Pages.Base
             //NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new char[] { '/' }));
             if (baseUrl == null)
             {
-                NavigateToPage(driver, BrotherOnlineBaseUrl.TrimEnd(new[] { '/' }));
+                NavigateToPage(driver, AtyoursideUrl.TrimEnd(new[] { '/' }));
             }
             else
             {
-                NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
+                NavigateToPage(driver, AtyoursideUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
             return GetInstance<BasketPage>(driver, baseUrl, "");
         }
