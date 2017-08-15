@@ -97,6 +97,9 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         [FindsBy(How = How.XPath, Using = @"//*[@id='Login1']/div/a[1]")]
         public IWebElement LogInButton;
 
+        [FindsBy(How = How.CssSelector, Using = "[for='optpaymentmethod3']")]
+        public IWebElement CashOnDeliveryRadioButton ;
+
         public void ClickOnContinueAsGuest()
         {
             ContinueAsGuestButton.Click();
@@ -177,12 +180,19 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             ContinueToBillingAndpaymentyButton.Click();
         }
 
-        public PaymentPage ClickOnContinueToPayment()
+        public void ClickOnCashOnDeliveryRadioButton()
+        {   
+            WebDriver.Wait(DurationType.Second, 10);
+            CashOnDeliveryRadioButton.Click();
+        }
+
+        public OrderConfirmationPage ClickOnContinueToPayment()
         {
             ScrollTo(ContinueToPaymentButton);
             ContinueToPaymentButton.Click();
+            return GetInstance<OrderConfirmationPage>(Driver);
             //return GetInstance<PaymentPage>(Driver);
-            return LoadPaymentCardDetailsFrame(Driver);
+            //return LoadPaymentCardDetailsFrame(Driver);
         }
 
         public void ClickOnCheckboxUseSameDeliveryAddress()
@@ -278,5 +288,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
             var itemPresent = MyBasketProductInformationList.Text;
             return itemPresent ?? string.Empty;
         }
+
+
     }
 }
