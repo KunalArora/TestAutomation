@@ -15,6 +15,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
     public class HomePage : BasePage
     {
         public static string Url = "/";
+        public const string InvoiceToolUsername = "sitecore\\automationuser";
+        public const string InvoiceToolPassword = "P@$$w0rd";
 
         public override string DefaultTitle
         {
@@ -42,6 +44,15 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > a.button-blue")]        
         public IWebElement AcceptCookiesButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#LoginTextBox")]
+        public IWebElement InvoiceToolUsernameField;
+
+        [FindsBy(How = How.CssSelector, Using = "#PasswordTextBox")]
+        public IWebElement InvoiceToolPasswordField;
+
+        [FindsBy(How = How.CssSelector, Using = "[type=\"submit\"][name=\"ctl04\"]")]
+        public IWebElement InvoiceToolSubmitButton;
 
         [FindsBy(How = How.CssSelector, Using = "#cookieLawBar > div > p")]
         public IWebElement CookiesInformationBar;
@@ -318,7 +329,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         
 
 
-        public void NagivetdToCreativeCenterLoginPage()
+        public void NagiveteToCreativeCenterLoginPage()
         {
             if (EmailAddressCCTextBox == null)
             {
@@ -332,10 +343,29 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             var firstPart = SetBrotherOnlineBaseUrl();
             firstPart = firstPart.Replace("cds", "cms");
 
-            Driver.Navigate().GoToUrl(firstPart + "/MPS2InvoiceTools/default.aspx");
+            
+            Driver.Navigate().GoToUrl(firstPart + "/sitecore/admin/projects/mps2/invoicetools/default.aspx");
+
+            SignInToInvoiceTool(InvoiceToolUsername, InvoiceToolPassword);
             return GetInstance<InvoiceToolsPage>();
         }
 
+
+        public void SignInToInvoiceTool(string username, string password)
+        {
+            if(InvoiceToolUsernameField == null)
+                throw new Exception("InvoiceTool Username Field is null");
+            if (InvoiceToolPasswordField == null)
+                throw new Exception("InvoiceTool Password Field is null");
+            if (InvoiceToolSubmitButton == null)
+                throw new Exception("InvoiceTool Submit Button is null");
+
+            ClearAndType(InvoiceToolUsernameField, username);
+            ClearAndType(InvoiceToolPasswordField, password);
+
+            InvoiceToolSubmitButton.Click();
+
+        }
 
         public void ClickDismissOnConfrimation()
         {

@@ -142,7 +142,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             firstPart = firstPart.Replace("cds", "cms");
 
             string subUrl;
-            var newUrl = "/MPS2InvoiceTools/printers.aspx?proposal={0}";
+            var newUrl = "/sitecore/admin/projects/mps2/invoicetools/printers.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             newUrl = String.Format(newUrl, proposalId);
 
@@ -177,7 +177,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             firstPart = firstPart.Replace("cds", "cms");
 
             string subUrl;
-            var newUrl = "/MPS2InvoiceTools/raise.aspx?proposal={0}";
+            var newUrl = "/sitecore/admin/projects/mps2/invoicetools/raise.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             var contractRef = SpecFlow.GetContext("ProposalId");
             newUrl = String.Format(newUrl, contractRef);
@@ -207,7 +207,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var env = Env();
 
             string subUrl;
-            var newUrl = "/MPS2InvoiceTools/view.aspx?proposal={0}";
+            var newUrl = "/sitecore/admin/projects/mps2/invoicetools/view.aspx?proposal={0}";
             var proposalId = SpecFlow.GetContext("SummaryPageContractId");
             newUrl = String.Format(newUrl, proposalId);
 

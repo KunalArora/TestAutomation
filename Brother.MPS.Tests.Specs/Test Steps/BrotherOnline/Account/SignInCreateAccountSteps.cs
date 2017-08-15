@@ -158,7 +158,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Then(@"I am navigated to the creative center login page")]
         public void NavigatedToCreativeCenterLoginPage()
         {
-            CurrentPage.As<HomePage>().NagivetdToCreativeCenterLoginPage();
+            CurrentPage.As<HomePage>().NagiveteToCreativeCenterLoginPage();
 
         }
 
