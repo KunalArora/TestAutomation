@@ -16,16 +16,18 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
     [Binding]
     public class ExistingUser : BaseSteps
     {
-        [Given(@"I browse to the ""(.*)"" for existing user signin page")]
-        //public void GivenIBrowseToTheForExistingUserSigninPage(string url)
-        //{
-           // CurrentPage = BasePage.LoadSignPage(CurrentDriver, url);
-        //}
-        [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
+       [Given(@"I browse to ""(.*)"" for existing user signin page atyourside")]
         public void GivenIBrowseToForExistingUserSigninPageAtyourside(string url)
+        {
+            CurrentPage = BasePage.LoadAtyousideHomePage(CurrentDriver, url);
+        }
+
+        [Given(@"I browse to ""(.*)"" for existing user basket page atyourside")]
+        public void GivenIBrowseToForExistingUserBasketPageAtyourside(string url)
         {
             CurrentPage = BasePage.LoadBasketPage(CurrentDriver, url); ;
         }
+
 
         [Then(@"I browse to the ""(.*)"" for existing user signin page")]
         public void ThenIBrowseToTheForExistingUserSigninPage(string url)
