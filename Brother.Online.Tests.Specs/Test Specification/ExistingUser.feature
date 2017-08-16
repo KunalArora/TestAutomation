@@ -7,7 +7,7 @@ Feature: Existing User Forgotten Password
 
 @SMOKE_ExistingUserSignIn @TEST
 Scenario Outline: Check Forget Password with various invalid scenarios options throws an error for existing user - Validation Checks
-	Given I browse to "<Site Url>" for existing user signin page atyourside
+	Given I browse to "<Site Url>" for existing user signin page atyourside 
 	#And I click on existing customer log in option
 	When I click on Forgot Password
 	Then I enter an invalid email address as "<Invalid Email Address>"

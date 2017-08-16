@@ -86,7 +86,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.And("I click on Add to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And(string.Format("I browse to \"{0}\" for existing user signin page atyourside", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I browse to \"{0}\" for existing user basket page atyourside", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.And("I click on the login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14

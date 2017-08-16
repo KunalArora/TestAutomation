@@ -6,7 +6,7 @@ able to checkout with the existing or guest user
 Scenario Outline: Customer creates an order and checkout as existing user on UK BOL site
    	Given That I navigate to "<Site Url>" in order to add a product to validate a published page 
 	And I click on Add to Basket 
-	And I browse to "<Url>" for existing user signin page atyourside
+	And I browse to "<Url>" for existing user basket page atyourside
 	#And I browse to the "<Url>" BOL checkout page
 	#And I click on continue as guest button
 	And I click on the login button
