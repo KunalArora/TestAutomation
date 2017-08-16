@@ -49,12 +49,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
             ExistingUserTab.Click();
         }
         public void ClickForgottenPasswordLink()
-        {   
-            //WaitForElementTextToExist(ForgottenPasswordLink, )
+        {
+            WaitForElementToBeClickableByCssSelector("#lnkForgottenPassword", 5, 5);
             ForgottenPasswordLink.Click();
         }
         public void PopulateInvalidEmailAddress(string emailid)
         {
+            WaitForElementToBeClickableByCssSelector("#txtEmail", 5, 5);
             EnterEmailId.SendKeys(emailid);
         }
         public void VerifyErrorMessageExist()
