@@ -1,4 +1,4 @@
-﻿@UAT @TEST 
+﻿@SMOKE_CMSWebsiteAccess  @TEST 
 Feature: CMS website access
 	In order to validate that the CMS site is accessible a number of content editor actions are conducted
 
