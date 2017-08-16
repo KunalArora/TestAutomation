@@ -183,6 +183,7 @@ namespace Brother.WebSites.Core.Pages.BrotherMainSite.Basket
         public void ClickOnCashOnDeliveryRadioButton()
         {   
             WebDriver.Wait(DurationType.Second, 10);
+            ScrollTo(CashOnDeliveryRadioButton);
             CashOnDeliveryRadioButton.Click();
         }
 
