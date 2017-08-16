@@ -91,7 +91,9 @@ namespace Brother.Online.TestSpecs._80.Test_Steps
         {
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(CompleteRegistrationButton);
+            WebDriver.Wait(DurationType.Second, 5);
             CompleteRegistrationButton.Click();
+            WebDriver.Wait(DurationType.Second, 5);
             RecycleSerialNumber(pId);
             return GetInstance<ConfirmationPage>(Driver);
         }
