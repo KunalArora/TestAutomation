@@ -120,7 +120,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
         {
             var pId = SpecFlow.GetContext("ProductId");
             ScrollTo(CompleteRegistrationButton);
+            WebDriver.Wait(DurationType.Second, 5);
             CompleteRegistrationButton.Click();
+            WebDriver.Wait(DurationType.Second, 5);
             RecycleSerialNumber(pId);
             return GetInstance<MyPrintersAndDevicesPage>(Driver);
         }
