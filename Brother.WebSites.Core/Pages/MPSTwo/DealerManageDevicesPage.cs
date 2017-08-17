@@ -121,11 +121,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DeviceRespondingActionElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/customers\"]")]
         public IWebElement CustomerAndContactTabElement;
-        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithSameModel\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]")]
         public IWebElement ReplaceWithSameModelElement;
-        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceWithDifferentModel\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithDifferentModel\"]")]
         public IWebElement ReplaceWithDifferentModelElement;
-        [FindsBy(How = How.CssSelector, Using = "[data-swap-type-enum-id=\"ReplaceThePcb\"]")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceThePcb\"]")]
         public IWebElement ReplacePcbElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-swap-type-selected")]
         public IWebElement SwapTypeNextButtonElement;
@@ -316,6 +316,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ReInstallCommencementButtonElement == null)
                 throw new Exception("Reinstall confirmation pop up not displayed");
+            WebDriver.Wait(DurationType.Second, 5);
             ReInstallCommencementButtonElement.Click();
 
             return GetInstance<DealerSetCommunicationMethodPage>();
@@ -326,14 +327,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (SwapCommencementConfirmationElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
             SwapCommencementConfirmationElement.Click();
+            WebDriver.Wait(DurationType.Second, 10);
         }
 
         public DealerSetCommunicationMethodPage ConfirmSameSwapDeviceType()
         {
             if (ReplaceWithSameModelElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
+
+            WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
+            
             ReplaceWithSameModelElement.Click();
-            WebDriver.Wait(DurationType.Millisecond, 5);
+            WaitForElementToBeClickableByCssSelector(".js-mps-swap-type-selected", 5, 5);
             SwapTypeNextButtonElement.Click();
 
 
@@ -345,8 +350,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ReplacePcbElement == null)
                 throw new Exception("Swap confirmation pop up not displayed");
+
+
+            WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
             ReplacePcbElement.Click();
-            WebDriver.Wait(DurationType.Millisecond, 5);
+            WaitForElementToExistByCssSelector(".js-mps-swap-type-selected");
             SwapTypeNextButtonElement.Click();
 
             return GetInstance<DealerSetCommunicationMethodPage>();
@@ -357,6 +365,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if (ReplaceWithDifferentModelElement == null)
                 throw new Exception("Swap different device pop up not displayed");
+
+            WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
             ReplaceWithDifferentModelElement.Click();
             WaitForElementToExistByCssSelector("#MeterReadingLabel");
             try
@@ -379,6 +389,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 throw new Exception("Swap model device pop up not displayed");
             SelectFromDropdown(SwapModelDeviceSelectorElement, device);
 
+            WebDriver.Wait(DurationType.Millisecond, 5);
             SwapModelNextElement.Click();
 
             return GetInstance<DealerSetCommunicationMethodPage>();

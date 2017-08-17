@@ -59,6 +59,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
            // NextPage = CurrentPage.As<CustomerPortalConsummablePage>().NavigateToConsumableRaiseOrderPage();
         }
 
+        [Then(@"I navigate to Print Count page")]
         [When(@"I navigate to Print Count page")]
         public void WhenINavigateToPrintCountPage()
         {
