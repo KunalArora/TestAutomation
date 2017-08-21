@@ -41,5 +41,23 @@
     <Setting Name="MainSiteTest65" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://{0}.cds.test65.brother.eu.com</Value>
     </Setting>
+    <Setting Name="MainSiteCMSTest" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://{0}.cms.test.brother.eu.com</Value>
+    </Setting>
+    <Setting Name="QASUrlAtYour" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://atyourside.{0}.cds.uat.brother.eu.com/</Value>
+    </Setting>
+    <Setting Name="TestUrlAtYour" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://atyourside.{0}.cds.test.brother.eu.com/</Value>
+    </Setting>
+    <Setting Name="MainSiteCMSUAT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://{0}.cms.uat.brother.eu.com</Value>
+    </Setting>
+    <Setting Name="AtyursideSignInTest" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://atyourside.{0}.cds.uat.brother.eu.com/sign-in</Value>
+    </Setting>
+    <Setting Name="AtyursideSignInUAT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://atyourside.{0}.cds.uat.brother.eu.com/sign-in</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

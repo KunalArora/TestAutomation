@@ -162,7 +162,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears |
 	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | 4 years | Quarterly in Arrears |
 
-@ignore
+
 Scenario Outline: MPS Swap Device With Existing Customer
 	Given "<Country>" Dealer have created "<ContractType>" contract choosing "<ExistingCustomer>" with "<UsageType>" and "<Length>" and "<Billing>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -187,6 +187,6 @@ Scenario Outline: MPS Swap Device With Existing Customer
 	
 Scenarios:
 
-	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              | ExistingCustomer                     |
-	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Aurelio20170815221037@mailinator.com |
+	| Role                            | Country | ContractType                  | UsageType      | Role1            | Method | Type | Length  | Billing              | ExistingCustomer                    |
+	| Cloud MPS Local Office Approver | Ireland | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | Web  | 3 years | Quarterly in Arrears | Jeffie20170629012050@mailinator.com |
 	

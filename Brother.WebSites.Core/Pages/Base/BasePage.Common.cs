@@ -294,13 +294,13 @@ namespace Brother.WebSites.Core.Pages.Base
             switch (env)
             {
                 case "TEST":
-                    url = SeleniumGlobal.Default.MainSiteTest;
+                    url = SeleniumGlobal.Default.MainSiteTest65;
                     break;
                 case "UAT":
-                    url = SeleniumGlobal.Default.MainSiteUAT;
+                    url = SeleniumGlobal.Default.MainSiteUAT65;
                     break;
                 default:
-                    url = SeleniumGlobal.Default.MainSiteTest;
+                    url = SeleniumGlobal.Default.MainSiteTest65;
                     break;
             }
 
@@ -369,13 +369,13 @@ namespace Brother.WebSites.Core.Pages.Base
             switch (env)
             {
                 case "TEST":
-                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    url = SeleniumGlobal.Default.TestUrlAtYour;
                     break;
                 case "UAT":
-                    url = SeleniumGlobal.Default.AtyoursideUAT;
+                    url = SeleniumGlobal.Default.QASUrlAtYour;
                     break;
                 default:
-                    url = SeleniumGlobal.Default.AtyoursideTest;
+                    url = SeleniumGlobal.Default.TestUrlAtYour;
                     break;
             }
 
@@ -397,7 +397,7 @@ namespace Brother.WebSites.Core.Pages.Base
                     url = SeleniumGlobal.Default.AtyursideSignInTest;
                     break;
                 case "UAT":
-                    url = SeleniumGlobal.Default.AtyoursideSignInUAT;
+                    url = SeleniumGlobal.Default.AtyursideSignInUAT;
                     break;
                 default:
                     url = SeleniumGlobal.Default.AtyursideSignInTest;
