@@ -158,6 +158,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
+        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{ "United Kingdom"};
+
         public static string CountryLookup(string locale)
         {
             foreach (KeyValuePair<string, string> country in _countries)
@@ -170,7 +172,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return String.Empty;
         }
 
+        public static bool CountryIsUsingAtYourSideLogin(string country)
+        {
+            return _CountriesUsingAtYourSideLogin.Contains(country);
+        }
 
+        public static bool CurrentCountryIsUsingAtYourSideLogin()
+        {
+            return CountryIsUsingAtYourSideLogin(GetCountry());
+        }
 
         public static void SetCountry(string country)
         {
@@ -184,6 +194,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 
             }
             MsgOutput("Setting Country to ", Locale);
+        }
+
+        public static string GetCountry()
+        {
+            return SpecFlow.GetContext("CountryOfTest");
         }
 
         public static void SetMpsCountryAbbreviation(string country)
