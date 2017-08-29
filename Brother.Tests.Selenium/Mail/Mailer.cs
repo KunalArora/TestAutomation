@@ -21,7 +21,7 @@ namespace Brother.Tests.Selenium.Lib.Mail
         //const string Email = "bieautomation@gmail.com";
         //const string Password = "P@$$w0rd123";
 
-        const string Email = "sayo.afolabi@brother.co.uk";
+        const string Email = "steve.walters@brother.co.uk";
         
 
         static Attachment _attachment;

@@ -99,7 +99,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInstallaterEmail()
         {
-            ClearAndType(EmailFieldElement, "sayo.afolabi@brother.co.uk");
+            ClearAndType(EmailFieldElement, "steve.walters@brother.co.uk");
             WaitForElementToExistById("content_1_ButtonSend", 5);
         }
 
