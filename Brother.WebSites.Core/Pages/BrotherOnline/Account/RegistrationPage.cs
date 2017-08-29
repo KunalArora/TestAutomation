@@ -31,6 +31,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
                 ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-in .button-blue"
             )] public IWebElement SignInButton;
 
+        [FindsBy(How = How.Id, Using = "btnSignin")]
+        public IWebElement SignInButtonNew;
+
         [FindsBy(How = How.CssSelector,
             Using =
                 ".content.cf .content-box.login-register.cf .box-out.regular-sign-in.cf .generic-form #form-sign-up .button-blue"
@@ -259,6 +262,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<DeliveryDetailsPage>(Driver);
+        }
+
+        public TPage SignInButtonToDashboard<TPage>() where TPage : BasePage, new()
+        {
+            ScrollTo(SignInButton);
+            SignInButton.Click();
+            return GetInstance<TPage>(Driver);            
         }
 
         public DealerDashBoardPage SignInButtonToDealerDashboard()

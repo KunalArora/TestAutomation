@@ -309,6 +309,13 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<HomePage>(driver, baseUrl, defaultTitleOverride);
         }
 
+        public static SignInAtYourSidePage LoadAtYourSideSignInPage(IWebDriver driver)
+        {
+            driver = SetDriver(driver);
+            NavigateToPage(driver, AtyoursideSignInUrl);
+            return GetInstance<SignInAtYourSidePage>(driver, AtyoursideSignInUrl, "Register your device");
+        }
+
         public static HomePage LoadWebBoxes(IWebDriver driver, string baseUrl, string defaultTitleOverride)
         {
             driver = SetDriver(driver);

@@ -368,12 +368,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I sign into MPS as a ""(.*)"" from ""(.*)""")]
         public void GivenISignIntoMpsasAFrom(string role, string country)
         {
+            if (Helper.CountryIsUsingAtYourSideLogin(country))
+            {
+                Helper.SetCountry(country);
+                Given(string.Format(@"I sign into Cloud MPS bypassing the home page as a ""{0}"" from ""{1}""", role, country));
+                WhenISignInAsA(role, country);
+                return;
+            }
+
             GivenILaunchBrotherOnlineFor(country);
             WhenIClickOnSignInCreateAnAccount(country);
             WhenISignInAsA(role, country);
 
         }
-
         
         [Given(@"I verify and store ""(.*)"" purchase and click proposal bypass status")]
         public void GivenIVerifyAndStorePurchaseAndClickProposalBypassStatus(string country)
@@ -1197,6 +1204,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I enter a valid Email Address ""(.*)""")]
         public void WhenIEnterAValidEmailAddress(string validEmailAddress)
         {
+            if (Helper.CurrentCountryIsUsingAtYourSideLogin())
+            {
+                CurrentPage.As<SignInAtYourSidePage>().PopulateEmailAddressTextBox(validEmailAddress);
+                return;
+            }
             CurrentPage.As<RegistrationPage>().PopulateEmailAddressTextBox(validEmailAddress);
         }
         [When(@"I enter a valid creative center Email Address ""(.*)""")]
@@ -1239,6 +1251,11 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I enter a valid Password ""(.*)""")]
         public void WhenIEnterAValidPassword(string validPassword)
         {
+            if (Helper.CurrentCountryIsUsingAtYourSideLogin())
+            {
+                CurrentPage.As<SignInAtYourSidePage>().PopulatePassword(validPassword);
+                return;
+            }
             CurrentPage.As<RegistrationPage>().PopulatePassword(validPassword);
         }
 
@@ -1281,6 +1298,13 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             }
             else
             {
+                if (Helper.CurrentCountryIsUsingAtYourSideLogin())
+                {
+                    NextPage = CurrentPage.As<SignInAtYourSidePage>().SignInButtonToMyAccount();
+                    NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<DealerDashBoardPage>();
+                    return;
+                }
+
                 switch (role)
                 {
                     case "Cloud MPS Dealer":

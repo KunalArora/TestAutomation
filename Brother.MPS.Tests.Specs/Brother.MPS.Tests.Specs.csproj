@@ -58,8 +58,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\Dependencies\SpecFlow\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    <Reference Include="TechTalk.SpecFlow, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.2.0.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebDriver, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1211,6 +1212,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchasesWithNewCard.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
