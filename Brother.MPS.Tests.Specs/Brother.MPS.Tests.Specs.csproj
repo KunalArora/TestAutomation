@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +107,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1469,6 +1475,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSErrorMessageShowsCorrectCurrency.feature.cs</LastGenOutput>
@@ -2415,6 +2425,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Test Specifications\MPS2\Contract\" />
+    <Folder Include="Test Specifications\MPS2\Customer\" />
+    <Folder Include="Test Specifications\MPS2\Installation\" />
+    <Folder Include="Test Specifications\MPS2\Proposal\" />
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
   </ItemGroup>
@@ -2447,7 +2461,8 @@
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)Drivers\*.* $(ProjectDir)$(OutDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)Drivers\*.* $(ProjectDir)$(OutDir)
+copy $(ProjectDir)$(OutDir)\*.* "c:\testautomation\built"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
