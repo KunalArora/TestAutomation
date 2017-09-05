@@ -1203,10 +1203,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSProductionRegressionTestServer1And2.feature</DependentUpon>
+      <DependentUpon>CloudMPSProductionCanLogin.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature.cs">
       <AutoGen>True</AutoGen>
@@ -2383,9 +2383,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSignContractProd.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProductionRegressionTestServer1And2.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSProductionCanLogin.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

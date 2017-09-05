@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2.General
+namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
 {
     using TechTalk.SpecFlow;
     
@@ -18,27 +18,27 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.General
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSUKDealerCanLogin")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSProductionCanLogin")]
     [NUnit.Framework.CategoryAttribute("MPS")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
-    public partial class CloudMPSUKDealerCanLoginFeature
+    [NUnit.Framework.CategoryAttribute("PROD")]
+    [NUnit.Framework.CategoryAttribute("VERIFYPROD")]
+    public partial class CloudMPSProductionCanLoginFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSDealerCanLogin.feature"
+#line 1 "CloudMPSProductionCanLogin.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSUKDealerCanLogin", "\tIn order to manage my proposals\r\n\tAs a dealer\r\n\tI want to log in to my dashboard" +
-                    "", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSProductionCanLogin", "\tIn order to view my dashboard on production\r\n\tAs a dealer\r\n\tI want to be able to" +
+                    " log in", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
-                        "UAT",
-                        "TEST"});
+                        "PROD",
+                        "VERIFYPROD"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,16 +71,15 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.General
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Log in to dashboard")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", "Included in Click Price", "Pay upfront", null, Category="BIRONLY")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Purchase & Click with Service", "Minimum Volume", "3 years", "Quarterly in Arrears", "Tick", "MFC-L8650CDW", "Full", "Included in Click Price", "800", "800", "Included in Click Price", "Pay upfront", null, Category="BUKONLY")]
-        public virtual void MPSLogInToDashboard(string role, string country, string contractType, string usageType, string contract, string billing, string priceHardware, string printer, string deviceScreen, string paymentMethod, string clickVolume, string colourVolume, string basis1, string basis2, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Dealer Can Log in to Production Site")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://p1.online.brother.co.uk", "Web_1", "Cloud", "Web", new string[0])]
+        public virtual void DealerCanLogInToProductionSite(string role, string country, string role2, string server, string serverName, string method, string type, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Log in to dashboard", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Log in to Production Site", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I sign as \"{0}\" into \"{1}\" for \"{2}\"", role, server, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

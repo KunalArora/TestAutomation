@@ -32,16 +32,24 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I sign into Cloud MPS bypassing the home page as a ""(.*)"" from ""(.*)""")]
         public void GivenISignIntoMpsBypassingTheHomePageAsRoleFromCountry(string role, string country)
         {
-            GivenILaunchAtYourSideSignInPage("United Kingdom");
+            GivenILaunchAtYourSideSignInPage(country, null);
+        }
+
+        [Given(@"I sign into Cloud MPS bypassing the home page as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]
+        public void GivenISignIntoMpsBypassingTheHomePageAsRoleFromCountry(string role, string country, string server)
+        {
+            GivenILaunchAtYourSideSignInPage(country, server);
         }
 
         [Given(@"I launch the At Your Side sign in page for ""(.*)""")]
-        public void GivenILaunchAtYourSideSignInPage(string country)
+        [Given(@"I launch the At Your Side sign in page for ""(.*)"" on server ""(.*)""")]
+        public void GivenILaunchAtYourSideSignInPage(string country, string server = null)
         {
-            BasePage.LoadAtYourSideSignInPage(CurrentDriver);
+            //BasePage.LoadAtYourSideSignInPage(CurrentDriver);
             //_context.Add(SUBJECT_PAGE_KEY, BasePage.LoadAtYourSideSignInPage(CurrentDriver));
             //var current = _context.Get<RegistrationPage>(SUBJECT_PAGE_KEY);
-            CurrentPage = BasePage.LoadAtYourSideSignInPage(CurrentDriver);
+            if(server != null) _context.Add("ContextBaseUrl", server);
+            CurrentPage = BasePage.LoadAtYourSideSignInPage(CurrentDriver, server);
             GetSubjectPage<SignInAtYourSidePage>().IsSignInButtonAvailable();
         }
 

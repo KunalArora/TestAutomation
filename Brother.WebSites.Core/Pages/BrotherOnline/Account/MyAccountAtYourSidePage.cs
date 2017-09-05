@@ -27,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage RedirectToMpsDashboard<TPage>(string url) where TPage : BasePage, new()
         {
-            NavigateToPage(Driver, BrotherOnlineBaseUrl + url);
+            NavigateToPage(Driver, url);
             return GetInstance<TPage>(Driver);
         }
 

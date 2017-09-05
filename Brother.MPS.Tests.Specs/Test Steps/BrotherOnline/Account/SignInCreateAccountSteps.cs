@@ -434,6 +434,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
+
+            if (Helper.CountryIsUsingAtYourSideLogin(country))
+            {
+                Helper.SetCountry(country);
+                Given(string.Format(@"I sign into Cloud MPS bypassing the home page as a ""{0}"" from ""{1}"" on server ""{2}""", role, country, web));
+                WhenISignInAsA(role, country);
+                return;
+            }
+
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
             SignInAsARoleType(role, country);
@@ -1317,11 +1326,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 if (Helper.CurrentCountryIsUsingAtYourSideLogin())
                 {
                     NextPage = CurrentPage.As<SignInAtYourSidePage>().SignInButtonToMyAccount();
+                    string contextBaseUrl;
+
+                    try{
+                        contextBaseUrl = ScenarioContext.Current["ContextBaseUrl"].ToString();
+                    } catch(Exception ex)
+                    {
+                        contextBaseUrl = BasePage.BrotherOnlineBaseUrl;
+                    }
 
                     switch (role)
                     {
                         case "Cloud MPS Dealer":
-                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<DealerDashBoardPage>(DealerDashBoardPage.Url);
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<DealerDashBoardPage>(contextBaseUrl + DealerDashBoardPage.Url);
                             break;
 
                         case "Cloud MPS Local Office":
