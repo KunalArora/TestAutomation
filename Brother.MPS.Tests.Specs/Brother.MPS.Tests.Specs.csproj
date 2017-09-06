@@ -2387,6 +2387,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionCanLogin.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSProductionRegressionTestServer1And2.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionRegressionTestServer3And4.feature.cs</LastGenOutput>
@@ -2435,9 +2439,6 @@
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />
     <Content Include="Drivers\IEDriverServer.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
