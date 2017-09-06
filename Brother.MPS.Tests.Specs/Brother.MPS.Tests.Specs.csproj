@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +107,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1197,10 +1203,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSProductionRegressionTestServer1And2.feature</DependentUpon>
+      <DependentUpon>CloudMPSProductionCanLogin.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1468,6 +1474,10 @@
     <None Include="Test Specifications\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2373,6 +2383,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSignContractProd.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSProductionCanLogin.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionRegressionTestServer1And2.feature.cs</LastGenOutput>
@@ -2415,15 +2429,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Test Specifications\MPS2\Contract\" />
+    <Folder Include="Test Specifications\MPS2\Customer\" />
+    <Folder Include="Test Specifications\MPS2\Installation\" />
+    <Folder Include="Test Specifications\MPS2\Proposal\" />
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />
     <Content Include="Drivers\IEDriverServer.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\phantomjs.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

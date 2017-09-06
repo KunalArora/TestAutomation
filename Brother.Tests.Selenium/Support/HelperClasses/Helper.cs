@@ -158,7 +158,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
-        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{ "United Kingdom"};
+        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{ "United Kingdom" };
 
         public static string CountryLookup(string locale)
         {

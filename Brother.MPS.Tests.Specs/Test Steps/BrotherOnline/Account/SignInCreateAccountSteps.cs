@@ -338,7 +338,14 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             // Set locale to direct to Brother Online Ireland
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
-            CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, title);
+            if (Helper.CountryIsUsingAtYourSideLogin(country))
+            {
+                CurrentPage = BasePage.LoadAtYourSideHomePage(CurrentDriver);
+            }
+            else
+            {
+                CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, BasePage.BrotherOnlineBaseUrl, title);
+            }
             //CurrentPage = BasePage.LoadBolHomePage(CurrentDriver, @"http://online.co.uk.cds.uat65.brother.eu.com", title);
         }
 
@@ -427,6 +434,15 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             Helper.SetCountry(country);
             var title = HomePage.WelcomePageCountryTitle(country);
+
+            if (Helper.CountryIsUsingAtYourSideLogin(country))
+            {
+                Helper.SetCountry(country);
+                Given(string.Format(@"I sign into Cloud MPS using the At Your Side journey as a ""{0}"" from ""{1}"" on server ""{2}""", role, country, web));
+                WhenISignInAsA(role, country);
+                return;
+            }
+
             CurrentPage = BasePage.LoadWebBoxes(CurrentDriver, web, title);
             NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
             SignInAsARoleType(role, country);
@@ -963,8 +979,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [When(@"I click on Sign In / Create An Account for ""(.*)""")]
         public void WhenIClickOnSignInCreateAnAccount(string country)
         {
-            CurrentPage.As<HomePage>().IsSignInCreateAccountButtonAvailable();
-            NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();
+            if (Helper.CountryIsUsingAtYourSideLogin(country))
+            {
+                CurrentPage.As<AtYourSideHomePage>().IsMyAccountLinkAvailable();
+                NextPage = CurrentPage.As<AtYourSideHomePage>().ClickMyAccountLink();
+            }
+            else
+            {
+                CurrentPage.As<HomePage>().IsSignInCreateAccountButtonAvailable();
+                NextPage = CurrentPage.As<HomePage>().ClickSignInCreateAccountButton();                
+            }
+
         }
         
         //Web1-Steps
@@ -1301,7 +1326,45 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                 if (Helper.CurrentCountryIsUsingAtYourSideLogin())
                 {
                     NextPage = CurrentPage.As<SignInAtYourSidePage>().SignInButtonToMyAccount();
-                    NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<DealerDashBoardPage>();
+                    string contextBaseUrl;
+
+                    try{
+                        contextBaseUrl = ScenarioContext.Current["ContextBaseUrl"].ToString();
+                    } catch(Exception ex)
+                    {
+                        contextBaseUrl = BasePage.BrotherOnlineBaseUrl;
+                    }
+
+                    switch (role)
+                    {
+                        case "Cloud MPS Dealer":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<DealerDashBoardPage>(contextBaseUrl + DealerDashBoardPage.Url);
+                            break;
+
+                        case "Cloud MPS Local Office":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeAdminDashBoardPage>(LocalOfficeAdminDashBoardPage.Url);
+                            break;
+
+                        case "Cloud MPS Bank":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<BankDashBoardPage>();
+                            break;
+
+                        case "Cloud MPS Local Office Approver":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeApproverDashBoardPage>(LocalOfficeAdminDashBoardPage.Url);
+                            break;
+
+                        case "Cloud MPS Service Desk":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<ServiceDeskDashBoardPage>();
+                            break;
+
+                        case "Cloud MPS BIE Admin":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<BieAdminDashboardPage>();
+                            break;
+                        case "Cloud MPS Finance":
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().ClickAccessMpsDashboardButtonToDashboard<FinanceDashboardPage>();
+                            break;
+                    }
+
                     return;
                 }
 
