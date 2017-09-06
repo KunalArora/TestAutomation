@@ -1208,6 +1208,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSProductionCanLogin.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSProductionRegressionTestServer1And2.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
