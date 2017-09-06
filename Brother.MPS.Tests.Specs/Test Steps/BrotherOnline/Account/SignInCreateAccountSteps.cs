@@ -438,7 +438,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             if (Helper.CountryIsUsingAtYourSideLogin(country))
             {
                 Helper.SetCountry(country);
-                Given(string.Format(@"I sign into Cloud MPS bypassing the home page as a ""{0}"" from ""{1}"" on server ""{2}""", role, country, web));
+                Given(string.Format(@"I sign into Cloud MPS using the At Your Side journey as a ""{0}"" from ""{1}"" on server ""{2}""", role, country, web));
                 WhenISignInAsA(role, country);
                 return;
             }

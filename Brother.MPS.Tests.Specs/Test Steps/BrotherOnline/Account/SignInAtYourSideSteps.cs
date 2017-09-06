@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             GivenILaunchAtYourSideSignInPage(country, null);
         }
 
-        [Given(@"I sign into Cloud MPS bypassing the home page as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]
+        [Given(@"I sign into Cloud MPS using the At Your Side journey as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]
         public void GivenISignIntoMpsBypassingTheHomePageAsRoleFromCountry(string role, string country, string server)
         {
             GivenILaunchAtYourSideSignInPage(country, server);
