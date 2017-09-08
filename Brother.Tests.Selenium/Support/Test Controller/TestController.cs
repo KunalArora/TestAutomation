@@ -224,9 +224,15 @@ namespace Brother.Tests.Selenium.Lib.Support
             var text = String.Format("{0} step has been successfully completed", step);
             _test.Log(LogStatus.Pass, text);
         }
-        public static void ExtentLogFailInformation(string step, string message)
+        public static void ExtentLogFailInformation(string step, string message, string[] categories = null)
         {
             var text = String.Format("{0} failed because of the following error message {1}", step, message);
+
+            if (categories != null)
+            {
+                _test.AssignCategory(categories);
+            }
+
             _test.Log(LogStatus.Fail, text);
         }
 

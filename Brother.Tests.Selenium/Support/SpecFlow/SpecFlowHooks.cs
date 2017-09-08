@@ -68,12 +68,14 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
                 return;
             }
 
-            Helper.MsgOutput(string.Format("This step caused the following error [{0}]", ScenarioContext.Current.TestError.Message));
+            var messageWithCategories = new MessageWithCategories(ScenarioContext.Current.TestError.Message);
+
+            Helper.MsgOutput(string.Format("This step caused the following error [{0}]", messageWithCategories.Message));
             Helper.TakeSnapshot("After Step Error Detected");
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
             Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
             WebDriver.DeleteAllCookies();
-            TestController.ExtentLogFailInformation(TestController.CurrentDriver.Title, ScenarioContext.Current.TestError.Message);
+            TestController.ExtentLogFailInformation(TestController.CurrentDriver.Title, messageWithCategories.Message, messageWithCategories.Categories);
         }
 
 #endregion "Before And After Step Tags"
