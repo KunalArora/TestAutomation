@@ -72,7 +72,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalBindings\InjectionSetup.cs" />
+    <Compile Include="ContextData\IContextData.cs" />
+    <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />
+    <Compile Include="Services\IPageService.cs" />
+    <Compile Include="Services\PageService.cs" />
+    <Compile Include="StepActions\MpsSignIn.cs" />
+    <Compile Include="StepActions\StepActionBase.cs" />
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1224,6 +1232,7 @@
       <DependentUpon>PurchasesWithNewCard.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
+    <Compile Include="Test Steps\BrotherOnline\Account\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>

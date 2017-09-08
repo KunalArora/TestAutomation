@@ -34,6 +34,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             CurrentPage.As<WelcomeBackPage>().IsRegisterDeviceLinkAvailable();
         }
 
+        [Obsolete("No usages of step definition")]
         [Given(@"I am logged onto ""(.*)"" BOL with ""(.*)"" username and ""(.*)"" password")]
         public void GivenIAmLoggedOntoBOLWithUsernameAndPassword(string country, string username, string pwd)
         {
