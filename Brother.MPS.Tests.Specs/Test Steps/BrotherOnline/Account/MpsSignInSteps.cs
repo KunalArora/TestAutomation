@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
 {
-    //[Binding]
+    [Binding]
     public class MpsSignInSteps
     {
         private const string SUBJECT_PAGE_KEY = "subject_page";
