@@ -158,7 +158,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
-        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{  };
+        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{ "United Kingdom", "France" };
 
         public static string CountryLookup(string locale)
         {
@@ -174,7 +174,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool CountryIsUsingAtYourSideLogin(string country)
         {
-            return _CountriesUsingAtYourSideLogin.Contains(country);
+            if (GetRunTimeEnv() == "PROD")
+            {
+                return _CountriesUsingAtYourSideLogin.Contains(country);
+            }
+            else
+            {
+                return false; 
+            }
         }
 
         public static bool CurrentCountryIsUsingAtYourSideLogin()
