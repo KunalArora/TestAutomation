@@ -21,18 +21,8 @@ namespace Brother.Tests.Specs.Services
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
         {
-            //_driver.Navigate().GoToUrl(server == null ? AtYourSideSignInUrl : server + "/sign-in");
-            //NavigateToPage(driver, server == null ? AtyoursideSignInUrl : server + "/sign-in");
-            try
-            {
-                LoadUrl(server == null ? AtYourSideSignInUrl : server + "/sign-in", 10, "#jeff");
-            }
-            catch (Exception ex)
-            {
-                TestCheck.AssertFailTest(String.Format("Url {0} failed to load within {1} seconds (validation element {2} was not found){3}PAGE_NOT_LOADED", "/sign-in", "10", "#jeff", MessageWithCategories.DefaultSeparator));
-            }
+            LoadUrl(server == null ? AtYourSideSignInUrl : server + "/sign-in", 10, "div.common-global-footer");
             return GetPageObject<SignInAtYourSidePage>();
-            //return BasePage.GetInstance<SignInAtYourSidePage>(_driver, AtYourSideSignInUrl, "Sign in");
         }
 
         public TPage GetPageObject<TPage>() where TPage : BasePage, new()
@@ -40,10 +30,7 @@ namespace Brother.Tests.Specs.Services
             var pageObject = new TPage { Driver = _driver };
             var timeSpan = TimeSpan.FromSeconds(60);
 
-            //new WebDriverWait(_driver, timeSpan).Until(d => d.FindElement(By.TagName("body")));
-
             PageFactory.InitElements(_driver, pageObject);
-            //Thread.Sleep(TimeSpan.FromSeconds(6));
             return pageObject;
         }
 
@@ -64,9 +51,11 @@ namespace Brother.Tests.Specs.Services
 
             _driver.Url = url;
             _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //remove any implicit waits
+            Helper.MsgOutput(string.Format("Load of url {0} started", url));
             try
             {
                 var webDriverWait = new WebDriverWait(_driver, timeSpan).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                Helper.MsgOutput(string.Format("Url {0} loaded - success indicated by presence of validation element {1}", url, validationElementSelector));
             }
             catch (Exception ex)
             {
