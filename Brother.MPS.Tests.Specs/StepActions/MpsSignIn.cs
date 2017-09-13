@@ -26,8 +26,8 @@ namespace Brother.Tests.Specs.StepActions
 
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
-            LoadAtYourSideSignInPage(url).IsSignInButtonAvailable();
-            return new DealerDashBoardPage();
+            var signInPage = LoadAtYourSideSignInPage(url);
+            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, "https://atyourside.co.uk.cds.uat.brother.eu.com/mps/dealer/dashboard");
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url)
@@ -37,9 +37,14 @@ namespace Brother.Tests.Specs.StepActions
             return new SignInAtYourSidePage();
         }
 
-        private TPage SignInAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password) where TPage : BasePage, new()
+        private TPage SignInToMpsDashboardAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password, string dashboardUrl) where TPage : BasePage, new()
         {
-                       
+            //TODO: form dashboard url from context data base url and TPage.url
+            signInAtYourSidePage.PopulateEmailAddressTextBox(email);
+            signInAtYourSidePage.PopulatePassword(password);
+            signInAtYourSidePage.SignInButton.Click();
+            var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>();
+            return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true);
         }
     }
 }

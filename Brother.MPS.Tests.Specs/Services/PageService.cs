@@ -3,21 +3,27 @@ using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
+using Brother.Tests.Specs.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Services
 {
     public class PageService : IPageService
     {
         private readonly IWebDriver _driver;
+        private readonly ScenarioContext _context;
         private const string AtYourSideSignInUrl = "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in";
 
-        public PageService(IWebDriver driver)
+        public PageService(IWebDriver driver, ScenarioContext context)
         {
             _driver = driver;
+            _context = context;
         }
+
+        #region Page loads
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
         {
@@ -25,10 +31,12 @@ namespace Brother.Tests.Specs.Services
             return GetPageObject<SignInAtYourSidePage>();
         }
 
+        #endregion
+
         public TPage GetPageObject<TPage>() where TPage : BasePage, new()
         {
             var pageObject = new TPage { Driver = _driver };
-            var timeSpan = TimeSpan.FromSeconds(60);
+            //var timeSpan = TimeSpan.FromSeconds(60);
 
             PageFactory.InitElements(_driver, pageObject);
             return pageObject;
@@ -61,6 +69,19 @@ namespace Brother.Tests.Specs.Services
             {
                 TestCheck.AssertFailTest(String.Format("Url {0} failed to load within {1} seconds (validation element {2} was not found){3}PAGE_NOT_LOADED", url, timeout.ToString(), validationElementSelector, MessageWithCategories.DefaultSeparator));
             }
+        }
+
+        public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, new()
+        {
+            LoadUrl(url, timeout, validationElementSelector);
+            var pageObject = GetPageObject<TPage>();
+
+            if (addToContextAsCurrentPage)
+            {
+                _context.SetCurrentPage(pageObject);
+            }
+
+            return pageObject;
         }
     }
 }

@@ -3,6 +3,7 @@ using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
+using Brother.Tests.Specs.StepActions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -17,16 +18,19 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         private readonly IWebDriver _driver;
         private readonly IContextData _contextData;
         private readonly PageService _pageService;
+        private readonly MpsSignIn _mpsSignIn;
 
         public MpsSignInSteps(ScenarioContext context,
             IWebDriver driver,
             MpsContextData contextData,
-            PageService pageService)
+            PageService pageService,
+            MpsSignIn mpsSignIn)
         {
             _context = context;
             _driver = driver;
             _contextData = contextData;
             _pageService = pageService;
+            _mpsSignIn = mpsSignIn;
         }
 
         public SignInAtYourSidePage SignInPage { get; set; }
@@ -35,7 +39,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         [Given(@"I sign into Cloud MPS bypassing the home page as a ""(.*)"" from ""(.*)""")]
         public void GivenISignIntoMpsBypassingTheHomePageAsRoleFromCountry(string role, string country)
         {
-            GivenILaunchAtYourSideSignInPage(country, null);
+            //GivenILaunchAtYourSideSignInPage(country, null);
+            //MPS-BUK-UAT-Dealer1@brother.co.uk UKdealer1
+            _mpsSignIn.SignInAsDealer("MPS-BUK-UAT-Dealer1@brother.co.uk", "UKdealer1", "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in");
         }
 
         [Given(@"I sign into Cloud MPS using the At Your Side journey as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]

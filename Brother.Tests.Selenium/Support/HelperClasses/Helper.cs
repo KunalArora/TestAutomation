@@ -174,7 +174,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool CountryIsUsingAtYourSideLogin(string country)
         {
-            //return _CountriesUsingAtYourSideLogin.Contains(country);
+            return _CountriesUsingAtYourSideLogin.Contains(country);
             if (GetRunTimeEnv() == "PROD")
             {
                 return _CountriesUsingAtYourSideLogin.Contains(country);

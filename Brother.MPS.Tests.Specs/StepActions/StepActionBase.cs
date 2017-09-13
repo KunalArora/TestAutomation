@@ -26,6 +26,7 @@ namespace Brother.Tests.Specs.StepActions
             ContextData = contextData;
             PageService = pageService;
             ScenarioContext = scenarioContext;
+            //TODO: Wrap ScenarioContext in a service to provide explicit methods
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BoDi;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Services;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -29,6 +30,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             var webDriver = TestController.CurrentDriver; //temporary until static classes are refactored
             _container.RegisterInstanceAs<IWebDriver>(webDriver);
             _container.RegisterTypeAs<PageService, IPageService>();
+            _container.RegisterTypeAs<MpsContextData, IContextData>();
         }
     }
 }

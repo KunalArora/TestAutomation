@@ -14,5 +14,6 @@ namespace Brother.Tests.Specs.Services
     {
         SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null);
         TPage GetPageObject<TPage>() where TPage : BasePage, new();
+        TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, new();
     }
 }
