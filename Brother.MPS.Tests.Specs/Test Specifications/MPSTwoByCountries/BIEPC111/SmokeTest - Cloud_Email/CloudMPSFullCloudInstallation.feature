@@ -290,7 +290,7 @@ Scenario Outline: Multiple Installation
 	And I can complete device installation
 	And I can sign out of Brother Online
 	And I navigate to the Invoice tool homepage
-	And I select "<Country>" of interest
+	##And I select "<Country>" of interest
 	##And I enter mono and colour print count
 	And I enter "<Mono>" mono and "<Colour>" colour print count
 	And I generate invoices for the contract above
