@@ -136,6 +136,7 @@
     <Compile Include="Pages\BrotherOnline\ThirdParty\GuerrillaEmailConfirmation.cs" />
     <Compile Include="Pages\BrotherOnline\ThirdParty\MailinatorEmailConfirmation.cs" />
     <Compile Include="Pages\General\SiteAccess.cs" />
+    <Compile Include="Pages\IPageObject.cs" />
     <Compile Include="Pages\MPSOne\ConsumablePage.cs" />
     <Compile Include="Pages\MPSOne\ContractConfirmationPage.cs" />
     <Compile Include="Pages\MPSOne\ExistingContractPage.cs" />

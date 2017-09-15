@@ -18,14 +18,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void AssertIsNotNullOrEmpty(string itemToValidate, string validationMessage)
         {
             MsgOutput("Validating if string is NOT Null or Empty");
-            Assert.IsNotNullOrEmpty(itemToValidate, validationMessage);
+            //Assert.IsNotNullOrEmpty(itemToValidate, validationMessage);
+            Assert.That(itemToValidate, Is.Not.Null.Or.Empty, validationMessage);
         }
 
         public static void AssertIsNullOrEmpty(string itemToValidate, string validationMessage)
         {
             MsgOutput("Validating if string is Null or Empty");
-            Assert.IsNullOrEmpty(itemToValidate, validationMessage);
-           
+            //Assert.IsNullOrEmpty(itemToValidate, validationMessage);
+            Assert.That(itemToValidate, Is.Null.Or.Empty, validationMessage);
         }
 
         public static void AssertIsEqual(object expectedValue, object actualValue, string validationMessage)

@@ -1,12 +1,23 @@
 ﻿using System;
+using System.Data;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
-    public class MyAccountAtYourSidePage : BasePage
+    public class MyAccountAtYourSidePage : BasePage, IPageObject
     {
+        private const string _validationElementSelector = ".online--account-bar__action__link";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
         [FindsBy(How = How.CssSelector,
             Using =
                 ".common--conversion-bar--cta a.btn-info"

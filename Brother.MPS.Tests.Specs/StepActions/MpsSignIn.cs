@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Services;
+using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -32,14 +33,14 @@ namespace Brother.Tests.Specs.StepActions
             return signInPage;
         }
 
-        private TPage SignInToMpsDashboardAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password, string dashboardUrl) where TPage : BasePage, new()
+        private TPage SignInToMpsDashboardAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password, string dashboardUrl) where TPage : BasePage, IPageObject, new()
         {
             //TODO: form dashboard url from context data base url and TPage.url
             signInAtYourSidePage.PopulateEmailAddressTextBox(email);
             signInAtYourSidePage.PopulatePassword(password);
             signInAtYourSidePage.SignInButton.Click();
-            var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>();
-            return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true);
+            var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(10);
+            return PageService.LoadUrl<TPage>(dashboardUrl, 60, "div.mps-dashboard", true);
         }
     }
 }

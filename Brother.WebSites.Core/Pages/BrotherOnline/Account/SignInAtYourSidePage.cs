@@ -5,8 +5,18 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
-    public class SignInAtYourSidePage : BasePage
+    public class SignInAtYourSidePage : BasePage, IPageObject
     {
+        private const string _validationElementSelector = "div.common-global-footer";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
         [FindsBy(How = How.Id,
             Using =
                 "email"

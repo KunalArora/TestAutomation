@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -11,9 +12,18 @@ using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerDashBoardPage : BasePage
+    public class DealerDashBoardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/dealer/dashboard";
+        private const string _validationElementSelector = "div.mps-dashboard";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
 
         public override string DefaultTitle
         {

@@ -15,5 +15,5 @@ Scenarios:
 	
 @DYNAMIC_PARAMS
 Scenarios: 
-	| Role             | Country        |
-	| Cloud MPS Dealer | United Kingdom |
+	| Role             | Country |
+	| Cloud MPS Dealer | Ireland |

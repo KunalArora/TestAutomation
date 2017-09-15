@@ -12,6 +12,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -267,7 +268,8 @@ namespace Brother.Tests.Selenium.Lib.Support
 
         public static void ExtentReportCaptureTearDown()
         {
-            var status = TestContext.CurrentContext.Result.Status;
+            //var status = TestContext.CurrentContext.Result.Status;
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
             
             LogStatus logstatus;
 

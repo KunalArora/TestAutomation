@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.Tests.Specs.Extensions;
@@ -28,15 +30,20 @@ namespace Brother.Tests.Specs.Services
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
         {
             LoadUrl(server == null ? AtYourSideSignInUrl : server + "/sign-in", 10, "div.common-global-footer");
-            return GetPageObject<SignInAtYourSidePage>();
+            return GetPageObject<SignInAtYourSidePage>(10);
         }
 
         #endregion
 
-        public TPage GetPageObject<TPage>() where TPage : BasePage, new()
+        public TPage GetPageObject<TPage>(int? timeout = null) where TPage : BasePage, IPageObject, new()
         {
             var pageObject = new TPage { Driver = _driver };
-            //var timeSpan = TimeSpan.FromSeconds(60);
+            string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? pageObject.ValidationElementSelector : "body";
+
+            if (timeout != null)
+            {
+                var webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds((int)timeout)).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+            }
 
             PageFactory.InitElements(_driver, pageObject);
             return pageObject;
@@ -56,7 +63,9 @@ namespace Brother.Tests.Specs.Services
             {
                 validationElementSelector = "body";
             }
-
+            
+            Console.WriteLine("PageService.LoadUrl: Starting load of url {0}", url);
+            var runner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             _driver.Url = url;
             _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //remove any implicit waits
             Helper.MsgOutput(string.Format("Load of url {0} started", url));
@@ -71,7 +80,7 @@ namespace Brother.Tests.Specs.Services
             }
         }
 
-        public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, new()
+        public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, IPageObject, new()
         {
             LoadUrl(url, timeout, validationElementSelector);
             var pageObject = GetPageObject<TPage>();
