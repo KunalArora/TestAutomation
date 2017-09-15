@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.Base;
@@ -27,14 +22,14 @@ namespace Brother.Tests.Specs.StepActions
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
             var signInPage = LoadAtYourSideSignInPage(url);
-            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, "https://atyourside.co.uk.cds.uat.brother.eu.com/mps/dealer/dashboard");
+            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, "https://online65.co.uk.cds.uat.brother.eu.com/mps/dealer/dashboard");
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url)
         {
             var signInPage = PageService.LoadAtYourSideSignInPage();
             ScenarioContext.SetCurrentPage(signInPage);
-            return new SignInAtYourSidePage();
+            return signInPage;
         }
 
         private TPage SignInToMpsDashboardAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password, string dashboardUrl) where TPage : BasePage, new()

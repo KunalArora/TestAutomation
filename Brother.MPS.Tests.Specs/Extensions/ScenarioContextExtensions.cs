@@ -14,7 +14,7 @@ namespace Brother.Tests.Specs.Extensions
 
         public static void SetCurrentPage(this ScenarioContext context, BasePage page)
         {
-            context.Add(CURRENT_PAGE_KEY, page);
+            context.Set(page, CURRENT_PAGE_KEY);
         }
 
         public static BasePage GetCurrentPage(this ScenarioContext context)
@@ -27,11 +27,6 @@ namespace Brother.Tests.Specs.Extensions
             return null;
         }
 
-        //public static void SetCurrentPage<TPage>(this ScenarioContext context, TPage page) where TPage : BasePage, new()
-        //{
-        //    context.Set<TPage>(page);
-        //}
-
         public static TPage GetCurrentPage<TPage>(this ScenarioContext context) where TPage : BasePage, new()
         {
             TPage page;
@@ -39,7 +34,7 @@ namespace Brother.Tests.Specs.Extensions
             {
                 return page;
             }
-            return null;
+            throw new Exception(string.Format("Failed to get current page of type {0} from ScenarioContext", typeof(TPage)));
         }
     }
 }
