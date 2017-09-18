@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.Services
         public TPage GetPageObject<TPage>(int? timeout = null) where TPage : BasePage, IPageObject, new()
         {
             var pageObject = new TPage { Driver = _driver };
-            string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? pageObject.ValidationElementSelector : "body";
+            string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)
             {

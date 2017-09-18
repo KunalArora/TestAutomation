@@ -11,6 +11,9 @@ namespace Brother.Tests.Specs.ContextData
         string Country { get; set; }
         string CountryIso { get; set; }
         string CountryBrotherCode { get; set; }
+        string Culture { get; set; }
         string BaseUrl { get; set; }
+        string EnvironmentName { get; set; }
+        string Environment { get; set; }
     }
 }

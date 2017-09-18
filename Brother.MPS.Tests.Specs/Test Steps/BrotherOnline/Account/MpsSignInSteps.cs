@@ -1,5 +1,7 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Selenium.Lib;
+using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
+using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
@@ -18,18 +20,21 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         private readonly IWebDriver _driver;
         private readonly IContextData _contextData;
         private readonly PageService _pageService;
+        private readonly IUserResolver _userResolver;
         private readonly MpsSignIn _mpsSignIn;
 
-        public MpsSignInSteps(ScenarioContext context,
+        public MpsSignInSteps(MpsSignIn mpsSignIn,
+            ScenarioContext context,
             IWebDriver driver,
             MpsContextData contextData,
             PageService pageService,
-            MpsSignIn mpsSignIn)
+            IUserResolver userResolver)
         {
             _context = context;
             _driver = driver;
             _contextData = contextData;
             _pageService = pageService;
+            _userResolver = userResolver;
             _mpsSignIn = mpsSignIn;
         }
 
@@ -41,7 +46,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             //GivenILaunchAtYourSideSignInPage(country, null);
             //MPS-BUK-UAT-Dealer1@brother.co.uk UKdealer1
-            _mpsSignIn.SignInAsDealer("MPS-BUK-UAT-Dealer1@brother.co.uk", "UKdealer1", "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in");
+            _mpsSignIn.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in");
         }
 
         [Given(@"I sign into Cloud MPS using the At Your Side journey as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]
