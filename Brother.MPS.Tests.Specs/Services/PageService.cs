@@ -33,7 +33,8 @@ namespace Brother.Tests.Specs.Services
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
         {
-            LoadUrl(server == null ? _urlResolver.AtYourSideUrl : server + "/sign-in", 10, "div.common-global-footer");
+            var url = string.Format("{0}/sign-in", server ?? _urlResolver.AtYourSideUrl);
+            LoadUrl(url, 10, "div.common-global-footer");
             return GetPageObject<SignInAtYourSidePage>(10);
         }
 
