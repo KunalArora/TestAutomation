@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib;
 using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -20,7 +21,9 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         private readonly IWebDriver _driver;
         private readonly IContextData _contextData;
         private readonly PageService _pageService;
+        private readonly ICountryService _countryService;
         private readonly IUserResolver _userResolver;
+        private readonly IUrlResolver _urlResolver;
         private readonly MpsSignIn _mpsSignIn;
 
         public MpsSignInSteps(MpsSignIn mpsSignIn,
@@ -28,13 +31,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             IWebDriver driver,
             MpsContextData contextData,
             PageService pageService,
-            IUserResolver userResolver)
+            ICountryService countryService,
+            IUserResolver userResolver,
+            IUrlResolver urlResolver)
         {
             _context = context;
             _driver = driver;
             _contextData = contextData;
             _pageService = pageService;
+            _countryService = countryService;
             _userResolver = userResolver;
+            _urlResolver = urlResolver;
             _mpsSignIn = mpsSignIn;
         }
 
@@ -46,7 +53,8 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
         {
             //GivenILaunchAtYourSideSignInPage(country, null);
             //MPS-BUK-UAT-Dealer1@brother.co.uk UKdealer1
-            _mpsSignIn.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in");
+            _contextData.Country = _countryService.GetByName(country);
+            _mpsSignIn.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.AtYourSideUrl));
         }
 
         [Given(@"I sign into Cloud MPS using the At Your Side journey as a ""(.*)"" from ""(.*)"" on server ""(.*)""")]

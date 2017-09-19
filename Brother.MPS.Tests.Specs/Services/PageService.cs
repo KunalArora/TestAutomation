@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Specs.Resolvers;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
@@ -17,19 +18,22 @@ namespace Brother.Tests.Specs.Services
     {
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
-        private const string AtYourSideSignInUrl = "https://atyourside.co.uk.cds.uat.brother.eu.com/sign-in";
+        private readonly IUrlResolver _urlResolver;
 
-        public PageService(IWebDriver driver, ScenarioContext context)
+        public PageService(IWebDriver driver, 
+            ScenarioContext context,
+            IUrlResolver urlResolver)
         {
             _driver = driver;
             _context = context;
+            _urlResolver = urlResolver;
         }
 
         #region Page loads
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
         {
-            LoadUrl(server == null ? AtYourSideSignInUrl : server + "/sign-in", 10, "div.common-global-footer");
+            LoadUrl(server == null ? _urlResolver.AtYourSideUrl : server + "/sign-in", 10, "div.common-global-footer");
             return GetPageObject<SignInAtYourSidePage>(10);
         }
 

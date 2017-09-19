@@ -22,7 +22,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(USERNAME_PATTERN, _contextData.CountryBrotherCode, _contextData.Environment, "Dealer", "1");
+                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", "1");
             }
         }
 
@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(PASSWORD_PATTERN, MapCountryIsoToPasswordCountryAbbreviation(_contextData.CountryIso), "dealer");
+                return string.Format(PASSWORD_PATTERN, MapCountryIsoToPasswordCountryAbbreviation(_contextData.Country.CountryIso), "dealer");
             }
         }
 

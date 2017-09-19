@@ -31,7 +31,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterInstanceAs<IContextData>(setContextData());
             _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
-            //_container.RegisterTypeAs<MpsContextData, IContextData>();
+            _container.RegisterTypeAs<DefaultUrlResolver, IUrlResolver>();
+            _container.RegisterTypeAs<CountryService, ICountryService>();
         }
 
         private IContextData setContextData()
@@ -41,36 +42,13 @@ namespace Brother.Tests.Specs.AdditionalBindings
             CultureInfo culture = new CultureInfo(cultureName);
             RegionInfo region = new RegionInfo(culture.LCID);
             string country = region.TwoLetterISORegionName;
-            string brotherCountryCode = BrotherCountryCodes[country];
 
             return new MpsContextData
             {
                 Environment = env,
-                Country = region.Name,
-                Culture = cultureName,
-                CountryBrotherCode = brotherCountryCode,
-                CountryIso = country
+                Culture = cultureName
             };
         }
 
-        private Dictionary<string, string> BrotherCountryCodes = new Dictionary<string, string>
-        {
-            {"AT", "BAT"},
-            {"BE", "BBE"},
-            {"DK", "BND"},
-            {"FI", "BNF"},
-            {"FR", "BFR"},
-            {"DE", "BIG"},
-   	        {"IE", "BIR"},
-            {"NL", "BNL"},
-            {"PL", "BPL"},  
-            {"PT", "BPT"},  
-            {"NO", "BNN"},
-	        {"GB", "BUK"},
-            {"ES", "BES"},
-            {"SE", "BNS"},
-            {"CH", "BSW"},
-            {"IT", "BIT"}
-        };
     }
 }

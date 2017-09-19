@@ -79,10 +79,15 @@
     <Compile Include="AdditionalBindings\InjectionSetup.cs" />
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Domain\Country.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />
+    <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
+    <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
+    <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="StepActions\MpsSignIn.cs" />

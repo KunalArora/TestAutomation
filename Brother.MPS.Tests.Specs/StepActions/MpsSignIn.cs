@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
+using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
@@ -15,7 +16,8 @@ namespace Brother.Tests.Specs.StepActions
         public MpsSignIn (IWebDriver driver,
             IContextData contextData,
             IPageService pageService,
-            ScenarioContext context) : base(driver, contextData, pageService, context)
+            ScenarioContext context,
+            IUrlResolver urlResolver) : base(driver, contextData, pageService, context, urlResolver)
         {
             
         }
@@ -23,7 +25,7 @@ namespace Brother.Tests.Specs.StepActions
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
             var signInPage = LoadAtYourSideSignInPage(url);
-            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, "https://online65.co.uk.cds.uat.brother.eu.com/mps/dealer/dashboard");
+            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/mps/dealer/dashboard", UrlResolver.BaseUrl));
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url)
