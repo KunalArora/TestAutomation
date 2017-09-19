@@ -40,7 +40,8 @@ namespace Brother.Tests.Specs.Services
                 Name = "United Kingdom",
                 BrotherCode = "BUK",
                 Cultures = new List<string> { "en-GB" },
-                DomainSuffix = "co.uk"
+                DomainSuffix = "co.uk",
+                PasswordCountryAbbreviation = "UK"
             });
 
             _countries.Add(new Country

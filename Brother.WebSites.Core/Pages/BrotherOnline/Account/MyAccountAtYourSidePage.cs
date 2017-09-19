@@ -9,12 +9,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
     public class MyAccountAtYourSidePage : BasePage, IPageObject
     {
         private const string _validationElementSelector = ".online--account-bar__action__link";
+        private const string _url = "/my-account";
 
         public string ValidationElementSelector
         {
             get
             {
                 return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
             }
         }
 

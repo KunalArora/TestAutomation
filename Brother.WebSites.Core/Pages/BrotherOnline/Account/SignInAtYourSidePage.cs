@@ -8,12 +8,21 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
     public class SignInAtYourSidePage : BasePage, IPageObject
     {
         private const string _validationElementSelector = "div.common-global-footer";
+        private const string _url = "/sign-in";
 
         public string ValidationElementSelector
         {
             get
             {
                 return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
             }
         }
 

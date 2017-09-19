@@ -30,7 +30,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(PASSWORD_PATTERN, MapCountryIsoToPasswordCountryAbbreviation(_contextData.Country.CountryIso), "dealer");
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "dealer");
             }
         }
 
@@ -45,10 +45,5 @@ namespace Brother.Tests.Specs.Resolvers
         public string ServiceDeskUsername { get; set; }
         public string ServiceDeskPassword { get; set; }
 
-        private string MapCountryIsoToPasswordCountryAbbreviation(string countryIso)
-        {
-            if (countryIso.ToUpper() == "GB") return "UK";
-            return countryIso;
-        }
     }
 }

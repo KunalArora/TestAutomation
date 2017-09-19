@@ -3,5 +3,6 @@
     public interface IPageObject
     {
         string ValidationElementSelector { get; }
+        string PageUrl { get; }
     }
 }

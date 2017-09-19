@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.StepActions
             signInAtYourSidePage.PopulatePassword(password);
             signInAtYourSidePage.SignInButton.Click();
             var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(10);
-            return PageService.LoadUrl<TPage>(dashboardUrl, 60, "div.mps-dashboard", true);
+            return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true);
         }
     }
 }

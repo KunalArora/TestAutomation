@@ -16,12 +16,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/mps/dealer/dashboard";
         private const string _validationElementSelector = "div.mps-dashboard";
+        private const string _url = "/mps/dealer/dashboard";
 
         public string ValidationElementSelector
         {
             get
             {
                 return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
             }
         }
 
