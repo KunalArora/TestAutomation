@@ -10,9 +10,27 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerProposalsCreateDescriptionPage : BasePage
+    public class DealerProposalsCreateDescriptionPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/description?new=true";
+        private const string _validationElementSelector = "#content_1_InputProposalName_Input";
+        private const string _url = "/mps/dealer/proposals/create/description?new=true";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
 
         public override string DefaultTitle
         {

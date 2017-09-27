@@ -41,8 +41,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/create-proposal'] .media-body")] 
         public IWebElement CreateProposalLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/create-agreement'] .media-body")]
+        public IWebElement CreateAgreementLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/proposals'] .media-body")] 
         public IWebElement ExistingProposalLinkElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/agreements'] .media-body")]
+        public IWebElement ExistingAgreementLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".separator a[href=\"/mps/dealer/proposals\"]")]
         public IWebElement proposalTopElement;
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/contracts'] .media-body")]

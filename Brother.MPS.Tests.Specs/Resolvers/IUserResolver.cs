@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Specs.Domain.Enums;
 
 namespace Brother.Tests.Specs.Resolvers
 {
@@ -20,5 +21,8 @@ namespace Brother.Tests.Specs.Resolvers
         string BankPassword { get; }
         string ServiceDeskUsername { get; }
         string ServiceDeskPassword { get; }
+
+        string GetDealerUsername(BusinessType businessType);
+        string GetDealerPassword(BusinessType businessType);
     }
 }

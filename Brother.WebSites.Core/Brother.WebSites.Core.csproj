@@ -160,6 +160,7 @@
     <Compile Include="Pages\MPSTwo\DataQueryProposalNotePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerAgreementsCreateDescriptionPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalSummaryPage.cs" />

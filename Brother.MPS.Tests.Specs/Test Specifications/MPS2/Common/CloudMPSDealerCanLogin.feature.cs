@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2.General
+namespace Brother.Tests.Specs.TestSpecifications.MPS2.Common
 {
     using TechTalk.SpecFlow;
     
@@ -72,17 +72,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.General
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Log in to dashboard")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "3", new string[] {
                 "BUKONLY"}, Category="BUKONLY")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "Ireland", "1", new string[] {
                 "DYNAMIC_PARAMS"}, Category="DYNAMIC_PARAMS")]
-        public virtual void MPSLogInToDashboard(string role, string country, string[] exampleTags)
+        public virtual void MPSLogInToDashboard(string role, string country, string businessType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Log in to dashboard", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given(string.Format("I sign into Cloud MPS as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I sign into Cloud MPS as a type \"{0}\" \"{1}\" from \"{2}\"", businessType, role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

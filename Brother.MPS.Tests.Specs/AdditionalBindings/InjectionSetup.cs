@@ -43,10 +43,12 @@ namespace Brother.Tests.Specs.AdditionalBindings
             RegionInfo region = new RegionInfo(culture.LCID);
             string country = region.TwoLetterISORegionName;
 
+            //apply defaults, changed per scenario as required
             return new MpsContextData
             {
                 Environment = env,
-                Culture = cultureName
+                Culture = cultureName,
+                BusinessType = Domain.Enums.BusinessType.Type1
             };
         }
 

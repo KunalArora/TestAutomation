@@ -77,9 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalBindings\InjectionSetup.cs" />
+    <Compile Include="BasicTests\CaseRunner.cs" />
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
     <Compile Include="Domain\Country.cs" />
+    <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="StepActions\MpsAgreement.cs" />
     <Compile Include="StepActions\MpsSignIn.cs" />
     <Compile Include="StepActions\StepActionBase.cs" />
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
@@ -127,7 +130,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature.cs">
+    <Compile Include="Test Specifications\MPS2\Agreement\CloudMPSDealerCanCreateAnAgreement.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSDealerCanCreateAnAgreement.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
@@ -1243,7 +1251,7 @@
       <DependentUpon>PurchasesWithNewCard.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
-    <Compile Include="Test Steps\BrotherOnline\Account\MpsSignInSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1364,6 +1372,7 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\OrderProcessSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingContractSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingProposalSteps.cs" />
@@ -1491,7 +1500,11 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\General\CloudMPSDealerCanLogin.feature">
+    <None Include="Test Specifications\MPS2\Agreement\CloudMPSDealerCanCreateAnAgreement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDealerCanCreateAnAgreement.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
     </None>
@@ -2445,6 +2458,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Pages\" />
     <Folder Include="Test Specifications\MPS2\Contract\" />
     <Folder Include="Test Specifications\MPS2\Customer\" />
     <Folder Include="Test Specifications\MPS2\Installation\" />
