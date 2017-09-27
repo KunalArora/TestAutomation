@@ -6,9 +6,9 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo
+namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
-    public class DealerAgreementsCreateDescriptionPage : BasePage, IPageObject
+    public class DealerAgreementCreateDescriptionPage : BasePage, IPageObject
     {
         /// <summary>
         /// 
@@ -36,5 +36,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //WebElement properties
         [FindsBy(How = How.Id, Using = "content_1_InputProposalName_Input")]
         public IWebElement AgreementNameField;
+
+        [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
+        public IWebElement NextButton;
     }
 }

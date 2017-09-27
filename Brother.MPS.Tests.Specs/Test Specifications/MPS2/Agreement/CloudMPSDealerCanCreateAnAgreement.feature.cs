@@ -72,7 +72,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Dealer Create Agreement")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Minimum Volume", "1 year", "Upfront", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Pay As You Go", "2 years", "Upfront", new string[] {
                 "BUKONLY"}, Category="BUKONLY")]
         public virtual void MPSDealerCreateAgreement(string role, string country, string usageType, string contractTerm, string servicePackPayment, string[] exampleTags)
         {
@@ -83,6 +83,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given(string.Format("I have navigated to the Create Agreement page as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.When("I enter the agreement description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.And(string.Format("I select \"{0}\" as the Usage Type and I select \"{1}\" as the Contract Term", usageType, contractTerm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

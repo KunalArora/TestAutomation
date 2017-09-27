@@ -83,6 +83,8 @@
     <Compile Include="Domain\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
+    <Compile Include="Helpers\DefaultProposalHelper.cs" />
+    <Compile Include="Helpers\IProposalHelper.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />

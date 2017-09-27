@@ -11,6 +11,10 @@ namespace Brother.Tests.Specs.ContextData
         string EnvironmentName { get; set; }
         string Environment { get; set; }
         BusinessType BusinessType { get; set; }
+
+        string ProposalName { get; set; }
+        int ProposalId { get; set; }
+
         void SetBusinessType(string businessTypeId);
     }
 }

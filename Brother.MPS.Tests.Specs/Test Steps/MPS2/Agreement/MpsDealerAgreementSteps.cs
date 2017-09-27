@@ -4,9 +4,11 @@ using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Specs.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
 using Brother.Tests.Specs.StepActions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -25,11 +27,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly ICountryService _countryService;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
+        private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignIn _mpsSignIn;
         private readonly MpsAgreement _mpsAgreement;
 
         private DealerDashBoardPage _dealerDashboardPage;
-        private DealerAgreementsCreateDescriptionPage _dealerAgreementCreateDescriptionPage;
+        private DealerAgreementCreateDescriptionPage _dealerAgreementCreateDescriptionPage;
+        private DealerAgreementCreateTermAndTypePage _dealerAgreementCreateTermAndTypePage;
 
         public MpsDealerAgreementSteps(MpsSignIn mpsSignIn,
             MpsAgreement mpsAgreement,
@@ -39,7 +43,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             PageService pageService,
             ICountryService countryService,
             IUserResolver userResolver,
-            IUrlResolver urlResolver)
+            IUrlResolver urlResolver,
+            IProposalHelper proposalHelper)
         {
             _context = context;
             _driver = driver;
@@ -48,6 +53,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _countryService = countryService;
             _userResolver = userResolver;
             _urlResolver = urlResolver;
+            _proposalHelper = proposalHelper;
             _mpsSignIn = mpsSignIn;
             _mpsAgreement = mpsAgreement;
         }
@@ -65,7 +71,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I enter the agreement description")]
         public void WhenIEnterTheAgreemementDescription()
         {
-            _mpsAgreement.PopulateAgreementDescription(_dealerAgreementCreateDescriptionPage, "Geoffrey", "", "", "");
+            _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescription(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
         }
+
+        [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
+        public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
+        {
+            _mpsAgreement.PopulateAgreementTermAndType(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+        }
+
     }
 }

@@ -12,7 +12,10 @@ namespace Brother.Tests.Specs.ContextData
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }
         public BusinessType BusinessType { get; set; }
-        
+
+        public string ProposalName { get; set; }
+        public int ProposalId { get; set; }
+
         public void SetBusinessType(string businessTypeId){
 
             int businessType;

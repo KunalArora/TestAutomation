@@ -6,6 +6,7 @@ using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Specs.Helpers;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -33,6 +34,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
             _container.RegisterTypeAs<DefaultUrlResolver, IUrlResolver>();
             _container.RegisterTypeAs<CountryService, ICountryService>();
+            _container.RegisterTypeAs<DefaultProposalHelper, IProposalHelper>();
         }
 
         private IContextData setContextData()

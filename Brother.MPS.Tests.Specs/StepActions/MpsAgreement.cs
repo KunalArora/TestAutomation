@@ -6,6 +6,7 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -31,20 +32,31 @@ namespace Brother.Tests.Specs.StepActions
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
-        public DealerAgreementsCreateDescriptionPage NavigateToCreateAgreementPage(DealerDashBoardPage dealerDashboardPage)
+        public DealerAgreementCreateDescriptionPage NavigateToCreateAgreementPage(DealerDashBoardPage dealerDashboardPage)
         {
             dealerDashboardPage.CreateAgreementLinkElement.Click();
-            return PageService.GetPageObject<DealerAgreementsCreateDescriptionPage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateDescriptionPage>(10);
         }
 
-        public void PopulateAgreementDescription(DealerAgreementsCreateDescriptionPage dealerAgreementsCreateDescriptionPage,
+        public DealerAgreementCreateTermAndTypePage PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
             string agreementName,
             string leadCodeReference,
             string dealerReference,
             string leasingReference)
         {
-            dealerAgreementsCreateDescriptionPage.AgreementNameField.Clear();
-            dealerAgreementsCreateDescriptionPage.AgreementNameField.SendKeys(agreementName);
+            dealerAgreementCreateDescriptionPage.AgreementNameField.Clear();
+            dealerAgreementCreateDescriptionPage.AgreementNameField.SendKeys(agreementName);
+            dealerAgreementCreateDescriptionPage.NextButton.Click();
+            return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(10);
+        }
+
+        public void PopulateAgreementTermAndType(DealerAgreementCreateTermAndTypePage dealerAgreementCreateTermAndTypePage,
+            string usageType,
+            string contractLength,
+            string servicePackOption)
+        {
+            dealerAgreementCreateTermAndTypePage.SelectUsageType(usageType);
+            dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
         }
     }
 }
