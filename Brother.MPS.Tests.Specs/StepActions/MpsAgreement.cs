@@ -38,7 +38,31 @@ namespace Brother.Tests.Specs.StepActions
             return PageService.GetPageObject<DealerAgreementCreateDescriptionPage>(10);
         }
 
-        public DealerAgreementCreateTermAndTypePage PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
+        public DealerAgreementCreateTermAndTypePage PopulateAgreementDescriptionAndProceed(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
+            string agreementName,
+            string leadCodeReference,
+            string dealerReference,
+            string leasingReference)
+        {
+            PopulateAgreementDescription(dealerAgreementCreateDescriptionPage, agreementName, leadCodeReference, dealerReference, leasingReference);
+
+            dealerAgreementCreateDescriptionPage.NextButton.Click();
+            return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(10);
+        }
+
+        public DealerAgreementCreateProductsPage PopulateAgreementTermAndTypeAndProceed(DealerAgreementCreateTermAndTypePage dealerAgreementCreateTermAndTypePage,
+            string usageType,
+            string contractLength,
+            string servicePackOption)
+        {
+            dealerAgreementCreateTermAndTypePage.SelectUsageType(usageType);
+            dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
+            
+            dealerAgreementCreateTermAndTypePage.NextButton.Click();
+            return PageService.GetPageObject<DealerAgreementCreateProductsPage>(10);
+        }
+
+        private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
             string agreementName,
             string leadCodeReference,
             string dealerReference,
@@ -46,17 +70,6 @@ namespace Brother.Tests.Specs.StepActions
         {
             dealerAgreementCreateDescriptionPage.AgreementNameField.Clear();
             dealerAgreementCreateDescriptionPage.AgreementNameField.SendKeys(agreementName);
-            dealerAgreementCreateDescriptionPage.NextButton.Click();
-            return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(10);
-        }
-
-        public void PopulateAgreementTermAndType(DealerAgreementCreateTermAndTypePage dealerAgreementCreateTermAndTypePage,
-            string usageType,
-            string contractLength,
-            string servicePackOption)
-        {
-            dealerAgreementCreateTermAndTypePage.SelectUsageType(usageType);
-            dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
         }
     }
 }

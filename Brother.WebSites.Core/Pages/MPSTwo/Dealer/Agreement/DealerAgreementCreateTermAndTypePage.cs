@@ -10,12 +10,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
     public class DealerAgreementCreateTermAndTypePage : BasePage, IPageObject
     {
-        /// <summary>
-        /// 
-        /// </summary>
-
         private const string _validationElementSelector = "#content_1_InputUsageType_Input";
-        private const string _url = "/mps/dealer/agreements/manage/description?new=true";
+        private const string _url = "/mps/dealer/agreements/manage/term-type";
 
         public string ValidationElementSelector
         {

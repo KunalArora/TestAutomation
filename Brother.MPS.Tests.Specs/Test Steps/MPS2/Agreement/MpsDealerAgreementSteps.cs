@@ -71,13 +71,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I enter the agreement description")]
         public void WhenIEnterTheAgreemementDescription()
         {
-            _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescription(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
+            _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
         }
 
         [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
         public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
         {
-            _mpsAgreement.PopulateAgreementTermAndType(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+            _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
         }
 
     }
