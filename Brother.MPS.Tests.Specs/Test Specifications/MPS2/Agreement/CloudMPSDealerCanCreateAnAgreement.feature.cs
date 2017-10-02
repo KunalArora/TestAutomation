@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("TYPE3")]
     public partial class CloudMPSDealerCanCreateAnAgreementFeature
     {
         
@@ -38,7 +39,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
                     "e a new agreement", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
-                        "TEST"});
+                        "TEST",
+                        "TYPE3"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -85,6 +87,10 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I enter the agreement description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.And(string.Format("I select \"{0}\" as the Usage Type and I select \"{1}\" as the Contract Term", usageType, contractTerm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("I add a printer to the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("I enter coverage and volume values on the click price calculation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

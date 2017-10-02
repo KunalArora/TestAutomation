@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
@@ -19,14 +20,17 @@ namespace Brother.Tests.Specs.Services
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
+        private readonly ISeleniumHelper _seleniumHelper;
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,
-            IUrlResolver urlResolver)
+            IUrlResolver urlResolver,
+            ISeleniumHelper seleniumHelper)
         {
             _driver = driver;
             _context = context;
             _urlResolver = urlResolver;
+            _seleniumHelper = seleniumHelper;
         }
 
         #region Page loads
@@ -42,7 +46,7 @@ namespace Brother.Tests.Specs.Services
 
         public TPage GetPageObject<TPage>(int? timeout = null) where TPage : BasePage, IPageObject, new()
         {
-            var pageObject = new TPage { Driver = _driver };
+            var pageObject = new TPage { Driver = _driver, SeleniumHelper = _seleniumHelper };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)

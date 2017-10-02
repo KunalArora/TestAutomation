@@ -160,6 +160,7 @@
     <Compile Include="Pages\MPSTwo\DataQueryProposalNotePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateDescriptionPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Pages\MPSTwo\DealerCustomerAdditionalAddressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateProductsPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateTermAndTypePage.cs" />
     <Compile Include="Pages\MPSTwo\DeleteSubDealerHandoverPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />

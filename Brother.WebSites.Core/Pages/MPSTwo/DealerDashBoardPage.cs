@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -33,6 +34,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _url;
             }
         }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {

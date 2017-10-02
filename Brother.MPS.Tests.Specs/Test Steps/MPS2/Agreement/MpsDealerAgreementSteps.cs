@@ -12,6 +12,7 @@ using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
 using Brother.Tests.Specs.StepActions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using System.Resources;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
 {
@@ -25,15 +26,20 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IContextData _contextData;
         private readonly PageService _pageService;
         private readonly ICountryService _countryService;
+        private readonly ITranslationService _translationService;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignIn _mpsSignIn;
         private readonly MpsAgreement _mpsAgreement;
 
+        //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
         private DealerAgreementCreateDescriptionPage _dealerAgreementCreateDescriptionPage;
         private DealerAgreementCreateTermAndTypePage _dealerAgreementCreateTermAndTypePage;
+        private DealerAgreementCreateProductsPage _dealerAgreementCreateProductsPage;
+        private DealerAgreementCreateClickPricePage _dealerAgreementCreateClickPricePage;
+        private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
 
         public MpsDealerAgreementSteps(MpsSignIn mpsSignIn,
             MpsAgreement mpsAgreement,
@@ -42,6 +48,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             MpsContextData contextData,
             PageService pageService,
             ICountryService countryService,
+            ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
             IProposalHelper proposalHelper)
@@ -51,6 +58,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData = contextData;
             _pageService = pageService;
             _countryService = countryService;
+            _translationService = translationService;
             _userResolver = userResolver;
             _urlResolver = urlResolver;
             _proposalHelper = proposalHelper;
@@ -77,8 +85,25 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
         public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
         {
-            _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+            _dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
         }
 
+        [When(@"I add a printer to the agreement")]
+        public void WhenIAddAPrinterToTheAgreement()
+        {
+            //TODO: if a printer is not specified, select a random one
+
+            string installationPack = _translationService.GetInstallationPackText("DEALER_INSTALLATION_TYPE3", _contextData.Culture);
+            string servicePack = _translationService.GetServicePackText("SERVICE_PACK_TYPE3", _contextData.Culture);
+
+            _dealerAgreementCreateClickPricePage = _mpsAgreement.AddPrinterToAgreementAndProceed(_dealerAgreementCreateProductsPage, _proposalHelper.SelectPrinter(), 2, installationPack, servicePack);
+            
+        }
+
+        [When(@"And I enter coverage and volume values on the click price calculation page")]
+        public void WhenIEnterCoverageAndVolume()
+        {
+            _dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
+        }
     }
 }

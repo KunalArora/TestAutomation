@@ -20,6 +20,17 @@ namespace Brother.Tests.Specs.Helpers
             return string.Format(pattern, args);
         }
 
+        public string SelectPrinter()
+        {
+            return "DCP-8110DN";
+        }
+
+        public string SelectPrinter(string countryIso)
+        {
+            //TODO: hit MPS db to get valid models for country?
+            return "DCP-8110DN";
+        }
+
         private string surname()
         {
             return availableSurnames[new Random().Next(availableSurnames.Length)];

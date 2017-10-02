@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages
 {
@@ -29,5 +30,7 @@ namespace Brother.WebSites.Core.Pages
                 return _url;
             }
         }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
     }
 }

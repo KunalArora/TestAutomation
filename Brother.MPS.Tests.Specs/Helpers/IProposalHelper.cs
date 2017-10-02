@@ -10,5 +10,7 @@ namespace Brother.Tests.Specs.Helpers
     {
         string GenerateProposalName();
         string GenerateProposalName(string pattern, string[] args);
+        string SelectPrinter();
+        string SelectPrinter(string countryIso);
     }
 }

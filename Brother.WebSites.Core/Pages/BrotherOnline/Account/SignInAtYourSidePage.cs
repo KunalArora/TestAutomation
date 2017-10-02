@@ -1,5 +1,6 @@
 ﻿using System;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.Tests.Selenium.Lib.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -25,6 +26,8 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
                 return _url;
             }
         }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.Id,
             Using =
