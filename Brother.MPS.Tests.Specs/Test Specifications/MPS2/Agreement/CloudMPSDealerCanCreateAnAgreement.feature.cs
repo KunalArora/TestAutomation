@@ -74,8 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Dealer Create Agreement")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Pay As You Go", "2 years", "Upfront", new string[] {
-                "BUKONLY"}, Category="BUKONLY")]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Pay As You Go", "2 years", "Upfront", null)]
         public virtual void MPSDealerCreateAgreement(string role, string country, string usageType, string contractTerm, string servicePackPayment, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dealer Create Agreement", exampleTags);

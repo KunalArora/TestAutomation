@@ -44,6 +44,7 @@ namespace Brother.Tests.Specs.StepActions
             signInAtYourSidePage.SignInButton.Click();
             var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(10);
             Helper.TakeSnapshot("Just trying it");
+            Helper.SavePageSource();
             return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true);
         }
     }

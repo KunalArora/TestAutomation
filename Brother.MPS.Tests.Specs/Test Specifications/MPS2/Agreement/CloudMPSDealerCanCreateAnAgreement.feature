@@ -14,7 +14,6 @@ Scenario Outline: MPS Dealer Create Agreement
 
 
 #TODO: add support for table values for printers
-@BUKONLY
 Scenarios: 
 	| Role             | Country        | UsageType     | ContractTerm | ServicePackPayment |
 	| Cloud MPS Dealer | United Kingdom | Pay As You Go | 2 years      | Upfront            |

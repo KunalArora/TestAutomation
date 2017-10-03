@@ -17,7 +17,7 @@ namespace Brother.Tests.Specs
 
             if (TestContext.Parameters.Exists("output_path"))
             {
-                Helper.OutputPath = TestContext.Parameters.Get("output_path");
+                Helper.OutputPath = TestContext.Parameters.Get("output_path").Replace("\'","");
             } 
         }
     }

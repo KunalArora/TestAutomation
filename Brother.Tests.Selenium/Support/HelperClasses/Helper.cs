@@ -563,6 +563,12 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private static string SnapShotDirectory()
         {
+            // command line specified path trumps all
+            if (OutputPath != string.Empty)
+            {
+                return OutputPath;
+            }
+
             // Check if we are running on the build machine
             var snapshotLocation = DefaultSeleniumFolder;
 
@@ -677,12 +683,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static void TakeSnapshot(string additionalInformation)
         {
-            if (!Directory.Exists(SnapShotDirectory()))
-            {
-                Directory.CreateDirectory(SnapShotDirectory());
-            }
-
             var snapshotLocation = SnapShotDirectory();
+
+            if (!Directory.Exists(snapshotLocation))
+            {
+                Directory.CreateDirectory(snapshotLocation);
+            }
+            
             snapshotLocation += "\\" + GenerateSnapshotFileName();
 
             try
@@ -697,6 +704,20 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 TestCheck.AssertFailTest(string.Format("Snapshot length was too long - [{0}]", pathTooLong));
             }
+        }
+
+        public static void SavePageSource()
+        {
+            var outputPath = SnapShotDirectory();
+
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
+
+            outputPath += "\\" + GenerateHtmlFileName();
+
+            File.WriteAllText(outputPath, TestController.CurrentDriver.PageSource);
         }
 
         public static string GenerateSnapshotFileName()
