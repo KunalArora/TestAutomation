@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -42,6 +43,7 @@ namespace Brother.Tests.Specs.StepActions
             signInAtYourSidePage.PopulatePassword(password);
             signInAtYourSidePage.SignInButton.Click();
             var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(10);
+            Helper.TakeSnapshot("Just trying it");
             return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true);
         }
     }

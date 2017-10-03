@@ -97,6 +97,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _abbreviate = value; }
         }
 
+        public static string OutputPath = string.Empty;
+
         // Countries lookup
         private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
         {
@@ -680,35 +682,8 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 Directory.CreateDirectory(SnapShotDirectory());
             }
 
-            var testName = TestContext.CurrentContext.Test.Name;
-            if (testName.Contains("null"))
-            {
-                // Scenario outline used as the test name which will prove invalid as a file name
-                testName =
-                    testName.Replace("(", "__")
-                        .Replace(")", "__")
-                        .Replace("\"", "")
-                        .Replace(",null", "")
-                        .Replace("/", "_")
-                        .Replace(",", "_")
-                        .Replace("\\", "_")
-                        .Replace(".", "$")
-                        .Replace("?", "")
-                        .Replace(":", "$");
-            }
-           
-            var snapShot = String.Format("{0}{1}.jpg", testName, DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_").Replace(".", "_"));
-            //var snapShot = String.Format("{0}{1}.jpg", ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", ""), DateTime.Now.TimeOfDay.ToString().Replace(@"/", "_").Replace(" ", "").Replace(":", "_"));
             var snapshotLocation = SnapShotDirectory();
-            snapshotLocation += "\\" + snapShot;
-
-            if (snapshotLocation.Length > MaxFileNameSize)
-            {
-                // snapshot length too long so we'll have to shorten it
-                snapshotLocation = snapshotLocation.Substring(0, MaxFileNameSize - 4);
-                snapshotLocation = string.Format(snapshotLocation + "{0}", ".jpg");
-                MsgOutput("Trimming Snapshot as length is too long (large scenario description)......");
-            }
+            snapshotLocation += "\\" + GenerateSnapshotFileName();
 
             try
             {
@@ -722,6 +697,32 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 TestCheck.AssertFailTest(string.Format("Snapshot length was too long - [{0}]", pathTooLong));
             }
+        }
+
+        public static string GenerateSnapshotFileName()
+        {
+            return GenerateFileNameFromCurrentTest("jpg");
+        }
+
+        public static string GenerateHtmlFileName()
+        {
+            return GenerateFileNameFromCurrentTest("htm");
+        }
+
+        public static string GenerateFileNameFromCurrentTest(string extension)
+        {
+            var testClassFull = TestContext.CurrentContext.Test.ClassName;
+            Type objectType = (from asm in AppDomain.CurrentDomain.GetAssemblies()
+                               from type in asm.GetTypes()
+                               where type.IsClass && type.FullName == testClassFull
+                               select type).Single();
+
+            var testMethod = TestContext.CurrentContext.Test.MethodName;
+            var testNamespace = objectType.Namespace;
+            var testClass = testClassFull.Replace(objectType.Namespace + ".", "");
+            var timestamp = string.Format("{0:yyyyMMdd-HHmmss}", DateTime.Now);
+
+            return string.Format("{0}.{1}_{2}.{3}", testClass, testMethod, timestamp, extension);
         }
     }
 }
