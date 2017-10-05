@@ -6,6 +6,7 @@ Feature: CloudMPSUKDealerCanLogin
 
 Scenario Outline: MPS Log in to dashboard
 	Given I sign into Cloud MPS as a type "<BusinessType>" "<Role>" from "<Country>"
+	Given I sign into Cloud MPS as a type "<BusinessType>" "Cloud MPS Local Office Approver" from "<Country>"
 
 
 @BUKONLY
@@ -15,5 +16,5 @@ Scenarios:
 	
 @DYNAMIC_PARAMS
 Scenarios: 
-	| Role             | Country |BusinessType|
-	| Cloud MPS Dealer | Ireland |1|
+	| Role             | Country | BusinessType |
+	| Cloud MPS Dealer | Ireland | 1            |

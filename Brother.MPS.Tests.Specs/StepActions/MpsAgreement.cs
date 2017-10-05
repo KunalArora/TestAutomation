@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.StepActions;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Extensions;
@@ -17,12 +18,13 @@ namespace Brother.Tests.Specs.StepActions
         private readonly MpsSignIn _mpsSignIn;
 
         public MpsAgreement(IWebDriver driver,
+            IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
             MpsSignIn mpsSignIn)
-            : base(driver, contextData, pageService, context, urlResolver)
+            : base(driver, webDriverFactory, contextData, pageService, context, urlResolver)
         {
             _mpsSignIn = mpsSignIn;
         }

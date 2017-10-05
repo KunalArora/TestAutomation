@@ -13,8 +13,8 @@ namespace Brother.Tests.Specs.Services
 {
     public interface IPageService
     {
-        SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null);
-        TPage GetPageObject<TPage>(int? timeout = null) where TPage : BasePage, IPageObject, new();
-        TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, IPageObject, new();
+        SignInAtYourSidePage LoadAtYourSideSignInPage(IWebDriver driver = null, string server = null);
+        TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new();
+        TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false, IWebDriver driver = null) where TPage : BasePage, IPageObject, new();
     }
 }

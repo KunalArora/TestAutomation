@@ -79,10 +79,14 @@
     <Compile Include="AdditionalBindings\InjectionSetup.cs" />
     <Compile Include="BasicTests\CaseRunner.cs" />
     <Compile Include="ContextData\IContextData.cs" />
+    <Compile Include="ContextData\IContextWebDrivers.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
     <Compile Include="Domain\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
+    <Compile Include="Domain\Enums\UserType.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
+    <Compile Include="Factories\IWebDriverFactory.cs" />
+    <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />

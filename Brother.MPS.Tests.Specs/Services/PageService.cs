@@ -35,26 +35,31 @@ namespace Brother.Tests.Specs.Services
 
         #region Page loads
 
-        public SignInAtYourSidePage LoadAtYourSideSignInPage(string server = null)
+        public SignInAtYourSidePage LoadAtYourSideSignInPage(IWebDriver driver = null, string server = null)
         {
             var url = string.Format("{0}/sign-in", server ?? _urlResolver.AtYourSideUrl);
-            LoadUrl(url, 10, "footer.common-global-footer");
-            return GetPageObject<SignInAtYourSidePage>(10);
+            LoadUrl(url, 10, "footer.common-global-footer", driver);
+            return GetPageObject<SignInAtYourSidePage>(10, driver);
         }
 
         #endregion
 
-        public TPage GetPageObject<TPage>(int? timeout = null) where TPage : BasePage, IPageObject, new()
+        public TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
-            var pageObject = new TPage { Driver = _driver, SeleniumHelper = _seleniumHelper };
+            if (driver == null)
+            {
+                driver = _driver;
+            }
+
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = _seleniumHelper };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)
             {
-                var webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds((int)timeout)).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
             }
 
-            PageFactory.InitElements(_driver, pageObject);
+            PageFactory.InitElements(driver, pageObject);
             return pageObject;
         }
 
@@ -64,7 +69,8 @@ namespace Brother.Tests.Specs.Services
         /// <param name="url"></param>
         /// <param name="timeout"></param>
         /// <param name="validationElementSelector"></param>
-        public void LoadUrl(string url, int timeout, string validationElementSelector = null)
+        /// <param name="driver">Override the injected driver with a specific instance</param>
+        public void LoadUrl(string url, int timeout, string validationElementSelector = null, IWebDriver driver = null)
         {
             var timeSpan = TimeSpan.FromSeconds(timeout);
 
@@ -72,15 +78,20 @@ namespace Brother.Tests.Specs.Services
             {
                 validationElementSelector = "body";
             }
-            
+
+            if (driver == null)
+            {
+                driver = _driver;
+            }
+
             Console.WriteLine("PageService.LoadUrl: Starting load of url {0}", url);
             var runner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            _driver.Url = url;
-            _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //remove any implicit waits
+            driver.Url = url;
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0)); //remove any implicit waits
             Helper.MsgOutput(string.Format("Load of url {0} started", url));
             try
             {
-                var webDriverWait = new WebDriverWait(_driver, timeSpan).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
                 Helper.MsgOutput(string.Format("Url {0} loaded - success indicated by presence of validation element {1}", url, validationElementSelector));
             }
             catch (Exception ex)
@@ -89,10 +100,10 @@ namespace Brother.Tests.Specs.Services
             }
         }
 
-        public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false) where TPage : BasePage, IPageObject, new()
+        public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
-            LoadUrl(url, timeout, validationElementSelector);
-            var pageObject = GetPageObject<TPage>();
+            LoadUrl(url, timeout, validationElementSelector, driver);
+            var pageObject = GetPageObject<TPage>(timeout, driver);
 
             if (addToContextAsCurrentPage)
             {

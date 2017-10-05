@@ -1,15 +1,18 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using BoDi;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Selenium.Lib.Helpers;
 using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
@@ -29,10 +32,10 @@ namespace Brother.Tests.Specs.AdditionalBindings
         [BeforeScenario]
         public void RegisterInstances()
         {
-            //var webDriver = new ChromeDriver();
             var webDriver = TestController.CurrentDriver; //temporary until static classes are refactored
-            _container.RegisterInstanceAs<IWebDriver>(webDriver);
+            _container.RegisterInstanceAs<IWebDriver>(webDriver); //default driver when only a single instance is required
             _container.RegisterInstanceAs<IContextData>(setContextData());
+            _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
             _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
             _container.RegisterTypeAs<DefaultUrlResolver, IUrlResolver>();

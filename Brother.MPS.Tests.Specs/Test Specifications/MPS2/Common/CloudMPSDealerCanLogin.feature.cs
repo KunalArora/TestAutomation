@@ -83,6 +83,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Common
 this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given(string.Format("I sign into Cloud MPS as a type \"{0}\" \"{1}\" from \"{2}\"", businessType, role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.Given(string.Format("I sign into Cloud MPS as a type \"{0}\" \"Cloud MPS Local Office Approver\" from \"{1}" +
+                        "\"", businessType, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

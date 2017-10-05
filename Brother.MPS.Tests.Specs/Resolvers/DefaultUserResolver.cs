@@ -76,8 +76,23 @@ namespace Brother.Tests.Specs.Resolvers
 
         public string LocalOfficeAdminUsername { get; set; }
         public string LocalOfficeAdminPassword { get; set; }
-        public string LocalOfficeApproverUsername { get; set; }
-        public string LocalOfficeApproverPassword { get; set; }
+
+        public string LocalOfficeApproverUsername
+        {
+            get
+            {
+                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOApprover", "");
+            }
+        }
+
+        public string LocalOfficeApproverPassword
+        {
+            get
+            {
+                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loapprover");
+            }
+        }
+
         public string BIEAdminUsername { get; set; }
         public string BIEAdminPassword { get; set; }
         public string BankUsername { get; set; }
