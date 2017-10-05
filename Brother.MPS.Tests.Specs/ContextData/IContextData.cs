@@ -3,6 +3,9 @@ using Brother.Tests.Specs.Domain.Enums;
 
 namespace Brother.Tests.Specs.ContextData
 {
+    /// <summary>
+    /// POCO to store strongly-typed data required during the lifetime of a test scenario
+    /// </summary>
     public interface IContextData
     {
         Country Country { get; set; }

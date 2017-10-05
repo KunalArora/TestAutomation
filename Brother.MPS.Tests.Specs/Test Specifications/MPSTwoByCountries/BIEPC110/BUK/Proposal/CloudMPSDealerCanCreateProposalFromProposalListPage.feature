@@ -36,7 +36,7 @@ Scenario Outline: MPS Create Proposal From List Page
 	And clicking on the displayed printer "<Printer>" link takes me back to the device screen
 	And I sign out of Cloud MPS
 
-	
+@BUKONLY	
 Scenarios: 
 	| Role             | Country        | ContractType                  | UsageType      | Contract | Billing              | PriceHardware | Printer      | DeviceScreen | PaymentMethod           | ClickVolume | ColourVolume | Basis1                  | Basis2      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Minimum Volume | 3 years  | Quarterly in Arrears | Tick          | MFC-L8650CDW | Full         | Included in Click Price | 800         | 800          | Included in Click Price | Pay upfront |

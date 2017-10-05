@@ -46,6 +46,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             string env = TestContext.Parameters.Exists("env") ? TestContext.Parameters.Get("env") : "UAT";
             string cultureName = TestContext.Parameters.Exists("culture") ? TestContext.Parameters.Get("culture") : "en-GB";
+            string baseUrl = TestContext.Parameters.Exists("base_url") ? TestContext.Parameters.Get("base_url") : string.Empty;
             CultureInfo culture = new CultureInfo(cultureName);
             RegionInfo region = new RegionInfo(culture.LCID);
             string country = region.TwoLetterISORegionName;
