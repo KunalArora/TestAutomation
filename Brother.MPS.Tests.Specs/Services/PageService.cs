@@ -12,6 +12,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
+using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -51,7 +52,7 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = _seleniumHelper };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver) };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)

@@ -72,6 +72,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
 
             Helper.MsgOutput(string.Format("This step caused the following error [{0}]", messageWithCategories.Message));
             Helper.TakeSnapshot("After Step Error Detected");
+            Helper.SavePageSource();
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
             Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
             WebDriver.DeleteAllCookies();

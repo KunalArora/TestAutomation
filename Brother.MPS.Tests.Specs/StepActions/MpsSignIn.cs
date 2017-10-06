@@ -24,7 +24,7 @@ namespace Brother.Tests.Specs.StepActions
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
-            IUrlResolver urlResolver) : base(driver, webDriverFactory, contextData, pageService, context, urlResolver)
+            IUrlResolver urlResolver) : base(webDriverFactory, contextData, pageService, context, urlResolver)
         {
             _dealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _loApproverWebDriver = webDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);

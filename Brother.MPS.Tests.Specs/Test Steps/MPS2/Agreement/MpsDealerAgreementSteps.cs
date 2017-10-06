@@ -100,7 +100,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             
         }
 
-        [When(@"And I enter coverage and volume values on the click price calculation page")]
+        [When(@"I enter coverage and volume values on the click price calculation page")]
         public void WhenIEnterCoverageAndVolume()
         {
             _dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);

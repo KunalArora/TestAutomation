@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.StepActions;
 using Brother.Tests.Specs.ContextData;
@@ -16,17 +17,18 @@ namespace Brother.Tests.Specs.StepActions
     public class MpsAgreement : StepActionBase
     {
         private readonly MpsSignIn _mpsSignIn;
+        private readonly IWebDriver _dealerWebDriver;
 
-        public MpsAgreement(IWebDriver driver,
-            IWebDriverFactory webDriverFactory,
+        public MpsAgreement(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
             MpsSignIn mpsSignIn)
-            : base(driver, webDriverFactory, contextData, pageService, context, urlResolver)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver)
         {
             _mpsSignIn = mpsSignIn;
+            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
         }
         //TODO: make all of the calls which specify a timeout pull the timeout value from config / command line
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -37,7 +39,7 @@ namespace Brother.Tests.Specs.StepActions
         public DealerAgreementCreateDescriptionPage NavigateToCreateAgreementPage(DealerDashBoardPage dealerDashboardPage)
         {
             dealerDashboardPage.CreateAgreementLinkElement.Click();
-            return PageService.GetPageObject<DealerAgreementCreateDescriptionPage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateDescriptionPage>(10, _dealerWebDriver);
         }
 
         public DealerAgreementCreateTermAndTypePage PopulateAgreementDescriptionAndProceed(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
@@ -49,7 +51,7 @@ namespace Brother.Tests.Specs.StepActions
             PopulateAgreementDescription(dealerAgreementCreateDescriptionPage, agreementName, leadCodeReference, dealerReference, leasingReference);
 
             dealerAgreementCreateDescriptionPage.NextButton.Click();
-            return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(10, _dealerWebDriver);
         }
 
         public DealerAgreementCreateProductsPage PopulateAgreementTermAndTypeAndProceed(DealerAgreementCreateTermAndTypePage dealerAgreementCreateTermAndTypePage,
@@ -61,7 +63,7 @@ namespace Brother.Tests.Specs.StepActions
             dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
             
             dealerAgreementCreateTermAndTypePage.NextButton.Click();
-            return PageService.GetPageObject<DealerAgreementCreateProductsPage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateProductsPage>(10, _dealerWebDriver);
         }
 
         public DealerAgreementCreateClickPricePage AddPrinterToAgreementAndProceed(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage, 
@@ -71,14 +73,15 @@ namespace Brother.Tests.Specs.StepActions
             string servicePack)
         {
             PopulatePrinterDetails(dealerAgreementCreateProductsPage, printerName, quantity, installationPack, servicePack, true);
-            return PageService.GetPageObject<DealerAgreementCreateClickPricePage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateClickPricePage>(10, _dealerWebDriver);
         }
 
         public DealerAgreementCreateSummaryPage PopulateCoverageAndVolumeAndProceed(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage)
         {
             //TODO: initial values exist for T3, can proceed for now - need to add population of fields
+            //dealerAgreementCreateClickPricePage.
             dealerAgreementCreateClickPricePage.NextButton.Click();
-            return PageService.GetPageObject<DealerAgreementCreateSummaryPage>(10);
+            return PageService.GetPageObject<DealerAgreementCreateSummaryPage>(10, _dealerWebDriver);
         }
 
         #region private methods
@@ -103,6 +106,10 @@ namespace Brother.Tests.Specs.StepActions
             dealerAgreementCreateProductsPage.PopulatePrinterDetails(printerName, quantity, installationPack, servicePack, continueToClickPrice);
         }
 
+        private void PopulatePrinterCoverageAndVolume(int coverage, int volume)
+        {
+            
+        }
         #endregion
     }
 }

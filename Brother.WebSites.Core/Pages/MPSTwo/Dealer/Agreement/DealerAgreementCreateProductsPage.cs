@@ -38,10 +38,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement SelectPrinter(string printerName)
         {
             string containerSelector = string.Format("li#pc-{0}", printerName);
-            string addButtonselector = ".js-mps-product-open-add";
+            string addButtonSelector = ".js-mps-product-open-add";
 
             var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, 10);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonselector, 10);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, 10);
 
             addButton.Click();
 

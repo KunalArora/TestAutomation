@@ -14,21 +14,18 @@ namespace Brother.Tests.Specs.StepActions
 {
     public class StepActionBase
     {
-        protected readonly IWebDriver Driver;
         protected readonly IWebDriverFactory WebDriverFactory;
         protected readonly IContextData ContextData;
         protected readonly IPageService PageService;
         protected readonly ScenarioContext ScenarioContext;
         protected readonly IUrlResolver UrlResolver;
 
-        public StepActionBase(IWebDriver driver,
-            IWebDriverFactory webDriverFactory,
+        public StepActionBase(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext scenarioContext,
             IUrlResolver urlResolver)
         {
-            Driver = driver;
             WebDriverFactory = webDriverFactory;
             ContextData = contextData;
             PageService = pageService;

@@ -25,6 +25,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         //WebElement properties
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
+
+        public IWebElement SelectClickPriceGroup(string printerName)
+        {
+            var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, 10);
+
+            return clickPriceContainer;
+        }
     }
 }
 
