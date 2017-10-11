@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -19,18 +20,21 @@ namespace Brother.Tests.Specs.StepActions
         protected readonly IPageService PageService;
         protected readonly ScenarioContext ScenarioContext;
         protected readonly IUrlResolver UrlResolver;
+        protected readonly RuntimeSettings RuntimeSettings;
 
         public StepActionBase(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext scenarioContext,
-            IUrlResolver urlResolver)
+            IUrlResolver urlResolver,
+            RuntimeSettings runtimeSettings)
         {
             WebDriverFactory = webDriverFactory;
             ContextData = contextData;
             PageService = pageService;
             ScenarioContext = scenarioContext;
             UrlResolver = urlResolver;
+            RuntimeSettings = runtimeSettings;
         }
     }
 }

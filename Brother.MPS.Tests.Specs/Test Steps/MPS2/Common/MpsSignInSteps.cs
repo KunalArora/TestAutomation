@@ -2,6 +2,7 @@
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions;
+using Brother.Tests.Specs.StepActions.Common;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPS2.Common
@@ -17,9 +18,9 @@ namespace Brother.Tests.Specs.MPS2.Common
         private readonly ICountryService _countryService;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
-        private readonly MpsSignIn _mpsSignIn;
+        private readonly MpsSignInStepActions _mpsSignIn;
 
-        public MpsSignInSteps(MpsSignIn mpsSignIn,
+        public MpsSignInSteps(MpsSignInStepActions mpsSignIn,
             ScenarioContext context,
             MpsContextData contextData,
             PageService pageService,

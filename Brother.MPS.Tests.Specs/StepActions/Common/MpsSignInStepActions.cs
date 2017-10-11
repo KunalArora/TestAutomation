@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Extensions;
@@ -12,19 +13,20 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace Brother.Tests.Specs.StepActions
+namespace Brother.Tests.Specs.StepActions.Common
 {
-    public class MpsSignIn : StepActionBase
+    public class MpsSignInStepActions : StepActionBase
     {
         private readonly IWebDriver _dealerWebDriver;
         private readonly IWebDriver _loApproverWebDriver;
 
-        public MpsSignIn (IWebDriver driver,
+        public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
-            IUrlResolver urlResolver) : base(webDriverFactory, contextData, pageService, context, urlResolver)
+            IUrlResolver urlResolver,
+            RuntimeSettings runtimeSettings) : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _dealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _loApproverWebDriver = webDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
@@ -55,10 +57,10 @@ namespace Brother.Tests.Specs.StepActions
             signInAtYourSidePage.PopulateEmailAddressTextBox(email);
             signInAtYourSidePage.PopulatePassword(password);
             signInAtYourSidePage.SignInButton.Click();
-            var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(10, driver);
+            var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(RuntimeSettings.DefaultPageObjectTimeout, driver);
             Helper.TakeSnapshot("Just trying it");
             Helper.SavePageSource();
-            return PageService.LoadUrl<TPage>(dashboardUrl, 10, "div.mps-dashboard", true, driver);
+            return PageService.LoadUrl<TPage>(dashboardUrl, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, driver);
         }
     }
 }

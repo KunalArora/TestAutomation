@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -14,9 +15,23 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerProposalsCreateClickPricePage : BasePage
+    public class DealerProposalsCreateClickPricePage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/click-price";
+        private const string _validationElementSelector = ".mps-clickprice-group";
+        private const string _url = "/mps/dealer/proposals/create/click-price";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get { return _url; }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
         
 
         public override string DefaultTitle

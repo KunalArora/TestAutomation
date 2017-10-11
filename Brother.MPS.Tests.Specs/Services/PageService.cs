@@ -47,6 +47,10 @@ namespace Brother.Tests.Specs.Services
 
         public TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
+            #if DEBUG
+                //This is horrible but when stepping through code the WebDriverWait fails
+                Thread.Sleep(200);
+            #endif
             if (driver == null)
             {
                 driver = _driver;

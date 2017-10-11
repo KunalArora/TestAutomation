@@ -5,6 +5,8 @@ using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.Helpers;
+using Brother.Tests.Specs.StepActions.Agreement;
+using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -30,8 +32,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly IProposalHelper _proposalHelper;
-        private readonly MpsSignIn _mpsSignIn;
-        private readonly MpsAgreement _mpsAgreement;
+        private readonly MpsSignInStepActions _mpsSignIn;
+        private readonly MpsDealerAgreementStepActions _mpsAgreement;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -41,8 +43,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateClickPricePage _dealerAgreementCreateClickPricePage;
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
 
-        public MpsDealerAgreementSteps(MpsSignIn mpsSignIn,
-            MpsAgreement mpsAgreement,
+        public MpsDealerAgreementSteps(MpsSignInStepActions mpsSignIn,
+            MpsDealerAgreementStepActions mpsAgreement,
             ScenarioContext context,
             IWebDriver driver,
             MpsContextData contextData,

@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Mime;
 using System.Runtime.Serialization;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -15,8 +16,31 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerProposalsCreateProductsPage : BasePage
+    public class DealerProposalsCreateProductsPage : BasePage,  IPageObject
     {
+
+        private const string _validationElementSelector = "div.mps-product-configuration";
+        private const string _url = "/mps/dealer/proposals/create/products";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+
 
         #region ViewModels
 
