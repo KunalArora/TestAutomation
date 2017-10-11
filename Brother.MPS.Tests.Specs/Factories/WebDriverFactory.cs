@@ -14,6 +14,7 @@ namespace Brother.Tests.Specs.Factories
     public class WebDriverFactory : IWebDriverFactory
     {
         private ScenarioContext _context;
+        private const string _webDriverKeyPattern = "__driverInstance_{0}";
 
         public WebDriverFactory(ScenarioContext context)
         {
@@ -22,7 +23,7 @@ namespace Brother.Tests.Specs.Factories
         //TODO: allow driver and options to be specified
         public IWebDriver GetWebDriverInstance(UserType userType, ChromeOptions chromeOptions = null)
         {
-            var key = "__driverInstance_ " + userType.ToString();
+            var key = WebDriverKey(userType);
 
             if (_context.ContainsKey(key))
             {
@@ -33,6 +34,29 @@ namespace Brother.Tests.Specs.Factories
             webDriverInstance.Manage().Window.Maximize();
             _context.Add(key, webDriverInstance);
             return webDriverInstance;
+        }
+
+        public void CloseAllWebDrivers()
+        {
+            foreach (var userType in Enum.GetNames(typeof(UserType)))
+            {
+                var key = WebDriverKey(userType);
+                if (_context.ContainsKey(key))
+                {
+                    var webDriverInstance = _context.Get<IWebDriver>(key);
+                    webDriverInstance.Quit();
+                }
+            }
+        }
+
+        private string WebDriverKey(UserType userType)
+        {
+            return WebDriverKey(userType.ToString());
+        }
+
+        private string WebDriverKey(string userType)
+        {
+            return string.Format("__driverInstance_ " + userType);
         }
     }
 }

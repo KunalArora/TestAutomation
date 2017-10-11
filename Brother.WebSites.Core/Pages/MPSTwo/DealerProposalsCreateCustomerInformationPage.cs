@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -12,9 +13,24 @@ using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerProposalsCreateCustomerInformationPage : BasePage
+    public class DealerProposalsCreateCustomerInformationPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/customer-information";
+        private const string _validationElementSelector = ".form-group mps-radio-options"; //initial load to select new, existing or skip
+        private const string _url = "/mps/dealer/proposals/create/customer-information";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get { return _url; }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public override string DefaultTitle
         {

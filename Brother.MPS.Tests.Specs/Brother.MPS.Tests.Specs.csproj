@@ -90,6 +90,7 @@
     <Compile Include="ContextData\MpsContextData.cs" />
     <Compile Include="Domain\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
+    <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
     <Compile Include="Domain\PrinterProperties.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
@@ -102,6 +103,16 @@
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
+    <Compile Include="Resources\ContractType\ContractType.en-gb.Designer.cs">
+      <DependentUpon>ContractType.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContractType\ContractType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\InstallationPack\InstallationPack.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +177,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_1.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1401,6 +1417,7 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingContractSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingProposalSteps.cs" />
@@ -1539,6 +1556,10 @@
     <None Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2517,6 +2538,15 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ContractType\ContractType.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractType.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractType\ContractType.fr-fr.resx" />
+    <EmbeddedResource Include="Resources\ContractType\ContractType.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallationPack.Designer.cs</LastGenOutput>

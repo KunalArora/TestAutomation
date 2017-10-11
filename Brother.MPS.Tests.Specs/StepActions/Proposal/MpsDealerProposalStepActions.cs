@@ -40,21 +40,38 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
-        public DealerProposalsCreateDescriptionPage NavigateToCreateAgreementPage(DealerDashBoardPage dealerDashboardPage)
+        public DealerProposalsCreateDescriptionPage NavigateToCreateProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
-            dealerDashboardPage.CreateAgreementLinkElement.Click();
+            dealerDashboardPage.CreateProposalLinkElement.Click();
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsCreateTermAndTypePage PopulateAgreementDescriptionAndProceed(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
-            string agreementName,
+        public DealerProposalsCreateCustomerInformationPage PopulateProposalDescriptionAndProceed(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
+            string proposalName,
             string leadCodeReference,
-            string dealerReference,
-            string leasingReference)
+            string contractType)
         {
-            //PopulateProposalDescription(dealerProposalsCreateDescriptionPage, agreementName, leadCodeReference, dealerReference, leasingReference);
+            PopulateProposalDescription(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
 
             dealerProposalsCreateDescriptionPage.NextButton.Click();
+            return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateTermAndTypePage PopulateProposalCustomerInformationAndProceed(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage, CustomerInformationOption customerInformationOption)
+        {
+            switch (customerInformationOption)
+            {
+                    case CustomerInformationOption.Existing:
+                        //SelectExistingCustomer()
+                        break;
+                    case CustomerInformationOption.New:
+                        //CreateNewCustomer();
+                        break;
+                    case CustomerInformationOption.Skip:
+                        dealerProposalsCreateCustomerInformationPage.SkipCustomerElement.Click();
+                        dealerProposalsCreateCustomerInformationPage.NextButton.Click();
+                    break;
+            }
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -94,14 +111,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         #region private methods
 
-        private void PopulateAgreementDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
-            string agreementName,
+        private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
+            string proposalName,
             string leadCodeReference,
-            string dealerReference,
-            string leasingReference)
+            string contractType)
         {
             dealerProposalsCreateDescriptionPage.ProposalNameField.Clear();
-            dealerProposalsCreateDescriptionPage.ProposalNameField.SendKeys(agreementName);
+            dealerProposalsCreateDescriptionPage.ProposalNameField.SendKeys(proposalName);
         }
 
         private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,

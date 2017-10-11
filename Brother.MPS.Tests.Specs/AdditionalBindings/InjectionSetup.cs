@@ -63,5 +63,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
             };
         }
 
+        [AfterScenario]
+        public void TearDown()
+        {
+            var webDriverFactory = _container.Resolve<IWebDriverFactory>();
+            if (webDriverFactory != null)
+            {
+                webDriverFactory.CloseAllWebDrivers();
+            }
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Brother.Tests.Specs.Services
     {
         string GetInstallationPackText(string name, string culture);
         string GetServicePackText(string name, string culture);
+        string GetContractTypeText(string name, string culture);
     }
 }

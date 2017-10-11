@@ -18,6 +18,12 @@ namespace Brother.Tests.Specs.Services
             return GetText(Resources.ServicePack.ServicePack.ResourceManager, name, cultureInfo);
         }
 
+        public string GetContractTypeText(string name, string culture)
+        {
+            var cultureInfo = new CultureInfo(culture);
+            return GetText(Resources.ContractType.ContractType.ResourceManager, name, cultureInfo);
+        }
+
         private string GetText(System.Resources.ResourceManager resourceManager, string name, CultureInfo cultureInfo)
         {
             string result = string.Empty;
