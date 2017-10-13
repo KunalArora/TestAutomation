@@ -17,7 +17,7 @@ using SpecFlow = Brother.Tests.Selenium.Lib.Support.HelperClasses.SpecFlow;
 
 namespace Brother.Tests.Specs.BrotherOnline.Account
 {
-    //[Binding]
+    [Binding]
     public class SignInAtYourSideSteps : BaseSteps
     {
         private const string SUBJECT_PAGE_KEY = "subject_page";

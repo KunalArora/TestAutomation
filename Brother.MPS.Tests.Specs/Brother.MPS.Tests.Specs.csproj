@@ -1273,6 +1273,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanSignContractProd.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSDealerRegressionTestUAT.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloudMPSDealerRegressionTestUAT.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2464,6 +2469,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSDealerCanSignContractProd.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanSignContractProd.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSDealerRegressionTestUAT.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloudMPSDealerRegressionTestUAT.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

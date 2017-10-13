@@ -353,7 +353,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             WebDriver.Wait(DurationType.Second, 5);
             GetSignOutLink(driver).Click();
-            return GetInstance<HomePage>(driver, "", "");
+            if (Helper.CurrentCountryIsUsingAtYourSideLogin())
+            {
+                return new HomePage(); 
+            }
+            else
+            {
+                return GetInstance<HomePage>(driver, "", "");
+            }
         }
 
         // New method after addition of GUIDs for my acc menu item
