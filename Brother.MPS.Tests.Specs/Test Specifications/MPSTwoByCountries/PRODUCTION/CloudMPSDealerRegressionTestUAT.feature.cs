@@ -70,7 +70,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Sign A Purchase And Click Contract in Prod")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://online65.co.uk.cds.uat.brother.eu.com", "Dave", "Cloud", "Web", null)]
+        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://online65.co.uk.cds.uat.brother.eu.com", "WEB", "Cloud", "Web", null)]
         public virtual void DealerCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Sign A Purchase And Click Contract in Prod", exampleTags);

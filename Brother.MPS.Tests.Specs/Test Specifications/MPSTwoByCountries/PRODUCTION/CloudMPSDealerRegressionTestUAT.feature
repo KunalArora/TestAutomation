@@ -22,4 +22,4 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                                           | ServerName | Method | Type |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://online65.co.uk.cds.uat.brother.eu.com | Dave       | Cloud  | Web  |
+	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://online65.co.uk.cds.uat.brother.eu.com | WEB        | Cloud  | Web  |
