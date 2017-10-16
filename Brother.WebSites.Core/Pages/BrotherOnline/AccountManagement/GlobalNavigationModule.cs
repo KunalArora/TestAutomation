@@ -353,6 +353,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement
 
             WebDriver.Wait(DurationType.Second, 5);
             GetSignOutLink(driver).Click();
+            driver.Manage().Cookies.DeleteAllCookies();
             if (Helper.CurrentCountryIsUsingAtYourSideLogin())
             {
                 return new HomePage(); 

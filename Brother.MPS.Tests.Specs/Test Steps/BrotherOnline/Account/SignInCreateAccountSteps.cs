@@ -1343,7 +1343,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                             break;
 
                         case "Cloud MPS Local Office":
-                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeAdminDashBoardPage>(LocalOfficeAdminDashBoardPage.Url);
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeAdminDashBoardPage>(contextBaseUrl + LocalOfficeAdminDashBoardPage.Url);
                             break;
 
                         case "Cloud MPS Bank":
@@ -1351,7 +1351,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
                             break;
 
                         case "Cloud MPS Local Office Approver":
-                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeApproverDashBoardPage>(LocalOfficeAdminDashBoardPage.Url);
+                            NextPage = CurrentPage.As<MyAccountAtYourSidePage>().RedirectToMpsDashboard<LocalOfficeApproverDashBoardPage>(contextBaseUrl + LocalOfficeAdminDashBoardPage.Url);
                             break;
 
                         case "Cloud MPS Service Desk":

@@ -97,9 +97,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _abbreviate = value; }
         }
 
-        public static string OutputPath = string.Empty;
-
-        // Countries lookup
+       #region Properties set by MPS command line parameters
+       public static string OutputPath = string.Empty;
+        public static string EnvironmentUnderTest = string.Empty;
+       #endregion
+       // Countries lookup
         private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
         {
             {"Belgium", "be"},
@@ -226,6 +228,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string GetRunTimeEnv()
         {
+            //MPS command line override
+            if (EnvironmentUnderTest != string.Empty)
+            {
+                return EnvironmentUnderTest;
+            }
             return GetSpecialEnvironmentVariable("AutoTestRunTimeEnv") ?? RunTimeDefault;
         }
 

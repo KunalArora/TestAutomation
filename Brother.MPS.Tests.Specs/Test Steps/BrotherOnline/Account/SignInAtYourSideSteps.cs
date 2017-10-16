@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
     public class SignInAtYourSideSteps : BaseSteps
     {
         private const string SUBJECT_PAGE_KEY = "subject_page";
+        private const string BASE_URL_KEY = "ContextBaseUrl";
 
         private readonly ScenarioContext _context;
 
@@ -48,7 +49,17 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             //BasePage.LoadAtYourSideSignInPage(CurrentDriver);
             //_context.Add(SUBJECT_PAGE_KEY, BasePage.LoadAtYourSideSignInPage(CurrentDriver));
             //var current = _context.Get<RegistrationPage>(SUBJECT_PAGE_KEY);
-            if(server != null) _context.Add("ContextBaseUrl", server);
+            if (server != null)
+            {
+                if (_context.ContainsKey(BASE_URL_KEY))
+                {
+                    _context[BASE_URL_KEY] = server;
+                }
+                else
+                {
+                    _context.Add(BASE_URL_KEY, server);
+                }
+            }
             CurrentPage = BasePage.LoadAtYourSideSignInPage(CurrentDriver, server);
             GetSubjectPage<SignInAtYourSidePage>().IsSignInButtonAvailable();
         }

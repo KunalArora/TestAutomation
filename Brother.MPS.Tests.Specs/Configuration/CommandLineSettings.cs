@@ -10,5 +10,6 @@ namespace Brother.Tests.Specs.Configuration
     {
         public string OutputPath { get; set; }
         public string LoggingLevel { get; set; }
+        public string EnvironmentUnderTest { get; set; }
     }
 }

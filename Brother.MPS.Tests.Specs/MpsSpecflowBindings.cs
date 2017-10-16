@@ -11,14 +11,22 @@ namespace Brother.Tests.Specs
         [BeforeScenario]
         public void MpsBeforeScenarioBinding()
         {
-            //Hijack driver setting here so it doesn't interfere with core Brother testing
             //TODO: review with BOL team and find more suitable approach than environment variables
             var driver = TestController.CurrentDriver;
 
             if (TestContext.Parameters.Exists("output_path"))
             {
                 Helper.OutputPath = TestContext.Parameters.Get("output_path").Replace("\'","");
-            } 
+            }
+
+            if (TestContext.Parameters.Exists("env"))
+            {
+                Helper.EnvironmentUnderTest = TestContext.Parameters.Get("env");
+            }
+            else
+            {
+                Helper.EnvironmentUnderTest = "UAT";
+            }
         }
     }
 }
