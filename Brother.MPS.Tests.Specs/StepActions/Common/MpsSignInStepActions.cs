@@ -38,10 +38,10 @@ namespace Brother.Tests.Specs.StepActions.Common
             return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/mps/dealer/dashboard", UrlResolver.BaseUrl), _dealerWebDriver);
         }
 
-        public void SignInAsLocalOfficeApprover(string email, string password, string url)
+        public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)
         {
             var signInPage = LoadAtYourSideSignInPage(url, _loApproverWebDriver);
-            SignInToMpsDashboardAs<LocalOfficeApproverDashBoardPage>(signInPage, email, password, string.Format("{0}/mps/local-office/dashboard", UrlResolver.BaseUrl), _loApproverWebDriver);
+            return SignInToMpsDashboardAs<LocalOfficeApproverDashBoardPage>(signInPage, email, password, string.Format("{0}/mps/local-office/dashboard", UrlResolver.BaseUrl), _loApproverWebDriver);
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver)

@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.ContextData
 {

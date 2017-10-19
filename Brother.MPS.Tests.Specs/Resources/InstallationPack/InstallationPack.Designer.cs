@@ -61,11 +61,20 @@ namespace Brother.Tests.Specs.Resources.InstallationPack {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brother install.
+        ///   Looks up a localized string similar to Brother-Install.
         /// </summary>
         internal static string BROTHER_INSTALLATION {
             get {
                 return ResourceManager.GetString("BROTHER_INSTALLATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dealer-Install.
+        /// </summary>
+        internal static string DEALER_INSTALLATION_TYPE1 {
+            get {
+                return ResourceManager.GetString("DEALER_INSTALLATION_TYPE1", resourceCulture);
             }
         }
         

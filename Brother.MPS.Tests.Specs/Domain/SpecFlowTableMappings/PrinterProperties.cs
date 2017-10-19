@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Brother.Tests.Specs.Domain
+namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
 {
     public class PrinterProperties
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -10,9 +11,30 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverProposalsPage : BasePage
+    public class LocalOfficeApproverProposalsPage : BasePage, IPageObject
     {
         public static string Url = "/";
+
+        private const string _validationElementSelector = "table.dataTable";
+        private const string _url = "/mps/local-office/approval/proposals/awaiting-approval";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {

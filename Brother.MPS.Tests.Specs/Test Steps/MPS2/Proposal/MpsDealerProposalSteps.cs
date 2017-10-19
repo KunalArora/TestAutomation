@@ -1,29 +1,19 @@
-﻿using Brother.Tests.Selenium.Lib;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain;
-using Brother.Tests.Specs.Extensions;
+﻿using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.Helpers;
-using Brother.Tests.Specs.StepActions.Agreement;
+using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
-using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
-using Brother.Tests.Specs.StepActions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using System.Resources;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
     [Binding]
     public class MpsDealerProposalSteps
     {
-        private const string SUBJECT_PAGE_KEY = "subject_page";
-
         private readonly ScenarioContext _context;
         private readonly IWebDriver _driver;
         private readonly IContextData _contextData;
@@ -83,7 +73,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I create a ""(.*)"" proposal")]
         public void WhenICreateAProposalOfContractType(string contractType)
         {
-            _translationService.GetContractTypeText("PURCHASE_AND_CLICK", _contextData.Culture);
+            //if only one contract type is available for the country, the contract type dropdown does not appear.
+            //handle this logic
+            _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
         }
 
         [When(@"I enter the proposal description")]
@@ -92,10 +84,34 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //_dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
         }
 
+        [When(@"I create a new customer for the proposal")]
+        public void WhenICreateANewCustomerForTheProposal()
+        {
+            //_mpsCustomerStepActions.CreateCustomer()
+        }
+
         [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
         public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
         {
             //_dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+        }
+
+        [When(@"I add these printers:")]
+        public void WhenIAddThesePrinters(Table printers)
+        {
+            //step action should add the printers to context data
+        }
+
+        [When(@"I calculate the click price for each of the above printers")]
+        public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
+        {
+            //step action should use printers specified in previous step and stored in context data
+        }
+
+        [When(@"I submit the saved proposal for approval")]
+        public void WhenISubmitTheSavedProposalForApproval()
+        {
+            //wraps up several actions - view summary, save proposal, navigate to open proposals, submit for approval
         }
 
         [When(@"I add a printer to the proposal")]

@@ -2,7 +2,7 @@
 
     param(
         [string]$TestAssembly = $(throw "Test assembly must be specified"),
-        [string]$category = $(throw "Category must be specified"),
+        [string]$Category = $(throw "Category must be specified"),
         [string]$OutputPath,
         [string]$Env = "UAT"
     )
@@ -29,6 +29,6 @@
         New-Item $OutputPath -ItemType directory
     }
 
-    .\nunit3-console.exe $TestAssembly --where:cat=$Category --result=$outputFile --params="env=$Env;output_path='$OutputPath\'"
+    .\nunit3-console.exe $TestAssembly --where:cat=$Category --result=$outputFile --params="env=$Env;output_path='$OutputPath\'" --pause
 
 }
