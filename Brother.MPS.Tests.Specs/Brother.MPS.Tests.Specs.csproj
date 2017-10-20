@@ -185,6 +185,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_1.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateCustomerSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1424,6 +1434,7 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
@@ -1568,6 +1579,14 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

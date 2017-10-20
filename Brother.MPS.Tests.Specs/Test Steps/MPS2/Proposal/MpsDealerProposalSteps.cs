@@ -8,6 +8,7 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -87,7 +88,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I create a new customer for the proposal")]
         public void WhenICreateANewCustomerForTheProposal()
         {
-            //_mpsCustomerStepActions.CreateCustomer()
+            //_mpsDealerProposalStepActions.CreateCustomerForProposal()
+        }
+
+        [When(@"I skip customer creation for the proposal")]
+        public void WhenISkipCustomerCreationForTheProposal()
+        {
+            //_mpsDealerProposalStepActions.SkipCustomerCreationForProposal()
         }
 
         [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
@@ -99,6 +106,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I add these printers:")]
         public void WhenIAddThesePrinters(Table printers)
         {
+            //create strongly-typed set using CreateSet<PrinterProperties>() method - the PrinterProperties class will need additional properties to match the SpecFlow table
             //step action should add the printers to context data
         }
 
