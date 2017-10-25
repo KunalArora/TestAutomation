@@ -67,7 +67,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
 
-            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.AtYourSideUrl));
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -120,6 +120,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenISubmitTheSavedProposalForApproval()
         {
             //wraps up several actions - view summary, save proposal, navigate to open proposals, submit for approval
+            //_contextData.ProposalId can be be populated on the summary page - use attribute data-mps-qa-id of 
+            //IWebElement property SummaryPageContractIdElement
         }
 
         [When(@"I add a printer to the proposal")]
