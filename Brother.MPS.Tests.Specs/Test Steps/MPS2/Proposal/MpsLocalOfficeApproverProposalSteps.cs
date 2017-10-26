@@ -58,8 +58,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsLocalOfficeApproverProposalStepActions = mpsLocalOfficeApproverProposalStepActions;
         }
 
-        [When(@"a Cloud MPS Local Office Approver approves the proposal")]
-        public void WhenACloudMpsLocalOfficeApproverApprovesTheProposal()
+        [When(@"a Cloud MPS Local Office Approver approves the above proposal")]
+        public void WhenACloudMpsLocalOfficeApproverApprovesTheAboveProposal()
         {
             //This step follows on from a previous scenario step - check context data has been set
             if (_contextData.Country == null || string.IsNullOrEmpty(_contextData.Culture))

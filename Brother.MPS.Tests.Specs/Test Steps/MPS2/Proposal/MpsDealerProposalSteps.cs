@@ -116,8 +116,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //step action should use printers specified in previous step and stored in context data
         }
 
-        [When(@"I submit the saved proposal for approval")]
-        public void WhenISubmitTheSavedProposalForApproval()
+        [When(@"I save the above proposal and submit it for approval")]
+        public void WhenISaveTheAboveProposalAndSubmitItForApproval()
         {
             //wraps up several actions - view summary, save proposal, navigate to open proposals, submit for approval
             //_contextData.ProposalId can be be populated on the summary page - use attribute data-mps-qa-id of 

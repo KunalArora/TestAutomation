@@ -17,8 +17,11 @@ And I add these printers:
 		| <PrinterModel_3> | <PrinterPrice_3> | <PrinterInstallation_3> | <PrinterDelivery_3> | <PrinterCoverageMono_3> | <PrinterVolumeMono_3> | <PrinterCoverageColour_3> | <PrinterVolumeColour_3> |
 		| <PrinterModel_4> | <PrinterPrice_4> | <PrinterInstallation_4> | <PrinterDelivery_4> | <PrinterCoverageMono_4> | <PrinterVolumeMono_4> | <PrinterCoverageColour_4> | <PrinterVolumeColour_4> |
 And I calculate the click price for each of the above printers
-And I submit the saved proposal for approval
-And a Cloud MPS Local Office Approver approves the proposal
+And I save the above proposal and submit it for approval
+And a Cloud MPS Local Office Approver approves the above proposal
+And I sign the above proposal
+And a Cloud MPS Local Office Approver accepts the above proposal
+And I create an installation request
 
 @BUK
 Scenarios: 
