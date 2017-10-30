@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110
+﻿@MPS @UAT @TEST @BIEPC110 @HIGH
 Feature: CloudMPSUKProposalAddADevicesToAProposalDuringCreation
 	In order to create a contract with a device 
 	As an MPS Dealer

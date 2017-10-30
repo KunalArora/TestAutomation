@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSUKDealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer

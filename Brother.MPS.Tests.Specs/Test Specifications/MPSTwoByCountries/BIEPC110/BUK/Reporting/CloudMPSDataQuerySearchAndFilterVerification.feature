@@ -1,4 +1,4 @@
-﻿	@MPS @TEST @UAT @BIEPC110
+﻿	@MPS @TEST @UAT @BIEPC110 @MEDIUM
 	Feature: CloudMPSDataQuerySearchAndFilterVerification
 	In order verify that all search and filters are working on Data Query page
 	As a LO Approver

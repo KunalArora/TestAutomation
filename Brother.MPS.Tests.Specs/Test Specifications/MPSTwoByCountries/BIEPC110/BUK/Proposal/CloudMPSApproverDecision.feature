@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSUKApproverDecisionFeature
 	In order to approve/decline Proposal/Contract
 	As a Approver

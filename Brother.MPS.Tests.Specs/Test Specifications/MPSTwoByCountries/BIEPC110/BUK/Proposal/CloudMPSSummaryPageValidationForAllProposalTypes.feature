@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110 
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSSummaryPageValidationForAllUKProposalTypes
 	In order to avoid ambiguity on proposal summary page
 	As a dealer

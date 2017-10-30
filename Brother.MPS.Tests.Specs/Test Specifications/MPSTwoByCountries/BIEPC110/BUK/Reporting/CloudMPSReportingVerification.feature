@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @CRITICAL
 Feature: CloudMPSReportingVeification
 	In order to verified that reporting is working as expect
 	As a user with reporting access

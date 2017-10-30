@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110
+﻿@MPS @UAT @TEST @BIEPC110 @CRITICAL 
 Feature: CloudMPSResetInstallation
 	In order for an installer to be able to redo installation
 	As a installer 

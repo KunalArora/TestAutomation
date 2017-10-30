@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSSpecialPricing
 	In order to give customers special discount
 	As a LO Approver

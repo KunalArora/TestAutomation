@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSUKDealerCanGeneratePDFAtRelevantStages
 	In order to generate Proposal PDF
 	As a dealer

@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC113
+﻿@MPS @UAT @TEST @BIEPC113 @CRITICAL
 Feature: CloudMPSCreateAContractWithExistingGermanCustomer
 	In order to work with customer run portion
 	As a dealer
