@@ -21,7 +21,7 @@ And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver approves the above proposal
 And I sign the above proposal
 And a Cloud MPS Local Office Approver accepts the above proposal
-And I create an installation request
+And I create an installation request for the above proposal
 
 @BUK
 Scenarios: 

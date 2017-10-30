@@ -190,10 +190,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCreateCustomerSteps.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateInstallationRequestSteps.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallerCompleteWebInstallationRequest.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1584,9 +1594,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateInstallationRequestSteps.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2550,6 +2568,7 @@
     <Folder Include="Test Specifications\MPS2\Proposal\" />
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
+    <Folder Include="Test Steps\MPS2\Contract\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />
