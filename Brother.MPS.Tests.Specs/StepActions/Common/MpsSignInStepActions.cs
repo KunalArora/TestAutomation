@@ -14,12 +14,14 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
+
 namespace Brother.Tests.Specs.StepActions.Common
 {
     public class MpsSignInStepActions : StepActionBase
     {
         private IWebDriver _dealerWebDriver;
         private IWebDriver _loApproverWebDriver;
+
 
         public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
@@ -64,6 +66,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             registrationPage.PopulateEmailAddressTextBox(email);
             registrationPage.PopulatePassword(password);
+            registrationPage.ScrollTo(registrationPage.SignInButton);
             registrationPage.SignInButton.Click();
             return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, driver);
         }

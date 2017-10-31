@@ -11,6 +11,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
     public class RegistrationPage : BasePage, IPageObject

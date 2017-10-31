@@ -61,7 +61,7 @@ namespace Brother.Tests.Specs.Services
 
             if (timeout != null)
             {
-                var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { d.FindElement(By.CssSelector(validationElementSelector)); return true; } catch { return false; } });
             }
 
             PageFactory.InitElements(driver, pageObject);

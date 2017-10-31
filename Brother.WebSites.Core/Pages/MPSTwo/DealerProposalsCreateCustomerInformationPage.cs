@@ -16,7 +16,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsCreateCustomerInformationPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/customer-information";
-        private const string _validationElementSelector = ".form-group mps-radio-options"; //initial load to select new, existing or skip
+        private const string _validationElementSelector = ".form-group.mps-radio-options"; //initial load to select new, existing or skip
         private const string _url = "/mps/dealer/proposals/create/customer-information";
 
         public string ValidationElementSelector

@@ -11,12 +11,32 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class CloudExistingProposalPage : BasePage
+    public class CloudExistingProposalPage : BasePage, IPageObject
     {
         public static string URL = "/mps/proposals/in-progress";
+        private const string _validationElementSelector = "input#content_1_InProgressListActions_ActionList_Button_0"; //CreateProposal button
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return URL;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {
@@ -25,12 +45,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string DealerDeletingItem = "DealerDeletingItem";
 
-
         private const string proposalTableColumn = @".js-mps-delete-remove td";
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
-        
+        private const string ProposalFilterSelectorFormat = "#content_1_ProposalListFilter_InputFilterBy";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
         private IWebElement DashboradLink;
@@ -87,6 +106,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement AwaitingProposalTabElement;
         [FindsBy(How = How.CssSelector, Using = "#DataTables_Table_0_next a")]
         public IWebElement DataTableNextButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
+        public IList<IWebElement> ProposalListProposalNameRowElement;
+
         
         
         
@@ -644,6 +666,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var numberOfDistinct = container.Distinct().Count();
 
             TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
+        }
+
+        public bool VerifySavedProposalInOpenProposalsList(string proposalName)
+        {
+            
+            ClearAndType(ProposalFilter, proposalName);
+            WebDriver.Wait(DurationType.Second, 2);
+            //var proposalFilterInput = SeleniumHelper.FindElementByCssSelector(ProposalFilterSelectorFormat, 10);
+            //ClearAndType(proposalFilterInput, proposalName);
+            var proposalListElement = ProposalListProposalNameRowElement.First(element => element.Text == proposalName);
+            if (proposalListElement == null)
+            {
+                return false;
+            }
+            return true;
         }
 
     }

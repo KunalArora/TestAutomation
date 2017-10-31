@@ -1,12 +1,15 @@
 ﻿using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -14,6 +17,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
     public class MpsDealerProposalStepActions : StepActionBase
     {
         private readonly MpsSignInStepActions _mpsSignIn;
+        private readonly IContextData _contextData;
         private readonly IWebDriver _dealerWebDriver;
 
         public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
@@ -26,6 +30,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
+            _contextData = contextData;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
         }
         
@@ -81,26 +86,68 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsCreateClickPricePage AddPrinterToAgreementAndProceed(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
-            string printerName,
-            int quantity,
-            string installationPack,
-            string servicePack)
+        public DealerProposalsCreateProductsPage PopulateProposalTermAndTypeAndProceed(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage,
+            string usageType,
+            string contractLength,
+            string billingType,
+            string servicePackOption)
         {
-            //PopulatePrinterDetails(dealerProposalsCreateProductsPage, printerName, quantity, installationPack, servicePack, true);
+            dealerProposalsCreateTermAndTypePage.SelectUsageType(usageType);
+            dealerProposalsCreateTermAndTypePage.SelectContractLength(contractLength);
+            dealerProposalsCreateTermAndTypePage.SelectPayPerClickBillingCycle(billingType);
+            dealerProposalsCreateTermAndTypePage.PayServicePackMethod(servicePackOption);
+
+            dealerProposalsCreateTermAndTypePage.NextButton.Click();
+            return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateClickPricePage AddPrinterToProposalAndProceed(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
+            IEnumerable<PrinterProperties> products)
+        {
+            foreach (var product in products)
+            {
+                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.Delivery);
+            }
+            dealerProposalsCreateProductsPage.NextButtonClick();
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
+        public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
+            IEnumerable<PrinterProperties> products)
         {
-            PopulatePrinterCoverageAndVolume(5,500);
+            foreach (var product in products)
+            {
+                PopulatePrinterCoverageAndVolume(dealerProposalsCreateClickPricePage, product.Model, product.CoverageMono, product.CoverageColour, product.VolumeMono, product.VolumeColour);
+            }
             dealerProposalsCreateClickPricePage.CalculateClickPriceElement.Click();
-            if(VerifyClickPriceValues())
+            
+            if(VerifyClickPriceValues(dealerProposalsCreateClickPricePage))
             {
                 dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement.Click();
                 return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
+             
             return null;
+        }
+
+        public CloudExistingProposalPage SaveTheProposalAndProceed(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
+        {
+            int proposalId = dealerProposalsCreateSummaryPage.SaveProposalAndReturnContractId();
+            _contextData.ProposalId = proposalId;
+            return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifySavedProposalInOpenProposalsList(CloudExistingProposalPage cloudExistingProposalPage, string proposalName)
+        {
+            bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList(proposalName);
+            if (exists)
+            {
+                return;
+            }
+            else
+            {
+                new NullReferenceException(string.Format("Proposal = {0} not found ", proposalName));
+            }             
         }
 
         #region private methods
@@ -116,22 +163,22 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
             string printerName,
-            int quantity,
+            string printerPrice,
             string installationPack,
-            string servicePack,
-            bool continueToClickPrice)
+            string delivery)
         {
-            //dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, quantity, installationPack, servicePack, continueToClickPrice);
+            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery);
         }
 
-        private void PopulatePrinterCoverageAndVolume(int coverage, int volume)
+        private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
+            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
         {
-
+            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( printerName, coverageMono, coverageColour, volumeMono, volumeColour );
         }
 
-        private bool VerifyClickPriceValues()
+        private bool VerifyClickPriceValues(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
         {
-            return false;
+            return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
 
         #endregion

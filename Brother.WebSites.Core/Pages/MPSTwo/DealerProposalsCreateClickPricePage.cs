@@ -12,6 +12,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -45,6 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPricePageNext = @"#content_1_ButtonNext";
         private const string ClickPricePath = @"C:\DataTest\ClickPrice";
         private const string CsvFile = @"ClickPrice.csv";
+        private const string IsMonoOnly = "data-mono-only";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -615,6 +617,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(str, 5);
         }
 
+        public IWebElement MonoVolumeDropdownElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}", row);
+            return SeleniumHelper.FindElementByCssSelector(str, 5);
+        }
+
+        public IWebElement ColourVolumeDropdownElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputColourVolumeBreaks_{0}", row);
+
+            return GetElementByCssSelector(str, 5);
+        }
+
+        public IWebElement MonoCoverageElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputMonoCoverage_{0}", row);
+
+            return SeleniumHelper.FindElementByCssSelector(str, 5);
+        }
+
+        public IWebElement ColourCoverageElement(string row)
+        {
+            string str = String.Format("#content_1_LineItems_InputColourCoverage_{0}", row);
+
+            return GetElementByCssSelector(str, 5);
+        }
+
         public void EnterMonoVolume(string volume, string row)
         {
             IWebElement element = MonoVolumeElement(row);
@@ -940,6 +969,51 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]))
                 TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
         }
+
+        public IWebElement getPrinterElement(string printerName)
+        {
+            string attributeName = printerName;
+            var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, 10);
+            return printerElement;
+        }
         
+        public void PopulatePrinterCoverageAndVolume(string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour )
+        {
+            var printerContainer = getPrinterElement(printerName);
+            string id = printerContainer.GetAttribute("id");
+            string row = id.Substring(id.Length - 1, 1);
+            string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
+
+            var monoCoverageInput = MonoCoverageElement(row);
+            var monoVolumeDropdownInput =  MonoVolumeDropdownElement(row);
+
+            ClearAndType(monoCoverageInput, coverageMono.ToString());
+            SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
+
+
+            if (isMonoOnly == "False")
+            {
+                var colourCoverageInput = ColourCoverageElement(row);
+                var colourVolumeDropdownInput = ColourVolumeDropdownElement(row);
+
+                ClearAndType(colourCoverageInput, coverageColour.ToString());
+                SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
+            }
+        }
+
+        public bool VerifyClickPriceValues()
+        {
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, 10);
+            try
+            {
+                VerifyClickPriceValueIsDisplayed();
+                return true;
+            }
+            catch
+            {
+                //catch Assertion exception
+                return false;
+            }                
+        }
     }
 }
