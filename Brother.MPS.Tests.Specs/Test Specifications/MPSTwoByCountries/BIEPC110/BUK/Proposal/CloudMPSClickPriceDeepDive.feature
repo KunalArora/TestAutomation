@@ -9,6 +9,7 @@ Feature: CloudMPSUKClickPriceDeepDive
 #
 
 # 3
+@LOW
 Scenario Outline: MPS PAYG SP Not Displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -25,7 +26,7 @@ Scenario Outline: MPS PAYG SP Not Displayed
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | Create new customer | Pay As You Go | 3 years  | Quarterly in Arrears | Quarterly in Arrears | Tick          | MFC-8510DN | Full         | Pay upfront   | 0           | 2000         |
 
 # 4	
-@ignore 
+@LOW
 Scenario Outline: MPS Minimum Volume SP Not Displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -47,7 +48,7 @@ Scenario Outline: MPS Minimum Volume SP Not Displayed
 
 
 # 7
-@ignore
+@LOW
 Scenario Outline: MPS In Click And Upfront CP Displayed
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -69,7 +70,7 @@ Scenario Outline: MPS In Click And Upfront CP Displayed
 	
 
 # 8
-@ignore
+@MEDIUM
 Scenario Outline: MPS In Click And Upfront Mono Changes
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -97,7 +98,7 @@ Scenario Outline: MPS In Click And Upfront Mono Changes
 
 
 # 9-10
-@ignore
+@LOW
 Scenario Outline: MPS CP Variation
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page

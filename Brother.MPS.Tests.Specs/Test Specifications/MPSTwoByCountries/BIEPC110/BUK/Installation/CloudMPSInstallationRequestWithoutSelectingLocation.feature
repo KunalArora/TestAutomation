@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110 @CRITICAL
+﻿@MPS @UAT @TEST @BIEPC110 @MEDIUM
 Feature: UKInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	In order to begin installation request creation
 	As a Dealer 

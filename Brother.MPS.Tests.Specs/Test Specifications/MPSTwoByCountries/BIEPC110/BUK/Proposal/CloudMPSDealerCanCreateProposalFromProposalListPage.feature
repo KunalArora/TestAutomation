@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110 @MEDIUM
+﻿@MPS @UAT @TEST @BIEPC110 @HIGH
 Feature: CloudMPSUKDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer

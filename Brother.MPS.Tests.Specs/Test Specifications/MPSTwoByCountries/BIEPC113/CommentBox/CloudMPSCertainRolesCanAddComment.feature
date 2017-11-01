@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @MEDIUM
 Feature: CloudMPSCertainRolesCanAddComment
 	In order to add and edit comment on a proposal or contract
 	As a qualified MPS User

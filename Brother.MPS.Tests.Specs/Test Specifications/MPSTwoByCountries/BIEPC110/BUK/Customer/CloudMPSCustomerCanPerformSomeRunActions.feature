@@ -5,6 +5,7 @@ Feature: UKCustomerCanPerformSomeRunActions
 	I want to be to sign in using my newly generated credentials
 
 
+
 Scenario Outline: MPS English Customer cannot order consumable before initial communication with device
 	#Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	#And I sign into Cloud MPS as a "<Role>" from "<Country>"

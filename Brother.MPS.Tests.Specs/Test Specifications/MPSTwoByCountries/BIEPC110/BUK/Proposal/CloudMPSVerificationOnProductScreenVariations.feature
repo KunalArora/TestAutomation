@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110 @HIGH
+﻿@MPS @UAT @TEST @BIEPC110 @LOW
 Feature: CloudMPSUKProposalAddADevicesToAProposalDuringCreation
 	In order to create a contract with a device 
 	As an MPS Dealer
@@ -7,6 +7,7 @@ Feature: CloudMPSUKProposalAddADevicesToAProposalDuringCreation
 #
 # 1 Screen Variations
 #
+@LOW
 Scenario Outline: MPS Display Full Detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -23,7 +24,7 @@ Scenario Outline: MPS Display Full Detail
 	| Role             | Country        | Printer      |
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
-
+@LOW
 Scenario Outline: MPS Verify Full Detail
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -39,7 +40,7 @@ Scenario Outline: MPS Verify Full Detail
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
-
+@HIGH
 Scenario Outline: MPS Verify Total Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -55,7 +56,7 @@ Scenario Outline: MPS Verify Total Price
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
-
+@HIGH
 Scenario Outline: MPS Verify Grand Total Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -72,7 +73,7 @@ Scenario Outline: MPS Verify Grand Total Price
 	| Role             | Country        | ContractType       | Contract |  Billing                  | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  |  Quarterly in Arrears | MFC-L8850CDW |
 
-
+@HIGH
 Scenario Outline: MPS Zero QTY Not displayed On Summary
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -91,7 +92,7 @@ Scenario Outline: MPS Zero QTY Not displayed On Summary
 	| Role             | Country        | ContractType                  | Contract | Billing              | Printer      |
 	| Cloud MPS Dealer | United Kingdom | Purchase & Click with Service | 3 years  | Quarterly in Arrears | MFC-L8850CDW |
 
-
+@LOW
 Scenario Outline: MPS Enable Device
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
@@ -113,6 +114,7 @@ Scenario Outline: MPS Enable Device
 	| Cloud MPS Local Office | United Kingdom | Cloud MPS Dealer | MFC-J4420DW  |
 
 
+@LOW
 Scenario Outline: MPS Disable Device
 	Given I sign into Cloud MPS as a "<Role1>" from "<Country>"
 	And I navigate to Purchase And Click page
@@ -158,6 +160,7 @@ Scenario Outline: MPS Installation Pack Unit Cost Input Error
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: Input 100% Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -174,6 +177,7 @@ Scenario Outline: Input 100% Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: Unit Price With 100% Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -190,6 +194,7 @@ Scenario Outline: Unit Price With 100% Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: MPS One-Off Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -212,6 +217,7 @@ Scenario Outline: MPS One-Off Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: MPS Dealer Set-up Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Admin page
@@ -234,6 +240,7 @@ Scenario Outline: MPS Dealer Set-up Margin
 #
 # 8 Unit Cost vs Margin% vs Unit Price
 #
+@LOW
 Scenario Outline: MPS Unit Cost Impacts Unit Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -251,6 +258,7 @@ Scenario Outline: MPS Unit Cost Impacts Unit Price
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: MPS Unit Price Impacts Margin
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -268,6 +276,7 @@ Scenario Outline: MPS Unit Price Impacts Margin
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: MPS Margin Impacts Unit Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -285,6 +294,7 @@ Scenario Outline: MPS Margin Impacts Unit Price
 	| Cloud MPS Dealer | United Kingdom | MFC-L8850CDW |
 
 
+@LOW
 Scenario Outline: MPS Zero Margin impacts Unit Price
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
@@ -303,6 +313,7 @@ Scenario Outline: MPS Zero Margin impacts Unit Price
 # 9 Filters
 #
 # TODO: Should implement Enabling correct printers as a local office admin.
+@LOW
 Scenario Outline: MPS Free Text Filter
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I am on MPS New Proposal Page
