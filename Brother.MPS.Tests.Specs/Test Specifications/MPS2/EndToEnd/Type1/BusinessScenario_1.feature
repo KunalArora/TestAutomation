@@ -2,7 +2,7 @@
 Feature: BusinessScenario_1
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
-	I want to create a new contract and complete installation of all devices
+	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Business Scenario 1
 Given I have navigated to the Create Proposal page as a "Cloud MPS Dealer" from "<Country>"
