@@ -48,6 +48,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string CsvFile = @"ClickPrice.csv";
         private const string IsMonoOnly = "data-mono-only";
 
+        private const string MonoCoverageSelector = "[id*='content_1_LineItems_InputMonoCoverage_']";
+        private const string MonoVolumeSelector = "[id*='content_1_LineItems_InputMonoVolumeBreaks_']";
+        private const string ColorCoverageSelector = "[id*='content_1_LineItems_InputColourCoverage_']";
+        private const string ColorVolumeSelector = "[id*='content_1_LineItems_InputColourVolumeBreaks_']";
+        
+
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
@@ -617,33 +623,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetElementByCssSelector(str, 5);
         }
 
-        public IWebElement MonoVolumeDropdownElement(string row)
-        {
-            string str = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}", row);
-            return SeleniumHelper.FindElementByCssSelector(str, 5);
-        }
-
-        public IWebElement ColourVolumeDropdownElement(string row)
-        {
-            string str = String.Format("#content_1_LineItems_InputColourVolumeBreaks_{0}", row);
-
-            return GetElementByCssSelector(str, 5);
-        }
-
-        public IWebElement MonoCoverageElement(string row)
-        {
-            string str = String.Format("#content_1_LineItems_InputMonoCoverage_{0}", row);
-
-            return SeleniumHelper.FindElementByCssSelector(str, 5);
-        }
-
-        public IWebElement ColourCoverageElement(string row)
-        {
-            string str = String.Format("#content_1_LineItems_InputColourCoverage_{0}", row);
-
-            return GetElementByCssSelector(str, 5);
-        }
-
         public void EnterMonoVolume(string volume, string row)
         {
             IWebElement element = MonoVolumeElement(row);
@@ -970,40 +949,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
         }
 
-        public IWebElement getPrinterElement(string printerName)
+        public IWebElement getPrinterElement(string printerName, int findElementTimeout)
         {
             string attributeName = printerName;
-            var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, 10);
+            var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
             return printerElement;
         }
         
-        public void PopulatePrinterCoverageAndVolume(string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour )
+        public void PopulatePrinterCoverageAndVolume(string printerName, 
+            int coverageMono, 
+            int coverageColour, 
+            int volumeMono, 
+            int volumeColour, 
+            int findElementTimeout)
         {
-            var printerContainer = getPrinterElement(printerName);
-            string id = printerContainer.GetAttribute("id");
-            string row = id.Substring(id.Length - 1, 1);
+            var printerContainer = getPrinterElement(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 
-            var monoCoverageInput = MonoCoverageElement(row);
-            var monoVolumeDropdownInput =  MonoVolumeDropdownElement(row);
+            var monoCoverageInput = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoCoverageSelector, 10);
+            var monoVolumeDropdownInput = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector, 10);
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
             SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
 
-
-            if (isMonoOnly == "False")
+            if (isMonoOnly.Equals("False"))
             {
-                var colourCoverageInput = ColourCoverageElement(row);
-                var colourVolumeDropdownInput = ColourVolumeDropdownElement(row);
+                var colourCoverageInput = SeleniumHelper.FindElementByCssSelector(printerContainer, ColorCoverageSelector, 10);
+                var colourVolumeDropdownInput = SeleniumHelper.FindElementByCssSelector(printerContainer, ColorVolumeSelector, 10);
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
                 SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
             }
         }
 
-        public bool VerifyClickPriceValues()
+        public bool VerifyClickPriceValues(int pageObjectTimeout)
         {
-            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, 10);
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, pageObjectTimeout);
             try
             {
                 VerifyClickPriceValueIsDisplayed();

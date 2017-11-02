@@ -42,6 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string contractSelector = @"#content_1_InputContractType_Input";
         private const string customertab = @"a[href='/mps/dealer/proposals/create/customer-information']";
+        private const string proposalNameSelector = "#content_1_InputProposalName_Input";
 
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         public IWebElement PromptText;
@@ -266,6 +267,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextButton.Click();
 
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
+        }
+
+        public void PopulateProposalName(string proposalName)
+        {
+            var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
+            ClearAndType(proposalNameElement, proposalName.ToString());
         }
     }
 }

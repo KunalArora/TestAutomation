@@ -1720,13 +1720,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickAcceptOnJsAlert();
         }
 
-        public IWebElement SelectPrinter(string printerName)
+        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
-            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, 10);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, 10);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
 
             addButton.Click();
 
@@ -1736,26 +1736,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void PopulatePrinterDetails(string printerName,
             string printerPrice,
             string installationPack,
-            string delivery)
+            bool delivery,
+            int findElementTimeout)
         {            
-            var printerContainer = SelectPrinter(printerName);
+            var printerContainer = SelectPrinter(printerName, findElementTimeout);
             ScrollTo(printerContainer);
-            var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector, 10);
-            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector, 10);
-            var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector, 10);
-            
-            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector, 10);
+            var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector, findElementTimeout);
+            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector, findElementTimeout);
+            var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector, findElementTimeout);
+            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector, findElementTimeout);
 
             ClearAndType(printerPriceInput, printerPrice.ToString());
 
-            deliveryPriceInput.Clear();
-            if (delivery.Equals("Yes"))
+            if (delivery)
             {
-                deliveryPriceInput.SendKeys("1");
-            }
-            else
-            {
-                deliveryPriceInput.SendKeys("0");
+                ClearAndType(deliveryPriceInput, "1");
             }
 
             SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);

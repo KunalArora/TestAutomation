@@ -92,11 +92,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string billingType,
             string servicePackOption)
         {
-            dealerProposalsCreateTermAndTypePage.SelectUsageType(usageType);
-            dealerProposalsCreateTermAndTypePage.SelectContractLength(contractLength);
-            dealerProposalsCreateTermAndTypePage.SelectPayPerClickBillingCycle(billingType);
-            dealerProposalsCreateTermAndTypePage.PayServicePackMethod(servicePackOption);
-
+            // Populate Term and Type page for Type 1
+            dealerProposalsCreateTermAndTypePage.PopulateTermAndTypeForType1(usageType, contractLength, billingType, servicePackOption, RuntimeSettings.DefaultFindElementTimeout);
             dealerProposalsCreateTermAndTypePage.NextButton.Click();
             return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -137,16 +134,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void VerifySavedProposalInOpenProposalsList(CloudExistingProposalPage cloudExistingProposalPage, string proposalName)
+        public void VerifySavedProposalInOpenProposalsList(CloudExistingProposalPage cloudExistingProposalPage, int proposalId, string proposalName)
         {
-            bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList(proposalName,RuntimeSettings.DefaultFindElementTimeout);
+            bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList( proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout);
             if (exists)
             {
                 return;
             }
             else
             {
-                new NullReferenceException(string.Format("Proposal = {0} not found ", proposalName));
+                new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
             }             
         }
 
@@ -157,8 +154,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string leadCodeReference,
             string contractType)
         {
-            dealerProposalsCreateDescriptionPage.ProposalNameField.Clear();
-            dealerProposalsCreateDescriptionPage.ProposalNameField.SendKeys(proposalName);
+            dealerProposalsCreateDescriptionPage.PopulateProposalName(proposalName);
         }
 
         private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
@@ -167,18 +163,31 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string installationPack,
             string delivery)
         {
-            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery);
+            // Check delivery input at step　level
+            bool delivery_exists = false;
+            if (delivery.Equals("Yes"))
+            {
+                delivery_exists = true;
+            }
+
+            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery_exists, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
             string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
         {
-            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( printerName, coverageMono, coverageColour, volumeMono, volumeColour );
+            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( 
+                printerName, 
+                coverageMono, 
+                coverageColour, 
+                volumeMono, 
+                volumeColour, 
+                RuntimeSettings.DefaultFindElementTimeout );
         }
 
         private bool VerifyClickPriceValues(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
         {
-            return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
+            return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultPageObjectTimeout);
         }
 
         #endregion

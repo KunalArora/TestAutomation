@@ -116,6 +116,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
         public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
         {
+            _contextData.UsageType = usageType;
+            _contextData.ContractTerm = contractTerm;
+            _contextData.BillingType = billingType;
+            _contextData.ServicePackType = servicePackType;
+          
             _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usageType, contractTerm, billingType, servicePackType);
         }
 
@@ -145,7 +150,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [Then(@"I can see the proposal created above in the open proposals list")]
         public void ThenICanSeeTheProposalCreatedAboveInTheOpenProposalsList()
         {
-            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalName);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
         }
 
         [When(@"I save the above proposal and submit it for approval")]

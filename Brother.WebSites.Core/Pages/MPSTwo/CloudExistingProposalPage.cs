@@ -669,10 +669,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
         }
 
-        public bool VerifySavedProposalInOpenProposalsList(string proposalName, int timeout )
+        public bool VerifySavedProposalInOpenProposalsList( int proposalId, string proposalName, int timeout )
         {
-
-            ClearAndType(ProposalFilter, proposalName);
+            ClearAndType(ProposalFilter, proposalId.ToString());
             try
             {
                 SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), timeout );
@@ -683,7 +682,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return false;
             }
         }
-
-
     }
 }
