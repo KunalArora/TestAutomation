@@ -45,6 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string DealerDeletingItem = "DealerDeletingItem";
 
+
         private const string proposalTableColumn = @".js-mps-delete-remove td";
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
@@ -668,20 +669,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
         }
 
-        public bool VerifySavedProposalInOpenProposalsList(string proposalName)
+        public bool VerifySavedProposalInOpenProposalsList(string proposalName, int timeout )
         {
-            
+
             ClearAndType(ProposalFilter, proposalName);
-            WebDriver.Wait(DurationType.Second, 2);
-            //var proposalFilterInput = SeleniumHelper.FindElementByCssSelector(ProposalFilterSelectorFormat, 10);
-            //ClearAndType(proposalFilterInput, proposalName);
-            var proposalListElement = ProposalListProposalNameRowElement.First(element => element.Text == proposalName);
-            if (proposalListElement == null)
+            try
+            {
+                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), timeout );
+                return true;
+            }
+            catch
             {
                 return false;
             }
-            return true;
         }
+
 
     }
 }

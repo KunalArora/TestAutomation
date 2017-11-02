@@ -68,5 +68,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {           
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.CssSelector(selector)));
         }
+
+        public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout )
+        {
+            TResult res = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(conditions);
+            return res;
+        }
+
+
     }
 }

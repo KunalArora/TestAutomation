@@ -139,7 +139,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public void VerifySavedProposalInOpenProposalsList(CloudExistingProposalPage cloudExistingProposalPage, string proposalName)
         {
-            bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList(proposalName);
+            bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList(proposalName,RuntimeSettings.DefaultFindElementTimeout);
             if (exists)
             {
                 return;
