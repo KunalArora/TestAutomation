@@ -200,6 +200,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateSwapInstallationRequestSteps.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1601,6 +1606,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateSwapInstallationRequestSteps.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
