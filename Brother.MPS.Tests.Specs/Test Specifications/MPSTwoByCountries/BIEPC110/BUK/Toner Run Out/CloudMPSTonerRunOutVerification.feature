@@ -1,4 +1,4 @@
-﻿ @TEST @UAT @MPS @BIEPC110
+﻿ @TEST @UAT @MPS @BIEPC110 @HIGH
 Feature: CloudMPSTonerRunOutVerification
 	In order to ensure toner does not run out for any customer
 	As a BIE Admin

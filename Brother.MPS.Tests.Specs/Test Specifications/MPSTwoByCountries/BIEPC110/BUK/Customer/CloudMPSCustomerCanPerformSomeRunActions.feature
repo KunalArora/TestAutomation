@@ -1,8 +1,9 @@
-﻿@ignore @TEST @UAT @MPS @BIEPC110
+﻿@TEST @UAT @MPS @BIEPC110 @HIGH
 Feature: UKCustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer
 	I want to be to sign in using my newly generated credentials
+
 
 
 Scenario Outline: MPS English Customer cannot order consumable before initial communication with device

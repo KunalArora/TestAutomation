@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC112
+﻿@MPS @TEST @UAT @BIEPC112 @HIGH
 Feature: CloudMPSSubDealerOperations
 	In order to assign responsibility to sub dealer
 	As a dealer

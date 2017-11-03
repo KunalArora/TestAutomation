@@ -12,6 +12,10 @@ namespace Brother.Tests.Specs.Resolvers
     {
         private readonly IContextData _contextData;
 
+        private const string TEST_BASE_URL_FORMAT = "https://online65.{0}.cds.test.brother.eu.com";
+        private const string TEST_CMS_URL_FORMAT = "http://online65.{0}.cms.test.brother.eu.com";
+        private const string TEST_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.test.brother.eu.com";
+
         private const string UAT_BASE_URL_FORMAT = "https://online65.{0}.cds.uat.brother.eu.com";
         private const string UAT_CMS_URL_FORMAT = "http://online65.{0}.cms.uat.brother.eu.com";
         private const string UAT_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.uat.brother.eu.com";
@@ -34,6 +38,8 @@ namespace Brother.Tests.Specs.Resolvers
             {
                 switch (_contextData.Environment.ToUpper())
                 {
+                    case "TEST":
+                        return string.Format(TEST_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "UAT":
                         return string.Format(UAT_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
@@ -53,6 +59,8 @@ namespace Brother.Tests.Specs.Resolvers
             {
                 switch (_contextData.Environment.ToUpper())
                 {
+                    case "TEST":
+                        return string.Format(TEST_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "UAT":
                         return string.Format(UAT_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
@@ -72,6 +80,8 @@ namespace Brother.Tests.Specs.Resolvers
             {
                 switch (_contextData.Environment.ToUpper())
                 {
+                    case "TEST":
+                        return string.Format(TEST_ATYOURSIDE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "UAT":
                         return string.Format(UAT_ATYOURSIDE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":

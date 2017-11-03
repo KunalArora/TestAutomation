@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110
+﻿@MPS @UAT @TEST @BIEPC110 @CRITICAL
 Feature: ValidateConsumableOrderCreation
 	In order to work with customer run portion
 	As a dealer

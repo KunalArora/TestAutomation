@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @HIGH
 Feature: CloudMPSUKDealerCanOperateCustomers
 	In order to view/create/edit/delete customers
 	As an MPS Dealer or Sub-Dealer
@@ -14,7 +14,7 @@ Scenario Outline: MPS View Customers
 	Scenarios: 
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
-#	| Sub Dealer | United Kingdom |
+	| Sub Dealer | United Kingdom |
 
 
 Scenario Outline: MPS Create Customer 
@@ -28,10 +28,9 @@ Scenario Outline: MPS Create Customer
 	Scenarios: 
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
-#	| Sub Dealer | United Kingdom |
+	| Sub Dealer | United Kingdom |
 
 
-#@ignore
 Scenario Outline: MPS Edit New Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -47,9 +46,8 @@ Scenario Outline: MPS Edit New Customer
 	Scenarios: 
 	| Role             | Country        | TargetItem       |
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem |
-#	| Sub Dealer | United Kingdom |
+	| Sub Dealer | United Kingdom |
 
-##@ignore
 Scenario Outline: MPS Delete Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	And I navigate to existing customer screen
@@ -63,9 +61,9 @@ Scenario Outline: MPS Delete Customer
 	Scenarios: 
 	| Role             | Country        |TargetItem		  | Confirm |
 	| Cloud MPS Dealer | United Kingdom |NewlyCreatedItem | OK      |
-#	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
+	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
 
-##@ignore
+
 Scenario Outline: MPS Cancel Deleting Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	##And I navigate to existing customer screen
@@ -80,9 +78,8 @@ Scenario Outline: MPS Cancel Deleting Customer
 	Scenarios: 
 	| Role             | Country        | TargetItem | Confirm |
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem    | Dismiss |
-#	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
+	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
 
-##@ignore
 Scenario Outline: MPS Delete Bounded Customer 
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page

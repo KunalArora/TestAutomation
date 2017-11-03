@@ -1,9 +1,10 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 
 Feature: CloudMPSOutputContractPDFAllUKUsers
 	In order to view paper version of contract summary
 	As an MPS User
 	I want to be able to download contract PDFs
 
+@MEDIUM
 Scenario Outline: MPS LO Download Awaiting Acceptance Contract PDF
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver contract Awaiting Acceptance page
@@ -16,6 +17,7 @@ Scenario Outline: MPS LO Download Awaiting Acceptance Contract PDF
 	| Cloud MPS Local Office Approver | United Kingdom |
 	
 
+@MEDIUM
 Scenario Outline: MPS LO Download Rejected Contract PDF
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to Local Office Approver contract Rejected page
@@ -29,6 +31,7 @@ Scenario Outline: MPS LO Download Rejected Contract PDF
 	
 
 
+@HIGH
 Scenario Outline: MPS Contract PDF on Approved Proposal
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Approved Acceptance page
@@ -39,7 +42,7 @@ Scenario Outline: MPS Contract PDF on Approved Proposal
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
 	
-	
+@MEDIUM
 Scenario Outline: MPS Download Contract PDF on Awaiting Acceptance
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Awaiting Acceptance page
@@ -52,6 +55,7 @@ Scenario Outline: MPS Download Contract PDF on Awaiting Acceptance
 	| Cloud MPS Dealer | United Kingdom |
 	
 
+@LOW
 Scenario Outline: MPS Download Rejected Contract PDF
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
 	When I navigate to dealer contract Rejected page
