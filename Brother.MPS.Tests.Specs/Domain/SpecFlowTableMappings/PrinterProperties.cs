@@ -16,5 +16,19 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
         public int VolumeMono { get; set; }
         public int CoverageColour { get; set; }
         public int VolumeColour { get; set; }
+
+        public bool IncludeDelivery
+        {
+            get
+            {
+                var includeDelivery = false;
+                if (!string.IsNullOrEmpty(Delivery))
+                {
+                    var deliveryInput = Delivery.ToLower();
+                    includeDelivery = deliveryInput == "yes";
+                }
+                return includeDelivery;
+            }
+        }
     }
 }

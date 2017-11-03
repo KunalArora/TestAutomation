@@ -103,7 +103,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             foreach (var product in products)
             {
-                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.Delivery);
+                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.IncludeDelivery);
             }
             dealerProposalsCreateProductsPage.NextButtonClick();
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -161,16 +161,9 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string printerName,
             string printerPrice,
             string installationPack,
-            string delivery)
+            bool delivery)
         {
-            // Check delivery input at step　level
-            bool delivery_exists = false;
-            if (delivery.Equals("Yes"))
-            {
-                delivery_exists = true;
-            }
-
-            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery_exists, RuntimeSettings.DefaultFindElementTimeout);
+            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
