@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @MEDIUM
 Feature: CloudMPSUKDealerCanOperateProposalOffers
 	In order to view/edit/delete/copy existing proposals
 	As an MPS Dealer
@@ -36,7 +36,6 @@ Scenario Outline: MPS Edit Existing Proposal
 	#| Lease & Click with Service    | Minimum Volume | Cloud MPS Dealer | United Kingdom | ClickPrice          |
 	| Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | United Kingdom | TermAndType         |
 
-##@ignore
 Scenario Outline: MPS Edit Products Existing Proposal
 	Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
 	And I navigate to Dealer Dashboard page from Dealer Proposal page

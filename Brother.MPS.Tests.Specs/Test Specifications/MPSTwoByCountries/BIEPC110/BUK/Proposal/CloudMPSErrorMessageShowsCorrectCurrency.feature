@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @MEDIUM
 Feature: CloudMPSErrorMessageShowsCorrectUKCurrency
 	In order to ensure that error message correctly displayed currency
 	As a dealer

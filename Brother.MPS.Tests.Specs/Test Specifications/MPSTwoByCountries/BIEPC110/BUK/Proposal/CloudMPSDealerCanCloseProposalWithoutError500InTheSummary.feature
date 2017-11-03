@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110
+﻿@MPS @UAT @TEST @BIEPC110 @MEDIUM
 Feature: CloudMPSUKDealerCanCloseProposal
 	In order to discontinue a proposal from creation process
 	As a dealer
