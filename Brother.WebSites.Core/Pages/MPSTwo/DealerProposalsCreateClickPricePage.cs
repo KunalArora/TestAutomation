@@ -48,11 +48,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string CsvFile = @"ClickPrice.csv";
         private const string IsMonoOnly = "data-mono-only";
 
-        private const string MonoCoverageSelector = "[id*='content_1_LineItems_InputMonoCoverage_']";
-        private const string MonoVolumeSelector = "[id*='content_1_LineItems_InputMonoVolumeBreaks_']";
-        private const string ColorCoverageSelector = "[id*='content_1_LineItems_InputColourCoverage_']";
-        private const string ColorVolumeSelector = "[id*='content_1_LineItems_InputColourVolumeBreaks_']";
-        
+        private const string DataAttributeMonoCoverage = "mono-coverage";
+        private const string DataAttributeMonoVolume = "mono-volume";
+        private const string DataAttributeColourCoverage = "colour-coverage";
+        private const string DataAttributeColourVolume = "colour-volume";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -966,16 +965,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var printerContainer = getPrinterElement(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 
-            var monoCoverageInput = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoCoverageSelector, 10);
-            var monoVolumeDropdownInput = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector, 10);
+            var monoCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoCoverage, "true", findElementTimeout);
+            var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true", findElementTimeout);
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
             SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
 
-            if (isMonoOnly.Equals("False"))
+            if ((isMonoOnly.ToLower()).Equals("false"))
             {
-                var colourCoverageInput = SeleniumHelper.FindElementByCssSelector(printerContainer, ColorCoverageSelector, 10);
-                var colourVolumeDropdownInput = SeleniumHelper.FindElementByCssSelector(printerContainer, ColorVolumeSelector, 10);
+                var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true", findElementTimeout);
+                var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true", findElementTimeout);
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
                 SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
