@@ -17,9 +17,11 @@ namespace Brother.Tests.Specs.Services
         private const string NOTIFY_BOC_PATTERN = "notify?id={0}&all=true";
         private const string DEVICE_ID_PATTERN = "babeface{0}";
 
-        public DeviceSimulatorService()
+        private readonly IWebRequestService _webRequestService;
+
+        public DeviceSimulatorService(IWebRequestService webRequestService)
         {
-            
+            _webRequestService = webRequestService;
         }
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", 10);
 
             return deviceId;
         }
@@ -49,7 +51,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", 10);
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", 10);
         }
 
         public void NotifyBocOfDeviceChanges(string deviceId)
@@ -71,7 +73,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);            
+            var response = _webRequestService.GetPageResponse(url, "GET", 10);            
         }
 
         public string CreateNewDeviceId()
@@ -84,111 +86,6 @@ namespace Brother.Tests.Specs.Services
             return deviceId;
         }
 
-        public WebPageResponse GetPageResponse(string webPage, string method, int timeout, string contentType = null,
-            string body = null, Dictionary<string, string> additionalHeaders = null)
-        {
-            //TODO: code copied from Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils, will need moving into it's own service
 
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
-            HttpWebRequest webRequest = null;
-
-            if (webPage.Contains("https:"))
-            {
-                ServicePointManager.ServerCertificateValidationCallback =
-                    (sender, certificate, chain, errors) => { return true; };
-            }
-
-            try
-            {
-                webRequest = (HttpWebRequest) WebRequest.Create(webPage);
-            }
-            catch (UriFormatException uriFormatException)
-            {
-                Console.WriteLine("Invalid url ({0}) specified for device simulator ", webPage);
-                Console.WriteLine("Exception detail : {0}", uriFormatException.Message);
-                throw;
-            }
-
-            if (additionalHeaders != null && additionalHeaders.Any())
-            {
-                foreach (var header in additionalHeaders)
-                    webRequest.Headers.Add(header.Key, header.Value);
-            }
-
-            webRequest.Method = method;
-            webRequest.Timeout = timeout;
-            webRequest.KeepAlive = true;
-            webRequest.PreAuthenticate = true;
-            webRequest.AllowAutoRedirect = true;
-            webRequest.UseDefaultCredentials = true;
-
-            if (method.Contains("POST"))
-            {
-                if (!string.IsNullOrWhiteSpace(contentType))
-                    webRequest.ContentType = contentType;
-
-                if (!string.IsNullOrWhiteSpace(body))
-                {
-                    using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
-                    {
-                        streamWriter.Write(body);
-                    }
-                }
-            }
-
-            return PageResponse(webRequest);
-        }
-
-        private WebPageResponse PageResponse(WebRequest request)
-        {
-            WebPageResponse webPageResponse = new WebPageResponse
-            {
-                ResponseBody = string.Empty,
-                StatusCode = HttpStatusCode.Ambiguous,
-                StatusDescription = string.Empty
-            };
-
-            try
-            {
-                var response = (HttpWebResponse)request.GetResponse();
-                webPageResponse.StatusCode = response.StatusCode;
-                webPageResponse.StatusDescription = response.StatusDescription;
-                Console.WriteLine("Retrieving response from url {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Response status {0}", webPageResponse.StatusDescription);
-                Console.WriteLine("Response code received was [{0}]", webPageResponse.StatusCode.ToString());
-                var receiveStream = response.GetResponseStream();
-
-                var readStream = new StreamReader(receiveStream, Encoding.UTF8);
-
-                webPageResponse.ResponseBody = readStream.ReadToEnd();
-                response.Close();
-            }
-            catch (WebException webException)
-            {
-                var resp = (HttpWebResponse)webException.Response;
-                if (webException.Status == WebExceptionStatus.ProtocolError && webException.Response != null)
-                {
-                    switch (resp.StatusCode)
-                    {
-                        case HttpStatusCode.NotFound:
-                        case HttpStatusCode.BadRequest:
-                            Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                            Console.WriteLine("Exception detail : {0}", webException.Message);
-                            break;
-                    }
-                    webPageResponse.StatusCode = resp.StatusCode;
-                    webPageResponse.StatusDescription = resp.StatusDescription;
-                }
-                else if (webException.Status == WebExceptionStatus.ReceiveFailure)
-                {
-                    webPageResponse.StatusCode = HttpStatusCode.NotFound;
-                }
-                Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Exception detail : {0}", webException.Message);
-            }
-
-            Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
-            return webPageResponse;
-        }
     }
 }

@@ -13,7 +13,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public DeviceSimulatorServiceTests()
         {
-            _deviceSimulatorService = new DeviceSimulatorService();
+            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService());
         }
 
         [Test]
