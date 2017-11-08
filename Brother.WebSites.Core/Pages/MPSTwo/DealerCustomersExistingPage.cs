@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -10,9 +11,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerCustomersExistingPage : BasePage
+    public class DealerCustomersExistingPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/customers/existing";
+        private const string _validationElementSelector = "div.usabilla_live_button_container";
 
         public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
@@ -21,6 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ActionsButton = @".js-mps-filter-ignore .dropdown-toggle";
         private const string CustomerItemsSelecterFormat = "div.js-mps-customer-list-container tr.js-mps-delete-remove";
         private const string CustomerNthItemSelecterFormat = "div.js-mps-customer-list-container tr.js-mps-delete-remove:nth-child({0})";
+        private const string CreateCustomerButtonSelector = "input[type=\"submit\"]#content_1_CustomerViewActions_ActionList_Button_0";
 
         [FindsBy(How = How.CssSelector, Using = "div.js-mps-customer-list-container>table")]
         public IWebElement customerListContainerElement;
@@ -28,10 +31,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "input[type=\"submit\"]#content_1_CustomerViewActions_ActionList_Button_0")]
         public IWebElement createCustomerButtonElement;
 
+        [FindsBy(How = How.Id, Using = "content_1_PersonListFilter_InputFilterBy")]
+        public IWebElement PersonListFilter;
+
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_PersonList_List_Organisation_]")]
+        public IList<IWebElement> PersonListNameRowElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_PersonList_List_CustomerEmail_]")]
+        public IList<IWebElement> PersonListEmailRowElement;
+
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return URL;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public void FindExistingCustomerList()
         {
@@ -47,7 +77,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerCustomersManagePage ClickCreateCustomerPage()
         {
-            createCustomerButtonElement.Click();
+            var _createCustomerElement = SeleniumHelper.FindElementByCssSelector(CreateCustomerButtonSelector, 10);
+            _createCustomerElement.Click();
+            
             return GetInstance<DealerCustomersManagePage>();
         }
 
@@ -228,5 +260,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersManagePage>();
         }
 
+        public bool VerifyItemByName(string customerInformationName, string customerEmail, int timeout)
+        {
+            ClearAndType(PersonListFilter, customerEmail);
+            try
+            {
+                SeleniumHelper.WaitUntil(d => PersonListNameRowElement.First(element => element.Text == customerInformationName), timeout);
+                SeleniumHelper.WaitUntil(d => PersonListEmailRowElement.First(element => element.Text == customerEmail), timeout);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

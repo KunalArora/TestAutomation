@@ -4,6 +4,9 @@ using System;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
 
+//kunal
+using System.Collections.Generic;
+
 namespace Brother.Tests.Specs.ContextData
 {
     public class MpsContextData : IContextData
@@ -21,7 +24,6 @@ namespace Brother.Tests.Specs.ContextData
         public string ContractTerm { get; set; }
         public string BillingType { get; set; }
         public string ServicePackType { get; set; }
-        public IEnumerable<PrinterProperties> PrinterProperties { get; set; }
 
         public void SetBusinessType(string businessTypeId){
 
@@ -40,5 +42,10 @@ namespace Brother.Tests.Specs.ContextData
 
             BusinessType = (BusinessType)Enum.Parse(typeof(BusinessType), enumName);
         }
+
+        public IEnumerable<PrinterProperties> PrintersProperties { get; set; }
+        public string CustomerInformationName { get; set; }
+        public string CustomerEmail { get; set; }
+
     }
 }

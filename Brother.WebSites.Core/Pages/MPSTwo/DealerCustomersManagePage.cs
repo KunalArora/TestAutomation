@@ -1677,12 +1677,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
-        
+
+        [System.Obsolete("saveButtonElement.Click() and PageService.GetPageObject<DealerProposalsCreateProductsPage>(...)")]
         public DealerCustomersExistingPage ClickSaveButton()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, saveButtonElement);
             //saveButtonElement.Click();
             return GetInstance<DealerCustomersExistingPage>();
+        }
+        public string GetCompanyName()
+        {
+            return GetFieldValue(CompanyNameElement);
+        }
+
+        public  string GetEmail()
+        {
+            return GetFieldValue(EmailElement);
         }
 
     }

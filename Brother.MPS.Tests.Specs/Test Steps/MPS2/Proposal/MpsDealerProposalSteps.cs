@@ -39,6 +39,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsCreateClickPricePage _dealerProposalsCreateClickPricePage;
         private DealerProposalsCreateSummaryPage _dealerProposalsCreateSummaryPage;
         private CloudExistingProposalPage _cloudExistingProposalPage;
+        private DealerCustomersManagePage _dealerCustomersManagePage;
+        private DealerCustomersExistingPage _dealerCustomersExistingPage;
 
         public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -130,7 +132,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //create strongly-typed set using CreateSet<PrinterProperties>() method - the PrinterProperties class will need additional properties to match the SpecFlow table
             //step action should add the printers to context data
             var products = printers.CreateSet<PrinterProperties>();
-            _contextData.PrinterProperties = products; 
+            _contextData.PrintersProperties = products; 
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products);               
         }
 
@@ -138,7 +140,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
             //step action should use printers specified in previous step and stored in context data
-            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrinterProperties);          
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties);          
         }
 
         [When(@"I save the proposal")]
@@ -177,6 +179,45 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIEnterCoverageAndVolume()
         {
             //_dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
+        }
+
+        // B1
+        [Given(@"I have navigated to the Create Customer page as a ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateCustomerPageAsAFrom(string role, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+
+            }
+            var dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersContractPage(_dealerDashboardPage);
+            _dealerCustomersManagePage = dealerCustomersExistingPage.ClickCreateCustomerPage();
+        }
+
+        // B2
+        [When(@"I create and save a new Customer")]
+        public void WhenICreateAndSaveANewCustomer()
+        {
+            string companyName;
+            string eMail;
+            _dealerCustomersExistingPage = _mpsDealerProposalStepActions.ProceedCreateAndSaveANewCustomer(_dealerCustomersManagePage, out companyName, out eMail, _contextData.Country);
+            _contextData.CustomerInformationName = companyName;
+            _contextData.CustomerEmail = eMail;
+        }
+
+        // B3
+        [Then(@"I can see the customer created above in the customers & contacts list")]
+        public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList()
+        {
+            _mpsDealerProposalStepActions.ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(_dealerCustomersExistingPage, _contextData.CustomerInformationName, _contextData.CustomerEmail);
         }
     }
 }

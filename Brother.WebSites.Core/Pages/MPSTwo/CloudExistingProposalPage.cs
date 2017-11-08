@@ -222,6 +222,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsNewProposalTemplateCreated(true);
         }
 
+        public void VerifyNewProposal(string proposalName)
+        {
+            ClearAndType(ProposalFilter, proposalName);
+            IsNewProposalTemplateCreated(true);
+        }
+
+
         public void IsNewProposalTemplateCreated(bool option)
         {
            var proposal = GetElementByCssSelector(".js-mps-filter-ignore", 10).Displayed;

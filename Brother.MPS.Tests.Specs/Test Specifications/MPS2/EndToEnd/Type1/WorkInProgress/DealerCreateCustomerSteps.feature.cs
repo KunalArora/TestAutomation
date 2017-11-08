@@ -83,7 +83,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I have navigated to the Create Customer page as a \"Cloud MPS Dealer\" from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("I create new Customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I create and save a new Customer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.Then("I can see the customer created above in the customers & contacts list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
