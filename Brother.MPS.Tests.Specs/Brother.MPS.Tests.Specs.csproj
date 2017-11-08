@@ -132,10 +132,12 @@
     <Compile Include="Services\ExpectedTranslationService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
+    <Compile Include="Services\IMpsWebToolsService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\IRunCommandService.cs" />
     <Compile Include="Services\ITranslationService.cs" />
     <Compile Include="Services\IWebRequestService.cs" />
+    <Compile Include="Services\MpsWebToolsService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\RunCommandService.cs" />
     <Compile Include="Services\WebRequestService.cs" />
@@ -1520,6 +1522,7 @@
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
+    <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
     <Compile Include="UnitTests\RunCommandServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
