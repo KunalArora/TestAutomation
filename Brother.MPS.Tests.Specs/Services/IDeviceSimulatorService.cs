@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Specs.Domain.DeviceSimulator;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -12,6 +13,8 @@ namespace Brother.Tests.Specs.Services
         void RegisterNewDevice(string deviceId, string installationPin);
         void ChangeDeviceStatus(string deviceId, bool online, bool subscribe);
         void NotifyBocOfDeviceChanges(string deviceId);
+        void SetSupply(SetSupplyRequest setSupplyRequest);
+        void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount);
         string CreateNewDeviceId();
     }
 }

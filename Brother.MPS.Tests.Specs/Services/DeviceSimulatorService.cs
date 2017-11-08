@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Configuration;
+using Brother.Tests.Specs.Domain.DeviceSimulator;
+using Newtonsoft.Json;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -14,14 +12,17 @@ namespace Brother.Tests.Specs.Services
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
         private const string REGISTER_NEW_DEVICE_PATTERN = "register?id={0}&pin={1}";
         private const string CHANGE_DEVICE_STATUS_PATTERN = "status/change?id={0}&online={1}&subscribe={2}";
+        private const string SET_SUPPLY_PATTERN = "supply/set";
         private const string NOTIFY_BOC_PATTERN = "notify?id={0}&all=true";
         private const string DEVICE_ID_PATTERN = "babeface{0}";
 
         private readonly IWebRequestService _webRequestService;
+        private readonly RuntimeSettings _runtimeSettings;
 
-        public DeviceSimulatorService(IWebRequestService webRequestService)
+        public DeviceSimulatorService(IWebRequestService webRequestService, RuntimeSettings runtimeSettings)
         {
             _webRequestService = webRequestService;
+            _runtimeSettings = runtimeSettings;
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = _webRequestService.GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
 
             return deviceId;
         }
@@ -51,7 +52,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = _webRequestService.GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
         }
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = _webRequestService.GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
         }
 
         public void NotifyBocOfDeviceChanges(string deviceId)
@@ -73,7 +74,36 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = _webRequestService.GetPageResponse(url, "GET", 10);            
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);            
+        }
+
+        public void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount)
+        {
+            var printCount = monoPrintCount + colourPrintCount;
+
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "PageCount", value = printCount},
+                    new SetSupplyRequestItem {name = "PageCount_Mono", value = monoPrintCount},
+                    new SetSupplyRequestItem {name = "PageCount_Color", value = colourPrintCount}
+                }
+            };
+
+            Console.WriteLine("Setting print counts for device with id {0}: mono = {1}, colour = {2}", deviceId, monoPrintCount.ToString(), colourPrintCount.ToString());
+
+            SetSupply(setSupplyRequest);
+        }
+
+        public void SetSupply(SetSupplyRequest setSupplyRequest)
+        {
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, SET_SUPPLY_PATTERN);
+
+            var json = JsonConvert.SerializeObject(setSupplyRequest);
+
+            var response = _webRequestService.GetPageResponse(url, "POST", _runtimeSettings.DefaultDeviceSimulatorTimeout, "application/json", json);
         }
 
         public string CreateNewDeviceId()
