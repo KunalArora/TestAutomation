@@ -89,6 +89,8 @@
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
@@ -133,7 +135,10 @@
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\IRunCommandService.cs" />
     <Compile Include="Services\ITranslationService.cs" />
+    <Compile Include="Services\IWebRequestService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\RunCommandService.cs" />
+    <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
@@ -1515,6 +1520,7 @@
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
+    <Compile Include="UnitTests\RunCommandServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

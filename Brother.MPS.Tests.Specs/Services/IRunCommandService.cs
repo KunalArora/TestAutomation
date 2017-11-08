@@ -8,8 +8,16 @@ namespace Brother.Tests.Specs.Services
 {
     public interface IRunCommandService
     {
-        void RunCheckForSilentEmailDevicesCommandJob();
-        void RunCheckForSilentMedioDevicesCommandJob();
-        void RunClickRateInvoiceCommandJob();
+        void RunCreateCustomerAndPersonCommand();
+        void RunRaiseClickRateInvoicesCommand();
+        void RunInstallationCompleteCommand();
+        void RunMeterReadEmailSyncCommand();
+        void RunMeterReadCloudSyncCommand();
+        void RunConsumableOrderRequestsCommand();
+        void RunCloseConsumableOrdersCommand();
+        void RunPollConsumableOrderStatusCommand();
+        void RunCheckForSilentEmailDevicesCommand();
+        void RunCheckForSilentCloudDevicesCommand();
+        void RunCreateConsumableOrderCommand();
     }
 }
