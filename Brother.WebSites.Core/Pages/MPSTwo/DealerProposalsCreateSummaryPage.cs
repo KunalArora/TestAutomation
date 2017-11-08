@@ -1671,5 +1671,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
             }
         }
+
+        public int SaveProposalAndReturnContractId()
+        {
+            string contractId = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
+            ScrollTo(SaveProposalElement);
+            SaveProposalElement.Click();
+            return Int32.Parse(contractId);
+        }
     }
 }

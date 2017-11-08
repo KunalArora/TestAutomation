@@ -2,6 +2,7 @@
 using Brother.Tests.Specs.Domain.Enums;
 using System;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.ContextData
 {
@@ -16,6 +17,11 @@ namespace Brother.Tests.Specs.ContextData
 
         public string ProposalName { get; set; }
         public int ProposalId { get; set; }
+        public string UsageType { get; set; }
+        public string ContractTerm { get; set; }
+        public string BillingType { get; set; }
+        public string ServicePackType { get; set; }
+        public IEnumerable<PrinterProperties> PrinterProperties { get; set; }
 
         public void SetBusinessType(string businessTypeId){
 

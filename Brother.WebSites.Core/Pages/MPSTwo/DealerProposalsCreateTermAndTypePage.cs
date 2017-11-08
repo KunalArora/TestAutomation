@@ -42,6 +42,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        private const string usageTypeSelector = "#content_1_InputUsageType_Input";
+        private const string contractLengthSelector = "#content_1_InputContractLength_Input";
+        private const string billingTypeSelector = "#content_1_InputClickRateBillingCycle_Input";
+        private const string servicePackOptionSelector = "#content_1_InputServicePaymentOption_Input";
+
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
 
         [FindsBy(How = How.Id, Using = "content_1_InputContractLength_Input")]
@@ -210,6 +215,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //NextButton.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
             return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
+        }
+
+        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption, int findElementTimeout)
+        {
+            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
+            var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);
+            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector, findElementTimeout);
+            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector, findElementTimeout);
+
+            SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
+            SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
+            SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);
+            SeleniumHelper.SelectFromDropdownByText(servicePackOptionElement, servicePackOption);
         }
     }
 }

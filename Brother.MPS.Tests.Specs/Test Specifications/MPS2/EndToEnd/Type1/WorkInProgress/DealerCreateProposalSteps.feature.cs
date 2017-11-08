@@ -74,11 +74,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1 - Dealer Create Proposal Steps")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Purchase & Click", "Minimum Volume", "Upfront", "3 years", "New", "DCP-8110DN", "1000.00", "Brother", "Yes", "5", "1000", "0", "0", "HL-5450DN", "", "Brother", "Yes", "5", "1000", "0", "0", "DCP-L8450CDW", "", "Brother", "Yes", "5", "1000", "10", "250", "MFC-L8650CDW", "", "Brother", "Yes", "5", "1000", "10", "250", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Purchase & Click", "Minimum Volume", "Quarterly in Arrears", "Pay upfront", "3 years", "New", "DCP-8110DN", "1000.00", "Brother-Install", "Yes", "5", "1000", "0", "0", "HL-5450DN", "1000", "Brother-Install", "Yes", "5", "1000", "0", "0", "DCP-L8450CDW", "1000", "Brother-Install", "Yes", "5", "1000", "20", "250", "MFC-L8650CDW", "1000", "Brother-Install", "Yes", "5", "1000", "20", "200", null)]
         public virtual void BusinessScenario1_DealerCreateProposalSteps(
                     string country, 
                     string contractType, 
                     string usageType, 
+                    string billingType, 
                     string servicePackType, 
                     string contractTerm, 
                     string customer, 
@@ -124,10 +125,12 @@ testRunner.Given(string.Format("I have navigated to the Create Proposal page as 
 #line 9
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
-testRunner.And("I skip customer creation for the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.And(string.Format("I select Usage Type of {0}, Contract Term of {1}, Billing Type of <BillingType> a" +
-                        "nd Service Pack type of {2}", usageType, contractTerm, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I skip customer creation for the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of \"{2}\" and S" +
+                        "ervice Pack type of \"{3}\"", usageType, contractTerm, billingType, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
@@ -174,13 +177,13 @@ testRunner.And(string.Format("I select Usage Type of {0}, Contract Term of {1}, 
                         string.Format("{0}", printerVolumeMono_4),
                         string.Format("{0}", printerCoverageColour_4),
                         string.Format("{0}", printerVolumeColour_4)});
-#line 13
+#line 14
 testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
-#line 19
+#line 20
 testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
-testRunner.And("I save the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
+testRunner.And("I save the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
 testRunner.Then("I can see the proposal created above in the open proposals list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

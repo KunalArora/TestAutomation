@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using Brother.Tests.Specs.Domain;
+
+namespace Brother.Tests.Specs.Services
+{
+    public class DeviceSimulatorService : IDeviceSimulatorService
+    {
+        private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
+        private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
+        private const string REGISTER_NEW_DEVICE_PATTERN = "register?id={0}&pin={1}";
+        private const string CHANGE_DEVICE_STATUS_PATTERN = "status/change?id={0}&online={1}&subscribe={2}";
+        private const string NOTIFY_BOC_PATTERN = "notify?id={0}&all=true";
+        private const string DEVICE_ID_PATTERN = "babeface{0}";
+
+        public DeviceSimulatorService()
+        {
+            
+        }
+
+        /// <summary>
+        /// Creates a new virtual device via the Device Simulator API
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="serialNumber"></param>
+        /// <returns>Newly created device id</returns>
+        public string CreateNewDevice(string model, string serialNumber)
+        {
+            string deviceId = CreateNewDeviceId();
+            string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
+
+            var response = GetPageResponse(url, "GET", 10);
+
+            return deviceId;
+        }
+
+        /// <summary>
+        /// Registers the specified device with BOC
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="installationPin"></param>
+        public void RegisterNewDevice(string deviceId, string installationPin)
+        {
+            string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
+
+            var response = GetPageResponse(url, "GET", 10);
+        }
+
+        /// <summary>
+        /// Sets the status of the specified device
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="online"></param>
+        /// <param name="subscribe"></param>
+        public void ChangeDeviceStatus(string deviceId, bool online, bool subscribe)
+        {
+            string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
+
+            var response = GetPageResponse(url, "GET", 10);
+        }
+
+        public void NotifyBocOfDeviceChanges(string deviceId)
+        {
+            string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
+
+            var response = GetPageResponse(url, "GET", 10);            
+        }
+
+        public string CreateNewDeviceId()
+        {
+            var guid = Guid.NewGuid().ToString();
+            var deviceId = string.Format(DEVICE_ID_PATTERN, guid.Substring(8));
+
+            Console.WriteLine("Device Simulators Guid set as {0}", deviceId);
+
+            return deviceId;
+        }
+
+        public WebPageResponse GetPageResponse(string webPage, string method, int timeout, string contentType = null,
+            string body = null, Dictionary<string, string> additionalHeaders = null)
+        {
+            //TODO: code copied from Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils, will need moving into it's own service
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
+            HttpWebRequest webRequest = null;
+
+            if (webPage.Contains("https:"))
+            {
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, errors) => { return true; };
+            }
+
+            try
+            {
+                webRequest = (HttpWebRequest) WebRequest.Create(webPage);
+            }
+            catch (UriFormatException uriFormatException)
+            {
+                Console.WriteLine("Invalid url ({0}) specified for device simulator ", webPage);
+                Console.WriteLine("Exception detail : {0}", uriFormatException.Message);
+                throw;
+            }
+
+            if (additionalHeaders != null && additionalHeaders.Any())
+            {
+                foreach (var header in additionalHeaders)
+                    webRequest.Headers.Add(header.Key, header.Value);
+            }
+
+            webRequest.Method = method;
+            webRequest.Timeout = timeout;
+            webRequest.KeepAlive = true;
+            webRequest.PreAuthenticate = true;
+            webRequest.AllowAutoRedirect = true;
+            webRequest.UseDefaultCredentials = true;
+
+            if (method.Contains("POST"))
+            {
+                if (!string.IsNullOrWhiteSpace(contentType))
+                    webRequest.ContentType = contentType;
+
+                if (!string.IsNullOrWhiteSpace(body))
+                {
+                    using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(body);
+                    }
+                }
+            }
+
+            return PageResponse(webRequest);
+        }
+
+        private WebPageResponse PageResponse(WebRequest request)
+        {
+            WebPageResponse webPageResponse = new WebPageResponse
+            {
+                ResponseBody = string.Empty,
+                StatusCode = HttpStatusCode.Ambiguous,
+                StatusDescription = string.Empty
+            };
+
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                webPageResponse.StatusCode = response.StatusCode;
+                webPageResponse.StatusDescription = response.StatusDescription;
+                Console.WriteLine("Retrieving response from url {0}", request.RequestUri.AbsoluteUri);
+                Console.WriteLine("Response status {0}", webPageResponse.StatusDescription);
+                Console.WriteLine("Response code received was [{0}]", webPageResponse.StatusCode.ToString());
+                var receiveStream = response.GetResponseStream();
+
+                var readStream = new StreamReader(receiveStream, Encoding.UTF8);
+
+                webPageResponse.ResponseBody = readStream.ReadToEnd();
+                response.Close();
+            }
+            catch (WebException webException)
+            {
+                var resp = (HttpWebResponse)webException.Response;
+                if (webException.Status == WebExceptionStatus.ProtocolError && webException.Response != null)
+                {
+                    switch (resp.StatusCode)
+                    {
+                        case HttpStatusCode.NotFound:
+                        case HttpStatusCode.BadRequest:
+                            Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
+                            Console.WriteLine("Exception detail : {0}", webException.Message);
+                            break;
+                    }
+                    webPageResponse.StatusCode = resp.StatusCode;
+                    webPageResponse.StatusDescription = resp.StatusDescription;
+                }
+                else if (webException.Status == WebExceptionStatus.ReceiveFailure)
+                {
+                    webPageResponse.StatusCode = HttpStatusCode.NotFound;
+                }
+                Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
+                Console.WriteLine("Exception detail : {0}", webException.Message);
+            }
+
+            Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
+            return webPageResponse;
+        }
+    }
+}

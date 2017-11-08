@@ -12,6 +12,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -45,6 +46,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPricePageNext = @"#content_1_ButtonNext";
         private const string ClickPricePath = @"C:\DataTest\ClickPrice";
         private const string CsvFile = @"ClickPrice.csv";
+        private const string IsMonoOnly = "data-mono-only";
+
+        private const string DataAttributeMonoCoverage = "mono-coverage";
+        private const string DataAttributeMonoVolume = "mono-volume";
+        private const string DataAttributeColourCoverage = "colour-coverage";
+        private const string DataAttributeColourVolume = "colour-volume";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -940,6 +947,53 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]))
                 TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
         }
+
+        public IWebElement getPrinterElement(string printerName, int findElementTimeout)
+        {
+            string attributeName = printerName;
+            var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
+            return printerElement;
+        }
         
+        public void PopulatePrinterCoverageAndVolume(string printerName, 
+            int coverageMono, 
+            int coverageColour, 
+            int volumeMono, 
+            int volumeColour, 
+            int findElementTimeout)
+        {
+            var printerContainer = getPrinterElement(printerName, findElementTimeout);
+            string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
+
+            var monoCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoCoverage, "true", findElementTimeout);
+            var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true", findElementTimeout);
+
+            ClearAndType(monoCoverageInput, coverageMono.ToString());
+            SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
+
+            if ((isMonoOnly.ToLower()).Equals("false"))
+            {
+                var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true", findElementTimeout);
+                var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true", findElementTimeout);
+
+                ClearAndType(colourCoverageInput, coverageColour.ToString());
+                SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
+            }
+        }
+
+        public bool VerifyClickPriceValues(int pageObjectTimeout)
+        {
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, pageObjectTimeout);
+            try
+            {
+                VerifyClickPriceValueIsDisplayed();
+                return true;
+            }
+            catch
+            {
+                //catch Assertion exception
+                return false;
+            }                
+        }
     }
 }

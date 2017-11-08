@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsCreateProductsPage : BasePage,  IPageObject
     {
 
-        private const string _validationElementSelector = "div.mps-product-configuration";
+        private const string _validationElementSelector = "div.media-body.mps-product-configuration";
         private const string _url = "/mps/dealer/proposals/create/products";
 
         public string ValidationElementSelector
@@ -94,6 +94,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
         private const string clickPriceColourValue = @"[data-mono-only='False'] [class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
         private const string clickPricePageNext = @"#content_1_ButtonNext";
+        private const string printerPriceSelector = "#CostPrice";
+        private const string installationPackInputSelector = "#InstallationPackId";
+        private const string addToProposalButtonSelector = ".js-mps-product-configuration-submit";
+        private const string deliveryInputSelector = "#DeliveryCostPrice";
 
         public override string DefaultTitle
         {
@@ -1714,6 +1718,43 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //alert
             
             ClickAcceptOnJsAlert();
+        }
+
+        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
+        {
+            string containerSelector = string.Format("li#pc-{0}", printerName);
+            string addButtonSelector = ".js-mps-product-open-add";
+
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
+
+            addButton.Click();
+
+            return printerContainer;
+        }
+
+        public void PopulatePrinterDetails(string printerName,
+            string printerPrice,
+            string installationPack,
+            bool delivery,
+            int findElementTimeout)
+        {            
+            var printerContainer = SelectPrinter(printerName, findElementTimeout);
+            ScrollTo(printerContainer);
+            var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector, findElementTimeout);
+            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector, findElementTimeout);
+            var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector, findElementTimeout);
+            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector, findElementTimeout);
+
+            ClearAndType(printerPriceInput, printerPrice.ToString());
+
+            if (delivery)
+            {
+                ClearAndType(deliveryPriceInput, "1");
+            }
+
+            SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
+            addToProposalButton.Click();
         }
     }
 }

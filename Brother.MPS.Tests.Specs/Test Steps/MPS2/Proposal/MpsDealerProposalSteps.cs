@@ -6,9 +6,12 @@ using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using Brother.Tests.Specs.Domain.Enums;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -35,6 +38,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsCreateProductsPage _dealerProposalsCreateProductsPage;
         private DealerProposalsCreateClickPricePage _dealerProposalsCreateClickPricePage;
         private DealerProposalsCreateSummaryPage _dealerProposalsCreateSummaryPage;
+        private CloudExistingProposalPage _cloudExistingProposalPage;
 
         public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -67,7 +71,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
 
-            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            } 
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -83,6 +95,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIEnterTheProposalDescription()
         {
             //_dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
+            string proposalName = _proposalHelper.GenerateProposalName();
+            _contextData.ProposalName = proposalName;
+            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
         }
 
         [When(@"I create a new customer for the proposal")]
@@ -95,12 +110,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenISkipCustomerCreationForTheProposal()
         {
             //_mpsDealerProposalStepActions.SkipCustomerCreationForProposal()
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalCustomerInformationAndProceed(_dealerProposalsCreateCustomerInformationPage, CustomerInformationOption.Skip);
         }
 
-        [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
-        public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
+        [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
+        public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
         {
-            //_dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+            _contextData.UsageType = usageType;
+            _contextData.ContractTerm = contractTerm;
+            _contextData.BillingType = billingType;
+            _contextData.ServicePackType = servicePackType;
+          
+            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usageType, contractTerm, billingType, servicePackType);
         }
 
         [When(@"I add these printers:")]
@@ -108,12 +129,28 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             //create strongly-typed set using CreateSet<PrinterProperties>() method - the PrinterProperties class will need additional properties to match the SpecFlow table
             //step action should add the printers to context data
+            var products = printers.CreateSet<PrinterProperties>();
+            _contextData.PrinterProperties = products; 
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products);               
         }
 
         [When(@"I calculate the click price for each of the above printers")]
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
             //step action should use printers specified in previous step and stored in context data
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrinterProperties);          
+        }
+
+        [When(@"I save the proposal")]
+        public void WhenISaveTheProposal()
+        {
+            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage);
+        }
+
+        [Then(@"I can see the proposal created above in the open proposals list")]
+        public void ThenICanSeeTheProposalCreatedAboveInTheOpenProposalsList()
+        {
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
         }
 
         [When(@"I save the above proposal and submit it for approval")]
