@@ -27,6 +27,8 @@ namespace Brother.Tests.Specs.ContextData
         IEnumerable<PrinterProperties> PrintersProperties { get; set; }
         string CustomerInformationName { get; set; }
         string CustomerEmail { get; set; }
+        string CompanyLocation { get; set; }
+        string InstallerEmail { get; set; }
 
         void SetBusinessType(string businessTypeId);
     }

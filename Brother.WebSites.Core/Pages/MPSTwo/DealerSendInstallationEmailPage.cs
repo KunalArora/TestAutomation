@@ -7,10 +7,11 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerSendInstallationEmailPage : BasePage
+    public class DealerSendInstallationEmailPage : BasePage, IPageObject
     {
         public static string Url = "/";
 
@@ -18,6 +19,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
+
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/manage-devices/send-installation-email\"]";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return Url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+        private const string NextButtonSelector = "#content_1_ButtonNext";
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/send-installation-email\"]")]
         public IWebElement SendCommunicationEmailElement;
@@ -97,10 +120,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
-        public void EnterInstallaterEmail()
+        public string EnterInstallaterEmail()
         {
-            ClearAndType(EmailFieldElement, "steve.walters@brother.co.uk");
-            WaitForElementToExistById("content_1_ButtonSend", 5);
+            string emailId = "steve.walters@brother.co.uk";
+            ClearAndType(EmailFieldElement, emailId);
+            return emailId;
         }
 
         public void ConfirmInstallationEmailSent()
@@ -115,6 +139,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
+        public string EnterInstallaterEmailAndProceed(int findElementTimeout)
+        {
+            string emailId = EnterInstallaterEmail();
+            NextButtonElement.Click(); // Send Email button
+            var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
+            _nextButtonElement.Click(); // Next button
+            return emailId;
+        }
 
     }
 }

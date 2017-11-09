@@ -136,6 +136,7 @@
     <Compile Include="Services\PageService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
     <Compile Include="StepActions\StepActionBase.cs" />
@@ -1453,6 +1454,7 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsDealerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
@@ -2582,7 +2584,6 @@
     <Folder Include="Test Specifications\MPS2\Proposal\" />
     <Folder Include="Test Specifications\MPSOne\Proposals\" />
     <Folder Include="Test Steps\Brother Online Redesign\" />
-    <Folder Include="Test Steps\MPS2\Contract\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Drivers\chromedriver.exe" />

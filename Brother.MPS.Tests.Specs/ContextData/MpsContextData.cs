@@ -24,6 +24,8 @@ namespace Brother.Tests.Specs.ContextData
         public string ContractTerm { get; set; }
         public string BillingType { get; set; }
         public string ServicePackType { get; set; }
+        public string CompanyLocation { get; set; }
+        public string InstallerEmail { get; set; }
 
         public void SetBusinessType(string businessTypeId){
 
