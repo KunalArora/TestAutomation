@@ -4,9 +4,6 @@ using System;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
 
-//kunal
-using System.Collections.Generic;
-
 namespace Brother.Tests.Specs.ContextData
 {
     public class MpsContextData : IContextData

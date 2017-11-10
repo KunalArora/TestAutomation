@@ -14,7 +14,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerCustomersExistingPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/customers/existing";
-        private const string _validationElementSelector = "div.usabilla_live_button_container";
+        private const string _validationElementSelector = "div.mps-dataTables-footer";
 
         public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";

@@ -180,44 +180,5 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             //_dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
         }
-
-        // B1
-        [Given(@"I have navigated to the Create Customer page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheCreateCustomerPageAsAFrom(string role, string country)
-        {
-            _contextData.SetBusinessType("1");
-            _contextData.Country = _countryService.GetByName(country);
-
-            switch (role)
-            {
-                case "Cloud MPS Dealer":
-                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-
-            }
-            var dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersContractPage(_dealerDashboardPage);
-            _dealerCustomersManagePage = dealerCustomersExistingPage.ClickCreateCustomerPage();
-        }
-
-        // B2
-        [When(@"I create and save a new Customer")]
-        public void WhenICreateAndSaveANewCustomer()
-        {
-            string companyName;
-            string eMail;
-            _dealerCustomersExistingPage = _mpsDealerProposalStepActions.ProceedCreateAndSaveANewCustomer(_dealerCustomersManagePage, out companyName, out eMail, _contextData.Country);
-            _contextData.CustomerInformationName = companyName;
-            _contextData.CustomerEmail = eMail;
-        }
-
-        // B3
-        [Then(@"I can see the customer created above in the customers & contacts list")]
-        public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList()
-        {
-            _mpsDealerProposalStepActions.ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(_dealerCustomersExistingPage, _contextData.CustomerInformationName, _contextData.CustomerEmail);
-        }
     }
 }

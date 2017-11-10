@@ -183,40 +183,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultPageObjectTimeout);
         }
 
-        public DealerCustomersExistingPage NavigateToCustomersContractPage(DealerDashBoardPage dealerDashboardPage)
-        {
-            dealerDashboardPage.ExistingCustomerLinkElement.Click();
-            var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-
-            return nextPage;
-        }
-
-        internal DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, out string eMailName, Country country, string payment = "Invoice")
-        {
-            dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
-            customerName = dealerCustomersManagePage.GetCompanyName();
-            eMailName = dealerCustomersManagePage.GetEmail();
-
-            dealerCustomersManagePage.saveButtonElement.Click();
-            var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            return nextPage;
-        }
-
-        internal void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
-        {
-            bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail, RuntimeSettings.DefaultFindElementTimeout);
-            if (exists)
-            {
-                return;
-            }
-            else
-            {
-                new NullReferenceException(string.Format("Customer = {0} not found ", customerInformationName));
-            }
-
-            throw new NotImplementedException();
-        }
-
 
         #endregion
     }
