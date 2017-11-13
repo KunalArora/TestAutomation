@@ -53,11 +53,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ISeleniumHelper SeleniumHelper { get; set; }
 
-        private const string IRContainerSelector = ".js-mps-installation-request-list-container";
-        private const string IRContainerRowSelector = ".js-mps-searchable";
-        private const string IRContainerRowEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
-        private const string IRContainerRowCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
-        private const string IRContainerRowStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
+        private const string InstallationRequestContainerSelector = ".js-mps-installation-request-list-container";
+        private const string InstallationRequestRowSelector = ".js-mps-searchable";
+        private const string InstallationRequestEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
+        private const string InstallationRequestCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
+        private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
 
@@ -705,15 +705,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifyInstallationRequestCreated(string installerEmail, string companyLocation, int findElementTimeout)
         {
-            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(IRContainerSelector, findElementTimeout);
-            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, IRContainerRowSelector, findElementTimeout);
+            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
+            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
             var elements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
             
             foreach(var element in elements)
             {
-                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, IRContainerRowEmailSelector, findElementTimeout);
-                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, IRContainerRowCompanySiteSelector, findElementTimeout);
-                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, IRContainerRowStatusSelector, findElementTimeout);
+                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
+                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
                 if(InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals("Not started"))
                 {
                     // Below code can be deleted when merging the scenario

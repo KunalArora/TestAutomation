@@ -25,9 +25,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         // Selectors
-        private const string ContractFilterSelector = "#content_1_ContractListFilter_InputFilterBy";
+        private const string ContractFilterSelector = ".mps-filter-search-field-lg";
         private const string ContractsAcceptedActiveTabSelector = ".active a[href=\"/mps/dealer/contracts/accepted\"]";
-        private const string PaginateSelector = "#DataTables_Table_0_paginate";
+        private const string PaginateSelector = ".dataTables_paginate";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesButtonSelector = ".js-mps-manage-devices";
 

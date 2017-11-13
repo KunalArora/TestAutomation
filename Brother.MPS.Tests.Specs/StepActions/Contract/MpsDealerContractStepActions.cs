@@ -123,7 +123,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmail(DealerSendInstallationEmailPage dealerSendInstallationEmailPage)
         {
-            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallaterEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
+            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

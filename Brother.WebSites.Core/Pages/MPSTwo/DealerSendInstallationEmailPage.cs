@@ -120,7 +120,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
-        public string EnterInstallaterEmail()
+        public string EnterInstallerEmail()
         {
             string emailId = "steve.walters@brother.co.uk";
             ClearAndType(EmailFieldElement, emailId);
@@ -139,9 +139,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
-        public string EnterInstallaterEmailAndProceed(int findElementTimeout)
+        public string EnterInstallerEmailAndProceed(int findElementTimeout)
         {
-            string emailId = EnterInstallaterEmail();
+            string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button
             var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
             _nextButtonElement.Click(); // Next button
