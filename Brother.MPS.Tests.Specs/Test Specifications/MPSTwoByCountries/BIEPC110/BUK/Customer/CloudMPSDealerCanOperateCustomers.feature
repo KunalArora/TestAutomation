@@ -14,7 +14,7 @@ Scenario Outline: MPS View Customers
 	Scenarios: 
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
-	| Sub Dealer | United Kingdom |
+	| Sub Dealer	   | United Kingdom |
 
 
 Scenario Outline: MPS Create Customer 
@@ -28,7 +28,7 @@ Scenario Outline: MPS Create Customer
 	Scenarios: 
 	| Role             | Country        |
 	| Cloud MPS Dealer | United Kingdom |
-	| Sub Dealer | United Kingdom |
+	| Sub Dealer	   | United Kingdom |
 
 
 Scenario Outline: MPS Edit New Customer 
@@ -46,7 +46,11 @@ Scenario Outline: MPS Edit New Customer
 	Scenarios: 
 	| Role             | Country        | TargetItem       |
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem |
+<<<<<<< HEAD
 	| Sub Dealer       | United Kingdom | NewlyCreatedItem |
+=======
+	| Sub Dealer	   | United Kingdom | NewlyCreatedItem |
+>>>>>>> 52249d738eab690ffc819e267cf4e35e444c517c
 
 Scenario Outline: MPS Delete Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -61,7 +65,7 @@ Scenario Outline: MPS Delete Customer
 	Scenarios: 
 	| Role             | Country        |TargetItem		  | Confirm |
 	| Cloud MPS Dealer | United Kingdom |NewlyCreatedItem | OK      |
-	| Sub Dealer | United Kingdom |NewlyCreatedItem | OK      |
+	| Sub Dealer	   | United Kingdom |NewlyCreatedItem | OK      |
 
 
 Scenario Outline: MPS Cancel Deleting Customer 
@@ -76,9 +80,9 @@ Scenario Outline: MPS Cancel Deleting Customer
 	And I can sign out of Brother Online
 
 	Scenarios: 
-	| Role             | Country        | TargetItem | Confirm |
-	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem    | Dismiss |
-	| Sub Dealer | United Kingdom | AnyItem    | Dismiss |
+	| Role             | Country        | TargetItem		| Confirm |
+	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem  | Dismiss |
+	| Sub Dealer	   | United Kingdom | AnyItem           | Dismiss |
 
 Scenario Outline: MPS Delete Bounded Customer 
     Given Dealer have created a Open proposal of "<ContractType>" and "<UsageType>"
