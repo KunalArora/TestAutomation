@@ -19,24 +19,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string _validationElementSelector = "a[href=\"/mps/dealer/contracts/accepted\"]"; //Accepted Contracts tab element
 
-        public string ValidationElementSelector
-        {
-            get
-            {
-                return _validationElementSelector;
-            }
-        }
-
-        public string PageUrl
-        {
-            get
-            {
-                return URL;
-            }
-        }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -48,6 +30,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string PaginateSelector = "#DataTables_Table_0_paginate";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesButtonSelector = ".js-mps-manage-devices";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+
+        public string PageUrl
+        {
+            get
+            {
+                return URL;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_ContractList_List_ContractName']")]
         public IList<IWebElement> newContractNameElement;

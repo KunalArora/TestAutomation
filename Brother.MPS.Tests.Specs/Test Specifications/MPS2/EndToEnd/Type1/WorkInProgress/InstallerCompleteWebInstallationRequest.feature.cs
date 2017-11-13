@@ -74,18 +74,35 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1 - Installer Complete Web Installation Request Steps")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "xxxx", "https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-c" +
-            "ontract-reference?token=xxxxxxx", null)]
-        public virtual void BusinessScenario1_InstallerCompleteWebInstallationRequestSteps(string country, string proposalId, string webInstallUrl, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "160180", "DCP-8110DN", "A3P145604", "DCP-8250DN", "A3P145603", "https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-c" +
+            "ontract-reference?token=9bb57ddc44da1712135867cfc13aa42349910", null)]
+        public virtual void BusinessScenario1_InstallerCompleteWebInstallationRequestSteps(string country, string proposalId, string model_1, string serialNumber_1, string model_2, string serialNumber_2, string webInstallUrl, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1 - Installer Complete Web Installation Request Steps", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("that a Brother installer has navigated to the Web Installation page at \"{0}\"", webInstallUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "SerialNumber"});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", model_1),
+                        string.Format("{0}", serialNumber_1)});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", model_2),
+                        string.Format("{0}", serialNumber_2)});
 #line 9
-testRunner.When(string.Format("the installer completes the installation for contract \"{0}\"", proposalId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
+testRunner.When(string.Format("I verify the Contract Reference for \"{0}\" and store Serial Numbers for printers", proposalId), ((string)(null)), table1, "When ");
+#line 13
+testRunner.And("I enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+testRunner.And(string.Format("I have navigated to the Contracts Accepted page as a \"Cloud MPS Dealer\" from \"{0}" +
+                        "\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.And(string.Format("I have navigated to the Manage Devices for \"{0}\"", proposalId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
 testRunner.Then("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

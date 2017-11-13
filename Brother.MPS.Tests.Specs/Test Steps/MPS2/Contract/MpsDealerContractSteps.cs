@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -7,10 +6,6 @@ using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
@@ -36,6 +31,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSetCommunicationMethodPage _dealerSetCommunicationMethodPage;
         private DealerSetInstallationTypePage _dealerSetInstallationTypePage;
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
+        private DealerContractsAcceptedPage _dealerContractsAcceptedPage;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -60,7 +56,26 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions = mpsDealerContractStepActions;
         }
 
+        [When(@"I have navigated to the Contracts Accepted page as a ""(.*)"" from ""(.*)""")]
+        public void WhenIHaveNavigatedToTheContractsAcceptedPageAsAFrom(string role, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
 
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
+            _dealerContractsAcceptedPage = _mpsDealerContractStepActions.NavigateToContractsAcceptedPage(_dealerContractsPage);
+        }
+
+        //Similar function is already present in this file so, refactor this particular function.
         [Given(@"I have navigated to the Accepted Contracts page as a ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheAcceptedContractsPageAsAFrom(string role, string country)
         {
@@ -82,6 +97,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         }
 
 
+        [When(@"I have navigated to the Manage Devices for ""(.*)""")]
+        public void WhenIHaveNavigatedToTheManageDevicesFor(int proposalId)
+        {
+            //Use contextData to retrieve proposalId
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.NavigateToManageDevicesPage(_dealerContractsAcceptedPage, proposalId);
+        }
+
+        //Similar function is already present in this file so, refactor this particular function.
         [When(@"I locate the contract with id ""(.*)""")]
         public void WhenILocateTheContractWithId(int proposalId)
         {
@@ -90,6 +113,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.FilterContractUsingProposalId(_dealerContractsPage, proposalId);     
         }
 
+        //Similar function is already present in this file so, refactor this particular function.
         [When(@"I click Manage Devices in the Actions menu")]
         public void WhenIClickManageDevicesInTheActionsMenu()
         {
@@ -109,8 +133,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void ThenIWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
             _mpsDealerContractStepActions.VerifyInstallationRequestCreated(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
+        }
 
-
+        [Then(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected")]
+        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnected()
+        {
+            _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, _contextData.PrintersProperties);
         }
 
     }

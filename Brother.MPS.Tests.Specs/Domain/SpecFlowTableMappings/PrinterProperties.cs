@@ -30,5 +30,7 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
                 return includeDelivery;
             }
         }
+
+        public string SerialNumber { get; set; }
     }
 }

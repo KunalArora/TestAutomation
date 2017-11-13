@@ -81,7 +81,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 default:
                     ScenarioContext.Current.Pending();
                     break;
-            } 
+            }
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 

@@ -190,5 +190,5 @@ namespace Brother.Tests.Specs.Services
             Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
             return webPageResponse;
         }
-    }
+   }
 }

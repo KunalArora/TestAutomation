@@ -8,10 +8,8 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -39,6 +37,27 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerContractsAcceptedPage NavigateToContractsAcceptedPage(DealerContractsPage dealerContractsPage)
+        {
+            dealerContractsPage.AcceptedTabElement.Click();
+            return PageService.GetPageObject<DealerContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerManageDevicesPage NavigateToManageDevicesPage(DealerContractsAcceptedPage dealerContractsAcceptedPage, int proposalId)
+        {
+            dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId, RuntimeSettings.DefaultFindElementTimeout);
+            return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void InstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage, IEnumerable<PrinterProperties> products)
+        {
+            foreach (var product in products)
+            {
+                _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+            }
+        }
+
+        //Similar function is already present in this file so, refactor this particular function.
         public void MoveToAcceptedContractsTab(DealerContractsPage dealerContractsPage)
         {
             dealerContractsPage.MoveToAcceptedContracts(RuntimeSettings.DefaultFindElementTimeout);

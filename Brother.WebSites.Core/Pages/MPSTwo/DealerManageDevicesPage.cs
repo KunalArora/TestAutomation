@@ -168,10 +168,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ReInstallCommencementButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Type: Email<br />Status: Responding\"]")]
         public IWebElement EmailGreenIconElement;
-       
-        
-        
-        
+
+
+
+        private const string InstallationDeviceListSelector = ".js-mps-device-list-container";
+        private const string InstallationDeviceTableSelector = ".js-mps-searchable";
+        private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
+        private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
 
         
         public void IsInstallationRequestCancelled()
@@ -616,6 +619,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             WebDriver.Wait(DurationType.Second, 10);
             ActionsModule.SendServiceRequestEmail(address, _subject, fullBody);
             ActionsModule.RunServiceRequestCreationJobs();
+        }
+
+        public void InstallationCompleteCheck(string serialNumber, int findElementTimeout)
+        {
+
+            var deviceListContainer = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
+            var tableContainer = SeleniumHelper.FindElementByCssSelector(deviceListContainer, InstallationDeviceTableSelector, findElementTimeout);
+
+            var rows = SeleniumHelper.FindRowElementsWithinTable(tableContainer);
+            
+            foreach (var row in rows)
+            {
+                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                if (serialNumberElement.Text.Equals(serialNumber))
+                {
+                    var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector, findElementTimeout).Displayed;
+                    TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
+                }
+            }
         }
 
         public void IsInstallationCompleted()
