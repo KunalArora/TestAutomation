@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]
         public IWebElement ManageDevicesElement;
 
-        private const string SearchFieldSelector = "#content_1_ContractListFilter_InputFilterBy.js-mps-filter-search-field";
+        private const string SearchFieldSelector = ".js-mps-filter-search-field";
         private const string ActionsButtonSelector = ".btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesSelector = ".js-mps-manage-devices";
        

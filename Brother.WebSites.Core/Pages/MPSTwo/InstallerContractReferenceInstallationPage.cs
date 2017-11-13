@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
         private const string ContractReferenceSelector = "#content_0_InputContractReference_Input";
-        private const string NextButtonSelector = "#content_0_ButtonNext";
+        private const string NextButtonSelector = ".js-mps-val-btn-next";
 
         public string ValidationElementSelector
         {
