@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Spec
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class LocalOfficeApproverChangeCustomerAddressFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Spec
                         "MPS",
                         "UAT",
                         "TEST",
-                        "BIEPC113"});
+                        "BIEPC113",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

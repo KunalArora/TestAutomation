@@ -46,7 +46,7 @@ Scenario Outline: MPS Edit New Customer
 	Scenarios: 
 	| Role             | Country        | TargetItem       |
 	| Cloud MPS Dealer | United Kingdom | NewlyCreatedItem |
-	| Sub Dealer | United Kingdom |
+	| Sub Dealer       | United Kingdom | NewlyCreatedItem |
 
 Scenario Outline: MPS Delete Customer 
 	Given I sign into Cloud MPS as a "<Role>" from "<Country>"

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.SubD
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC112")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class CloudMPSSubDealerOperationsFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC112.SubD
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC112"});
+                        "BIEPC112",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
