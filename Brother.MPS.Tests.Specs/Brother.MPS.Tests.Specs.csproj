@@ -89,6 +89,8 @@
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
@@ -130,10 +132,15 @@
     <Compile Include="Services\ExpectedTranslationService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
+    <Compile Include="Services\IMpsWebToolsService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\IRunCommandService.cs" />
     <Compile Include="Services\ITranslationService.cs" />
+    <Compile Include="Services\IWebRequestService.cs" />
+    <Compile Include="Services\MpsWebToolsService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\RunCommandService.cs" />
+    <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
@@ -216,6 +223,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InstallerCompleteWebInstallationRequest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallerCompleteWebSwapInstallationRequest.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1520,6 +1532,8 @@
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
+    <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
+    <Compile Include="UnitTests\RunCommandServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -1624,6 +1638,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InstallerCompleteWebSwapInstallationRequest.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

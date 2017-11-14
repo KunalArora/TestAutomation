@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Configuration;
+using Brother.Tests.Specs.Domain.DeviceSimulator;
+using Newtonsoft.Json;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -14,12 +12,17 @@ namespace Brother.Tests.Specs.Services
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
         private const string REGISTER_NEW_DEVICE_PATTERN = "register?id={0}&pin={1}";
         private const string CHANGE_DEVICE_STATUS_PATTERN = "status/change?id={0}&online={1}&subscribe={2}";
+        private const string SET_SUPPLY_PATTERN = "supply/set";
         private const string NOTIFY_BOC_PATTERN = "notify?id={0}&all=true";
         private const string DEVICE_ID_PATTERN = "babeface{0}";
 
-        public DeviceSimulatorService()
+        private readonly IWebRequestService _webRequestService;
+        private readonly RuntimeSettings _runtimeSettings;
+
+        public DeviceSimulatorService(IWebRequestService webRequestService, RuntimeSettings runtimeSettings)
         {
-            
+            _webRequestService = webRequestService;
+            _runtimeSettings = runtimeSettings;
         }
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
 
             return deviceId;
         }
@@ -49,7 +52,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
         }
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);
         }
 
         public void NotifyBocOfDeviceChanges(string deviceId)
@@ -71,7 +74,36 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = GetPageResponse(url, "GET", 10);            
+            var response = _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout);            
+        }
+
+        public void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount)
+        {
+            var printCount = monoPrintCount + colourPrintCount;
+
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "PageCount", value = printCount},
+                    new SetSupplyRequestItem {name = "PageCount_Mono", value = monoPrintCount},
+                    new SetSupplyRequestItem {name = "PageCount_Color", value = colourPrintCount}
+                }
+            };
+
+            Console.WriteLine("Setting print counts for device with id {0}: mono = {1}, colour = {2}", deviceId, monoPrintCount.ToString(), colourPrintCount.ToString());
+
+            SetSupply(setSupplyRequest);
+        }
+
+        public void SetSupply(SetSupplyRequest setSupplyRequest)
+        {
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, SET_SUPPLY_PATTERN);
+
+            var json = JsonConvert.SerializeObject(setSupplyRequest);
+
+            var response = _webRequestService.GetPageResponse(url, "POST", _runtimeSettings.DefaultDeviceSimulatorTimeout, "application/json", json);
         }
 
         public string CreateNewDeviceId()
@@ -83,112 +115,5 @@ namespace Brother.Tests.Specs.Services
 
             return deviceId;
         }
-
-        public WebPageResponse GetPageResponse(string webPage, string method, int timeout, string contentType = null,
-            string body = null, Dictionary<string, string> additionalHeaders = null)
-        {
-            //TODO: code copied from Brother.Tests.Selenium.Lib.Support.HelperClasses.Utils, will need moving into it's own service
-
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
-            HttpWebRequest webRequest = null;
-
-            if (webPage.Contains("https:"))
-            {
-                ServicePointManager.ServerCertificateValidationCallback =
-                    (sender, certificate, chain, errors) => { return true; };
-            }
-
-            try
-            {
-                webRequest = (HttpWebRequest) WebRequest.Create(webPage);
-            }
-            catch (UriFormatException uriFormatException)
-            {
-                Console.WriteLine("Invalid url ({0}) specified for device simulator ", webPage);
-                Console.WriteLine("Exception detail : {0}", uriFormatException.Message);
-                throw;
-            }
-
-            if (additionalHeaders != null && additionalHeaders.Any())
-            {
-                foreach (var header in additionalHeaders)
-                    webRequest.Headers.Add(header.Key, header.Value);
-            }
-
-            webRequest.Method = method;
-            webRequest.Timeout = timeout;
-            webRequest.KeepAlive = true;
-            webRequest.PreAuthenticate = true;
-            webRequest.AllowAutoRedirect = true;
-            webRequest.UseDefaultCredentials = true;
-
-            if (method.Contains("POST"))
-            {
-                if (!string.IsNullOrWhiteSpace(contentType))
-                    webRequest.ContentType = contentType;
-
-                if (!string.IsNullOrWhiteSpace(body))
-                {
-                    using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
-                    {
-                        streamWriter.Write(body);
-                    }
-                }
-            }
-
-            return PageResponse(webRequest);
-        }
-
-        private WebPageResponse PageResponse(WebRequest request)
-        {
-            WebPageResponse webPageResponse = new WebPageResponse
-            {
-                ResponseBody = string.Empty,
-                StatusCode = HttpStatusCode.Ambiguous,
-                StatusDescription = string.Empty
-            };
-
-            try
-            {
-                var response = (HttpWebResponse)request.GetResponse();
-                webPageResponse.StatusCode = response.StatusCode;
-                webPageResponse.StatusDescription = response.StatusDescription;
-                Console.WriteLine("Retrieving response from url {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Response status {0}", webPageResponse.StatusDescription);
-                Console.WriteLine("Response code received was [{0}]", webPageResponse.StatusCode.ToString());
-                var receiveStream = response.GetResponseStream();
-
-                var readStream = new StreamReader(receiveStream, Encoding.UTF8);
-
-                webPageResponse.ResponseBody = readStream.ReadToEnd();
-                response.Close();
-            }
-            catch (WebException webException)
-            {
-                var resp = (HttpWebResponse)webException.Response;
-                if (webException.Status == WebExceptionStatus.ProtocolError && webException.Response != null)
-                {
-                    switch (resp.StatusCode)
-                    {
-                        case HttpStatusCode.NotFound:
-                        case HttpStatusCode.BadRequest:
-                            Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                            Console.WriteLine("Exception detail : {0}", webException.Message);
-                            break;
-                    }
-                    webPageResponse.StatusCode = resp.StatusCode;
-                    webPageResponse.StatusDescription = resp.StatusDescription;
-                }
-                else if (webException.Status == WebExceptionStatus.ReceiveFailure)
-                {
-                    webPageResponse.StatusCode = HttpStatusCode.NotFound;
-                }
-                Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Exception detail : {0}", webException.Message);
-            }
-
-            Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
-            return webPageResponse;
-        }
-   }
+    }
 }
