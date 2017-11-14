@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Constants\InstallationRequestStatus.cs" />
+    <Compile Include="Domain\Constants\InstalledPrinterStatus.cs" />
+    <Compile Include="Domain\Constants\SwapType.cs" />
     <Compile Include="Pages\BrotherMainSite\ContentEditorPage.cs" />
     <Compile Include="Pages\BrotherMainSite\DownloadPage.cs" />
     <Compile Include="Pages\BrotherMainSite\ExperienceEditorPage.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="Pages\MPSTwo\DataQueryProposalNotePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerSendSwapInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateDescriptionPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />

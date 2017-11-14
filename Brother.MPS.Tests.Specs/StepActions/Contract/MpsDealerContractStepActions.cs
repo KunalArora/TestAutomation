@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -9,7 +10,6 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -105,19 +105,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerSendInstallationEmailPage SelectInstallationTypeAndProceed(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {
-            switch (installationType)
-            {
-                case "Web":
-                    dealerSetInstallationTypePage.SetWebInstallationType();
-                    break;
-                case "BOR":
-                    dealerSetInstallationTypePage.SetBORInstallationType();
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
-            dealerSetInstallationTypePage.NextElement.Click();
+            SelectInstallationTypeAndClickNext(dealerSetInstallationTypePage, installationType);
             return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -139,6 +127,59 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 throw new NullReferenceException(string.Format("Installation Request not found"));
             }             
+        }
+
+        public void ClickOnSwapDevice(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
+        {
+            dealerManageDevicesPage.ClickOnSwapDevice(serialNumber, RuntimeSettings.DefaultFindElementTimeout);
+        }
+
+        public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage, string swapType)
+        {
+            dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, RuntimeSettings.DefaultFindElementTimeout);
+            return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerSendSwapInstallationEmailPage SelectInstallationTypeAndProceedForSwap(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
+        {
+            SelectInstallationTypeAndClickNext(dealerSetInstallationTypePage, installationType);
+            return PageService.GetPageObject<DealerSendSwapInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerManageDevicesPage PopulateInstallerEmailAndSendEmailForSwap(DealerSendSwapInstallationEmailPage dealerSendSwapInstallationEmailPage)
+        {
+            _contextData.InstallerEmail = dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
+            return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifySwappedDeviceStatus(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
+        {
+            bool exists = dealerManageDevicesPage.VerifySwappedDeviceStatus(serialNumber, RuntimeSettings.DefaultFindElementTimeout);
+            if (exists)
+            {
+                return;
+            }
+            else
+            {
+                throw new NullReferenceException(string.Format("Swapped Device status could not be verified"));
+            }             
+        }
+
+        private void SelectInstallationTypeAndClickNext(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
+        {
+            switch (installationType)
+            {
+                case "Web":
+                    dealerSetInstallationTypePage.SetWebInstallationType();
+                    break;
+                case "BOR":
+                    dealerSetInstallationTypePage.SetBORInstallationType();
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+            dealerSetInstallationTypePage.NextElement.Click();
         }
     }
 }

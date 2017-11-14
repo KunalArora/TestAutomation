@@ -31,6 +31,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSetCommunicationMethodPage _dealerSetCommunicationMethodPage;
         private DealerSetInstallationTypePage _dealerSetInstallationTypePage;
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
+        private DealerSendSwapInstallationEmailPage _dealerSwapInstallationEmailPage;
         private DealerContractsAcceptedPage _dealerContractsAcceptedPage;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
@@ -135,11 +136,32 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.VerifyInstallationRequestCreated(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
         }
 
+        [When(@"I click Swap Device in the Actions menu for device with serial number ""(.*)""")]
+        public void WhenIClickSwapDeviceInTheActionsMenuForDeviceWithSerialNumber(string serialNumber)
+        {
+            _contextData.SwapDeviceSerialNumber = serialNumber;
+            _mpsDealerContractStepActions.ClickOnSwapDevice(_dealerManageDevicesPage, serialNumber);
+        }
+
+        [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
+        public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
+        {
+            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage, swapType);
+            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
+            _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
+        }
+
         [Then(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnected()
         {
             _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, _contextData.PrintersProperties);
         }
 
+        [Then(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheInstalledDeviceIsSetBeingReplacedOnTheManageDevicesPageForTheAboveProposal()
+        {
+            _mpsDealerContractStepActions.VerifySwappedDeviceStatus(_dealerManageDevicesPage, _contextData.SwapDeviceSerialNumber);
+        }
     }
 }
