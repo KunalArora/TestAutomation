@@ -24,8 +24,12 @@ namespace Brother.Tests.Specs.ContextData
         string ContractTerm { get; set; }
         string BillingType { get; set; }
         string ServicePackType { get; set; }
-        IEnumerable<PrinterProperties> PrinterProperties { get; set; }
+        IEnumerable<PrinterProperties> PrintersProperties { get; set; }
+        string CustomerInformationName { get; set; }
+        string CustomerEmail { get; set; }
+        string CompanyLocation { get; set; }
+        string InstallerEmail { get; set; }
 
-        void SetBusinessType(string businessTypeId);  
+        void SetBusinessType(string businessTypeId);
     }
 }

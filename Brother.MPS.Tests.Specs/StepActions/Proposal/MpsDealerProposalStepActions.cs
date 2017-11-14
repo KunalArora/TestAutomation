@@ -146,7 +146,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
             }             
         }
-
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
@@ -182,6 +181,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultPageObjectTimeout);
         }
+
 
         #endregion
     }

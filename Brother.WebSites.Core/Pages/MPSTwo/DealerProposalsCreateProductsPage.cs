@@ -680,6 +680,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
+        public void EnterPrinterUnitCost(string price)
+        {
+            var element = "input#CostPrice.form-control.input-sm";
+            var productUnitCostField = GetElementByCssSelector(element);
+            ClearAndType(productUnitCostField, price);
+        }
+
+        public void EnterDeliveryUnitCost(string delivery)
+        {
+            var delivery_cost = (delivery.Equals("Yes")) ? "1" : "0";
+            var element = "input#DeliveryCostPrice.form-control.input-sm";
+            var deliveryUnitCostField = GetElementByCssSelector(element);
+            ClearAndType(deliveryUnitCostField, delivery_cost);
+        }
+
         private IEnumerable<IWebElement> QtyForAccessoriesElement()
         {
             const string element = ".mps-qa-option .mps-txt-r [name=\"OptionQuantity\"][data-mps-val-numeric-min]";

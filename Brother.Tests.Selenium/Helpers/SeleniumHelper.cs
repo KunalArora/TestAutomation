@@ -75,6 +75,25 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return res;
         }
 
+        public List<IWebElement> FindRowElementsWithinTable(ISearchContext context)
+        {            
+            List<IWebElement> tableRows = context.FindElements(By.TagName("tr")).ToList();
+            return tableRows;
+        }
 
+        public string SelectDropdownElementTextByIndex(IWebElement element, int index)
+        {
+            var selectElement = new SelectElement(element);
+            var selectElementOption = selectElement.Options;
+            string result = selectElementOption.ElementAt(index).Text;
+            return result;
+        }
+
+        public void AcceptJavascriptAlert(int timeout)
+        {
+            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout));
+            IAlert alert = webDriverWait.Until(ExpectedConditions.AlertIsPresent());
+            alert.Accept();
+        }
     }
 }

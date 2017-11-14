@@ -391,7 +391,6 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return elementStatus;
         }
 
-
         public static void RetryClickingAction(string element, string elementToVerify, int retryCount, int timeOut)
         {
             WebDriver.SetWebDriverImplicitTimeout(new TimeSpan(0, 0, 0, timeOut));

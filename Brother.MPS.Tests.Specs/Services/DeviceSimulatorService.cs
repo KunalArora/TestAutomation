@@ -115,7 +115,5 @@ namespace Brother.Tests.Specs.Services
 
             return deviceId;
         }
-
-
     }
 }

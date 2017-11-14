@@ -10,11 +10,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium.Support.UI;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerManageDevicesPage : BasePage
+    public class DealerManageDevicesPage : BasePage, IPageObject
     {
         public static string Url = "/";
         //private string _body = "<" + "Status Notification" + ">" + "\r\n" + 
@@ -30,6 +31,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //                        "URL: http://10.135.102.139\r\n" +
         //                        "Page Count: 0 \r\n" + 
         //                        "Drum Count: 355 \r\n";
+
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]";
+        private const string _url = "/mps/dealer/contracts/manage-devices/manage";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+        private const string InstallationRequestContainerSelector = ".js-mps-installation-request-list-container";
+        private const string InstallationRequestRowSelector = ".js-mps-searchable";
+        private const string InstallationRequestEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
+        private const string InstallationRequestCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
+        private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
+        private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
 
         private const string Body1 = @"&lt;Status Notification&gt;";
         private string _body2 = "<br/>";
@@ -61,6 +91,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
+
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentIntroductionAlert")]
@@ -137,9 +168,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ReInstallCommencementButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Type: Email<br />Status: Responding\"]")]
         public IWebElement EmailGreenIconElement;
-        
-        
-        
+
+
+
+        private const string InstallationDeviceListSelector = ".js-mps-device-list-container";
+        private const string InstallationDeviceTableSelector = ".js-mps-searchable";
+        private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
+        private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
 
         
         public void IsInstallationRequestCancelled()
@@ -586,6 +621,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.RunServiceRequestCreationJobs();
         }
 
+        public void InstallationCompleteCheck(string serialNumber, int findElementTimeout)
+        {
+
+            var deviceListContainer = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
+            var tableContainer = SeleniumHelper.FindElementByCssSelector(deviceListContainer, InstallationDeviceTableSelector, findElementTimeout);
+
+            var rows = SeleniumHelper.FindRowElementsWithinTable(tableContainer);
+            
+            foreach (var row in rows)
+            {
+                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                if (serialNumberElement.Text.Equals(serialNumber))
+                {
+                    var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector, findElementTimeout).Displayed;
+                    TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
+                }
+            }
+        }
+
         public void IsInstallationCompleted()
         {
 
@@ -635,6 +689,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, LocationSelectionAlertElement.Displayed, "Location alert is not displayed"); 
         }
 
+        public string SelectLocation()
+        {
+            ScrollTo(CompanyLocationElement);
+            SelectElementOptionsByIndex(CompanyLocationElement, 1);
+            string companyLocation = SeleniumHelper.SelectDropdownElementTextByIndex(CompanyLocationElement, 1);
+            return companyLocation;
+        }
 
+        public void ClickCreateRequest()
+        {
+            ScrollTo(CreateRequestElement);
+            CreateRequestElement.Click();
+        }
+
+        public bool VerifyInstallationRequestCreated(string installerEmail, string companyLocation, int findElementTimeout)
+        {
+            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
+            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
+            var elements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
+            
+            foreach(var element in elements)
+            {
+                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
+                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
+                if(InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals("Not started"))
+                {
+                    // Below code can be deleted when merging the scenario
+                    // ---------- Cancel Installation Request Code
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    ActionsButtonElement.Click();
+                    var CancelInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, CancelInstallationRequestSelector, findElementTimeout);
+                    CancelInstallationRequestButtonElement.Click();
+                    SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);
+                    // ----------
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

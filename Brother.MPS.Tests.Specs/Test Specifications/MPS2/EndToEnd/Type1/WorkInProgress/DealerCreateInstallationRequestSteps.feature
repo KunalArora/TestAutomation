@@ -13,4 +13,4 @@ Then I will be able to see the installation request created above on the Manage 
 
 Scenarios: 
 		| Country        | ProposalId | CommunicationMethod | InstallationType |
-		| United Kingdom | xxxx       | Cloud               | Web              |
+		| United Kingdom | 159287     | Cloud               | Web              |

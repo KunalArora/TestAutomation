@@ -39,6 +39,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsCreateClickPricePage _dealerProposalsCreateClickPricePage;
         private DealerProposalsCreateSummaryPage _dealerProposalsCreateSummaryPage;
         private CloudExistingProposalPage _cloudExistingProposalPage;
+        private DealerCustomersManagePage _dealerCustomersManagePage;
+        private DealerCustomersExistingPage _dealerCustomersExistingPage;
 
         public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -79,7 +81,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 default:
                     ScenarioContext.Current.Pending();
                     break;
-            } 
+            }
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -130,7 +132,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //create strongly-typed set using CreateSet<PrinterProperties>() method - the PrinterProperties class will need additional properties to match the SpecFlow table
             //step action should add the printers to context data
             var products = printers.CreateSet<PrinterProperties>();
-            _contextData.PrinterProperties = products; 
+            _contextData.PrintersProperties = products; 
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products);               
         }
 
@@ -138,7 +140,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
             //step action should use printers specified in previous step and stored in context data
-            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrinterProperties);          
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties);          
         }
 
         [When(@"I save the proposal")]

@@ -9,17 +9,46 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TechTalk.SpecFlow;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsPage : BasePage
+    public class DealerContractsPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/contracts";
+
+        private const string _validationElementSelector = "a[href=\"/mps/dealer/contracts/accepted\"]"; //Accepted Contracts tab element
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
+
+        // Selectors
+        private const string ContractFilterSelector = ".mps-filter-search-field-lg";
+        private const string ContractsAcceptedActiveTabSelector = ".active a[href=\"/mps/dealer/contracts/accepted\"]";
+        private const string PaginateSelector = ".dataTables_paginate";
+        private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string ManageDevicesButtonSelector = ".js-mps-manage-devices";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+
+        public string PageUrl
+        {
+            get
+            {
+                return URL;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[id*='content_1_ContractList_List_ContractName']")]
         public IList<IWebElement> newContractNameElement;
@@ -283,6 +312,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             TestCheck.AssertIsEqual(option, proposal,
                 "Is new proposal template created?");
+        }
+
+        public void FilterContractUsingProposalId(int proposalId, int findElementTimeout)
+        {
+            var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector, findElementTimeout);
+            ClearAndType(FilterContractInput, proposalId.ToString());
+        }
+
+        public void MoveToAcceptedContracts(int findElementTimeout)
+        {
+            AcceptedTabElement.Click();
+            SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector, findElementTimeout);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
+        }
+
+        // Only for first contract displayed in list
+        public void ClickOnManageDevicesButton(int findElementTimeout)
+        {
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            ActionsButtonElement.Click();
+            var ManageDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(ManageDevicesButtonSelector, findElementTimeout);
+            ManageDeviceButtonElement.Click();
         }
     }
 }

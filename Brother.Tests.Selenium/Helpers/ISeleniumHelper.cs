@@ -35,5 +35,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         void WaitUntilElementAppears(string selector, int timeout);
         void SelectFromDropdownByText(IWebElement element, string text);
         TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout);
+        List<IWebElement> FindRowElementsWithinTable(ISearchContext context);
+        string SelectDropdownElementTextByIndex(IWebElement element, int index);
+        void AcceptJavascriptAlert(int timeout);
     }
 }

@@ -20,8 +20,10 @@ namespace Brother.Tests.Specs.StepActions.Common
     public class MpsSignInStepActions : StepActionBase
     {
         private IWebDriver _dealerWebDriver;
+        private IWebDriver _installerWebDriver;
         private IWebDriver _loApproverWebDriver;
 
+        private const string dealerDashboardUrl = "/mps/dealer/dashboard";
 
         public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
@@ -37,8 +39,12 @@ namespace Brother.Tests.Specs.StepActions.Common
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
-            var signInPage = LoadBrotherOnlineSignInPage(url, _dealerWebDriver);
-            return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
+            if (_dealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _dealerWebDriver);
+                return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
+            }
+            return PageService.LoadUrl<DealerDashBoardPage>(dealerDashboardUrl, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _dealerWebDriver);
         }
 
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)
@@ -78,6 +84,14 @@ namespace Brother.Tests.Specs.StepActions.Common
             signInAtYourSidePage.SignInButton.Click();
             var myAccountPage = PageService.GetPageObject<MyAccountAtYourSidePage>(RuntimeSettings.DefaultPageObjectTimeout, driver);
             return PageService.LoadUrl<TPage>(dashboardUrl, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, driver);
+        }
+
+        public InstallerContractReferenceInstallationPage LoadInstallationPage(string url)
+        {
+            _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
+            var installationPage = new InstallerContractReferenceInstallationPage();
+            installationPage = PageService.LoadUrl<InstallerContractReferenceInstallationPage>(url, RuntimeSettings.DefaultPageLoadTimeout, installationPage.ValidationElementSelector, true, _installerWebDriver);
+            return installationPage;
         }
     }
 }
