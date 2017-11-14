@@ -9,10 +9,6 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Customer
@@ -45,13 +41,13 @@ namespace Brother.Tests.Specs.StepActions.Customer
             return nextPage;
         }
 
-        public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePaage, out string customerName, out string eMailName, Country country, string payment = "Invoice")
+        public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, out string eMailName, Country country, string payment = "Invoice")
         {
-            dealerCustomersManagePaage.FillCustomerDetails(payment, country.Name);
-            customerName = dealerCustomersManagePaage.GetCompanyName();
-            eMailName = dealerCustomersManagePaage.GetEmail();
+            dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
+            customerName = dealerCustomersManagePage.GetCompanyName();
+            eMailName = dealerCustomersManagePage.GetEmail();
 
-            dealerCustomersManagePaage.saveButtonElement.Click();
+            dealerCustomersManagePage.saveButtonElement.Click();
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
             return nextPage;
