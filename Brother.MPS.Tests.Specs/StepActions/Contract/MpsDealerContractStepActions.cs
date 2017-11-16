@@ -17,18 +17,23 @@ namespace Brother.Tests.Specs.StepActions.Contract
     {
         private readonly IWebDriver _dealerWebDriver;
         private readonly IContextData _contextData;
+        private readonly DeviceSimulatorService _deviceSimulatorService;
+        private readonly RunCommandService _runCommandService;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings
-            )
+            RuntimeSettings runtimeSettings,
+            DeviceSimulatorService deviceSimulatorService,
+            RunCommandService runCommandService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
-            _contextData = contextData;        
+            _contextData = contextData;
+            _deviceSimulatorService = deviceSimulatorService;
+            _runCommandService = runCommandService;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -54,6 +59,44 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach (var product in products)
             {
                 _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+                CheckForUpdatedPrintCount(_dealerManageDevicesPage, product.SerialNumber);
+            }
+        }
+
+        public void UpdatePrintCounts(string serialNumber, int monoPrintCount, int colorPrintCount)
+        {
+            var products = _contextData.PrintersProperties;
+            foreach (var product in products)
+            {
+                if (product.SerialNumber.Equals(serialNumber))
+                {
+                    product.MonoPrintCount = monoPrintCount;
+                    product.ColorPrintCount = colorPrintCount;
+                    product.TotalPageCount = (monoPrintCount + colorPrintCount);
+                    string deviceId = product.DeviceId;
+                    _deviceSimulatorService.SetPrintCounts(deviceId, monoPrintCount, colorPrintCount);
+                    _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                }
+            }
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+        }
+
+        public DealerManageDevicesPage RetrieveDealerManageDevicesPage()
+        {
+            string currentUrl = _dealerWebDriver.Url;
+            return PageService.LoadUrl<DealerManageDevicesPage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]", true, _dealerWebDriver);
+        }
+
+        public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
+        {
+            var products = _contextData.PrintersProperties;
+            foreach (var product in products)
+            {
+                if(product.SerialNumber.Equals(serialNumber))
+                {
+                    var totalPageCount = product.TotalPageCount; 
+                    dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, serialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+                }
             }
         }
 

@@ -32,5 +32,9 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
         }
 
         public string SerialNumber { get; set; }
+        public string DeviceId { get; set; }
+        public int MonoPrintCount { get; set; }
+        public int ColorPrintCount { get; set; }
+        public int TotalPageCount { get; set; }
     }
 }

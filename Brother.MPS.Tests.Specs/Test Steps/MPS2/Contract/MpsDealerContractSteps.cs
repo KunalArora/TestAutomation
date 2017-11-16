@@ -103,6 +103,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             //Use contextData to retrieve proposalId
             _dealerManageDevicesPage = _mpsDealerContractStepActions.NavigateToManageDevicesPage(_dealerContractsAcceptedPage, proposalId);
+            _contextData.ProposalId = proposalId;
         }
 
         //Similar function is already present in this file so, refactor this particular function.
@@ -136,26 +137,23 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.VerifyInstallationRequestCreated(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
         }
 
-        [When(@"I click Swap Device in the Actions menu for device with serial number ""(.*)""")]
-        public void WhenIClickSwapDeviceInTheActionsMenuForDeviceWithSerialNumber(string serialNumber)
-        {
-            _contextData.SwapDeviceSerialNumber = serialNumber;
-            _mpsDealerContractStepActions.ClickOnSwapDevice(_dealerManageDevicesPage, serialNumber);
-        }
-
-        [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
-        public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
-        {
-            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage, swapType);
-            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
-            _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
-            _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
-        }
-
-        [Then(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected")]
-        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnected()
+        [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
+        public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
             _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, _contextData.PrintersProperties);
+        }
+
+        [When(@"I update the print count for ""(.*)"" to (.*) and (.*)")]
+        public void WhenIUpdateThePrintCountForToAnd(string serialNumber, int monoPrintCount, int colorPrintCount)
+        {
+            _mpsDealerContractStepActions.UpdatePrintCounts(serialNumber, monoPrintCount, colorPrintCount);
+        }
+
+        [Then(@"I will be able to see on the Manage Devices page that ""(.*)"" have updated Print Counts")]
+        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatHaveUpdatedPrintCounts(string serialNumber)
+        {
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
+            _mpsDealerContractStepActions.CheckForUpdatedPrintCount(_dealerManageDevicesPage, serialNumber);
         }
 
         [Then(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]

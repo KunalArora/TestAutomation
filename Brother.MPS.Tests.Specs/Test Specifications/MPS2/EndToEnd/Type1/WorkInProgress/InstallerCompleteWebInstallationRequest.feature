@@ -13,8 +13,10 @@ When I verify the Contract Reference for "<ProposalId>" and store Serial Numbers
 And I enter the serial numbers and complete installation
 And I have navigated to the Contracts Accepted page as a "Cloud MPS Dealer" from "<Country>"
 And I have navigated to the Manage Devices for "<ProposalId>"
-Then I will be able to see on the Manage Devices page that all devices for the above contract are connected
+And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
+And I update the print count for "<SerialNumber_1>" to <MonoPrintCount_1> and <ColorPrintCount_1>
+Then I will be able to see on the Manage Devices page that "<SerialNumber_1>" have updated Print Counts
 
 Scenarios: 
-		| Country        | ProposalId | Model_1    | SerialNumber_1 | Model_2    | SerialNumber_2 | WebInstallUrl |
-		| United Kingdom | 160180     | DCP-8110DN | A3P145604      | DCP-8250DN | A3P145603      | https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-contract-reference?token=9bb57ddc44da1712135867cfc13aa42349910 |
+		| Country        | ProposalId | Model_1    | SerialNumber_1 | MonoPrintCount_1 | ColorPrintCount_1 | Model_2    | SerialNumber_2 | WebInstallUrl |
+		| United Kingdom | 160627     | DCP-8110DN | A3P145602      | 23               | 100               | DCP-8250DN | A3P145617      | https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-contract-reference?token=0b82a1812f53425621f0307a392f866f50316 |

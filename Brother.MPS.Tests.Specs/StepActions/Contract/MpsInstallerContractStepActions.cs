@@ -70,6 +70,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.RegisterNewDevice(deviceId, installationPin);
                 _deviceSimulatorService.ChangeDeviceStatus(deviceId, true, true);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                product.DeviceId = deviceId;
             }
         }
     }

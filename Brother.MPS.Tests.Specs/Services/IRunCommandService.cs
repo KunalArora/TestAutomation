@@ -12,7 +12,7 @@ namespace Brother.Tests.Specs.Services
         void RunRaiseClickRateInvoicesCommand();
         void RunInstallationCompleteCommand();
         void RunMeterReadEmailSyncCommand();
-        void RunMeterReadCloudSyncCommand();
+        void RunMeterReadCloudSyncCommand(int proposalId);
         void RunConsumableOrderRequestsCommand();
         void RunCloseConsumableOrdersCommand();
         void RunPollConsumableOrderStatusCommand();

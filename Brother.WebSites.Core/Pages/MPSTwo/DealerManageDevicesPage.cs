@@ -187,6 +187,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationDeviceTableSelector = ".js-mps-searchable";
         private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
         private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
+        private const string InstallationTotalPagesSelector = "[id*=content_1_DeviceList_List_CellTotalPages_]";
+        private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
+
 
         
         public void IsInstallationRequestCancelled()
@@ -648,8 +651,54 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector, findElementTimeout).Displayed;
                     TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
+                    break;
                 }
             }
+        }
+
+        public void CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber, int retryCount, int findElementTimeout)
+        {     
+            var retries = 0;
+            var elementStatus = false;
+
+            do
+            {
+                try
+                {
+                    var showPrintCountButtonElement = SeleniumHelper.FindElementByCssSelector(ShowPrintCountButtonSelector, findElementTimeout);
+                    showPrintCountButtonElement.Click();
+                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
+                    var deviceTableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationDeviceTableSelector, findElementTimeout);
+
+                    var rows = SeleniumHelper.FindRowElementsWithinTable(deviceTableElement);
+
+                    foreach (var row in rows)
+                    {
+                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                        if(serialNumberElement.Text.Equals(serialNumber))
+                        {
+                            var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector, findElementTimeout);
+                            if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
+                            {
+                                elementStatus = true;
+                                break;
+                            }
+                            else
+                            {
+                                driver.Navigate().Refresh();
+                                retries++;
+                            }
+
+                        }
+                    }
+
+                }
+                catch(WebDriverException)
+                {
+                    driver.Navigate().Refresh();
+                    retries++;
+                }
+            } while ((!elementStatus) && (retries <= retryCount)) ;
         }
 
         public void IsInstallationCompleted()
