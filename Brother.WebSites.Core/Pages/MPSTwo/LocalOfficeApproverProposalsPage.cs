@@ -8,6 +8,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Collections.ObjectModel;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -41,6 +42,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/proposals/awaiting-approval']")]
         public IWebElement AwaitingApprovalLinkElement;
         [FindsBy(How = How.CssSelector, Using = ".mps-tabs-main a[href='/mps/local-office/approval/proposals/approved']")]
@@ -63,6 +66,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> ProposalListContainerElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"]")]
         public IWebElement ReportTabElement;
+        [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
+        public IWebElement ProposalFilter;
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
+        public IList<IWebElement> ProposalListProposalNameRowElement;
 
         public void IsAwaitingApprovalLinkAvailable()
         {
@@ -339,5 +346,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             AssertElementsPresent(ProposalListContainerElement.ToArray(), "Proposal List");
         }
+
+        public void ClickOnSummaryPage(string text, int timeout, IWebDriver driver)
+        {
+            ClearAndType(ProposalFilter, text);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1 , timeout);
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), timeout);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+        }
+
     }
 }

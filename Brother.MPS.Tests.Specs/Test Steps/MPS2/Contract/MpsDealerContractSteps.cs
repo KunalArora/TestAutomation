@@ -161,5 +161,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             _mpsDealerContractStepActions.VerifySwappedDeviceStatus(_dealerManageDevicesPage, _contextData.SwapDeviceSerialNumber);
         }
+
+        [When(@"I sign the above proposal")]
+        public void WhenISignTheAboveProposal()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.NavigateToDashboardPage(_urlResolver.BaseUrl);
+            var dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerContractsApprovedProposalPage(dealerDashboardPage);
+            var dealerContractsSummaryPage = _mpsDealerProposalStepActions.ClickViewOffer(dealerProposalsApprovedPage, _contextData.ProposalId);
+            var dealerContractsAwaitingAcceptancePage = _mpsDealerProposalStepActions.SignToContract(dealerContractsSummaryPage);
+        }
+
+
     }
 }

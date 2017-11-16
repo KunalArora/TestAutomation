@@ -150,6 +150,7 @@
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\BaseSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\CalculationEngineModule.cs" />
     <Compile Include="Pages\MPSTwo\CompleteSwapProcessPage.cs" />
@@ -163,6 +164,13 @@
     <Compile Include="Pages\MPSTwo\DataQueryProposalNotePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsApprovedPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsConvertClickPricePage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsConvertCustomerInformationPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsConvertProductsPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsConvertSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsConvertTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsInprogressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendSwapInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateDescriptionPage.cs" />
@@ -210,6 +218,12 @@
     <Compile Include="Pages\MPSTwo\InstallerDeviceInstallationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalCustomerInformationPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsApprovedProposalsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsAwaitingAcceptancePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsApprovedPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsAcceptedPage.cs" />
     <Compile Include="Pages\MPSTwo\ReportingDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />

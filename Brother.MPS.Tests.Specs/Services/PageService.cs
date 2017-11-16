@@ -96,7 +96,7 @@ namespace Brother.Tests.Specs.Services
             Helper.MsgOutput(string.Format("Load of url {0} started", url));
             try
             {
-                var webDriverWait = new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, timeSpan).Until(d => { try { d.FindElement(By.CssSelector(validationElementSelector)); return true; } catch { return false; } });
                 Helper.MsgOutput(string.Format("Url {0} loaded - success indicated by presence of validation element {1}", url, validationElementSelector));
             }
             catch (Exception ex)

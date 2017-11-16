@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _loApproverWebDriver;
 
         private const string dealerDashboardUrl = "/mps/dealer/dashboard";
+        private const string loApproverDashboardUrl = "/mps/local-office/dashboard";
 
         public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
@@ -55,8 +56,17 @@ namespace Brother.Tests.Specs.StepActions.Common
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
-            var signInPage = LoadBrotherOnlineSignInPage(url, _loApproverWebDriver);
-            return SignInToMpsDashboardAs<LocalOfficeApproverDashBoardPage>(signInPage, email, password, _loApproverWebDriver);
+            if (_loApproverWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _loApproverWebDriver);
+                return SignInToMpsDashboardAs<LocalOfficeApproverDashBoardPage>(signInPage, email, password, _loApproverWebDriver);
+            }
+            else
+            {
+                var uri = new Uri(_loApproverWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loApproverDashboardUrl);
+                return PageService.LoadUrl<LocalOfficeApproverDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loApproverWebDriver);
+            }
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver)
