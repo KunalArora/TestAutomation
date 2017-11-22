@@ -89,8 +89,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var todayDate = DateTime.Now;
             var someDaysIntheFuture = todayDate.AddDays(30);
 
-            //return someDaysIntheFuture.ToString("dd/MM/yyyy");
-            return someDaysIntheFuture.ToString("MM/dd/yyyy");
+            return someDaysIntheFuture.ToString("dd/MM/yyyy");
 
         }
 
@@ -99,8 +98,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var todayDate = DateTime.Now;
             var someDaysInthePast = todayDate.AddDays(-9000);
 
-            //return someDaysInthePast.ToString("dd/MM/yyyy");
-            return someDaysInthePast.ToString("MM/dd/yyyy");
+            return someDaysInthePast.ToString("dd/MM/yyyy");
 
         }
 

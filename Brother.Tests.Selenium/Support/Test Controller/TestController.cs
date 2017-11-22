@@ -326,7 +326,7 @@ namespace Brother.Tests.Selenium.Lib.Support
             //    //path += scenarioName; //String.Format(@"C:\DataTest\{0}", scenarioName);
             //}
 
-            options.AddArgument("--lang=en"); // for date stamp
+            options.AddArguments("--lang=en-GB"); // for date stamp
             options.AddArguments("--disable-extensions");
            // options.AddArguments("start-maximized");
             options.AddUserProfilePreference("profile.default_content_settings.popups", 0);

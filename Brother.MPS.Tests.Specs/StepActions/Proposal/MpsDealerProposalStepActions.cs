@@ -87,14 +87,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             ClickSafety( dealerProposalsCreateCustomerInformationPage.CreateNewCustomerElement, dealerProposalsCreateCustomerInformationPage )  ;
             ClickSafety( dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage ) ;
-            var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            dealerProposalsCreateCustomerInformationPage2.FillOrganisationDetails();
-            dealerProposalsCreateCustomerInformationPage2.FillOrganisationContactDetail();
-            ClickSafety( dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2 ) ;
+            var detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            detailInputPage.FillOrganisationDetails();
+            detailInputPage.FillOrganisationContactDetail();
+            ClickSafety( detailInputPage.NextButton, detailInputPage ) ;
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertTermAndTypePage CreateCustomerForProposal(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage)
+        public DealerProposalsConvertTermAndTypePage CreateCustomerForProposal(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage)
         {
             ClickSafety( dealerProposalsConvertCustomerInformationPage.CreateNewCustomerElement, dealerProposalsConvertCustomerInformationPage ) ;
             ClickSafety( dealerProposalsConvertCustomerInformationPage.NextButton, dealerProposalsConvertCustomerInformationPage  ) ;
@@ -179,7 +179,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
             }             
         }
-        #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
             string proposalName,
@@ -215,50 +214,50 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultPageObjectTimeout);
         }
 
-        internal DealerProposalsConvertCustomerInformationPage SubmitForApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName )
+        public DealerProposalsConvertCustomerInformationPage SubmitForApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName )
         {
             _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage,  Country country, string payment = "Invoice")
+        public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage,  Country country, string payment = "Invoice")
         {
             dealerProposalsConvertCustomerInformationPage.FillCustomerDetails(payment, country.Name);
             dealerProposalsConvertCustomerInformationPage.nextButtonElement.Click();
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerDashBoardPage NavigateToDashboardPage(string baseUrl )
+        public DealerDashBoardPage NavigateToDashboardPage(string baseUrl )
         {
-            var pag = new DealerDashBoardPage();
-            return PageService.LoadUrl<DealerDashBoardPage>(baseUrl+pag.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, pag.ValidationElementSelector, true, _dealerWebDriver);
+            var dashBoardPage = new DealerDashBoardPage();
+            return PageService.LoadUrl<DealerDashBoardPage>(baseUrl+dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
+        public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
         {
             dealerProposalsConvertTermAndTypePage.NextButton.Click();
             return PageService.GetPageObject<DealerProposalsConvertProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)
+        public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)
         {
             dealerProposalsConvertProductsPage.NextButtonElement.Click();
             return PageService.GetPageObject<DealerProposalsConvertClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsInprogressPage NavigateToDealerProposalsInprogressPage(DealerDashBoardPage dealerDashboardPage)
+        public DealerProposalsInprogressPage NavigateToDealerProposalsInprogressPage(DealerDashBoardPage dealerDashboardPage)
         {
             dealerDashboardPage.proposalTopElement.Click();
             return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertSummaryPage SetInformationAndClickSubmitForApproval(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
+        public DealerProposalsConvertSummaryPage SetInformationAndClickSubmitForApproval(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
         {
             dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement.Click();
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal void SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
+        public void SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
         {
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
@@ -268,7 +267,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             //return PageService.GetPageObject<>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
+        public DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
         {
             dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
             return  PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); 
@@ -283,7 +282,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return nextPage;
         }
 
-        internal DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, Country country, string payment = "Invoice")
+        public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, Country country, string payment = "Invoice")
         {
             dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
             customerName = dealerCustomersManagePage.GetCompanyName();
@@ -292,7 +291,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return nextPage;
         }
 
-        internal void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
+        public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
         {
             bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail, RuntimeSettings.DefaultFindElementTimeout);
             if (exists)
@@ -301,32 +300,29 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
             else
             {
-                new NullReferenceException(string.Format("Proposal = {0} not found ", customerInformationName));
+                new Exception(string.Format("Customer  = {0} not found ", customerInformationName));
             }
-
-            throw new NotImplementedException();
         }
 
-        internal DealerContractsApprovedProposalPage NavigateToDealerContractsApprovedProposalPage(DealerDashBoardPage dealerDashboardPage)
+        public DealerContractsApprovedProposalPage NavigateToDealerContractsApprovedProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
             dealerDashboardPage.ExistingContractLinkElement.Click();
             return  PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerProposalsApprovedPage, int proposalId)
+        public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerProposalsApprovedPage, int proposalId)
         {
             dealerProposalsApprovedPage.ClickOnViewOffer(_contextData.ProposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
             return PageService.GetPageObject<DealerContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        internal DealerContractsAwaitingAcceptancePage SignToContract(DealerContractsSummaryPage dealerContractsSummaryPage)
+        public DealerContractsAwaitingAcceptancePage SignToContract(DealerContractsSummaryPage dealerContractsSummaryPage)
         {
             dealerContractsSummaryPage.SignButtonElement.Click();
             return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
 
-        #endregion
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
