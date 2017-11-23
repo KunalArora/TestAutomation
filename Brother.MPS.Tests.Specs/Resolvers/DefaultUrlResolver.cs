@@ -24,6 +24,9 @@ namespace Brother.Tests.Specs.Resolvers
         private const string PRD_CMS_URL_FORMAT = "http://online65.{0}.cms.prod.brother.eu.com";
         private const string PRD_ATYOURSIDE_URL_FORMAT = "https://atyourside.brother.{0}";
 
+        private const string DEV_BASE_URL_FORMAT = "http://online.brother.{0}.local";
+        private const string DEV_CMS_URL_FORMAT = "http://online.brother.{0}.local";
+
         public DefaultUrlResolver(IContextData contextData)
         {
             _contextData = contextData;
@@ -44,6 +47,8 @@ namespace Brother.Tests.Specs.Resolvers
                         return string.Format(UAT_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
                         return string.Format(PRD_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
+                    case "DEV":
+                        return string.Format(DEV_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     default:
                         return string.Empty;
                 }
@@ -65,6 +70,8 @@ namespace Brother.Tests.Specs.Resolvers
                         return string.Format(UAT_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
                         return string.Format(PRD_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
+                    case "DEV":
+                        return string.Format(DEV_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     default:
                         return string.Empty;
                 }

@@ -13,7 +13,7 @@ namespace Brother.Tests.Specs.Resolvers
         private readonly IContextData _contextData;
         private const string TYPE1_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
         private const string TYPE1_PASSWORD_PATTERN = "{0}{1}1";
-        private const string TYPE3_USERNAME_PATTERN = "MPS-{0}-{1}-T3-{2}{3}@mailinator.com";
+        private const string TYPE3_USERNAME_PATTERN = "MPS-{0}-{1}-T3-{2}{3}@brother.co.uk";
         private const string TYPE3_PASSWORD_PATTERN = "{0}{1}1";
 
         public DefaultUserResolver(IContextData contextData)

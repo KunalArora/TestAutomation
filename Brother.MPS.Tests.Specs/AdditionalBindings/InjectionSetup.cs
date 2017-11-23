@@ -47,12 +47,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
 
         private IContextData setContextData()
         {
-            string env = TestContext.Parameters.Exists("env") ? TestContext.Parameters.Get("env") : "UAT";
+            string env = TestContext.Parameters.Exists("env") ? TestContext.Parameters.Get("env") : DefaultEnvironment();
             string cultureName = TestContext.Parameters.Exists("culture") ? TestContext.Parameters.Get("culture") : "en-GB";
             string baseUrl = TestContext.Parameters.Exists("base_url") ? TestContext.Parameters.Get("base_url") : string.Empty;
             CultureInfo culture = new CultureInfo(cultureName);
             RegionInfo region = new RegionInfo(culture.LCID);
             string country = region.TwoLetterISORegionName;
+
+            Console.WriteLine("Initialising scenario for environment {0}", env);
 
             //apply defaults, changed per scenario as required
             return new MpsContextData
@@ -71,6 +73,12 @@ namespace Brother.Tests.Specs.AdditionalBindings
             {
                 webDriverFactory.CloseAllWebDrivers();
             }
+        }
+
+        private string DefaultEnvironment()
+        {
+            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultRuntimeEnvironment");
+            return defaultRuntimeEnvironment ?? "UAT";
         }
     }
 }
