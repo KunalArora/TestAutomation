@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC113
+﻿@MPS @UAT @TEST @BIEPC113 @HIGH
 Feature: LocalOfficeApproverChangeCustomerAddress
 	In order to change customer address
 	As a Local Office Approver

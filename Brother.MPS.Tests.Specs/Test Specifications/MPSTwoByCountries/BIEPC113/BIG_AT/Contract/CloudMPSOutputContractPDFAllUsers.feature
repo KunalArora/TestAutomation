@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC113
+﻿@MPS @TEST @UAT @BIEPC113 @MEDIUM
 Feature: CloudMPSOutputContractPDFAllGermanUsers
 	In order to view paper version of contract summary
 	As an MPS User

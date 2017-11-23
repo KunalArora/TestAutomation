@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class CloudMPSUKServiceRequestOperationsFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
                         "TEST",
                         "UAT",
                         "MPS",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT @MPS @BIEPC113
+﻿@ignore @TEST @UAT @MPS @BIEPC113 @HIGH
 Feature: CloudMPSGermanServiceRequestOperations
 	In order to get my devices issues fix by Brother
 	As an MPS user

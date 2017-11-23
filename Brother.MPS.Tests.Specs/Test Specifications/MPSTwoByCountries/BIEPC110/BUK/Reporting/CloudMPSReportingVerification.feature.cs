@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("CRITICAL")]
     public partial class CloudMPSReportingVeificationFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "CRITICAL"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
