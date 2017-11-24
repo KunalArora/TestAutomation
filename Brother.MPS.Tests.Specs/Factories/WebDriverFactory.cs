@@ -7,6 +7,7 @@ using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Factories
@@ -14,11 +15,14 @@ namespace Brother.Tests.Specs.Factories
     public class WebDriverFactory : IWebDriverFactory
     {
         private ScenarioContext _context;
+        private ChromeDriverService _chromeDriverService;
         private const string _webDriverKeyPattern = "__driverInstance_{0}";
 
         public WebDriverFactory(ScenarioContext context)
         {
             _context = context;
+            _chromeDriverService = ChromeDriverService.CreateDefaultService();
+            _chromeDriverService.Start();
         }
         //TODO: allow driver and options to be specified
         public IWebDriver GetWebDriverInstance(UserType userType, ChromeOptions chromeOptions = null)
@@ -30,7 +34,10 @@ namespace Brother.Tests.Specs.Factories
                 return _context.Get<IWebDriver>(key);
             }
             if (chromeOptions == null) { chromeOptions = new ChromeOptions();}
-            var webDriverInstance = new ChromeDriver(chromeOptions);
+
+            var capabilities = chromeOptions.ToCapabilities();
+            var webDriverInstance = new RemoteWebDriver(_chromeDriverService.ServiceUrl, capabilities, TimeSpan.FromSeconds(200));
+
             webDriverInstance.Manage().Window.Maximize();
             _context.Add(key, webDriverInstance);
             return webDriverInstance;
