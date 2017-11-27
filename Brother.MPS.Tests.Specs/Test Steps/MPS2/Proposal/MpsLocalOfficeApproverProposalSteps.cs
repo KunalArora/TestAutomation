@@ -9,6 +9,7 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using Brother.Tests.Specs.Configuration;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -28,10 +29,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly MpsLocalOfficeApproverProposalStepActions _mpsLocalOfficeApproverProposalStepActions;
 
         //page objects used by these steps
-        private LocalOfficeApproverDashBoardPage _localOfficeApproverDashBoardPage;
-        private LocalOfficeApproverApprovalPage _localOfficeApproverApproverApprovalPage;
-        private LocalOfficeApproverProposalsPage _localOfficeApproverProposalsPage;
-        private LocalOfficeApproverProposalsSummaryPage _localOfficeApproverProposalsSummaryPage;
+        private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverAprovalProposalsApprovedPage;
+        private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
+
 
         public MpsLocalOfficeApproverProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsLocalOfficeApproverProposalStepActions mpsLocalOfficeApproverProposalStepActions,
@@ -67,11 +67,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new Exception("Context data not set correctly");
             }
 
-            _localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.AtYourSideUrl));
-            _localOfficeApproverApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(_localOfficeApproverDashBoardPage);
-            _localOfficeApproverProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(_localOfficeApproverApproverApprovalPage);
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
+            var localOfficeApproverProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApproverApprovalPage);
+            var localOfficeApproverAprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverProposalsPage,_contextData.ProposalId);
+            _localOfficeApproverAprovalProposalsApprovedPage = _mpsLocalOfficeApproverProposalStepActions.ApproveProposal(localOfficeApproverAprovalProposalsSummaryPage);
             //select proposal based on context data and view summary
             //approve proposal
         }
+
+
     }
 }

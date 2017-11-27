@@ -13,6 +13,8 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using Brother.WebSites.Core.Pages;
+using Brother.WebSites.Core.Pages.Base;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
 {
@@ -41,14 +43,33 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverApprovalPage NavigateToApprovalDashboard(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            localOfficeApproverDashBoardPage.ApprovalTabElement.Click();
+            ClickSafety(localOfficeApproverDashBoardPage.ApprovalTabElement, localOfficeApproverDashBoardPage);
             return PageService.GetPageObject<LocalOfficeApproverApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverProposalsPage NavigateToApprovalListPage(LocalOfficeApproverApprovalPage localOfficeApproverApprovalPage)
         {
-            localOfficeApproverApprovalPage.ProposalLinkElement.Click();
+            ClickSafety( localOfficeApproverApprovalPage.ProposalLinkElement, localOfficeApproverApprovalPage );
             return PageService.GetPageObject<LocalOfficeApproverProposalsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
+
+        public LocalOfficeApproverApprovalProposalsSummaryPage NavigateToViewSummary(LocalOfficeApproverProposalsPage localOfficeApproverProposalsPage, int proposalId)
+        {
+            localOfficeApproverProposalsPage.ClickOnSummaryPage(proposalId.ToString(), RuntimeSettings.DefaultFindElementTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public LocalOfficeApproverApprovalProposalsApprovedPage ApproveProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverAprovalProposalsSummaryPage)
+        {
+            localOfficeApproverAprovalProposalsSummaryPage.ClickOnAccept(RuntimeSettings.DefaultFindElementTimeout);
+            return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            
+        }
+
+        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        {
+            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+        }
+
     }
 }

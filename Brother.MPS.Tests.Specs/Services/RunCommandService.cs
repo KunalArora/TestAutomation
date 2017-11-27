@@ -90,12 +90,14 @@ namespace Brother.Tests.Specs.Services
 
         public void RunMeterReadEmailSyncCommand()
         {
-            
         }
 
-        public void RunMeterReadCloudSyncCommand()
+        public void RunMeterReadCloudSyncCommand(int proposalId)
         {
-            
+            string commandName = string.Format("MPS:NEW:MeterReadCloudSyncCommand&ProposalId={0}&CountryIso=GB", proposalId);
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunConsumableOrderRequestsCommand()

@@ -1,7 +1,5 @@
-﻿using Brother.Tests.Specs.Domain;
-using Brother.Tests.Specs.Domain.Enums;
+﻿using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.ContextData
@@ -29,7 +27,8 @@ namespace Brother.Tests.Specs.ContextData
         string CustomerEmail { get; set; }
         string CompanyLocation { get; set; }
         string InstallerEmail { get; set; }
-
+        string SwapDeviceSerialNumber { get; set; }
+        
         void SetBusinessType(string businessTypeId);
     }
 }

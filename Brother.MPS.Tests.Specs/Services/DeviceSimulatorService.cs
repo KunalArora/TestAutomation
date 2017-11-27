@@ -19,10 +19,10 @@ namespace Brother.Tests.Specs.Services
         private readonly IWebRequestService _webRequestService;
         private readonly RuntimeSettings _runtimeSettings;
 
-        public DeviceSimulatorService(IWebRequestService webRequestService, RuntimeSettings runtimeSettings)
+        public DeviceSimulatorService(IWebRequestService webRequestService)
         {
             _webRequestService = webRequestService;
-            _runtimeSettings = runtimeSettings;
+            _runtimeSettings = new RuntimeSettings();
         }
 
         /// <summary>

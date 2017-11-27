@@ -74,8 +74,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1 - Dealer Create Swap Installation Request Steps")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "xxxx", "Cloud", "Web", null)]
-        public virtual void BusinessScenario1_DealerCreateSwapInstallationRequestSteps(string country, string proposalId, string communicationMethod, string installationType, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "123252", "A3P145342", "ReplaceWithSameModel", "Cloud", "Web", null)]
+        public virtual void BusinessScenario1_DealerCreateSwapInstallationRequestSteps(string country, string proposalId, string swapDeviceSerialNumber, string swapType, string communicationMethod, string installationType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1 - Dealer Create Swap Installation Request Steps", exampleTags);
 #line 7
@@ -87,8 +87,11 @@ testRunner.Given(string.Format("I have navigated to the Accepted Contracts page 
 testRunner.When(string.Format("I locate the contract with id \"{0}\"", proposalId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And("I click Manage Devices in the Actions menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+testRunner.And(string.Format("I click Swap Device in the Actions menu for device with serial number \"{0}\"", swapDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.And(string.Format("I create a \"{0}\" swap installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I create a \"{0}\" swap installation request with \"{1}\" installation type for \"{2}\"" +
+                        " communication", swapType, installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
 testRunner.Then("I will be able to see the status of the installed device is set Being Replaced on" +
                     " the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

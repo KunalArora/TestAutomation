@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1 - Installer Complete Web Installation Request Steps")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "160180", "DCP-8110DN", "A3P145604", "DCP-8250DN", "A3P145603", "https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-c" +
-            "ontract-reference?token=9bb57ddc44da1712135867cfc13aa42349910", null)]
-        public virtual void BusinessScenario1_InstallerCompleteWebInstallationRequestSteps(string country, string proposalId, string model_1, string serialNumber_1, string model_2, string serialNumber_2, string webInstallUrl, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "160627", "DCP-8110DN", "A3P145602", "23", "100", "DCP-8250DN", "A3P145617", "https://online65.co.uk.cds.uat.brother.eu.com/mps/web-installation/installation-c" +
+            "ontract-reference?token=0b82a1812f53425621f0307a392f866f50316", null)]
+        public virtual void BusinessScenario1_InstallerCompleteWebInstallationRequestSteps(string country, string proposalId, string model_1, string serialNumber_1, string monoPrintCount_1, string colorPrintCount_1, string model_2, string serialNumber_2, string webInstallUrl, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1 - Installer Complete Web Installation Request Steps", exampleTags);
 #line 7
@@ -103,8 +103,13 @@ testRunner.And(string.Format("I have navigated to the Contracts Accepted page as
 #line 15
 testRunner.And(string.Format("I have navigated to the Manage Devices for \"{0}\"", proposalId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
-testRunner.Then("I will be able to see on the Manage Devices page that all devices for the above c" +
-                    "ontract are connected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
+                    "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+testRunner.And(string.Format("I update the print count for \"{0}\" to {1} and {2}", serialNumber_1, monoPrintCount_1, colorPrintCount_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+testRunner.Then(string.Format("I will be able to see on the Manage Devices page that \"{0}\" have updated Print Co" +
+                        "unts", serialNumber_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

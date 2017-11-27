@@ -1743,7 +1743,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
             var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
 
-            addButton.Click();
+            SeleniumHelper.ClickSafety(addButton, findElementTimeout);
 
             return printerContainer;
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.ObjectModel;
 
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
@@ -54,7 +55,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             IWebElement target = null;
             var selector = string.Format(DATA_ATTRIBUTE_SELECTOR_PATTERN, dataAttributeName, dataAttributeValue);
 
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => target = context.FindElement(By.CssSelector(selector)));
+            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } } );
 
             return target;            
         }
@@ -94,6 +95,17 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout));
             IAlert alert = webDriverWait.Until(ExpectedConditions.AlertIsPresent());
             alert.Accept();
+        }
+
+        public  ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
+        {
+            var actionsElement = _webDriver.FindElements(By.CssSelector(actionsButton));
+            return actionsElement;
+        }
+
+        public void ClickSafety(IWebElement element, int defaultFindElementTimeout)
+        {
+            WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
         }
     }
 }

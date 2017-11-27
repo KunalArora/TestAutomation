@@ -31,6 +31,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSetCommunicationMethodPage _dealerSetCommunicationMethodPage;
         private DealerSetInstallationTypePage _dealerSetInstallationTypePage;
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
+        private DealerSendSwapInstallationEmailPage _dealerSwapInstallationEmailPage;
         private DealerContractsAcceptedPage _dealerContractsAcceptedPage;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
@@ -102,6 +103,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             //Use contextData to retrieve proposalId
             _dealerManageDevicesPage = _mpsDealerContractStepActions.NavigateToManageDevicesPage(_dealerContractsAcceptedPage, proposalId);
+            _contextData.ProposalId = proposalId;
         }
 
         //Similar function is already present in this file so, refactor this particular function.
@@ -135,11 +137,40 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.VerifyInstallationRequestCreated(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
         }
 
-        [Then(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected")]
-        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnected()
+        [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
+        public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
             _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, _contextData.PrintersProperties);
         }
+
+        [When(@"I update the print count for ""(.*)"" to (.*) and (.*)")]
+        public void WhenIUpdateThePrintCountForToAnd(string serialNumber, int monoPrintCount, int colorPrintCount)
+        {
+            _mpsDealerContractStepActions.UpdatePrintCounts(serialNumber, monoPrintCount, colorPrintCount);
+        }
+
+        [Then(@"I will be able to see on the Manage Devices page that ""(.*)"" have updated Print Counts")]
+        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatHaveUpdatedPrintCounts(string serialNumber)
+        {
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
+            _mpsDealerContractStepActions.CheckForUpdatedPrintCount(_dealerManageDevicesPage, serialNumber);
+        }
+
+        [Then(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheInstalledDeviceIsSetBeingReplacedOnTheManageDevicesPageForTheAboveProposal()
+        {
+            _mpsDealerContractStepActions.VerifySwappedDeviceStatus(_dealerManageDevicesPage, _contextData.SwapDeviceSerialNumber);
+        }
+
+        [When(@"I sign the above proposal")]
+        public void WhenISignTheAboveProposal()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.NavigateToDashboardPage(_urlResolver.BaseUrl);
+            var dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerContractsApprovedProposalPage(dealerDashboardPage);
+            var dealerContractsSummaryPage = _mpsDealerProposalStepActions.ClickViewOffer(dealerProposalsApprovedPage, _contextData.ProposalId);
+            var dealerContractsAwaitingAcceptancePage = _mpsDealerProposalStepActions.SignToContract(dealerContractsSummaryPage);
+        }
+
 
     }
 }

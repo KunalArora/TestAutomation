@@ -586,6 +586,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerSendForApproverPage>(Driver);
         }
 
+        public void ClickOnSubmitForApproval(int proposalId, string proposalName, int timeout, IWebDriver driver)
+        {
+            ClearAndType(ProposalFilter, proposalId.ToString());
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), timeout);
+            var actionsElement = ActionsDropdownElement(actionsButton);
+            actionsElement.Last().Click();
+            var submitForApprovalElement = ActionsModule.ConvertButtonElement(driver);
+            submitForApprovalElement.Click();
+        }
+
         public void FindExistingPoposalList()
         {
             TestCheck.AssertIsNotNull(proposalListContainerElement,

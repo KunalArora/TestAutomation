@@ -62,7 +62,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
             }
             else
             {
-                new NullReferenceException(string.Format("Customer = {0} not found ", customerInformationName));
+                new Exception(string.Format("Customer = {0} not found ", customerInformationName));
             }
         }
     }

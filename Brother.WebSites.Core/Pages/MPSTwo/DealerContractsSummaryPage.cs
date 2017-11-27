@@ -1,4 +1,5 @@
 ﻿using System;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -8,13 +9,35 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsSummaryPage : BasePage
+    public class DealerContractsSummaryPage : BasePage, IPageObject
     {
         public static string Url = "/mps/dealer/contracts/summary";
+        private const string _validationElementSelector = ".js-mps-contract-summary-sign-proposal"; // Sign button
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
+        }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return Url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper
+        {
+            get; set;
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]

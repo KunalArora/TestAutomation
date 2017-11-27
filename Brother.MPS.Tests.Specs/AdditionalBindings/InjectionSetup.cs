@@ -43,6 +43,10 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<DefaultProposalHelper, IProposalHelper>();
             _container.RegisterTypeAs<SeleniumHelper, ISeleniumHelper>();
             _container.RegisterTypeAs<ExpectedTranslationService, ITranslationService>();
+            _container.RegisterTypeAs<WebRequestService, IWebRequestService>();
+            _container.RegisterTypeAs<DeviceSimulatorService, IDeviceSimulatorService>();
+            _container.RegisterTypeAs<RunCommandService, IRunCommandService>();
+            _container.RegisterTypeAs<MpsWebToolsService, IMpsWebToolsService>();
         }
 
         private IContextData setContextData()

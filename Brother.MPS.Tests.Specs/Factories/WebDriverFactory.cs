@@ -30,6 +30,7 @@ namespace Brother.Tests.Specs.Factories
                 return _context.Get<IWebDriver>(key);
             }
             if (chromeOptions == null) { chromeOptions = new ChromeOptions();}
+            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
             var webDriverInstance = new ChromeDriver(chromeOptions);
             webDriverInstance.Manage().Window.Maximize();
             _context.Add(key, webDriverInstance);

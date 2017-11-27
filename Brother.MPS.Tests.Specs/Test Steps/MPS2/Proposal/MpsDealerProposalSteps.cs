@@ -6,7 +6,6 @@ using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using Brother.Tests.Specs.Domain.Enums;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -39,8 +38,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsCreateClickPricePage _dealerProposalsCreateClickPricePage;
         private DealerProposalsCreateSummaryPage _dealerProposalsCreateSummaryPage;
         private CloudExistingProposalPage _cloudExistingProposalPage;
-        private DealerCustomersManagePage _dealerCustomersManagePage;
-        private DealerCustomersExistingPage _dealerCustomersExistingPage;
+        private DealerContractsAwaitingAcceptancePage _dealerContractsAcceptedPage;
 
         public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -67,8 +65,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
         }
 
-        [Given(@"I have navigated to the Create Proposal page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheCreateProposalPageAsRoleFromCountry(string role, string country)
+        [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string role, string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
@@ -82,6 +80,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                     ScenarioContext.Current.Pending();
                     break;
             }
+        }
+
+        [Given(@"I have navigated to the Create Proposal page as a ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateProposalPageAsRoleFromCountry(string role, string country)
+        {
+            GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(role, country);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -105,14 +109,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I create a new customer for the proposal")]
         public void WhenICreateANewCustomerForTheProposal()
         {
-            //_mpsDealerProposalStepActions.CreateCustomerForProposal()
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(_dealerProposalsCreateCustomerInformationPage);
         }
 
         [When(@"I skip customer creation for the proposal")]
         public void WhenISkipCustomerCreationForTheProposal()
         {
-            //_mpsDealerProposalStepActions.SkipCustomerCreationForProposal()
-            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalCustomerInformationAndProceed(_dealerProposalsCreateCustomerInformationPage, CustomerInformationOption.Skip);
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.SkipCustomerCreationForProposal(_dealerProposalsCreateCustomerInformationPage);
         }
 
         [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
@@ -161,6 +164,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //wraps up several actions - view summary, save proposal, navigate to open proposals, submit for approval
             //_contextData.ProposalId can be be populated on the summary page - use attribute data-mps-qa-id of 
             //IWebElement property SummaryPageContractIdElement
+            var cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage);
+            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(cloudExistingProposalPage, _contextData.ProposalId/*data-mps-qa-id*/, _contextData.ProposalName);
+            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage, _contextData.Country);
+            var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
+            var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
+            DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
+            _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
         }
 
         [When(@"I add a printer to the proposal")]
@@ -180,5 +190,22 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             //_dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
         }
+
+        [When(@"I locate the proposal with id ""(.*)"" and submit it for approval")]
+        public void WhenILocateTheProposalWithIdAndSubmitItForApproval(int id)
+        {
+            _contextData.ProposalId = id;
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerProposalsInprogressPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsInprogressPage(dealerDashboardPage);
+            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsInprogressPage);
+            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(dealerProposalsConvertCustomerInformationPage);
+            var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
+            var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
+            _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+
+        }
+
+
     }
 }

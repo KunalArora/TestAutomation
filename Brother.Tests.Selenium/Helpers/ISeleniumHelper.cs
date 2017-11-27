@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using System.Collections.ObjectModel;
 
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
@@ -37,6 +38,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout);
         List<IWebElement> FindRowElementsWithinTable(ISearchContext context);
         string SelectDropdownElementTextByIndex(IWebElement element, int index);
+        void ClickSafety(IWebElement element, int defaultFindElementTimeout);
         void AcceptJavascriptAlert(int timeout);
+        ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton);
     }
 }

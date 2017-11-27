@@ -145,6 +145,7 @@
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
@@ -219,6 +220,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCreateSwapInstallationRequestSteps.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerDownloadsProposalSummaryPDF.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +234,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InstallerCompleteWebSwapInstallationRequest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApprovalProposalContractSteps.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1470,6 +1481,7 @@
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsInstallerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsDealerContractSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
@@ -1635,9 +1647,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCreateSwapInstallationRequestSteps.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerDownloadsProposalSummaryPDF.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApprovalProposalContractSteps.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
