@@ -7,5 +7,6 @@
         int DefaultFindElementTimeout { get; set; }
         int DefaultRetryCount { get; set; }
         int DefaultDeviceSimulatorTimeout { get; set; }
+        int DefaultRemoteWebDriverTimeout { get; set; }
     }
 }
