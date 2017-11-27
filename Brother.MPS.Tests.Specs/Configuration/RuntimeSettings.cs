@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brother.Tests.Specs.Configuration
+﻿namespace Brother.Tests.Specs.Configuration
 {
-    public class RuntimeSettings
+    public class RuntimeSettings : IRuntimeSettings
     {
         public RuntimeSettings()
         {
