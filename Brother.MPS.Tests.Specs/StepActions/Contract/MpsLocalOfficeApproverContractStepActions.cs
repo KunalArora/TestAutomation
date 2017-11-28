@@ -25,7 +25,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings,
+            IRuntimeSettings runtimeSettings,
             DeviceSimulatorService deviceSimulatorService,
             RunCommandService runCommandService)
                     : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)

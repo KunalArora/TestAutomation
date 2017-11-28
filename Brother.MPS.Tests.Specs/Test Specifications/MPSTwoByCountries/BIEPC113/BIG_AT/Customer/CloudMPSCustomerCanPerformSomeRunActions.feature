@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT @MPS @BIEPC113
+﻿@ignore @TEST @UAT @MPS @BIEPC113 @HIGH
 Feature: GermanCustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer

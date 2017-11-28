@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Accr
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class CloudMPSFinanceCanDownloadAccrualsFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Accr
                         "ignore",
                         "UAT",
                         "MPS",
-                        "TEST"});
+                        "TEST",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

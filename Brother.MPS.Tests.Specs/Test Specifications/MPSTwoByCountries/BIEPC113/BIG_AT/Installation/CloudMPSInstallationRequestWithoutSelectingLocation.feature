@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC113
+﻿@MPS @UAT @TEST @BIEPC113 @MEDIUM
 Feature: GermanInstallationRequestCannotBeCreatedWithoutSelectingLocation
 	In order to begin installation request creation
 	As a Dealer 

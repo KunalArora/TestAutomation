@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC113
+﻿@MPS @TEST @UAT @BIEPC113 @MEDIUM
 Feature: CloudMPSGermanDealerCanCopyADeclineProposal
 	In order to resubmit a declined proposal
 	As a dealer 

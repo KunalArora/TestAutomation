@@ -6,11 +6,11 @@ Feature: TableExample
 
 Scenario Outline: Create a new proposal
 	Given I create a proposal with these printers:
-		| Model            | Price            | Installation            |
-		| <PrinterModel_1> | <PrinterPrice_1> | <PrinterInstallation_1> |
-		| <PrinterModel_2> | <PrinterPrice_2> | <PrinterInstallation_2> |
-		| <PrinterModel_3> | <PrinterPrice_3> | <PrinterInstallation_3> |
-		| <PrinterModel_4> | <PrinterPrice_4> | <PrinterInstallation_4> |
+		| Model            | Price            | Installation            | Delivery |
+		| <PrinterModel_1> | <PrinterPrice_1> | <PrinterInstallation_1> | Yes      |
+		| <PrinterModel_2> | <PrinterPrice_2> | <PrinterInstallation_2> | No       |
+		| <PrinterModel_3> | <PrinterPrice_3> | <PrinterInstallation_3> | No       |
+		| <PrinterModel_4> | <PrinterPrice_4> | <PrinterInstallation_4> | Yes      |
 
 Scenarios: 
 		| ContractType     | UsageType      | ServicePackType | ContractTerm | Customer | PrinterModel_1 | PrinterPrice_1 | PrinterInstallation_1 | PrinterModel_2 | PrinterPrice_2 | PrinterInstallation_2 | PrinterModel_3 | PrinterPrice_3 | PrinterInstallation_3 | PrinterModel_4 | PrinterPrice_4 | PrinterInstallation_4 |

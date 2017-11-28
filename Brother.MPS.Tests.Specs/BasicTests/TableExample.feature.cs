@@ -101,23 +101,28 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
                         "Price",
-                        "Installation"});
+                        "Installation",
+                        "Delivery"});
             table1.AddRow(new string[] {
                         string.Format("{0}", printerModel_1),
                         string.Format("{0}", printerPrice_1),
-                        string.Format("{0}", printerInstallation_1)});
+                        string.Format("{0}", printerInstallation_1),
+                        "Yes"});
             table1.AddRow(new string[] {
                         string.Format("{0}", printerModel_2),
                         string.Format("{0}", printerPrice_2),
-                        string.Format("{0}", printerInstallation_2)});
+                        string.Format("{0}", printerInstallation_2),
+                        "No"});
             table1.AddRow(new string[] {
                         string.Format("{0}", printerModel_3),
                         string.Format("{0}", printerPrice_3),
-                        string.Format("{0}", printerInstallation_3)});
+                        string.Format("{0}", printerInstallation_3),
+                        "No"});
             table1.AddRow(new string[] {
                         string.Format("{0}", printerModel_4),
                         string.Format("{0}", printerPrice_4),
-                        string.Format("{0}", printerInstallation_4)});
+                        string.Format("{0}", printerInstallation_4),
+                        "Yes"});
 #line 8
  testRunner.Given("I create a proposal with these printers:", ((string)(null)), table1, "Given ");
 #line hidden

@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC110 @CRITICAL 
+﻿@MPS @UAT @TEST @BIEPC110  
 Feature: CloudMPSResetInstallation
 	In order for an installer to be able to redo installation
 	As a installer 
@@ -8,6 +8,7 @@ Feature: CloudMPSResetInstallation
 ## The device simulator will be used to simulate connection to BOC/Medio
 
 
+@SMOKE
 Scenario Outline: MPS BUK Reset Installation Before Completing Installation
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"
@@ -34,7 +35,7 @@ Scenarios:
 	| Cloud MPS Local Office Approver | United Kingdom | Purchase & Click with Service | Minimum Volume | Cloud MPS Dealer | Cloud  | BOR  | A1T010559    |
 
 
-@ignore
+@CRITICAL
 Scenario Outline: MPS BUK Reset Installation After Completing Installation
 	Given Dealer have created a contract of "<ContractType>" and "<UsageType>"
 	And I sign into Cloud MPS as a "<Role>" from "<Country>"

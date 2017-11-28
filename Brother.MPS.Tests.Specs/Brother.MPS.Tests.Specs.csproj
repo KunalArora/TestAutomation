@@ -89,6 +89,7 @@
       <DependentUpon>TableExample.feature</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CommandLineSettings.cs" />
+    <Compile Include="Configuration\IRuntimeSettings.cs" />
     <Compile Include="Configuration\RuntimeSettings.cs" />
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />

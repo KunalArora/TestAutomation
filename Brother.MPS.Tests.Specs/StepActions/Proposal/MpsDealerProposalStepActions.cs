@@ -33,7 +33,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             ScenarioContext context,
             IUrlResolver urlResolver,
             IPdfHelper pdfHelper,
-            RuntimeSettings runtimeSettings,
+            IRuntimeSettings runtimeSettings,
             MpsSignInStepActions mpsSignIn)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
@@ -260,7 +260,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var fileList = ListDownloadsFolder();
             ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
             var task = WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownLoadTimeout)))
+            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
             {
                 return task.Result;
             }else

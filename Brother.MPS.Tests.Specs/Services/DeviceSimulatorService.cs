@@ -17,12 +17,12 @@ namespace Brother.Tests.Specs.Services
         private const string DEVICE_ID_PATTERN = "babeface{0}";
 
         private readonly IWebRequestService _webRequestService;
-        private readonly RuntimeSettings _runtimeSettings;
+        private readonly IRuntimeSettings _runtimeSettings;
 
-        public DeviceSimulatorService(IWebRequestService webRequestService)
+        public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings)
         {
             _webRequestService = webRequestService;
-            _runtimeSettings = new RuntimeSettings();
+            _runtimeSettings = runtimeSettings;
         }
 
         /// <summary>
