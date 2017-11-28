@@ -1,8 +1,10 @@
-﻿using Brother.Tests.Specs.Configuration;
+﻿using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -11,6 +13,9 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -20,12 +25,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IContextData _contextData;
         private readonly IWebDriver _dealerWebDriver;
+        private readonly IPdfHelper _pdfHelper;
 
         public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
+            IPdfHelper pdfHelper,
             RuntimeSettings runtimeSettings,
             MpsSignInStepActions mpsSignIn)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
@@ -33,6 +40,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
+            _pdfHelper = pdfHelper;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -233,10 +241,96 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.LoadUrl<DealerDashBoardPage>(baseUrl+dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _dealerWebDriver);
         }
 
+        public DealerProposalsApprovedPage NavigateToDealerProposalsApprovedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
+            var dealerProposalsInprogressPage =  PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerProposalsInprogressPage.approvedProposalsTabElement, dealerProposalsInprogressPage);
+            return PageService.GetPageObject<DealerProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
+        }
+
+        public void DeletePdfFileErrorIgnored(string pdfFile)
+        {
+            try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
+        }
+
+        public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue)
+        {
+            if (_pdfHelper.PdfExists(pdfFile) == false)
+            {
+                throw new Exception("pdf not exists file=" + pdfFile);
+            }
+            var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue.SummaryTable_ContractTerm,"");
+            string[] searchTextArray =
+            {
+                // TODO need localize to be implement MPS-4975.
+                string.Format("{0} {1}", "Agreement period:", int.Parse(contractTermDigitString)*12),
+                string.Format("{0} {1}", "Total Installed Purchase Price:", summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
+                string.Format("{0} {1}", "Total Quarterly in Arrears Minimum Click Charge:", summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
+            };
+            searchTextArray.ToList().ForEach(expected =>
+               {
+                   if( _pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                   {
+                       throw new Exception(string.Format("string not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected)) ;
+                   }
+               });
+        }
+ 
+        public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsApprovedPage dealerProposalsApprovedPage, string proposalId)
+        {
+            dealerProposalsApprovedPage.ClickOnSummaryPage(proposalId, RuntimeSettings.DefaultPageLoadTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
         {
             dealerProposalsConvertTermAndTypePage.NextButton.Click();
             return PageService.GetPageObject<DealerProposalsConvertProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public string DownloadPdf(DealerProposalsSummaryPage dealerProposalsSummaryPage)
+        {
+            var fileList = ListDownloadsFolder();
+            ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
+            var task = WaitforNewfile(fileList);
+            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownLoadTimeout)))
+            {
+                return task.Result;
+            }else
+            {
+                throw new Exception("download pdf timeout");
+            }
+        }
+
+        private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf")
+        {
+            // note: FileWatcher is not detecting file...
+            for (int safetycount=0;safetycount < 1000; safetycount++)
+            {
+                var newlist = ListDownloadsFolder(pattern);
+                var difflist = newlist.Except(orglist);
+                if(difflist.Count() > 0)
+                {
+                    return difflist.First();
+                }
+                await Task.Delay(new TimeSpan(0, 0, 1));
+            }
+            throw new Exception("safety count retryout");
+        }
+
+        private string[] ListDownloadsFolder(string pattern="*.pdf")
+        {
+            try
+            {
+                string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
+                return files;
+            }catch
+            {
+                return new string[0];
+            }
+            
+            
         }
 
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)

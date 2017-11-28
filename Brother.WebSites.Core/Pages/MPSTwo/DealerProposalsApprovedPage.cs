@@ -58,4 +58,47 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
     }
+
+    // CloudExistingProposalPage
+    public class DealerProposalsApprovedPage : BasePage, IPageObject
+    {
+        private const string _url = "/mps/dealer/proposals/approved";
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/proposals/approved\"]";// list Next 
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        // content_1_PersonListFilter_InputFilterBy
+        [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
+        public IWebElement ProposalFilter;
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
+        public IList<IWebElement> ProposalListProposalNameRowElement;
+
+        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+
+        public void ClickOnSummaryPage(string text, int timeout, IWebDriver driver)
+        {
+            ClearAndType(ProposalFilter, text);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, timeout);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), timeout);
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+        }
+    }
+
+
 }

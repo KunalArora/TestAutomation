@@ -47,6 +47,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<DeviceSimulatorService, IDeviceSimulatorService>();
             _container.RegisterTypeAs<RunCommandService, IRunCommandService>();
             _container.RegisterTypeAs<MpsWebToolsService, IMpsWebToolsService>();
+            _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
         }
 
         private IContextData setContextData()

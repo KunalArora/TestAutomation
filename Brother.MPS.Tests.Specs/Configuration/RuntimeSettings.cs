@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brother.Tests.Specs.Configuration
+﻿namespace Brother.Tests.Specs.Configuration
 {
     public class RuntimeSettings
     {
@@ -15,6 +9,7 @@ namespace Brother.Tests.Specs.Configuration
             DefaultFindElementTimeout = 10;
             DefaultRetryCount = 10;
             DefaultDeviceSimulatorTimeout = 10;
+            DefaultDownLoadTimeout = 30;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -22,5 +17,6 @@ namespace Brother.Tests.Specs.Configuration
         public int DefaultFindElementTimeout { get; set; }
         public int DefaultRetryCount { get; set; }
         public int DefaultDeviceSimulatorTimeout { get; set; }
+        public int DefaultDownLoadTimeout { get; set; }
     }
 }

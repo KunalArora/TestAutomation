@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1 - Dealer Downloads Proposal Summary PDF")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "xxxxxx", null)]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "161553", null)]
         public virtual void BusinessScenario1_DealerDownloadsProposalSummaryPDF(string country, string proposalId, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1 - Dealer Downloads Proposal Summary PDF", exampleTags);

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Domain.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Factories
@@ -15,6 +11,14 @@ namespace Brother.Tests.Specs.Factories
     {
         private ScenarioContext _context;
         private const string _webDriverKeyPattern = "__driverInstance_{0}";
+
+        public static ChromeOptions CreateDefaultChromeOptions()
+        {
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
+            chromeOptions.AddUserProfilePreference("download.default_directory", TestController.DownloadPath);
+            return chromeOptions;
+        }
 
         public WebDriverFactory(ScenarioContext context)
         {
@@ -29,8 +33,9 @@ namespace Brother.Tests.Specs.Factories
             {
                 return _context.Get<IWebDriver>(key);
             }
-            if (chromeOptions == null) { chromeOptions = new ChromeOptions();}
-            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
+            if (chromeOptions == null) {
+                chromeOptions = CreateDefaultChromeOptions();
+            }
             var webDriverInstance = new ChromeDriver(chromeOptions);
             webDriverInstance.Manage().Window.Maximize();
             _context.Add(key, webDriverInstance);

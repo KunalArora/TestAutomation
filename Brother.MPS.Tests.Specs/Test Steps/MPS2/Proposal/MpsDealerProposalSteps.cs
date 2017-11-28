@@ -1,16 +1,15 @@
 ﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Specs.Helpers;
-using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
-
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -38,7 +37,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsCreateClickPricePage _dealerProposalsCreateClickPricePage;
         private DealerProposalsCreateSummaryPage _dealerProposalsCreateSummaryPage;
         private CloudExistingProposalPage _cloudExistingProposalPage;
-        private DealerContractsAwaitingAcceptancePage _dealerContractsAcceptedPage;
+        private DealerProposalsApprovedPage _dealerProposalsApprovedPage;
+        private DealerProposalsSummaryPage _dealerProposalsSummaryPage;
+        private SummaryValue _poposalSummaryValues;
+
+        // other
+        private string _pdfFile;
 
         public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -203,9 +207,51 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
             var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
             _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+        }
+
+        [Given(@"I have navigated to the Approved Proposals page as a ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheApprovedProposalsPageAsAFrom(string role, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            switch (role)
+            {
+                case "Cloud MPS Dealer":
+                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+            _dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsApprovedPage(_dealerDashboardPage);
+        }
+
+        [Given(@"I navigate to the Proposal summary page for proposal id ""(.*)""")]
+        public void GivenINavigateToTheProposalSummaryPageForProposalId(string proposalId)
+        {
+            _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage, proposalId);
+            _poposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
 
         }
 
+        [When(@"I click the download proposal button")]
+        public void WhenIClickTheDownloadProposalButton()
+        {
+            _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
+        }
+
+        [Then(@"I should be able to open the PDF")]
+        public void ThenIShouldBeAbleToOpenThePDF()
+        {
+            try {
+                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _poposalSummaryValues);
+            }
+            finally
+            {
+                _mpsDealerProposalStepActions.DeletePdfFileErrorIgnored(_pdfFile);
+            }
+            
+        }
 
     }
 }
