@@ -1154,6 +1154,24 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return numberFormatInfo;
 
         }
+
+        public static string GetCurrencySymbol(string countryIso)
+        {
+            string currencySymbol;
+            switch (countryIso)
+            {
+                case "GB":
+                    currencySymbol = "£";
+                    break;
+                
+                // TODO Add currency symbols for more countries
+
+                default:
+                    currencySymbol = "€";
+                    break;
+            }
+            return currencySymbol;
+        }
         
 
         public static decimal GetEuroValue(string money)

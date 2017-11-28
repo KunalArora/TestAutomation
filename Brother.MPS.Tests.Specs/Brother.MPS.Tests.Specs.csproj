@@ -134,9 +134,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicePack.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\CalculationService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\DeviceSimulatorService.cs" />
     <Compile Include="Services\ExpectedTranslationService.cs" />
+    <Compile Include="Services\ICalculationService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
     <Compile Include="Services\IMpsWebToolsService.cs" />

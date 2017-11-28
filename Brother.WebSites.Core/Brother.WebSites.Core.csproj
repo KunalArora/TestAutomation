@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Domain\Constants\InstallationRequestStatus.cs" />
     <Compile Include="Domain\Constants\InstalledPrinterStatus.cs" />
+    <Compile Include="Domain\Constants\ServicePackType.cs" />
     <Compile Include="Domain\Constants\SwapType.cs" />
     <Compile Include="Pages\BrotherMainSite\ContentEditorPage.cs" />
     <Compile Include="Pages\BrotherMainSite\DownloadPage.cs" />

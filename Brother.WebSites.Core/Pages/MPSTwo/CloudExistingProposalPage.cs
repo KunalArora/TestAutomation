@@ -693,6 +693,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifySavedProposalInOpenProposalsList( int proposalId, string proposalName, int timeout )
         {
+            // Wait for footer to load & then filter out the proposal
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, timeout);
             ClearAndType(ProposalFilter, proposalId.ToString());
             try
