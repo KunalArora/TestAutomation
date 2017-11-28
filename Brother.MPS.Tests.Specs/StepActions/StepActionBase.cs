@@ -21,14 +21,14 @@ namespace Brother.Tests.Specs.StepActions
         protected readonly IPageService PageService;
         protected readonly ScenarioContext ScenarioContext;
         protected readonly IUrlResolver UrlResolver;
-        protected readonly RuntimeSettings RuntimeSettings;
+        protected readonly IRuntimeSettings RuntimeSettings;
 
         public StepActionBase(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext scenarioContext,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings)
+            IRuntimeSettings runtimeSettings)
         {
             WebDriverFactory = webDriverFactory;
             ContextData = contextData;

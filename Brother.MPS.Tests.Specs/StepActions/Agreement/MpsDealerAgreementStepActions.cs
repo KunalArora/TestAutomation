@@ -26,7 +26,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings,
+            IRuntimeSettings runtimeSettings,
             MpsSignInStepActions mpsSignIn)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {

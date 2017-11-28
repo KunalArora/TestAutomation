@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using BoDi;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -35,6 +36,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             var webDriver = TestController.CurrentDriver; //temporary until static classes are refactored
             _container.RegisterInstanceAs<IWebDriver>(webDriver); //default driver when only a single instance is required
             _container.RegisterInstanceAs<IContextData>(setContextData());
+            _container.RegisterInstanceAs<IRuntimeSettings>(InitialiseRuntimeSettings());
             _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
             _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
@@ -83,6 +85,36 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultRuntimeEnvironment");
             return defaultRuntimeEnvironment ?? "UAT";
+        }
+
+        private RuntimeSettings InitialiseRuntimeSettings()
+        {
+            RuntimeSettings runtimeSettings = new RuntimeSettings(
+                    defaultDeviceSimulatorTimeout: AppSettingToInt("RuntimeSettings.DefaultDeviceSimulatorTimeout"),
+                    defaultFindElementTimeout: AppSettingToInt("RuntimeSettings.DefaultFindElementTimeout"),
+                    defaultPageLoadTimeout: AppSettingToInt("RuntimeSettings.DefaultPageLoadTimeout"),
+                    defaultPageObjectTimeout: AppSettingToInt("RuntimeSettings.DefaultPageObjectTimeout"),
+                    defaultRemoteWebDriverTimeout: AppSettingToInt("RuntimeSettings.DefaultRemoteWebDriverTimeout"),
+                    defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount")
+            );
+
+            return runtimeSettings;
+        }
+
+        private int? AppSettingToInt(string appSettingName)
+        {
+            var appSetting = System.Configuration.ConfigurationManager.AppSettings.Get(appSettingName);
+            
+            if (appSetting != null)
+            {
+                int parsedSetting = 0;
+                if (int.TryParse(appSetting, out parsedSetting))
+                {
+                    return parsedSetting;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings) : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            IRuntimeSettings runtimeSettings) : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             
         }
