@@ -188,57 +188,23 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }             
         }
 
-        private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
-            string proposalName,
-            string leadCodeReference,
-            string contractType)
-        {
-            dealerProposalsCreateDescriptionPage.PopulateProposalName(proposalName);
-        }
-
-        private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
-            string printerName,
-            string printerPrice,
-            string installationPack,
-            bool delivery)
-        {
-            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery, RuntimeSettings.DefaultFindElementTimeout);
-        }
-
-        private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
-        {
-            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( 
-                printerName, 
-                coverageMono, 
-                coverageColour, 
-                volumeMono, 
-                volumeColour, 
-                RuntimeSettings.DefaultFindElementTimeout );
-        }
-
-        private bool VerifyClickPriceValues(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
-        {
-            return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultPageObjectTimeout);
-        }
-
-        public DealerProposalsConvertCustomerInformationPage SubmitForApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName )
+        public DealerProposalsConvertCustomerInformationPage SubmitForApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName)
         {
             _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage,  Country country, string payment = "Invoice")
+        public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage, Country country, string payment = "Invoice")
         {
             dealerProposalsConvertCustomerInformationPage.FillCustomerDetails(payment, country.Name);
             dealerProposalsConvertCustomerInformationPage.nextButtonElement.Click();
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerDashBoardPage NavigateToDashboardPage(string baseUrl )
+        public DealerDashBoardPage NavigateToDashboardPage(string baseUrl)
         {
             var dashBoardPage = new DealerDashBoardPage();
-            return PageService.LoadUrl<DealerDashBoardPage>(baseUrl+dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _dealerWebDriver);
+            return PageService.LoadUrl<DealerDashBoardPage>(baseUrl + dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _dealerWebDriver);
         }
 
         public DealerProposalsApprovedPage NavigateToDealerProposalsApprovedPage(DealerDashBoardPage dealerDashboardPage)
@@ -364,7 +330,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
         {
             dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
-            return  PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); 
+            return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
 
@@ -401,7 +367,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerContractsApprovedProposalPage NavigateToDealerContractsApprovedProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
             dealerDashboardPage.ExistingContractLinkElement.Click();
-            return  PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerProposalsApprovedPage, int proposalId)
@@ -416,11 +382,46 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        #region private methods
+
+        private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
+            string proposalName,
+            string leadCodeReference,
+            string contractType)
+        {
+            dealerProposalsCreateDescriptionPage.PopulateProposalName(proposalName);
+        }
+
+        private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
+            string printerName,
+            string printerPrice,
+            string installationPack,
+            bool delivery)
+        {
+            dealerProposalsCreateProductsPage.PopulatePrinterDetails(printerName, printerPrice, installationPack, delivery, RuntimeSettings.DefaultFindElementTimeout);
+        }
+
+        private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
+            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
+        {
+            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( 
+                printerName, 
+                coverageMono, 
+                coverageColour, 
+                volumeMono, 
+                volumeColour, 
+                RuntimeSettings.DefaultFindElementTimeout );
+        }
+
+        private bool VerifyClickPriceValues(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
+        {
+            return dealerProposalsCreateClickPricePage.VerifyClickPriceValues(RuntimeSettings.DefaultFindElementTimeout);
+        }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
-
+        #endregion
     }
-}
+ }

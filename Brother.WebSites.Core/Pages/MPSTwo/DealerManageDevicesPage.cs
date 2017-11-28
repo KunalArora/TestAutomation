@@ -60,6 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
+        private const string InstallationRequestSelector = ".js-mps-show-installation-request-email";
         private const string DeviceListContainerSelector = ".js-mps-device-list-container";
         private const string DeviceListContainerRowSelector = ".js-mps-searchable";
         private const string DeviceSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
@@ -698,7 +699,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     driver.Navigate().Refresh();
                     retries++;
                 }
-            } while ((!elementStatus) && (retries <= retryCount)) ;
+            } while ((!elementStatus) && (retries <= retryCount));
         }
 
         public void IsInstallationCompleted()
@@ -764,7 +765,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CreateRequestElement.Click();
         }
 
-        public bool VerifyInstallationRequestCreated(string installerEmail, string companyLocation, int findElementTimeout)
+        public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, int findElementTimeout)
         {
             var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
             var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
@@ -775,20 +776,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
                 var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
                 var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
-                if(InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals("Not started"))
+                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals("Not started"))
                 {
-                    // Below code can be deleted when merging the scenario
-                    // ---------- Cancel Installation Request Code
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
                     ActionsButtonElement.Click();
-                    var CancelInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, CancelInstallationRequestSelector, findElementTimeout);
-                    CancelInstallationRequestButtonElement.Click();
-                    SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);
-                    // ----------
-                    return true;
+                    var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector, findElementTimeout);
+                    ShowInstallationRequestButtonElement.Click();
+
+                    var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body", findElementTimeout);
+                    var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a", findElementTimeout);
+                    var url = InstallationRequestUrlElement.GetAttribute("href");
+
+                    InstallationRequestClosePopUpElement.Click();
+                    return url;
                 }
             }
-            return false;
+            return null;
         }
 
         public void ClickOnSwapDevice(string serialNumber, int findElementTimeout)

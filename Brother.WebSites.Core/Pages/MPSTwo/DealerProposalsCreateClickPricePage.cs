@@ -981,9 +981,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public bool VerifyClickPriceValues(int pageObjectTimeout)
+        public bool VerifyClickPriceValues(int findElementTimeout)
         {
-            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, pageObjectTimeout);
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, findElementTimeout);
             try
             {
                 VerifyClickPriceValueIsDisplayed();
@@ -991,7 +991,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch
             {
-                //catch Assertion exception
                 return false;
             }                
         }

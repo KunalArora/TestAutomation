@@ -17,7 +17,7 @@ namespace Brother.Tests.Specs.Resolvers
         private const string TEST_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.test.brother.eu.com";
 
         private const string UAT_BASE_URL_FORMAT = "https://online65.{0}.cds.uat.brother.eu.com";
-        private const string UAT_CMS_URL_FORMAT = "http://online65.{0}.cms.uat.brother.eu.com";
+        private const string UAT_CMS_URL_FORMAT = "https://online65.{0}.cms.uat.brother.eu.com";
         private const string UAT_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.uat.brother.eu.com";
 
         private const string PRD_BASE_URL_FORMAT = "https://atyourside.brother.{0}";

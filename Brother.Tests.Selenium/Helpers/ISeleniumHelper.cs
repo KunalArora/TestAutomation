@@ -41,5 +41,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         void ClickSafety(IWebElement element, int defaultFindElementTimeout);
         void AcceptJavascriptAlert(int timeout);
         ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton);
+        void CloseBrowserTabsExceptMainWindow();
     }
 }

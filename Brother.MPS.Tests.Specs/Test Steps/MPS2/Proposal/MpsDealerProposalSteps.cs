@@ -70,26 +70,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         }
 
         [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string role, string country)
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
-
-            switch (role)
-            {
-                case "Cloud MPS Dealer":
-                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
+            
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
-        [Given(@"I have navigated to the Create Proposal page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheCreateProposalPageAsRoleFromCountry(string role, string country)
+        [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom(string country)
         {
-            GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(role, country);
+            GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(country);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -168,13 +160,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //wraps up several actions - view summary, save proposal, navigate to open proposals, submit for approval
             //_contextData.ProposalId can be be populated on the summary page - use attribute data-mps-qa-id of 
             //IWebElement property SummaryPageContractIdElement
+            
+            //Refactor
             var cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage);
-            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(cloudExistingProposalPage, _contextData.ProposalId/*data-mps-qa-id*/, _contextData.ProposalName);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
             var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage, _contextData.Country);
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
-            DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
-            _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+            DealerProposalsConvertSummaryPage _dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
+            _mpsDealerProposalStepActions.SubmitForApproval(_dealerProposalsConvertSummaryPage);
         }
 
         [When(@"I add a printer to the proposal")]

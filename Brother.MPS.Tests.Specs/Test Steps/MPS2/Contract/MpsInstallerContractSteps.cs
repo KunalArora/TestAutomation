@@ -32,6 +32,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
         }
 
+        [When(@"a Brother installer has navigated to the Web Installation page and verify Contract Reference")]
+        public void WhenABrotherInstallerHasNavigatedToTheWebInstallationPageAndVerifyContractReference()
+        {
+            var proposalId = _contextData.ProposalId;
+            _installerContractReferenceInstallationPage = _mpsInstallerContractStepActions.NavigateToWebInstallationPage(_contextData.WebInstallUrl);
+            _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
+        }
+
         [Given(@"that a Brother installer has navigated to the Web Installation page at ""(.*)""")]
         public void GivenThatABrotherInstallerHasNavigatedToTheWebInstallationPageAt(string url)
         {
@@ -46,11 +54,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
         }
 
-        [When(@"I enter the serial numbers and complete installation")]
-        public void WhenIEnterTheSerialNumbersAndCompleteInstallation()
+        //[When(@"I verify the Contract Reference")]
+        //public void WhenIVerifyTheContractReference()
+        //{
+        //    var proposalId = _contextData.ProposalId;
+        //    _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
+        //}
+
+        [When(@"Enter the serial numbers and complete installation")]
+        public void WhenEnterTheSerialNumbersAndCompleteInstallation()
         {
             var products = _contextData.PrintersProperties;
-            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products);
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver);
         }
    }
 }

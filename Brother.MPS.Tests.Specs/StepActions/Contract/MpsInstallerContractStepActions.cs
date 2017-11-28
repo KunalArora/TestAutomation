@@ -49,29 +49,26 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
         }
 
-        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products)
+        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver)
         {
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
             foreach(var product in products)
             {
-                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+                RegisterDeviceOnBOC(product, installationPin);
+                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver);
             }
-            RegisterDeviceOnBOC(products, installationPin);
             _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
             _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
             _installerDeviceInstallationPage.ConfirmInstallationComplete(RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        private void RegisterDeviceOnBOC(IEnumerable<PrinterProperties> products, string installationPin)
+        private void RegisterDeviceOnBOC(PrinterProperties product, string installationPin)
         {
-            foreach (var product in products)
-            {
                 var deviceId = _deviceSimulatorService.CreateNewDevice(product.Model, product.SerialNumber);
                 _deviceSimulatorService.RegisterNewDevice(deviceId, installationPin);
                 _deviceSimulatorService.ChangeDeviceStatus(deviceId, true, true);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
                 product.DeviceId = deviceId;
-            }
         }
     }
 }

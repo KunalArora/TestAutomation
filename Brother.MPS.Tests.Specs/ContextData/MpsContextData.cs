@@ -46,6 +46,7 @@ namespace Brother.Tests.Specs.ContextData
         public IEnumerable<PrinterProperties> PrintersProperties { get; set; }
         public string CustomerInformationName { get; set; }
         public string CustomerEmail { get; set; }
+        public string WebInstallUrl { get; set; }
 
     }
 }

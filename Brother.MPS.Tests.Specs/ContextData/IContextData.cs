@@ -30,5 +30,6 @@ namespace Brother.Tests.Specs.ContextData
         string SwapDeviceSerialNumber { get; set; }
         
         void SetBusinessType(string businessTypeId);
+        string WebInstallUrl { get; set; }
     }
 }

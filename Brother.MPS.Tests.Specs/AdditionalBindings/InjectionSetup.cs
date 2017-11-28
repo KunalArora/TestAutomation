@@ -60,11 +60,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
             string country = region.TwoLetterISORegionName;
 
             //apply defaults, changed per scenario as required
+            CountryService countryService = new CountryService();
+            
             return new MpsContextData
             {
                 Environment = env,
                 Culture = cultureName,
-                BusinessType = Domain.Enums.BusinessType.Type1
+                BusinessType = Domain.Enums.BusinessType.Type1,
+                Country = countryService.GetByName("United Kingdom")
             };
         }
 

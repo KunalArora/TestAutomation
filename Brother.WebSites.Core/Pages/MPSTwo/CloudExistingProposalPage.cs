@@ -44,6 +44,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         private const string DealerDeletingItem = "DealerDeletingItem";
+        private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string SubmitForApprovalButtonSelector = ".js-mps-convert";
+
+
 
 
         private const string proposalTableColumn = @".js-mps-delete-remove td";
@@ -51,6 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalItemsSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove";
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
         private const string ProposalFilterSelectorFormat = "#content_1_ProposalListFilter_InputFilterBy";
+        private const string DataTablesFooterSelector = ".mps-dataTables-footer";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
         private IWebElement DashboradLink;
@@ -688,6 +693,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifySavedProposalInOpenProposalsList( int proposalId, string proposalName, int timeout )
         {
+            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, timeout);
             ClearAndType(ProposalFilter, proposalId.ToString());
             try
             {
@@ -699,5 +705,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return false;
             }
         }
+
+        public void ClickOnSubmitForApprovalForAlreadyCreatedCustomerFlow(int findElementTimeout)
+        {
+           var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+           ActionsButtonElement.Click();
+           var SubmitForApprovalButtonElement = SeleniumHelper.FindElementByCssSelector(SubmitForApprovalButtonSelector, findElementTimeout);
+           SubmitForApprovalButtonElement.Click();
+        }       
     }
 }

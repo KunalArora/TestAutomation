@@ -16,7 +16,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
-        private const string _validationElementSelector = "div.mps-dashboard";
+        private const string _validationElementSelector = "a[href=\"/mps/local-office/approval/proposals\"] .media-heading";
         private const string _url = "/mps/local-office/approval/dashboard";
 
         public string ValidationElementSelector
