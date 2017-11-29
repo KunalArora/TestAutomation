@@ -39,7 +39,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private CloudExistingProposalPage _cloudExistingProposalPage;
         private DealerProposalsApprovedPage _dealerProposalsApprovedPage;
         private DealerProposalsSummaryPage _dealerProposalsSummaryPage;
-        private SummaryValue _poposalSummaryValues;
+        private SummaryValue _proposalSummaryValues;
 
         // other
         private string _pdfFile;
@@ -225,7 +225,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void GivenINavigateToTheProposalSummaryPageForProposalId(string proposalId)
         {
             _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage, proposalId);
-            _poposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
+            _proposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
 
         }
 
@@ -239,7 +239,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void ThenIShouldBeAbleToOpenThePDF()
         {
             try {
-                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _poposalSummaryValues);
+                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _proposalSummaryValues);
             }
             finally
             {

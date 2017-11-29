@@ -1,9 +1,9 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Domain.Enums;
 using OpenQA.Selenium;
-using System;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Factories
@@ -14,7 +14,7 @@ namespace Brother.Tests.Specs.Factories
         private ChromeDriverService _chromeDriverService;
         private const string _webDriverKeyPattern = "__driverInstance_{0}";
 
-        public static ChromeOptions CreateDefaultChromeOptions()
+        private static ChromeOptions CreateDefaultChromeOptions()
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
@@ -37,8 +37,9 @@ namespace Brother.Tests.Specs.Factories
             {
                 return _context.Get<IWebDriver>(key);
             }
-            if (chromeOptions == null) { chromeOptions = new ChromeOptions();}
-            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
+            if (chromeOptions == null) {
+                chromeOptions = CreateDefaultChromeOptions();
+            }
             var capabilities = chromeOptions.ToCapabilities();
             var webDriverInstance = new RemoteWebDriver(_chromeDriverService.ServiceUrl, capabilities, TimeSpan.FromSeconds(200));
 

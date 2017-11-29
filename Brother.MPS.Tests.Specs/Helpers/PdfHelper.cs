@@ -14,12 +14,18 @@ namespace Brother.Tests.Specs.Helpers
         {
             using (var reader = new PdfReader(pdfFileName))
             {
-                var page = 4; // 1 origin
-                var strategy =new SimpleTextExtractionStrategy();
-                var pageText =PdfTextExtractor.GetTextFromPage(reader, page, strategy);
-                var trueIfExist = pageText.Contains(searchText);
-                return trueIfExist;
+                var strategy = new SimpleTextExtractionStrategy();
+                for (var page =1; page <= reader.NumberOfPages; page++)
+                {
+                    var pageText = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    var trueIfExist = pageText.Contains(searchText);
+                    if (trueIfExist)
+                    {
+                        return trueIfExist;
+                    }
+                }
             }
+            return false;
         }
 
         public bool PdfExists(string fileName)
