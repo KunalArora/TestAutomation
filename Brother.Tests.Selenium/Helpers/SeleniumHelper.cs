@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 
+
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public class SeleniumHelper : ISeleniumHelper
@@ -108,14 +109,23 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
         }
 
-        public void CloseBrowserTabsExceptMainWindow()
+        public void CloseBrowserTabsExceptMainWindow(string mainInstallerWindowHandle)
         {
             var browserTabs = _webDriver.WindowHandles.ToList(); 
 
             if (browserTabs.Count <= 1) return;
-            _webDriver.SwitchTo().Window(browserTabs[1]);
-            _webDriver.Close();
-            _webDriver.SwitchTo().Window(browserTabs[0]);
+
+            foreach(var browserTab in browserTabs)
+            {
+                if (!(browserTab.Equals(mainInstallerWindowHandle)))
+                {
+                    _webDriver.SwitchTo().Window(browserTab);
+                    _webDriver.Close();
+
+                }
+
+            }
+            _webDriver.SwitchTo().Window(mainInstallerWindowHandle);
         }
 
         // Check if WebElement has an attribute 'readonly'

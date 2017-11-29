@@ -49,13 +49,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
         }
 
-        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver)
+        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver, string mainInstallerWindowHandle)
         {
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
             foreach(var product in products)
             {
                 RegisterDeviceOnBOC(product, installationPin);
-                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver);
+                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, mainInstallerWindowHandle);
             }
             _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
             _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();

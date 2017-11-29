@@ -31,5 +31,6 @@ namespace Brother.Tests.Specs.ContextData
         
         void SetBusinessType(string businessTypeId);
         string WebInstallUrl { get; set; }
+        Dictionary<UserType, string> WindowHandles { get; set; }
     }
 }

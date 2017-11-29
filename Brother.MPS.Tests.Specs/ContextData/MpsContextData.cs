@@ -47,6 +47,18 @@ namespace Brother.Tests.Specs.ContextData
         public string CustomerInformationName { get; set; }
         public string CustomerEmail { get; set; }
         public string WebInstallUrl { get; set; }
+        private Dictionary<UserType, string> _WindowHandles = new Dictionary<UserType, string>();
+        public Dictionary<UserType, string> WindowHandles 
+        {
+            get
+            {
+                return _WindowHandles;
+            } 
+            set{
+                _WindowHandles = value;
+            }
+        }
+
 
     }
 }

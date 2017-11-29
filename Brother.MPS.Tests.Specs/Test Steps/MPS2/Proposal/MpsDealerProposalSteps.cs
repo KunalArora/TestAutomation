@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Constants;
+using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -74,7 +75,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
-            
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
@@ -128,8 +128,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I add these printers:")]
         public void WhenIAddThesePrinters(Table printers)
         {
-            //create strongly-typed set using CreateSet<PrinterProperties>() method - the PrinterProperties class will need additional properties to match the SpecFlow table
-            //step action should add the printers to context data
             var products = printers.CreateSet<PrinterProperties>();
             _contextData.PrintersProperties = products; 
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products);               
@@ -138,7 +136,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I calculate the click price for each of the above printers")]
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
-            //step action should use printers specified in previous step and stored in context data
             _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties);          
         }
 
@@ -180,7 +177,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             string installationPack = _translationService.GetInstallationPackText("DEALER_INSTALLATION_TYPE3", _contextData.Culture);
             string servicePack = _translationService.GetServicePackText("SERVICE_PACK_TYPE3", _contextData.Culture);
 
-            //_dealerAgreementCreateClickPricePage = _mpsAgreement.AddPrinterToAgreementAndProceed(_dealerAgreementCreateProductsPage, _proposalHelper.SelectPrinter(), 2, installationPack, servicePack);
 
         }
 

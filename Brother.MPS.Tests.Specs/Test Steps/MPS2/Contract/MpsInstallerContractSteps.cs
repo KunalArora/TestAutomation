@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Domain.Enums;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -54,18 +55,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
         }
 
-        //[When(@"I verify the Contract Reference")]
-        //public void WhenIVerifyTheContractReference()
-        //{
-        //    var proposalId = _contextData.ProposalId;
-        //    _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
-        //}
 
         [When(@"Enter the serial numbers and complete installation")]
         public void WhenEnterTheSerialNumbersAndCompleteInstallation()
         {
             var products = _contextData.PrintersProperties;
-            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver);
+            var mainWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, mainWindowHandle);
         }
    }
 }

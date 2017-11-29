@@ -16,6 +16,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 
+
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class InstallerDeviceInstallationPage : BasePage, IPageObject
@@ -164,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
-        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver)
+        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string mainInstallerWindowHandle)
         {
             ClosePopUpModal();
  
@@ -184,8 +185,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector, findElementTimeout);
                     PopulateIpAddress(row, findElementTimeout);
                     ClickOnConnect(row, findElementTimeout, installerDriver);
-                    RetryResetClickingHelper(findElementTimeout, serialNumber);
-                    SeleniumHelper.CloseBrowserTabsExceptMainWindow();
+                    RetryResetClickingHelper(findElementTimeout, serialNumber, mainInstallerWindowHandle);
                     break;
                 }
             }
@@ -195,9 +195,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var clickButtonElement = SeleniumHelper.FindElementByCssSelector(row, InstallationConnectButtonSelector, findElementTimeout);
             clickButtonElement.Click();
+
         }
 
-        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber)
+        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string mainInstallerWindowHandle)
         {
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
@@ -227,6 +228,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         }
 
                     }
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(mainInstallerWindowHandle);
                     retries++;
                 }
                 catch (WebDriverException)
