@@ -5,7 +5,7 @@ Feature: BusinessScenario_1_WIP_DealerCreateProposalSteps
 	I want to create a new proposal
 
 Scenario Outline: Business Scenario 1 - Dealer Create Proposal Steps
-Given I have navigated to the Create Proposal page as a "Cloud MPS Dealer" from "<Country>"
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
 When I create a "<ContractType>" proposal
 #during development of task MPS-4837 remove dependency on customer creation
 And I enter the proposal description

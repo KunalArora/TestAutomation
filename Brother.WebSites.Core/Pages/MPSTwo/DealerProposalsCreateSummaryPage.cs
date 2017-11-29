@@ -1690,6 +1690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatServicePackIsCorrectOnSummaryPage(string servicePackType)
         {
+            // TODO: Use ITranslationService to add support for all countries (ServicePack translation)
             if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
             {
                 if (!ServicePackBillingBasisElement.Text.Equals(servicePackType) || (SummaryContractGrandTotalInClickLineElement == null))
@@ -1698,6 +1699,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
             }
         }
+
 
         public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso)
         {

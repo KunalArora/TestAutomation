@@ -1781,15 +1781,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector, findElementTimeout).GetAttribute("value");            
             unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector, findElementTimeout).GetAttribute("value");
-            
+
             // Validate that service pack margin & unit price input fields are disabled in case of "Included in Click Price" service packs
             if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
             {
-                if ((new object[] { ServicePackMarginElement.GetAttribute("readonly"), ServicePackSellPriceElement.GetAttribute("readonly") }).Any(v => v == null))
+                if (!(SeleniumHelper.IsReadOnly(ServicePackMarginElement) && SeleniumHelper.IsReadOnly(ServicePackSellPriceElement)))
                 {
                     throw new Exception("Service Pack Content did not get validated");
-                }               
+                }
             }
+
             
             return addToProposalButton;
         }

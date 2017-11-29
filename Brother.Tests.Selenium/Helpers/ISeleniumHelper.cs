@@ -42,5 +42,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         void AcceptJavascriptAlert(int timeout);
         ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton);
         void CloseBrowserTabsExceptMainWindow();
+        bool IsReadOnly(IWebElement element);
+        bool IsExistAllElements(params IWebElement[] elements);
     }
 }

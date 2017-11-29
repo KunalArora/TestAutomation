@@ -117,5 +117,27 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             _webDriver.Close();
             _webDriver.SwitchTo().Window(browserTabs[0]);
         }
+
+        // Check if WebElement has an attribute 'readonly'
+        // If an input field is readonly
+        public bool IsReadOnly(IWebElement element)
+        {
+            if (element.GetAttribute("readonly") == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // Check if all of the elements are present or not
+        public bool IsExistAllElements(params IWebElement[] elements)
+        {
+            foreach (var element in elements)
+            {
+                if (element == null)
+                    return false;
+            }
+            return true;
+        }
     }
 }

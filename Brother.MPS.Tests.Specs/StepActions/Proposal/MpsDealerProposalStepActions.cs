@@ -460,13 +460,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
             string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
         {
-            dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume( 
-                printerName, 
-                coverageMono, 
-                coverageColour, 
-                volumeMono, 
-                volumeColour, 
-                RuntimeSettings.DefaultFindElementTimeout );
+            IWebElement printerContainer = dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume(
+                printerName,
+                coverageMono,
+                coverageColour,
+                volumeMono,
+                volumeColour,
+                RuntimeSettings.DefaultFindElementTimeout
+            );
+
+            ValidateContentOnClickPricePage(dealerProposalsCreateClickPricePage, printerContainer);
         }
 
         private void ValidateContentOnClickPricePage(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,

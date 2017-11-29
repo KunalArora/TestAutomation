@@ -121,7 +121,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given(string.Format("I have navigated to the Create Proposal page as a \"Cloud MPS Dealer\" from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11

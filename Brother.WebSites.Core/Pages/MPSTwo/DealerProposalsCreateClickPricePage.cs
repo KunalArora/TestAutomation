@@ -984,7 +984,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public void ValidateServicePackContentOnClickPricePage(
-            IWebElement printerContainer, 
+            IWebElement printerContainer,
             string servicePackType,
             int findElementTimeout,
             out string monoMargin,
@@ -998,7 +998,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
             {
-                if ( (new object[] {ServicePackUnitCostElement, ServicePackUnitPriceElement, ServicePackTotalPriceElement}).Any(v => v == null))
+                if (!SeleniumHelper.IsExistAllElements(ServicePackUnitCostElement, ServicePackUnitPriceElement, ServicePackTotalPriceElement))
                 {
                     throw new Exception("Service Pack Content did not get validated");
                 }
@@ -1007,15 +1007,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     printerContainer, DataAttributeMonoMargin, "true", findElementTimeout);
                 monoMargin = MonoMarginElement.GetAttribute("value");
 
-                var ServicePackUnitCostValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer, 
+                var ServicePackUnitCostValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
                     ServicePackUnitCostGeneralSelector, findElementTimeout);
                 servicePackUnitCost = ServicePackUnitCostValueElement.Text;
 
-                var ServicePackUnitPriceValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer, 
+                var ServicePackUnitPriceValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
                     ServicePackUnitPriceGeneralSelector, findElementTimeout);
                 servicePackUnitPrice = ServicePackUnitPriceValueElement.Text;
             }
         }
+
 
         public bool VerifyClickPriceValues(int findElementTimeout)
         {
