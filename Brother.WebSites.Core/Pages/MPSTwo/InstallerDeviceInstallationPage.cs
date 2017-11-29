@@ -165,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
-        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string mainInstallerWindowHandle)
+        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string installerWindowHandle)
         {
             ClosePopUpModal();
  
@@ -185,7 +185,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector, findElementTimeout);
                     PopulateIpAddress(row, findElementTimeout);
                     ClickOnConnect(row, findElementTimeout, installerDriver);
-                    RetryResetClickingHelper(findElementTimeout, serialNumber, mainInstallerWindowHandle);
+                    RetryResetClickingHelper(findElementTimeout, serialNumber, installerWindowHandle);
                     break;
                 }
             }
@@ -198,7 +198,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string mainInstallerWindowHandle)
+        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string installerWindowHandle)
         {
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
@@ -228,7 +228,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         }
 
                     }
-                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(mainInstallerWindowHandle);
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
                     retries++;
                 }
                 catch (WebDriverException)

@@ -60,8 +60,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenEnterTheSerialNumbersAndCompleteInstallation()
         {
             var products = _contextData.PrintersProperties;
-            var mainWindowHandle = _contextData.WindowHandles[UserType.Installer];
-            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, mainWindowHandle);
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, installerWindowHandle);
         }
    }
 }

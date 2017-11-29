@@ -43,6 +43,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton);
         bool IsReadOnly(IWebElement element);
         bool IsExistAllElements(params IWebElement[] elements);
-        void CloseBrowserTabsExceptMainWindow(string mainInstallerWindowHandle);
+        void CloseBrowserTabsExceptMainWindow(string mainWindowHandle);
     }
 }

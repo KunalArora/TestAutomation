@@ -109,7 +109,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
         }
 
-        public void CloseBrowserTabsExceptMainWindow(string mainInstallerWindowHandle)
+        public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)
         {
             var browserTabs = _webDriver.WindowHandles.ToList(); 
 
@@ -117,7 +117,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
             foreach(var browserTab in browserTabs)
             {
-                if (!(browserTab.Equals(mainInstallerWindowHandle)))
+                if (!(browserTab.Equals(mainWindowHandle)))
                 {
                     _webDriver.SwitchTo().Window(browserTab);
                     _webDriver.Close();
@@ -125,7 +125,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                 }
 
             }
-            _webDriver.SwitchTo().Window(mainInstallerWindowHandle);
+            _webDriver.SwitchTo().Window(mainWindowHandle);
         }
 
         // Check if WebElement has an attribute 'readonly'
