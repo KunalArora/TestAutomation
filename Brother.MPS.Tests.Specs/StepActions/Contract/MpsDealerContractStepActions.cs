@@ -76,6 +76,20 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
         }
 
+        public void RaiseConsumableOrder()
+        {
+            var products = _contextData.PrintersProperties;
+            foreach (var product in products)
+            {
+                string deviceId = product.DeviceId;
+                _deviceSimulatorService.RaiseConsumableOrder(deviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
+                _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+            }
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunConsumableOrderRequestsCommand();
+            _runCommandService.RunCreateConsumableOrderCommand();
+        }
+
         public DealerManageDevicesPage RetrieveDealerManageDevicesPage()
         {
             string currentUrl = _dealerWebDriver.Url;

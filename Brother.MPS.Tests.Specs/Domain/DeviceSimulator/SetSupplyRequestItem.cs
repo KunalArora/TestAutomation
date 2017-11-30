@@ -9,6 +9,6 @@ namespace Brother.Tests.Specs.Domain.DeviceSimulator
     public class SetSupplyRequestItem
     {
         public string name { get; set; }
-        public int value { get; set; }
+        public Object value { get; set; }
     }
 }

@@ -12,11 +12,11 @@ And I create a new customer for the proposal
 #note that 'And' steps bind to either Given or When attributes depending on the preceding steps
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
-		| Model        | Price   | Installation    | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount |
-		| DCP-8110DN   | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             |
-		| HL-5450DN    | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               |
-		| DCP-L8450CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               |
-		| MFC-L8650CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               |
+		| Model        | Price   | Installation    | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus |
+		| DCP-8110DN   | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               |
+		| HL-5450DN    | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               |
+		| DCP-L8450CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               |
+		| MFC-L8650CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               | Normal              | Normal             | Normal                | Normal               |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver approves the above proposal
@@ -29,7 +29,7 @@ And a Brother installer has navigated to the Web Installation page and verify Co
 And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
-And I update the print count for above devices
+And I update the print count, raise consumable order and service request for above devices
 Then I will be able to see on the Manage Devices page that above devices have updated Print Counts
 
 

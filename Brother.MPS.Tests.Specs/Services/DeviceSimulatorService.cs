@@ -97,6 +97,26 @@ namespace Brother.Tests.Specs.Services
             SetSupply(setSupplyRequest);
         }
 
+        public void RaiseConsumableOrder(string deviceId, string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus)
+        {
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "TonerInk_Black", value = tonerInkBlackStatus},
+                    new SetSupplyRequestItem {name = "TonerInk_Cyan", value = tonerInkCyanStatus},
+                    new SetSupplyRequestItem {name = "TonerInk_Magenta", value = tonerInkMagentaStatus},
+                    new SetSupplyRequestItem {name = "TonerInk_Yellow", value = tonerInkYellowStatus}
+                }
+
+            };
+
+            Console.WriteLine("Setting consumable order for device with id {0}: black = {1}, cyan = {2}, magenta = {3}, yellow = {4}", deviceId, tonerInkBlackStatus, tonerInkCyanStatus, tonerInkMagentaStatus, tonerInkYellowStatus);
+
+            SetSupply(setSupplyRequest);
+        }
+
         public void SetSupply(SetSupplyRequest setSupplyRequest)
         {
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, SET_SUPPLY_PATTERN);

@@ -100,11 +100,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, products);
         }
 
-        [When(@"I update the print count for above devices")]
-        public void WhenIUpdateThePrintCountForAboveDevices()
+        [When(@"I update the print count, raise consumable order and service request for above devices")]
+        public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
         {
             _mpsDealerContractStepActions.UpdatePrintCounts();
+            _mpsDealerContractStepActions.RaiseConsumableOrder();
         }
+
 
         [Then(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()

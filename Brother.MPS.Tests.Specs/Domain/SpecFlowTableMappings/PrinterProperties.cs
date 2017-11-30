@@ -36,5 +36,9 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
         public int MonoPrintCount { get; set; }
         public int ColorPrintCount { get; set; }
         public int TotalPageCount { get; set; }
+        public string TonerInkBlackStatus { get; set; }
+        public string TonerInkCyanStatus { get; set; }
+        public string TonerInkMagentaStatus { get; set; }
+        public string TonerInkYellowStatus { get; set; }
     }
 }

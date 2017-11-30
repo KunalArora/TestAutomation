@@ -104,7 +104,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "VolumeColour",
                         "SerialNumber",
                         "MonoPrintCount",
-                        "ColorPrintCount"});
+                        "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1000.00",
@@ -116,7 +120,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "A3P145620",
                         "23",
-                        "100"});
+                        "100",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal"});
             table1.AddRow(new string[] {
                         "HL-5450DN",
                         "1000.00",
@@ -128,7 +136,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "A3P145621",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1000.00",
@@ -140,7 +152,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "250",
                         "A3P145622",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1000.00",
@@ -152,7 +168,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "200",
                         "A3P145623",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal"});
 #line 14
 testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
 #line 20
@@ -185,7 +205,8 @@ testRunner.And("I navigate to the Accepted Contracts page and I locate the above
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
-testRunner.And("I update the print count for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I update the print count, raise consumable order and service request for above de" +
+                    "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
 testRunner.Then("I will be able to see on the Manage Devices page that above devices have updated " +
                     "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

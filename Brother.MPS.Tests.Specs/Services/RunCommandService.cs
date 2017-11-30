@@ -105,7 +105,10 @@ namespace Brother.Tests.Specs.Services
 
         public void RunConsumableOrderRequestsCommand()
         {
-            
+            string commandName = string.Format("MPS:ConsumableOrderRequestsCommand");
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);            
         }
 
         public void RunCloseConsumableOrdersCommand()
@@ -133,7 +136,10 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCreateConsumableOrderCommand()
         {
-            
+            string commandName = "MPS:SystemJobCreateConsumableOrderCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);          
         }
     }
 }
