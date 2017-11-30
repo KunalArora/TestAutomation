@@ -90,6 +90,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunCreateConsumableOrderCommand();
         }
 
+        public void RaiseServiceRequest()
+        {
+            var proposalId = _contextData.ProposalId;
+            var products = _contextData.PrintersProperties;
+            foreach (var product in products)
+            {
+                string deviceId = product.DeviceId;
+                _deviceSimulatorService.RaiseServiceRequest(deviceId, product.LaserUnit, product.FuserUnit, product.PaperFeedingKit1, product.PaperFeedingKit2, product.PaperFeedingKit3);
+                _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+            }
+            _runCommandService.RunMeterReadCloudSyncCommand(proposalId);
+            _runCommandService.RunConsumableOrderRequestsCommand();
+            _runCommandService.RunCreateConsumableOrderCommand();    
+        }
+
         public DealerManageDevicesPage RetrieveDealerManageDevicesPage()
         {
             string currentUrl = _dealerWebDriver.Url;

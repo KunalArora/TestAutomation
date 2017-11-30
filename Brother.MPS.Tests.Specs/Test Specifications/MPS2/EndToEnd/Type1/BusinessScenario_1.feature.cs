@@ -108,7 +108,12 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "TonerInkBlackStatus",
                         "TonerInkCyanStatus",
                         "TonerInkMagentaStatus",
-                        "TonerInkYellowStatus"});
+                        "TonerInkYellowStatus",
+                        "LaserUnit",
+                        "FuserUnit",
+                        "PaperFeedingKit1",
+                        "PaperFeedingKit2",
+                        "PaperFeedingKit3"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1000.00",
@@ -121,6 +126,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145620",
                         "23",
                         "100",
+                        "Normal",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
                         "Empty",
                         "Normal",
                         "Normal",
@@ -140,6 +150,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
                         "Normal"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
@@ -156,6 +171,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
                         "Normal"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
@@ -169,6 +189,11 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145623",
                         "0",
                         "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
                         "Normal",
                         "Normal",
                         "Normal",

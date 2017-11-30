@@ -105,6 +105,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             _mpsDealerContractStepActions.UpdatePrintCounts();
             _mpsDealerContractStepActions.RaiseConsumableOrder();
+            _mpsDealerContractStepActions.RaiseServiceRequest();
         }
 
 

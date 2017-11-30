@@ -117,6 +117,27 @@ namespace Brother.Tests.Specs.Services
             SetSupply(setSupplyRequest);
         }
 
+        public void RaiseServiceRequest(string deviceId, string laserUnitStatus, string fuserUnitStatus, string paperFeedingKit1Status, string paperFeedingKit2Status, string paperFeedingKit3Status)
+        {
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "LaserUnit", value = laserUnitStatus},
+                    new SetSupplyRequestItem {name = "FuserUnit", value = fuserUnitStatus},
+                    new SetSupplyRequestItem {name = "PaperFeedingKit1", value = paperFeedingKit1Status},
+                    new SetSupplyRequestItem {name = "PaperFeedingKit2", value = paperFeedingKit2Status},
+                    new SetSupplyRequestItem {name = "PaperFeedingKit3", value = paperFeedingKit3Status}
+                }
+
+            };
+
+            Console.WriteLine("Setting service request for device with id {0}: laserUnit = {1}, fuserUnit = {2}, paperFeedingKit1 = {3}, paperFeedingKit2 = {4}, paperFeedingKit3 = {5}", deviceId, laserUnitStatus, fuserUnitStatus, paperFeedingKit1Status, paperFeedingKit2Status, paperFeedingKit3Status);
+
+            SetSupply(setSupplyRequest);
+        }
+
         public void SetSupply(SetSupplyRequest setSupplyRequest)
         {
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, SET_SUPPLY_PATTERN);
