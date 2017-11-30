@@ -49,6 +49,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<DeviceSimulatorService, IDeviceSimulatorService>();
             _container.RegisterTypeAs<RunCommandService, IRunCommandService>();
             _container.RegisterTypeAs<MpsWebToolsService, IMpsWebToolsService>();
+            _container.RegisterTypeAs<CalculationService, ICalculationService>();
+            _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
         }
 
         private IContextData setContextData()
@@ -63,11 +65,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
             Console.WriteLine("Initialising scenario for environment {0}", env);
 
             //apply defaults, changed per scenario as required
+            CountryService countryService = new CountryService();
+            
             return new MpsContextData
             {
                 Environment = env,
                 Culture = cultureName,
-                BusinessType = Domain.Enums.BusinessType.Type1
+                BusinessType = Domain.Enums.BusinessType.Type1,
+                Country = countryService.GetByName("United Kingdom")
             };
         }
 
@@ -95,7 +100,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultPageLoadTimeout: AppSettingToInt("RuntimeSettings.DefaultPageLoadTimeout"),
                     defaultPageObjectTimeout: AppSettingToInt("RuntimeSettings.DefaultPageObjectTimeout"),
                     defaultRemoteWebDriverTimeout: AppSettingToInt("RuntimeSettings.DefaultRemoteWebDriverTimeout"),
-                    defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount")
+                    defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount"),
+                    defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout")
+
             );
 
             return runtimeSettings;

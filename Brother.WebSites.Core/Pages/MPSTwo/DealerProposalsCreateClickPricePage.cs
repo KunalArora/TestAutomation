@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
+using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using System.Threading;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -40,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return string.Empty; }
         }
 
+        ServicePackType _servicePackType = new ServicePackType();
+
         private const string paymentMethod = @".mps-paymentoptions";
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
         private const string clickPriceColourValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
@@ -47,11 +46,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ClickPricePath = @"C:\DataTest\ClickPrice";
         private const string CsvFile = @"ClickPrice.csv";
         private const string IsMonoOnly = "data-mono-only";
-
+        private const string ServicePackUnitCostGeneralSelector = "[id*=\"content_1_LineItems_ServicePackUnitCost_\"]";
+        private const string ServicePackUnitPriceGeneralSelector = "[id*=\"content_1_LineItems_ServicePackUnitPrice_\"]";
+        
         private const string DataAttributeMonoCoverage = "mono-coverage";
         private const string DataAttributeMonoVolume = "mono-volume";
         private const string DataAttributeColourCoverage = "colour-coverage";
         private const string DataAttributeColourVolume = "colour-volume";
+        private const string DataAttributeMonoMargin = "mono-margin";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -92,7 +94,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".col-sm-12.mps-paymentoptions")]
         public IWebElement ServicePackContainerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption")]
-        public IWebElement ServicePackHiddenValueElement;
+        public IWebElement ServicePackHiddenValueElement;        
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitCost_0")]
         public IWebElement ServicePackUnitCostElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitPrice_0")]
@@ -100,9 +102,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackTotalPrice_0")]
         public IWebElement ServicePackTotalPriceElement;
 
-
-
-
+        
         public void IsServiceInClickLineDisplayedOnClickPricePage()
         {
             TestCheck.AssertIsEqual(true, ServicePackUnitCostElement.Displayed, "Service Pack Unit Cost is not displayed");
@@ -955,7 +955,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return printerElement;
         }
         
-        public void PopulatePrinterCoverageAndVolume(string printerName, 
+        public IWebElement PopulatePrinterCoverageAndVolume(string printerName, 
             int coverageMono, 
             int coverageColour, 
             int volumeMono, 
@@ -979,11 +979,48 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
                 SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
             }
+
+            return printerContainer;           
         }
 
-        public bool VerifyClickPriceValues(int pageObjectTimeout)
+        public void ValidateServicePackContentOnClickPricePage(
+            IWebElement printerContainer,
+            string servicePackType,
+            int findElementTimeout,
+            out string monoMargin,
+            out string servicePackUnitCost,
+            out string servicePackUnitPrice)
         {
-            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, pageObjectTimeout);
+            // Validation of content on click price page           
+            monoMargin = "";
+            servicePackUnitCost = "";
+            servicePackUnitPrice = "";
+
+            if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
+            {
+                if (!SeleniumHelper.IsExistAllElements(ServicePackUnitCostElement, ServicePackUnitPriceElement, ServicePackTotalPriceElement))
+                {
+                    throw new Exception("Service Pack Content did not get validated");
+                }
+
+                var MonoMarginElement = SeleniumHelper.FindElementByDataAttributeValue(
+                    printerContainer, DataAttributeMonoMargin, "true", findElementTimeout);
+                monoMargin = MonoMarginElement.GetAttribute("value");
+
+                var ServicePackUnitCostValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
+                    ServicePackUnitCostGeneralSelector, findElementTimeout);
+                servicePackUnitCost = ServicePackUnitCostValueElement.Text;
+
+                var ServicePackUnitPriceValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
+                    ServicePackUnitPriceGeneralSelector, findElementTimeout);
+                servicePackUnitPrice = ServicePackUnitPriceValueElement.Text;
+            }
+        }
+
+
+        public bool VerifyClickPriceValues(int findElementTimeout)
+        {
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, findElementTimeout);
             try
             {
                 VerifyClickPriceValueIsDisplayed();
@@ -991,7 +1028,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch
             {
-                //catch Assertion exception
                 return false;
             }                
         }

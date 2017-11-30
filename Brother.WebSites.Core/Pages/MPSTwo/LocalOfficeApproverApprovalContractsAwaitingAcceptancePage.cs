@@ -32,6 +32,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        private const string PaginateSelector = ".dataTables_paginate";
+
         [FindsBy(How = How.Id, Using = "content_1_ContractListFilter_InputFilterBy")]
         public IWebElement ContractFilter;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
@@ -41,6 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewSummary(int proposalId, int findElementTimeout, IWebDriver driver)
         {
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
             ClearAndType(ContractFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);
             SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);

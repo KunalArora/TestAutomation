@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
         private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;
+        private readonly RunCommandService _runCommandService;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -43,7 +44,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             PageService pageService,
             ICountryService countryService,
             IUserResolver userResolver,
-            IUrlResolver urlResolver)
+            IUrlResolver urlResolver,
+            RunCommandService runCommandService)
         {
             _context = context;
             _driver = driver;
@@ -55,57 +57,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsSignInStepActions = mpsSignInStepActions;
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
             _mpsDealerContractStepActions = mpsDealerContractStepActions;
+            _runCommandService = runCommandService;
         }
 
-        [When(@"I have navigated to the Contracts Accepted page as a ""(.*)"" from ""(.*)""")]
-        public void WhenIHaveNavigatedToTheContractsAcceptedPageAsAFrom(string role, string country)
-        {
-            _contextData.SetBusinessType("1");
-            _contextData.Country = _countryService.GetByName(country);
-
-            switch (role)
-            {
-                case "Cloud MPS Dealer":
-                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
-            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
-            _dealerContractsAcceptedPage = _mpsDealerContractStepActions.NavigateToContractsAcceptedPage(_dealerContractsPage);
-        }
-
-        //Similar function is already present in this file so, refactor this particular function.
-        [Given(@"I have navigated to the Accepted Contracts page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheAcceptedContractsPageAsAFrom(string role, string country)
-        {
-            _contextData.SetBusinessType("1");
-            _contextData.Country = _countryService.GetByName(country);
-
-            switch (role)
-            {
-                case "Cloud MPS Dealer":
-                    _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
-
-            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
-            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
-        }
-
-
-        [When(@"I have navigated to the Manage Devices for ""(.*)""")]
-        public void WhenIHaveNavigatedToTheManageDevicesFor(int proposalId)
-        {
-            //Use contextData to retrieve proposalId
-            _dealerManageDevicesPage = _mpsDealerContractStepActions.NavigateToManageDevicesPage(_dealerContractsAcceptedPage, proposalId);
-            _contextData.ProposalId = proposalId;
-        }
-
+        
         //Similar function is already present in this file so, refactor this particular function.
         [When(@"I locate the contract with id ""(.*)""")]
         public void WhenILocateTheContractWithId(int proposalId)
@@ -131,29 +86,31 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmail(_dealerSendInstallationEmailPage);
         }
 
-        [Then(@"I will be able to see the installation request created above on the Manage Devices page for the above proposal")]
+        [When(@"I will be able to see the installation request created above on the Manage Devices page for the above proposal")]
         public void ThenIWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
-            _mpsDealerContractStepActions.VerifyInstallationRequestCreated(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
+            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
+            _contextData.WebInstallUrl = url;
         }
 
         [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
         public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
-            _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, _contextData.PrintersProperties);
+            var products = _contextData.PrintersProperties;
+            _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage, products);
         }
 
-        [When(@"I update the print count for ""(.*)"" to (.*) and (.*)")]
-        public void WhenIUpdateThePrintCountForToAnd(string serialNumber, int monoPrintCount, int colorPrintCount)
+        [When(@"I update the print count for above devices")]
+        public void WhenIUpdateThePrintCountForAboveDevices()
         {
-            _mpsDealerContractStepActions.UpdatePrintCounts(serialNumber, monoPrintCount, colorPrintCount);
+            _mpsDealerContractStepActions.UpdatePrintCounts();
         }
 
-        [Then(@"I will be able to see on the Manage Devices page that ""(.*)"" have updated Print Counts")]
-        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatHaveUpdatedPrintCounts(string serialNumber)
+        [Then(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
+        public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
         {
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsDealerContractStepActions.CheckForUpdatedPrintCount(_dealerManageDevicesPage, serialNumber);
+            _mpsDealerContractStepActions.CheckForUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
         [Then(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
@@ -171,6 +128,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var dealerContractsAwaitingAcceptancePage = _mpsDealerProposalStepActions.SignToContract(dealerContractsSummaryPage);
         }
 
-
+        [When(@"I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button")]
+        public void WhenINavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
+            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            _mpsDealerContractStepActions.FilterContractUsingProposalId(_dealerContractsPage, _contextData.ProposalId);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
+            _runCommandService.RunCreateCustomerAndPersonCommand();
+        }
     }
 }

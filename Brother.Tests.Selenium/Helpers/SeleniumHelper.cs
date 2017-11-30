@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 
+
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public class SeleniumHelper : ISeleniumHelper
@@ -106,6 +107,47 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void ClickSafety(IWebElement element, int defaultFindElementTimeout)
         {
             WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
+        }
+
+        public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)
+        {
+            var browserTabs = _webDriver.WindowHandles.ToList(); 
+
+            if (browserTabs.Count <= 1) return;
+
+            foreach(var browserTab in browserTabs)
+            {
+                if (!(browserTab.Equals(mainWindowHandle)))
+                {
+                    _webDriver.SwitchTo().Window(browserTab);
+                    _webDriver.Close();
+
+                }
+
+            }
+            _webDriver.SwitchTo().Window(mainWindowHandle);
+        }
+
+        // Check if WebElement has an attribute 'readonly'
+        // If an input field is readonly
+        public bool IsReadOnly(IWebElement element)
+        {
+            if (element.GetAttribute("readonly") == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // Check if all of the elements are present or not
+        public bool IsExistAllElements(params IWebElement[] elements)
+        {
+            foreach (var element in elements)
+            {
+                if (element == null)
+                    return false;
+            }
+            return true;
         }
     }
 }

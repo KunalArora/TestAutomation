@@ -33,10 +33,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonContractAcceptAccept")]
         public IWebElement FinalAcceptButtonElement;
 
+        //TODO: Refactoring
         public void OnClickAccept(int findElementTimeout)
         {
-            SeleniumHelper.ClickSafety( AcceptButtonElement, findElementTimeout ) ;
-            SeleniumHelper.ClickSafety( FinalAcceptButtonElement, findElementTimeout);
+            SeleniumHelper.ClickSafety(AcceptButtonElement, findElementTimeout);
+            SeleniumHelper.ClickSafety(FinalAcceptButtonElement, findElementTimeout);
         }
     }
 }

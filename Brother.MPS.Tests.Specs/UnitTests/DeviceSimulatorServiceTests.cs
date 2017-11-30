@@ -16,7 +16,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public DeviceSimulatorServiceTests()
         {
-            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(), new RuntimeSettings(null, null, null, null, null, null));
+            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(), new RuntimeSettings(null, null, null, null, null, null, null));
         }
 
         [Test]

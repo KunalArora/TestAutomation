@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Specs.ContextData;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Factories
@@ -17,12 +14,24 @@ namespace Brother.Tests.Specs.Factories
         private ScenarioContext _context;
         private ChromeDriverService _chromeDriverService;
         private const string _webDriverKeyPattern = "__driverInstance_{0}";
+        private IContextData _contextData;
 
-        public WebDriverFactory(ScenarioContext context)
+
+        private static ChromeOptions CreateDefaultChromeOptions()
+        {
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
+            chromeOptions.AddUserProfilePreference("download.default_directory", TestController.DownloadPath);
+            return chromeOptions;
+        }
+
+        public WebDriverFactory(ScenarioContext context, 
+            MpsContextData contextData)
         {
             _context = context;
             _chromeDriverService = ChromeDriverService.CreateDefaultService();
             _chromeDriverService.Start();
+            _contextData = contextData;
         }
         //TODO: allow driver and options to be specified
         public IWebDriver GetWebDriverInstance(UserType userType, ChromeOptions chromeOptions = null)
@@ -33,13 +42,15 @@ namespace Brother.Tests.Specs.Factories
             {
                 return _context.Get<IWebDriver>(key);
             }
-            if (chromeOptions == null) { chromeOptions = new ChromeOptions();}
-            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
+            if (chromeOptions == null) {
+                chromeOptions = CreateDefaultChromeOptions();
+            }
             var capabilities = chromeOptions.ToCapabilities();
             var webDriverInstance = new RemoteWebDriver(_chromeDriverService.ServiceUrl, capabilities, TimeSpan.FromSeconds(200));
 
             webDriverInstance.Manage().Window.Maximize();
             _context.Add(key, webDriverInstance);
+            _contextData.WindowHandles.Add(userType, webDriverInstance.CurrentWindowHandle);
             return webDriverInstance;
         }
 

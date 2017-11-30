@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
+using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using TechTalk.SpecFlow.Assist;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -32,6 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
+        ServicePackType _servicePackType = new ServicePackType();
 
 
         public override string DefaultTitle
@@ -218,6 +216,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement GrandTotalMarginNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceNet")]
         public IWebElement GrandTotalPriceNetElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceGross")]
+        public IWebElement GrandTotalPriceGrossElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_BankName")]
         public IWebElement BankNameElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_TermLength")]
@@ -309,6 +309,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryContractGrandTotalPriceElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ChargesTotalPriceNet")]
         public IWebElement SummaryGrandChargesTotalPriceElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DeviceTotalsTotalPriceGross")]
+        public IWebElement SummaryContractGrandTotalPriceGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_InClickTotalLinePrice")]
+        public IWebElement SummaryContractGrandTotalInClickLineElement;
         
         
         
@@ -1306,14 +1310,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Contract Type does not match");
         }
 
-        private void VerifyCorrectContractTermIsDisplayedOnSummaryPage(string contractTerm)
+        public void VerifyCorrectContractTermIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
                 ContractTermElement.Text.Equals(contractTerm), 
                 "Contract Term does not match");
         }
 
-        private void VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(string contractTerm)
+        public void VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
                 UsageTypeElement.Text.Equals(contractTerm), 
@@ -1327,7 +1331,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Lease Frequency does not match");
         }
 
-        private void VerifyCorrectBillingTermIsDisplayedOnSummaryPage(string contractTerm)
+        public void VerifyCorrectBillingTermIsDisplayedOnSummaryPage(string contractTerm)
         {
             TestCheck.AssertIsEqual(true, 
                 UsageBillingFrequencyElement.Text.Equals(contractTerm), 
@@ -1672,12 +1676,46 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public int SaveProposalAndReturnContractId()
+        public int ReturnContractId()
         {
             string contractId = SummaryPageContractIdElement.GetAttribute("data-mps-qa-id");
-            ScrollTo(SaveProposalElement);
-            SaveProposalElement.Click();
             return Int32.Parse(contractId);
+        }
+
+        public void ClickSaveProposal()
+        {
+            ScrollTo(SaveProposalElement);
+            SaveProposalElement.Click();            
+        }
+
+        public void VerifyThatServicePackIsCorrectOnSummaryPage(string servicePackType)
+        {
+            // TODO: Use ITranslationService to add support for all countries (ServicePack translation)
+            if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
+            {
+                if (!ServicePackBillingBasisElement.Text.Equals(servicePackType) || (SummaryContractGrandTotalInClickLineElement == null))
+                {
+                    throw new Exception("Service Pack Content did not get validated on summary page");
+                }
+            }
+        }
+
+
+        public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso)
+        {
+            // TODO: Check correct position of currency symbols for all countries
+            // Check for UK only for now
+            
+            string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+
+            if ((new IWebElement[] { SummaryGrandDeviceTotalPriceElement, 
+                SummaryContractGrandTotalPriceGrossElement, 
+                GrandTotalPriceNetElement, 
+                GrandTotalPriceGrossElement 
+            }).Any(v => v.Text[0].ToString() != currencySymbol))
+            {
+                throw new Exception("Currency symbol position did not get validated");
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Domain.Enums;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -32,6 +33,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
         }
 
+        [When(@"a Brother installer has navigated to the Web Installation page and verify Contract Reference")]
+        public void WhenABrotherInstallerHasNavigatedToTheWebInstallationPageAndVerifyContractReference()
+        {
+            var proposalId = _contextData.ProposalId;
+            _installerContractReferenceInstallationPage = _mpsInstallerContractStepActions.NavigateToWebInstallationPage(_contextData.WebInstallUrl);
+            _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
+        }
+
         [Given(@"that a Brother installer has navigated to the Web Installation page at ""(.*)""")]
         public void GivenThatABrotherInstallerHasNavigatedToTheWebInstallationPageAt(string url)
         {
@@ -46,11 +55,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
         }
 
-        [When(@"I enter the serial numbers and complete installation")]
-        public void WhenIEnterTheSerialNumbersAndCompleteInstallation()
+
+        [When(@"Enter the serial numbers and complete installation")]
+        public void WhenEnterTheSerialNumbersAndCompleteInstallation()
         {
             var products = _contextData.PrintersProperties;
-            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products);
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, installerWindowHandle);
         }
    }
 }

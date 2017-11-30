@@ -48,7 +48,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerManageDevicesPage NavigateToManageDevicesPage(DealerContractsAcceptedPage dealerContractsAcceptedPage, int proposalId)
+        public DealerManageDevicesPage NavigateToManageDevicesPageFix(DealerContractsAcceptedPage dealerContractsAcceptedPage, int proposalId)
         {
             dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId, RuntimeSettings.DefaultFindElementTimeout);
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -59,24 +59,19 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach (var product in products)
             {
                 _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
-                CheckForUpdatedPrintCount(_dealerManageDevicesPage, product.SerialNumber);
             }
+            CheckForUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
-        public void UpdatePrintCounts(string serialNumber, int monoPrintCount, int colorPrintCount)
+        public void UpdatePrintCounts()
         {
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
-                if (product.SerialNumber.Equals(serialNumber))
-                {
-                    product.MonoPrintCount = monoPrintCount;
-                    product.ColorPrintCount = colorPrintCount;
-                    product.TotalPageCount = (monoPrintCount + colorPrintCount);
-                    string deviceId = product.DeviceId;
-                    _deviceSimulatorService.SetPrintCounts(deviceId, monoPrintCount, colorPrintCount);
-                    _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
-                }
+                product.TotalPageCount = (product.MonoPrintCount + product.ColorPrintCount);
+                string deviceId = product.DeviceId;
+                _deviceSimulatorService.SetPrintCounts(deviceId, product.MonoPrintCount, product.ColorPrintCount);
+                _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
             }
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
         }
@@ -87,16 +82,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.LoadUrl<DealerManageDevicesPage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]", true, _dealerWebDriver);
         }
 
-        public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
+        public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
-                if(product.SerialNumber.Equals(serialNumber))
-                {
-                    var totalPageCount = product.TotalPageCount; 
-                    dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, serialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
-                }
+                var totalPageCount = product.TotalPageCount; 
+                dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
             }
         }
 
@@ -158,18 +150,15 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void VerifyInstallationRequestCreated(DealerManageDevicesPage dealerManageDevicesPage, string installerEmail, string companyLocation)
-        {
-            bool exists = dealerManageDevicesPage.VerifyInstallationRequestCreated(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout);
+        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage, string installerEmail, string companyLocation)
+        {  
+            string url = dealerManageDevicesPage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout);
             
-            if (exists)
+            if (url == null)
             {
-                return;
+                throw new NullReferenceException("Installation Request Url not found");
             }
-            else
-            {
-                throw new NullReferenceException(string.Format("Installation Request not found"));
-            }             
+            return url;
         }
 
         public void ClickOnSwapDevice(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)

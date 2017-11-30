@@ -523,7 +523,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
+
             TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+
             if (emailAddress.Equals(string.Empty))
             {
                 emailAddress = Email.GenerateUniqueEmailAddress();

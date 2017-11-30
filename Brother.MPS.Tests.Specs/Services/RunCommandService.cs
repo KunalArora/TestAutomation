@@ -75,7 +75,10 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCreateCustomerAndPersonCommand()
         {
-            
+            string commandName = "MPS:SystemJobCreateCustomerAndPersonCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+           ExecuteRunCommand(commandUrl);
         }
 
         public void RunRaiseClickRateInvoicesCommand()

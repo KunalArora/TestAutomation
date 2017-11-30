@@ -8,5 +8,6 @@
         int DefaultRetryCount { get; set; }
         int DefaultDeviceSimulatorTimeout { get; set; }
         int DefaultRemoteWebDriverTimeout { get; set; }
+        int DefaultDownloadTimeout { get; set; }
     }
 }

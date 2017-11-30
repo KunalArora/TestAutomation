@@ -16,6 +16,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 
+
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class InstallerDeviceInstallationPage : BasePage, IPageObject
@@ -164,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
-        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout)
+        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string installerWindowHandle)
         {
             ClosePopUpModal();
  
@@ -183,17 +184,58 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     serialNumberElement.SendKeys(Keys.Tab);
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector, findElementTimeout);
                     PopulateIpAddress(row, findElementTimeout);
-                    ClickOnConnect(row, findElementTimeout);
+                    ClickOnConnect(row, findElementTimeout, installerDriver);
+                    RetryResetClickingHelper(findElementTimeout, serialNumber, installerWindowHandle);
+                    break;
                 }
-
             }
         }
 
-        public void ClickOnConnect(IWebElement row, int findElementTimeout)
+        public void ClickOnConnect(IWebElement row, int findElementTimeout, IWebDriver driver)
         {
             var clickButtonElement = SeleniumHelper.FindElementByCssSelector(row, InstallationConnectButtonSelector, findElementTimeout);
             clickButtonElement.Click();
-            ReturnToOriginWindow();
+
+        }
+
+        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string installerWindowHandle)
+        {
+            var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
+
+            var elementStatus = false;
+            var retries = 0;
+            var retryCount = 10;
+
+            while ((!elementStatus) && (retries != retryCount))
+            {
+                try
+                {
+                    var refreshElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector, findElementTimeout);
+                    refreshElement.Click();
+
+                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector, findElementTimeout);
+                    var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector, findElementTimeout);
+
+                    var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
+                    foreach (var row in rows)
+                    {
+                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                        if (serialNumberElement.GetAttribute("value") == serialNumber)
+                        {
+                            var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector, findElementTimeout);
+                            elementStatus = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
+                            break;
+                        }
+
+                    }
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
+                    retries++;
+                }
+                catch (WebDriverException)
+                {
+                    retries++;
+                }
+            }
         }
 
         public void PopulateIpAddress(IWebElement row, int findElementTimeout)

@@ -8,6 +8,7 @@
         private int _defaultRetryCount = 10;
         private int _defaultDeviceSimulatorTimeout = 10;
         private int _defaultRemoteWebDriverTimeout = 30;
+        private int _defaultDownloadTimeout = 30;
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -19,13 +20,15 @@
         /// <param name="defaultRetryCount">Default 10</param>
         /// <param name="defaultDeviceSimulatorTimeout">Default 10s</param>
         /// <param name="defaultRemoteWebDriverTimeout">Default 30s</param>
+        /// <param name="defaultDownloadTimeout">Default 30s</param>
         public RuntimeSettings(
             int? defaultPageLoadTimeout,
             int? defaultPageObjectTimeout,
             int? defaultFindElementTimeout,
             int? defaultRetryCount,
             int? defaultDeviceSimulatorTimeout,
-            int? defaultRemoteWebDriverTimeout
+            int? defaultRemoteWebDriverTimeout,
+            int? defaultDownloadTimeout
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -34,6 +37,7 @@
             DefaultRetryCount = defaultRetryCount ?? _defaultRetryCount;
             DefaultDeviceSimulatorTimeout = defaultDeviceSimulatorTimeout ?? _defaultDeviceSimulatorTimeout;
             DefaultRemoteWebDriverTimeout = defaultRemoteWebDriverTimeout ?? _defaultRemoteWebDriverTimeout;
+            DefaultDownloadTimeout = defaultDownloadTimeout ?? _defaultDownloadTimeout;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -41,6 +45,7 @@
         public int DefaultFindElementTimeout { get; set; }
         public int DefaultRetryCount { get; set; }
         public int DefaultDeviceSimulatorTimeout { get; set; }
+        public int DefaultDownloadTimeout { get; set; }
         public int DefaultRemoteWebDriverTimeout { get; set; }
     }
 }
