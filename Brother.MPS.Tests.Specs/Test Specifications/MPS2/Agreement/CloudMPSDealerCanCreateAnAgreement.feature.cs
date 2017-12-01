@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
+    [NUnit.Framework.CategoryAttribute("SMOKE")]
     public partial class CloudMPSDealerCanCreateAnAgreementFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
                         "MPS",
                         "UAT",
                         "TEST",
-                        "TYPE3"});
+                        "TYPE3",
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

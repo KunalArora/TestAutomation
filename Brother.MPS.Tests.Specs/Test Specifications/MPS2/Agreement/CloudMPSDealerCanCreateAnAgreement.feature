@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @TYPE3
+﻿@MPS @UAT @TEST @TYPE3 @SMOKE
 Feature: CloudMPSDealerCanCreateAnAgreement
 	In order to initiate a customer agreement
 	As a Type 3 dealer
