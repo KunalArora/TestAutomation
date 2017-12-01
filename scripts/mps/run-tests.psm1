@@ -19,7 +19,7 @@
     if(-Not ($catSelect -eq "")){
         $catSelect = $catSelect + " || "
     }
-        $catSelect = $catSelect + "cat = $cat"
+        $catSelect = $catSelect + "cat = $cat & cat = MPS"
     }
 
     if($ExploreOnly)

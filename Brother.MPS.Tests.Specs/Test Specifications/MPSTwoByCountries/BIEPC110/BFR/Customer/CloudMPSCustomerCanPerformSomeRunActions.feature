@@ -1,4 +1,4 @@
-﻿@ignore @TEST @UAT @MPS @BIEPC110
+﻿@TEST @UAT @MPS @BIEPC110 @HIGH
 Feature: FrenchCustomerCanPerformSomeRunActions
 	In order for customer to perform some run portion actions
 	As a customer

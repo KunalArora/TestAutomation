@@ -1,4 +1,4 @@
-﻿@ignore @UAT @MPS @TEST @HIGH
+﻿@UAT @MPS @TEST @HIGH
 Feature: CloudMPSFinanceCanDownloadAccruals
 	In order to know how much have been accrued
 	As a Finance Role

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("MEDIUM")]
     public partial class CloudMPSApproverFromGermanyDecisionFeatureFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC113"});
+                        "BIEPC113",
+                        "MEDIUM"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

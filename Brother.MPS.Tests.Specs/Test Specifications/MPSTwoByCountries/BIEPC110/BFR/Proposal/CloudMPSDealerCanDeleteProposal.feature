@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC110
+﻿@MPS @TEST @UAT @BIEPC110 @MEDIUM
 Feature: CloudMPSFrenchDealerCanDeleteProposal
 	In order to stop the progress of a proposal
 	As a math dealer
