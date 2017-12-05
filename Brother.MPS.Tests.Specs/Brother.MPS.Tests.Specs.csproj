@@ -155,6 +155,7 @@
     <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
+    <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
@@ -1491,6 +1492,7 @@
     <Compile Include="Test Steps\MPS2\Contract\MpsInstallerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsDealerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Customer\MpsCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />

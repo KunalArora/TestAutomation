@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brother.Tests.Specs.Services
+﻿namespace Brother.Tests.Specs.Services
 {
     public interface IMpsWebToolsService
     {
@@ -14,5 +8,6 @@ namespace Brother.Tests.Specs.Services
         void RemoveConsumableOrderById(int orderId);
         void RemoveConsumableOrderByInstalledPrinter(string serialNumber);
         void SetConsumableOrderStatus(int orderId, int statusId);
+        void RegisterCustomer(string idIsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB");
     }
 }

@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             ClearAndType(ContractFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 , findElementTimeout);
-            SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout) ;
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
 

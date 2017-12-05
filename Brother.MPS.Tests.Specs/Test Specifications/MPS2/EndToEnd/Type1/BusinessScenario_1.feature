@@ -13,7 +13,7 @@ And I create a new customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | Installation    | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 |
-		| DCP-8110DN   | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Normal              | Empty              | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           |
+		| DCP-8110DN   | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           |
 		| HL-5450DN    | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
 		| DCP-L8450CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
 		| MFC-L8650CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
@@ -31,7 +31,8 @@ And I navigate to the Accepted Contracts page and I locate the above contract an
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count, raise consumable order and service request for above devices
 Then I will be able to see on the Manage Devices page that above devices have updated Print Counts
-
+And  I will be able to see on the Consumables Devices page that above devices have updated Ink Status
+And  I will be able to see on the Consumables Service Request page that above devices have updated Service Request
 
 @BUK
 Scenarios: 

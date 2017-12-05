@@ -27,6 +27,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly ICalculationService _calculationService;
         private readonly IWebDriver _dealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
+        private readonly IMpsWebToolsService _webToolService;
 
         public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             ICalculationService calculationService,
             IPdfHelper pdfHelper,
             IRuntimeSettings runtimeSettings,
+            IMpsWebToolsService webToolService,
             MpsSignInStepActions mpsSignIn)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
@@ -44,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _calculationService = calculationService;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _pdfHelper = pdfHelper;
+            _webToolService = webToolService;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -64,7 +67,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             PopulateProposalDescription(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
 
-            dealerProposalsCreateDescriptionPage.NextButton.Click();
+            ClickSafety( dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
             return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -231,9 +234,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage, Country country, string payment = "Invoice")
         {
             dealerProposalsConvertCustomerInformationPage.FillCustomerDetails(payment, country.Name);
-            dealerProposalsConvertCustomerInformationPage.nextButtonElement.Click();
+            _contextData.CustomerEmail = dealerProposalsConvertCustomerInformationPage.GetEmail();
+            _contextData.CustomerFirstName = dealerProposalsConvertCustomerInformationPage.GetFirstName();
+            _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
+            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso);
+
+
+            ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
+
 
         public DealerDashBoardPage NavigateToDashboardPage(string baseUrl)
         {
@@ -285,7 +295,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
         {
-            dealerProposalsConvertTermAndTypePage.NextButton.Click();
+            ClickSafety( dealerProposalsConvertTermAndTypePage.NextButton, dealerProposalsConvertTermAndTypePage) ;
             return PageService.GetPageObject<DealerProposalsConvertProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -335,19 +345,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)
         {
-            dealerProposalsConvertProductsPage.NextButtonElement.Click();
+            ClickSafety( dealerProposalsConvertProductsPage.NextButtonElement, dealerProposalsConvertProductsPage ) ;
             return PageService.GetPageObject<DealerProposalsConvertClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsInprogressPage NavigateToDealerProposalsInprogressPage(DealerDashBoardPage dealerDashboardPage)
         {
-            dealerDashboardPage.proposalTopElement.Click();
+            ClickSafety( dealerDashboardPage.proposalTopElement, dealerDashboardPage) ;
             return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsConvertSummaryPage SetInformationAndClickSubmitForApproval(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
         {
-            dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement.Click();
+            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage);
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -355,7 +365,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
-            dealerProposalsConvertSummaryPage.SaveAsContractButton.Click();
+            ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             // if you may return to PageObject, 
             // /mps/dealer/proposals/awaiting-approval
             //return PageService.GetPageObject<>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -370,7 +380,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public DealerCustomersExistingPage NavigateToCustomersContractPage(DealerDashBoardPage dealerDashboardPage)
         {
-            dealerDashboardPage.ExistingCustomerLinkElement.Click();
+            ClickSafety( dealerDashboardPage.ExistingCustomerLinkElement, dealerDashboardPage);
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
             return nextPage;
@@ -400,7 +410,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public DealerContractsApprovedProposalPage NavigateToDealerContractsApprovedProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
-            dealerDashboardPage.ExistingContractLinkElement.Click();
+            ClickSafety( dealerDashboardPage.ExistingContractLinkElement, dealerDashboardPage );
             return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -412,7 +422,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public DealerContractsAwaitingAcceptancePage SignToContract(DealerContractsSummaryPage dealerContractsSummaryPage)
         {
-            dealerContractsSummaryPage.SignButtonElement.Click();
+            ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage) ;
             return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

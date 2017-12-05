@@ -27,10 +27,13 @@ namespace Brother.Tests.Specs.ContextData
         string CustomerEmail { get; set; }
         string CompanyLocation { get; set; }
         string InstallerEmail { get; set; }
+        string CustomerPassword { get; set; }
         string SwapDeviceSerialNumber { get; set; }
         
         void SetBusinessType(string businessTypeId);
         string WebInstallUrl { get; set; }
         Dictionary<UserType, string> WindowHandles { get; set; }
+        string CustomerFirstName { get; set; }
+        string CustomerLastName { get; set; }
     }
 }

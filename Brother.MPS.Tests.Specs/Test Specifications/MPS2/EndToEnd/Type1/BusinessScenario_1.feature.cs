@@ -126,8 +126,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145620",
                         "23",
                         "100",
-                        "Normal",
                         "Empty",
+                        "Normal",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -235,6 +235,12 @@ testRunner.And("I update the print count, raise consumable order and service req
 #line 33
 testRunner.Then("I will be able to see on the Manage Devices page that above devices have updated " +
                     "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
+testRunner.And("I will be able to see on the Consumables Devices page that above devices have upd" +
+                    "ated Ink Status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+testRunner.And("I will be able to see on the Consumables Service Request page that above devices " +
+                    "have updated Service Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Brother.Tests.Specs.Resolvers;
+using System;
 using System.Collections.Generic;
-using Brother.Tests.Specs.Resolvers;
+using System.Net;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -9,6 +10,7 @@ namespace Brother.Tests.Specs.Services
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
         private string _baseUrl = string.Empty;
+        private string _baseUrlWithoutMps2 = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
@@ -17,6 +19,8 @@ namespace Brother.Tests.Specs.Services
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
             _baseUrl = string.Format("{0}/sitecore/admin/integration/mps2/{{0}}", _urlResolver.CmsUrl);
+            _baseUrlWithoutMps2 = string.Format("{0}/sitecore/admin/integration/{{0}}", _urlResolver.CmsUrl).Replace("https://", "http://");
+
         }
 
         private void ExecuteWebTool(string url)
@@ -68,5 +72,16 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteWebTool(url);
         }
+
+        public void RegisterCustomer(string idAsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB")
+        {
+            string actionPath = string.Format("registeruser.aspx?email={0}&password={1}&firstname={2}&lastname={3}&maxmind={4}",
+                WebUtility.UrlEncode(idAsMailAddress), WebUtility.UrlEncode(password), WebUtility.UrlEncode(firstName), WebUtility.UrlEncode(lastName), maxmind);
+            string url = string.Format(_baseUrlWithoutMps2, actionPath);
+
+            ExecuteWebTool(url);
+
+        }
+
     }
 }
