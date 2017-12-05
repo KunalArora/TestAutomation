@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Remoting;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -9,7 +8,6 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using Brother.Tests.Specs.Configuration;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -72,10 +70,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var localOfficeApproverProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApproverApprovalPage);
             var localOfficeApproverAprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverProposalsPage,_contextData.ProposalId);
             _localOfficeApproverAprovalProposalsApprovedPage = _mpsLocalOfficeApproverProposalStepActions.ApproveProposal(localOfficeApproverAprovalProposalsSummaryPage);
-            //select proposal based on context data and view summary
-            //approve proposal
         }
-
-
     }
 }

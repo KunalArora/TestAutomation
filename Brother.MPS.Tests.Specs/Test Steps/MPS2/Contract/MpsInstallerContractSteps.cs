@@ -41,6 +41,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
         }
 
+        [When(@"a Brother installer has navigated to the Web Swap Installation page and verify Contract Reference")]
+        public void WhenABrotherInstallerHasNavigatedToTheWebSwapInstallationPageAndVerifyContractReference()
+        {
+            var proposalId = _contextData.ProposalId;
+            _installerContractReferenceInstallationPage = _mpsInstallerContractStepActions.NavigateToWebInstallationPage(_contextData.WebSwapInstallUrl);
+            _installerDeviceInstallationPage = _mpsInstallerContractStepActions.PopluateContractReferenceAndProceed(_installerContractReferenceInstallationPage, proposalId);
+        }
+
         [Given(@"that a Brother installer has navigated to the Web Installation page at ""(.*)""")]
         public void GivenThatABrotherInstallerHasNavigatedToTheWebInstallationPageAt(string url)
         {
@@ -63,5 +71,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
             _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, installerWindowHandle);
         }
+
+
+        [When(@"Enter the serial number for new device ""(.*)"" with new Mono ""(.*)"" and color ""(.*)"" print count and complete Installation")]
+        public void WhenEnterTheSerialNumberForNewDeviceWithNewMonoAndColorPrintCountAndCompleteInstallation(string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColourPrintcount)
+        {
+            _contextData.SwapNewDeviceMonoPrintCount = swapNewDeviceMonoPrintcount;
+            _contextData.SwapNewDeviceColourPrintCount = swapNewDeviceColourPrintcount;
+            var products = _contextData.PrintersProperties;
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, products, _driver, swapNewDeviceSerialNumber, installerWindowHandle);
+            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, products, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
+        }
+
    }
 }

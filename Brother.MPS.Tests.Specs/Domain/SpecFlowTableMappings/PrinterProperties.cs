@@ -45,5 +45,6 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
         public string PaperFeedingKit1 { get; set; }
         public string PaperFeedingKit2 { get; set; }
         public string PaperFeedingKit3 { get; set; }
+        public bool IsSwap { get; set; }
     }
 }

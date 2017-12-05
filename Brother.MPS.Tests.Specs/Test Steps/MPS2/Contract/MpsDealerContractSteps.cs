@@ -70,11 +70,29 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.FilterContractUsingProposalId(_dealerContractsPage, proposalId);     
         }
 
-        //Similar function is already present in this file so, refactor this particular function.
-        [When(@"I click Manage Devices in the Actions menu")]
-        public void WhenIClickManageDevicesInTheActionsMenu()
+        [When(@"I click Swap Device in the Actions menu for device to be swapped on the Manage devices page")]
+        public void WhenIClickSwapDeviceInTheActionsMenuForDeviceToBeSwappedOnTheManageDevicesPage()
         {
-            _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
+            var products = _contextData.PrintersProperties;
+            foreach (var product in products)
+            {
+                if (product.IsSwap)
+                {
+                    _contextData.SwapOldDeviceSerialNumber = product.SerialNumber;
+                    _mpsDealerContractStepActions.ClickOnSwapDevice(_dealerManageDevicesPage, product.SerialNumber);
+                }
+            }
+        }
+
+
+        [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
+        public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
+        {
+            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage, swapType);
+            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
+            _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
         }
 
         [When(@"I create a ""(.*)"" installation request for ""(.*)"" communication")]
@@ -103,24 +121,28 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
         {
-            _mpsDealerContractStepActions.UpdatePrintCounts();
-            _mpsDealerContractStepActions.RaiseConsumableOrder();
-            _mpsDealerContractStepActions.RaiseServiceRequest();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForServiceRequest();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
 
-        [Then(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
+        [When(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
         {
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
             _mpsDealerContractStepActions.CheckForUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
-        [Then(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
+        [When(@"I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
         public void ThenIWillBeAbleToSeeTheStatusOfTheInstalledDeviceIsSetBeingReplacedOnTheManageDevicesPageForTheAboveProposal()
         {
-            _mpsDealerContractStepActions.VerifySwappedDeviceStatus(_dealerManageDevicesPage, _contextData.SwapDeviceSerialNumber);
+            _mpsDealerContractStepActions.VerifySwappedDeviceStatus(_dealerManageDevicesPage, _contextData.SwapOldDeviceSerialNumber);
+            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage, _contextData.InstallerEmail, _contextData.CompanyLocation);
+            _contextData.WebSwapInstallUrl = url;
         }
+
 
         [When(@"I sign the above proposal")]
         public void WhenISignTheAboveProposal()
@@ -141,5 +163,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
+
+        [Then(@"I will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        {
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
+            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage, swapNewDeviceSerialNumber);
+        }
+
     }
 }

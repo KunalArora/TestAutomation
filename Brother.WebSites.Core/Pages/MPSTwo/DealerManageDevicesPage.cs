@@ -851,28 +851,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     break;
                 }
             }
-            // Below code can be deleted when merging the scenario
-            // ---------- Cancel Installation Request with status 'Not started' 
-            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
-            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
-            var IRRowElements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
-
-            foreach (var element in IRRowElements)
-            {
-
-                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
-                if (IRStatusElement.Text.Equals(_installationRequestStatus.NotStarted))
-                {                   
-                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
-                    ActionsButtonElement.Click();
-                    var CancelInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, CancelInstallationRequestSelector, findElementTimeout);
-                    CancelInstallationRequestButtonElement.Click();
-                    break;     
-                }
-            }
-            SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);      
-
-            // --------------------------------------
             return exists;
         }
     }

@@ -22,7 +22,10 @@ namespace Brother.Tests.Specs.ContextData
         public string ServicePackType { get; set; }
         public string CompanyLocation { get; set; }
         public string InstallerEmail { get; set; }
-        public string SwapDeviceSerialNumber { get; set; }
+        public string SwapOldDeviceSerialNumber { get; set; }
+        public int SwapNewDeviceMonoPrintCount { get; set; }
+        public int SwapNewDeviceColourPrintCount { get; set; }
+
 
         public MpsContextData()
         {
@@ -58,6 +61,6 @@ namespace Brother.Tests.Specs.ContextData
         public string WebInstallUrl { get; set; }
         public Dictionary<UserType, string> WindowHandles { get; set; }
 
-
+        public string WebSwapInstallUrl { get; set; }
     }
 }

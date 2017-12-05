@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class CustomerConsumablesDevicesPage : BasePage, IPageObject
     {
-        private const string _validationElementSelector = "div.tab-content";
+        private const string _validationElementSelector = "table.mps-order-consumables-container";
         private const string _url = "/mps/customer/consumables/devices";
 
         public string ValidationElementSelector

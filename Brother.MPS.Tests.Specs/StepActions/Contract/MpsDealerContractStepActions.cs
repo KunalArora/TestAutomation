@@ -63,7 +63,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             CheckForUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
-        public void UpdatePrintCounts()
+        public void UpdateAndNotifyBOCForPrintCounts()
         {
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
@@ -73,10 +73,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.SetPrintCounts(deviceId, product.MonoPrintCount, product.ColorPrintCount);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
             }
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
         }
 
-        public void RaiseConsumableOrder()
+        public void UpdateAndNotifyBOCForConsumableOrder()
         {
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
@@ -85,14 +84,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.RaiseConsumableOrder(deviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
             }
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
-            _runCommandService.RunConsumableOrderRequestsCommand();
-            _runCommandService.RunCreateConsumableOrderCommand();
         }
 
-        public void RaiseServiceRequest()
+        public void UpdateAndNotifyBOCForServiceRequest()
         {
-            var proposalId = _contextData.ProposalId;
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -100,9 +95,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.RaiseServiceRequest(deviceId, product.LaserUnit, product.FuserUnit, product.PaperFeedingKit1, product.PaperFeedingKit2, product.PaperFeedingKit3);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
             }
-            _runCommandService.RunMeterReadCloudSyncCommand(proposalId);
+        }
+
+        public void RunCommandServicesRequests()
+        {
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
             _runCommandService.RunConsumableOrderRequestsCommand();
-            _runCommandService.RunCreateConsumableOrderCommand();    
+            _runCommandService.RunCreateConsumableOrderCommand();
         }
 
         public DealerManageDevicesPage RetrieveDealerManageDevicesPage()
@@ -121,6 +120,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
+        public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string swappedSerialNumber)
+        {
+            var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
+            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, swappedSerialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+        }
+
         //Similar function is already present in this file so, refactor this particular function.
         public void MoveToAcceptedContractsTab(DealerContractsPage dealerContractsPage)
         {
@@ -134,9 +139,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage ClickOnManageDevicesAndProceed(DealerContractsPage dealerContractsPage)
         {
-            // Click on Actions & Manage Devices link
             dealerContractsPage.ClickOnManageDevicesButton(RuntimeSettings.DefaultFindElementTimeout);
-            // Move to Manage Devices Page
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

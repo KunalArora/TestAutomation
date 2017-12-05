@@ -47,21 +47,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
             _mpsCustomerStepActions = mpsDealerCustomerStepActions;
         }
 
-        [StepDefinition(@"I will be able to see on the Consumables Devices page that above devices have updated Ink Status")]
-        public void ThenIWillBeAbleToSeeOnTheConsumablesDevicesPageThatAboveDevicesHaveUpdatedInkStatus()
+        [When(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
+        public void WhenACustomerHasNavigatedToTheConsumablesDevicesPageToVerifyThatAboveDeviceHaveUpdatedInkStatusAndServiceRequestIsRaised()
         {
             var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(_contextData.CustomerEmail, _contextData.CustomerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var customerConsumablesDevicesPage = _mpsCustomerStepActions.ClickOnComsumablesTab(customerDashBoardPage);
             _mpsCustomerStepActions.VerifyRaisedConsumableOrderStatus(customerConsumablesDevicesPage, _contextData.PrintersProperties);
-        }
-
-        [StepDefinition(@"I will be able to see on the Consumables Service Request page that above devices have updated Service Request")]
-        public void ThenIWillBeAbleToSeeOnTheConsumablesServiceRequestPageThatAboveDevicesHaveUpdatedServiceRequest()
-        {
-            var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(_contextData.CustomerEmail, _contextData.CustomerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var customerServiceRequestActivePage = _mpsCustomerStepActions.ClickOnServiceRequestsTab(customerDashBoardPage);
             _mpsCustomerStepActions.VerifyHasRequestOnList(customerServiceRequestActivePage, _contextData.PrintersProperties);
         }
-
     }
 }

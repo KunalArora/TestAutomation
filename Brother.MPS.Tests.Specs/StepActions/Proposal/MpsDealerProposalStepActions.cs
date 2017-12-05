@@ -200,8 +200,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             
             // Validate content on Summary page 
             dealerProposalsCreateSummaryPage.VerifyProposalName(_contextData.ProposalName);
-            // TODO: Uncomment the below line after merging of Business Scenario 1
-            //dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
+           // dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
             dealerProposalsCreateSummaryPage.VerifyCorrectContractTermIsDisplayedOnSummaryPage(_contextData.ContractTerm);
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
