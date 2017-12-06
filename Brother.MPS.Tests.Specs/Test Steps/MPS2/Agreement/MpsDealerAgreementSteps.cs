@@ -41,7 +41,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
-        private DealerAgreementDevicesEditPage _dealerAgreementDevicesEditPage;
 
         public MpsDealerAgreementSteps(MpsSignInStepActions mpsSignIn,
             MpsDealerAgreementStepActions mpsAgreement,
@@ -165,6 +164,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void WhenIEditDeviceDataUsingBulkEditOptionFieldsAlso(string NonMandatory)
         {
             _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataUsingBulkEditOption(
+                _dealerAgreementDevicesPage, NonMandatory);
+        }
+
+        [When(@"I edit device data using excel edit option \(""(.*)"" fields also\)")]
+        public void WhenIEditDeviceDataUsingExcelEditOptionFieldsAlso(string NonMandatory)
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataUsingExcelEditOption(
                 _dealerAgreementDevicesPage, NonMandatory);
         }
 

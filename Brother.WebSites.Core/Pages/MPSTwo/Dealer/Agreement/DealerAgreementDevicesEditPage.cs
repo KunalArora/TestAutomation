@@ -77,35 +77,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         public void FillMandatoryDetails()
         {
-            ClearAndType(CustomerNameInputElement, MpsUtil.CompanyName());
-            ClearAndType(ContactFirstNameInputElement, MpsUtil.FirstName());
-            ClearAndType(PropertyNumberInputElement, MpsUtil.PropertyNumber());
-            ClearAndType(StreetInputElement, MpsUtil.PropertyStreet());
-            ClearAndType(TownInputElement, MpsUtil.PropertyTown());
+            CustomerInformationMandatoryFields values = new CustomerInformationMandatoryFields();
 
-            // For now, handle Post code for UK only
-            // TODO: Handle other countries post code as well
-            ClearAndType(PostcodeInputElement, MpsUtil.PostCodeGb());
+            ClearAndType(CustomerNameInputElement, values.CompanyName);
+            ClearAndType(ContactFirstNameInputElement, values.FirstName);
+            ClearAndType(PropertyNumberInputElement, values.PropertyNumber);
+            ClearAndType(StreetInputElement, values.PropertyStreet);
+            ClearAndType(TownInputElement, values.PropertyTown);
+            ClearAndType(PostcodeInputElement, values.PostCode);
         }
 
         public void FillNonMandatoryDetails()
         {
+            CustomerInformationNonMandatoryFields values = new CustomerInformationNonMandatoryFields();
+
             // Address
-            ClearAndType(ContactLastNameInputElement, MpsUtil.SurName());
-            ClearAndType(EmailInputElement, MpsUtil.GenerateUniqueEmail());
-            ClearAndType(TelephoneInputElement, MpsUtil.CompanyTelephone());
-            ClearAndType(AreaInputElement, MpsUtil.Area());
+            ClearAndType(ContactLastNameInputElement, values.LastName);
+            ClearAndType(EmailInputElement, values.Email);
+            ClearAndType(TelephoneInputElement, values.Telephone);
+            ClearAndType(AreaInputElement, values.PropertyArea);
             SelectFromDropDownByIndex(RegionInputElement, new Random().Next(1, 25));
 
             // Reference Data
-            ClearAndType(DeviceLocationInputElement, MpsUtil.DeviceLocation());
-            ClearAndType(CostCentreInputElement, MpsUtil.CostCentre());
-            ClearAndType(Reference1InputElement, MpsUtil.CustomerReference());
-            ClearAndType(Reference2InputElement, MpsUtil.BankInternalReference());
-            ClearAndType(Reference3InputElement, MpsUtil.CustomerReference());
+            ClearAndType(DeviceLocationInputElement, values.DeviceLocation);
+            ClearAndType(CostCentreInputElement, values.CostCentre);
+            ClearAndType(Reference1InputElement, values.Reference_1);
+            ClearAndType(Reference2InputElement, values.Reference_2);
+            ClearAndType(Reference3InputElement, values.Reference_3);
 
             // Installation Notes
-            ClearAndType(InstallationNotesInputElement, MpsUtil.InstallationNotes());
+            ClearAndType(InstallationNotesInputElement, values.InstallationNotes);
         }
 
         public void EditDeviceData(string NonMandatory)
@@ -116,5 +117,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
                 FillNonMandatoryDetails();
             }
         }
+
+        public CustomerInformationMandatoryFields GetMandatoryFieldValues()
+        {
+            CustomerInformationMandatoryFields values = new CustomerInformationMandatoryFields();
+            return values;
+        }
+
+        public CustomerInformationNonMandatoryFields GetNonMandatoryFieldValues()
+        {
+            CustomerInformationNonMandatoryFields values = new CustomerInformationNonMandatoryFields();
+            return values;
+        } 
+    }
+
+    public class CustomerInformationMandatoryFields
+    {
+        public string CompanyName { get { return MpsUtil.CompanyName(); } }
+        public string FirstName { get { return MpsUtil.FirstName(); } }
+        public string PropertyNumber { get { return MpsUtil.PropertyNumber(); } }
+        public string PropertyStreet { get { return MpsUtil.PropertyStreet(); } }
+        public string PropertyTown { get { return MpsUtil.PropertyTown(); } }
+        public string PostCode { get { return MpsUtil.PostCodeGb(); } } // TODO: Generalize it for all countries
+    }
+
+    public class CustomerInformationNonMandatoryFields
+    {
+        public string LastName { get { return MpsUtil.SurName(); } }
+        public string Telephone { get { return MpsUtil.CompanyTelephone(); } }
+        public string Email { get { return MpsUtil.GenerateUniqueEmail(); } }
+        public string PropertyArea { get { return MpsUtil.Area(); } }
+        public string Country { get { return "United Kingdom"; } } // TODO: Replace hard coded string
+        public string DeviceLocation { get { return MpsUtil.DeviceLocation(); } }
+        public string CostCentre { get { return MpsUtil.CostCentre(); } }
+        public string Reference_1 { get { return MpsUtil.CustomerReference(); } }
+        public string Reference_2 { get { return MpsUtil.BankInternalReference(); } }
+        public string Reference_3 { get { return MpsUtil.CustomerReference(); } }
+        public string InstallationNotes { get { return MpsUtil.InstallationNotes(); } }
     }
 }

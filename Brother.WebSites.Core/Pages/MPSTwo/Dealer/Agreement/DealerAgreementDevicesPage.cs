@@ -47,6 +47,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement CheckboxSelectAllElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-edit-device-data")]
         public IWebElement EditDeviceDataBulkElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-export-all-device-data")]
+        public IWebElement ExportAllElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-import-device-data")]
+        public IWebElement ImportDataElement;
 
 
 

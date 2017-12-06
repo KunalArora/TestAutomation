@@ -14,8 +14,12 @@ And I add these printers and verify click price:
 		| DCP-8250DN   | 1        | Yes              | Yes         | 100          | 4000       | 0              | 0            |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
+When I navigate to edit device data page
+And I edit device data using excel edit option ("<NonMandatory_2>" fields also)
+Then I can verify that devices are ready for installation
+
 
 @BUK
 Scenarios: 
-		| Country        | NonMandatory_1 | UsageType      | ContractTerm | Service                 |
-		| United Kingdom | Yes            | Minimum Volume | 5 years      | Included in Click Price |
+		| Country        | NonMandatory_1 | UsageType      | ContractTerm | Service                 | NonMandatory_2 |
+		| United Kingdom | Yes            | Minimum Volume | 5 years      | Included in Click Price | Yes            |

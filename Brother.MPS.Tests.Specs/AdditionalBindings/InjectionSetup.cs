@@ -49,6 +49,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<CalculationService, ICalculationService>();
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
+            _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
         }
 
         private IContextData setContextData()

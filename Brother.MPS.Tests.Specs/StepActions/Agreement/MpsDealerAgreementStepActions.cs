@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Specs.Configuration;
+﻿using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
@@ -12,7 +13,10 @@ using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using System.Linq;
+using Brother.Tests.Specs.Helpers;
 
 
 namespace Brother.Tests.Specs.StepActions.Agreement
@@ -23,6 +27,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IWebDriver _dealerWebDriver;
         private readonly ITranslationService _translationService;
         private readonly IContextData _contextData;
+        private readonly IExcelHelper _excelHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -31,13 +36,15 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IUrlResolver urlResolver,
             ITranslationService translationService,
             IRuntimeSettings runtimeSettings,
-            MpsSignInStepActions mpsSignIn)
+            MpsSignInStepActions mpsSignIn,
+            IExcelHelper excelHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _translationService = translationService;
             _contextData = contextData;
+            _excelHelper = excelHelper;
         }
         //TODO: make all of the calls which specify a timeout pull the timeout value from config / command line
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -60,7 +67,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.AgreementName = agreementName;
             PopulateAgreementDescription(dealerAgreementCreateDescriptionPage, agreementName, leadCodeReference, dealerReference, leasingReference);
 
-            dealerAgreementCreateDescriptionPage.NextButton.Click();
+            ClickSafety(dealerAgreementCreateDescriptionPage.NextButton, dealerAgreementCreateDescriptionPage);
             return PageService.GetPageObject<DealerAgreementCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -72,8 +79,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             dealerAgreementCreateTermAndTypePage.SelectUsageType(usageType);
             dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
             dealerAgreementCreateTermAndTypePage.SelectService(servicePackOption);
-            
-            dealerAgreementCreateTermAndTypePage.NextButton.Click();
+
+            ClickSafety(dealerAgreementCreateTermAndTypePage.NextButton, dealerAgreementCreateTermAndTypePage);
             return PageService.GetPageObject<DealerAgreementCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -170,6 +177,35 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        {
+            DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
+            // 1. Export Excel
+            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+
+            // 2. Edit Excel
+            int rows = _excelHelper.GetNumberOfRows(excelFilePath);           
+            // Set initial value of row = 2 as 1st row is table header information
+            for ( int row = 2; row <= rows; row++ )
+            {
+                CustomerInformationMandatoryFields mandatoryFields = dealerAgreementDevicesEditPage.GetMandatoryFieldValues();
+                CustomerInformationNonMandatoryFields nonMandatoryFields = null;
+                if (NonMandatory.ToLower().Equals("yes"))
+                {
+                    nonMandatoryFields = dealerAgreementDevicesEditPage.GetNonMandatoryFieldValues();
+                }
+                _excelHelper.EditExcelCustomerInformation(excelFilePath, row, mandatoryFields, nonMandatoryFields);
+            }
+            
+            // 3. Import Excel
+            ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
+
+            // 4. Delete Excel
+            _excelHelper.DeleteExcelFile(excelFilePath);
+            return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
@@ -218,6 +254,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
+        private void ImportExcelFile(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath)
+        {
+            // Click on Import Data button
+            ClickSafety(dealerAgreementDevicesPage.ImportDataElement, dealerAgreementDevicesPage);
+            
+            var dealerAgreementDevicesUploadPage = PageService.GetPageObject<DealerAgreementDevicesUploadPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Upload file
+            dealerAgreementDevicesUploadPage.ChooseFileElement.SendKeys(excelFilePath);
+
+            ClickSafety(
+                dealerAgreementDevicesUploadPage.UploadButtonElement, dealerAgreementDevicesUploadPage);
+            var dealerAgreementDevicesUploadConfirmationPage = PageService.GetPageObject<DealerAgreementDevicesUploadConfirmationPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(
+                dealerAgreementDevicesUploadConfirmationPage.ConfirmChangesButtonElement, dealerAgreementDevicesUploadConfirmationPage);
+        }
         #endregion
     }
 }
