@@ -187,6 +187,8 @@
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateProductsPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesEditPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\DeleteSubDealerHandoverPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />

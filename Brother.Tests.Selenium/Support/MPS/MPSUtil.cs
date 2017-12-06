@@ -1234,5 +1234,65 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var margin = margins[new Random().Next(6)];
             return margin;
         }
+
+        public static string Area()
+        {
+            String[] areas =
+            {
+                "Guide Bridge",
+                "Rose maple hill",
+                "Piccadily",
+                "Euston",
+                "Victoria",
+                "Oxford",
+                "Hogwarts"
+            };
+            var area = areas[new Random().Next(7)];
+            return area;
+        }
+
+        public static string DeviceLocation()
+        {
+            String[] locations =
+            {
+                "Floor 1",
+                "Floor 2",
+                "Floor 3",
+                "Floor 4",
+                "Floor 5",
+                "Floor 6",
+                "Floor 7"
+            };
+            var location = locations[new Random().Next(7)];
+            return location;
+        }
+
+        public static string CostCentre()
+        {
+            String[] costCentres =
+            {
+                "Dept. A",
+                "Dept. B",
+                "Dept. C",
+                "Dept. D",
+                "Dept. E",
+                "Dept. F",
+                "Dept. G"
+            };
+            var costCentre = costCentres[new Random().Next(7)];
+            return costCentre;
+        }
+
+        public static string InstallationNotes()
+        {
+            String[] notes =
+            {
+                "Nothing Special",
+                "Please install all devices in 1 day",
+                "Handle devices delicately",
+            };
+            var note = notes[new Random().Next(3)];
+            return note;
+        }
     }
 }

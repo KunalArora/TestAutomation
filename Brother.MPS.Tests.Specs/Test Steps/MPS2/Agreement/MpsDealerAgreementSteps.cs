@@ -40,6 +40,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateClickPricePage _dealerAgreementCreateClickPricePage;
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
         private DealerAgreementsListPage _dealerAgreementsListPage;
+        private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
+        private DealerAgreementDevicesEditPage _dealerAgreementDevicesEditPage;
 
         public MpsDealerAgreementSteps(MpsSignInStepActions mpsSignIn,
             MpsDealerAgreementStepActions mpsAgreement,
@@ -146,5 +148,30 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
         }
 
+        [When(@"I navigate to edit device data page")]
+        public void WhenINavigateToEditDeviceDataPage()
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.NavigateToManageDevicesPage(_dealerAgreementsListPage);            
+        }
+
+        [When(@"I edit device data one by one for all devices \(""(.*)"" fields also\)")]
+        public void WhenIEditDeviceDataOneByOneForAllDevicesFieldsAlso(string NonMandatory)
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataOneByOne(
+                _dealerAgreementDevicesPage, NonMandatory);
+        }
+
+        [When(@"I edit device data using bulk edit option \(""(.*)"" fields also\)")]
+        public void WhenIEditDeviceDataUsingBulkEditOptionFieldsAlso(string NonMandatory)
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataUsingBulkEditOption(
+                _dealerAgreementDevicesPage, NonMandatory);
+        }
+
+        [Then(@"I can verify that devices are ready for installation")]
+        public void ThenICanVerifyThatDevicesAreReadyForInstallation()
+        {
+            _mpsAgreement.VerifyStatusOfDevices(_dealerAgreementDevicesPage);
+        }
     }
 }

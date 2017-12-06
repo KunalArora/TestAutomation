@@ -33,6 +33,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement AgreementFilter;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_List_AgreementNameRow_]")]
         public IList<IWebElement> AgreementListNameRowElement;
+        [FindsBy(How = How.CssSelector, Using = "button.btn.btn-primary.btn-xs.dropdown-toggle")]
+        public IWebElement ActionsButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-manage-devices")]
+        public IWebElement ManageDevicesButtonElement;
 
         public bool VerifyCreatedAgreement(int agreementId, string agreementName, int findElementTimeout)
         {
@@ -48,6 +52,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             {
                 return false;
             }
+        }
+
+        // Click Manage devices button for first device showing
+        // TODO: Generalize it by taking agreementId as parameter in the future
+        public void ClickOnManageDevicesButton(int findElementTimeout)
+        {
+            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+            SeleniumHelper.ClickSafety(ManageDevicesButtonElement, findElementTimeout);
         }
 
     }
