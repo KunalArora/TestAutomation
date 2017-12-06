@@ -38,5 +38,9 @@ namespace Brother.Tests.Specs.ContextData
         string CustomerFirstName { get; set; }
         string CustomerLastName { get; set; }
         string WebSwapInstallUrl { get; set; }
+
+        // Exclusively Type 3
+        int AgreementId { get; set; }
+        string AgreementName { get; set; }
     }
 }

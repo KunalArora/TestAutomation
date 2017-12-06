@@ -1,20 +1,16 @@
-﻿using Brother.Tests.Selenium.Lib;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain;
-using Brother.Tests.Specs.Extensions;
+﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
-using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
-using Brother.Tests.Specs.StepActions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using System.Resources;
+using TechTalk.SpecFlow.Assist;
+
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
 {
@@ -32,6 +28,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly IProposalHelper _proposalHelper;
+        private readonly IAgreementHelper _agreementHelper;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly MpsDealerAgreementStepActions _mpsAgreement;
 
@@ -42,6 +39,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateProductsPage _dealerAgreementCreateProductsPage;
         private DealerAgreementCreateClickPricePage _dealerAgreementCreateClickPricePage;
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
+        private DealerAgreementsListPage _dealerAgreementsListPage;
 
         public MpsDealerAgreementSteps(MpsSignInStepActions mpsSignIn,
             MpsDealerAgreementStepActions mpsAgreement,
@@ -53,7 +51,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
-            IProposalHelper proposalHelper)
+            IProposalHelper proposalHelper,
+            IAgreementHelper agreementHelper)
         {
             _context = context;
             _driver = driver;
@@ -64,12 +63,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _userResolver = userResolver;
             _urlResolver = urlResolver;
             _proposalHelper = proposalHelper;
+            _agreementHelper = agreementHelper;
             _mpsSignIn = mpsSignIn;
             _mpsAgreement = mpsAgreement;
         }
 
-        [Given(@"I have navigated to the Create Agreement page as a ""(.*)"" from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheCreateAgreementPageAsRoleFromCountry(string role, string country)
+
+        [Given(@"I have navigated to the Create Agreement page as a Cloud MPS Dealer from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateAgreementPageAsACloudMPSDealerFrom(string country)
         {
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
@@ -79,33 +80,71 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         }
 
         [When(@"I enter the agreement description")]
-        public void WhenIEnterTheAgreemementDescription()
+        public void WhenIEnterTheAgreementDescription()
         {
-            _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _proposalHelper.GenerateProposalName(), "", "", "");
+            _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName());
         }
 
-        [When(@"I select ""(.*)"" as the Usage Type and I select ""(.*)"" as the Contract Term")]
-        public void WhenISelectTheUsageTypeAndContractTerm(string usageType, string contractTerm)
+        [When(@"I input the fields \(""(.*)"" fields also\) on Agreement Description Page")]
+        public void WhenIInputTheFieldsFieldsAlsoOnAgreementDescriptionPage(string NonMandatory)
         {
-            _dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, "");
+            if (NonMandatory.ToLower().Equals("yes"))
+            {
+                _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(
+                    _dealerAgreementCreateDescriptionPage, 
+                    _agreementHelper.GenerateAgreementName(), 
+                    _agreementHelper.GenerateReference(),
+                    _agreementHelper.GenerateReference(),
+                    _agreementHelper.GenerateReference());
+            }
+            else
+            {
+                _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(
+                    _dealerAgreementCreateDescriptionPage, 
+                    _agreementHelper.GenerateAgreementName());
+            }
         }
 
-        [When(@"I add a printer to the agreement")]
+
+        [When(@"I select the Usage Type of ""(.*)"", Contract Term of ""(.*)"" and Service of ""(.*)""")]
+        public void WhenISelectTheUsageTypeOfContractTermOfAndServiceOf(string usageType, string contractTerm, string service)
+        {
+            _dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, service);
+        }
+
+ 
+        [Given(@"I add a printer to the agreement")]
         public void WhenIAddAPrinterToTheAgreement()
         {
             //TODO: if a printer is not specified, select a random one
-
+            //TODO: Refactor this function 
             string installationPack = _translationService.GetInstallationPackText("DEALER_INSTALLATION_TYPE3", _contextData.Culture);
             string servicePack = _translationService.GetServicePackTypeText("SERVICE_PACK_TYPE3", _contextData.Culture);
 
             _dealerAgreementCreateClickPricePage = _mpsAgreement.AddPrinterToAgreementAndProceed(_dealerAgreementCreateProductsPage, _proposalHelper.SelectPrinter(), 2, installationPack, servicePack);
-            
+
         }
 
-        [When(@"I enter coverage and volume values on the click price calculation page")]
-        public void WhenIEnterCoverageAndVolume()
+        [When(@"I add these printers and verify click price:")]
+        public void WhenIAddThesePrintersAndVerifyClickPrice(Table printers)
         {
-            _dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
+            var products = printers.CreateSet<PrinterProperties>();
+            _contextData.PrintersProperties = products;
+            _dealerAgreementCreateClickPricePage = _mpsAgreement.AddThesePrintersToAgreementAndProceed(_dealerAgreementCreateProductsPage, products);
+            _dealerAgreementCreateSummaryPage = _mpsAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage, products);
+        }                   
+
+        [When(@"I complete the setup of agreement")]
+        public void WhenICompleteTheSetupOfAgreement()
+        {
+            _dealerAgreementsListPage = _mpsAgreement.ValidateSummaryPageAndCompleteSetup(_dealerAgreementCreateSummaryPage);
         }
+
+        [Then(@"I can verify the creation of agreement in the agreement list")]
+        public void ThenICanVerifyTheCreationOfAgreementInTheAgreementList()
+        {
+            _mpsAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
     }
 }

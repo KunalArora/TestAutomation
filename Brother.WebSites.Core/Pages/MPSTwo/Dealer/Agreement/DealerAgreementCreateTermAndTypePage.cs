@@ -35,6 +35,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         [FindsBy(How = How.Id, Using = "content_1_InputContractLength_Input")]
         public IWebElement ContractLengthElement;
 
+        [FindsBy(How = How.Id, Using = "content_1_InputServicePaymentOption_Input")]
+        public IWebElement ServiceElement;
+
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
 
@@ -46,6 +49,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public void SelectContractLength(string contractLength)
         {
             SelectFromDropdown(ContractLengthElement, contractLength);
+        }
+
+        public void SelectService(string service)
+        {
+            SelectFromDropdown(ServiceElement, service);
         }
     }
 }

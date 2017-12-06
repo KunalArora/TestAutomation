@@ -38,5 +38,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
+
+        [FindsBy(How = How.Id, Using = "content_1_InputLeadCodeReference_Input")]
+        public IWebElement LeadCodeReferenceField;
+
+        [FindsBy(How = How.Id, Using = "content_1_InputDealerReference_Input")]
+        public IWebElement DealerReferenceField;
+
+        [FindsBy(How = How.Id, Using = "content_1_InputFinanceReference_Input")]
+        public IWebElement LeasingFinanceReferenceField;
+
     }
 }

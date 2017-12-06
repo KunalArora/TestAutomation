@@ -150,7 +150,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             foreach (var product in products)
             {
-                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.IncludeDelivery, resourceServicePackTypeIncludedInClickPrice);
+                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.InstallationPack, product.IncludeDelivery, resourceServicePackTypeIncludedInClickPrice);
             }
             ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage)  ;
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

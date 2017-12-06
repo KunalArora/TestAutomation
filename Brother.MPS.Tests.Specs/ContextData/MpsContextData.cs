@@ -60,7 +60,10 @@ namespace Brother.Tests.Specs.ContextData
         public string CustomerPassword { get; set; }
         public string WebInstallUrl { get; set; }
         public Dictionary<UserType, string> WindowHandles { get; set; }
-
         public string WebSwapInstallUrl { get; set; }
+
+        // Exclusively Type 3
+        public int AgreementId { get; set; }
+        public string AgreementName { get; set; }
     }
 }

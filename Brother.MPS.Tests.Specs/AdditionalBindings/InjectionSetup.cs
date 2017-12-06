@@ -1,21 +1,18 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Globalization;
 using BoDi;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Specs.Helpers;
-using Brother.Tests.Selenium.Lib.Helpers;
-using OpenQA.Selenium;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
-
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
 namespace Brother.Tests.Specs.AdditionalBindings
@@ -51,6 +48,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<MpsWebToolsService, IMpsWebToolsService>();
             _container.RegisterTypeAs<CalculationService, ICalculationService>();
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
+            _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
         }
 
         private IContextData setContextData()
