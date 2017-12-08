@@ -8,7 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
     public class DealerAgreementDevicesPage: BasePage, IPageObject
     {
-        private const string _validationElementSelector = ".js-mps-ribbon-edit-device-data"; // Edit device data button
+        private const string _validationElementSelector = ".mps-dataTables-footer"; // Device data table footer
         private const string _url = "/mps/dealer/agreement/{agreementId}/devices"; // TODO: Replace agreementId with dynamic parameter
 
         public string ValidationElementSelector
@@ -34,6 +34,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         private const string EditDeviceDataButtonSelector = ".js-mps-edit-device-data";
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
+        private const string DeviceCheckboxSelector = ".js-mps-row-action";
 
 
         // Web Elements
@@ -51,6 +52,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement ExportAllElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-import-device-data")]
         public IWebElement ImportDataElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-export-device-data")]
+        public IWebElement ExportDataElement;
 
 
 
@@ -72,6 +75,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             }
         }
 
+        // Click on Edit Device Data button for this particular row element
+        public void ClickOnEditDeviceData(IWebElement deviceRowElement, int findElementTimeout)
+        {
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ActionsButtonSelector, findElementTimeout);
+            ActionsButtonElement.Click();
+            var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, EditDeviceDataButtonSelector, findElementTimeout);
+            EditDeviceDataButtonElement.Click();
+        }
+
         public void VerifyThatDevicesAreReadyForInstallation(int findElementTimeout)
         {
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
@@ -86,5 +98,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             }
         }
 
+
+        // Click on Checkbox for this particular device row element
+        public void ClickOnDeviceCheckbox(IWebElement deviceRowElement, int findElementTimeout)
+        {
+            var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(CheckboxElement, findElementTimeout);
+        }
     }
 }

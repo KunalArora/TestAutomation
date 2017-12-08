@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 4")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Yes", "Pay As You Go", "3 years", "Pay upfront", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Yes", "Pay As You Go", "3 years", "Pay upfront", "Yes", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario4(string country, string nonMandatory_1, string usageType, string contractTerm, string service, string[] exampleTags)
+        public virtual void BusinessScenario4(string country, string nonMandatory_1, string usageType, string contractTerm, string service, string nonMandatory_2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 4", exampleTags);
 #line 7
@@ -99,28 +99,53 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeColour"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
-                        "2",
+                        "1",
                         "Yes",
-                        "Yes",
+                        "No",
                         "25",
                         "2250",
                         "0",
                         "0"});
             table1.AddRow(new string[] {
+                        "MFC-L8650CDW",
+                        "1",
+                        "No",
+                        "Yes",
+                        "25",
+                        "2250",
+                        "25",
+                        "2250"});
+            table1.AddRow(new string[] {
+                        "DCP-L8450CDW",
+                        "1",
+                        "Yes",
+                        "Yes",
+                        "25",
+                        "2250",
+                        "25",
+                        "2250"});
+            table1.AddRow(new string[] {
                         "DCP-8250DN",
                         "2",
-                        "Yes",
-                        "Yes",
+                        "No",
+                        "No",
                         "25",
                         "2250",
                         "0",
                         "0"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
-#line 15
+#line 17
 testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 18
 testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+testRunner.And(string.Format("I edit device data using a combination of single device edit, bulk edit and excel" +
+                        " edit options (\"{0}\" fields also)", nonMandatory_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+testRunner.Then("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

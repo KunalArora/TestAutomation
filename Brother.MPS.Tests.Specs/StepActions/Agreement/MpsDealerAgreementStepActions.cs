@@ -154,10 +154,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             foreach(var product in _contextData.PrintersProperties)
             {
                 dealerAgreementDevicesPage.ClickOnEditDeviceData(product.Model, RuntimeSettings.DefaultFindElementTimeout);
-                var dealerAgreementDevicesEditPage = PageService.GetPageObject<DealerAgreementDevicesEditPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-                dealerAgreementDevicesEditPage.EditDeviceData(NonMandatory);
-                ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
-                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerAgreementDevicesPage = EditDeviceDataHelper(NonMandatory);
             }
             return dealerAgreementDevicesPage;
         }
@@ -169,8 +166,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
         {
+            // Click Checkbox all element
             ClickSafety(dealerAgreementDevicesPage.CheckboxSelectAllElement, dealerAgreementDevicesPage);
+            
+            // Click Edit device data (bulk) element
             ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
+            
+            return EditDeviceDataHelper(NonMandatory);
+        }
+
+        public DealerAgreementDevicesPage EditDeviceDataHelper(string NonMandatory)
+        {
             var dealerAgreementDevicesEditPage = PageService.GetPageObject<DealerAgreementDevicesEditPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             dealerAgreementDevicesEditPage.EditDeviceData(NonMandatory);
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
@@ -179,15 +185,21 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
         {
-            DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
-            // 1. Export Excel
             ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+            return ProcessExcelEdit(dealerAgreementDevicesPage, NonMandatory);
+        }
+
+        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        {
+            // 1. Get Downloaded file path
             string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
 
             // 2. Edit Excel
-            int rows = _excelHelper.GetNumberOfRows(excelFilePath);           
-            // Set initial value of row = 2 as 1st row is table header information
-            for ( int row = 2; row <= rows; row++ )
+            int rows = _excelHelper.GetNumberOfRows(excelFilePath);
+            DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
+
+            // Set initial value of row = 2 as 1st row is table header information            
+            for (int row = 2; row <= rows; row++)
             {
                 CustomerInformationMandatoryFields mandatoryFields = dealerAgreementDevicesEditPage.GetMandatoryFieldValues();
                 CustomerInformationNonMandatoryFields nonMandatoryFields = null;
@@ -197,13 +209,52 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 }
                 _excelHelper.EditExcelCustomerInformation(excelFilePath, row, mandatoryFields, nonMandatoryFields);
             }
-            
+
             // 3. Import Excel
             ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
 
             // 4. Delete Excel
             _excelHelper.DeleteExcelFile(excelFilePath);
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerAgreementDevicesPage EditUsingCombinationOfAllEditOptions(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        {
+            List<IWebElement> deviceRowElements;
+
+            // Excel edit for first 2 devices
+            deviceRowElements = GetRowElementsOfDeviceTable(dealerAgreementDevicesPage);
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[0], RuntimeSettings.DefaultFindElementTimeout);  // 1st device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[1], RuntimeSettings.DefaultFindElementTimeout);  // 2nd device
+            ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
+            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, NonMandatory);
+
+            // Bulk edit for next 2 devices
+            deviceRowElements = GetRowElementsOfDeviceTable(dealerAgreementDevicesPage);
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[2], RuntimeSettings.DefaultFindElementTimeout);  // 3rd device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[3], RuntimeSettings.DefaultFindElementTimeout);  // 4th device
+            ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
+            dealerAgreementDevicesPage = EditDeviceDataHelper(NonMandatory);
+
+            // Single device edit for last device
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 4, NonMandatory);  // 5th device
+
+            // Re-Edit 1 device edited via Excel edit option
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 0, NonMandatory);  // 1st device
+
+            // Re-Edit 1 device edited via Bulk edit option
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 2, NonMandatory);  // 3rd device
+
+            return dealerAgreementDevicesPage;
+        }
+
+        // Edit device data of this row (element)
+        public DealerAgreementDevicesPage EditSingleDeviceDataOfThisRow(
+            DealerAgreementDevicesPage dealerAgreementDevicesPage, int rowIndex, String NonMandatory)
+        {
+            var deviceRowElements = GetRowElementsOfDeviceTable(dealerAgreementDevicesPage);
+            dealerAgreementDevicesPage.ClickOnEditDeviceData(deviceRowElements[rowIndex], RuntimeSettings.DefaultFindElementTimeout);
+            return EditDeviceDataHelper(NonMandatory);
         }
 
         #region private methods
@@ -252,6 +303,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+        }
+
+        private List<IWebElement> GetRowElementsOfDeviceTable(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            return dealerAgreementDevicesPage.SeleniumHelper.FindRowElementsWithinTable(dealerAgreementDevicesPage.DeviceContainerElement);
         }
 
         private void ImportExcelFile(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath)

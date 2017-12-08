@@ -174,6 +174,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 _dealerAgreementDevicesPage, NonMandatory);
         }
 
+        [When(@"I edit device data using a combination of single device edit, bulk edit and excel edit options \(""(.*)"" fields also\)")]
+        public void WhenIEditDeviceDataUsingACombinationOfSingleDeviceEditBulkEditAndExcelEditOptionsFieldsAlso(string NonMandatory)
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.EditUsingCombinationOfAllEditOptions(
+                _dealerAgreementDevicesPage, NonMandatory);
+        }
+
         [Then(@"I can verify that devices are ready for installation")]
         public void ThenICanVerifyThatDevicesAreReadyForInstallation()
         {
