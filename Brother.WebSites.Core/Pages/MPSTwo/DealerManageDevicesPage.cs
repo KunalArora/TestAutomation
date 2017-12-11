@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -49,9 +48,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-        public InstallationRequestStatus _installationRequestStatus = new InstallationRequestStatus();
-        public InstalledPrinterStatus _installedPrinterStatus = new InstalledPrinterStatus();
-        public SwapType _swapType = new SwapType();
 
         private const string InstallationRequestContainerSelector = ".js-mps-installation-request-list-container";
         private const string InstallationRequestRowSelector = ".js-mps-searchable";
@@ -765,7 +761,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             CreateRequestElement.Click();
         }
 
-        public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, int findElementTimeout)
+        public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, int findElementTimeout, string resourceInstallationStatusNotStarted )
         {
             var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
             var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
@@ -776,7 +772,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
                 var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
                 var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
-                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals("Not started"))
+                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
                     ActionsButtonElement.Click();
@@ -813,7 +809,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }        
         }
 
-        public void ConfirmSwapAndSelectSwapType(string swapType, int findElementTimeout)
+        public void ConfirmSwapAndSelectSwapType(string swapType, int findElementTimeout, string resourceSwapTypeReplaceWithDifferentModel )
         {
             var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector, findElementTimeout);
             var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector, findElementTimeout);
@@ -823,7 +819,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SwapTypeRadioButtonElement.Click();
             var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector, findElementTimeout);
             SwapTypeModalNextButtonElement.Click();
-            if (swapType.Equals(_swapType.ReplaceWithDifferentModel))
+            if (swapType.Equals(resourceSwapTypeReplaceWithDifferentModel))
             {
                 var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector, findElementTimeout);
                 var SwapReplacementModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelListSelector, findElementTimeout);
@@ -835,7 +831,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public bool VerifySwappedDeviceStatus(string serialNumber, int findElementTimeout)
+        public bool VerifySwappedDeviceStatus(string serialNumber, int findElementTimeout, string resourceInstalledPrinterStatusBeingReplaced )
         {
             bool exists = false;
             var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector, findElementTimeout);
@@ -845,7 +841,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector, findElementTimeout);
                 var DeviceStatusElement = SeleniumHelper.FindElementByCssSelector(element, DeviceStatusSelector, findElementTimeout);
-                if (DeviceSerialNumberElement.Text.Equals(serialNumber) && DeviceStatusElement.Text.Equals(_installedPrinterStatus.BeingReplaced));
+                if (DeviceSerialNumberElement.Text.Equals(serialNumber) && DeviceStatusElement.Text.Equals(resourceInstalledPrinterStatusBeingReplaced));
                 {
                     exists = true;
                     break;

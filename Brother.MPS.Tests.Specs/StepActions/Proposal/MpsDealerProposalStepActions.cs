@@ -146,18 +146,18 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         }
 
         public DealerProposalsCreateClickPricePage AddPrinterToProposalAndProceed(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
-            IEnumerable<PrinterProperties> products)
+            IEnumerable<PrinterProperties> products, string resourceServicePackTypeIncludedInClickPrice)
         {
             foreach (var product in products)
             {
-                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.IncludeDelivery);
+                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.Installation, product.IncludeDelivery, resourceServicePackTypeIncludedInClickPrice);
             }
             ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage)  ;
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            IEnumerable<PrinterProperties> products)
+            IEnumerable<PrinterProperties> products, string resourceServicePackTypeIncludedInClickPrice)
         {
             foreach (var product in products)
             {
@@ -167,7 +167,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     product.CoverageMono, 
                     product.CoverageColour, 
                     product.VolumeMono, 
-                    product.VolumeColour);
+                    product.VolumeColour,
+                    resourceServicePackTypeIncludedInClickPrice);
             }
 
             ClickSafety( dealerProposalsCreateClickPricePage.CalculateClickPriceElement, dealerProposalsCreateClickPricePage ) ;
@@ -181,7 +182,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return null;
         }
 
-        public CloudExistingProposalPage SaveTheProposalAndProceed(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
+        public CloudExistingProposalPage SaveTheProposalAndProceed(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage,string resourceServicePackTypeIncludedInClickPrice)
         {
             int proposalId = dealerProposalsCreateSummaryPage.ReturnContractId();
             _contextData.ProposalId = proposalId;
@@ -204,7 +205,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsCreateSummaryPage.VerifyCorrectContractTermIsDisplayedOnSummaryPage(_contextData.ContractTerm);
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
-            dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType);
+            dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType, resourceServicePackTypeIncludedInClickPrice);
             dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso);
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
@@ -230,7 +231,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage, Country country, string payment = "Invoice")
+        public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage, Country country, string payment )
         {
             dealerProposalsConvertCustomerInformationPage.FillCustomerDetails(payment, country.Name);
             _contextData.CustomerEmail = dealerProposalsConvertCustomerInformationPage.GetEmail();
@@ -439,7 +440,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string printerName,
             string printerPrice,
             string installationPack,
-            bool delivery)
+            bool delivery,
+            string resourceServicePackTypeIncludedInClickPrice)
         {
             string margin, unitPrice, expectedTotalLinePrice;
             IWebElement printerContainer;
@@ -452,7 +454,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 RuntimeSettings.DefaultFindElementTimeout,
                 out margin,
                 out unitPrice,
-                out printerContainer);
+                out printerContainer,
+                resourceServicePackTypeIncludedInClickPrice);
 
             List<string> totalPriceValues = dealerProposalsCreateProductsPage.RetrieveAllTotalPriceValues(
                 printerContainer,
@@ -467,7 +470,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour)
+            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour, string resourceServicePackTypeIncludedInClickPrice)
         {
             IWebElement printerContainer = dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume(
                 printerName,
@@ -478,17 +481,17 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 RuntimeSettings.DefaultFindElementTimeout
             );
 
-            ValidateContentOnClickPricePage(dealerProposalsCreateClickPricePage, printerContainer);
+            ValidateContentOnClickPricePage(dealerProposalsCreateClickPricePage, printerContainer, resourceServicePackTypeIncludedInClickPrice);
         }
 
         private void ValidateContentOnClickPricePage(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            IWebElement printerContainer)
+            IWebElement printerContainer,string resourceServicePackTypeIncludedInClickPrice)
         {
             string monoMargin, servicePackUnitCost, servicePackUnitPrice;
             // Validate Service pack unit price when pack is 'Included in Click Price'     
             dealerProposalsCreateClickPricePage.ValidateServicePackContentOnClickPricePage(printerContainer,
                 _contextData.ServicePackType, RuntimeSettings.DefaultFindElementTimeout,
-                out monoMargin, out servicePackUnitCost, out servicePackUnitPrice);
+                out monoMargin, out servicePackUnitCost, out servicePackUnitPrice, resourceServicePackTypeIncludedInClickPrice);
 
             if ((new string[] { monoMargin, servicePackUnitCost, servicePackUnitPrice }).All(v => v != ""))
             {

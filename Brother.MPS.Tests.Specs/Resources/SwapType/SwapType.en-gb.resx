@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NO_SERVICE_PACK" xml:space="preserve">
-    <value>No service pack</value>
+  <data name="REPLACE_THE_PCB" xml:space="preserve">
+    <value>ReplaceThePcb</value>
   </data>
-  <data name="SERVICE_PACK_TYPE3" xml:space="preserve">
-    <value>Type 3 SP duration 24 month (en)</value>
+  <data name="REPLACE_WITH_DIFFERENT_MODEL" xml:space="preserve">
+    <value>ReplaceWithDifferentModel</value>
+  </data>
+  <data name="REPLACE_WITH_SAME_MODEL" xml:space="preserve">
+    <value>ReplaceWithSameModel</value>
   </data>
 </root>

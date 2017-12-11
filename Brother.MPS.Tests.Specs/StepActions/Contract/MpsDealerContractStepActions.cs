@@ -182,9 +182,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage, string installerEmail, string companyLocation)
-        {  
-            string url = dealerManageDevicesPage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout);
+        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage, string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
+        {
+            string url = dealerManageDevicesPage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout, resourceInstallationStatusNotStarted);
             
             if (url == null)
             {
@@ -198,9 +198,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             dealerManageDevicesPage.ClickOnSwapDevice(serialNumber, RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage, string swapType)
+        public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage, string swapType, string resourceSwapTypeReplaceWithDifferentModel)
         {
-            dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, RuntimeSettings.DefaultFindElementTimeout);
+            dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, RuntimeSettings.DefaultFindElementTimeout, resourceSwapTypeReplaceWithDifferentModel);
             return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -216,9 +216,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void VerifySwappedDeviceStatus(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
+        public void VerifySwappedDeviceStatus(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber, string resourceInstalledPrinterStatusBeingReplaced )
         {
-            bool exists = dealerManageDevicesPage.VerifySwappedDeviceStatus(serialNumber, RuntimeSettings.DefaultFindElementTimeout);
+            bool exists = dealerManageDevicesPage.VerifySwappedDeviceStatus(serialNumber, RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusBeingReplaced);
             if (exists)
             {
                 return;

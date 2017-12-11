@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="FIVE_YEARS" xml:space="preserve">
+    <value>5 years</value>
   </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="FOUR_YEARS" xml:space="preserve">
+    <value>4 years</value>
+  </data>
+  <data name="THREE_YEARS" xml:space="preserve">
+    <value>3 years</value>
   </data>
 </root>

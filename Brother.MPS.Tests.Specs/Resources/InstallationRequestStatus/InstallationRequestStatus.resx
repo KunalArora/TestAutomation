@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="CANCELLED" xml:space="preserve">
+    <value>Cancelled</value>
   </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="IN_PROCESS" xml:space="preserve">
+    <value>In-process</value>
+  </data>
+  <data name="NOT_SENT" xml:space="preserve">
+    <value>Not sent</value>
+  </data>
+  <data name="NOT_STARTED" xml:space="preserve">
+    <value>Not started</value>
   </data>
 </root>

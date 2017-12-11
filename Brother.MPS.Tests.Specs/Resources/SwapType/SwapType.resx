@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="REPLACE_THE_PCB" xml:space="preserve">
+    <value>ReplaceThePcb</value>
   </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="REPLACE_WITH_DIFFERENT_MODEL" xml:space="preserve">
+    <value>ReplaceWithDifferentModel</value>
+  </data>
+  <data name="REPLACE_WITH_SAME_MODEL" xml:space="preserve">
+    <value>ReplaceWithSameModel</value>
   </data>
 </root>
