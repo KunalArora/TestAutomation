@@ -81,6 +81,18 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return tableRows;
         }
 
+        public List<IWebElement> FindElementsByCssSelector(ISearchContext context, string selector)
+        {
+            var elements = context.FindElements(By.CssSelector(selector)).ToList();
+            return elements;
+        }
+
+        public List<IWebElement> FindElementsByCssSelector( string selector)
+        {
+            var elements = _webDriver.FindElements(By.CssSelector(selector)).ToList();
+            return elements;
+        }
+
         public string SelectDropdownElementTextByIndex(IWebElement element, int index)
         {
             var selectElement = new SelectElement(element);

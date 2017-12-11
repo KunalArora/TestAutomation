@@ -1,25 +1,14 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using Brother.WebSites.Core.Pages.MPSTwo;
+using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Brother.WebSites.Core.Pages
 {
     public static class PageObjectExtensions
     {
-        public static void ClickSafely(this IPageObject pageObject)
-        {
-            //pageObject.SeleniumHelper.ClickSafely()
-        }
-    }
 
-    [System.AttributeUsage(System.AttributeTargets.Property)]
-    public class IgnoreParse : System.Attribute { }
-
-    public static class PageElementValueCollectExtensions
-    {
         public static IEnumerable<string> CollectDigitOnly(this IList<IWebElement> ellist)
         {
             var ans = ellist.Select(d => d.CollectDigitOnly());
@@ -31,84 +20,72 @@ namespace Brother.WebSites.Core.Pages
 
         }
 
-        public static IEnumerable<T> CreateElementValueList<T>(this object page, Func<IWebElement, string> toValueFunc = null)
+        public static IList<CustomerConsumablesDeviceItem> CreateElementValueList(this CustomerConsumablesDevicesPage page) 
         {
-            return CreateElementValueDictionary<T>(page, toValueFunc).Values.ToList();
-        }
-        public static Dictionary<IList<string>, T> CreateElementValueDictionary<T>(this object page, Func<IWebElement, string> toValueFunc = null)
-        {
-            var regx = new Regex(@"content_(?<RegIndexA>[0-9]*)[^0-9]*(?<RegIndexB>[0-9]*)[^0-9]*(?<RegIndexC>[0-9]*)");
-            var pageType = page.GetType();
-            var pageFields = pageType.GetFields();
-            var itemType = typeof(T);
-            var itemProperties = itemType.GetProperties();
-            var resultDict = new Dictionary<IList<string>, T>(new MyEqualityComparer());
-            if (toValueFunc == null)
+            const string divAlertInfoListSelector = "div.alert.alert-info";
+            const string tbodyListSelector = "tbody.js-mps-searchable";
+            var resultList = new List<CustomerConsumablesDeviceItem>();
+            var seleniumHelper = page.SeleniumHelper;
+            var divAlertInfoList = seleniumHelper.FindElementsByCssSelector(divAlertInfoListSelector);
+            var tbodyList = seleniumHelper.FindElementsByCssSelector(tbodyListSelector);
+            for( int idx = 0; idx < divAlertInfoList.Count; idx ++)
             {
-                toValueFunc = new Func<IWebElement, string>(element => element.Text);
-            }
-            foreach (var propertyInfo in itemProperties)
-            {
-                if(  propertyInfo.GetCustomAttribute(typeof(IgnoreParse)) != null)
+                var divAlertInfo = divAlertInfoList[idx];
+                var contractId = CollectDigitOnly(divAlertInfo);
+                var tbody = tbodyList[idx];
+                var trList = seleniumHelper.FindElementsByCssSelector(tbody, "tr");
+                foreach( var tr in trList)
                 {
-                    continue;
-                }
-                const BindingFlags bindingFields = BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetField;
-                var pageElementList = (IList<IWebElement>)pageType.InvokeMember(propertyInfo.Name, bindingFields, null, page, null);
-
-                foreach (var pageElement in pageElementList)
-                {
-                    var elementId = pageElement.GetAttribute("id");
-                    var elementValue = toValueFunc(pageElement);
-                    var elementMatch = regx.Match(elementId);
-                    var dictKey = CreateDicKey(elementMatch);
-                    if (resultDict.ContainsKey(dictKey) == false)
+                    var newItem = new CustomerConsumablesDeviceItem();
+                    var tdList = seleniumHelper.FindElementsByCssSelector(tr, "td");
+                    foreach( var td in tdList)
                     {
-                        resultDict[dictKey] = (T)Activator.CreateInstance(typeof(T));
+                        var tdId = td.GetAttribute("id");
+                        if (tdId.Contains("_CellSerialNo_"))
+                        {
+                            newItem.CellSerialNo = td.Text;
+                        }
+                        else if (tdId.Contains("_CellModel_"))
+                        {
+                            newItem.CellModel = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_BU_"))
+                        {
+                            newItem.Cell_BU = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_DR_"))
+                        {
+                            newItem.Cell_DR = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_WU_"))
+                        {
+                            newItem.Cell_WU = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_BW_"))
+                        {
+                            newItem.Cell_BW = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_C_"))
+                        {
+                            newItem.Cell_C = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_M_"))
+                        {
+                            newItem.Cell_M = td.Text;
+                        }
+                        else if (tdId.Contains("_Cell_Y_"))
+                        {
+                            newItem.Cell_Y = td.Text;
+                        }
                     }
-                    var item = resultDict[dictKey];
-                    itemType.InvokeMember(propertyInfo.Name, BindingFlags.SetProperty, null, item, new object[] { elementValue });
+                    newItem.ContractId = contractId;
+                    resultList.Add(newItem);
                 }
             }
-            return resultDict;
+            return resultList;
+
         }
 
-        private static IList<string> CreateDicKey(Match idMatch)
-        {
-            var idlist = new List<string>();
-            (new[] { "RegIndexA", "RegIndexB", "RegIndexC" }).All(d => { idlist.Add(idMatch.Groups[d].Value); return true; });
-            return idlist;
-        }
-
-        private class MyEqualityComparer : IEqualityComparer<IList<string>>
-        {
-            public bool Equals(IList<string> x, IList<string> y)
-            {
-                if (x.Count != y.Count) { return false; }
-                for (int loc = 0; loc < x.Count; loc++)
-                {
-                    if (x[loc] != y[loc])
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-
-            public int GetHashCode(IList<string> list)
-            {
-                unchecked
-                {
-                    int hash = 19;
-                    foreach (var item in list)
-                    {
-                        hash = hash * 31 + item.GetHashCode();
-                    }
-                    return hash;
-                }
-            }
-        }
 
     }
 }

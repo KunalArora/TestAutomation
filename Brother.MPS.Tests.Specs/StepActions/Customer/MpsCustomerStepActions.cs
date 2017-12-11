@@ -57,15 +57,8 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public void VerifyRaisedConsumableOrderStatus(CustomerConsumablesDevicesPage customerConsumablesDevicesPage, IEnumerable<PrinterProperties> printersProperties)
         {
-            var itemdic = customerConsumablesDevicesPage.CreateElementValueDictionary<CustomerConsumablesDeviceItem>();
-            var contlastIdList = customerConsumablesDevicesPage.ContractReferenceElement.CollectDigitOnly().OrderBy(x => x).ToArray();
-            foreach( var item in itemdic)
-            {
-                var contractIndex = int.Parse(item.Key[1]);
-                item.Value.ContractId = contlastIdList[contractIndex];
-            }
-            var itemList = itemdic.Values.ToArray();
-            foreach( var prop in printersProperties)
+            var itemList = customerConsumablesDevicesPage.CreateElementValueList();
+            foreach ( var prop in printersProperties)
             {
                 var pageItem = itemList.FirstOrDefault(d => d.CellSerialNo == prop.SerialNumber);
                 if (pageItem == null)
