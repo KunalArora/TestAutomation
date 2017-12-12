@@ -1,6 +1,4 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Specs.Configuration;
+﻿using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Extensions;
@@ -12,6 +10,7 @@ using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 
@@ -22,9 +21,11 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _dealerWebDriver;
         private IWebDriver _installerWebDriver;
         private IWebDriver _loApproverWebDriver;
+        private IWebDriver _customerWebDriver;
 
         private const string dealerDashboardUrl = "/mps/dealer/dashboard";
         private const string loApproverDashboardUrl = "/mps/local-office/dashboard";
+        private const string customerDashboardUrl = "/mps/customer/dashboard";
 
         public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
@@ -67,6 +68,20 @@ namespace Brother.Tests.Specs.StepActions.Common
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loApproverDashboardUrl);
                 return PageService.LoadUrl<LocalOfficeApproverDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loApproverWebDriver);
             }
+        }
+
+        public CustomerDashBoardPage SignInAsCustomer(string email, string password, string url)
+        {   
+            _customerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Customer);
+            if (_customerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _customerWebDriver);
+                SignInToMpsDashboardAs<CustomerRootPage>(signInPage, email, password, _customerWebDriver);
+            }
+            var uri = new Uri(_customerWebDriver.Url);
+            var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, customerDashboardUrl);
+            return PageService.LoadUrl<CustomerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _customerWebDriver);
+            
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver)

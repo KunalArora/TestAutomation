@@ -157,6 +157,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string CompleteButtonSelector = "#content_0_ButtonCompleteCloudInstallation";
         private const string InstallationSuccessfullyFinishedSelector = "#content_0_InstallationSuccessfullyFinished";
 
+        private const string SwapContainerSelector = "#content_0_SwapPlaceHolder.js-mps-swap-container";
+        private const string SwapTableBodySelector = "tbody";
+        private const string SwapOldDeviceSerialNumberSelector = "#content_0_SwapOldDeviceSerialNumber";
+        private const string SwapOldDeviceInputMonoSelector = "#content_0_SwapOldDeviceInputMono";
+        private const string SwapOldDeviceInputColourSelector = "#content_0_SwapOldDeviceColour";
+        private const string SwapNewDeviceSerialNumberSelector = "#content_0_SwapNewDeviceSerialNumber";
+        private const string SwapNewDeviceInputMonoSelector = "#content_0_SwapNewDeviceInputMono";
+        private const string SwapNewDeviceInputColourSelector = "#content_0_SwapNewDeviceInitialColour";
+
         public void ResetSerialNumber(string serialNumber)
         {
             if (ContractReferencePageAlertElement == null)
@@ -165,10 +174,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
-        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string installerWindowHandle)
+
+        public void ClosePopUp()
         {
             ClosePopUpModal();
- 
+        }
+
+        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string installerWindowHandle)
+        { 
             var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector, findElementTimeout);
             var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector, findElementTimeout);
 
@@ -202,11 +215,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
-            var elementStatus = false;
+            var isConnected = false;
             var retries = 0;
             var retryCount = 10;
 
-            while ((!elementStatus) && (retries != retryCount))
+            while ((!isConnected) && (retries != retryCount))
             {
                 try
                 {
@@ -223,8 +236,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         if (serialNumberElement.GetAttribute("value") == serialNumber)
                         {
                             var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector, findElementTimeout);
-                            elementStatus = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
-                            break;
+                            isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
+                            if(isConnected)
+                            {
+                                break;
+                            }
                         }
 
                     }
@@ -234,6 +250,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 catch (WebDriverException)
                 {
                     retries++;
+                }
+            }
+        }
+
+        public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount, int findElementTimeout)
+        {
+            var SwapContainerElement = SeleniumHelper.FindElementByCssSelector(SwapContainerSelector, findElementTimeout);
+            var SwapTableBodyElement = SeleniumHelper.FindElementByCssSelector(SwapContainerElement, SwapTableBodySelector, findElementTimeout);
+
+            var SwapOldDeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceSerialNumberSelector, findElementTimeout);
+            if (SwapOldDeviceSerialNumberElement.Text.Equals(swapOldDeviceSerialNumber))
+            {
+                var SwapOldDeviceInputMonoElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceInputMonoSelector, findElementTimeout);
+                var SwapOldDeviceInputColourElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceInputColourSelector, findElementTimeout);
+                if (!(SwapOldDeviceInputMonoElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapOldDeviceInputMonoElement, swapOldDeviceMonoPrintCount.ToString());
+                }
+                if(!(SwapOldDeviceInputColourElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapOldDeviceInputColourElement, swapOldDeviceColorPrintCount.ToString());
+                }
+            }
+
+            var SwapNewDeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceSerialNumberSelector, findElementTimeout);
+            if (SwapNewDeviceSerialNumberElement.Text.Equals(swapNewDeviceSerialNumber))
+            {
+                var SwapNewDeviceInputMonoElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceInputMonoSelector, findElementTimeout);
+                var SwapNewDeviceInputColourElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceInputColourSelector, findElementTimeout);
+                if (!(SwapNewDeviceInputMonoElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapNewDeviceInputMonoElement, swapNewDeviceMonoPrintCount.ToString());
+                }
+                if (!(SwapNewDeviceInputColourElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapNewDeviceInputColourElement, swapNewDeviceColorPrintCount.ToString());
                 }
             }
         }
@@ -270,16 +322,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RetryRefreshClickingHelper(string element, string elementToVerify, int retryCount, int findElementTimeout)
         {
-            var elementStatus = false;
+            var isConnected = false;
             var retries = 0;
 
-            while((!elementStatus) && (retries!=retryCount))
+            while((!isConnected) && (retries!=retryCount))
             {
                 try
                 {
                     var searchElement = SeleniumHelper.FindElementByCssSelector(element, findElementTimeout);
                     searchElement.Click();
-                    elementStatus = SeleniumHelper.FindElementByCssSelector(elementToVerify, findElementTimeout).Displayed;
+                    isConnected = SeleniumHelper.FindElementByCssSelector(elementToVerify, findElementTimeout).Displayed;
                     retries++;
                 }
                 catch (WebDriverException)

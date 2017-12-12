@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Purchase & Click", "Minimum Volume", "Quarterly in Arrears", "Pay upfront", "3 years", "New", "Cloud", "Web", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145626", "100", "0", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario1(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void BusinessScenario1(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1", exampleTags);
 #line 7
@@ -104,11 +104,21 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "VolumeColour",
                         "SerialNumber",
                         "MonoPrintCount",
-                        "ColorPrintCount"});
+                        "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus",
+                        "LaserUnit",
+                        "FuserUnit",
+                        "PaperFeedingKit1",
+                        "PaperFeedingKit2",
+                        "PaperFeedingKit3",
+                        "IsSwap"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1000.00",
-                        "Brother-Install",
+                        "BROTHER_INSTALLATION",
                         "Yes",
                         "5",
                         "1000",
@@ -116,11 +126,21 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "A3P145620",
                         "23",
-                        "100"});
+                        "100",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "true"});
             table1.AddRow(new string[] {
                         "HL-5450DN",
                         "1000.00",
-                        "Brother-Install",
+                        "BROTHER_INSTALLATION",
                         "Yes",
                         "5",
                         "1000",
@@ -128,11 +148,21 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "A3P145621",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "false"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1000.00",
-                        "Brother-Install",
+                        "BROTHER_INSTALLATION",
                         "Yes",
                         "5",
                         "1000",
@@ -140,11 +170,21 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "250",
                         "A3P145622",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "false"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1000.00",
-                        "Brother-Install",
+                        "BROTHER_INSTALLATION",
                         "Yes",
                         "5",
                         "1000",
@@ -152,7 +192,17 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "200",
                         "A3P145623",
                         "0",
-                        "0"});
+                        "0",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "false"});
 #line 14
 testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
 #line 20
@@ -162,33 +212,60 @@ testRunner.And("I save the above proposal and submit it for approval", ((string)
 #line 22
 testRunner.And("a Cloud MPS Local Office Approver approves the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
-testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I have navigated to the Approved Proposals page and navigate to the proposal Summ" +
+                    "ary page for this proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I click the download proposal button and verify if I am able to open the PDF", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
+testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 28
 testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 29
 testRunner.And("I will be able to see the installation request created above on the Manage Device" +
                     "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 30
 testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
                     "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 31
 testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 32
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 33
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
-testRunner.And("I update the print count for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
-testRunner.Then("I will be able to see on the Manage Devices page that above devices have updated " +
-                    "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
+testRunner.And("I update the print count, raise consumable order and service request for above de" +
+                    "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+testRunner.And("I will be able to see on the Manage Devices page that above devices have updated " +
+                    "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+testRunner.And("a Customer has navigated to the Consumables Devices page to verify that above dev" +
+                    "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+testRunner.And("I click Swap Device in the Actions menu for device to be swapped on the Manage de" +
+                    "vices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+testRunner.And(string.Format("I create a \"{0}\" swap installation request with \"{1}\" installation type for \"{2}\"" +
+                        " communication", swapType, installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+testRunner.And("I will be able to see the status of the installed device is set Being Replaced on" +
+                    " the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+testRunner.And("a Brother installer has navigated to the Web Swap Installation page and verify Co" +
+                    "ntract Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+testRunner.And(string.Format("Enter the serial number for new device \"{0}\" with new Mono \"{1}\" and color \"{2}\" " +
+                        "print count and complete Installation", swapNewDeviceSerialNumber, swapNewDeviceMonoPrintCount, swapNewDeviceColorPrintCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+testRunner.Then(string.Format("I will be able to see the status of the swap device \"{0}\" is set Being Swapped wi" +
+                        "th updated print counts on the Manage Devices page for the above proposal", swapNewDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

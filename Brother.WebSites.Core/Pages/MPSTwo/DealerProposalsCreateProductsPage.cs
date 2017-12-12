@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -35,8 +34,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-
-        ServicePackType _servicePackType = new ServicePackType();
 
 
         #region ViewModels
@@ -1761,7 +1758,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             int findElementTimeout,
             out string margin,
             out string unitPrice,
-            out IWebElement printerContainer)
+            out IWebElement printerContainer,
+            string resourceServicePackTypeIncludedInClickPrice)
         {            
             printerContainer = SelectPrinter(printerName, findElementTimeout);
             ScrollTo(printerContainer);
@@ -1776,14 +1774,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 ClearAndType(deliveryPriceInput, "1");
             }
-
+ 
             SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
             
             margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector, findElementTimeout).GetAttribute("value");            
             unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector, findElementTimeout).GetAttribute("value");
 
             // Validate that service pack margin & unit price input fields are disabled in case of "Included in Click Price" service packs
-            if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
+            if (servicePackType.Equals(resourceServicePackTypeIncludedInClickPrice))
             {
                 if (!(SeleniumHelper.IsReadOnly(ServicePackMarginElement) && SeleniumHelper.IsReadOnly(ServicePackSellPriceElement)))
                 {

@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -36,8 +35,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
-
-        ServicePackType _servicePackType = new ServicePackType();
 
         private const string paymentMethod = @".mps-paymentoptions";
         private const string clickPriceValue = @"[class='mps-col mps-top mps-clickprice-line2'][data-click-price-mono='true']";
@@ -989,14 +986,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             int findElementTimeout,
             out string monoMargin,
             out string servicePackUnitCost,
-            out string servicePackUnitPrice)
+            out string servicePackUnitPrice,
+            string resourceServicePackTypeIncludedInClickPrice)
         {
             // Validation of content on click price page           
             monoMargin = "";
             servicePackUnitCost = "";
             servicePackUnitPrice = "";
 
-            if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
+            if (servicePackType.Equals(resourceServicePackTypeIncludedInClickPrice))
             {
                 if (!SeleniumHelper.IsExistAllElements(ServicePackUnitCostElement, ServicePackUnitPriceElement, ServicePackTotalPriceElement))
                 {

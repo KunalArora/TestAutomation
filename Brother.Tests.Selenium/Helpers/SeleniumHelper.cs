@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 
 namespace Brother.Tests.Selenium.Lib.Helpers
@@ -81,6 +79,18 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {            
             List<IWebElement> tableRows = context.FindElements(By.TagName("tr")).ToList();
             return tableRows;
+        }
+
+        public List<IWebElement> FindElementsByCssSelector(ISearchContext context, string selector)
+        {
+            var elements = context.FindElements(By.CssSelector(selector)).ToList();
+            return elements;
+        }
+
+        public List<IWebElement> FindElementsByCssSelector( string selector)
+        {
+            var elements = _webDriver.FindElements(By.CssSelector(selector)).ToList();
+            return elements;
         }
 
         public string SelectDropdownElementTextByIndex(IWebElement element, int index)

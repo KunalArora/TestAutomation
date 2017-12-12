@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Domain.Constants;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -29,7 +28,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-        ServicePackType _servicePackType = new ServicePackType();
 
 
         public override string DefaultTitle
@@ -1688,10 +1686,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SaveProposalElement.Click();            
         }
 
-        public void VerifyThatServicePackIsCorrectOnSummaryPage(string servicePackType)
+        public void VerifyThatServicePackIsCorrectOnSummaryPage(string servicePackType, string resourceServicePackTypeIncludedInClickPrice)
         {
-            // TODO: Use ITranslationService to add support for all countries (ServicePack translation)
-            if (servicePackType.Equals(_servicePackType.IncludedInClickPrice))
+            if (servicePackType.Equals(resourceServicePackTypeIncludedInClickPrice))
             {
                 if (!ServicePackBillingBasisElement.Text.Equals(servicePackType) || (SummaryContractGrandTotalInClickLineElement == null))
                 {

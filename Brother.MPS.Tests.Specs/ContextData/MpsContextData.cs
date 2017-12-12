@@ -22,10 +22,19 @@ namespace Brother.Tests.Specs.ContextData
         public string ServicePackType { get; set; }
         public string CompanyLocation { get; set; }
         public string InstallerEmail { get; set; }
-        public string SwapDeviceSerialNumber { get; set; }
+        public string SwapOldDeviceSerialNumber { get; set; }
+        public int SwapNewDeviceMonoPrintCount { get; set; }
+        public int SwapNewDeviceColourPrintCount { get; set; }
 
 
-        public void SetBusinessType(string businessTypeId){
+        public MpsContextData()
+        {
+            WindowHandles = new Dictionary<UserType, string>();
+            CustomerPassword = "password";
+        }
+
+        public void SetBusinessType(string businessTypeId)
+        {
 
             int businessType;
 
@@ -46,19 +55,12 @@ namespace Brother.Tests.Specs.ContextData
         public IEnumerable<PrinterProperties> PrintersProperties { get; set; }
         public string CustomerInformationName { get; set; }
         public string CustomerEmail { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
+        public string CustomerPassword { get; set; }
         public string WebInstallUrl { get; set; }
-        private Dictionary<UserType, string> _WindowHandles = new Dictionary<UserType, string>();
-        public Dictionary<UserType, string> WindowHandles 
-        {
-            get
-            {
-                return _WindowHandles;
-            } 
-            set{
-                _WindowHandles = value;
-            }
-        }
+        public Dictionary<UserType, string> WindowHandles { get; set; }
 
-
+        public string WebSwapInstallUrl { get; set; }
     }
 }

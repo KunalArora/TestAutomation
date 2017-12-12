@@ -1,9 +1,6 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 
 namespace Brother.Tests.Selenium.Lib.Helpers
@@ -34,6 +31,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         IWebElement FindElementByDataAttributeValue(ISearchContext context, string dataAttributeName, string dataAttributeValue, int timeout);
         void WaitUntilElementAppears(string selector, int timeout);
+        List<IWebElement> FindElementsByCssSelector(ISearchContext context, string selector);
+        List<IWebElement> FindElementsByCssSelector(string selector);
         void SelectFromDropdownByText(IWebElement element, string text);
         TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout);
         List<IWebElement> FindRowElementsWithinTable(ISearchContext context);

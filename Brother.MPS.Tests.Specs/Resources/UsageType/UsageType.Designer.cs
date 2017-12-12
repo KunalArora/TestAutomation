@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brother.Tests.Specs.Resources.ServicePack {
+namespace Brother.Tests.Specs.Resources.UsageType {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Brother.Tests.Specs.Resources.ServicePack {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ServicePack {
+    internal class UsageType {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ServicePack() {
+        internal UsageType() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Brother.Tests.Specs.Resources.ServicePack {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Specs.Resources.ServicePack.ServicePack", typeof(ServicePack).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Specs.Resources.UsageType.UsageType", typeof(UsageType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace Brother.Tests.Specs.Resources.ServicePack {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No service pack.
+        ///   Looks up a localized string similar to Minimum Volume.
         /// </summary>
-        internal static string NO_SERVICE_PACK {
+        internal static string MINIMUM_VOLUME {
             get {
-                return ResourceManager.GetString("NO_SERVICE_PACK", resourceCulture);
+                return ResourceManager.GetString("MINIMUM_VOLUME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type 3 SP duration 24 month (en).
+        ///   Looks up a localized string similar to Pay As You Go.
         /// </summary>
-        internal static string SERVICE_PACK_TYPE3 {
+        internal static string PAY_AS_YOU_GO {
             get {
-                return ResourceManager.GetString("SERVICE_PACK_TYPE3", resourceCulture);
+                return ResourceManager.GetString("PAY_AS_YOU_GO", resourceCulture);
             }
         }
     }

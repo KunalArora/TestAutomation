@@ -54,7 +54,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
             foreach(var product in products)
             {
-                RegisterDeviceOnBOC(product, installationPin);
+                RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
+                _installerDeviceInstallationPage.ClosePopUp();
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
             }
             _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
@@ -62,13 +63,43 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _installerDeviceInstallationPage.ConfirmInstallationComplete(RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        private void RegisterDeviceOnBOC(PrinterProperties product, string installationPin)
+        public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver, string swapNewDeviceSerialNumber, string installerWindowHandle)
         {
-                var deviceId = _deviceSimulatorService.CreateNewDevice(product.Model, product.SerialNumber);
-                _deviceSimulatorService.RegisterNewDevice(deviceId, installationPin);
-                _deviceSimulatorService.ChangeDeviceStatus(deviceId, true, true);
-                _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
-                product.DeviceId = deviceId;
+            var swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
+            var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
+            foreach(var product in products)
+            {
+                if(product.SerialNumber.Equals(swapOldDeviceSerialNumber))
+                {
+                    RegisterDeviceOnBOC(product, installationPin, swapNewDeviceSerialNumber);
+                    _installerDeviceInstallationPage.EnterSerialNumber(product.Model, swapNewDeviceSerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
+                }
+            }
+            _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+ 
         }
+
+        public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
+        {
+            foreach(var product in products)
+            {
+                if(product.IsSwap)
+                {
+                    _installerDeviceInstallationPage.EnterSwapPrintCount(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColorPrintcount, RuntimeSettings.DefaultFindElementTimeout);
+                }
+            }
+            _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
+            _installerDeviceInstallationPage.ConfirmInstallationComplete(RuntimeSettings.DefaultFindElementTimeout);
+        }
+
+        private void RegisterDeviceOnBOC(PrinterProperties product, string installationPin, string serialNumber)
+        {
+            var deviceId = _deviceSimulatorService.CreateNewDevice(product.Model, serialNumber);
+            _deviceSimulatorService.RegisterNewDevice(deviceId, installationPin);
+            _deviceSimulatorService.ChangeDeviceStatus(deviceId, true, true);
+            _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+            product.DeviceId = deviceId;
+        }
+
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -1691,6 +1691,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public  string GetEmail()
         {
             return GetFieldValue(EmailElement);
+        }
+
+        public string GetFirstName()
+        {
+            return GetFieldValue(FirstNameElement);
+        }
+
+        public string GetLastName()
+        {
+            return GetFieldValue(LastNameElement);
         }
 
     }

@@ -14,6 +14,7 @@ namespace Brother.Tests.Specs.Domain.Enums
         LocalOfficeSupportDesk,
         Bank,
         BIEAdmin,
-        Installer
+        Installer,
+        Customer
     }
 }

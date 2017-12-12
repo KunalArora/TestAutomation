@@ -12,14 +12,16 @@ And I create a new customer for the proposal
 #note that 'And' steps bind to either Given or When attributes depending on the preceding steps
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
-		| Model        | Price   | Installation    | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount |
-		| DCP-8110DN   | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             |
-		| HL-5450DN    | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               |
-		| DCP-L8450CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               |
-		| MFC-L8650CDW | 1000.00 | Brother-Install | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               |
+		| Model        | Price   | Installation         | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
+		| DCP-8110DN   | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
+		| HL-5450DN    | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L8450CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| MFC-L8650CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver approves the above proposal
+And I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal 
+And I click the download proposal button and verify if I am able to open the PDF
 And I sign the above proposal
 And a Cloud MPS Local Office Approver accepts the above proposal
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
@@ -29,14 +31,21 @@ And a Brother installer has navigated to the Web Installation page and verify Co
 And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
-And I update the print count for above devices
-Then I will be able to see on the Manage Devices page that above devices have updated Print Counts
-
+And I update the print count, raise consumable order and service request for above devices
+And I will be able to see on the Manage Devices page that above devices have updated Print Counts
+And a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
+And I click Swap Device in the Actions menu for device to be swapped on the Manage devices page
+And I create a "<SwapType>" swap installation request with "<InstallationType>" installation type for "<CommunicationMethod>" communication
+And I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal
+And a Brother installer has navigated to the Web Swap Installation page and verify Contract Reference
+And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
+Then I will be able to see the status of the swap device "<SwapNewDeviceSerialNumber>" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
 @BUK
 Scenarios: 
-		| Country        | ContractType     | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | 
-		| United Kingdom | Purchase & Click | Minimum Volume | Quarterly in Arrears | Pay upfront     | 3 years      | New      | Cloud               | Web              | 
+		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
+		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145626                 | 100                         | 0                            |
+
 #@BFR
 #Scenarios:
 #		| Country | ContractType     | UsageType      | ServicePackType | ContractTerm | Customer | PrinterModel_1 | PrinterPrice_1 | PrinterInstallation_1 | PrinterDelivery_1 | PrinterCoverageMono_1 | PrinterVolumeMono_1 | PrinterCoverageColour_1 | PrinterVolumeColour_1 | PrinterModel_2 | PrinterPrice_2 | PrinterInstallation_2 | PrinterDelivery_2 | PrinterCoverageMono_2 | PrinterVolumeMono_2 | PrinterCoverageColour_2 | PrinterVolumeColour_2 | PrinterModel_3 | PrinterPrice_3 | PrinterInstallation_3 | PrinterDelivery_3 | PrinterCoverageMono_3 | PrinterVolumeMono_3 | PrinterCoverageColour_3 | PrinterVolumeColour_3 | PrinterModel_4 | PrinterPrice_4 | PrinterInstallation_4 | PrinterDelivery_4 | PrinterCoverageMono_4 | PrinterVolumeMono_4 | PrinterCoverageColour_4 | PrinterVolumeColour_4 |
