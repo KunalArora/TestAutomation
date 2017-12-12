@@ -76,11 +76,17 @@
             public static string Expired { get { return "EXPIRED"; } }
             public static string Other { get { return "OTHER"; } }
         }
+        public static class ProposalDeclineReason
+        {
+            public static string Expired { get { return "EXPIRED"; } }
+            public static string Other { get { return "OTHER"; } }
+        }
 
         public static class DeviceConnectionStatus
         {
             public static string NotConnected { get { return "NOT_CONNECTED"; } }
             public static string Responding { get { return "RESPONDING"; } }
         }
+
     }
 }

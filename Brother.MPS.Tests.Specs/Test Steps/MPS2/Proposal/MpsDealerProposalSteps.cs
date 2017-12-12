@@ -82,6 +82,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersExistingPage(_dealerDashboardPage);
         }
 
+
         [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
         [When(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
