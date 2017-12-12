@@ -167,5 +167,17 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             foreach (var option in options){ values.Add(option.Text); }
             return values;
         }
+
+        public bool IsElementDisplayed(IWebElement element)
+        {
+            try
+            {
+                return element.Displayed;
+            }
+            catch(NoSuchElementException)
+            {
+                return false;
+            }
+        }
     }
 }

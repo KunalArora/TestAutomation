@@ -96,7 +96,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "CoverageMono",
                         "VolumeMono",
                         "CoverageColour",
-                        "VolumeColour"});
+                        "VolumeColour",
+                        "Installation"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1",
@@ -105,7 +106,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "5",
                         "500",
                         "0",
-                        "0"});
+                        "0",
+                        "Yes"});
             table1.AddRow(new string[] {
                         "DCP-8250DN",
                         "1",
@@ -114,7 +116,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "5",
                         "1000",
                         "0",
-                        "0"});
+                        "0",
+                        "Yes"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 15
@@ -126,7 +129,9 @@ testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechT
 #line 18
 testRunner.And(string.Format("I edit device data one by one for all devices (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-testRunner.Then("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+testRunner.Then("I can create and send a bulk installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -165,10 +165,22 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                             _dealerAgreementDevicesPage, optionalFields);
         }
 
-        [Then(@"I can verify that devices are ready for installation")]
-        public void ThenICanVerifyThatDevicesAreReadyForInstallation()
+        [When(@"I can verify that devices are ready for installation")]
+        public void WhenICanVerifyThatDevicesAreReadyForInstallation()
         {
             _mpsAgreement.VerifyStatusOfDevices(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can create and send a bulk installation request")]
+        public void ThenICanCreateAndSendABulkInstallationRequest()
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.SendBulkInstallationRequest(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can create and send installation requests for devices one by one")]
+        public void ThenICanCreateAndSendInstallationRequestsForDevicesOneByOne()
+        {
+            _dealerAgreementDevicesPage = _mpsAgreement.SendSingleInstallationRequests(_dealerAgreementDevicesPage);
         }
     }
 }

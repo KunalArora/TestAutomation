@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -33,12 +34,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         private const string DeviceModelNameSelector = "[id*=content_1_Devices_ModelCell_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string EditDeviceDataButtonSelector = ".js-mps-edit-device-data";
+        private const string SendInstallationRequestActionsButtonSelector = ".js-mps-send-installation-request";
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
         private const string DeviceCheckboxSelector = ".js-mps-row-action";
-
+        private const string InputEmailSelector = "#InputEmail";
+        private const string ModalAlertSuccessSelector = ".modal-content.alert-success";
 
         // Web Elements
+
+        // Alerts
+        [FindsBy(How = How.CssSelector, Using = ".alert.alert-warning.mps-alert.js-mps-alert")]
+        public IWebElement WarningAlertElement;
+
+        // Buttons
         [FindsBy(How = How.CssSelector, Using = "button.btn.btn-primary.btn-xs.dropdown-toggle")]
         public IWebElement ActionsButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-edit-device-data")]
@@ -55,6 +64,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement ImportDataElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-export-device-data")]
         public IWebElement ExportDataElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-send-installation-request")]
+        public IWebElement SendInstallationRequestElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-send-installation-request-modal-select")]
+        public IWebElement SendInstallationRequestModalElement;
 
 
 
@@ -81,9 +94,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         {
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
-            ActionsButtonElement.Click();
+            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
             var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector, findElementTimeout);
-            EditDeviceDataButtonElement.Click();
+            SeleniumHelper.ClickSafety(EditDeviceDataButtonElement, findElementTimeout);
         }
 
         public void VerifyTheStatusOfAllDevices(int findElementTimeout, string expectedStatus)
@@ -131,7 +144,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         {
             string displayedDeviceId, displayedAddress;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
-            foreach(var deviceRowElement in deviceRowElements)
+            foreach (var deviceRowElement in deviceRowElements)
             {
                 var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
                 displayedDeviceId = CheckboxElement.GetAttribute("value");
@@ -143,6 +156,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
                     break;
                 }
             }
+        }
+
+        // Get model name of the device given the row index
+        public string DeviceModelName(int rowIndex, int findElementTimeout)
+        {
+            var deviceRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[rowIndex];
+            return SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector, findElementTimeout).Text;
+        }
+
+        public void SendInstallationRequest(int findElementTimeout)
+        {
+            // Input Email ID
+            SeleniumHelper.FindElementByCssSelector(InputEmailSelector, findElementTimeout).SendKeys(MpsUtil.GenerateUniqueEmail());
+            
+            // Click Send Installation Request button on modal
+            SeleniumHelper.ClickSafety(SendInstallationRequestModalElement, findElementTimeout);
+
+            // Verify success & close modal alert
+            var modalSuccessElement = SeleniumHelper.FindElementByCssSelector(ModalAlertSuccessSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(modalSuccessElement.FindElement(By.ClassName("close")), findElementTimeout);
+        }
+
+        // Click on Send Installation Request in Actions for this particular device row index
+        public void ClickSendInstallationRequestInActions(int rowIndex, int findElementTimeout)
+        {
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+
+            var SendInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(
+                deviceRowElements[rowIndex], SendInstallationRequestActionsButtonSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(SendInstallationRequestButtonElement, findElementTimeout);
         }
     }
 }

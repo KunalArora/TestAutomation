@@ -26,6 +26,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IContextData _contextData;
         private readonly IExcelHelper _excelHelper;
         private readonly ICalculationService _calculationService;
+        private readonly IRunCommandService _runtimeCommandService;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -36,7 +37,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRuntimeSettings runtimeSettings,
             MpsSignInStepActions mpsSignIn,
             IExcelHelper excelHelper,
-            ICalculationService calculationService)
+            ICalculationService calculationService,
+            IRunCommandService runtimeCommandService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -45,6 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData = contextData;
             _excelHelper = excelHelper;
             _calculationService = calculationService;
+            _runtimeCommandService = runtimeCommandService;
         }
         //TODO: make all of the calls which specify a timeout pull the timeout value from config / command line
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -172,6 +175,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(rowIndex, validationExpression);
 
             }
+
+
             return dealerAgreementDevicesPage;
         }
 
@@ -204,7 +209,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields);
 
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
-            return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            
+            // Run job for retrieving BOC pin per device
+            _runtimeCommandService.RunSetupInstalledPrintersCommand();
+
+            var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            while(dealerAgreementDevicesPage.SeleniumHelper.IsElementDisplayed(dealerAgreementDevicesPage.WarningAlertElement))
+            {
+                _dealerWebDriver.Navigate().Refresh();
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+
+            return dealerAgreementDevicesPage;
         }
 
         public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
@@ -302,6 +319,63 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             dealerAgreementDevicesPage.ClickOnEditDeviceData(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
             dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
             dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(rowIndex, validationExpression); // Verify address field of edited device
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage SendBulkInstallationRequest(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
+            
+            // Tick checkboxes of devices which are to be installed according to feature file configuration
+            for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
+            {
+                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                foreach(var product in _contextData.PrintersProperties)
+                {
+                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    {
+                        dealerAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        break;
+                    }
+                }
+            }
+
+            // Click Send Installation Request button (used for bulk)
+            ClickSafety(dealerAgreementDevicesPage.SendInstallationRequestElement, dealerAgreementDevicesPage);
+
+            dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+            
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage SendSingleInstallationRequests(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
+
+            // Tick checkboxes of devices which are to be installed according to feature file configuration
+            for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
+            {
+                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                foreach (var product in _contextData.PrintersProperties)
+                {
+                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    {
+                        // Click Send Installation Request button in Actions dropdown
+                        dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        break;
+                    }
+                }
+
+                dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                if (rowIndex!= (deviceRowCount - 1))
+                {
+                    // Note: This refresh is done due to the introduction of stale elements in Send Installation Request modal after every successful send
+                    // Note: Don't refresh if its the last device in the table
+                    _dealerWebDriver.Navigate().Refresh(); 
+                    dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                }
+            }
+
             return dealerAgreementDevicesPage;
         }
 

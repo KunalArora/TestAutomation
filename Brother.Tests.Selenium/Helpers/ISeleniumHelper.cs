@@ -117,5 +117,11 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="dropdownElement"></param>
         /// <returns></returns>
         List<string> GetAllValuesOfDropdown(IWebElement dropdownElement);
+
+        /// <summary>
+        /// Return true if element exists & is displayed, otherwise false
+        /// </summary>
+        /// <param name="element"></param>
+        bool IsElementDisplayed(IWebElement element);
     }
 }
