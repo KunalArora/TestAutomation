@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Yes", "Minimum Volume", "3 years", "Pay upfront", "No", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "True", "Minimum Volume", "3 years", "Pay upfront", "False", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario1(string country, string nonMandatory_1, string usageType, string contractTerm, string service, string nonMandatory_2, string[] exampleTags)
+        public virtual void BusinessScenario1(string country, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1", exampleTags);
 #line 7
@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I have navigated to the Create Agreement page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When(string.Format("I input the fields (\"{0}\" fields also) on Agreement Description Page", nonMandatory_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I input the fields (Fill Optional fields: \"{0}\") on Agreement Description Page", optionalFields_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term of \"{1}\" and Service of \"{2}\"", usageType, contractTerm, service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -124,7 +124,7 @@ testRunner.Then("I can verify the creation of agreement in the agreement list", 
 #line 17
 testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
-testRunner.And(string.Format("I edit device data one by one for all devices (\"{0}\" fields also)", nonMandatory_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I edit device data one by one for all devices (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
 testRunner.Then("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

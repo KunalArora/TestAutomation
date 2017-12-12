@@ -6,7 +6,7 @@ Feature: BusinessScenario_3
 
 Scenario Outline: Business Scenario 3
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
-When I input the fields ("<NonMandatory_1>" fields also) on Agreement Description Page
+When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
 		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
@@ -15,11 +15,11 @@ And I add these printers and verify click price:
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
-And I edit device data using excel edit option ("<NonMandatory_2>" fields also)
+And I edit device data using excel edit option (Fill Optional fields: "<OptionalFields_2>")
 Then I can verify that devices are ready for installation
 
 
 @BUK
 Scenarios: 
-		| Country        | NonMandatory_1 | UsageType      | ContractTerm | Service                 | NonMandatory_2 |
-		| United Kingdom | Yes            | Minimum Volume | 5 years      | Included in Click Price | Yes            |
+		| Country        | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 |
+		| United Kingdom | True             | Minimum Volume | 5 years      | Included in Click Price | True             |

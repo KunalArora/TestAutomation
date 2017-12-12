@@ -76,24 +76,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             string contractLength,
             string servicePackOption)
         {
+            _contextData.UsageType = usageType;
+
             dealerAgreementCreateTermAndTypePage.SelectUsageType(usageType);
             dealerAgreementCreateTermAndTypePage.SelectContractLength(contractLength);
             dealerAgreementCreateTermAndTypePage.SelectService(servicePackOption);
 
             ClickSafety(dealerAgreementCreateTermAndTypePage.NextButton, dealerAgreementCreateTermAndTypePage);
             return PageService.GetPageObject<DealerAgreementCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-        }
-
-        // TODO: Refactor this function
-        public DealerAgreementCreateClickPricePage AddPrinterToAgreementAndProceed(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage, 
-            string printerName,
-            int quantity,
-            string installationPack,
-            string servicePack)
-        {
-            PopulatePrinterDetails(dealerAgreementCreateProductsPage, printerName, quantity, installationPack, servicePack);
-            ClickSafety(dealerAgreementCreateProductsPage.NextButton, dealerAgreementCreateProductsPage);
-            return PageService.GetPageObject<DealerAgreementCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerAgreementCreateClickPricePage AddThesePrintersToAgreementAndProceed(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage,
@@ -149,12 +139,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataOneByOne(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        public DealerAgreementDevicesPage EditDeviceDataOneByOne(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             foreach(var product in _contextData.PrintersProperties)
             {
                 dealerAgreementDevicesPage.ClickOnEditDeviceData(product.Model, RuntimeSettings.DefaultFindElementTimeout);
-                dealerAgreementDevicesPage = EditDeviceDataHelper(NonMandatory);
+                dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields);
             }
             return dealerAgreementDevicesPage;
         }
@@ -164,7 +154,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             dealerAgreementDevicesPage.VerifyThatDevicesAreReadyForInstallation(RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             // Click Checkbox all element
             ClickSafety(dealerAgreementDevicesPage.CheckboxSelectAllElement, dealerAgreementDevicesPage);
@@ -172,24 +162,24 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Click Edit device data (bulk) element
             ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
             
-            return EditDeviceDataHelper(NonMandatory);
+            return EditDeviceDataHelper(optionalFields);
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataHelper(string NonMandatory)
+        public DealerAgreementDevicesPage EditDeviceDataHelper(string optionalFields)
         {
             var dealerAgreementDevicesEditPage = PageService.GetPageObject<DealerAgreementDevicesEditPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            dealerAgreementDevicesEditPage.EditDeviceData(NonMandatory);
+            dealerAgreementDevicesEditPage.EditDeviceData(optionalFields);
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
-            return ProcessExcelEdit(dealerAgreementDevicesPage, NonMandatory);
+            return ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
         }
 
-        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             // 1. Get Downloaded file path
             string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
@@ -203,7 +193,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 CustomerInformationMandatoryFields mandatoryFields = dealerAgreementDevicesEditPage.GetMandatoryFieldValues();
                 CustomerInformationNonMandatoryFields nonMandatoryFields = null;
-                if (NonMandatory.ToLower().Equals("yes"))
+                if (optionalFields.ToLower().Equals("true"))
                 {
                     nonMandatoryFields = dealerAgreementDevicesEditPage.GetNonMandatoryFieldValues();
                 }
@@ -218,7 +208,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerAgreementDevicesPage EditUsingCombinationOfAllEditOptions(DealerAgreementDevicesPage dealerAgreementDevicesPage, string NonMandatory)
+        public DealerAgreementDevicesPage EditUsingCombinationOfAllEditOptions(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             List<IWebElement> deviceRowElements;
 
@@ -227,34 +217,34 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[0], RuntimeSettings.DefaultFindElementTimeout);  // 1st device
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[1], RuntimeSettings.DefaultFindElementTimeout);  // 2nd device
             ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
-            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, NonMandatory);
+            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
 
             // Bulk edit for next 2 devices
             deviceRowElements = GetRowElementsOfDeviceTable(dealerAgreementDevicesPage);
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[2], RuntimeSettings.DefaultFindElementTimeout);  // 3rd device
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(deviceRowElements[3], RuntimeSettings.DefaultFindElementTimeout);  // 4th device
             ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
-            dealerAgreementDevicesPage = EditDeviceDataHelper(NonMandatory);
+            dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields);
 
             // Single device edit for last device
-            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 4, NonMandatory);  // 5th device
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 4, optionalFields);  // 5th device
 
             // Re-Edit 1 device edited via Excel edit option
-            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 0, NonMandatory);  // 1st device
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 0, optionalFields);  // 1st device
 
             // Re-Edit 1 device edited via Bulk edit option
-            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 2, NonMandatory);  // 3rd device
+            dealerAgreementDevicesPage = EditSingleDeviceDataOfThisRow(dealerAgreementDevicesPage, 2, optionalFields);  // 3rd device
 
             return dealerAgreementDevicesPage;
         }
 
         // Edit device data of this row (element)
         public DealerAgreementDevicesPage EditSingleDeviceDataOfThisRow(
-            DealerAgreementDevicesPage dealerAgreementDevicesPage, int rowIndex, String NonMandatory)
+            DealerAgreementDevicesPage dealerAgreementDevicesPage, int rowIndex, String optionalFields)
         {
             var deviceRowElements = GetRowElementsOfDeviceTable(dealerAgreementDevicesPage);
             dealerAgreementDevicesPage.ClickOnEditDeviceData(deviceRowElements[rowIndex], RuntimeSettings.DefaultFindElementTimeout);
-            return EditDeviceDataHelper(NonMandatory);
+            return EditDeviceDataHelper(optionalFields);
         }
 
         #region private methods
@@ -296,7 +286,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private void PopulatePrinterCoverageAndVolume(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage, string printerName, int monoCoverage, int monoVolume, int colorCoverage, int colorVolume)
         {
             dealerAgreementCreateClickPricePage.PopulatePrinterCoverageAndVolume(
-                printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, 
+                printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, _contextData.UsageType,
                 RuntimeSettings.DefaultFindElementTimeout);
         }
 

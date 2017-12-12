@@ -86,44 +86,27 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName());
         }
 
-        [When(@"I input the fields \(""(.*)"" fields also\) on Agreement Description Page")]
-        public void WhenIInputTheFieldsFieldsAlsoOnAgreementDescriptionPage(string NonMandatory)
+        [When(@"I input the fields \(Fill Optional fields: ""(.*)""\) on Agreement Description Page")]
+        public void WhenIInputTheFieldsFillOptionalFieldsOnAgreementDescriptionPage(string optionalFields)
         {
-            if (NonMandatory.ToLower().Equals("yes"))
+            if (optionalFields.ToLower().Equals("true"))
             {
+                string reference = _agreementHelper.GenerateReference();
                 _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(
-                    _dealerAgreementCreateDescriptionPage, 
-                    _agreementHelper.GenerateAgreementName(), 
-                    _agreementHelper.GenerateReference(),
-                    _agreementHelper.GenerateReference(),
-                    _agreementHelper.GenerateReference());
+                    _dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName(), reference, reference, reference);
             }
             else
             {
                 _dealerAgreementCreateTermAndTypePage = _mpsAgreement.PopulateAgreementDescriptionAndProceed(
-                    _dealerAgreementCreateDescriptionPage, 
+                    _dealerAgreementCreateDescriptionPage,
                     _agreementHelper.GenerateAgreementName());
             }
         }
-
 
         [When(@"I select the Usage Type of ""(.*)"", Contract Term of ""(.*)"" and Service of ""(.*)""")]
         public void WhenISelectTheUsageTypeOfContractTermOfAndServiceOf(string usageType, string contractTerm, string service)
         {
             _dealerAgreementCreateProductsPage = _mpsAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, service);
-        }
-
- 
-        [Given(@"I add a printer to the agreement")]
-        public void WhenIAddAPrinterToTheAgreement()
-        {
-            //TODO: if a printer is not specified, select a random one
-            //TODO: Refactor this function 
-            string installationPack = _translationService.GetInstallationPackText("DEALER_INSTALLATION_TYPE3", _contextData.Culture);
-            string servicePack = _translationService.GetServicePackTypeText("SERVICE_PACK_TYPE3", _contextData.Culture);
-
-            _dealerAgreementCreateClickPricePage = _mpsAgreement.AddPrinterToAgreementAndProceed(_dealerAgreementCreateProductsPage, _proposalHelper.SelectPrinter(), 2, installationPack, servicePack);
-
         }
 
         [When(@"I add these printers and verify click price:")]
@@ -153,32 +136,32 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementDevicesPage = _mpsAgreement.NavigateToManageDevicesPage(_dealerAgreementsListPage);            
         }
 
-        [When(@"I edit device data one by one for all devices \(""(.*)"" fields also\)")]
-        public void WhenIEditDeviceDataOneByOneForAllDevicesFieldsAlso(string NonMandatory)
+        [When(@"I edit device data one by one for all devices \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataOneByOneForAllDevicesFillOptionalFields(string optionalFields)
         {
             _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataOneByOne(
-                _dealerAgreementDevicesPage, NonMandatory);
+                _dealerAgreementDevicesPage, optionalFields);
         }
 
-        [When(@"I edit device data using bulk edit option \(""(.*)"" fields also\)")]
-        public void WhenIEditDeviceDataUsingBulkEditOptionFieldsAlso(string NonMandatory)
+        [When(@"I edit device data using bulk edit option \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataUsingBulkEditOptionFillOptionalFields(string optionalFields)
         {
             _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataUsingBulkEditOption(
-                _dealerAgreementDevicesPage, NonMandatory);
+                _dealerAgreementDevicesPage, optionalFields);
         }
 
-        [When(@"I edit device data using excel edit option \(""(.*)"" fields also\)")]
-        public void WhenIEditDeviceDataUsingExcelEditOptionFieldsAlso(string NonMandatory)
+        [When(@"I edit device data using excel edit option \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataUsingExcelEditOptionFillOptionalFields(string optionalFields)
         {
             _dealerAgreementDevicesPage = _mpsAgreement.EditDeviceDataUsingExcelEditOption(
-                _dealerAgreementDevicesPage, NonMandatory);
+                _dealerAgreementDevicesPage, optionalFields);
         }
 
-        [When(@"I edit device data using a combination of single device edit, bulk edit and excel edit options \(""(.*)"" fields also\)")]
-        public void WhenIEditDeviceDataUsingACombinationOfSingleDeviceEditBulkEditAndExcelEditOptionsFieldsAlso(string NonMandatory)
+        [When(@"I edit device data using a combination of single device edit, bulk edit and excel edit options \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataUsingACombinationOfSingleDeviceEditBulkEditAndExcelEditOptionsFillOptionalFields(string optionalFields)
         {
             _dealerAgreementDevicesPage = _mpsAgreement.EditUsingCombinationOfAllEditOptions(
-                _dealerAgreementDevicesPage, NonMandatory);
+                            _dealerAgreementDevicesPage, optionalFields);
         }
 
         [Then(@"I can verify that devices are ready for installation")]

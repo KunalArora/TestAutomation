@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         public IWebElement SelectClickPriceGroup(string printerName, int findElementTimeout)
         {
-            var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, 10);
+            var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
 
             return clickPriceContainer;
         }
@@ -47,6 +47,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             int volumeMono,
             int coverageColour,
             int volumeColour,
+            string usageType,
             int findElementTimeout)
         {
             var printerContainer = SelectClickPriceGroup(printerName, findElementTimeout);
@@ -57,10 +58,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
 
-            // Try & catch used to handle the case of UsageType 'Pay As you Go' & Service 'Pay upfront' in 
-            // which data input field is used instead of dropdown for volume
-            try { SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString()); }
-            catch { ClearAndType(monoVolumeDropdownInput, volumeMono.ToString()); }
+            // Note: When Usage Type is "Pay As You Go", volume element is input field instead of dropdown list
+            if (usageType == "Pay As You Go") // TODO: Remove hard coded string/Translation
+            {
+                ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
+            }
+            else
+            {
+                SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString()); 
+            }
             
             if ((isMonoOnly.ToLower()).Equals("false"))
             {
@@ -69,12 +75,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
 
-                // Try & catch used to handle the case of UsageType 'Pay As you Go' & Service 'Pay upfront' in 
-                // which data input field is used instead of dropdown for volume
-                try { SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString()); }
-                catch { ClearAndType(colourVolumeDropdownInput, volumeColour.ToString()); }
+                // Note: When Usage Type is "Pay As You Go", volume element is input field instead of dropdown list
+                if (usageType == "Pay As You Go") // TODO: Remove hard coded string/Translation
+                {
+                    ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
+                }
+                else 
+                {
+                    SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString()); 
+                }
             }
-
         }
     }
 }

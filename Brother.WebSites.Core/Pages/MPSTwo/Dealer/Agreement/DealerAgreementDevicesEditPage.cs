@@ -21,9 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         {
             get
             { 
-                // TODO: Uncomment below (& remove exception) after solving the dynamic parameter dependency problem in URL 
-                // return _url; 
-                throw new Exception("Cannot determine Page URL due to presence of dynamic parameters");
+                return _url; 
             }
         }
 
@@ -75,10 +73,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
 
 
-        public void FillMandatoryDetails()
+        public void FillMandatoryDetails(CustomerInformationMandatoryFields values)
         {
-            CustomerInformationMandatoryFields values = new CustomerInformationMandatoryFields();
-
             ClearAndType(CustomerNameInputElement, values.CompanyName);
             ClearAndType(ContactFirstNameInputElement, values.FirstName);
             ClearAndType(PropertyNumberInputElement, values.PropertyNumber);
@@ -87,9 +83,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(PostcodeInputElement, values.PostCode);
         }
 
-        public void FillNonMandatoryDetails()
+        public void FillNonMandatoryDetails(CustomerInformationNonMandatoryFields values)
         {
-            CustomerInformationNonMandatoryFields values = new CustomerInformationNonMandatoryFields();
 
             // Address
             ClearAndType(ContactLastNameInputElement, values.LastName);
@@ -109,12 +104,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(InstallationNotesInputElement, values.InstallationNotes);
         }
 
-        public void EditDeviceData(string NonMandatory)
+        public void EditDeviceData(string optionalValues)
         {
-            FillMandatoryDetails();
-            if(NonMandatory.ToLower().Equals("yes"))
+            CustomerInformationMandatoryFields mandatoryValues = new CustomerInformationMandatoryFields();
+            FillMandatoryDetails(mandatoryValues);
+
+            if(optionalValues.ToLower().Equals("true"))
             {
-                FillNonMandatoryDetails();
+                CustomerInformationNonMandatoryFields nonMandatoryValues = new CustomerInformationNonMandatoryFields();
+                FillNonMandatoryDetails(nonMandatoryValues);
             }
         }
 
@@ -131,6 +129,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         } 
     }
 
+
+    //TODO: Make a separate project & add these common classes into the new project. Add reference from both MPS & Websites project to the new project to avoid circular referencing
     public class CustomerInformationMandatoryFields
     {
         public string CompanyName { get { return MpsUtil.CompanyName(); } }

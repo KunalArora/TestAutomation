@@ -32,13 +32,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         public ISeleniumHelper SeleniumHelper { get; set; }
 
-        public IWebElement SelectPrinter(string printerName)
+        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
-            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, 10);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, 10);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
 
             addButton.Click();
 
@@ -57,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             string servicePackInputSelector = "#ServicePackId";
             string addToAgreementButtonSelector = ".js-mps-product-configuration-submit";
 
-            var printerContainer = SelectPrinter(printerName);
+            var printerContainer = SelectPrinter(printerName, findElementTimeout);
             var quantityInput = SeleniumHelper.FindElementByCssSelector(
                 printerContainer, quantityInputSelector, findElementTimeout);
             var installationPackInput = SeleniumHelper.FindElementByCssSelector(
@@ -70,16 +70,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             quantityInput.Clear();
             quantityInput.SendKeys(quantity.ToString());
 
-            if (installationPack.ToLower().Equals("yes"))
+            if (installationPack.ToLower().Equals("yes") && NumberOfSelectOption(installationPackInput) > 1)
             {
-                try { SelectFromDropDownByIndex(installationPackInput, 1); }
-                catch { } // Skip if no option            
+                SelectFromDropDownByIndex(installationPackInput, 1);
             }
             
-            if (servicePack.ToLower().Equals("yes"))
+            if (servicePack.ToLower().Equals("yes") && NumberOfSelectOption(servicePackInput) > 1)
             {
-                try{ SelectFromDropDownByIndex(servicePackInput, 1); }
-                catch { } // Skip if no option
+                SelectFromDropDownByIndex(servicePackInput, 1);
             }
 
             addToAgreementButton.Click();

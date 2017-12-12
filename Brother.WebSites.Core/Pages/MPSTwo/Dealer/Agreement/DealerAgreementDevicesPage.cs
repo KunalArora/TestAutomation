@@ -20,9 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         {
             get
             {
-                // TODO: Uncomment below (& remove exception) after solving the dynamic parameter dependency problem in URL
-                // return _url; 
-                throw new Exception("Cannot determine Page URL due to presence of dynamic parameters");
+                return _url; 
             }
         }
 

@@ -15,8 +15,6 @@ namespace Brother.Tests.Specs.Resolvers
         private const string TYPE1_PASSWORD_PATTERN = "{0}{1}1";
         private const string TYPE3_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
         private const string TYPE3_PASSWORD_PATTERN = "{0}{1}9";
-        private const string TYPE1AND3_USERNAME_PATTERN = "MPS-{0}-{1}-T3-{2}{3}@brother.co.uk";
-        private const string TYPE1AND3_PASSWORD_PATTERN = "{0}{1}3";
 
         public DefaultUserResolver(IContextData contextData)
         {
@@ -56,12 +54,9 @@ namespace Brother.Tests.Specs.Resolvers
                     loginPatternNumber = "9";
                     break;
                 default:
-                    // Both Type1 & Type3
-                    // For default case, instead of throwing an exception, use a login id which is handling both Type1 & Type3
-                    pattern = TYPE1AND3_USERNAME_PATTERN;
-                    loginPatternNumber = "3";
-                    break;
+                    throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerUsername", businessType));
             }
+
             return string.Format(pattern, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", loginPatternNumber);
         }
 
@@ -78,8 +73,7 @@ namespace Brother.Tests.Specs.Resolvers
                     pattern = TYPE3_PASSWORD_PATTERN;
                     break;
                 default:
-                    pattern = TYPE1AND3_PASSWORD_PATTERN;
-                    break;
+                    throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerPassword", businessType));
             }
 
             return string.Format(pattern, _contextData.Country.PasswordCountryAbbreviation, "dealer");
