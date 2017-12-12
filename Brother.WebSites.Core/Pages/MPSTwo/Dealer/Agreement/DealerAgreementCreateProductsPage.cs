@@ -1,8 +1,10 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -27,6 +29,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             }
         }
 
+        // Selectors
+        private const string InstallationPackRowSelector = ".js-mps-installation";
+        private const string ServicePackRowSelector = ".js-mps-service-pack";
+        private const string QuantityDataAttributeSelector = "quantity";
+        private const string UnitPriceDataAttributeSelector = "sell-price";
+        private const string TotalPriceDataAttributeSelector = "total-price";
+        private const string TotalLinePriceDataAttributeSelector = "total-line-price";
+
+
+        // Web Elements
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
 
@@ -45,11 +57,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             return printerContainer;
         }
 
-        public void PopulatePrinterDetails(string printerName,
+        public IWebElement PopulatePrinterDetails(string printerName,
             int quantity,
             string installationPack,
             string servicePack,
-            int findElementTimeout
+            int findElementTimeout,
+            out IWebElement printerContainer
             )
         {
             string quantityInputSelector = "#Quantity";
@@ -57,7 +70,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             string servicePackInputSelector = "#ServicePackId";
             string addToAgreementButtonSelector = ".js-mps-product-configuration-submit";
 
-            var printerContainer = SelectPrinter(printerName, findElementTimeout);
+            printerContainer = SelectPrinter(printerName, findElementTimeout);
+
             var quantityInput = SeleniumHelper.FindElementByCssSelector(
                 printerContainer, quantityInputSelector, findElementTimeout);
             var installationPackInput = SeleniumHelper.FindElementByCssSelector(
@@ -80,7 +94,59 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
                 SelectFromDropDownByIndex(servicePackInput, 1);
             }
 
-            addToAgreementButton.Click();
+            return addToAgreementButton;
+        }
+
+        public IWebElement GetInstallationPackRowElement(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackRowSelector, findElementTimeout);
+        }
+
+        public string InstallationPackQuantity(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetInstallationPackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public string InstallationPackUnitPrice(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetInstallationPackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public string InstallationPackTotalPrice(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetInstallationPackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public IWebElement GetServicePackRowElement(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackRowSelector, findElementTimeout);
+        }
+
+        public string ServicePackQuantity(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetServicePackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public string ServicePackUnitPrice(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetServicePackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public string ServicePackTotalPrice(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                GetServicePackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
+        }
+
+        public string TotalLinePrice(IWebElement printerContainer, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(
+                TotalLinePriceDataAttributeSelector, "true", findElementTimeout).Text;
         }
     }
 }

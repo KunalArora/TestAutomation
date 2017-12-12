@@ -159,5 +159,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
             return true;
         }
+
+        public List<string> GetAllValuesOfDropdown(IWebElement dropdownElement)
+        {
+            var options = new SelectElement(dropdownElement).Options;
+            List<string> values = new List<string>();
+            foreach (var option in options){ values.Add(option.Text); }
+            return values;
+        }
     }
 }

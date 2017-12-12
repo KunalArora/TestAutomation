@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -46,6 +48,28 @@ namespace Brother.Tests.Specs.Services
         public double RoundOffUptoDecimalPlaces(double variable, int decimalPlaces = 2)
         {
             return Math.Round(variable, decimalPlaces);
+        }
+
+        public void VerifyMultiplication(string varA, string varB, string result)
+        {
+            double expectedResult = ConvertStringToDouble(varA) * ConvertStringToDouble(varB);
+            if (!RoundOffUptoDecimalPlaces(expectedResult).Equals(ConvertStringToDouble(result)))
+            {
+                throw new Exception("Multiplication calculations did not get validated");
+            }
+        }
+
+        public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso, List<string> values)
+        {
+            // TODO: Check correct position of currency symbols for all countries
+            // Check for UK only for now
+
+            string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+
+            if (values.Any(v => v[0].ToString() != currencySymbol))
+            {
+                throw new Exception("Currency symbol position did not get validated");
+            }
         }
     }
 }

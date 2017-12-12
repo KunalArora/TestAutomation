@@ -1,8 +1,11 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -73,35 +76,73 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             }
         }
 
-        // Click on Edit Device Data button for this particular row element
-        public void ClickOnEditDeviceData(IWebElement deviceRowElement, int findElementTimeout)
+        // Click on Edit Device Data button for this particular row index
+        public void ClickOnEditDeviceData(int rowIndex, int findElementTimeout)
         {
-            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ActionsButtonSelector, findElementTimeout);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
             ActionsButtonElement.Click();
-            var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, EditDeviceDataButtonSelector, findElementTimeout);
+            var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector, findElementTimeout);
             EditDeviceDataButtonElement.Click();
         }
 
-        public void VerifyThatDevicesAreReadyForInstallation(int findElementTimeout)
+        public void VerifyTheStatusOfAllDevices(int findElementTimeout, string expectedStatus)
         {
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach(var element in elements)
             {
                 var StatusToolTipElement = SeleniumHelper.FindElementByCssSelector(element, StatusToolTipSelector, findElementTimeout);
-                string status = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
-                if(!status.ToLower().Contains("ready for install"))
-                {
-                    throw new Exception("Status of the device could not be verified");
-                }
+                string displayedStatus = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
+
+                TestCheck.AssertTextContains(
+                    expectedStatus, displayedStatus.ToLower(), "Status of the device could not be verified");
             }
         }
 
 
-        // Click on Checkbox for this particular device row element
-        public void ClickOnDeviceCheckbox(IWebElement deviceRowElement, int findElementTimeout)
+        // Click on Checkbox for this particular device row index
+        public void ClickOnDeviceCheckbox(int rowIndex, int findElementTimeout)
         {
-            var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], DeviceCheckboxSelector, findElementTimeout);
             SeleniumHelper.ClickSafety(CheckboxElement, findElementTimeout);
+        }
+
+        // Verify address of the edited device given the row index & expected address
+        public void VerifyAddressOfEditedDevice(int rowIndex, string expectedAddress)
+        {
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+
+            // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
+            string displayedAddress = deviceRowElements[rowIndex].FindElements(By.TagName("td")).ToList()[4].Text;
+
+            TestCheck.AssertIsEqual(expectedAddress, displayedAddress, "Address of the edited device could not be verified");
+        }
+
+
+        // Get total number of rows of the device table
+        public int DeviceTableRowsCount()
+        {
+            return SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement).Count;
+        }
+
+        // Validate address of the device given the device id & expected address string
+        public void ValidateDeviceAddress(string deviceId, string expectedAddress, int findElementTimeout)
+        {
+            string displayedDeviceId, displayedAddress;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach(var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(deviceId))
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
+                    displayedAddress = deviceRowElement.FindElements(By.TagName("td")).ToList()[4].Text;
+                    TestCheck.AssertIsEqual(expectedAddress, displayedAddress, "Address of the edited device could not be verified");
+                    break;
+                }
+            }
         }
     }
 }
