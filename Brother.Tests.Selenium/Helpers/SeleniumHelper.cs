@@ -108,7 +108,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             alert.Accept();
         }
 
-        public  ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
+        public void ClearAndType(IWebElement element, string value)
+        {
+            element.Clear();
+            element.SendKeys(value);
+        }
+
+        public ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
             var actionsElement = _webDriver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;

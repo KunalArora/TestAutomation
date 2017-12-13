@@ -107,6 +107,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
+        [When(@"I navigate to the Create Proposal page")]
+        public void WhenINavigateToTheCreateProposalPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [When(@"I create a ""(.*)"" proposal")]
         public void WhenICreateAProposalOfContractType(string contractType)
         {
@@ -143,7 +150,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerCustomersManagePage = _mpsDealerProposalStepActions.NavigateToCustomersManagePage(_dealerCustomersExistingPage);
             _mpsDealerProposalStepActions.CreateAndSaveANewCustomer(_dealerCustomersManagePage, _contextData.Country, payment);
             _mpsDealerProposalStepActions.ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(_dealerCustomersExistingPage, _contextData.CustomerInformationName, _contextData.CustomerEmail);
-            
         }
 
         [When(@"I skip customer creation for the proposal")]
@@ -203,6 +209,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
         [When(@"I save the above proposal and submit it for approval")]
         public void WhenISaveTheAboveProposalAndSubmitItForApproval()
+        {
+            WhenISaveTheProposal();
+            WhenISubmitItForApproval();
+        }
+
+        public void WhenISubmitItForApproval()
         {
             string paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
             WhenISaveTheProposal();
@@ -295,6 +307,28 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(_dealerDashboardPage);
             _cloudExistingProposalPage = _mpsDealerProposalStepActions.ClickOnCopyWithCustomerTab(_dealerProposalsDeclinedPage, _contextData.ProposalId);
+        }
+
+        [When(@"I copy declined proposal and create new customer and submit it for approval")]
+        public void WhenICopyDeclinedProposalAndCreateNewCustomerAndSubmitItForApproval()
+        {
+            string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
+            string proposalNameForSearch;
+
+            _contextData.SetBusinessType("1");
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(dealerDashboardPage);
+            var dealerProposalsInprogressPage = _mpsDealerProposalStepActions.ClickOnActionsCopy(dealerProposalsDeclinedPage, _contextData.ProposalId.ToString(), out proposalNameForSearch);
+            var dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.ClickOnActionsEdit(dealerProposalsInprogressPage, proposalNameForSearch);
+            _contextData.ProposalName = dealerProposalsCreateDescriptionPage.ProposalNameField.GetAttribute("value"); // update for verify
+            var dealerProposalsCreateCustomerInformationPage =  _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateDescriptionPage);
+            var dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(dealerProposalsCreateTermAndTypePage, _contextData.UsageType, _contextData.ContractTerm, _contextData.BillingType, _contextData.ServicePackType);
+            var dealerProposalsCreateClickPricePage =  _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateProductsPage); // printers no update
+            var dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateClickPricePage); // click prices no update 
+            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(dealerProposalsCreateSummaryPage, resourceServicePackTypeIncludedInClickPrice);
+            WhenISubmitItForApproval();
+
         }
 
     }

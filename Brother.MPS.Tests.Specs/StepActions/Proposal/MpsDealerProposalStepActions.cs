@@ -322,7 +322,50 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                    }
                });
         }
- 
+
+        public DealerProposalsCreateCustomerInformationPage ClickOnNext(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage)
+        {
+            ClickSafety(dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
+            return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateSummaryPage ClickOnNext(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
+        {
+            ClickSafety(dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage);
+            return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateClickPricePage ClickOnNext(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage)
+        {
+            ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage);
+            return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateDescriptionPage ClickOnActionsEdit(DealerProposalsInprogressPage dealerProposalsInprogressPage, string filterString)
+        {
+            ActionsModule.SetFilter(filterString, dealerProposalsInprogressPage.ProposalFilter, dealerProposalsInprogressPage.ProposalListProposalNameRowElement, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
+            ActionsModule.StartTheProposalEditProcess(_dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
+        }
+
+        public DealerProposalsInprogressPage ClickOnActionsCopy(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, string filterString, out string proposalNameForSearch)
+        {
+            ActionsModule.SetFilter(filterString, dealerProposalsDeclinedPage.InputFilterByElement, dealerProposalsDeclinedPage.NameRowElementList, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+            ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
+            ActionsModule.CopyAProposal(_dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
+        }
+
+        public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
+            var dealerProposalsInprogressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerProposalsInprogressPage.DeclinedTabElement, dealerProposalsInprogressPage);
+            return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsApprovedPage dealerProposalsApprovedPage, string proposalId)
         {
             dealerProposalsApprovedPage.ClickOnSummaryPage(proposalId, RuntimeSettings.DefaultPageLoadTimeout, _dealerWebDriver);

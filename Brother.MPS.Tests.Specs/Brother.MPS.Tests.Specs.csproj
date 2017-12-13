@@ -1747,6 +1747,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_2.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_3.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_3.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
