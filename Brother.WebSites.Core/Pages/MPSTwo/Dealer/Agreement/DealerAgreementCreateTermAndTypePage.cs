@@ -2,6 +2,8 @@
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -54,6 +56,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public void SelectService(string service)
         {
             SelectFromDropdown(ServiceElement, service);
+        }
+
+        public void ValidateServicePackAvailableOptions()
+        {
+            SelectUsageType("Pay As You Go"); // TODO: Remove hard coded strings
+            List<string> dropdownValues = SeleniumHelper.GetAllValuesOfDropdown(ServiceElement);
+            if (dropdownValues.Exists(value => string.Equals(value, "Included in Click Price", StringComparison.OrdinalIgnoreCase)))
+            {
+                throw new Exception("Content could not be validated on Term & Type page");
+            }
         }
     }
 }

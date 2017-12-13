@@ -17,6 +17,8 @@ namespace Brother.Tests.Specs.ContextData
         public string ProposalName { get; set; }
         public int ProposalId { get; set; }
         public string UsageType { get; set; }
+        public string LeadCodeReference { get; set; }
+        public string ContractType { get; set; }
         public string ContractTerm { get; set; }
         public string BillingType { get; set; }
         public string ServicePackType { get; set; }
@@ -65,5 +67,7 @@ namespace Brother.Tests.Specs.ContextData
         // Exclusively Type 3
         public int AgreementId { get; set; }
         public string AgreementName { get; set; }
+        public string LeasingFinanceReference { get; set; }
+        public string DealerReference { get; set; }
     }
 }

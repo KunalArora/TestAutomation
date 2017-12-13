@@ -24,13 +24,14 @@ namespace Brother.Tests.Specs.Helpers
         int GetNumberOfRows(string excelFilePath);
         
         /// <summary>
-        /// Write the customer details in the excel file
+        /// Write the device data in the excel file & return the Device ID of the edited device
         /// </summary>
         /// <param name="excelFilePath"></param>
         /// <param name="row"></param>
         /// <param name="mandatoryFieldValues"></param>
         /// <param name="nonMandatoryFieldValues"></param>
-        void EditExcelCustomerInformation(
+        /// <returns></returns>
+        string EditExcelCustomerInformation(
             string excelFilePath, int row, CustomerInformationMandatoryFields mandatoryFieldValues, CustomerInformationNonMandatoryFields nonMandatoryFieldValues);
         
         /// <summary>
