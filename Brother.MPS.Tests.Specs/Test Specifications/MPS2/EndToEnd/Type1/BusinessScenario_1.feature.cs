@@ -96,7 +96,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
                         "Price",
-                        "Installation",
+                        "InstallationPack",
                         "Delivery",
                         "CoverageMono",
                         "VolumeMono",
