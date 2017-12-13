@@ -134,7 +134,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var products = printers.CreateSet<PrinterProperties>();
             foreach ( var product in products)
             {
-                product.Installation = _translationService.GetInstallationPackText(product.Installation, _contextData.Culture);
+                product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products, resourceServicePackTypeIncludedInClickPrice);

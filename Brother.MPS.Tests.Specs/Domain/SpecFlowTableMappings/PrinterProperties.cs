@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
 {
     public class PrinterProperties
     {
         public string Model { get; set; }
         public string Price { get; set; }
-        public string Installation { get; set; }
+        public int Quantity { get; set; }
+        public string InstallationPack { get; set; }
+        public string ServicePack { get; set; }
         public string Delivery { get; set; }
         public int CoverageMono { get; set; }
         public int VolumeMono { get; set; }
@@ -33,6 +30,7 @@ namespace Brother.Tests.Specs.Domain.SpecFlowTableMappings
 
         public string SerialNumber { get; set; }
         public string DeviceId { get; set; }
+        public string MpsDeviceId { get; set; }
         public int MonoPrintCount { get; set; }
         public int ColorPrintCount { get; set; }
         public int TotalPageCount { get; set; }

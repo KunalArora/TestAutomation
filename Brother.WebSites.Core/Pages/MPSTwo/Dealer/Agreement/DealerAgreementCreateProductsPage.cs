@@ -1,8 +1,5 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -35,13 +32,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         public ISeleniumHelper SeleniumHelper { get; set; }
 
-        public IWebElement SelectPrinter(string printerName)
+        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
-            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, 10);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, 10);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
 
             addButton.Click();
 
@@ -52,33 +49,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             int quantity,
             string installationPack,
             string servicePack,
-            bool continueToClickPrice = false)
+            int findElementTimeout
+            )
         {
             string quantityInputSelector = "#Quantity";
             string installationPackInputSelector = "#InstallationPackId";
             string servicePackInputSelector = "#ServicePackId";
             string addToAgreementButtonSelector = ".js-mps-product-configuration-submit";
-            string continueLinkSelector = ".js-mps-trigger-next";
 
-            var printerContainer = SelectPrinter(printerName);
-            var quantityInput = SeleniumHelper.FindElementByCssSelector(printerContainer, quantityInputSelector, 10);
-            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector, 10);
-            var servicePackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, servicePackInputSelector, 10);
-            var addToAgreementButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToAgreementButtonSelector, 10);
+            var printerContainer = SelectPrinter(printerName, findElementTimeout);
+            var quantityInput = SeleniumHelper.FindElementByCssSelector(
+                printerContainer, quantityInputSelector, findElementTimeout);
+            var installationPackInput = SeleniumHelper.FindElementByCssSelector(
+                printerContainer, installationPackInputSelector, findElementTimeout);
+            var servicePackInput = SeleniumHelper.FindElementByCssSelector(
+                printerContainer, servicePackInputSelector, findElementTimeout);
+            var addToAgreementButton = SeleniumHelper.FindElementByCssSelector(
+                printerContainer, addToAgreementButtonSelector, findElementTimeout);
          
             quantityInput.Clear();
             quantityInput.SendKeys(quantity.ToString());
 
-            SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
-            SeleniumHelper.SelectFromDropdownByText(servicePackInput, servicePack);
+            if (installationPack.ToLower().Equals("yes") && NumberOfSelectOption(installationPackInput) > 1)
+            {
+                SelectFromDropDownByIndex(installationPackInput, 1);
+            }
+            
+            if (servicePack.ToLower().Equals("yes") && NumberOfSelectOption(servicePackInput) > 1)
+            {
+                SelectFromDropDownByIndex(servicePackInput, 1);
+            }
 
             addToAgreementButton.Click();
-
-            if (continueToClickPrice)
-            {
-                var continueLink = SeleniumHelper.FindElementByCssSelector(printerContainer, continueLinkSelector, 10);
-                continueLink.Click();
-            }
         }
     }
 }

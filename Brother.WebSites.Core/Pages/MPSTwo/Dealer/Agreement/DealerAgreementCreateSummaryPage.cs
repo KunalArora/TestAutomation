@@ -2,6 +2,7 @@
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -28,6 +29,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonCompleteSetupAgreement")]
         public IWebElement CompleteSetupButton;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_SummaryTable_ProposalDetailsContainer")]
+        public IWebElement SummaryPageAgreementIdElement;
+
+        public int AgreementId()
+        {
+            return Int32.Parse(SummaryPageAgreementIdElement.GetAttribute("data-mps-qa-id"));         
+        }
+
+        public void AcceptJavascriptPopupOnCompleteSetup(int findElementTimeout)
+        {
+            SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);
+        }
     }
 }
 

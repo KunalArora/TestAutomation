@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
+namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
 {
     using TechTalk.SpecFlow;
     
@@ -18,29 +18,29 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSDealerCanCreateAnAgreement")]
+    [NUnit.Framework.DescriptionAttribute("BusinessScenario_1")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
-    public partial class CloudMPSDealerCanCreateAnAgreementFeature
+    [NUnit.Framework.CategoryAttribute("ENDTOEND")]
+    public partial class BusinessScenario_1Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSDealerCanCreateAnAgreement.feature"
+#line 1 "BusinessScenario_1.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSDealerCanCreateAnAgreement", "\tIn order to initiate a customer agreement\r\n\tAs a Type 3 dealer\r\n\tI want to creat" +
-                    "e a new agreement", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_1", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
+                    "t to create a new agreement and complete the installation of all devices", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
-                        "TEST",
-                        "TYPE3"});
+                        "TYPE3",
+                        "ENDTOEND"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,18 +73,18 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("MPS Dealer Create Agreement")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "Minimum Volume", "3 years", "Pay upfront", new string[] {
+        [NUnit.Framework.DescriptionAttribute("Business Scenario 1")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "True", "Minimum Volume", "3 years", "Pay upfront", "False", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void MPSDealerCreateAgreement(string country, string usageType, string contractTerm, string service, string[] exampleTags)
+        public virtual void BusinessScenario1(string country, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dealer Create Agreement", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 1", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I have navigated to the Create Agreement page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("I enter the agreement description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I input the fields (Fill Optional fields: \"{0}\") on Agreement Description Page", optionalFields_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term of \"{1}\" and Service of \"{2}\"", usageType, contractTerm, service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -103,15 +103,30 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "Yes",
                         "5",
+                        "500",
+                        "0",
+                        "0"});
+            table1.AddRow(new string[] {
+                        "DCP-8250DN",
+                        "1",
+                        "Yes",
+                        "Yes",
+                        "5",
                         "1000",
                         "0",
                         "0"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
-#line 14
-testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
+testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
 testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+testRunner.And(string.Format("I edit device data one by one for all devices (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+testRunner.Then("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
