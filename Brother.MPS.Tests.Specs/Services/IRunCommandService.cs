@@ -19,5 +19,10 @@ namespace Brother.Tests.Specs.Services
         void RunCheckForSilentEmailDevicesCommand();
         void RunCheckForSilentCloudDevicesCommand();
         void RunCreateConsumableOrderCommand();
+
+        /// <summary>
+        /// Job to retrieve BOC pin per device in the background
+        /// </summary>
+        void RunSetupInstalledPrintersCommand(); // Only for Type 3
     }
 }

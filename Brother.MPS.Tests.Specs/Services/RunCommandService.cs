@@ -141,5 +141,13 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteRunCommand(commandUrl);          
         }
+
+        public void RunSetupInstalledPrintersCommand()
+        {
+            string commandName = "MPS:SystemJobSetupInstalledPrintersCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
     }
 }

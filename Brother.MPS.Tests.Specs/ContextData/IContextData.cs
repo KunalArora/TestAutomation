@@ -20,6 +20,8 @@ namespace Brother.Tests.Specs.ContextData
         int ProposalId { get; set; }
         string UsageType { get; set; }
         string ContractTerm { get; set; }
+        string ContractType { get; set; }
+        string LeadCodeReference { get; set; }
         string BillingType { get; set; }
         string ServicePackType { get; set; }
         IEnumerable<PrinterProperties> PrintersProperties { get; set; }
@@ -42,5 +44,7 @@ namespace Brother.Tests.Specs.ContextData
         // Exclusively Type 3
         int AgreementId { get; set; }
         string AgreementName { get; set; }
+        string LeasingFinanceReference { get; set; }
+        string DealerReference { get; set; }
     }
 }

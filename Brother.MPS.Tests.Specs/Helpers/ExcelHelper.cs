@@ -11,6 +11,9 @@ namespace Brother.Tests.Specs.Helpers
 {
     public class ExcelHelper: IExcelHelper
     {
+        // Devices Property Fields
+        private const int DEVICE_ID_COL_NUM = 2;
+
         // Mandatory Input Field column numbers
         private const int CUSTOMER_NAME_COL_NUM = 9;
         private const int CONTACT_FIRST_NAME_COL_NUM = 10;
@@ -79,7 +82,7 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
-        public void EditExcelCustomerInformation(
+        public string EditExcelCustomerInformation(
             string excelFilePath, int row, CustomerInformationMandatoryFields mandatoryFieldValues, CustomerInformationNonMandatoryFields nonMandatoryFieldValues = null)
         {
             var fileInfo = new FileInfo(excelFilePath);
@@ -114,6 +117,7 @@ namespace Brother.Tests.Specs.Helpers
                     }
 
                     pack.Save();
+                    return ws.Cells[row, DEVICE_ID_COL_NUM].Value.ToString(); // Return Device ID
                 }
             }
             else

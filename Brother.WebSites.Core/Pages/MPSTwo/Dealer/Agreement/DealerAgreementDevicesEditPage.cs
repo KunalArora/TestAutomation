@@ -4,6 +4,8 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -72,7 +74,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public IWebElement SaveButtonElement;
 
 
-
         public void FillMandatoryDetails(CustomerInformationMandatoryFields values)
         {
             ClearAndType(CustomerNameInputElement, values.CompanyName);
@@ -104,55 +105,107 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(InstallationNotesInputElement, values.InstallationNotes);
         }
 
-        public void EditDeviceData(string optionalValues)
+        public string EditDeviceData(string optionalValues)
         {
             CustomerInformationMandatoryFields mandatoryValues = new CustomerInformationMandatoryFields();
             FillMandatoryDetails(mandatoryValues);
-
+            CustomerInformationNonMandatoryFields nonMandatoryValues = null;
             if(optionalValues.ToLower().Equals("true"))
             {
-                CustomerInformationNonMandatoryFields nonMandatoryValues = new CustomerInformationNonMandatoryFields();
+                nonMandatoryValues = new CustomerInformationNonMandatoryFields();
                 FillNonMandatoryDetails(nonMandatoryValues);
             }
+
+            return ValidationExpression(mandatoryValues, nonMandatoryValues);          
         }
 
-        public CustomerInformationMandatoryFields GetMandatoryFieldValues()
+        // This is used for validation purpose. 
+        // It is the Address string which is displayed on Devices page after editing device data. 
+        public string ValidationExpression(CustomerInformationMandatoryFields mandatoryValues, CustomerInformationNonMandatoryFields nonMandatoryValues = null)
         {
-            CustomerInformationMandatoryFields values = new CustomerInformationMandatoryFields();
-            return values;
-        }
+            List<string> validationExpression = new string[] {
+                mandatoryValues.CompanyName, string.Format("{0} {1}", mandatoryValues.PropertyNumber, mandatoryValues.PropertyStreet),
+                mandatoryValues.PropertyTown, mandatoryValues.PostCode }.ToList();
 
-        public CustomerInformationNonMandatoryFields GetNonMandatoryFieldValues()
-        {
-            CustomerInformationNonMandatoryFields values = new CustomerInformationNonMandatoryFields();
-            return values;
-        } 
+            if (nonMandatoryValues != null)
+            {
+                // Note: Area is used as part of address (used for validation)
+                // Insert area into correct position of the validation expression (expected address string)
+                validationExpression.Insert(2, nonMandatoryValues.PropertyArea);
+            }
+            
+            return string.Join(", ", validationExpression);
+        }
     }
 
 
     //TODO: Make a separate project & add these common classes into the new project. Add reference from both MPS & Websites project to the new project to avoid circular referencing
     public class CustomerInformationMandatoryFields
     {
-        public string CompanyName { get { return MpsUtil.CompanyName(); } }
-        public string FirstName { get { return MpsUtil.FirstName(); } }
-        public string PropertyNumber { get { return MpsUtil.PropertyNumber(); } }
-        public string PropertyStreet { get { return MpsUtil.PropertyStreet(); } }
-        public string PropertyTown { get { return MpsUtil.PropertyTown(); } }
-        public string PostCode { get { return MpsUtil.PostCodeGb(); } } // TODO: Generalize it for all countries
+        private string _companyName;
+        private string _firstName;
+        private string _propertyNumber;
+        private string _propertyStreet;
+        private string _propertyTown;
+        private string _postCode;
+                
+        public CustomerInformationMandatoryFields()
+        {
+            _companyName = MpsUtil.CompanyName();
+            _firstName = MpsUtil.FirstName();
+            _propertyNumber = MpsUtil.PropertyNumber();
+            _propertyStreet = MpsUtil.PropertyStreet();
+            _propertyTown = MpsUtil.PropertyTown();
+            _postCode = MpsUtil.PostCodeGb(); // TODO: Generalize it for all countries
+        }
+
+        public string CompanyName { get { return _companyName; } }
+        public string FirstName { get { return _firstName; } }
+        public string PropertyNumber { get { return _propertyNumber; } }
+        public string PropertyStreet { get { return _propertyStreet; } }
+        public string PropertyTown { get { return _propertyTown; } }
+        public string PostCode { get { return _postCode; } } 
     }
 
     public class CustomerInformationNonMandatoryFields
     {
-        public string LastName { get { return MpsUtil.SurName(); } }
-        public string Telephone { get { return MpsUtil.CompanyTelephone(); } }
-        public string Email { get { return MpsUtil.GenerateUniqueEmail(); } }
-        public string PropertyArea { get { return MpsUtil.Area(); } }
-        public string Country { get { return "United Kingdom"; } } // TODO: Replace hard coded string
-        public string DeviceLocation { get { return MpsUtil.DeviceLocation(); } }
-        public string CostCentre { get { return MpsUtil.CostCentre(); } }
-        public string Reference_1 { get { return MpsUtil.CustomerReference(); } }
-        public string Reference_2 { get { return MpsUtil.BankInternalReference(); } }
-        public string Reference_3 { get { return MpsUtil.CustomerReference(); } }
-        public string InstallationNotes { get { return MpsUtil.InstallationNotes(); } }
+        private string _surName;
+        private string _telephone; 
+        private string _email;
+        private string _propertyArea;
+        private string _country;
+        private string _deviceLocation;
+        private string _costCentre;
+        private string _reference1;
+        private string _reference2;
+        private string _reference3;
+        private string _installationNotes;
+
+        public CustomerInformationNonMandatoryFields()
+        {
+            _surName = MpsUtil.SurName();
+            _telephone = MpsUtil.CompanyTelephone();
+            _email = MpsUtil.GenerateUniqueEmail();
+            _propertyArea = MpsUtil.Area();
+            _country = "United Kingdom"; // TODO: Replace hard coded string
+            _deviceLocation = MpsUtil.DeviceLocation();
+            _costCentre = MpsUtil.CostCentre();
+            _reference1 = MpsUtil.CustomerReference();
+            _reference2 = MpsUtil.BankInternalReference();
+            _reference3 = MpsUtil.CustomerReference();
+            _installationNotes = MpsUtil.InstallationNotes();
+        }
+
+        public string LastName { get { return _surName; } }
+        public string Telephone { get { return _telephone; } }
+        public string Email { get { return _email; } }
+        public string PropertyArea { get { return _propertyArea; } }
+        public string Country { get { return _country; } }
+        public string DeviceLocation { get { return _deviceLocation; } }
+        public string CostCentre { get { return _costCentre; } }
+        public string Reference_1 { get { return _reference1; } }
+        public string Reference_2 { get { return _reference2; } }
+        public string Reference_3 { get { return _reference3; } }
+        public string InstallationNotes { get { return _installationNotes; } }
     }
 }
