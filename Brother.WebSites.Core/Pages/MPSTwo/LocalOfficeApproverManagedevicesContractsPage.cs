@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesContractsPage : DealerContractsPage
+    public class LocalOfficeApproverManagedevicesContractsPage : DealerContractsPage, IPageObject
     {
         private const string _url = "/mps/local-office/manage-devices/contracts";
         private const string _validationElementSelector = "a[href=\"/mps/local-office/manage-devices/contracts\"]"; // Contracts tab element
 
-        public override string PageUrl
+        public new string PageUrl
         {
             get
             {
@@ -17,7 +17,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public override string ValidationElementSelector
+        public new string ValidationElementSelector
         {
             get
             {

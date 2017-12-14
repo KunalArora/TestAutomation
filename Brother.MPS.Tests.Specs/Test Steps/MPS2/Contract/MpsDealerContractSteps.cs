@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -7,7 +8,6 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using Brother.Tests.Specs.Domain.Constants;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -92,9 +92,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
         public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
         {
-            string resourceSwapTypeReplaceWithDifferentModel = _translationService.GetSwapTypeText("REPLACE_WITH_DIFFERENT_MODEL", _contextData.Culture);
-            swapType = _translationService.GetSwapTypeText(swapType, _contextData.Culture);
-            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage, swapType, resourceSwapTypeReplaceWithDifferentModel);
+            string resourceSwapTypeReplaceWithDifferentModel = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, _contextData.Culture);
+
+            _contextData.SwapType = _translationService.GetSwapTypeText(swapType, _contextData.Culture);
+            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage, _contextData.SwapType, resourceSwapTypeReplaceWithDifferentModel);
             _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
             _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);

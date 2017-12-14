@@ -1,11 +1,11 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail : DealerSendSwapInstallationEmailPage
+    public class LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail : DealerSendSwapInstallationEmailPage, IPageObject
     {
         public static string _url = "/mps/local-office/manage-devices/send-swap-device-installation-email";
         private const string _validationElementSelector = ".active a[href=\"/mps/local-office/manage-devices/send-swap-device-installation-email\"]";
 
-        public override string ValidationElementSelector
+        public new string ValidationElementSelector
         {
             get
             {
@@ -13,7 +13,7 @@
             }
         }
 
-        public override string PageUrl
+        public new string PageUrl
         {
             get
             {

@@ -1,11 +1,11 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesSetCommunicationMethodPage : DealerSetCommunicationMethodPage
+    public class LocalOfficeApproverManagedevicesSetCommunicationMethodPage : DealerSetCommunicationMethodPage, IPageObject
     {
         private const string _url = "/mps/local-office/manage-devices/set-communication-method";
         private const string _validationElementSelector = ".active a[href=\"/mps/local-office/manage-devices/set-communication-method\"]";
 
-        public override string ValidationElementSelector
+        public new string ValidationElementSelector
         {
             get
             {
@@ -13,7 +13,7 @@
             }
         }
 
-        public override string PageUrl
+        public new string PageUrl
         {
             get
             {

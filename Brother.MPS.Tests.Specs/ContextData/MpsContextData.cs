@@ -1,6 +1,6 @@
 ﻿using Brother.Tests.Specs.Domain.Enums;
-using System;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using System;
 using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.ContextData
@@ -71,5 +71,6 @@ namespace Brother.Tests.Specs.ContextData
         public string LeasingFinanceReference { get; set; }
         public string DealerReference { get; set; }
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
+        public string SwapType { get; set; }
     }
 }

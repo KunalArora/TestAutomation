@@ -48,5 +48,7 @@ namespace Brother.Tests.Specs.ContextData
         string LeasingFinanceReference { get; set; }
         string DealerReference { get; set; }
         List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
+        string SwapType { get; set; }
+
     }
 }

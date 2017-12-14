@@ -5,14 +5,14 @@
 
         private const string _url = "/mps/local-office/manage-devices/manage";
         private const string _validationElementSelector = ".active a[href=\"/mps/local-office/manage-devices/manage\"]";
-        public override string PageUrl
+        public new string PageUrl
         {
             get
             {
                 return _url;
             }
         }
-        public override string ValidationElementSelector
+        public new string ValidationElementSelector
         {
             get
             {
