@@ -96,7 +96,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
                         "Price",
-                        "Installation",
+                        "InstallationPack",
                         "Delivery",
                         "CoverageMono",
                         "VolumeMono",
@@ -225,42 +225,43 @@ testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlo
 #line 29
 testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
-testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
-                    "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver locate the above contract and click Manage Devi" +
+                    "ces button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
-testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("a Cloud MPS Local Office Approver create a \"{0}\" installation request for \"{1}\" c" +
+                        "ommunication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
-testRunner.And("I will be able to see the installation request created above on the Manage Device" +
-                    "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver will be able to see the installation request cr" +
+                    "eated above on the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
 testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
                     "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
 testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
-testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
-                    "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver locate the above contract and click Manage Devi" +
+                    "ces button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
-                    "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver will be able to see on the Manage Devices page " +
+                    "that all devices for the above contract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
 testRunner.And("I update the print count, raise consumable order and service request for above de" +
                     "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-testRunner.And("I will be able to see on the Manage Devices page that above devices have updated " +
-                    "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver will be able to see on the Manage Devices page " +
+                    "that above devices have updated Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
 testRunner.And("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-testRunner.And("I click Swap Device in the Actions menu for device to be swapped on the Manage de" +
-                    "vices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver click Swap Device in the Actions menu for devic" +
+                    "e to be swapped on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
-testRunner.And(string.Format("I create a \"{0}\" swap installation request with \"{1}\" installation type for \"{2}\"" +
-                        " communication", swapType, installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("a Cloud MPS Local Office Approver create a \"{0}\" swap installation request with \"" +
+                        "{1}\" installation type for \"{2}\" communication", swapType, installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
-testRunner.And("I will be able to see the status of the installed device is set Being Replaced on" +
-                    " the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver will be able to see the status of the installed" +
+                    " device is set Being Replaced on the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 43
 testRunner.And("a Brother installer has navigated to the Web Swap Installation page and verify Co" +
                     "ntract Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -268,8 +269,9 @@ testRunner.And("a Brother installer has navigated to the Web Swap Installation p
 testRunner.And(string.Format("Enter the serial number for new device \"{0}\" with new Mono \"{1}\" and color \"{2}\" " +
                         "print count and complete Installation", swapNewDeviceSerialNumber, swapNewDeviceMonoPrintCount, swapNewDeviceColorPrintCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
-testRunner.Then(string.Format("I will be able to see the status of the swap device \"{0}\" is set Being Swapped wi" +
-                        "th updated print counts on the Manage Devices page for the above proposal", swapNewDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("a Cloud MPS Local Office Approver will be able to see the status of the swap devi" +
+                        "ce \"{0}\" is set Being Swapped with updated print counts on the Manage Devices pa" +
+                        "ge for the above proposal", swapNewDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

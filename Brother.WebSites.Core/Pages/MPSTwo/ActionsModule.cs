@@ -23,6 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
         private const string ContractDownloadPdf = @".open .js-mps-download-contract-pdf";
         private const string ContractDownloadInvoicePdf = @".open .js-mps-download-contract-invoice-pdf";
+        private const string ManagedDevices = @".open .js-mps-manage-devices";
         private const string ActionButtion = @".js-mps-filter-ignore [type='button']";
         private const string SearchField = @"#content_1_ProposalListFilter_InputFilterBy";
 
@@ -80,6 +81,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private static IWebElement OpenOfferViewSummaryElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(OpenOfferViewSummaryButton));
+        }
+
+        private static IWebElement ManageDevicesElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ManagedDevices));
         }
 
         public static IWebElement ProposalEditButtonElement(ISearchContext driver)
@@ -477,6 +483,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void NavigateToOpenProposalsPageUsingActionButton(IWebDriver driver)
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, CopyProposalWithCustomerButtonElement(driver));
+        }
+
+        public static void NavigateToManageDevicesActionButton(IWebDriver driver)
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, ManageDevicesElement(driver));
         }
 
         public static void StartTheProposalEditProcess(IWebDriver driver)

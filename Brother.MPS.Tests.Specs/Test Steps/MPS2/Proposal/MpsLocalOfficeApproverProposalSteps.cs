@@ -1,14 +1,14 @@
-﻿using System;
-using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
-using Brother.Tests.Specs.Domain.Constants;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -26,6 +26,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsLocalOfficeApproverProposalStepActions _mpsLocalOfficeApproverProposalStepActions;
+        private readonly MpsDealerProposalStepActions _refMpsDealerProposalStepActions;
 
         //page objects used by these steps
         private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverApprovalProposalsApprovedPage;

@@ -12,7 +12,7 @@ And I create a new customer for the proposal
 #note that 'And' steps bind to either Given or When attributes depending on the preceding steps
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
-		| Model        | Price   | Installation         | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
+		| Model        | Price   | InstallationPack     | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
 		| DCP-8110DN   | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
 		| HL-5450DN    | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| DCP-L8450CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
@@ -27,22 +27,22 @@ And I have navigated to the Approved Proposals page and navigate to the proposal
 And I click the download proposal button and verify if I am able to open the PDF
 And I sign the above proposal
 And a Cloud MPS Local Office Approver accepts the above proposal
-And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
-And I create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
-And I will be able to see the installation request created above on the Manage Devices page for the above proposal
+And a Cloud MPS Local Office Approver locate the above contract and click Manage Devices button
+And a Cloud MPS Local Office Approver create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
+And a Cloud MPS Local Office Approver will be able to see the installation request created above on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Installation page and verify Contract Reference
 And Enter the serial numbers and complete installation
-And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
-And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
+And a Cloud MPS Local Office Approver locate the above contract and click Manage Devices button
+And a Cloud MPS Local Office Approver will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count, raise consumable order and service request for above devices
-And I will be able to see on the Manage Devices page that above devices have updated Print Counts
+And a Cloud MPS Local Office Approver will be able to see on the Manage Devices page that above devices have updated Print Counts
 And a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
-And I click Swap Device in the Actions menu for device to be swapped on the Manage devices page
-And I create a "<SwapType>" swap installation request with "<InstallationType>" installation type for "<CommunicationMethod>" communication
-And I will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal
+And a Cloud MPS Local Office Approver click Swap Device in the Actions menu for device to be swapped on the Manage devices page
+And a Cloud MPS Local Office Approver create a "<SwapType>" swap installation request with "<InstallationType>" installation type for "<CommunicationMethod>" communication
+And a Cloud MPS Local Office Approver will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Swap Installation page and verify Contract Reference
 And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
-Then I will be able to see the status of the swap device "<SwapNewDeviceSerialNumber>" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
+Then a Cloud MPS Local Office Approver will be able to see the status of the swap device "<SwapNewDeviceSerialNumber>" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
 @BUK
 Scenarios: 

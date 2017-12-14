@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/manage-devices/send-swap-device-installation-email\"]";
 
-        public string ValidationElementSelector
+        public virtual string ValidationElementSelector
         {
             get
             {
@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public string PageUrl
+        public virtual string PageUrl
         {
             get
             {

@@ -175,6 +175,8 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsInprogressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendSwapInstallationEmailPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateClickPricePage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateDescriptionPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalSummaryPage.cs" />
@@ -183,6 +185,14 @@
     <Compile Include="Pages\MPSTwo\DealerContractsAwaitingAcceptancePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerCustomerAdditionalAddressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalPdfPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateProductsPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesEditPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesUploadConfirmationPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementDevicesUploadPage.cs" />
+    <Compile Include="Pages\MPSTwo\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\DeleteSubDealerHandoverPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringPrinterEnginePage.cs" />
@@ -224,6 +234,7 @@
     <Compile Include="Pages\MPSTwo\BankProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsRejectedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSetCommunicationMethodPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />
@@ -237,6 +248,14 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsDeclinedPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsAcceptedPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesContractsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesManagePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesSendInstallationEmailPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesSetCommunicationMethodPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManagedevicesSetInstallationTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOffice\LocalOfficeAgreementDevicesPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOffice\LocalOfficeAgreementSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ReportingDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />
