@@ -466,7 +466,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _calculationService.VerifyTotalPrice(printerPrice, margin, unitPrice);
             _calculationService.VerifySum(totalPriceValues, expectedTotalLinePrice);
 
-            addProposalButton.Click();
+            dealerProposalsCreateProductsPage.ClickAddProposalButton(
+                printerContainer, addProposalButton, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,

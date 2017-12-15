@@ -3,6 +3,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 {
@@ -48,7 +49,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             int coverageColour,
             int volumeColour,
             string usageType,
-            int findElementTimeout)
+            int findElementTimeout,
+            string resourceUsageTypePayAsYouGo)
         {
             var printerContainer = SelectClickPriceGroup(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
@@ -59,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(monoCoverageInput, coverageMono.ToString());
 
             // Note: When Usage Type is "Pay As You Go", volume element is input field instead of dropdown list
-            if (usageType == "Pay As You Go") // TODO: Remove hard coded string/Translation
+            if (string.Equals(usageType, resourceUsageTypePayAsYouGo, StringComparison.OrdinalIgnoreCase))
             {
                 ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
             }
@@ -76,7 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
 
                 // Note: When Usage Type is "Pay As You Go", volume element is input field instead of dropdown list
-                if (usageType == "Pay As You Go") // TODO: Remove hard coded string/Translation
+                if (string.Equals(usageType, resourceUsageTypePayAsYouGo, StringComparison.OrdinalIgnoreCase))
                 {
                     ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
                 }

@@ -22,10 +22,13 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _installerWebDriver;
         private IWebDriver _loApproverWebDriver;
         private IWebDriver _customerWebDriver;
+        private IWebDriver _serviceDeskWebDriver;
 
         private const string dealerDashboardUrl = "/mps/dealer/dashboard";
         private const string loApproverDashboardUrl = "/mps/local-office/dashboard";
         private const string customerDashboardUrl = "/mps/customer/dashboard";
+        private const string serviceDeskDashboardUrl = "/mps/local-office/dashboard";
+
 
         public MpsSignInStepActions (IWebDriver driver,
             IWebDriverFactory webDriverFactory,
@@ -67,6 +70,22 @@ namespace Brother.Tests.Specs.StepActions.Common
                 var uri = new Uri(_loApproverWebDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loApproverDashboardUrl);
                 return PageService.LoadUrl<LocalOfficeApproverDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loApproverWebDriver);
+            }
+        }
+
+        public ServiceDeskDashBoardPage SignInAsServiceDesk(string email, string password, string url)
+        {
+            _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
+            if (_serviceDeskWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _serviceDeskWebDriver);
+                return SignInToMpsDashboardAs<ServiceDeskDashBoardPage>(signInPage, email, password, _serviceDeskWebDriver);
+            }
+            else
+            {
+                var uri = new Uri(_serviceDeskWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, serviceDeskDashboardUrl);
+                return PageService.LoadUrl<ServiceDeskDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _serviceDeskWebDriver);
             }
         }
 

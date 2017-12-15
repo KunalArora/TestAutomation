@@ -42,6 +42,7 @@ namespace Brother.Tests.Specs.ContextData
         string WebSwapInstallUrl { get; set; }
 
         // Exclusively Type 3
+        string AgreementType { get; set; }
         int AgreementId { get; set; }
         string AgreementName { get; set; }
         string LeasingFinanceReference { get; set; }

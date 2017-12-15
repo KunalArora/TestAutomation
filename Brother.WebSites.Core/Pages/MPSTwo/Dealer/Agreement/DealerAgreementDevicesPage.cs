@@ -108,7 +108,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
                 string displayedStatus = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
 
                 TestCheck.AssertTextContains(
-                    expectedStatus, displayedStatus.ToLower(), "Status of the device could not be verified");
+                    expectedStatus, displayedStatus, "Status of the device could not be verified");
             }
         }
 
