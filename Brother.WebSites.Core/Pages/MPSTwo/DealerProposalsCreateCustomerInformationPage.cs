@@ -787,5 +787,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var email = driver.FindElement(By.CssSelector(emailselector)).Text;
             SpecFlow.SetContext("DealerLatestEditedCustomerEmail", email);
         }
+
+        private string GetFieldValue(IWebElement element)
+        {
+            return element.GetAttribute("value");
+        }
+
+        public string GetCompanyName()
+        {
+            return GetFieldValue(CompanyNameElement);
+        }
+
+        public string GetEmail()
+        {
+            return GetFieldValue(EmailElement);
+        }
+
+        public string GetFirstName()
+        {
+            return GetFieldValue(FirstNameElement);
+        }
+
+        public string GetLastName()
+        {
+            return GetFieldValue(LastNameElement);
+        }
+
     }
 }

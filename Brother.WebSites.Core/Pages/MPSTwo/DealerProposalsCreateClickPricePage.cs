@@ -956,7 +956,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             int coverageMono, 
             int coverageColour, 
             int volumeMono, 
-            int volumeColour, 
+            int volumeColour,
+            string usageType,
+            string resourceUsageTypePayAsYouGo,
             int findElementTimeout)
         {
             var printerContainer = getPrinterElement(printerName, findElementTimeout);
@@ -966,7 +968,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true", findElementTimeout);
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
-            SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
+            if(usageType.Equals(resourceUsageTypePayAsYouGo))
+            {
+                ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
+            }
+            else
+            {
+                SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
+            }
 
             if ((isMonoOnly.ToLower()).Equals("false"))
             {
@@ -974,7 +983,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true", findElementTimeout);
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
-                SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
+                if (usageType.Equals(resourceUsageTypePayAsYouGo))
+                {
+                    ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
+                }
+                else
+                {
+                    SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
+                }
             }
 
             return printerContainer;           
