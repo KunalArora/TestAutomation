@@ -56,6 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalNthItemSelecterFormat = "div.js-mps-proposal-list-container tr.js-mps-delete-remove:nth-child({0})";
         private const string ProposalFilterSelectorFormat = "#content_1_ProposalListFilter_InputFilterBy";
         private const string DataTablesFooterSelector = ".mps-dataTables-footer";
+        private const string editActionButtonSelector = ".js-mps-edit";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/dashboard\"]")]
         private IWebElement DashboradLink;
@@ -114,7 +115,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DataTableNextButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
         public IList<IWebElement> ProposalListProposalNameRowElement;
-
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/declined\"]")]
+        public IWebElement declinedProposalsTabElement;
+        
         
         
         
@@ -187,13 +190,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             proposalDeclinedTabElement.Click();
         }
 
-        public DealerProposalsRejectedPage NavigateToDeclinedProposalPage()
+        public DealerProposalsDeclinedPage NavigateToDeclinedProposalPage()
         {
             if (proposalDeclinedTabElement == null)
                 throw new Exception("Cannot find Declined Tab");
             proposalDeclinedTabElement.Click();
 
-            return GetInstance<DealerProposalsRejectedPage>();
+            return GetInstance<DealerProposalsDeclinedPage>();
         }
 
 
@@ -599,6 +602,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             actionsElement.Last().Click();
             var submitForApprovalElement = ActionsModule.ConvertButtonElement(driver);
             submitForApprovalElement.Click();
+        }
+
+        public void ClickOnEditActionButton(int proposalId, string proposalName, int findElementTimeout, IWebDriver driver)
+        {
+            ClearAndType(ProposalFilter, proposalName);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
+            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            actionButtonElement.Click();
+            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector, findElementTimeout);
+            proposalEditButtonElement.Click();
         }
 
         public void FindExistingPoposalList()

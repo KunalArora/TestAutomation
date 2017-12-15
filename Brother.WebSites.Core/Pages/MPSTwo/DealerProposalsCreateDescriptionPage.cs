@@ -274,5 +274,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
             ClearAndType(proposalNameElement, proposalName.ToString());
         }
+
+        public string GetProposalName()
+        {
+            var proposalName = ProposalNameField.GetAttribute("value");
+            return proposalName;
+        }
     }
 }

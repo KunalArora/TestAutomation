@@ -8,6 +8,7 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using Brother.Tests.Specs.Domain.Constants;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -27,9 +28,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly MpsLocalOfficeApproverProposalStepActions _mpsLocalOfficeApproverProposalStepActions;
 
         //page objects used by these steps
-        private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverAprovalProposalsApprovedPage;
+        private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverApprovalProposalsApprovedPage;
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
-
+        private LocalOfficeApproverApprovalProposalsDeclinedPage _localOfficeApproverApprovalProposalsDeclinedPage;
 
         public MpsLocalOfficeApproverProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsLocalOfficeApproverProposalStepActions mpsLocalOfficeApproverProposalStepActions,
@@ -66,10 +67,28 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            var localOfficeApproverApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
-            var localOfficeApproverProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApproverApprovalPage);
-            var localOfficeApproverAprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverProposalsPage,_contextData.ProposalId);
-            _localOfficeApproverAprovalProposalsApprovedPage = _mpsLocalOfficeApproverProposalStepActions.ApproveProposal(localOfficeApproverAprovalProposalsSummaryPage);
+            var localOfficeApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
+            var localOfficeApproverApprovalProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApprovalPage);
+            var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage,_contextData.ProposalId);
+            _localOfficeApproverApprovalProposalsApprovedPage = _mpsLocalOfficeApproverProposalStepActions.ApproveProposal(localOfficeApproverApprovalProposalsSummaryPage);
         }
+
+        [When(@"a Cloud MPS Local Office Approver declines the above proposal")]
+        public void WhenACloudMPSLocalOfficeApproverDeclinesTheAboveProposal()
+        {
+            //This step follows on from a previous scenario step - check context data has been set
+            if (_contextData.Country == null || string.IsNullOrEmpty(_contextData.Culture))
+            {
+                throw new Exception("Context data not set correctly");
+            }
+
+            var proposalDeclineReasonExpired = _translationService.GetProposalDeclineReasonText(TranslationKeys.ProposalDeclineReason.Expired, _contextData.Culture);
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
+            var localOfficeApproverApprovalProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApprovalPage);
+            var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage, _contextData.ProposalId);
+            _localOfficeApproverApprovalProposalsDeclinedPage = _mpsLocalOfficeApproverProposalStepActions.DeclineProposal(localOfficeApproverApprovalProposalsSummaryPage, proposalDeclineReasonExpired);
+        }
+
     }
 }

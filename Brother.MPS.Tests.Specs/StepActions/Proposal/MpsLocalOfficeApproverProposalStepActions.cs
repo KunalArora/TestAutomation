@@ -89,5 +89,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
+
+        public LocalOfficeApproverApprovalProposalsDeclinedPage DeclineProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverApprovalProposalsSummaryPage, string proposalDeclineReasonExpired)
+        {
+            localOfficeApproverApprovalProposalsSummaryPage.DeclineProposal(RuntimeSettings.DefaultFindElementTimeout, proposalDeclineReasonExpired);
+            return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
     }
 }

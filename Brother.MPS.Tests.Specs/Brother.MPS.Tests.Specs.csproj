@@ -167,6 +167,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InstalledPrinterStatus.en-gb.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ProposalDeclineReason\ProposalDeclineReason.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalDeclineReason.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ServicePackType\ServicePackType.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -257,6 +262,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_1.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_2.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1710,6 +1720,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_2.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
@@ -2763,6 +2777,11 @@
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx" />
+    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProposalDeclineReason.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx" />
     <EmbeddedResource Include="Resources\SwapType\SwapType.en-gb.resx" />

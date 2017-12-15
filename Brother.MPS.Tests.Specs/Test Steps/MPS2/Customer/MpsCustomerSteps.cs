@@ -47,6 +47,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
             _mpsCustomerStepActions = mpsDealerCustomerStepActions;
         }
 
+        [Then(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
         [When(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
         public void WhenACustomerHasNavigatedToTheConsumablesDevicesPageToVerifyThatAboveDeviceHaveUpdatedInkStatusAndServiceRequestIsRaised()
         {

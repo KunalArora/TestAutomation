@@ -33,10 +33,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonProposalApproveApprove")]
         public IWebElement AcceptButtonElement;
 
+        [FindsBy(How = How.Id, Using = "content_1_ButtonDecline")]
+        public IWebElement DeclineButtonElement;
+        [FindsBy(How = How.Id, Using = "content_1_ButtonProposalDeclineDecline")]
+        public IWebElement FinalDeclineButtonElement;
+
+        private const string InputReasonSelector = "#content_1_InputProposalDeclineReason_Input";
+
         public void ClickOnAccept(int timeout)
         {
             SeleniumHelper.ClickSafety( ApproveButtonElement, timeout);
             SeleniumHelper.ClickSafety( AcceptButtonElement, timeout);
+        }
+
+        public void DeclineProposal(int findElementTimeout, string proposalDeclineReasonExpired)
+        {
+            SeleniumHelper.ClickSafety(DeclineButtonElement, findElementTimeout);
+            var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector, findElementTimeout);
+            SeleniumHelper.SelectFromDropdownByText(InputReasonElement, proposalDeclineReasonExpired);
+            SeleniumHelper.ClickSafety(FinalDeclineButtonElement, findElementTimeout);
         }
     }
 }

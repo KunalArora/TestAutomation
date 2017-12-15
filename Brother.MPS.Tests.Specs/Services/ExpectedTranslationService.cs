@@ -55,6 +55,11 @@ namespace Brother.Tests.Specs.Services
             return GetText(Resources.InstalledPrinterStatus.InstalledPrinterStatus.ResourceManager, name, culture);
         }
 
+        public string GetProposalDeclineReasonText(string name, string culture)
+        {
+            return GetText(Resources.ProposalDeclineReason.ProposalDeclineReason.ResourceManager, name, culture);
+        }
+
         private string GetText(System.Resources.ResourceManager resourceManager, string name, string culture)
         {
             string result = string.Empty;

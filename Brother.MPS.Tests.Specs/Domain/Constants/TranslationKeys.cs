@@ -59,5 +59,11 @@
         {
             public static string BeingReplaced { get { return "BEING_REPLACED"; } }
         }
+
+        public static class ProposalDeclineReason
+        {
+            public static string Expired { get { return "EXPIRED"; } }
+            public static string Other { get { return "OTHER"; } }
+        }
     }
 }

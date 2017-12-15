@@ -38,7 +38,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdf")]
         public IWebElement DownloadProposalPdfElement;
 
-
+        [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
+        public IWebElement CancelProposalElement;
     }
 
 }

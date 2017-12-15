@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(ContractSearchField));
         }
 
-        private static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
+        public static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalCopyElementWithCustomer));
         }
@@ -86,7 +86,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(OpenOfferViewSummaryButton));
         }
 
-        private static IWebElement ProposalEditButtonElement(ISearchContext driver)
+        public static IWebElement ProposalEditButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalEditButton));
         }
@@ -478,6 +478,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, OpenOfferViewSummaryElement(driver));
         }
 
+        public static void NavigateToOpenProposalsPageUsingActionButton(IWebDriver driver)
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, CopyProposalWithCustomerButtonElement(driver));
+        }
+
         public static void StartTheProposalEditProcess(IWebDriver driver)
         {
             
@@ -520,7 +525,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
          
 
         }
-
-       
+      
     }
 }
