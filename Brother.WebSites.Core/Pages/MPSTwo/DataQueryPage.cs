@@ -1,20 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DataQueryPage : BasePage
+    public class DataQueryPage : BasePage, IPageObject
     {
+        private const string _validationElementSelector = ".js-mps-report-list-container";
+        private const string _url = "/mps/local-office/reports/data-query";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         private const string SelectedProposal = @"#proposal-{0} .js-mps-proposal-link";
+        private const string MpsListNotesSelector = ".mps-list-notes";
+        private const string MpsListItemSelector = ".js-mps-list-item";
+        private const string AgreementLinkSelector = "span.js-mps-agreement-link";
+
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_0_txtInputSearch")]
@@ -63,10 +83,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PayAsYouGoElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-link")]
         public IList<IWebElement> ProposalLinkElements;
-            
-        
-        
-
 
 
         private void ClearSearchCriteria()
@@ -394,6 +410,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<ReportProposalSummaryPage>();
         }
 
-        
+        public void FilterAndClickAgreement(int agreementId, int findElementTimeout)
+        {
+            // Wait for footer to load & then filter out the agreement
+            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector, findElementTimeout);
+            ClearAndType(DataQuerySearchField, agreementId.ToString());
+            var agreementRowLinkElement = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString(), findElementTimeout);
+            SeleniumHelper.ClickSafety(agreementRowLinkElement, findElementTimeout);
+        }
     }
 }

@@ -105,14 +105,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(InstallationNotesInputElement, values.InstallationNotes);
         }
 
-        public string EditDeviceData(string optionalValues)
+        public string EditDeviceData(string optionalValues, string country)
         {
             CustomerInformationMandatoryFields mandatoryValues = new CustomerInformationMandatoryFields();
             FillMandatoryDetails(mandatoryValues);
             CustomerInformationNonMandatoryFields nonMandatoryValues = null;
             if(optionalValues.ToLower().Equals("true"))
             {
-                nonMandatoryValues = new CustomerInformationNonMandatoryFields();
+                nonMandatoryValues = new CustomerInformationNonMandatoryFields(country);
                 FillNonMandatoryDetails(nonMandatoryValues);
             }
 
@@ -181,13 +181,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         private string _reference3;
         private string _installationNotes;
 
-        public CustomerInformationNonMandatoryFields()
+        public CustomerInformationNonMandatoryFields(string country)
         {
             _surName = MpsUtil.SurName();
             _telephone = MpsUtil.CompanyTelephone();
             _email = MpsUtil.GenerateUniqueEmail();
             _propertyArea = MpsUtil.Area();
-            _country = "United Kingdom"; // TODO: Replace hard coded string
+            _country = country;
             _deviceLocation = MpsUtil.DeviceLocation();
             _costCentre = MpsUtil.CostCentre();
             _reference1 = MpsUtil.CustomerReference();

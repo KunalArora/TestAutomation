@@ -102,8 +102,21 @@ namespace Brother.Tests.Specs.Resolvers
         public string BIEAdminPassword { get; set; }
         public string BankUsername { get; set; }
         public string BankPassword { get; set; }
-        public string ServiceDeskUsername { get; set; }
-        public string ServiceDeskPassword { get; set; }
-
+       
+        public string ServiceDeskUsername 
+        {
+            get
+            {
+                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "ServiceDesk", "");
+            } 
+        }
+       
+        public string ServiceDeskPassword 
+        {
+            get
+            {
+                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "service");
+            }
+        }
     }
 }

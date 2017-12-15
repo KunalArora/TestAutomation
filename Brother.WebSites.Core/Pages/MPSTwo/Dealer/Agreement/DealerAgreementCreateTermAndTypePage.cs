@@ -58,11 +58,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             SelectFromDropdown(ServiceElement, service);
         }
 
-        public void ValidateServicePackAvailableOptions()
+        public void ValidateServicePackAvailableOptions(string resourceUsageTypePayAsYouGo, string resourceServiceTypeIncludedInClickPrice)
         {
-            SelectUsageType("Pay As You Go"); // TODO: Remove hard coded strings
+            SelectUsageType(resourceUsageTypePayAsYouGo);
             List<string> dropdownValues = SeleniumHelper.GetAllValuesOfDropdown(ServiceElement);
-            if (dropdownValues.Exists(value => string.Equals(value, "Included in Click Price", StringComparison.OrdinalIgnoreCase)))
+            if (dropdownValues.Exists(value => string.Equals(value, resourceServiceTypeIncludedInClickPrice, StringComparison.OrdinalIgnoreCase)))
             {
                 throw new Exception("Content could not be validated on Term & Type page");
             }
