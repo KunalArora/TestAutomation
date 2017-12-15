@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Factories;
@@ -83,8 +84,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             string contractLength,
             string servicePackOption)
         {
+            string resourceUsageTypePayAsYouGo = _translationService.GetUsageTypeText(
+                TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
+            string resourceServiceTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(
+                TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
+            
             // Validate that Service Pack Option available to choose is only 'Pay upfront' in case of Usage type being 'Pay As You Go'
-            dealerAgreementCreateTermAndTypePage.ValidateServicePackAvailableOptions();
+            dealerAgreementCreateTermAndTypePage.ValidateServicePackAvailableOptions(
+                resourceUsageTypePayAsYouGo, resourceServiceTypeIncludedInClickPrice);
 
             _contextData.UsageType = usageType;
             _contextData.ContractTerm = contractLength;
@@ -149,14 +156,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }    
         }
 
-        public DealerAgreementDevicesPage NavigateToManageDevicesPage(DealerAgreementsListPage dealerAgreementsListPage)
+        public DealerAgreementDevicesPage NavigateToManageDevicesPage(DealerAgreementsListPage dealerAgreementsListPage, string resourceInstalledPrinterStatusAddressRequired)
         {
             dealerAgreementsListPage.ClickOnManageDevicesButton(RuntimeSettings.DefaultFindElementTimeout);
             var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             
             // Verify that all devices are in "address required" state
             dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(
-                RuntimeSettings.DefaultFindElementTimeout, "address required"); // TODO: Translation
+                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusAddressRequired);
 
             return dealerAgreementDevicesPage;
         }
@@ -176,15 +183,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             }
 
-
             return dealerAgreementDevicesPage;
         }
 
-        public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceInstalledPrinterStatusReadyForInstall)
         {
             // Verify that all devices are in "ready for install" state
             dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(
-                RuntimeSettings.DefaultFindElementTimeout, "ready for install"); // TODO: Translation
+                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusReadyForInstall);
         }
 
         public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
@@ -206,7 +212,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage EditDeviceDataHelper(string optionalFields, out string validationExpression)
         {
             var dealerAgreementDevicesEditPage = PageService.GetPageObject<DealerAgreementDevicesEditPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields);
+            validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields, _contextData.Country.Name);
 
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
             
@@ -249,7 +255,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 CustomerInformationNonMandatoryFields nonMandatoryFields = null;
                 if (optionalFields.ToLower().Equals("true"))
                 {
-                    nonMandatoryFields = new CustomerInformationNonMandatoryFields();
+                    nonMandatoryFields = new CustomerInformationNonMandatoryFields(_contextData.Country.Name);
                 }
                 // Edit excel for this device & retrieve the device_id of the edited device
                 device_id = _excelHelper.EditExcelCustomerInformation(excelFilePath, row, mandatoryFields, nonMandatoryFields);
@@ -444,9 +450,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private void PopulatePrinterCoverageAndVolume(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage, string printerName, int monoCoverage, int monoVolume, int colorCoverage, int colorVolume)
         {
+            string resourceUsageTypePayAsYouGo = _translationService.GetUsageTypeText(
+                TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
             dealerAgreementCreateClickPricePage.PopulatePrinterCoverageAndVolume(
                 printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, _contextData.UsageType,
-                RuntimeSettings.DefaultFindElementTimeout);
+                RuntimeSettings.DefaultFindElementTimeout, resourceUsageTypePayAsYouGo);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
@@ -494,7 +502,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private void ValidateCalculationOnSummaryPage(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
         {
-            // Validate Agreement Details on summary page
+            // Validate Agreement Details on summary page are same as that saved during creating agreement (& saved in contextData)
             dealerAgreementCreateSummaryPage.VerifyContentOnSummaryPage(
                 _contextData.AgreementName, 
                 _contextData.ContractTerm,

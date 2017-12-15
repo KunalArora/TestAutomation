@@ -122,6 +122,11 @@
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
+    <Compile Include="Resources\AgreementType\AgreementType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgreementType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BillingType\BillingType.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2744,6 +2749,11 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AgreementType\AgreementType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\AgreementType\AgreementType.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\BillingType\BillingType.en-gb.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.resx" />
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />

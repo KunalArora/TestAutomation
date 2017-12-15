@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -65,17 +66,36 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
-            _contextData.ContractType = "CPP Agreement"; // TODO: Replace hard coded string
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
         }
 
-        [When(@"I enter the agreement description")]
-        public void WhenIEnterTheAgreementDescription()
+        [When(@"I enter the agreement description for ""(.*)"" type agreement")]
+        public void WhenIEnterTheAgreementDescriptionForTypeAgreement(string agreementType)
         {
+            _contextData.ContractType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
             _dealerAgreementCreateTermAndTypePage = _mpsDealerAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName());
         }
+
+        [When(@"I input the fields \(Fill Optional fields: ""(.*)""\) on Agreement Description Page for ""(.*)"" type agreement")]
+        public void WhenIInputTheFieldsFillOptionalFieldsOnAgreementDescriptionPageForTypeAgreement(string optionalFields, string agreementType)
+        {
+            _contextData.ContractType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
+            if (optionalFields.ToLower().Equals("true"))
+            {
+                string reference = _agreementHelper.GenerateReference();
+                _dealerAgreementCreateTermAndTypePage = _mpsDealerAgreement.PopulateAgreementDescriptionAndProceed(
+                    _dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName(), reference, reference, reference);
+            }
+            else
+            {
+                _dealerAgreementCreateTermAndTypePage = _mpsDealerAgreement.PopulateAgreementDescriptionAndProceed(
+                    _dealerAgreementCreateDescriptionPage,
+                    _agreementHelper.GenerateAgreementName());
+            }
+        }
+
 
         [When(@"I input the fields \(Fill Optional fields: ""(.*)""\) on Agreement Description Page")]
         public void WhenIInputTheFieldsFillOptionalFieldsOnAgreementDescriptionPage(string optionalFields)
@@ -97,7 +117,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I select the Usage Type of ""(.*)"", Contract Term of ""(.*)"" and Service of ""(.*)""")]
         public void WhenISelectTheUsageTypeOfContractTermOfAndServiceOf(string usageType, string contractTerm, string service)
         {
-            _dealerAgreementCreateProductsPage = _mpsDealerAgreement.PopulateAgreementTermAndTypeAndProceed(_dealerAgreementCreateTermAndTypePage, usageType, contractTerm, service);
+            _contextData.UsageType = _translationService.GetUsageTypeText(usageType, _contextData.Culture);
+            _contextData.ContractTerm = _translationService.GetContractTermText(contractTerm, _contextData.Culture);
+            _contextData.ServicePackType = _translationService.GetServicePackTypeText(service, _contextData.Culture);
+
+            _dealerAgreementCreateProductsPage = _mpsDealerAgreement.PopulateAgreementTermAndTypeAndProceed(
+                _dealerAgreementCreateTermAndTypePage, _contextData.UsageType, _contextData.ContractTerm, _contextData.ServicePackType);
         }
 
         [When(@"I add these printers and verify click price:")]
@@ -124,7 +149,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I navigate to edit device data page")]
         public void WhenINavigateToEditDeviceDataPage()
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.NavigateToManageDevicesPage(_dealerAgreementsListPage);            
+            string resourceInstalledPrinterStatusAddressRequired = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.AddressRequiredType3, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.NavigateToManageDevicesPage(
+                _dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);            
         }
 
         [When(@"I edit device data one by one for all devices \(Fill Optional fields: ""(.*)""\)")]
@@ -158,7 +186,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I can verify that devices are ready for installation")]
         public void WhenICanVerifyThatDevicesAreReadyForInstallation()
         {
-            _mpsDealerAgreement.VerifyStatusOfDevices(_dealerAgreementDevicesPage);
+            string resourceInstalledPrinterStatusReadyForInstall = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.ReadyForInstallType3, _contextData.Culture);
+            _mpsDealerAgreement.VerifyStatusOfDevices(
+                _dealerAgreementDevicesPage, resourceInstalledPrinterStatusReadyForInstall);
         }
 
         [Then(@"I can create and send a bulk installation request")]

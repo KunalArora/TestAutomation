@@ -8,6 +8,11 @@
             public static string PurchaseAndClick { get { return "PURCHASE_AND_CLICK"; } }
         }
 
+        public static class AgreementType
+        {
+            public static string CppAgreement { get { return "CPP_AGREEMENT"; } }
+        }
+
         public static class UsageType
         {
             public static string MinimumVolume { get { return "MINIMUM_VOLUME"; } }
@@ -16,6 +21,8 @@
 
         public static class ContractTerm
         {
+            public static string OneYear { get { return "ONE_YEAR"; } }
+            public static string TwoYears { get { return "TWO_YEARS"; } }
             public static string ThreeYears { get { return "THREE_YEARS"; } }
             public static string FourYears { get { return "FOUR_YEARS"; } }
             public static string FiveYears { get { return "FIVE_YEARS"; } }
@@ -58,6 +65,9 @@
         public static class InstalledPrinterStatus
         {
             public static string BeingReplaced { get { return "BEING_REPLACED"; } }
+            public static string AwaitingCommissioning { get { return "AWAITING_COMMISSIONING"; } }
+            public static string AddressRequiredType3 { get { return "ADDRESS_REQUIRED_TYPE3"; } }
+            public static string ReadyForInstallType3 { get { return "READY_FOR_INSTALL_TYPE3"; } }   
         }
     }
 }

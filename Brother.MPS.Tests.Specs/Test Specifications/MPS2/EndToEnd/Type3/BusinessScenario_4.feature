@@ -6,7 +6,7 @@ Feature: BusinessScenario_4
 
 Scenario Outline: Business Scenario 4
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
-When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page
+When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
 		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | Installation |
@@ -23,5 +23,5 @@ Then a Cloud MPS Service Desk can create and send installation requests for devi
 
 @BUK
 Scenarios: 
-		| Country        | OptionalFields_1 | UsageType     | ContractTerm | Service     | OptionalFields_2 |
-		| United Kingdom | True             | Pay As You Go | 3 years      | Pay upfront | True             |
+		| Country        | AgreementType | OptionalFields_1 | UsageType     | ContractTerm | Service     | OptionalFields_2 |
+		| United Kingdom | CPP_AGREEMENT | True             | PAY_AS_YOU_GO | THREE_YEARS  | PAY_UPFRONT | True             |

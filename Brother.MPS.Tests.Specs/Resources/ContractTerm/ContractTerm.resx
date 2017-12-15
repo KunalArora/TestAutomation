@@ -123,7 +123,13 @@
   <data name="FOUR_YEARS" xml:space="preserve">
     <value>4 years</value>
   </data>
+  <data name="ONE_YEAR" xml:space="preserve">
+    <value>1 year</value>
+  </data>
   <data name="THREE_YEARS" xml:space="preserve">
     <value>3 years</value>
+  </data>
+  <data name="TWO_YEARS" xml:space="preserve">
+    <value>2 years</value>
   </data>
 </root>

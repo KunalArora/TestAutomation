@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 4")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "True", "Pay As You Go", "3 years", "Pay upfront", "True", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "PAY_AS_YOU_GO", "THREE_YEARS", "PAY_UPFRONT", "True", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario4(string country, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string[] exampleTags)
+        public virtual void BusinessScenario4(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 4", exampleTags);
 #line 7
@@ -84,7 +84,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I have navigated to the Create Agreement page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When(string.Format("I input the fields (Fill Optional fields: \"{0}\") on Agreement Description Page", optionalFields_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I input the fields (Fill Optional fields: \"{0}\") on Agreement Description Page fo" +
+                        "r \"{1}\" type agreement", optionalFields_1, agreementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term of \"{1}\" and Service of \"{2}\"", usageType, contractTerm, service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -55,6 +55,16 @@ namespace Brother.Tests.Specs.Services
             return GetText(Resources.InstalledPrinterStatus.InstalledPrinterStatus.ResourceManager, name, culture);
         }
 
+        #region Exclusively Type 3
+
+        public string GetAgreementTypeText(string name, string culture)
+        {
+            return GetText(Resources.AgreementType.AgreementType.ResourceManager, name, culture);
+        }
+
+        #endregion
+
+
         private string GetText(System.Resources.ResourceManager resourceManager, string name, string culture)
         {
             string result = string.Empty;

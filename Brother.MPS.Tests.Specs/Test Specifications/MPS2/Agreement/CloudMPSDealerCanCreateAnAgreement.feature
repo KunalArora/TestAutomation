@@ -6,7 +6,7 @@ Feature: CloudMPSDealerCanCreateAnAgreement
 
 Scenario Outline: MPS Dealer Create Agreement
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
-When I enter the agreement description
+When I enter the agreement description for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
 		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
@@ -16,8 +16,8 @@ Then I can verify the creation of agreement in the agreement list
 
 @BUK
 Scenarios: 
-		| Country        | UsageType      | ContractTerm | Service     |
-		| United Kingdom | Minimum Volume | 3 years      | Pay upfront |
+		| Country        | AgreementType | UsageType      | ContractTerm | Service     |
+		| United Kingdom | CPP_AGREEMENT | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT |
 	
 #@DYNAMIC_PARAMS
 #Scenarios: 
