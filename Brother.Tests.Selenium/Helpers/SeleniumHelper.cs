@@ -120,9 +120,10 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return actionsElement;
         }
 
-        public void ClickSafety(IWebElement element, int defaultFindElementTimeout)
+        public void ClickSafety(IWebElement element, int defaultFindElementTimeout, bool IsUntilUrlChanges)
         {
-            WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
+            var url= _webDriver.Url;
+            WaitUntil(d => { try { element.Click(); return IsUntilUrlChanges == false || _webDriver.Url != url; } catch { return false; } }, defaultFindElementTimeout);
         }
 
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)

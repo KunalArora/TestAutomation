@@ -4,7 +4,7 @@ Feature: BusinessScenario_3
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 1
+Scenario Outline: Business Scenario 3
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
@@ -12,11 +12,11 @@ And I create a new customer for the proposal
 #note that 'And' steps bind to either Given or When attributes depending on the preceding steps
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
-		| Model        | Price   | InstallationPack     | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
-		| DCP-8110DN   | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
-		| HL-5450DN    | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-		| DCP-L8450CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-		| MFC-L8650CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
+		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145620    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
+		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145621    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 250          | A3P145622    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 200          | A3P145623    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver declines the above proposal
@@ -46,6 +46,6 @@ Then a Cloud MPS Local Office Approver will be able to see the status of the swa
 
 @BUK
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145626                 | 100                         | 0                            |
+		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType             | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
+		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145626                 | 100                         | 0                            |
 

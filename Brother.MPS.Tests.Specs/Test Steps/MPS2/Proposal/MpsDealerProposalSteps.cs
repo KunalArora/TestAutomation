@@ -290,10 +290,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I click the download proposal button and verify if I am able to open the PDF")]
         public void WhenIClickTheDownloadProposalButtonAndVerifyIfIAmAbleToOpenThePDF()
         {
+            var resourcePdfFileAgreementPeriod = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.AgreementPeriod, _contextData.Culture);
+            var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.TotalInstalledPurchasePrice, _contextData.Culture);
+            var resourcePdfFileMinimumClickCharge = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.MinimumClickCharge, _contextData.Culture);
+
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {
-                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _proposalSummaryValues);
+                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _proposalSummaryValues, resourcePdfFileAgreementPeriod, resourcePdfFileTotalInstalledPurchasePrice, resourcePdfFileMinimumClickCharge);
             }
             finally
             {

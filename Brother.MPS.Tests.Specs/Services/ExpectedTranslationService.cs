@@ -91,5 +91,9 @@ namespace Brother.Tests.Specs.Services
             return result;
         }
 
+        public string GetProposalPdfText(string name, string culture)
+        {
+            return GetText(Resources.ProposalPDF.ProposalPDF.ResourceManager, name, culture);
+        }
     }
 }

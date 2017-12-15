@@ -299,7 +299,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
         }
 
-        public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue)
+        public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue, 
+            string resourcePdfFileAgreementPeriod, string resourcePdfFileTotalInstalledPurchasePrice, string resourcePdfFileMinimumClickCharge)
         {
             if (_pdfHelper.PdfExists(pdfFile) == false)
             {
@@ -308,11 +309,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue.SummaryTable_ContractTerm,"");
             string[] searchTextArray =
             {
-                // TODO need localize to be implement MPS-4975.
-                string.Format("{0} {1}", "Agreement period:", int.Parse(contractTermDigitString)*12),
-                string.Format("{0} {1}", "Total Installed Purchase Price:", summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
+                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
                 //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                string.Format("{0} {1}", "Minimum Click Charge:", summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
+                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
             };
             searchTextArray.ToList().ForEach(expected =>
                {

@@ -183,6 +183,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProposalDeclineReason.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ProposalPDF\ProposalPDF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalPDF.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ServicePackType\ServicePackType.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -282,6 +287,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_2.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_3.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_3.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature.cs">
       <AutoGen>True</AutoGen>
@@ -2819,9 +2829,11 @@
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
+    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx" />
+    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProposalDeclineReason.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProposalPDF.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx" />
