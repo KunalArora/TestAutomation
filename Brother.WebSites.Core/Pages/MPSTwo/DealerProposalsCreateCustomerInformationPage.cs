@@ -101,11 +101,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LegalFormDropdown;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonMobile_Input")]
         public IWebElement MobileElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_PersonList_List_InputChoice_]")]
+        public IList<IWebElement> CustomerRadioButtonElement;
         
         
-        
-        
-        
+        public void SelectExistingCustomer(int findElementTimeout, string customerEmail)
+        {
+            SelectAnExistingContact(findElementTimeout, customerEmail);
+        }
+
+        private void SelectAnExistingContact(int findElementTimeout, string customerEmail)
+        {
+            var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer, findElementTimeout);
+            ClearAndType(ExistingCustomerFilterElement, customerEmail);
+            var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion, findElementTimeout);
+            SeleniumHelper.WaitUntil(d => CustomerRadioButtonElement.Count == 1, findElementTimeout);
+            SeleniumHelper.ClickSafety(CustomerRadioButton, findElementTimeout);
+
+        }
 
         public void SelectARandomExistingContact()
         {
@@ -142,7 +156,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void SelectAnExistingCustomer()
         {
             WaitForElementToExistByCssSelector(CustomerContainer);
- 
             try
                 {
                     var customerChoice =
@@ -153,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     var ranClick = new Random().Next(0, cust);
 
                     WaitForElementToExistByCssSelector(CustomerContainer);
-
+           
                     customerChoice.ElementAt(ranClick).Click();
                 }
                 catch (StaleElementReferenceException stale)

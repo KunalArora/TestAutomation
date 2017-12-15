@@ -69,5 +69,11 @@
             public static string AddressRequiredType3 { get { return "ADDRESS_REQUIRED_TYPE3"; } }
             public static string ReadyForInstallType3 { get { return "READY_FOR_INSTALL_TYPE3"; } }   
         }
+
+        public static class ProposalDeclineReason
+        {
+            public static string Expired { get { return "EXPIRED"; } }
+            public static string Other { get { return "OTHER"; } }
+        }
     }
 }

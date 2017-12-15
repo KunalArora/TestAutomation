@@ -6,10 +6,11 @@ using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerCustomersManagePage : BasePage
+    public class DealerCustomersManagePage : BasePage, IPageObject
     {
         #region ViewModels
         [DataContract]
@@ -100,8 +101,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 #endregion
 
 
-
         public static string URL = "/mps/dealer/customers/manage";
+        private const string _url = "/mps/dealer/customers/manage";
+        private const string _validationElementSelector = "div.js-mps-person-manage-container";
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+
         public const string DealerLatestCreatedOrganization = "DealerLatestCreatedOrganization";
         public const string DealerLatestCreatedContact = "DealerLatestCreatedContact";
         public const string DealerLatestCreatedBank = "DealerLatestCreatedBank";

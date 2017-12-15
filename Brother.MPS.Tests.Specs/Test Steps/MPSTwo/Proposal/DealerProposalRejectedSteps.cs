@@ -16,7 +16,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         [Then(@"there is no duplicate proposal on the page")]
         public void ThenThereIsNoDuplicateProposalOnThePage()
         {
-            CurrentPage.As<DealerProposalsRejectedPage>().IsDuplicateProposalDisplayed();
+            CurrentPage.As<DealerProposalsDeclinedPage>().IsDuplicateProposalDisplayed();
         }
 
     }

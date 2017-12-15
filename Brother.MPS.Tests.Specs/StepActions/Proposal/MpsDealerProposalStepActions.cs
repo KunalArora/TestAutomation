@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IWebDriver _dealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
         private readonly IMpsWebToolsService _webToolService;
-
+        
         public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
@@ -120,6 +120,15 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerProposalsCreateTermAndTypePage SelectExistingCustomerForProposal(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage)
+        {
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.SelectExistingCustomerElement, dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(RuntimeSettings.DefaultFindElementTimeout, _contextData.CustomerEmail);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
+            return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
 
         public DealerProposalsCreateProductsPage PopulateAgreementTermAndTypeAndProceed(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage,
             string usageType,
@@ -201,7 +210,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             
             // Validate content on Summary page 
             dealerProposalsCreateSummaryPage.VerifyProposalName(_contextData.ProposalName);
-           // dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
+            dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
             dealerProposalsCreateSummaryPage.VerifyCorrectContractTermIsDisplayedOnSummaryPage(_contextData.ContractTerm);
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
@@ -223,6 +232,18 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
             }             
+        }
+
+        public DealerProposalsConvertSummaryPage SubmitForTheApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName)
+        {
+            _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateDescriptionPage ClickOnEditActionButton(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName)
+        {
+            _cloudExistingProposalPage.ClickOnEditActionButton(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsConvertCustomerInformationPage SubmitForApproval(CloudExistingProposalPage _cloudExistingProposalPage, int proposalId, string proposalName)
@@ -259,6 +280,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
         }
 
+        public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
+            var dealerProposalsInProgressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerProposalsInProgressPage.declinedProposalsTabElement, dealerProposalsInProgressPage);
+            return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         public void DeletePdfFileErrorIgnored(string pdfFile)
         {
             try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
@@ -276,7 +305,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 // TODO need localize to be implement MPS-4975.
                 string.Format("{0} {1}", "Agreement period:", int.Parse(contractTermDigitString)*12),
                 string.Format("{0} {1}", "Total Installed Purchase Price:", summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
-                string.Format("{0} {1}", "Total Quarterly in Arrears Minimum Click Charge:", summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
+                //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
+                string.Format("{0} {1}", "Minimum Click Charge:", summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
             };
             searchTextArray.ToList().ForEach(expected =>
                {
@@ -361,14 +391,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
+        public DealerProposalsAwaitingApprovalPage SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
         {
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
-            // if you may return to PageObject, 
-            // /mps/dealer/proposals/awaiting-approval
-            //return PageService.GetPageObject<>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
@@ -386,11 +414,15 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return nextPage;
         }
 
-        public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, Country country, string payment = "Invoice")
+        public DealerCustomersExistingPage CreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, Country country, string payment)
         {
             dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
-            customerName = dealerCustomersManagePage.GetCompanyName();
+            _contextData.CustomerInformationName = dealerCustomersManagePage.GetCompanyName();
+            _contextData.CustomerEmail = dealerCustomersManagePage.GetEmail();
+            _contextData.CustomerFirstName = dealerCustomersManagePage.GetFirstName();
+            _contextData.CustomerLastName = dealerCustomersManagePage.GetLastName();
             dealerCustomersManagePage.saveButtonElement.Click();
+            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso);
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             return nextPage;
         }
@@ -424,6 +456,55 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage) ;
             return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerCustomersExistingPage NavigateToCustomersExistingPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            ClickSafety(dealerDashboardPage.ExistingCustomerLinkElement, dealerDashboardPage);
+            return PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerCustomersManagePage NavigateToCustomersManagePage(DealerCustomersExistingPage dealerCustomersExistingPage)
+        {
+            ClickSafety(dealerCustomersExistingPage.createCustomerButtonElement, dealerCustomersExistingPage);
+            return PageService.GetPageObject<DealerCustomersManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public CloudExistingProposalPage ClickOnCopyWithCustomerTab(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, int proposalId)
+        {
+            dealerProposalsDeclinedPage.ClickOnCopyWithCustomerActionItem(proposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateCustomerInformationPage NavigateToProposalsCustomersPage(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage)
+        {
+            _contextData.ProposalName = dealerProposalsCreateDescriptionPage.GetProposalName();
+            ClickSafety(dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
+            return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateTermAndTypePage NavigateToProposalTermAndTypePage(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage)
+        {
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateProductsPage NavigateToProposalProductsPage(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage)
+        {
+            ClickSafety(dealerProposalsCreateTermAndTypePage.NextButton, dealerProposalsCreateTermAndTypePage);
+            return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateClickPricePage NavigateToProposalClickPricePage(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage)
+        {
+            ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage);
+            return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateSummaryPage NavigateToCreateSummaryPage(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
+        {
+            ClickSafety(dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage);
+            return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         #region private methods

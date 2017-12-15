@@ -40,6 +40,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsApprovedPage _dealerProposalsApprovedPage;
         private DealerProposalsSummaryPage _dealerProposalsSummaryPage;
         private SummaryValue _proposalSummaryValues;
+        private DealerCustomersManagePage _dealerCustomersManagePage;
+        private DealerCustomersExistingPage _dealerCustomersExistingPage;
+        private DealerProposalsAwaitingApprovalPage _dealerProposalsAwaitingApprovalPage;
+        private DealerProposalsDeclinedPage _dealerProposalsDeclinedPage;
 
         // other
         private string _pdfFile;
@@ -69,12 +73,30 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
         }
 
+        [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateCustomerPageAsACloudMPSDealerFrom(string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersExistingPage(_dealerDashboardPage);
+        }
+
         [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
+        [When(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+
+        }
+
+        [When(@"I have navigated to the Create Proposal page")]
+        public void WhenIHaveNavigatedToTheCreateProposalPage()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
         [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""(.*)""")]
@@ -91,7 +113,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //handle this logic
             _translationService.GetContractTypeText(contractType, _contextData.Culture);
         }
-
+        
         [When(@"I enter the proposal description")]
         public void WhenIEnterTheProposalDescription()
         {
@@ -104,6 +126,23 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenICreateANewCustomerForTheProposal()
         {
             _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(_dealerProposalsCreateCustomerInformationPage);
+        }
+
+        [When(@"I select an existing customer for the proposal")]
+        public void WhenISelectAnExistingCustomerForTheProposal()
+        {
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.SelectExistingCustomerForProposal(_dealerProposalsCreateCustomerInformationPage);
+        }
+
+
+        [When(@"I create a new customer by clicking on Create Customer button")]
+        public void WhenICreateANewCustomerByClickingOnCreateCustomerButton()
+        {
+            string payment = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
+            _dealerCustomersManagePage = _mpsDealerProposalStepActions.NavigateToCustomersManagePage(_dealerCustomersExistingPage);
+            _mpsDealerProposalStepActions.CreateAndSaveANewCustomer(_dealerCustomersManagePage, _contextData.Country, payment);
+            _mpsDealerProposalStepActions.ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(_dealerCustomersExistingPage, _contextData.CustomerInformationName, _contextData.CustomerEmail);
+            
         }
 
         [When(@"I skip customer creation for the proposal")]
@@ -171,7 +210,31 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
             var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
-            _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+            _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+        }
+
+        [When(@"I save the above proposal and submit it for approval for existing customer")]
+        public void WhenISaveTheAboveProposalAndSubmitItForApprovalForExistingCustomer()
+        {
+            WhenISaveTheProposal();
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+        }
+
+        [When(@"I submit it for approval for existing customer")]
+        public void WhenISubmitItForApprovalForExistingCustomer()
+        {
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.ClickOnEditActionButton(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.NavigateToProposalsCustomersPage(_dealerProposalsCreateDescriptionPage);
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.NavigateToProposalTermAndTypePage(_dealerProposalsCreateCustomerInformationPage);
+            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.NavigateToProposalProductsPage(_dealerProposalsCreateTermAndTypePage);
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.NavigateToProposalClickPricePage(_dealerProposalsCreateProductsPage);
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.NavigateToCreateSummaryPage(_dealerProposalsCreateClickPricePage);
+            WhenISaveTheProposal();
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
         }
 
 
@@ -223,5 +286,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 _mpsDealerProposalStepActions.DeletePdfFileErrorIgnored(_pdfFile);
             }
         }
+
+        [When(@"I navigate to the decline proposals page and Copy the proposal along with customer")]
+        public void WhenINavigateToTheDeclineProposalsPageAndCopyTheProposalAlongWithCustomer()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(_dealerDashboardPage);
+            _cloudExistingProposalPage = _mpsDealerProposalStepActions.ClickOnCopyWithCustomerTab(_dealerProposalsDeclinedPage, _contextData.ProposalId);
+        }
+
     }
 }

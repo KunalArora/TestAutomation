@@ -12,6 +12,7 @@
         string GetSwapTypeText(string name, string culture);
         string GetInstallationStatusText(string name, string culture);
         string GetInstalledPrinterStatusText(string name, string culture);
+        string GetProposalDeclineReasonText(string name, string culture);
         string GetAgreementTypeText(string name, string culture);
     }
 }
