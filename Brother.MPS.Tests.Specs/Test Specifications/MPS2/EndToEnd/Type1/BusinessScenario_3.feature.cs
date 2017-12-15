@@ -211,8 +211,10 @@ testRunner.And("I calculate the click price for each of the above printers", ((s
 testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
 testRunner.And("a Cloud MPS Local Office Approver declines the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 23
 testRunner.And("I copy declined proposal and create new customer and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+testRunner.And("a Cloud MPS Local Office Approver Set a Special Pricing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
 testRunner.And("a Cloud MPS Local Office Approver approves the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26

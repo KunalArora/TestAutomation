@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -43,7 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnAccept(int timeout)
         {
             SeleniumHelper.ClickSafety( ApproveButtonElement, timeout);
-            SeleniumHelper.ClickSafety( AcceptButtonElement, timeout);
+            SeleniumHelper.ClickSafety( AcceptButtonElement, timeout,true);
         }
 
         public void DeclineProposal(int findElementTimeout, string proposalDeclineReasonExpired)

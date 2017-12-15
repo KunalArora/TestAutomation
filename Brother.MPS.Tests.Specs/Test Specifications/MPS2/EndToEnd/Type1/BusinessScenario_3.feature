@@ -20,8 +20,8 @@ And I add these printers:
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver declines the above proposal
-#And I Apply Special Pricing as a Local Office Approver
 And I copy declined proposal and create new customer and submit it for approval
+And a Cloud MPS Local Office Approver Set a Special Pricing
 And a Cloud MPS Local Office Approver approves the above proposal
 And I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal 
 And I click the download proposal button and verify if I am able to open the PDF

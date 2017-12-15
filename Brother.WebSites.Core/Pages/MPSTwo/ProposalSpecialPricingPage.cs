@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.MPS;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -57,6 +54,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ClickPriceColourMargin;
         [FindsBy(How = How.CssSelector, Using = "[name=\"ColourClick\"]")]
         public IWebElement ColourClickPrice;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"MonoClickServiceCost\"]")]
+        public IList<IWebElement> ClickPriceMonoServiceCostElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"ColourClickServiceCost\"]")]
+        public IList<IWebElement> ClickPriceColourServiceCostElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"MonoClickServicePrice\"]")]
+        public IList<IWebElement> ClickPriceMonoServicePriceElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"ColourClickServicePrice\"]")]
+        public IList<IWebElement> ClickPriceColourServicePriceElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"MonoClickCoverage\"]")]
+        public IList<IWebElement> ClickPriceMonoCoverageElements;
+        [FindsBy(How = How.CssSelector, Using = "[name=\"ColourClickCoverage\"]")]
+        public IList<IWebElement> ClickPriceColourCoverageElements;
         [FindsBy(How = How.CssSelector, Using = "[name=\"MonoClickVolume\"]")]
         public IList<IWebElement> ClickPriceMonoVolumeElements;
         [FindsBy(How = How.CssSelector, Using = "[name=\"MonoClickMargin\"]")]
@@ -73,8 +82,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ConfirmationAdditionalInformation;
         [FindsBy(How = How.CssSelector, Using = ".btn.btn-success.pull-right.js-special-pricing-confirm.js-mps-val-btn-next")]
         public IWebElement ApplySpecialPricing;
-        
-
 
 
         private decimal GetFieldValue(IWebElement element)

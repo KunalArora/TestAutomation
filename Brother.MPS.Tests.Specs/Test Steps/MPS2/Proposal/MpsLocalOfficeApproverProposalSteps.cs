@@ -32,6 +32,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverApprovalProposalsApprovedPage;
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
         private LocalOfficeApproverApprovalProposalsDeclinedPage _localOfficeApproverApprovalProposalsDeclinedPage;
+        private LocalOfficeApproverReportsProposalSummaryPage _localOfficeApproverReportsProposalSummaryPage;
 
         public MpsLocalOfficeApproverProposalSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsLocalOfficeApproverProposalStepActions mpsLocalOfficeApproverProposalStepActions,
@@ -56,6 +57,17 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _proposalHelper = proposalHelper;
             _mpsSignInStepActions = mpsSignInStepActions;
             _mpsLocalOfficeApproverProposalStepActions = mpsLocalOfficeApproverProposalStepActions;
+        }
+
+        [When(@"a Cloud MPS Local Office Approver Set a Special Pricing")]
+        public void WhenACloudMPSLocalOfficeApproverSetASpecialPricing()
+        {
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            LocalOfficeApproverReportsDataQueryPage _LocalOfficeApproverReportsDataQueryPage= _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsDataQueryPage(localOfficeApproverDashBoardPage);
+            LocalOfficeApproverReportsProposalSummaryPage _LocalOfficeApproverReportsProposalSummaryPagePre = _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsProposalSummaryPage(_LocalOfficeApproverReportsDataQueryPage, _contextData.ProposalId);
+            LocalOfficeApproverApprovalSpecialPricingPage _LocalOfficeApproverApprovalSpecialPricingPage = _mpsLocalOfficeApproverProposalStepActions.ClickOnSpecialPricing(_LocalOfficeApproverReportsProposalSummaryPagePre);
+            _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricing(_LocalOfficeApproverApprovalSpecialPricingPage);
+            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverProposalStepActions.ClidkOnValidateAndApplySpecialPricing(_LocalOfficeApproverApprovalSpecialPricingPage);
         }
 
         [When(@"a Cloud MPS Local Office Approver approves the above proposal")]
