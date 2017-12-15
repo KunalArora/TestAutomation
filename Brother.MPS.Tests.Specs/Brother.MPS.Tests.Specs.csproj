@@ -199,6 +199,9 @@
     <Compile Include="Services\RunCommandService.cs" />
     <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
+    <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
@@ -1435,6 +1438,8 @@
     </Compile>
     <Compile Include="Test Steps\BasicTests\TableExampleSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">

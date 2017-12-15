@@ -265,11 +265,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // 3. Import Excel
             ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
 
-            // 4. Delete Excel
+            // 4. Call BOC Pin retrieval backend job
+            _runtimeCommandService.RunSetupInstalledPrintersCommand();
+
+            // 5. Delete Excel
             _excelHelper.DeleteExcelFile(excelFilePath);
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-            // 5. Validation of imported data
+            // 6. Validation of imported data
             // Validate only addresses of edited devices for now
 
             foreach (var tuple in validationTupleList)
@@ -325,7 +328,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage SendBulkInstallationRequest(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
-            
+            int devicesInstallingCount = 0;
+
             // Tick checkboxes of devices which are to be installed according to feature file configuration
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
@@ -335,16 +339,29 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
                     {
                         dealerAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        devicesInstallingCount++;
                         break;
                     }
                 }
             }
 
-            // Click Send Installation Request button (used for bulk)
-            ClickSafety(dealerAgreementDevicesPage.SendInstallationRequestElement, dealerAgreementDevicesPage);
+            switch (devicesInstallingCount)
+            {
+                case 0: // No devices will be installed
+                    break;
 
-            dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
-            
+                case 1: // Only 1 device will be installed, hence, cannot click bulk Send Installation Request button
+                    dealerAgreementDevicesPage = SendSingleInstallationRequests(
+                        dealerAgreementDevicesPage);
+                    break;
+
+                default: // For Bulk installation request
+                    // Click Send Installation Request button (used for bulk)
+                    ClickSafety(dealerAgreementDevicesPage.SendInstallationRequestElement, dealerAgreementDevicesPage);
+                    dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                    break;
+            }
+
             return dealerAgreementDevicesPage;
         }
 
@@ -362,11 +379,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     {
                         // Click Send Installation Request button in Actions dropdown
                         dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        
+                        // Handle Send Installation Request modal
+                        dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
                         break;
                     }
                 }
-
-                dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                
                 if (rowIndex!= (deviceRowCount - 1))
                 {
                     // Note: This refresh is done due to the introduction of stale elements in Send Installation Request modal after every successful send
@@ -419,7 +438,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Validate calculations on products page
             ValidateCalculationOnProductsPage(dealerAgreementCreateProductsPage, printerContainer);
 
-            ClickSafety(addToAgreementButton, dealerAgreementCreateProductsPage);
+            dealerAgreementCreateProductsPage.ClickAddToAgreementButton(
+                printerContainer, addToAgreementButton, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void PopulatePrinterCoverageAndVolume(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage, string printerName, int monoCoverage, int monoVolume, int colorCoverage, int colorVolume)

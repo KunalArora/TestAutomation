@@ -98,6 +98,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string printerTableFootSelector = "table.table-condensed > tfoot";
         private const string printerTotalPriceDataAttributeSelector = "total-price";
         private const string printerTotalLinePriceDataAttributeSelector = "total-line-price";
+        private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
 
         public override string DefaultTitle
         {
@@ -222,6 +223,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement MoveToClickPriceButton;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-product-configuration-container .js-mps-alert li")]
         public IWebElement ErrorMessageForInstallationCost;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-search-field")]
+        public IWebElement FilterProductElement;
         
         
         
@@ -1760,7 +1763,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             out string unitPrice,
             out IWebElement printerContainer,
             string resourceServicePackTypeIncludedInClickPrice)
-        {            
+        {
+            // Filter the product
+            ClearAndType(FilterProductElement, printerName);
+
             printerContainer = SelectPrinter(printerName, findElementTimeout);
             ScrollTo(printerContainer);
             var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector, findElementTimeout);
@@ -1791,6 +1797,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             
             return addToProposalButton;
+        }
+
+        public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton, int findElementTimeout)
+        {
+            SeleniumHelper.ClickSafety(addToProposalButton, findElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
         }
 
         public List<string> RetrieveAllTotalPriceValues(IWebElement printerContainer, int findElementTimeout, out string expectedTotalPrice)

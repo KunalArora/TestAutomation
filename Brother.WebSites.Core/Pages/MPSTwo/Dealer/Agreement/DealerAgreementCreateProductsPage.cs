@@ -36,11 +36,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         private const string UnitPriceDataAttributeSelector = "sell-price";
         private const string TotalPriceDataAttributeSelector = "total-price";
         private const string TotalLinePriceDataAttributeSelector = "total-line-price";
+        private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
 
 
         // Web Elements
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-search-field")]
+        public IWebElement FilterProductElement;
+
 
         public ISeleniumHelper SeleniumHelper { get; set; }
 
@@ -70,6 +74,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             string servicePackInputSelector = "#ServicePackId";
             string addToAgreementButtonSelector = ".js-mps-product-configuration-submit";
 
+            // Filter the product
+            ClearAndType(FilterProductElement, printerName);
+
             printerContainer = SelectPrinter(printerName, findElementTimeout);
 
             var quantityInput = SeleniumHelper.FindElementByCssSelector(
@@ -95,6 +102,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             }
 
             return addToAgreementButton;
+        }
+
+        public void ClickAddToAgreementButton(IWebElement printerContainer, IWebElement addToAgreementButton, int findElementTimeout)
+        {
+            SeleniumHelper.ClickSafety(addToAgreementButton, findElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
         }
 
         public IWebElement GetInstallationPackRowElement(IWebElement printerContainer, int findElementTimeout)

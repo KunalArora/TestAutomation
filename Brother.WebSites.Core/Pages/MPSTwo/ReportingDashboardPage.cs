@@ -1,19 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ReportingDashboardPage : BasePage
+    public class ReportingDashboardPage : BasePage, IPageObject
     {
         private const string DownloadDirectory = @"C:\DataTest";
+
+        private const string _validationElementSelector = "a[href=\"/mps/local-office/reports/data-query\"]";
+        private const string _url = "/mps/local-office/reports/dashboard"; 
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
         
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"reports\"]")]
         public IWebElement ReportTabElement;

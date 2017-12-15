@@ -96,7 +96,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "CoverageMono",
                         "VolumeMono",
                         "CoverageColour",
-                        "VolumeColour"});
+                        "VolumeColour",
+                        "Installation"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1",
@@ -105,7 +106,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "25",
                         "2250",
                         "0",
-                        "0"});
+                        "0",
+                        "Yes"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1",
@@ -114,7 +116,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "25",
                         "2250",
                         "25",
-                        "2250"});
+                        "2250",
+                        "No"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1",
@@ -123,7 +126,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "25",
                         "2250",
                         "25",
-                        "2250"});
+                        "2250",
+                        "Yes"});
             table1.AddRow(new string[] {
                         "DCP-8250DN",
                         "2",
@@ -132,7 +136,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "25",
                         "2250",
                         "0",
-                        "0"});
+                        "0",
+                        "Yes"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 17
@@ -145,7 +150,10 @@ testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechT
 testRunner.And(string.Format("I edit device data using a combination of single device edit, bulk edit and excel" +
                         " edit options (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
-testRunner.Then("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+testRunner.Then("a Cloud MPS Service Desk can create and send installation requests for devices on" +
+                    "e by one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -9,16 +9,17 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
-		| DCP-8110DN   | 1        | Yes              | No          | 25           | 2250       | 0              | 0            |
-		| MFC-L8650CDW | 1        | No               | Yes         | 25           | 2250       | 25             | 2250         |
-		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2250       | 25             | 2250         |
-		| DCP-8250DN   | 2        | No               | No          | 25           | 2250       | 0              | 0            |
+		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | Installation |
+		| DCP-8110DN   | 1        | Yes              | No          | 25           | 2250       | 0              | 0            | Yes          |
+		| MFC-L8650CDW | 1        | No               | Yes         | 25           | 2250       | 25             | 2250         | No           |
+		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2250       | 25             | 2250         | Yes          |
+		| DCP-8250DN   | 2        | No               | No          | 25           | 2250       | 0              | 0            | Yes          |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
 And I edit device data using a combination of single device edit, bulk edit and excel edit options (Fill Optional fields: "<OptionalFields_2>")
-Then I can verify that devices are ready for installation
+And I can verify that devices are ready for installation
+Then a Cloud MPS Service Desk can create and send installation requests for devices one by one
 
 @BUK
 Scenarios: 
