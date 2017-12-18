@@ -183,7 +183,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
             string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties, resourceServicePackTypeIncludedInClickPrice);          
+            string resourceUsageTypePayAsYouGo = _translationService.GetUsageTypeText(TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties, _contextData.UsageType, resourceServicePackTypeIncludedInClickPrice, resourceUsageTypePayAsYouGo);          
         }
 
         [When(@"I save the proposal")]

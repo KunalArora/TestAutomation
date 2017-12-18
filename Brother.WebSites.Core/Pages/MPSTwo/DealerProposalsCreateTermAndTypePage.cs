@@ -216,11 +216,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);
-            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector, findElementTimeout);
-            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector, findElementTimeout);
-
             SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
             SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
+ 
+            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector, findElementTimeout);
+            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector, findElementTimeout);
             SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);
             SeleniumHelper.SelectFromDropdownByText(servicePackOptionElement, servicePackOption);
         }

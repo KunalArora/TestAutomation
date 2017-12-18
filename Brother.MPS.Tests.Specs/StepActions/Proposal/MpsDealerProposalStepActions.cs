@@ -104,6 +104,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             detailInputPage.FillOrganisationDetails();
             detailInputPage.FillOrganisationContactDetail();
+            _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
+            _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
+            _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
+            _contextData.CustomerLastName = dealerProposalsCreateCustomerInformationPage.GetLastName();
             ClickSafety( detailInputPage.NextButton, detailInputPage ) ;
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -166,7 +170,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         }
 
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            IEnumerable<PrinterProperties> products, string resourceServicePackTypeIncludedInClickPrice)
+            IEnumerable<PrinterProperties> products, string usageType, string resourceServicePackTypeIncludedInClickPrice, string resourceUsageTypePayAsYouGo)
         {
             foreach (var product in products)
             {
@@ -177,7 +181,9 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     product.CoverageColour, 
                     product.VolumeMono, 
                     product.VolumeColour,
-                    resourceServicePackTypeIncludedInClickPrice);
+                    usageType,
+                    resourceServicePackTypeIncludedInClickPrice,
+                    resourceUsageTypePayAsYouGo);
             }
 
             ClickSafety( dealerProposalsCreateClickPricePage.CalculateClickPriceElement, dealerProposalsCreateClickPricePage ) ;
@@ -552,7 +558,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
-            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour, string resourceServicePackTypeIncludedInClickPrice)
+            string printerName, int coverageMono, int coverageColour, int volumeMono, int volumeColour, string usageType, string resourceServicePackTypeIncludedInClickPrice, string resourceUsageTypePayAsYouGo)
         {
             IWebElement printerContainer = dealerProposalsCreateClickPricePage.PopulatePrinterCoverageAndVolume(
                 printerName,
@@ -560,6 +566,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 coverageColour,
                 volumeMono,
                 volumeColour,
+                usageType,
+                resourceUsageTypePayAsYouGo,
                 RuntimeSettings.DefaultFindElementTimeout
             );
 
