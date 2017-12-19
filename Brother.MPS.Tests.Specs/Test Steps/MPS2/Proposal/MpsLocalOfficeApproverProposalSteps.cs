@@ -8,7 +8,9 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 {
@@ -59,15 +61,40 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsLocalOfficeApproverProposalStepActions = mpsLocalOfficeApproverProposalStepActions;
         }
 
-        [When(@"a Cloud MPS Local Office Approver Set a Special Pricing")]
-        public void WhenACloudMPSLocalOfficeApproverSetASpecialPricing()
+        [When(@"a Cloud MPS Local Office Approver Set a Special Pricing:")]
+        public void WhenACloudMPSLocalOfficeApproverSetASpecialPricing(Table table)
         {
+            var resourceInstallationPackBrotherInstallation = _translationService.GetInstallationPackText(TranslationKeys.InstallationPack.BrotherInstallation, _contextData.Culture);
+            var resourceServicePackTypePayUpFront = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.PayUpfront, _contextData.Culture);
+            var resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
+
+            var specialPriceList = table.CreateSet<SpecialPriceParameter>();
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            LocalOfficeApproverReportsDataQueryPage _LocalOfficeApproverReportsDataQueryPage= _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsDataQueryPage(localOfficeApproverDashBoardPage);
-            LocalOfficeApproverReportsProposalSummaryPage _LocalOfficeApproverReportsProposalSummaryPagePre = _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsProposalSummaryPage(_LocalOfficeApproverReportsDataQueryPage, _contextData.ProposalId);
-            LocalOfficeApproverApprovalSpecialPricingPage _LocalOfficeApproverApprovalSpecialPricingPage = _mpsLocalOfficeApproverProposalStepActions.ClickOnSpecialPricing(_LocalOfficeApproverReportsProposalSummaryPagePre);
-            _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricing(_LocalOfficeApproverApprovalSpecialPricingPage);
-            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverProposalStepActions.ClidkOnValidateAndApplySpecialPricing(_LocalOfficeApproverApprovalSpecialPricingPage);
+            var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsDataQueryPage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverReportsProposalSummaryPagePre = _mpsLocalOfficeApproverProposalStepActions.NavigateToReportsProposalSummaryPage(localOfficeApproverReportsDataQueryPage, _contextData.ProposalId);
+            var localOfficeApproverApprovalSpecialPricingPage = _mpsLocalOfficeApproverProposalStepActions.ClickOnSpecialPricing(localOfficeApproverReportsProposalSummaryPagePre);
+            foreach (var cp in specialPriceList)
+            {
+                if (cp.Model == "*")
+                {
+                    cp.Model = ".*";
+                }
+            }
+            if ( _contextData.PrintersProperties.Any(prop=> prop.InstallationPack == resourceInstallationPackBrotherInstallation))
+            {
+                _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricingInstallation(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
+            }
+            if (_contextData.ServicePackType == resourceServicePackTypePayUpFront)
+            {
+                _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricingService(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
+            }
+            if (_contextData.ServicePackType == resourceServicePackTypeIncludedInClickPrice
+                || _contextData.ServicePackType == resourceServicePackTypePayUpFront)
+            {
+                _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricingClickPrice(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
+            }
+            _contextData.SpecialPriceList = specialPriceList;
+            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverProposalStepActions.ClidkOnValidateAndApplySpecialPricing(localOfficeApproverApprovalSpecialPricingPage);
         }
 
         [When(@"a Cloud MPS Local Office Approver approves the above proposal")]

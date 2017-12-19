@@ -21,7 +21,11 @@ And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver declines the above proposal
 And I copy declined proposal and create new customer and submit it for approval
-And a Cloud MPS Local Office Approver Set a Special Pricing
+#i referred value of Evidence-Case8xxx.xlsx in https://brother-bie.atlassian.net/browse/MPS-3585 
+And a Cloud MPS Local Office Approver Set a Special Pricing:
+		| Model        | InstallUnitCost | InstallMargin | InstallUnitPrice | ServiceUnitCost | ServiceMargin | ServiceUnitPrice | MonoClickServiceCost | MonoClickServicePrice | MonoClickCoverage | MonoClickVolume | MonoClickMargin | MonoClick | ColourClickServiceCost | ColourClickServicePrice | ColourClickCoverage | ColourClickVolume | ColourClickMargin | ColourClick |
+		| *            |                 |               |                  |                 |               |                  |                      |                       | 10                | 100             | 50.00           | 0.01300   |                        |                         | 40                  | 300               | 50.00             | 0.10700     |
+
 And a Cloud MPS Local Office Approver approves the above proposal
 And I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal 
 And I click the download proposal button and verify if I am able to open the PDF
@@ -49,3 +53,4 @@ Scenarios:
 		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType             | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
 		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145626                 | 100                         | 0                            |
 
+		

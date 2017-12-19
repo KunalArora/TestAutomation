@@ -293,7 +293,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var resourcePdfFileAgreementPeriod = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.AgreementPeriod, _contextData.Culture);
             var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.TotalInstalledPurchasePrice, _contextData.Culture);
             var resourcePdfFileMinimumClickCharge = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.MinimumClickCharge, _contextData.Culture);
+            var resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
 
+            if (_contextData.SpecialPriceList != null)
+            {
+                _mpsDealerProposalStepActions.AssertAreAffectSpecialPricing(_proposalSummaryValues, _contextData.SpecialPriceList, resourceServicePackTypeIncludedInClickPrice);
+            }
+            
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {

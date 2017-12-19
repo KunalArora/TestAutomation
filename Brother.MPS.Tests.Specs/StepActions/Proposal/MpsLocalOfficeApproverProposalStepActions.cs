@@ -8,8 +8,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -72,6 +71,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverReportsProposalSummaryPage ClidkOnValidateAndApplySpecialPricing(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage)
         {
+            localOfficeApproverApprovalSpecialPricingPage.SeleniumHelper.WaitUntil(d => {
+                var isDisplayed = localOfficeApproverApprovalSpecialPricingPage.NextButton.Displayed;
+                var isHidden = localOfficeApproverApprovalSpecialPricingPage.NextButton.GetAttribute("class").Contains("hidden");
+                if (isDisplayed == false || isHidden) return true; 
+                ClickSafety(localOfficeApproverApprovalSpecialPricingPage.NextButton, localOfficeApproverApprovalSpecialPricingPage);
+                return false;
+            }, RuntimeSettings.DefaultFindElementTimeout);
             ClickSafety(localOfficeApproverApprovalSpecialPricingPage.ValidateButton, localOfficeApproverApprovalSpecialPricingPage);
             localOfficeApproverApprovalSpecialPricingPage.EnterAdditionalAuditInformation(RuntimeSettings.DefaultFindElementTimeout);
             ClickSafety(localOfficeApproverApprovalSpecialPricingPage.ApplySpecialPricing, localOfficeApproverApprovalSpecialPricingPage);
@@ -85,19 +91,29 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void PopulateSpecialPricing(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage)
+        public void PopulateSpecialPricingInstallation(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPriceParameter> specialPriceList)
+        {
+            localOfficeApproverApprovalSpecialPricingPage.SwitchNavInstallTab(RuntimeSettings.DefaultFindElementTimeout);
+            foreach (var specialPrice in specialPriceList)
+            {
+                localOfficeApproverApprovalSpecialPricingPage.EnterSpecialPriceInstallation(specialPrice, RuntimeSettings.DefaultFindElementTimeout);
+            }
+        }
+        public void PopulateSpecialPricingService(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPriceParameter> specialPriceList)
+        {
+            localOfficeApproverApprovalSpecialPricingPage.SwitchNavServiceTab(RuntimeSettings.DefaultFindElementTimeout);
+            foreach (var specialPrice in specialPriceList)
+            {
+                localOfficeApproverApprovalSpecialPricingPage.EnterSpecialPriceService(specialPrice, RuntimeSettings.DefaultFindElementTimeout);
+            }
+        }
+
+        public void PopulateSpecialPricingClickPrice(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPriceParameter> specialPriceClickList)
         {
             localOfficeApproverApprovalSpecialPricingPage.SwitchNavClickTab(RuntimeSettings.DefaultFindElementTimeout);
-
-            var clickServiceCost = localOfficeApproverApprovalSpecialPricingPage.ClickPriceMonoServiceCostElements.ToList();
-            clickServiceCost.AddRange(localOfficeApproverApprovalSpecialPricingPage.ClickPriceColourServiceCostElements.ToList());
-            clickServiceCost.ForEach(e =>
-            {
-                var costValue = float.Parse(e.GetAttribute("value"));
-                var newvalueString = String.Format("{0:0.00}", (costValue / 2.0f)); // 50% off
-                localOfficeApproverApprovalSpecialPricingPage.ClearAndType(e, newvalueString);
-            });
-
+            foreach( var specialPrice in specialPriceClickList) {
+                localOfficeApproverApprovalSpecialPricingPage.EnterSpecialPriceClick(specialPrice, RuntimeSettings.DefaultFindElementTimeout);
+            }
             
         }
 

@@ -299,6 +299,91 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
         }
 
+        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, IEnumerable<SpecialPriceParameter> specialPriceClickList, string resourceServicePackTypeIncludedInClickPrice)
+        {
+            foreach( var specialPriceClick in specialPriceClickList)
+            {
+                AssertAreAffectSpecialPricing(proposalSummaryValues, specialPriceClick, resourceServicePackTypeIncludedInClickPrice);
+            }
+        }
+
+        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, SpecialPriceParameter specialPriceClick, string resourceServicePackTypeIncludedInClickPrice)
+        {
+            var model = specialPriceClick.Model;
+
+            /**
+             * Installation
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackUnitCost", specialPriceClick.InstallUnitCost);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackMarginPercentage", specialPriceClick.InstallMargin);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackUnitPrice", specialPriceClick.InstallUnitPrice);
+
+            /**
+             * Service
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitCost", specialPriceClick.ServiceUnitCost);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackMarginPercentage", specialPriceClick.ServiceMargin);
+            if(string.IsNullOrWhiteSpace(specialPriceClick.ServiceUnitPrice) == false)
+            {
+                var ServiceUnitPrice = _contextData.ServicePackType != resourceServicePackTypeIncludedInClickPrice ? specialPriceClick.ServiceUnitPrice : "0.00";
+                AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitPrice", ServiceUnitPrice);
+            }
+
+            /**
+             * Click Price
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitCost", specialPriceClick.MonoClickServiceCost);
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "N/A", specialPriceClick.MonoClickServicePrice);
+
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoVolume", specialPriceClick.MonoClickVolume);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoMarginPercentage", specialPriceClick.MonoClickMargin);
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE 
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoClickRate", specialPriceClick.MonoClick);
+
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourVolume", specialPriceClick.ColourClickVolume);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourMarginPercentage", specialPriceClick.ColourClickMargin);
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE 
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourClickRate", specialPriceClick.ColourClick);
+
+        }
+        private void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, string model, string itemKey, string expected )
+        {
+            if (string.IsNullOrEmpty(expected))
+            {
+                return; // check skipped
+            }
+            var itemRegex = new Regex(string.Format(@"{0}\.{1}",model,itemKey), RegexOptions.IgnoreCase);
+            try
+            {
+                var wrongItem = proposalSummaryValues
+                    .Where(item => itemRegex.IsMatch(item.Key))
+                    .First(item => item.Value.CollectDigitOnly() != expected);
+                var wrongModel = proposalSummaryValues.GetModel(wrongItem.Key);
+                if (itemKey.Contains("Colour") && IsColourModel(proposalSummaryValues, wrongModel) == false)
+                {
+                    return; // no colour model
+                }
+                throw new Exception(string.Format("Special pricing not affected key={0} actual={1} expected={2}", wrongItem.Key, wrongItem.Value, expected));
+
+            }
+            catch (InvalidOperationException ) {/* no wrongItem is good news. */ }
+        }
+
+        private bool IsColourModel(SummaryValue proposalSummaryValues,string wrongModel)
+        {
+            var ckey = wrongModel + ".ColourVolume";
+            string cvalue=null;
+            if (proposalSummaryValues.TryGetValue(ckey, out cvalue) == false)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(cvalue) || cvalue == "0")
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue, 
             string resourcePdfFileAgreementPeriod, string resourcePdfFileTotalInstalledPurchasePrice, string resourcePdfFileMinimumClickCharge)
         {
