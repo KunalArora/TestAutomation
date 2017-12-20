@@ -10,7 +10,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsDeclinedPage : CloudExistingProposalPage, IPageObject
     {
         private const string _url = "/mps/dealer/proposals/declined";
-        private const string _validationElementSelector = ".js-mps-searchable";
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/proposals/declined\"]";// list Next 
 
         public string PageUrl
         {
@@ -37,7 +37,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         // ex. content_1_SimpleProposalList_List_ProposalNameRow_25
         [FindsBy(How = How.CssSelector, Using = "[id*=_SimpleProposalList_List_ProposalNameRow_]")]
         public IList<IWebElement> NameRowElementList;
-
 
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string copyWithCustomerSelector = @".js-mps-copy-with-customer";

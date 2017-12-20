@@ -77,12 +77,6 @@
             public static string Other { get { return "OTHER"; } }
         }
 
-        public static class ProposalDeclineReason
-        {
-            public static string Expired { get { return "EXPIRED"; } }
-            public static string Other { get { return "OTHER"; } }
-        }
-
         public static class SwapType
         {
             public static string ReplaceThePcb { get { return "REPLACE_THE_PCB"; } }

@@ -10,6 +10,8 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using Brother.WebSites.Core.Pages;
+using Brother.WebSites.Core.Pages.Base;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
 {

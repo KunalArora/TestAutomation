@@ -107,13 +107,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
-        [When(@"I navigate to the Create Proposal page")]
-        public void WhenINavigateToTheCreateProposalPage()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-
         [When(@"I create a ""(.*)"" proposal")]
         public void WhenICreateAProposalOfContractType(string contractType)
         {
@@ -217,7 +210,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenISubmitItForApproval()
         {
             string paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
-            WhenISaveTheProposal();
             _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
             var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
             var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage, _contextData.Country, paymentType);

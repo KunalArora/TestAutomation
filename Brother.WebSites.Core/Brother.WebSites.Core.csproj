@@ -234,7 +234,6 @@
     <Compile Include="Pages\MPSTwo\BankProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateTermAndTypePage.cs" />
-    <Compile Include="Pages\MPSTwo\DealerProposalsRejectedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSetCommunicationMethodPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />

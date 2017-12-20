@@ -286,13 +286,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
         }
 
-        public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
-        {
-            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
-            var dealerProposalsInProgressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            ClickSafety(dealerProposalsInProgressPage.declinedProposalsTabElement, dealerProposalsInProgressPage);
-            return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-        }
+        // TODO OIKE 問題なければ消す
+        //public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
+        //{
+        //    ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
+        //    var dealerProposalsInProgressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        //    ClickSafety(dealerProposalsInProgressPage.declinedProposalsTabElement, dealerProposalsInProgressPage);
+        //    return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        //}
 
         public void DeletePdfFileErrorIgnored(string pdfFile)
         {

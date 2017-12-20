@@ -75,6 +75,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, swapNewDeviceSerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
                 }
             }
+			// TODO OIKE 消して良いか確認(MPSE2Eには無い)
+            //_installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+
         }
 
         public void CloudInstallationRefresh(InstallerDeviceInstallationPage installerDeviceInstallationPage)

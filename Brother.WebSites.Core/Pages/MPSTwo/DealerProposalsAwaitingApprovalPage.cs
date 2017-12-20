@@ -28,6 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string summaryButtonSelector = @".js-mps-view-summary";
+        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
         public string PageUrl
         {

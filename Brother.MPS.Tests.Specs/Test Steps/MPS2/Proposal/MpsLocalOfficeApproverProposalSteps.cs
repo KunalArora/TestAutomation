@@ -28,7 +28,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsLocalOfficeApproverProposalStepActions _mpsLocalOfficeApproverProposalStepActions;
-        private readonly MpsDealerProposalStepActions _refMpsDealerProposalStepActions;
 
         //page objects used by these steps
         private LocalOfficeApproverApprovalProposalsApprovedPage _localOfficeApproverApprovalProposalsApprovedPage;

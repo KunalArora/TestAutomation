@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using OpenQA.Selenium;
+using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
