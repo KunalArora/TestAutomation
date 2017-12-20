@@ -8,12 +8,7 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
-using Brother.WebSites.Core.Pages.MPSTwo;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {

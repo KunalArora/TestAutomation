@@ -286,15 +286,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
         }
 
-        // TODO OIKE 問題なければ消す
-        //public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
-        //{
-        //    ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
-        //    var dealerProposalsInProgressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-        //    ClickSafety(dealerProposalsInProgressPage.declinedProposalsTabElement, dealerProposalsInProgressPage);
-        //    return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-        //}
-
         public void DeletePdfFileErrorIgnored(string pdfFile)
         {
             try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
@@ -338,12 +329,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoVolume", specialPriceClick.MonoClickVolume);
             AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoMarginPercentage", specialPriceClick.MonoClickMargin);
-            // TODO bug? when INCLUDED_IN_CLICK_PRICE 
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE MPSBAU-1254 
             //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoClickRate", specialPriceClick.MonoClick);
 
             AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourVolume", specialPriceClick.ColourClickVolume);
             AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourMarginPercentage", specialPriceClick.ColourClickMargin);
-            // TODO bug? when INCLUDED_IN_CLICK_PRICE 
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE MPSBAU-1254 
             //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourClickRate", specialPriceClick.ColourClick);
 
         }

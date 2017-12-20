@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -8,7 +7,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string _url = "/mps/local-office/reports/data-query";
         private const string _validationElementSelector = "#MpsAppContent > div > div > div > div.col-md-9.js-mps-report-list-container > div.js-mps-list.js-mps-searchable";
 
-        public string PageUrl
+        public new string PageUrl
         {
             get
             {
@@ -16,9 +15,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
-        public string ValidationElementSelector
+        public new string ValidationElementSelector
         {
             get
             {
