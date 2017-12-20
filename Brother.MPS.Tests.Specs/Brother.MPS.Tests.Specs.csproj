@@ -100,6 +100,7 @@
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
+    <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
@@ -146,6 +147,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContractType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeviceConnectionStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\InstallationPack\InstallationPack.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -209,6 +215,7 @@
     <Compile Include="Services\RunCommandService.cs" />
     <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsInstallerAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
     <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
@@ -1458,6 +1465,7 @@
     </Compile>
     <Compile Include="Test Steps\BasicTests\TableExampleSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsInstallerAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
@@ -2789,6 +2797,11 @@
     <EmbeddedResource Include="Resources\ContractType\ContractType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContractType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeviceConnectionStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.en-gb.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">

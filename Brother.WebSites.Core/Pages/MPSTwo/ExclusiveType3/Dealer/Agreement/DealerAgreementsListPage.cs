@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
+namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementsListPage: BasePage, IPageObject
     {

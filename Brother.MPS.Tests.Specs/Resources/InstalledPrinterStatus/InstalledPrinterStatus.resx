@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ADDRESS_REQUIRED_TYPE3" xml:space="preserve">
+    <value>Address Required</value>
+  </data>
   <data name="AWAITING_COMMISSIONING" xml:space="preserve">
     <value>Awaiting Commissioning</value>
   </data>
   <data name="BEING_REPLACED" xml:space="preserve">
     <value>Being Replaced</value>
+  </data>
+  <data name="INSTALLED_TYPE3" xml:space="preserve">
+    <value>Installed</value>
+  </data>
+  <data name="READY_FOR_INSTALL_TYPE3" xml:space="preserve">
+    <value>Ready for Install</value>
   </data>
 </root>

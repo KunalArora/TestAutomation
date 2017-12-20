@@ -17,8 +17,11 @@ When I navigate to edit device data page
 And I edit device data using bulk edit option (Fill Optional fields: "<OptionalFields_2>")
 And I can verify that devices are ready for installation
 Then I can create and send installation requests for devices one by one
+When I export the device data into excel and retrieve installation information
+And a Cloud MPS Installer is able to install devices one by one using "<CommunicationMethod>" communication and "<InstallationType>" installation
+Then I can verify that all devices are installed and responding
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 |
-		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | True             |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType |
+		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              |

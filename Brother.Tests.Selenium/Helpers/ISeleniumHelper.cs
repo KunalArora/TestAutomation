@@ -123,5 +123,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// </summary>
         /// <param name="element"></param>
         bool IsElementDisplayed(IWebElement element);
+
+        /// <summary>
+        /// Return true if element with this selector exists within the context, otherwise false
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        bool IsElementDisplayed(ISearchContext context, string selector);
     }
 }

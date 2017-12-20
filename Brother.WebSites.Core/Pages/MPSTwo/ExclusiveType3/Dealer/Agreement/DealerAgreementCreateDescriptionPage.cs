@@ -3,7 +3,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
+namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementCreateDescriptionPage : BasePage, IPageObject
     {

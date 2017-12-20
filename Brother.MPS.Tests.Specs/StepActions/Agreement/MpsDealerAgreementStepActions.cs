@@ -10,7 +10,7 @@ using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -186,11 +186,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceInstalledPrinterStatusReadyForInstall)
+        public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceInstalledPrinterStatus)
         {
-            // Verify that all devices are in "ready for install" state
+            // Verify that all devices are in "resourceInstalledPrinterStatus" status
             dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(
-                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusReadyForInstall);
+                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatus);
         }
 
         public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
@@ -212,7 +212,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage EditDeviceDataHelper(string optionalFields, out string validationExpression)
         {
             var dealerAgreementDevicesEditPage = PageService.GetPageObject<DealerAgreementDevicesEditPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields, _contextData.Country.Name);
+            validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields);
 
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
             
@@ -236,13 +236,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
         }
 
-        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
+        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string isOptionalFields)
         {
             // 1. Get Downloaded file path
             string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
 
             // 2. Edit Excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);
+            _excelHelper.VerifyTotalNumberOfColumns(excelFilePath); // Verify the total number of columns in excel
             DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
 
             string device_id, validationExpression;
@@ -252,10 +253,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             for (int row = 2; row <= rows; row++)
             {
                 CustomerInformationMandatoryFields mandatoryFields = new CustomerInformationMandatoryFields();
-                CustomerInformationNonMandatoryFields nonMandatoryFields = null;
-                if (optionalFields.ToLower().Equals("true"))
+                CustomerInformationOptionalFields nonMandatoryFields = null;
+                if (isOptionalFields.ToLower().Equals("true"))
                 {
-                    nonMandatoryFields = new CustomerInformationNonMandatoryFields(_contextData.Country.Name);
+                    nonMandatoryFields = new CustomerInformationOptionalFields();
                 }
                 // Edit excel for this device & retrieve the device_id of the edited device
                 device_id = _excelHelper.EditExcelCustomerInformation(excelFilePath, row, mandatoryFields, nonMandatoryFields);
@@ -402,6 +403,64 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
 
             return dealerAgreementDevicesPage;
+        }
+
+        public void ExportDeviceDetailsAndReadExcel(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+
+            // Refresh so that excel is updated (after the BOC Pin retrieval API is called)
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // 1. Click Export All button
+            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+
+            // 2. Get Downloaded file path
+            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+
+            // 3. Read Excel to retrieve installation details
+            
+            int rows = _excelHelper.GetNumberOfRows(excelFilePath);
+            // Set initial value of row = 2 as 1st row is table header information
+
+            List<AdditionalDeviceProperties> additionalDeviceProperties = new List<AdditionalDeviceProperties>();
+            for (int row = 2; row <= rows; row++)
+            {
+                additionalDeviceProperties.Add(_excelHelper.GetDeviceDetails(excelFilePath, row));
+            }
+
+            // Save to context data for later use
+            _contextData.AdditionalDeviceProperties = additionalDeviceProperties;
+
+            // 4. Delete Excel
+            _excelHelper.DeleteExcelFile(excelFilePath);
+        }
+
+        public void VerifyThatDevicesAreInstalled(DealerAgreementDevicesPage dealerAgreementDevicesPage,
+            string resourceInstalledPrinterStatusInstalled, string resourceDeviceConnectionStatusResponding)
+        {
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+            
+            // Refresh to reflect the device status changes
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Verify that devices are installed
+            VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled);
+
+            // Verify that devices are responding
+            VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding);
+            
+            // Verify the serial number of all devices used during installation (pick up from context data)
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.VerifySerialNumberOfDevice(
+                    device.MpsDeviceId, device.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+            }
         }
 
         #region private methods

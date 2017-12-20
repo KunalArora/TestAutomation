@@ -1,9 +1,9 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
-using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.LocalOffice
+namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
     public class LocalOfficeAgreementDevicesPage : DealerAgreementDevicesPage, IPageObject // Inherit DealerAgreementDevicesPage as properties are exactly same
     {

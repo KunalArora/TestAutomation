@@ -18,9 +18,11 @@ When I navigate to edit device data page
 And I edit device data using excel edit option (Fill Optional fields: "<OptionalFields_2>")
 And I can verify that devices are ready for installation
 Then a Cloud MPS LO Approver can create and send a bulk installation request
-
+When I export the device data into excel and retrieve installation information
+And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
+Then I can verify that all devices are installed and responding
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 |
-		| United Kingdom | CPP_AGREEMENT |True              | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              |

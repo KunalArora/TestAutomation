@@ -2,7 +2,7 @@
 using Brother.Tests.Selenium.Lib.Helpers;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
-using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {

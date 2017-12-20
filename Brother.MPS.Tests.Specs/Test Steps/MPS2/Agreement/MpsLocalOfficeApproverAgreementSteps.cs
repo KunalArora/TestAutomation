@@ -1,7 +1,7 @@
 ﻿using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
-using Brother.WebSites.Core.Pages.MPSTwo.LocalOffice;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement

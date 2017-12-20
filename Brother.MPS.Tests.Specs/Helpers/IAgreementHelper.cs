@@ -6,5 +6,6 @@ namespace Brother.Tests.Specs.Helpers
         string GenerateAgreementName();
         string GenerateAgreementName(string pattern, string[] args);
         string GenerateReference();
+        string GenerateSerialNumber(int deviceIndex);
     }
 }

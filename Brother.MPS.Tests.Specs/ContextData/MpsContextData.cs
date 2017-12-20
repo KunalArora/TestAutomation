@@ -70,5 +70,6 @@ namespace Brother.Tests.Specs.ContextData
         public string AgreementName { get; set; }
         public string LeasingFinanceReference { get; set; }
         public string DealerReference { get; set; }
+        public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
     }
 }

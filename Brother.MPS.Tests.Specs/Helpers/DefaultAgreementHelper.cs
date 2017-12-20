@@ -1,9 +1,17 @@
-﻿using System;
+﻿using Brother.Tests.Specs.ContextData;
+using System;
 
 namespace Brother.Tests.Specs.Helpers
 {
 	public class DefaultAgreementHelper: IAgreementHelper
 	{
+        private IContextData _contextData;
+
+        public DefaultAgreementHelper(IContextData contextData)
+        {
+            _contextData = contextData;
+        }
+
 		private const string AGREEMENT_NAME_PATTERN = "MPS_Smoke_{0}-{1}";
 
 		public string GenerateAgreementName()
@@ -20,6 +28,12 @@ namespace Brother.Tests.Specs.Helpers
 		{
 			return (new Random().Next(10000000, 99999999).ToString());
 		}
+
+        public string GenerateSerialNumber(int deviceIndex)
+        {
+            return string.Format(
+                _contextData.Country.CountryIso + _contextData.AgreementId + deviceIndex.ToString());
+        }
 
 		private string surname()
 		{

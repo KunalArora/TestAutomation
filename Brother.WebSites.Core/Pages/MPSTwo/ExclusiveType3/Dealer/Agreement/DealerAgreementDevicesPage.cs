@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
+namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementDevicesPage: BasePage, IPageObject
     {
@@ -190,6 +190,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             var SendInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(
                 deviceRowElements[rowIndex], SendInstallationRequestActionsButtonSelector, findElementTimeout);
             SeleniumHelper.ClickSafety(SendInstallationRequestButtonElement, findElementTimeout);
+        }
+
+        public void VerifySerialNumberOfDevice(string mpsDeviceId, string expectedSerialNumber, int findElementTimeout)
+        {
+            string displayedDeviceId, displayedSerialNumber;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                    displayedSerialNumber = deviceRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                    TestCheck.AssertIsEqual(expectedSerialNumber, displayedSerialNumber, "Serial number of the installed device could not be verified");
+                    break;
+                }
+            }
+
         }
     }
 }

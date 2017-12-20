@@ -179,5 +179,17 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                 return false;
             }
         }
+
+        public bool IsElementDisplayed(ISearchContext context, string selector)
+        {
+            try
+            {
+                return context.FindElement(By.CssSelector(selector)).Displayed;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
     }
 }

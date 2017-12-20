@@ -13,6 +13,9 @@
         string GetInstallationStatusText(string name, string culture);
         string GetInstalledPrinterStatusText(string name, string culture);
         string GetProposalDeclineReasonText(string name, string culture);
+
+        // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);
+        string GetDeviceConnectionStatusText(string name, string culture);
     }
 }

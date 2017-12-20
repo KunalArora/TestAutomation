@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
+namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementDevicesEditPage: BasePage, IPageObject
     {
@@ -84,7 +84,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(PostcodeInputElement, values.PostCode);
         }
 
-        public void FillNonMandatoryDetails(CustomerInformationNonMandatoryFields values)
+        public void FillNonMandatoryDetails(CustomerInformationOptionalFields values)
         {
 
             // Address
@@ -105,14 +105,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
             ClearAndType(InstallationNotesInputElement, values.InstallationNotes);
         }
 
-        public string EditDeviceData(string optionalValues, string country)
+        public string EditDeviceData(string isOptionalValues)
         {
             CustomerInformationMandatoryFields mandatoryValues = new CustomerInformationMandatoryFields();
             FillMandatoryDetails(mandatoryValues);
-            CustomerInformationNonMandatoryFields nonMandatoryValues = null;
-            if(optionalValues.ToLower().Equals("true"))
+            CustomerInformationOptionalFields nonMandatoryValues = null;
+            if(isOptionalValues.ToLower().Equals("true"))
             {
-                nonMandatoryValues = new CustomerInformationNonMandatoryFields(country);
+                nonMandatoryValues = new CustomerInformationOptionalFields();
                 FillNonMandatoryDetails(nonMandatoryValues);
             }
 
@@ -121,17 +121,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
 
         // This is used for validation purpose. 
         // It is the Address string which is displayed on Devices page after editing device data. 
-        public string ValidationExpression(CustomerInformationMandatoryFields mandatoryValues, CustomerInformationNonMandatoryFields nonMandatoryValues = null)
+        public string ValidationExpression(CustomerInformationMandatoryFields mandatoryValues, CustomerInformationOptionalFields optionalValues = null)
         {
             List<string> validationExpression = new string[] {
                 mandatoryValues.CompanyName, string.Format("{0} {1}", mandatoryValues.PropertyNumber, mandatoryValues.PropertyStreet),
                 mandatoryValues.PropertyTown, mandatoryValues.PostCode }.ToList();
 
-            if (nonMandatoryValues != null)
+            if (optionalValues != null)
             {
                 // Note: Area is used as part of address (used for validation)
                 // Insert area into correct position of the validation expression (expected address string)
-                validationExpression.Insert(2, nonMandatoryValues.PropertyArea);
+                validationExpression.Insert(2, optionalValues.PropertyArea);
             }
             
             return string.Join(", ", validationExpression);
@@ -167,13 +167,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public string PostCode { get { return _postCode; } } 
     }
 
-    public class CustomerInformationNonMandatoryFields
+    public class CustomerInformationOptionalFields
     {
         private string _surName;
         private string _telephone; 
         private string _email;
         private string _propertyArea;
-        private string _country;
         private string _deviceLocation;
         private string _costCentre;
         private string _reference1;
@@ -181,13 +180,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         private string _reference3;
         private string _installationNotes;
 
-        public CustomerInformationNonMandatoryFields(string country)
+        public CustomerInformationOptionalFields()
         {
             _surName = MpsUtil.SurName();
             _telephone = MpsUtil.CompanyTelephone();
             _email = MpsUtil.GenerateUniqueEmail();
             _propertyArea = MpsUtil.Area();
-            _country = country;
             _deviceLocation = MpsUtil.DeviceLocation();
             _costCentre = MpsUtil.CostCentre();
             _reference1 = MpsUtil.CustomerReference();
@@ -200,7 +198,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement
         public string Telephone { get { return _telephone; } }
         public string Email { get { return _email; } }
         public string PropertyArea { get { return _propertyArea; } }
-        public string Country { get { return _country; } }
         public string DeviceLocation { get { return _deviceLocation; } }
         public string CostCentre { get { return _costCentre; } }
         public string Reference_1 { get { return _reference1; } }

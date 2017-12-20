@@ -67,6 +67,11 @@ namespace Brother.Tests.Specs.Services
             return GetText(Resources.AgreementType.AgreementType.ResourceManager, name, culture);
         }
 
+        public string GetDeviceConnectionStatusText(string name, string culture)
+        {
+            return GetText(Resources.DeviceConnectionStatus.DeviceConnectionStatus.ResourceManager, name, culture);
+        }
+
         #endregion
 
 

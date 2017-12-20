@@ -1,13 +1,17 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Specs.Configuration;
+using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Constants;
+using Brother.Tests.Specs.Domain.Enums;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -39,7 +43,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
 
-        public MpsDealerAgreementSteps(MpsSignInStepActions mpsSignIn,
+        public MpsDealerAgreementSteps(
+            MpsSignInStepActions mpsSignIn,
             MpsDealerAgreementStepActions mpsDealerAgreement,
             ScenarioContext context,
             MpsContextData contextData,
@@ -202,6 +207,23 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanCreateAndSendInstallationRequestsForDevicesOneByOne()
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.SendSingleInstallationRequests(_dealerAgreementDevicesPage);
+        }
+
+        [When(@"I export the device data into excel and retrieve installation information")]
+        public void WhenIExportTheDeviceDataIntoExcelAndRetrieveInstallationInformation()
+        {
+            _mpsDealerAgreement.ExportDeviceDetailsAndReadExcel(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify that all devices are installed and responding")]
+        public void ThenICanVerifyThatAllDevicesAreInstalledAndResponding()
+        {
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
+            _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
+                _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
         }
     }
 }
