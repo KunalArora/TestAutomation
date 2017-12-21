@@ -1,6 +1,6 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail : DealerSendSwapInstallationEmailPage, IPageObject
+    public class LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail : DealerSendSwapInstallationEmailPage, IPageObject
     {
         public static string _url = "/mps/local-office/manage-devices/send-swap-device-installation-email";
         private const string _validationElementSelector = ".active a[href=\"/mps/local-office/manage-devices/send-swap-device-installation-email\"]";

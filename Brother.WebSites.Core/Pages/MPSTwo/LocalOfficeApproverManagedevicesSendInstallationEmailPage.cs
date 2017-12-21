@@ -1,6 +1,6 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesSendInstallationEmailPage :DealerSendInstallationEmailPage, IPageObject
+    public class LocalOfficeApproverManageDevicesSendInstallationEmailPage :DealerSendInstallationEmailPage, IPageObject
     {
         private const string _url = "/mps/local-office/manage-devices/send-installation-email";
         private const string _validationElementSelector = ".active a[href=\"/mps/local-office/manage-devices/send-installation-email\"]";

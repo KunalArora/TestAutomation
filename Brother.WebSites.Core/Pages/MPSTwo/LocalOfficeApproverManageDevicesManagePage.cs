@@ -1,6 +1,6 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesManagePage : DealerManageDevicesPage, IPageObject
+    public class LocalOfficeApproverManageDevicesManagePage : DealerManageDevicesPage, IPageObject
     {
 
         private const string _url = "/mps/local-office/manage-devices/manage";

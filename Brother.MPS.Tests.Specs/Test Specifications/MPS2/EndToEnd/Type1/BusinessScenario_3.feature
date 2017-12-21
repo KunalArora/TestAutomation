@@ -9,7 +9,6 @@ Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
-#note that 'And' steps bind to either Given or When attributes depending on the preceding steps
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |

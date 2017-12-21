@@ -41,6 +41,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_NavClickTab")]
         public IWebElement NavClickTab; // Click Price (for check Active)
 
+        private const string JsSpecialPricingInstallationRowSelector = "div.mps-special-pricing-group.js-special-pricing-installation-row";
+        private const string JsSpecialPricingServiceRowSelector = "div.mps-special-pricing-group.js-special-pricing-service-row";
+        private const string JsSpecialPricingClickRowSelector = "div.mps-special-pricing-group.js-special-pricing-click-row";
+        private const string MpsSpecialPricingModelSelector = "span.mps-col.mps-top.mps-special-pricing-model";
+
+
 
         public void SwitchNavInstallTab(int findElementTimeout)
         {
@@ -74,14 +80,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 catch { return false; }
             }, findElementTimeout);
         }
+
         public void EnterSpecialPriceInstallation(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
-            var modelElementList = SeleniumHelper.FindElementsByCssSelector("div.mps-special-pricing-group.js-special-pricing-installation-row");
+            var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingInstallationRowSelector);
             foreach (var modelElement in modelElementList)
             {
                 var elementModelName = modelElement
-                    .FindElement(By.CssSelector("span.mps-col.mps-top.mps-special-pricing-model"))
+                    .FindElement(By.CssSelector(MpsSpecialPricingModelSelector))
                     .FindElement(By.TagName("strong"))
                     .Text;
                 if (modelRegex.IsMatch(specialPrice.Model) == false)
@@ -98,11 +105,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterSpecialPriceService(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
-            var modelElementList = SeleniumHelper.FindElementsByCssSelector("div.mps-special-pricing-group.js-special-pricing-service-row");
+            var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingServiceRowSelector);
             foreach (var modelElement in modelElementList)
             {
                 var elementModelName = modelElement
-                    .FindElement(By.CssSelector("span.mps-col.mps-top.mps-special-pricing-model"))
+                    .FindElement(By.CssSelector(MpsSpecialPricingModelSelector))
                     .FindElement(By.TagName("strong"))
                     .Text;
                 if (modelRegex.IsMatch(specialPrice.Model) == false)
@@ -116,14 +123,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+
         public void EnterSpecialPriceClick(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model,RegexOptions.IgnoreCase);
-            var modelElementList = SeleniumHelper.FindElementsByCssSelector("div.mps-special-pricing-group.js-special-pricing-click-row");
+            var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingClickRowSelector);
             foreach( var modelElement in modelElementList)
             {
                 var elementModelName = modelElement
-                    .FindElement(By.CssSelector("span.mps-col.mps-top.mps-special-pricing-model"))
+                    .FindElement(By.CssSelector(MpsSpecialPricingModelSelector))
                     .FindElement(By.TagName("strong"))
                     .Text;
                 if(modelRegex.IsMatch(elementModelName) == false)

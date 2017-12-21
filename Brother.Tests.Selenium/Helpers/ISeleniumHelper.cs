@@ -77,7 +77,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="element"></param>
         /// <param name="defaultFindElementTimeout"></param>
         /// <param name="IsUntilUrlChanges"></param>
-        void ClickSafety(IWebElement element, int IsWaitForAnotherPagedefaultFindElementTimeout, bool IsUntilUrlChanges=false);
+        void ClickSafety(IWebElement element, int IsWaitForAnotherPageDefaultFindElementTimeout, bool IsUntilUrlChanges=false);
         
         /// <summary>
         /// Accept Javascript alert 

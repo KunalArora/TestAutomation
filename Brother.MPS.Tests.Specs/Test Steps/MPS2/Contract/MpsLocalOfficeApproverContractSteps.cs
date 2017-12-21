@@ -6,7 +6,6 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -15,49 +14,35 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
     [Binding]
     class MpsLocalOfficeApproverContractSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly IWebDriver _driver;
-        private readonly IContextData _contextData;
-        private readonly PageService _pageService;
-        private readonly ICountryService _countryService;
-        private readonly IUserResolver _userResolver;
-        private readonly IUrlResolver _urlResolver;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
-        private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
         private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;
         private readonly MpsLocalOfficeApproverContractStepActions _mpsLocalOfficeApproverContractStepActions;
         private readonly MpsLocalOfficeApproverProposalStepActions _mpsLocalOfficeApproverProposalStepActions;
+        private readonly IContextData _contextData;
+        private readonly IUserResolver _userResolver;
+        private readonly IUrlResolver _urlResolver;
         private readonly IRunCommandService _runCommandService;
+        private readonly ITranslationService _translationService;
 
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
-        private LocalOfficeApproverManagedevicesManagePage _localOfficeApproverManagedevicesManagePage;
-        private readonly ITranslationService _translationService;
+        private LocalOfficeApproverManageDevicesManagePage _localOfficeApproverManagedevicesManagePage;
+        
 
         public MpsLocalOfficeApproverContractSteps(
             MpsSignInStepActions mpsSignInStepActions,
-            MpsDealerProposalStepActions mpsDealerProposalStepActions,
             MpsDealerContractStepActions mpsDealerContractStepActions,
             MpsLocalOfficeApproverContractStepActions mpsLocalOfficeApproverContractStepActions,
             MpsLocalOfficeApproverProposalStepActions mpsLocalOfficeApproverProposalStepActions,
-            ScenarioContext context,
-            IWebDriver driver,
             MpsContextData contextData,
-            PageService pageService,
             ITranslationService translationService,
             IRunCommandService runCommandService,
-            ICountryService countryService,
             IUserResolver userResolver,
             IUrlResolver urlResolver)
         {
-            _context = context;
-            _driver = driver;
             _contextData = contextData;
-            _pageService = pageService;
-            _countryService = countryService;
             _userResolver = userResolver;
             _urlResolver = urlResolver;
             _mpsSignInStepActions = mpsSignInStepActions;
-            _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
             _mpsDealerContractStepActions = mpsDealerContractStepActions;
             _mpsLocalOfficeApproverContractStepActions = mpsLocalOfficeApproverContractStepActions;
             _mpsLocalOfficeApproverProposalStepActions = mpsLocalOfficeApproverProposalStepActions;
@@ -150,10 +135,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             string resourceSwapTypeReplaceWithDifferentModel = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, _contextData.Culture);
 
             _contextData.SwapType = _translationService.GetSwapTypeText(swapType, _contextData.Culture);
-            LocalOfficeApproverManagedevicesSetCommunicationMethodPage _dealerSetCommunicationMethodPage = _mpsLocalOfficeApproverContractStepActions.ConfirmSwapAndSelectSwapType(_localOfficeApproverManagedevicesManagePage, _contextData.SwapType, resourceSwapTypeReplaceWithDifferentModel);
-            LocalOfficeApproverManagedevicesSetInstallationTypePage _dealerSetInstallationTypePage = _mpsLocalOfficeApproverContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
-            LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail _dealerSwapInstallationEmailPage = _mpsLocalOfficeApproverContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
-            _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
+            var dealerSetCommunicationMethodPage = _mpsLocalOfficeApproverContractStepActions.ConfirmSwapAndSelectSwapType(_localOfficeApproverManagedevicesManagePage, _contextData.SwapType, resourceSwapTypeReplaceWithDifferentModel);
+            var dealerSetInstallationTypePage = _mpsLocalOfficeApproverContractStepActions.SelectCommunicationMethodAndProceed(dealerSetCommunicationMethodPage, communicationMethod);
+            var dealerSwapInstallationEmailPage = _mpsLocalOfficeApproverContractStepActions.SelectInstallationTypeAndProceedForSwap(dealerSetInstallationTypePage, installationType);
+            _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(dealerSwapInstallationEmailPage);
         }
 
         [When(@"a Cloud MPS Local Office Approver will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]

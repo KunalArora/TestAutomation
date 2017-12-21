@@ -317,7 +317,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             string proposalNameForSearch;
 
-            _contextData.SetBusinessType("1");
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(dealerDashboardPage);
             var dealerProposalsInprogressPage = _mpsDealerProposalStepActions.ClickOnActionsCopy(dealerProposalsDeclinedPage, _contextData.ProposalId.ToString(), out proposalNameForSearch);

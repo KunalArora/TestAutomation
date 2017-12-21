@@ -70,31 +70,29 @@ namespace Brother.Tests.Specs.StepActions.Contract
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        public LocalOfficeApproverManagedevicesContractsPage NavigateToDeviceManagementPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
+        public LocalOfficeApproverManageDevicesContractsPage NavigateToDeviceManagementPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
             ClickSafety(localOfficeApproverDashBoardPage.DeviceManagementTabTabElement, localOfficeApproverDashBoardPage);
-            var aa = new LocalOfficeApproverManagedevicesContractsPage().ValidationElementSelector;
-            var nn = aa.Length;
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManagedevicesContractsPage localOfficeApproverManagedevicesContractsPage, int proposalId)
+        public LocalOfficeApproverManageDevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManageDevicesContractsPage localOfficeApproverManagedevicesContractsPage, int proposalId)
         {
             ActionsModule.SetFilter(proposalId.ToString(), localOfficeApproverManagedevicesContractsPage.InputFilterBy, localOfficeApproverManagedevicesContractsPage.ContractOrProposalNameElementList, RuntimeSettings.DefaultFindElementTimeout, _localOfficeApproverWebDriver);
             ActionsModule.ClickOnTheActionsDropdown(0, _localOfficeApproverWebDriver);
             ActionsModule.NavigateToManageDevicesActionButton(_localOfficeApproverWebDriver);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesSetCommunicationMethodPage CreateInstallationRequest(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage)
+        public LocalOfficeApproverManageDevicesSetCommunicationMethodPage CreateInstallationRequest(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
             _contextData.CompanyLocation = localOfficeApproverManagedevicesManagePage.SelectLocation();
 
             localOfficeApproverManagedevicesManagePage.ClickCreateRequest();
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesSetInstallationTypePage SelectCommunicationMethodAndProceed(LocalOfficeApproverManagedevicesSetCommunicationMethodPage localOfficeApproverSetCommunicationMethodPage, string communicationMethod)
+        public LocalOfficeApproverManageDevicesSetInstallationTypePage SelectCommunicationMethodAndProceed(LocalOfficeApproverManageDevicesSetCommunicationMethodPage localOfficeApproverSetCommunicationMethodPage, string communicationMethod)
         {
             switch (communicationMethod)
             {
@@ -109,22 +107,22 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     break;
             }
             ClickSafety( localOfficeApproverSetCommunicationMethodPage.ProceedElement, localOfficeApproverSetCommunicationMethodPage);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesSetInstallationTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesSetInstallationTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesSendInstallationEmailPage SelectInstallationTypeAndProceed(LocalOfficeApproverManagedevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
+        public LocalOfficeApproverManageDevicesSendInstallationEmailPage SelectInstallationTypeAndProceed(LocalOfficeApproverManageDevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
         {
             SelectInstallationTypeAndClickNext(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesManagePage PopulateInstallerEmailAndSendEmail(LocalOfficeApproverManagedevicesSendInstallationEmailPage localOfficeApproverManagedevicesSendInstallationEmailPage)
+        public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmail(LocalOfficeApproverManageDevicesSendInstallationEmailPage localOfficeApproverManagedevicesSendInstallationEmailPage)
         {
             _contextData.InstallerEmail = localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public string RetrieveInstallationRequestUrl(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage, string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
+        public string RetrieveInstallationRequestUrl(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
         {
             string url = localOfficeApproverManagedevicesManagePage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout, resourceInstallationStatusNotStarted);
 
@@ -135,7 +133,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return url;
         }
 
-        public void InstallationCompleteCheck(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage, IEnumerable<PrinterProperties> products)
+        public void InstallationCompleteCheck(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, IEnumerable<PrinterProperties> products)
         {
             foreach (var product in products)
             {
@@ -144,14 +142,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
             CheckForUpdatedPrintCount(localOfficeApproverManagedevicesManagePage);
         }
 
-        public LocalOfficeApproverManagedevicesManagePage RetrieveDealerManageDevicesPage()
+        public LocalOfficeApproverManageDevicesManagePage RetrieveDealerManageDevicesPage()
         {
             string currentUrl = _localOfficeApproverWebDriver.Url;
-            string validationElementSelector = new LocalOfficeApproverManagedevicesManagePage().ValidationElementSelector;
-            return PageService.LoadUrl<LocalOfficeApproverManagedevicesManagePage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, validationElementSelector, true, _localOfficeApproverWebDriver);
+            string validationElementSelector = new LocalOfficeApproverManageDevicesManagePage().ValidationElementSelector;
+            return PageService.LoadUrl<LocalOfficeApproverManageDevicesManagePage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, validationElementSelector, true, _localOfficeApproverWebDriver);
         }
 
-        public void CheckForUpdatedPrintCount(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage)
+        public void CheckForUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
@@ -161,31 +159,31 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
-        public LocalOfficeApproverManagedevicesSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage, string swapType, string resourceSwapTypeReplaceWithDifferentModel)
+        public LocalOfficeApproverManageDevicesSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapType, string resourceSwapTypeReplaceWithDifferentModel)
         {
             localOfficeApproverManagedevicesManagePage.ConfirmSwapAndSelectSwapType(swapType, RuntimeSettings.DefaultFindElementTimeout, resourceSwapTypeReplaceWithDifferentModel);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail SelectInstallationTypeAndProceedForSwap(LocalOfficeApproverManagedevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
+        public LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail SelectInstallationTypeAndProceedForSwap(LocalOfficeApproverManageDevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
         {
             SelectInstallationTypeAndClickNext(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManagedevicesManagePage PopulateInstallerEmailAndSendEmailForSwap(LocalOfficeApproverManagedevicesSendSwapDeviceInstallationEmail localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail)
+        public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmailForSwap(LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail)
         {
             _contextData.InstallerEmail = localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
-            return PageService.GetPageObject<LocalOfficeApproverManagedevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage, string swapNewDeviceSerialNumber)
+        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapNewDeviceSerialNumber)
         {
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
             localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, swapNewDeviceSerialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        public void VerifySwappedDeviceStatus(LocalOfficeApproverManagedevicesManagePage localOfficeApproverManagedevicesManagePage, string swapOldDeviceSerialNumber, string resourceInstalledPrinterStatusBeingReplaced)
+        public void VerifySwappedDeviceStatus(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapOldDeviceSerialNumber, string resourceInstalledPrinterStatusBeingReplaced)
         {
             bool exists = localOfficeApproverManagedevicesManagePage.VerifySwappedDeviceStatus(swapOldDeviceSerialNumber, RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusBeingReplaced);
             if (exists)

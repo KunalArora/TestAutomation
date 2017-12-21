@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverManagedevicesContractsPage : DealerContractsPage, IPageObject
+    public class LocalOfficeApproverManageDevicesContractsPage : DealerContractsPage, IPageObject
     {
         private const string _url = "/mps/local-office/manage-devices/contracts";
         private const string _validationElementSelector = "a[href=\"/mps/local-office/manage-devices/contracts\"]"; // Contracts tab element
