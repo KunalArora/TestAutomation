@@ -1,12 +1,15 @@
 ﻿using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Specs.Domain.Constants;
+using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
-using Brother.Tests.Specs.Domain.Enums;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -17,20 +20,23 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private readonly IContextData _contextData;
         private readonly MpsInstallerContractStepActions _mpsInstallerContractStepActions;
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
+        private readonly ITranslationService _translationService;
 
         //PageObjects
         private InstallerDeviceInstallationPage _installerDeviceInstallationPage;
         private InstallerContractReferenceInstallationPage _installerContractReferenceInstallationPage;
-        
+
         public MpsInstallerContractSteps(MpsInstallerContractStepActions mpsInstallerContractStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
             IWebDriver driver,
+            ITranslationService translationService,
             MpsContextData contextData)
         {
             _driver = driver;
             _contextData = contextData;
             _mpsInstallerContractStepActions = mpsInstallerContractStepActions;
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
+            _translationService = translationService;
         }
 
         [When(@"a Brother installer has navigated to the Web Installation page and verify Contract Reference")]
@@ -74,13 +80,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
 
         [When(@"Enter the serial number for new device ""(.*)"" with new Mono ""(.*)"" and color ""(.*)"" print count and complete Installation")]
-        public void WhenEnterTheSerialNumberForNewDeviceWithNewMonoAndColorPrintCountAndCompleteInstallation(string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColourPrintcount)
+        public void WhenEnterTheSerialNumberForNewDeviceWithNewMonoAndColorPrintCountAndCompleteInstallation(string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColourPrintcount )
         {
+            string resourceSwapTypeReplaceThePcb = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceThePcb, _contextData.Culture);
             _contextData.SwapNewDeviceMonoPrintCount = swapNewDeviceMonoPrintcount;
             _contextData.SwapNewDeviceColourPrintCount = swapNewDeviceColourPrintcount;
             var products = _contextData.PrintersProperties;
             var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
-            _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, products, _driver, swapNewDeviceSerialNumber, installerWindowHandle);
+            if( resourceSwapTypeReplaceThePcb.Equals(_contextData.SwapType, StringComparison.OrdinalIgnoreCase) == false)
+            {
+                _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, products, _driver, swapNewDeviceSerialNumber, installerWindowHandle);
+            }
+            _mpsInstallerContractStepActions.CloudInstallationRefresh(_installerDeviceInstallationPage);
             _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, products, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
         }
 

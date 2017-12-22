@@ -108,15 +108,22 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             alert.Accept();
         }
 
-        public  ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
+        public void ClearAndType(IWebElement element, string value)
+        {
+            element.Clear();
+            element.SendKeys(value);
+        }
+
+        public ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
             var actionsElement = _webDriver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;
         }
 
-        public void ClickSafety(IWebElement element, int defaultFindElementTimeout)
+        public void ClickSafety(IWebElement element, int defaultFindElementTimeout, bool IsUntilUrlChanges)
         {
-            WaitUntil(d => { try { element.Click(); return true; } catch { return false; } }, defaultFindElementTimeout);
+            var url= _webDriver.Url;
+            WaitUntil(d => { try { element.Click(); return IsUntilUrlChanges == false || _webDriver.Url != url; } catch { return false; } }, defaultFindElementTimeout);
         }
 
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)

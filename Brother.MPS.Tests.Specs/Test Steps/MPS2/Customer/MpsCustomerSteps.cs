@@ -10,8 +10,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
 {
     [Binding]
-
-    class MpsCustomerSteps
+    public class MpsCustomerSteps
     {
         private readonly ScenarioContext _context;
         private readonly IWebDriver _driver;
@@ -47,8 +46,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
             _mpsCustomerStepActions = mpsDealerCustomerStepActions;
         }
 
-        [Then(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
-        [When(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
+        [StepDefinition(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
         public void WhenACustomerHasNavigatedToTheConsumablesDevicesPageToVerifyThatAboveDeviceHaveUpdatedInkStatusAndServiceRequestIsRaised()
         {
             var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(_contextData.CustomerEmail, _contextData.CustomerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));

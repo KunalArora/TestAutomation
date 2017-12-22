@@ -1,16 +1,16 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
 using System.Linq;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsDeclinedPage : CloudExistingProposalPage, IPageObject
     {
         private const string _url = "/mps/dealer/proposals/declined";
-        private const string _validationElementSelector = ".js-mps-searchable";
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/proposals/declined\"]";// list Next 
 
         public string PageUrl
         {
@@ -32,6 +32,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = ".js-mps-download-proposal-pdf")]
         public IList<IWebElement> AttachedProposalId;
+        [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
+        public IWebElement InputFilterByElement;
+        // ex. content_1_SimpleProposalList_List_ProposalNameRow_25
+        [FindsBy(How = How.CssSelector, Using = "[id*=_SimpleProposalList_List_ProposalNameRow_]")]
+        public IList<IWebElement> NameRowElementList;
 
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string copyWithCustomerSelector = @".js-mps-copy-with-customer";

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Brother.Tests.Selenium.Lib.Helpers;
+using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -28,6 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string summaryButtonSelector = @".js-mps-view-summary";
+        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
         public string PageUrl
         {
@@ -78,5 +74,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
         }
+
     }
 }

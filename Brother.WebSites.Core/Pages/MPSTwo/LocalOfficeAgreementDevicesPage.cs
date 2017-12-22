@@ -1,6 +1,6 @@
-﻿using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+﻿using Brother.WebSites.Core.Pages.MPSTwo.Dealer.Agreement;
 
-namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
+namespace Brother.WebSites.Core.Pages.MPSTwo.LocalOffice
 {
     public class LocalOfficeAgreementDevicesPage : DealerAgreementDevicesPage, IPageObject // Inherit DealerAgreementDevicesPage as properties are exactly same
     {

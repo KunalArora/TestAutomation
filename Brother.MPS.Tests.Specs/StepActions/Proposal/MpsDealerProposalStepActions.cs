@@ -286,20 +286,98 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
         }
 
-        public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
-        {
-            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
-            var dealerProposalsInProgressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            ClickSafety(dealerProposalsInProgressPage.declinedProposalsTabElement, dealerProposalsInProgressPage);
-            return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-        }
-
         public void DeletePdfFileErrorIgnored(string pdfFile)
         {
             try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
         }
 
-        public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue)
+        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, IEnumerable<SpecialPriceParameter> specialPriceClickList, string resourceServicePackTypeIncludedInClickPrice)
+        {
+            foreach( var specialPriceClick in specialPriceClickList)
+            {
+                AssertAreAffectSpecialPricing(proposalSummaryValues, specialPriceClick, resourceServicePackTypeIncludedInClickPrice);
+            }
+        }
+
+        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, SpecialPriceParameter specialPriceClick, string resourceServicePackTypeIncludedInClickPrice)
+        {
+            var model = specialPriceClick.Model;
+
+            /**
+             * Installation
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackUnitCost", specialPriceClick.InstallUnitCost);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackMarginPercentage", specialPriceClick.InstallMargin);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "InstallationPackUnitPrice", specialPriceClick.InstallUnitPrice);
+
+            /**
+             * Service
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitCost", specialPriceClick.ServiceUnitCost);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackMarginPercentage", specialPriceClick.ServiceMargin);
+            if(string.IsNullOrWhiteSpace(specialPriceClick.ServiceUnitPrice) == false)
+            {
+                var ServiceUnitPrice = _contextData.ServicePackType != resourceServicePackTypeIncludedInClickPrice ? specialPriceClick.ServiceUnitPrice : "0.00";
+                AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitPrice", ServiceUnitPrice);
+            }
+
+            /**
+             * Click Price
+             */
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ServicePackUnitCost", specialPriceClick.MonoClickServiceCost);
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "N/A", specialPriceClick.MonoClickServicePrice);
+
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoVolume", specialPriceClick.MonoClickVolume);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoMarginPercentage", specialPriceClick.MonoClickMargin);
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE MPSBAU-1254 
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "MonoClickRate", specialPriceClick.MonoClick);
+
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourVolume", specialPriceClick.ColourClickVolume);
+            AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourMarginPercentage", specialPriceClick.ColourClickMargin);
+            // TODO bug? when INCLUDED_IN_CLICK_PRICE MPSBAU-1254 
+            //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourClickRate", specialPriceClick.ColourClick);
+
+        }
+        private void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, string model, string itemKey, string expected )
+        {
+            if (string.IsNullOrEmpty(expected))
+            {
+                return; // check skipped
+            }
+            var itemRegex = new Regex(string.Format(@"{0}\.{1}",model,itemKey), RegexOptions.IgnoreCase);
+            try
+            {
+                var wrongItem = proposalSummaryValues
+                    .Where(item => itemRegex.IsMatch(item.Key))
+                    .First(item => item.Value.CollectDigitOnly() != expected);
+                var wrongModel = proposalSummaryValues.GetModel(wrongItem.Key);
+                if (itemKey.Contains("Colour") && IsColourModel(proposalSummaryValues, wrongModel) == false)
+                {
+                    return; // no colour model
+                }
+                throw new Exception(string.Format("Special pricing not affected key={0} actual={1} expected={2}", wrongItem.Key, wrongItem.Value, expected));
+
+            }
+            catch (InvalidOperationException ) {/* no wrongItem is good news. */ }
+        }
+
+        private bool IsColourModel(SummaryValue proposalSummaryValues,string wrongModel)
+        {
+            var ckey = wrongModel + ".ColourVolume";
+            string cvalue=null;
+            if (proposalSummaryValues.TryGetValue(ckey, out cvalue) == false)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(cvalue) || cvalue == "0")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void AssertAreEqualSummaryValues(string pdfFile, Country country, SummaryValue summaryValue, 
+            string resourcePdfFileAgreementPeriod, string resourcePdfFileTotalInstalledPurchasePrice, string resourcePdfFileMinimumClickCharge)
         {
             if (_pdfHelper.PdfExists(pdfFile) == false)
             {
@@ -308,11 +386,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue.SummaryTable_ContractTerm,"");
             string[] searchTextArray =
             {
-                // TODO need localize to be implement MPS-4975.
-                string.Format("{0} {1}", "Agreement period:", int.Parse(contractTermDigitString)*12),
-                string.Format("{0} {1}", "Total Installed Purchase Price:", summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
+                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
                 //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                string.Format("{0} {1}", "Minimum Click Charge:", summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
+                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
             };
             searchTextArray.ToList().ForEach(expected =>
                {
@@ -322,7 +399,50 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                    }
                });
         }
- 
+
+        public DealerProposalsCreateCustomerInformationPage ClickOnNext(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage)
+        {
+            ClickSafety(dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
+            return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateSummaryPage ClickOnNext(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
+        {
+            ClickSafety(dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage);
+            return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateClickPricePage ClickOnNext(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage)
+        {
+            ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage);
+            return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsCreateDescriptionPage ClickOnActionsEdit(DealerProposalsInprogressPage dealerProposalsInprogressPage, string filterString)
+        {
+            ActionsModule.SetFilter(filterString, dealerProposalsInprogressPage.ProposalFilter, dealerProposalsInprogressPage.ProposalListProposalNameRowElement, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
+            ActionsModule.StartTheProposalEditProcess(_dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
+        }
+
+        public DealerProposalsInprogressPage ClickOnActionsCopy(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, string filterString, out string proposalNameForSearch)
+        {
+            ActionsModule.SetFilter(filterString, dealerProposalsDeclinedPage.InputFilterByElement, dealerProposalsDeclinedPage.NameRowElementList, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+            ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
+            ActionsModule.CopyAProposal(_dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
+        }
+
+        public DealerProposalsDeclinedPage NavigateToDealerProposalsDeclinedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            ClickSafety(dealerDashboardPage.ExistingProposalLinkElement, dealerDashboardPage);
+            var dealerProposalsInprogressPage = PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerProposalsInprogressPage.DeclinedTabElement, dealerProposalsInprogressPage);
+            return PageService.GetPageObject<DealerProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsApprovedPage dealerProposalsApprovedPage, string proposalId)
         {
             dealerProposalsApprovedPage.ClickOnSummaryPage(proposalId, RuntimeSettings.DefaultPageLoadTimeout, _dealerWebDriver);

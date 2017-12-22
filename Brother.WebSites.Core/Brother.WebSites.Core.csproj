@@ -237,6 +237,16 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsDeclinedPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsAcceptedPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalSpecialPricingPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesContractsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesManagePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesSendInstallationEmailPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesSetCommunicationMethodPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverManageDevicesSetInstallationTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDataQueryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ReportingDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />

@@ -8,6 +8,7 @@ namespace Brother.WebSites.Core.Pages
 {
     public static class PageObjectExtensions
     {
+        private static Regex REGEX_DIGITONLY = new Regex(@"[^0-9.,]");
 
         public static IEnumerable<string> CollectDigitOnly(this IList<IWebElement> ellist)
         {
@@ -16,8 +17,12 @@ namespace Brother.WebSites.Core.Pages
         }
         public static string CollectDigitOnly(this IWebElement element)
         {
-            return new Regex(@"[^0-9]").Replace(element.Text, "");
+            return element.Text.CollectDigitOnly();
+        }
 
+        public static string CollectDigitOnly(this string text)
+        {
+            return REGEX_DIGITONLY.Replace(text, "");
         }
 
         public static IList<CustomerConsumablesDeviceItem> CreateElementValueList(this CustomerConsumablesDevicesPage page) 

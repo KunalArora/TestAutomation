@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Specs.Domain.Enums;
-using System;
 using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.WebSites.Core.Pages.MPSTwo;
+using System;
 using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.ContextData
@@ -63,6 +64,8 @@ namespace Brother.Tests.Specs.ContextData
         public string WebInstallUrl { get; set; }
         public Dictionary<UserType, string> WindowHandles { get; set; }
         public string WebSwapInstallUrl { get; set; }
+        public IEnumerable<SpecialPriceParameter> SpecialPriceList { get; set; }
+        public string SwapType { get; set; }
 
         // Exclusively Type 3
         public string AgreementType { get; set; }
@@ -71,5 +74,6 @@ namespace Brother.Tests.Specs.ContextData
         public string LeasingFinanceReference { get; set; }
         public string DealerReference { get; set; }
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
+
     }
 }

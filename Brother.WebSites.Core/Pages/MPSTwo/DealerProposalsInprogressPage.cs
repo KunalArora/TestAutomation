@@ -1,13 +1,6 @@
-﻿using Brother.WebSites.Core.Pages.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -32,6 +25,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/proposals/in-progress']")]
+        public IWebElement InProgressTabElement; // same as Open
+
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/proposals/awaiting-approval']")]
+        public IWebElement OpenTabElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/proposals/approved']")]
+        public IWebElement ApprovedTabElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/proposals/declined']")]
+        public IWebElement DeclinedTabElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/proposals/closed']")]
+        public IWebElement ClosedTabElement;
+
+
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
         public void ClickOnSubmitForApproval(int proposalId, int findElementTimeout, IWebDriver driver)
@@ -41,13 +50,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();
             ActionsModule.StartConvertToContractProcess(driver); // = Submit for Approval
         }
-
-        private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
-        {
-            var actionsElement = Driver.FindElements(By.CssSelector(actionsButton));
-            return actionsElement;
-        }
-
 
     }
 }

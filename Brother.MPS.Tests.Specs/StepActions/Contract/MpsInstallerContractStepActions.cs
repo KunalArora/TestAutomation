@@ -75,8 +75,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, swapNewDeviceSerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
                 }
             }
-            _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
- 
+        }
+
+        public void CloudInstallationRefresh(InstallerDeviceInstallationPage installerDeviceInstallationPage)
+        {
+            installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
