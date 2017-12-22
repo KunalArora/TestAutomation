@@ -338,6 +338,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Common\Brother.Tests.Common.csproj">
+      <Project>{b9682f08-abf1-4a03-8255-61a8cbb8f99e}</Project>
+      <Name>Brother.Tests.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
       <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
       <Name>Brother.Tests.Selenium.Lib</Name>
