@@ -1,5 +1,6 @@
 ﻿
 using BoDi;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Configuration;
@@ -34,6 +35,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterInstanceAs<IWebDriver>(webDriver); //default driver when only a single instance is required
             _container.RegisterInstanceAs<IContextData>(setContextData());
             _container.RegisterInstanceAs<IRuntimeSettings>(InitialiseRuntimeSettings());
+            _container.RegisterInstanceAs<ICommandLineSettings>(CreateCommandLineSettings());
             _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
             _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
@@ -50,6 +52,15 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
             _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
+            _container.RegisterTypeAs<MpsLogConsole, ILogging>();
+        }
+
+        private ICommandLineSettings CreateCommandLineSettings()
+        {
+            var commandLineSettings = new CommandLineSettings();
+            commandLineSettings.LoggingLevel = TestContext.Parameters.Exists("logging_level") ? TestContext.Parameters.Get("logging_level") : Enum.GetName(typeof(LoggingLevel),LoggingLevel.WARNING);
+            commandLineSettings.ScenarioName = ScenarioContext.Current.ScenarioInfo.Title;
+            return commandLineSettings;
         }
 
         private IContextData setContextData()
@@ -82,6 +93,11 @@ namespace Brother.Tests.Specs.AdditionalBindings
             if (webDriverFactory != null)
             {
                 webDriverFactory.CloseAllWebDrivers();
+            }
+            if (ScenarioContext.Current.TestError != null)
+            {
+                var logging = _container.Resolve<ILogging>();
+                logging.WriteLog(LoggingLevel.FAILURE, ScenarioContext.Current.TestError);
             }
         }
 

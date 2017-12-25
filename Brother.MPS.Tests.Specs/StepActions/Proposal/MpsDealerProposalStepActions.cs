@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.ContextData;
 using Brother.Tests.Specs.Domain.Enums;
@@ -28,7 +29,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IWebDriver _dealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
         private readonly IMpsWebToolsService _webToolService;
-        
+        private readonly ILogging _logging;
+
         public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
@@ -38,6 +40,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             IPdfHelper pdfHelper,
             IRuntimeSettings runtimeSettings,
             IMpsWebToolsService webToolService,
+            ILogging logging,
             MpsSignInStepActions mpsSignIn)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
@@ -47,10 +50,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
+            _logging = logging;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
+            _logging.WriteLog(LoggingLevel.INFO, "SignInAsDealerAndNavigateToDashboard({0},{1},{2})", email, password, url);
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
