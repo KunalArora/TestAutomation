@@ -137,6 +137,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <summary>
         /// Logging Service
         /// </summary>
-        ILogging Logging {get;}
+        ILoggingService LoggingService {get;}
     }
 }

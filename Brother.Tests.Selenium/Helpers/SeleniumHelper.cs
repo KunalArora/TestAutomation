@@ -14,12 +14,12 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         private IWebDriver _webDriver;
         private const string DATA_ATTRIBUTE_SELECTOR_PATTERN = "[data-{0}='{1}']";
         private const string ATTRIBUTE_SELECTOR_PATTERN = "['{0}'='{1}']";
-        private readonly ILogging _logging;
+        private readonly ILoggingService _loggingService;
 
-        public SeleniumHelper(IWebDriver webDriver, ILogging logging)
+        public SeleniumHelper(IWebDriver webDriver, ILoggingService loggingService)
         {
             _webDriver = webDriver;
-            _logging = logging;
+            _loggingService = loggingService;
         }
 
         public IWebElement FindElementByCssSelector(string selector, int timeout)
@@ -202,11 +202,11 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
-        public ILogging Logging
+        public ILoggingService LoggingService
         {
             get
             {
-                return _logging;
+                return _loggingService;
             }
 
         }

@@ -52,7 +52,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
             _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
-            _container.RegisterTypeAs<MpsLogConsole, ILogging>();
+            _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
         }
 
         private ICommandLineSettings CreateCommandLineSettings()
@@ -96,7 +96,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             }
             if (ScenarioContext.Current.TestError != null)
             {
-                var logging = _container.Resolve<ILogging>();
+                var logging = _container.Resolve<ILoggingService>();
                 logging.WriteLog(LoggingLevel.FAILURE, ScenarioContext.Current.TestError);
             }
         }

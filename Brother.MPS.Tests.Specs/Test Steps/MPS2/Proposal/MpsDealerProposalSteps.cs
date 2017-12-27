@@ -28,7 +28,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
-        private readonly ILogging _logging;
+        private readonly ILoggingService _loggingService;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -56,7 +56,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             IWebDriver driver,
             MpsContextData contextData,
             PageService pageService,
-            ILogging logging,
+            ILoggingService loggingService,
             ICountryService countryService,
             ITranslationService translationService,
             IUserResolver userResolver,
@@ -74,7 +74,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _proposalHelper = proposalHelper;
             _mpsSignInStepActions = mpsSignInStepActions;
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
-            _logging = logging;
+            _loggingService = loggingService;
         }
 
         [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
@@ -107,7 +107,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""(.*)""")]
         public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom(string country)
         {
-            _logging.WriteLog(LoggingLevel.INFO,"GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom({0})", country);
+            _loggingService.WriteLog(LoggingLevel.INFO,"GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom({0})", country);
             GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(country);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }

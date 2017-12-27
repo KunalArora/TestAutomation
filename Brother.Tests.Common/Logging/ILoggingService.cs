@@ -9,7 +9,7 @@ namespace Brother.Tests.Common.Logging
         WARNING,
         FAILURE
     }
-    public interface ILogging
+    public interface ILoggingService
     {
         /// <summary>
         /// Log a message object 

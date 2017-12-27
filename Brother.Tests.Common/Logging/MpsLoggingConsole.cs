@@ -4,34 +4,34 @@ using System.Diagnostics;
 namespace Brother.Tests.Common.Logging
 {
 
-    public class MpsLogConsole : ILogging
+    public class MpsLoggingConsole : ILoggingService
     {
-        private readonly LoggingLevel _level;
+        private readonly LoggingLevel _loggingLevel;
         private readonly string _scenarioName;
         private readonly IOutputLoggingStream _loggingStream;
 
-        public MpsLogConsole(ICommandLineSettings commandLineSettings ) 
+        public MpsLoggingConsole(ICommandLineSettings commandLineSettings ) 
         {
             try
             {
-                _level = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), commandLineSettings.LoggingLevel.ToUpper());
+                _loggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), commandLineSettings.LoggingLevel.ToUpper());
             }
             catch
             {
-                _level = LoggingLevel.WARNING;
+                _loggingLevel = LoggingLevel.WARNING;
             }
             _scenarioName = string.IsNullOrWhiteSpace(commandLineSettings.ScenarioName) ? "(UNKNOWN)" : commandLineSettings.ScenarioName;
             _loggingStream = new MpsOutputLoggingStream();
         }
         public void WriteLog(LoggingLevel level, object message)
         {
-            if (IsLogging(level) == false) return;
+            if (IsLoggingEnable(level) == false) return;
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(), message));
         }
 
         public void WriteLog(LoggingLevel level, string format, params object[] args)
         {
-            if (IsLogging(level) == false) return;
+            if (IsLoggingEnable(level) == false) return;
             var message = string.Format(format, args);
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(), message));
 
@@ -39,21 +39,21 @@ namespace Brother.Tests.Common.Logging
 
         public void WriteLog(LoggingLevel level, object message, Exception exception)
         {
-            if (IsLogging(level) == false) return;
+            if (IsLoggingEnable(level) == false) return;
             var preString = PreString();
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, message));
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, exception.StackTrace));
         }
 
-        private bool IsLogging(LoggingLevel level)
+        private bool IsLoggingEnable(LoggingLevel loggingLevel)
         {
-            return level >= _level;
+            return loggingLevel >= _loggingLevel;
         }
 
         private string PreString()
         {
             var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.FFF");
-            return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, _level);
+            return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, _loggingLevel);
         }
     }
 

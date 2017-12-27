@@ -271,7 +271,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateProposalName(string proposalName)
         {
-            SeleniumHelper.Logging.WriteLog(LoggingLevel.INFO, "PopulateProposalName({0})", proposalName);
+            SeleniumHelper.LoggingService.WriteLog(LoggingLevel.INFO, "PopulateProposalName({0})", proposalName);
             var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
             ClearAndType(proposalNameElement, proposalName.ToString());
         }
