@@ -75,6 +75,7 @@ namespace Brother.Tests.Selenium.Lib.Support.SpecFlow
             Helper.SavePageSource();
             Helper.MsgOutput(string.Format("[AfterStep] SnapShot Taken : Location = [{0}]", Helper.CurrentSnapShot));
             Helper.MsgOutput(string.Format("[AfterStep] The current page is [{0}]", TestController.CurrentDriver.Title));
+            Helper.MsgOutput(string.Format("[AfterStep] Window size is {0} x {1}", TestController.CurrentDriver.Manage().Window.Size.Width.ToString(), TestController.CurrentDriver.Manage().Window.Size.Height.ToString()));
             WebDriver.DeleteAllCookies();
             TestController.ExtentLogFailInformation(TestController.CurrentDriver.Title, messageWithCategories.Message, messageWithCategories.Categories);
         }
