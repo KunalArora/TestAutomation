@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Logging\ICommandLineSettings.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
+    <Compile Include="Logging\ILoggingServiceSettings.cs" />
     <Compile Include="Logging\MpsLoggingConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

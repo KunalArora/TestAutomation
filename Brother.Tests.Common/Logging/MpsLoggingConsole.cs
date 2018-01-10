@@ -10,7 +10,7 @@ namespace Brother.Tests.Common.Logging
         private readonly string _scenarioName;
         private readonly IOutputLoggingStream _loggingStream;
 
-        public MpsLoggingConsole(ICommandLineSettings commandLineSettings ) 
+        public MpsLoggingConsole(ILoggingServiceSettings commandLineSettings ) 
         {
             try
             {
@@ -26,21 +26,21 @@ namespace Brother.Tests.Common.Logging
         public void WriteLog(LoggingLevel level, object message)
         {
             if (IsLoggingEnable(level) == false) return;
-            _loggingStream.WriteLine(string.Format("{0}{1}", PreString(), message));
+            _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
         }
 
         public void WriteLog(LoggingLevel level, string format, params object[] args)
         {
             if (IsLoggingEnable(level) == false) return;
             var message = string.Format(format, args);
-            _loggingStream.WriteLine(string.Format("{0}{1}", PreString(), message));
+            _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
 
         }
 
         public void WriteLog(LoggingLevel level, object message, Exception exception)
         {
             if (IsLoggingEnable(level) == false) return;
-            var preString = PreString();
+            var preString = PreString(level);
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, message));
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, exception.StackTrace));
         }
@@ -50,10 +50,10 @@ namespace Brother.Tests.Common.Logging
             return loggingLevel >= _loggingLevel;
         }
 
-        private string PreString()
+        private string PreString(LoggingLevel level)
         {
             var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.FFF");
-            return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, _loggingLevel);
+            return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
         }
     }
 

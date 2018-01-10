@@ -4,8 +4,8 @@ namespace Brother.Tests.Common.Logging
 {
     public enum LoggingLevel
     {
-        INFO=0,
-        DEBUG,
+        DEBUG = 0 ,
+        INFO ,
         WARNING,
         FAILURE
     }
