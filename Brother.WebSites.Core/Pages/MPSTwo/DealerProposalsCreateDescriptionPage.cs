@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -271,6 +271,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateProposalName(string proposalName)
         {
+            SeleniumHelper.LoggingService.WriteLog(LoggingLevel.INFO, "PopulateProposalName({0})", proposalName);
             var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
             ClearAndType(proposalNameElement, proposalName.ToString());
         }

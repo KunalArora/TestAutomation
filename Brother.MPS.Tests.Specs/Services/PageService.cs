@@ -1,16 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
-using Brother.Tests.Specs.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
@@ -22,9 +22,11 @@ namespace Brother.Tests.Specs.Services
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
+        private readonly ILoggingService _loggingService;
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,
+            ILoggingService loggingService,
             IUrlResolver urlResolver,
             ISeleniumHelper seleniumHelper)
         {
@@ -32,6 +34,7 @@ namespace Brother.Tests.Specs.Services
             _context = context;
             _urlResolver = urlResolver;
             _seleniumHelper = seleniumHelper;
+            _loggingService = loggingService;
         }
 
         #region Page loads
@@ -56,7 +59,7 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver) };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,_loggingService) };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)

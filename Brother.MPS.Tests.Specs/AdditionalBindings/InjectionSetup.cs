@@ -1,5 +1,6 @@
 ﻿
 using BoDi;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Configuration;
@@ -34,6 +35,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterInstanceAs<IWebDriver>(webDriver); //default driver when only a single instance is required
             _container.RegisterInstanceAs<IContextData>(setContextData());
             _container.RegisterInstanceAs<IRuntimeSettings>(InitialiseRuntimeSettings());
+            _container.RegisterInstanceAs<ILoggingServiceSettings>(CreateLoggingServiceSettings());
             _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
             _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
@@ -50,6 +52,20 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
             _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
+            _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
+        }
+
+        private ILoggingServiceSettings CreateLoggingServiceSettings()
+        {
+            var loggingServiceSettings = new LoggingServiceSettings();
+            SetToCommandLineSettings(loggingServiceSettings);
+            loggingServiceSettings.ScenarioName = ScenarioContext.Current.ScenarioInfo.Title ?? "";
+            return loggingServiceSettings;
+        }
+
+        private void SetToCommandLineSettings(ICommandLineSettings commandLineSettings )
+        {
+            commandLineSettings.LoggingLevel = TestContext.Parameters.Get("logging_level", DefaultLoggingLevel());
         }
 
         private IContextData setContextData()
@@ -83,12 +99,23 @@ namespace Brother.Tests.Specs.AdditionalBindings
             {
                 webDriverFactory.CloseAllWebDrivers();
             }
+            if (ScenarioContext.Current.TestError != null)
+            {
+                var logging = _container.Resolve<ILoggingService>();
+                logging.WriteLog(LoggingLevel.FAILURE, ScenarioContext.Current.TestError.Message);
+            }
         }
 
         private string DefaultEnvironment()
         {
             var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultRuntimeEnvironment");
             return defaultRuntimeEnvironment ?? "UAT";
+        }
+
+        private string DefaultLoggingLevel()
+        {
+            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultLoggingLevel");
+            return defaultRuntimeEnvironment ?? LoggingLevel.WARNING.ToString();
         }
 
         private RuntimeSettings InitialiseRuntimeSettings()
