@@ -1,9 +1,10 @@
 ﻿using Brother.Tests.Common.Logging;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Constants;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -117,7 +118,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             //if only one contract type is available for the country, the contract type dropdown does not appear.
             //handle this logic
-            _translationService.GetContractTypeText(contractType, _contextData.Culture);
+            _contextData.ContractType = _translationService.GetContractTypeText(contractType, _contextData.Culture);
         }
         
         [When(@"I enter the proposal description")]
@@ -174,35 +175,31 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I add these printers:")]
         public void WhenIAddThesePrinters(Table printers)
         {
-            string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             var products = printers.CreateSet<PrinterProperties>();
             foreach ( var product in products)
             {
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
-            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage, products, resourceServicePackTypeIncludedInClickPrice);
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage);
         }
 
         [When(@"I calculate the click price for each of the above printers")]
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
-            string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            string resourceUsageTypePayAsYouGo = _translationService.GetUsageTypeText(TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
-            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage, _contextData.PrintersProperties, _contextData.UsageType, resourceServicePackTypeIncludedInClickPrice, resourceUsageTypePayAsYouGo);          
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage);          
         }
 
         [When(@"I save the proposal")]
         public void WhenISaveTheProposal()
         {
-            string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage, resourceServicePackTypeIncludedInClickPrice);
+            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage);
         }
 
         [Then(@"I can see the proposal created above in the open proposals list")]
         public void ThenICanSeeTheProposalCreatedAboveInTheOpenProposalsList()
         {
-            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
         }
 
         [When(@"I save the above proposal and submit it for approval")]
@@ -214,10 +211,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
         public void WhenISubmitItForApproval()
         {
-            string paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
-            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
-            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
-            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage, _contextData.Country, paymentType);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
+            var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage);
+            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage);
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
             var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
@@ -228,23 +224,23 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenISaveTheAboveProposalAndSubmitItForApprovalForExistingCustomer()
         {
             WhenISaveTheProposal();
-            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
-            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage);
             _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
         }
 
         [When(@"I submit it for approval for existing customer")]
         public void WhenISubmitItForApprovalForExistingCustomer()
         {
-            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.ClickOnEditActionButton(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.ClickOnEditActionButton(_cloudExistingProposalPage);
             _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.NavigateToProposalsCustomersPage(_dealerProposalsCreateDescriptionPage);
             _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.NavigateToProposalTermAndTypePage(_dealerProposalsCreateCustomerInformationPage);
             _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.NavigateToProposalProductsPage(_dealerProposalsCreateTermAndTypePage);
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.NavigateToProposalClickPricePage(_dealerProposalsCreateProductsPage);
             _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.NavigateToCreateSummaryPage(_dealerProposalsCreateClickPricePage);
             WhenISaveTheProposal();
-            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
-            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage, _contextData.ProposalId, _contextData.ProposalName);
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SubmitForTheApproval(_cloudExistingProposalPage);
             _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
         }
 
@@ -252,12 +248,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I locate the proposal with id ""(.*)"" and submit it for approval")]
         public void WhenILocateTheProposalWithIdAndSubmitItForApproval(int id)
         {
-            string paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
             _contextData.ProposalId = id;
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dealerProposalsInProgressPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsInprogressPage(dealerDashboardPage);
             var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsInProgressPage);
-            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage, _contextData.Country, paymentType);
+            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage);
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
             var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.SetInformationAndClickSubmitForApproval(dealerProposalsConvertClickPricePage);
@@ -280,27 +275,22 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.SetBusinessType("1");
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsApprovedPage(_dealerDashboardPage);
-            _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage, _contextData.ProposalId.ToString());
+            _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage);
             _proposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
         }
 
         [When(@"I click the download proposal button and verify if I am able to open the PDF")]
         public void WhenIClickTheDownloadProposalButtonAndVerifyIfIAmAbleToOpenThePDF()
         {
-            var resourcePdfFileAgreementPeriod = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.AgreementPeriod, _contextData.Culture);
-            var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.TotalInstalledPurchasePrice, _contextData.Culture);
-            var resourcePdfFileMinimumClickCharge = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.MinimumClickCharge, _contextData.Culture);
-            var resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-
             if (_contextData.SpecialPriceList != null)
             {
-                _mpsDealerProposalStepActions.AssertAreAffectSpecialPricing(_proposalSummaryValues, _contextData.SpecialPriceList, resourceServicePackTypeIncludedInClickPrice);
+                _mpsDealerProposalStepActions.AssertAreAffectSpecialPricing(_proposalSummaryValues);
             }
             
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {
-                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _contextData.Country, _proposalSummaryValues, resourcePdfFileAgreementPeriod, resourcePdfFileTotalInstalledPurchasePrice, resourcePdfFileMinimumClickCharge);
+                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
             }
             finally
             {
@@ -319,7 +309,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I copy declined proposal and create new customer and submit it for approval")]
         public void WhenICopyDeclinedProposalAndCreateNewCustomerAndSubmitItForApproval()
         {
-            string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             string proposalNameForSearch;
 
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
@@ -332,7 +321,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(dealerProposalsCreateTermAndTypePage, _contextData.UsageType, _contextData.ContractTerm, _contextData.BillingType, _contextData.ServicePackType);
             var dealerProposalsCreateClickPricePage =  _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateProductsPage); // printers no update
             var dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateClickPricePage); // click prices no update 
-            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(dealerProposalsCreateSummaryPage, resourceServicePackTypeIncludedInClickPrice);
+            _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(dealerProposalsCreateSummaryPage);
             WhenISubmitItForApproval();
 
         }

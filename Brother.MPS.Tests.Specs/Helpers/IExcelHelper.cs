@@ -1,5 +1,5 @@
 ﻿
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 namespace Brother.Tests.Specs.Helpers
 {

@@ -12,6 +12,8 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Services;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -594,18 +596,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerSendForApproverPage>(Driver);
         }
 
-        public void ClickOnSubmitForApproval(int proposalId, string proposalName, int timeout, IWebDriver driver)
+        public void ClickOnSubmitForApproval(int proposalId, string proposalName, IWebDriver driver)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), timeout);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), findElementTimeout);
             var actionsElement = ActionsDropdownElement(actionsButton);
             actionsElement.Last().Click();
             var submitForApprovalElement = ActionsModule.ConvertButtonElement(driver);
             submitForApprovalElement.Click();
         }
 
-        public void ClickOnEditActionButton(int proposalId, string proposalName, int findElementTimeout, IWebDriver driver)
+        public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalName);
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
             var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
@@ -704,14 +708,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
         }
 
-        public bool VerifySavedProposalInOpenProposalsList( int proposalId, string proposalName, int timeout )
+        public bool VerifySavedProposalInOpenProposalsList(int proposalId, string proposalName)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+
             // Wait for footer to load & then filter out the proposal
-            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, timeout);
+            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, findElementTimeout);
             ClearAndType(ProposalFilter, proposalId.ToString());
             try
             {
-                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), timeout );
+                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), findElementTimeout );
                 return true;
             }
             catch
@@ -720,12 +726,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void ClickOnSubmitForApprovalForAlreadyCreatedCustomerFlow(int findElementTimeout)
-        {
-           var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
-           ActionsButtonElement.Click();
-           var SubmitForApprovalButtonElement = SeleniumHelper.FindElementByCssSelector(SubmitForApprovalButtonSelector, findElementTimeout);
-           SubmitForApprovalButtonElement.Click();
-        }       
+//        public void ClickOnSubmitForApprovalForAlreadyCreatedCustomerFlow(int findElementTimeout)
+//        {
+//           var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+//           ActionsButtonElement.Click();
+//           var SubmitForApprovalButtonElement = SeleniumHelper.FindElementByCssSelector(SubmitForApprovalButtonSelector, findElementTimeout);
+//           SubmitForApprovalButtonElement.Click();
+//        }       
     }
 }

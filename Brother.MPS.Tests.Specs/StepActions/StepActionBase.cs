@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using Brother.Tests.Common.RuntimeSettings;
  
 
 namespace Brother.Tests.Specs.StepActions

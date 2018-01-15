@@ -93,19 +93,8 @@
       <DependentUpon>TableExample.feature</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CommandLineSettings.cs" />
-    <Compile Include="Configuration\IRuntimeSettings.cs" />
-    <Compile Include="Configuration\RuntimeSettings.cs" />
-    <Compile Include="ContextData\IContextData.cs" />
-    <Compile Include="ContextData\MpsContextData.cs" />
-    <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
-    <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
-    <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
-    <Compile Include="Domain\Enums\BusinessType.cs" />
-    <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
-    <Compile Include="Domain\Enums\UserType.cs" />
-    <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\WebPageResponse.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="Factories\IWebDriverFactory.cs" />
@@ -123,97 +112,15 @@
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
-    <Compile Include="Resources\AgreementType\AgreementType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AgreementType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\BillingType\BillingType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BillingType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ContractTerm\ContractTerm.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ContractTerm.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ContractType\ContractType.en-gb.Designer.cs">
-      <DependentUpon>ContractType.en-gb.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ContractType\ContractType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ContractType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DeviceConnectionStatus.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\InstallationPack\InstallationPack.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallationPack.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\PaymentType\PaymentType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PaymentType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\InstallationRequestStatus\InstallationRequestStatus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallationRequestStatus.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstalledPrinterStatus.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.en-gb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstalledPrinterStatus.en-gb.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ProposalDeclineReason\ProposalDeclineReason.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProposalDeclineReason.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ProposalPDF\ProposalPDF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProposalPDF.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ServicePackType\ServicePackType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServicePackType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\SwapType\SwapType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SwapType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\UsageType\UsageType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UsageType.resx</DependentUpon>
-    </Compile>
     <Compile Include="Services\CalculationService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\DeviceSimulatorService.cs" />
-    <Compile Include="Services\ExpectedTranslationService.cs" />
     <Compile Include="Services\ICalculationService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
     <Compile Include="Services\IMpsWebToolsService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\IRunCommandService.cs" />
-    <Compile Include="Services\ITranslationService.cs" />
     <Compile Include="Services\IWebRequestService.cs" />
     <Compile Include="Services\MpsWebToolsService.cs" />
     <Compile Include="Services\PageService.cs" />
@@ -2796,58 +2703,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\AgreementType\AgreementType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\AgreementType\AgreementType.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\BillingType\BillingType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\BillingType\BillingType.resx" />
-    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.resx" />
-    <EmbeddedResource Include="Resources\ContractType\ContractType.en-gb.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContractType.en-gb.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ContractType\ContractType.fr-fr.resx" />
-    <EmbeddedResource Include="Resources\ContractType\ContractType.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContractType.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.en-gb.resx" />
-    <EmbeddedResource Include="Resources\DeviceConnectionStatus\DeviceConnectionStatus.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeviceConnectionStatus.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.en-gb.resx" />
-    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>InstallationPack.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.en-gb.resx" />
-    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.resx" />
-    <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.en-gb.resx" />
-    <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.resx" />
-    <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx" />
-    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx" />
-    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProposalPDF.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx" />
-    <EmbeddedResource Include="Resources\SwapType\SwapType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\SwapType\SwapType.resx" />
-    <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
-    <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UsageType.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

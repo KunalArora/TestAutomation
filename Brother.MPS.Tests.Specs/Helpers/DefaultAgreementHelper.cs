@@ -1,4 +1,4 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using System;
 
 namespace Brother.Tests.Specs.Helpers

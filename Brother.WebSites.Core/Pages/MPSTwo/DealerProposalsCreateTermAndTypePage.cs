@@ -212,8 +212,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
         }
 
-        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption, int findElementTimeout)
+        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);
             SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);

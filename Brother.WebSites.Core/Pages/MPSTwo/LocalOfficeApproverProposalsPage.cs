@@ -347,11 +347,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementsPresent(ProposalListContainerElement.ToArray(), "Proposal List");
         }
 
-        public void ClickOnSummaryPage(string text, int timeout, IWebDriver driver)
+        public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
-            ClearAndType(ProposalFilter, text);
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1 , timeout);
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), timeout);
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            ClearAndType(ProposalFilter, proposalId.ToString());
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1 , findElementTimeout);
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
 

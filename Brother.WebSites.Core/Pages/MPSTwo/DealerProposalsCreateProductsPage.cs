@@ -35,7 +35,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ISeleniumHelper SeleniumHelper { get; set; }
 
-
         #region ViewModels
 
         [DataContract]
@@ -1758,12 +1757,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string installationPack,
             bool delivery,
             string servicePackType,
-            int findElementTimeout,
+            string resourceServicePackTypeIncludedInClickPrice,
             out string margin,
             out string unitPrice,
-            out IWebElement printerContainer,
-            string resourceServicePackTypeIncludedInClickPrice)
+            out IWebElement printerContainer)
         {
+
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
 
@@ -1799,14 +1799,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return addToProposalButton;
         }
 
-        public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton, int findElementTimeout)
+        public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.ClickSafety(addToProposalButton, findElementTimeout);
             SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
         }
 
-        public List<string> RetrieveAllTotalPriceValues(IWebElement printerContainer, int findElementTimeout, out string expectedTotalPrice)
+        public List<string> RetrieveAllTotalPriceValues(IWebElement printerContainer, out string expectedTotalPrice)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var totalPriceValues = new List<string>();
             var tableBodyContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableBodySelector, findElementTimeout);
             var bodyRowElements = SeleniumHelper.FindRowElementsWithinTable(tableBodyContainer);

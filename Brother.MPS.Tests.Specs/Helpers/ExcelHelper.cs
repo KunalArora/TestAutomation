@@ -1,12 +1,12 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Helpers
 {

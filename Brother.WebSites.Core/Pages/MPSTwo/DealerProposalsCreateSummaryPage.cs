@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Brother.Tests.Common.Services;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -28,7 +31,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-
 
         public override string DefaultTitle
         {

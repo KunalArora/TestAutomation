@@ -314,22 +314,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Is new proposal template created?");
         }
 
-        public void FilterContractUsingProposalId(int proposalId, int findElementTimeout)
+        public void FilterContractUsingProposalId(int proposalId)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector, findElementTimeout);
             ClearAndType(FilterContractInput, proposalId.ToString());
         }
 
-        public void MoveToAcceptedContracts(int findElementTimeout)
+        public void MoveToAcceptedContracts()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             AcceptedTabElement.Click();
             SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector, findElementTimeout);
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
         }
 
         // Only for first contract displayed in list
-        public void ClickOnManageDevicesButton(int findElementTimeout)
+        public void ClickOnManageDevicesButton()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
             ActionsButtonElement.Click();
             var ManageDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(ManageDevicesButtonSelector, findElementTimeout);

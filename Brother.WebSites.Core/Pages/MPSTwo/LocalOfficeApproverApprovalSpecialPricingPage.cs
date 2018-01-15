@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Text.RegularExpressions;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -81,7 +82,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }, findElementTimeout);
         }
 
-        public void EnterSpecialPriceInstallation(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceInstallation(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingInstallationRowSelector);
@@ -102,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void EnterSpecialPriceService(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceService(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingServiceRowSelector);
@@ -124,7 +125,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void EnterSpecialPriceClick(SpecialPriceParameter specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceClick(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
             var modelRegex = new Regex(specialPrice.Model,RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingClickRowSelector);
@@ -172,43 +173,4 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
     }
-
-    public class SpecialPriceParameter
-    {
-        public string Model;            // ex. DCP-8110DN
-
-        /**
-         * Installation TAB
-         */
-        public string InstallUnitCost;  // ex. 200.00
-        public string InstallMargin;    // ex. 20.00
-        public string InstallUnitPrice; // ex. 250.00
-
-        /**
-         * Service TAB
-         */
-        public string ServiceUnitCost;
-        public string ServiceMargin;
-        public string ServiceUnitPrice;
-
-        /**
-         * Click Price TAB
-         */
-        public string MonoClickServiceCost;     // ex. 36.15
-        public string MonoClickServicePrice;    // ex. 72.19
-
-        public string MonoClickCoverage;        // ex. 5
-        public string MonoClickVolume;          // ex. 1000
-        public string MonoClickMargin;          // ex. 17.00
-        public string MonoClick;                // ex. 0.01078
-
-        public string ColourClickServiceCost;
-        public string ColourClickServicePrice;
-
-        public string ColourClickCoverage;
-        public string ColourClickVolume;
-        public string ColourClickMargin;
-        public string ColourClick;
-    }
-
 }

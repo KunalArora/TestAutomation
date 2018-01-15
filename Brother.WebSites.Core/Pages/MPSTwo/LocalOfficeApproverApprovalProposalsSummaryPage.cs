@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety( AcceptButtonElement, timeout,true);
         }
 
-        public void DeclineProposal(int findElementTimeout, string proposalDeclineReasonExpired)
+        public void DeclineProposal(string proposalDeclineReasonExpired, int findElementTimeout)
         {
             SeleniumHelper.ClickSafety(DeclineButtonElement, findElementTimeout);
             var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector, findElementTimeout);

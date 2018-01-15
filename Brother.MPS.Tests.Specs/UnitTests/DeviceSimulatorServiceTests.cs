@@ -3,6 +3,7 @@ using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.UnitTests
 {

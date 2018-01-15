@@ -1,7 +1,9 @@
 ﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Enums;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Services;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -10,6 +12,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -19,6 +22,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
+        private readonly ITranslationService _translationService;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -27,6 +31,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IUrlResolver urlResolver,
             IRuntimeSettings runtimeSettings,
             DeviceSimulatorService deviceSimulatorService,
+            ITranslationService translationService,
             RunCommandService runCommandService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
@@ -34,6 +39,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
+            _translationService = translationService;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -54,11 +60,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void InstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage, IEnumerable<PrinterProperties> products)
+        public void InstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage)
         {
+            var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
-                _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+                _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber);
             }
             CheckForUpdatedPrintCount(_dealerManageDevicesPage);
         }
@@ -116,30 +123,31 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach (var product in products)
             {
                 var totalPageCount = product.TotalPageCount; 
-                dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+                dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber);
             }
         }
 
         public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string swappedSerialNumber)
         {
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, swappedSerialNumber, RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, swappedSerialNumber);
         }
 
         //Similar function is already present in this file so, refactor this particular function.
         public void MoveToAcceptedContractsTab(DealerContractsPage dealerContractsPage)
         {
-            dealerContractsPage.MoveToAcceptedContracts(RuntimeSettings.DefaultFindElementTimeout);
+            dealerContractsPage.MoveToAcceptedContracts();
         }
         
-        public void FilterContractUsingProposalId(DealerContractsPage dealerContractsPage, int proposalId)
+        public void FilterContractUsingProposalIdAction(DealerContractsPage dealerContractsPage)
         {
-            dealerContractsPage.FilterContractUsingProposalId(proposalId, RuntimeSettings.DefaultFindElementTimeout);
+            int proposalId = _contextData.ProposalId;
+            dealerContractsPage.FilterContractUsingProposalId(proposalId);
         }
 
         public DealerManageDevicesPage ClickOnManageDevicesAndProceed(DealerContractsPage dealerContractsPage)
         {
-            dealerContractsPage.ClickOnManageDevicesButton(RuntimeSettings.DefaultFindElementTimeout);
+            dealerContractsPage.ClickOnManageDevicesButton();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -178,13 +186,17 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmail(DealerSendInstallationEmailPage dealerSendInstallationEmailPage)
         {
-            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
+            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage, string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
+        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
         {
-            string url = dealerManageDevicesPage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, RuntimeSettings.DefaultFindElementTimeout, resourceInstallationStatusNotStarted);
+            string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);
+            string installerEmail = _contextData.InstallerEmail;
+            string companyLocation = _contextData.CompanyLocation;
+
+            string url = dealerManageDevicesPage.RetrieveInstallationRequestUrl(installerEmail, companyLocation, resourceInstallationStatusNotStarted);
             
             if (url == null)
             {
@@ -195,12 +207,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void ClickOnSwapDevice(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
         {
-            dealerManageDevicesPage.ClickOnSwapDevice(serialNumber, RuntimeSettings.DefaultFindElementTimeout);
+            dealerManageDevicesPage.ClickOnSwapDevice(serialNumber);
         }
 
-        public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage, string swapType, string resourceSwapTypeReplaceWithDifferentModel)
+        public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage)
         {
-            dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, RuntimeSettings.DefaultFindElementTimeout, resourceSwapTypeReplaceWithDifferentModel);
+            string resourceSwapTypeReplaceWithDifferentModel = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, _contextData.Culture);
+            string swapType = _contextData.SwapType;
+            dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, resourceSwapTypeReplaceWithDifferentModel);
             return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -212,13 +226,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmailForSwap(DealerSendSwapInstallationEmailPage dealerSendSwapInstallationEmailPage)
         {
-            _contextData.InstallerEmail = dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed(RuntimeSettings.DefaultFindElementTimeout);
+            _contextData.InstallerEmail = dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void VerifySwappedDeviceStatus(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber, string resourceInstalledPrinterStatusBeingReplaced )
+        public void VerifySwappedDeviceStatusAction(DealerManageDevicesPage dealerManageDevicesPage)
         {
-            bool exists = dealerManageDevicesPage.VerifySwappedDeviceStatus(serialNumber, RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusBeingReplaced);
+            string resourceInstalledPrinterStatusBeingReplaced = _translationService.GetInstalledPrinterStatusText(TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
+            string swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
+
+            bool exists = dealerManageDevicesPage.VerifySwappedDeviceStatus(swapOldDeviceSerialNumber, resourceInstalledPrinterStatusBeingReplaced);
             if (exists)
             {
                 return;

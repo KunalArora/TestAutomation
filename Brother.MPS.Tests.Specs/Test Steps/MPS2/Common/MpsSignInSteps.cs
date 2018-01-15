@@ -1,4 +1,4 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions;

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -14,8 +10,6 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System.Threading;
-
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -180,8 +174,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClosePopUpModal();
         }
 
-        public void EnterSerialNumber(string modelName, string serialNumber, int findElementTimeout ,IWebDriver installerDriver, string installerWindowHandle)
-        { 
+        public void EnterSerialNumber(string modelName, string serialNumber, string windowHandle, IWebDriver installerDriver)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector, findElementTimeout);
             var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector, findElementTimeout);
 
@@ -198,7 +193,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector, findElementTimeout);
                     PopulateIpAddress(row, findElementTimeout);
                     ClickOnConnect(row, findElementTimeout, installerDriver);
-                    RetryResetClickingHelper(findElementTimeout, serialNumber, installerWindowHandle);
+                    RetryResetClickingHelper(findElementTimeout, serialNumber, windowHandle);
                     break;
                 }
             }
@@ -211,7 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string installerWindowHandle)
+        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string windowHandle)
         {
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
@@ -244,7 +239,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         }
 
                     }
-                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                     retries++;
                 }
                 catch (WebDriverException)
@@ -254,8 +249,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount, int findElementTimeout)
+        public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var SwapContainerElement = SeleniumHelper.FindElementByCssSelector(SwapContainerSelector, findElementTimeout);
             var SwapTableBodyElement = SeleniumHelper.FindElementByCssSelector(SwapContainerElement, SwapTableBodySelector, findElementTimeout);
 
@@ -310,13 +306,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ipAddressInput4Element.SendKeys(Keys.Tab);
         }
 
-        public string RetrieveInstallationPin(int findElementTimeout)
+        public string RetrieveInstallationPin()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             return SeleniumHelper.FindElementByCssSelector(InstallationPinCodeSelector, findElementTimeout).GetAttribute("value");
         }
 
-        public void CloudInstallationRefresh(int retryCount, int findElementTimeout)
+        public void CloudInstallationRefresh()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            int retryCount = RuntimeSettings.DefaultRetryCount;
             RetryRefreshClickingHelper(RefreshButtonSelector, CompleteButtonSelector, retryCount, findElementTimeout);
         }
 
@@ -341,8 +340,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void ConfirmInstallationComplete(int findElementTimeout)
+        public void ConfirmInstallationComplete()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var InstallationSuccessfullyFinishedElement = SeleniumHelper.FindElementByCssSelector(InstallationSuccessfullyFinishedSelector, findElementTimeout);
             ScrollTo(InstallationSuccessfullyFinishedElement);
             TestCheck.AssertIsEqual(true, InstallationSuccessfullyFinishedElement.Displayed,

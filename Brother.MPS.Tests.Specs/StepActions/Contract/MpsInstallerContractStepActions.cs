@@ -1,7 +1,8 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Enums;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Specs.Configuration;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -39,60 +40,67 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public InstallerContractReferenceInstallationPage NavigateToWebInstallationPage(string url)
         {
-            return _mpsSignIn.LoadInstallationPage(url);
+           return _mpsSignIn.LoadInstallationPage(url);
         }
 
         public InstallerDeviceInstallationPage PopluateContractReferenceAndProceed(InstallerContractReferenceInstallationPage _installerContractReferenceInstallationPage, int proposalId)
         {
-            _installerContractReferenceInstallationPage.PopulateContractReference(proposalId, RuntimeSettings.DefaultFindElementTimeout);
-            _installerContractReferenceInstallationPage.ProceedOnInstaller(RuntimeSettings.DefaultFindElementTimeout);
+            _installerContractReferenceInstallationPage.PopulateContractReference(proposalId);
+            _installerContractReferenceInstallationPage.ProceedOnInstaller();
             return PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
         }
 
-        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver, string installerWindowHandle)
+        public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver)
         {
-            var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
+            var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
+            var products = _contextData.PrintersProperties;
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+
             foreach(var product in products)
             {
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
                 _installerDeviceInstallationPage.ClosePopUp();
-                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
+                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, product.SerialNumber, installerWindowHandle, installerDriver);
             }
-            _installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+            _installerDeviceInstallationPage.CloudInstallationRefresh();
             _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
-            _installerDeviceInstallationPage.ConfirmInstallationComplete(RuntimeSettings.DefaultFindElementTimeout);
+            _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 
-        public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, IWebDriver installerDriver, string swapNewDeviceSerialNumber, string installerWindowHandle)
+        public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver, string swapNewDeviceSerialNumber)
         {
             var swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
-            var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin(RuntimeSettings.DefaultFindElementTimeout);
+            var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            var products = _contextData.PrintersProperties;
+
             foreach(var product in products)
             {
                 if(product.SerialNumber.Equals(swapOldDeviceSerialNumber))
                 {
                     RegisterDeviceOnBOC(product, installationPin, swapNewDeviceSerialNumber);
-                    _installerDeviceInstallationPage.EnterSerialNumber(product.Model, swapNewDeviceSerialNumber, RuntimeSettings.DefaultFindElementTimeout, installerDriver, installerWindowHandle);
+                    _installerDeviceInstallationPage.EnterSerialNumber(product.Model, swapNewDeviceSerialNumber, installerWindowHandle, installerDriver);
                 }
             }
         }
 
         public void CloudInstallationRefresh(InstallerDeviceInstallationPage installerDeviceInstallationPage)
         {
-            installerDeviceInstallationPage.CloudInstallationRefresh(RuntimeSettings.DefaultRetryCount, RuntimeSettings.DefaultFindElementTimeout);
+            installerDeviceInstallationPage.CloudInstallationRefresh();
         }
 
-        public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IEnumerable<PrinterProperties> products, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
+        public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
         {
+            var products = _contextData.PrintersProperties;
             foreach(var product in products)
             {
                 if(product.IsSwap)
                 {
-                    _installerDeviceInstallationPage.EnterSwapPrintCount(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColorPrintcount, RuntimeSettings.DefaultFindElementTimeout);
+                    _installerDeviceInstallationPage.EnterSwapPrintCount(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColorPrintcount);
                 }
             }
             _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
-            _installerDeviceInstallationPage.ConfirmInstallationComplete(RuntimeSettings.DefaultFindElementTimeout);
+            _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 
         private void RegisterDeviceOnBOC(PrinterProperties product, string installationPin, string serialNumber)

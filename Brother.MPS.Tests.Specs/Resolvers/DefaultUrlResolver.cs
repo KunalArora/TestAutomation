@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
-using NUnit.Framework.Constraints;
+﻿using Brother.Tests.Common.ContextData;
 
 namespace Brother.Tests.Specs.Resolvers
 {

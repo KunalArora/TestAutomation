@@ -1,7 +1,8 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Customer;
 using OpenQA.Selenium;
@@ -49,11 +50,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
         [StepDefinition(@"a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised")]
         public void WhenACustomerHasNavigatedToTheConsumablesDevicesPageToVerifyThatAboveDeviceHaveUpdatedInkStatusAndServiceRequestIsRaised()
         {
-            var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(_contextData.CustomerEmail, _contextData.CustomerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var customerConsumablesDevicesPage = _mpsCustomerStepActions.ClickOnComsumablesTab(customerDashBoardPage);
-            _mpsCustomerStepActions.VerifyRaisedConsumableOrderStatus(customerConsumablesDevicesPage, _contextData.PrintersProperties);
+            _mpsCustomerStepActions.VerifyRaisedConsumableOrderStatus(customerConsumablesDevicesPage);
             var customerServiceRequestActivePage = _mpsCustomerStepActions.ClickOnServiceRequestsTab(customerDashBoardPage);
-            _mpsCustomerStepActions.VerifyHasRequestOnList(customerServiceRequestActivePage, _contextData.PrintersProperties);
+            _mpsCustomerStepActions.VerifyHasRequestOnList(customerServiceRequestActivePage);
         }
     }
 }

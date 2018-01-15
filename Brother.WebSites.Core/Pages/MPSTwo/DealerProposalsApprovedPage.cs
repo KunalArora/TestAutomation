@@ -39,8 +39,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
-        public void ClickOnViewOffer(int proposalId, int findElementTimeout, IWebDriver driver)
+        public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ContractFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 , findElementTimeout);
             SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout) ;
@@ -85,11 +86,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
-        public void ClickOnSummaryPage(string text, int timeout, IWebDriver driver)
+        public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
-            ClearAndType(FilterSearchFieldElement, text);
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, timeout);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), timeout);
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            ClearAndType(FilterSearchFieldElement, proposalId.ToString());
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
     }

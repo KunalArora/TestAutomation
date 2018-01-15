@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Enums;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Enums;
 
 namespace Brother.Tests.Specs.Resolvers
 {

@@ -41,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return emailId;
         }
 
-        public string EnterInstallerEmailAndProceed(int findElementTimeout)
+        public string EnterInstallerEmailAndProceed()
         {
             string emailId = EnterInstallerEmail();
             SendEmailButton.Click(); // Send Email button

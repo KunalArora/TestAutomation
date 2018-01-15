@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.DeviceSimulator;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;

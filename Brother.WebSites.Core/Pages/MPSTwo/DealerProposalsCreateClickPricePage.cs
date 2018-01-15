@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Services;
+using Brother.Tests.Common.Domain.Constants;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -29,7 +32,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-        
 
         public override string DefaultTitle
         {
@@ -958,9 +960,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             int volumeMono, 
             int volumeColour,
             string usageType,
-            string resourceUsageTypePayAsYouGo,
-            int findElementTimeout)
+            string resourceUsageTypePayAsYouGo)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var printerContainer = getPrinterElement(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 
@@ -999,12 +1001,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ValidateServicePackContentOnClickPricePage(
             IWebElement printerContainer,
             string servicePackType,
-            int findElementTimeout,
+            string resourceServicePackTypeIncludedInClickPrice,
             out string monoMargin,
             out string servicePackUnitCost,
-            out string servicePackUnitPrice,
-            string resourceServicePackTypeIncludedInClickPrice)
+            out string servicePackUnitPrice)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+
             // Validation of content on click price page           
             monoMargin = "";
             servicePackUnitCost = "";
@@ -1032,8 +1035,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public bool VerifyClickPriceValues(int findElementTimeout)
+        public bool VerifyClickPriceValues()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, findElementTimeout);
             try
             {

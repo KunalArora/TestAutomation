@@ -1,8 +1,9 @@
-﻿using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Constants;
-using Brother.Tests.Specs.Domain.Enums;
-using Brother.Tests.Specs.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -73,9 +74,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"Enter the serial numbers and complete installation")]
         public void WhenEnterTheSerialNumbersAndCompleteInstallation()
         {
-            var products = _contextData.PrintersProperties;
-            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
-            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, products, _driver, installerWindowHandle);
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, _driver);
         }
 
 
@@ -85,14 +84,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             string resourceSwapTypeReplaceThePcb = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceThePcb, _contextData.Culture);
             _contextData.SwapNewDeviceMonoPrintCount = swapNewDeviceMonoPrintcount;
             _contextData.SwapNewDeviceColourPrintCount = swapNewDeviceColourPrintcount;
-            var products = _contextData.PrintersProperties;
-            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
             if( resourceSwapTypeReplaceThePcb.Equals(_contextData.SwapType, StringComparison.OrdinalIgnoreCase) == false)
             {
-                _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, products, _driver, swapNewDeviceSerialNumber, installerWindowHandle);
+                _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, _driver, swapNewDeviceSerialNumber);
             }
             _mpsInstallerContractStepActions.CloudInstallationRefresh(_installerDeviceInstallationPage);
-            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, products, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
+            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
         }
 
    }

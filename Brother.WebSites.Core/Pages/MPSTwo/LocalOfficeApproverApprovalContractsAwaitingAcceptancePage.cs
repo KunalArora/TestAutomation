@@ -41,8 +41,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
-        public void ClickOnViewSummary(int proposalId, int findElementTimeout, IWebDriver driver)
+        public void ClickOnViewSummary(int proposalId, IWebDriver driver)
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
             ClearAndType(ContractFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);

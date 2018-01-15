@@ -137,8 +137,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
-        public string EnterInstallerEmailAndProceed(int findElementTimeout)
+        public string EnterInstallerEmailAndProceed()
         {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button
             var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);

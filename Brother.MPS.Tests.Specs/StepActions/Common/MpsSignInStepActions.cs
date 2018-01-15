@@ -1,6 +1,5 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Enums;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -13,7 +12,7 @@ using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
-
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Common
 {

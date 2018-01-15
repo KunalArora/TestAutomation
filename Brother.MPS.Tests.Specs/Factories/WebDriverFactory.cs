@@ -1,6 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Specs.Domain.Enums;
-using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.ContextData;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;

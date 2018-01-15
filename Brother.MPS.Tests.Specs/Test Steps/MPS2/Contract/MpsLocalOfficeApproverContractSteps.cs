@@ -1,7 +1,8 @@
-﻿using Brother.Tests.Specs.ContextData;
-using Brother.Tests.Specs.Domain.Constants;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -61,7 +62,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var localOfficeApproverApprovalContractsAwaitingAcceptancePage = _mpsLocalOfficeApproverContractStepActions.NavigateToApprovalContractsAwaitingAcceptancePage(localOfficeApproverDashBoardPage);
-            var localOfficeApproverApprovalContractsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ClickViewSummary(localOfficeApproverApprovalContractsAwaitingAcceptancePage, _contextData.ProposalId);
+            var localOfficeApproverApprovalContractsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ClickViewSummary(localOfficeApproverApprovalContractsAwaitingAcceptancePage);
             _localOfficeApproverApprovalContractsAcceptedPage = _mpsLocalOfficeApproverContractStepActions.AcceptContract(localOfficeApproverApprovalContractsSummaryPage);
         }
 
@@ -92,8 +93,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"a Cloud MPS Local Office Approver will be able to see the installation request created above on the Manage Devices page for the above proposal")]
         public void WhenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
-            string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);
-            string url = _mpsLocalOfficeApproverContractStepActions.RetrieveInstallationRequestUrl(_localOfficeApproverManagedevicesManagePage, _contextData.InstallerEmail, _contextData.CompanyLocation, resourceInstallationStatusNotStarted);
+            string url = _mpsLocalOfficeApproverContractStepActions.RetrieveInstallationRequestUrl(_localOfficeApproverManagedevicesManagePage);
             _contextData.WebInstallUrl = url;
         }
 
@@ -144,11 +144,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"a Cloud MPS Local Office Approver will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal")]
         public void WhenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheInstalledDeviceIsSetBeingReplacedOnTheManageDevicesPageForTheAboveProposal()
         {
-            string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);
-            string resourceInstalledPrinterStatusBeingReplaced = _translationService.GetInstalledPrinterStatusText(TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
-
-            _mpsLocalOfficeApproverContractStepActions.VerifySwappedDeviceStatus(_localOfficeApproverManagedevicesManagePage, _contextData.SwapOldDeviceSerialNumber, resourceInstalledPrinterStatusBeingReplaced);
-            var url = _mpsLocalOfficeApproverContractStepActions.RetrieveInstallationRequestUrl(_localOfficeApproverManagedevicesManagePage, _contextData.InstallerEmail, _contextData.CompanyLocation, resourceInstallationStatusNotStarted);
+            _mpsLocalOfficeApproverContractStepActions.VerifySwappedDeviceStatus(_localOfficeApproverManagedevicesManagePage);
+            var url = _mpsLocalOfficeApproverContractStepActions.RetrieveInstallationRequestUrl(_localOfficeApproverManagedevicesManagePage);
             _contextData.WebSwapInstallUrl = url;
         }
 

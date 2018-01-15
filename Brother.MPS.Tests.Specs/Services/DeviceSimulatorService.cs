@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Newtonsoft.Json;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
