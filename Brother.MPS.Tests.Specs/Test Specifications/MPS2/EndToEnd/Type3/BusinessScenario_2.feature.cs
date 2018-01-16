@@ -98,7 +98,9 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeMono",
                         "CoverageColour",
                         "VolumeColour",
-                        "SendInstallationRequest"});
+                        "SendInstallationRequest",
+                        "MonoPrintCount",
+                        "ColorPrintCount"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "2",
@@ -108,7 +110,9 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "2000",
                         "0",
                         "0",
-                        "Yes"});
+                        "Yes",
+                        "2100",
+                        "0"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 14
@@ -130,6 +134,10 @@ testRunner.And(string.Format("a Cloud MPS Installer is able to install devices o
                         "tion and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
 testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

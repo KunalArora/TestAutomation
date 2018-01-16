@@ -35,11 +35,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string EditDeviceDataButtonSelector = ".js-mps-edit-device-data";
         private const string SendInstallationRequestActionsButtonSelector = ".js-mps-send-installation-request";
+        private const string ShowPrintCountsActionsButtonSelector = ".js-mps-view-print-count";
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
         private const string DeviceCheckboxSelector = ".js-mps-row-action";
         private const string InputEmailSelector = "#InputEmail";
         private const string ModalAlertSuccessSelector = ".modal-content.alert-success";
+        
+        // Show Print Counts modal selectors
+        private const string PrintCountsModalTableBodySelector = ".js-mps-print-counts-list > .modal-body > .table > tbody";
+        private const string PrintCountsModalCloseButtonSelector = ".js-mps-print-counts-list > .modal-header > .close";
+        private const string PrintCountsModalDateTimeSelector = ".mps-print-count-date";
+        private const string ColourPrintCountSelector = ".mps-print-count-colour";
+        private const string MonoPrintCountSelector = ".mps-print-count-mono";
+        private const string TotalPrintCountSelector = ".mps-print-count-total";
+
 
         // Web Elements
 
@@ -208,7 +218,97 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     break;
                 }
             }
+        }
 
+        // Returns true if print count values have been updated in the UI, otherwise, returns false
+        public bool IsPrintCountsUpdated(int findElementTimeout)
+        {
+            bool isUpdated = false;
+            var deviceRowFirstElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[0]; // Check for first device only
+
+            var PrintCountsRowElement = ClickShowPrintCounts(deviceRowFirstElement, findElementTimeout);
+            var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
+
+            if (!displayedTotalPrintCount.Text.Equals("-"))
+            {
+                isUpdated = true;
+            }
+
+            // Close Modal
+            SeleniumHelper.ClickSafety(
+                SeleniumHelper.FindElementByCssSelector(
+                PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+
+            return isUpdated;
+        }
+
+        // Verify the Total print count, Mono print count and Colour print count of the device given the mpsDeviceId
+        public void VerifyPrintCountsOfDevice(
+            string mpsDeviceId, int colourPrintCount, int monoPrintCount, int totalPrintCount, int findElementTimeout)
+        {
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement, findElementTimeout);
+                    var displayedDateTime = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, PrintCountsModalDateTimeSelector, findElementTimeout);
+                    var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
+                    var displayedColourPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, ColourPrintCountSelector, findElementTimeout);
+                    var displayedMonoPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, MonoPrintCountSelector, findElementTimeout);
+                    
+                    // Verify that date time is valid
+                    TestCheck.AssertIsNotEqual("-", displayedDateTime.Text, string.Format("Date Timestamp for print counts could not be verified for the device with device id = {0}", mpsDeviceId));
+
+                    // Verify print count values
+                    TestCheck.AssertIsEqual(
+                        totalPrintCount.ToString(), displayedTotalPrintCount.Text, string.Format("Total Print Count could not be verified for the device with device id = {0}", mpsDeviceId));
+                    
+                    TestCheck.AssertIsEqual(
+                        monoPrintCount.ToString(), displayedMonoPrintCount.Text, string.Format("Mono Print Count could not be verified for the device with device id = {0}", mpsDeviceId));
+                    
+                    if (displayedColourPrintCount.Text != "-")
+                    {
+                        TestCheck.AssertIsEqual(
+                        colourPrintCount.ToString(), displayedColourPrintCount.Text, string.Format("Colour Print Count could not be verified for the device with device id = {0}", mpsDeviceId));
+                    }
+
+                    // Close Modal
+                    SeleniumHelper.ClickSafety(
+                        SeleniumHelper.FindElementByCssSelector(
+                        PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+
+                    break;
+                }
+            }
+        }
+
+        // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values
+        private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement, int findElementTimeout)
+        {
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+
+            var ShowPrintCountsElement = SeleniumHelper.FindElementByCssSelector(
+                deviceRowElement, ShowPrintCountsActionsButtonSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(ShowPrintCountsElement, findElementTimeout);
+
+            var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalTableBodySelector, findElementTimeout);
+            var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement); 
+            
+            foreach(var rowElement in PrintCountsRowElements)
+            {
+                var TotalPrintCountElement = SeleniumHelper.FindElementByCssSelector(rowElement, TotalPrintCountSelector, findElementTimeout);
+                if (!TotalPrintCountElement.Text.Equals("-"))
+                {
+                    return rowElement;
+                }
+            }
+
+            return PrintCountsRowElements[0];
         }
     }
 }

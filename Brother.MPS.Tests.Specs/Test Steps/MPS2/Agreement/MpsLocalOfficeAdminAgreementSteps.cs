@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
 {
     [Binding]
-    public sealed class MpsLocalOfficeAdminAgreementSteps
+    public class MpsLocalOfficeAdminAgreementSteps
     {
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
@@ -33,6 +33,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             var dataQueryPage = _mpsLoAdminAgreement.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
             var localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
             _mpsLoAdminAgreement.EnableInstallationOption(localOfficeAdminAgreementDevicesPage, installationType, communicationMethod);
+        }
+
+        [Then(@"a Cloud MPS Local Office Admin can verify the correct reflection of updated print counts")]
+        public void ThenACloudMPSLocalOfficeAdminCanVerifyTheCorrectReflectionOfUpdatedPrintCounts()
+        {
+            var localOfficeAdminDashboardPage = _mpsSignIn.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dataQueryPage = _mpsLoAdminAgreement.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
+            var localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
+            localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.VerifyUpdatedPrintCounts(localOfficeAdminAgreementDevicesPage);
         }
     }
 }

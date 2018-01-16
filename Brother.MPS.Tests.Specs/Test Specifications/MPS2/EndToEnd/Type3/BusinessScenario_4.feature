@@ -9,11 +9,11 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest |
-		| DCP-8110DN   | 1        | Yes              | No          | 25           | 2250       | 0              | 0            | Yes                     |
-		| MFC-L8650CDW | 1        | No               | Yes         | 25           | 2250       | 25             | 2250         | No                      |
-		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2250       | 25             | 2250         | Yes                     |
-		| DCP-8250DN   | 2        | No               | No          | 25           | 2250       | 0              | 0            | Yes                     |
+		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount |
+		| DCP-8110DN   | 1        | Yes              | No          | 25           | 2250       | 0              | 0            | Yes                     | 2250           | 0               |
+		| MFC-L8650CDW | 1        | No               | Yes         | 25           | 2250       | 25             | 2250         | No                      | 1000           | 1250            |
+		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2250       | 25             | 2250         | Yes                     | 1200           | 1350            |
+		| DCP-8250DN   | 2        | No               | No          | 25           | 2250       | 0              | 0            | Yes                     | 2300           | 0               |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -24,7 +24,8 @@ When a Cloud MPS Local Office Admin enables the "<InstallationType>" installatio
 And I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to do both single device and bulk installation using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that all devices are installed and responding
-
+When the print counts of the devices are updated
+Then I can verify the correct reflection of updated print counts
 
 @BUK
 Scenarios: 

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("LOW")]
     public partial class CloudMPSUKDealerCanDeleteProposalFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BUK.
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "LOW"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

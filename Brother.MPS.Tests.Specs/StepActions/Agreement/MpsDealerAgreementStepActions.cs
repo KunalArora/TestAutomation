@@ -441,7 +441,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _excelHelper.DeleteExcelFile(excelFilePath);
         }
 
-        public void VerifyThatDevicesAreInstalled(DealerAgreementDevicesPage dealerAgreementDevicesPage,
+        public DealerAgreementDevicesPage VerifyThatDevicesAreInstalled(DealerAgreementDevicesPage dealerAgreementDevicesPage,
             string resourceInstalledPrinterStatusInstalled, string resourceDeviceConnectionStatusResponding)
         {
             // Switch back to Dealer window
@@ -468,6 +468,39 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Verify updated devices' data in excel sheet
             VerifyUpdatedDeviceDataInExcelSheet(
                 dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding, resourceInstalledPrinterStatusInstalled);
+
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage VerifyUpdatedPrintCounts(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+
+            // Refresh page until print counts are updated
+            int retries = 0;
+            while(!dealerAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
+            {
+                _dealerWebDriver.Navigate().Refresh();
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                    RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception(
+                        string.Format("Number of retries exceeded the default limit during verification of print counts for agreement {0}", _contextData.AgreementId));
+                }
+            }
+
+            // Verify print count values for all devices one by one
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.VerifyPrintCountsOfDevice(
+                    device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+            }
+
+            return dealerAgreementDevicesPage;
         }
 
         #region private methods

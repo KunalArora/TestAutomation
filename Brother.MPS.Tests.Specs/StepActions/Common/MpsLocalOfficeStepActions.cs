@@ -122,6 +122,34 @@ namespace Brother.Tests.Specs.StepActions.Common
             ClickSafety(localOfficeAgreementDevicesPage.InstallationOptionSaveButtonElement, localOfficeAgreementDevicesPage);
         }
 
+        public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
+        {
+            // Refresh page until print counts are updated
+            int retries = 0;
+            while (!localOfficeAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
+            {
+                webDriver.Navigate().Refresh();
+                localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                    RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception(
+                        string.Format("Number of retries exceeded the default limit during verification of print counts for agreement {0}", _contextData.AgreementId));
+                }
+            }
+
+            // Verify print count values for all devices one by one
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                localOfficeAgreementDevicesPage.VerifyPrintCountsOfDevice(
+                    device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+            }
+
+            return localOfficeAgreementDevicesPage;
+        }
+
         public void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);

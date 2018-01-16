@@ -95,7 +95,7 @@ namespace Brother.Tests.Specs.Services
         {
         }
 
-        public void RunMeterReadCloudSyncCommand(int proposalId)
+        public void RunMeterReadCloudSyncCommand(int proposalId) // Pass AgreementId in case of Type 3
         {
             string commandName = string.Format("MPS:NEW:MeterReadCloudSyncCommand&ProposalId={0}&CountryIso=GB", proposalId);
             string commandUrl = string.Format(_commandBaseUrl, commandName);

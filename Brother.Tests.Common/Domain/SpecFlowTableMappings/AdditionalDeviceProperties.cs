@@ -42,5 +42,14 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string CommunicationMethod { get; set; }
         public int DeviceIndex { get; set; }
         public bool IsRegisteredOnBoc { get; set; }
+        public int MonoPrintCount { get; set; }
+        public int ColorPrintCount { get; set; }
+        public int TotalPrintCount 
+        {
+            get
+            {
+                return MonoPrintCount + ColorPrintCount;
+            }
+        }
     }
 }

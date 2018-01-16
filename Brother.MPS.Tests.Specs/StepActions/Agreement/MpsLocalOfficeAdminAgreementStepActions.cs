@@ -39,5 +39,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             return NavigateToAgreementDevicesPage(dataQueryPage, _loAdminWebDriver);
         }
+
+        public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
+        {
+            return VerifyUpdatedPrintCounts(localOfficeAgreementDevicesPage, _loAdminWebDriver);
+        }
     }
 }

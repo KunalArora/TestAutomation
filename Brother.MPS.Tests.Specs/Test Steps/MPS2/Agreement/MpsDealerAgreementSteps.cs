@@ -223,8 +223,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
             string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
                 TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
-            _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
                 _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
+        }
+
+        [Then(@"I can verify the correct reflection of updated print counts")]
+        public void ThenICanVerifyTheCorrectReflectionOfUpdatedPrintCounts()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyUpdatedPrintCounts(_dealerAgreementDevicesPage);
         }
     }
 }
