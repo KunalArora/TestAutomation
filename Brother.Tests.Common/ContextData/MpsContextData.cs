@@ -73,6 +73,6 @@ namespace Brother.Tests.Common.ContextData
         public string LeasingFinanceReference { get; set; }
         public string DealerReference { get; set; }
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
-
+        public int DeviceCount { get; set; }
     }
 }

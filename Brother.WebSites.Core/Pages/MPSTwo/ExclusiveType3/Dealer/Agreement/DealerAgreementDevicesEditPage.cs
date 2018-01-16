@@ -78,6 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             ClearAndType(CustomerNameInputElement, values.CompanyName);
             ClearAndType(ContactFirstNameInputElement, values.FirstName);
+            ClearAndType(ContactLastNameInputElement, values.LastName);
             ClearAndType(PropertyNumberInputElement, values.PropertyNumber);
             ClearAndType(StreetInputElement, values.PropertyStreet);
             ClearAndType(TownInputElement, values.PropertyTown);
@@ -86,9 +87,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void FillNonMandatoryDetails(CustomerInformationOptionalFields values)
         {
-
             // Address
-            ClearAndType(ContactLastNameInputElement, values.LastName);
             ClearAndType(EmailInputElement, values.Email);
             ClearAndType(TelephoneInputElement, values.Telephone);
             ClearAndType(AreaInputElement, values.PropertyArea);
@@ -144,6 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
     {
         private string _companyName;
         private string _firstName;
+        private string _lastName;
         private string _propertyNumber;
         private string _propertyStreet;
         private string _propertyTown;
@@ -153,6 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             _companyName = MpsUtil.CompanyName();
             _firstName = MpsUtil.FirstName();
+            _lastName = MpsUtil.SurName();
             _propertyNumber = MpsUtil.PropertyNumber();
             _propertyStreet = MpsUtil.PropertyStreet();
             _propertyTown = MpsUtil.PropertyTown();
@@ -161,6 +162,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public string CompanyName { get { return _companyName; } }
         public string FirstName { get { return _firstName; } }
+        public string LastName { get { return _lastName; } }
         public string PropertyNumber { get { return _propertyNumber; } }
         public string PropertyStreet { get { return _propertyStreet; } }
         public string PropertyTown { get { return _propertyTown; } }
@@ -169,7 +171,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
     public class CustomerInformationOptionalFields
     {
-        private string _surName;
         private string _telephone; 
         private string _email;
         private string _propertyArea;
@@ -182,7 +183,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public CustomerInformationOptionalFields()
         {
-            _surName = MpsUtil.SurName();
             _telephone = MpsUtil.CompanyTelephone();
             _email = MpsUtil.GenerateUniqueEmail();
             _propertyArea = MpsUtil.Area();
@@ -194,7 +194,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             _installationNotes = MpsUtil.InstallationNotes();
         }
 
-        public string LastName { get { return _surName; } }
         public string Telephone { get { return _telephone; } }
         public string Email { get { return _email; } }
         public string PropertyArea { get { return _propertyArea; } }

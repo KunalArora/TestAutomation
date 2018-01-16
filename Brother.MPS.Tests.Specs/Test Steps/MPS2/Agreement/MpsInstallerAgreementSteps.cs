@@ -49,11 +49,32 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             {
                 _mpsInstallerAgreement.BulkInstallDevicesForCloudBor();
             }
+            else if (communicationMethod.ToLower().Equals("cloud") && installationType.ToLower().Equals("web"))
+            {
+                _mpsInstallerAgreement.BulkInstallDevicesForCloudWeb();
+            }
             else
             {
                 Assert.Fail(
                     string.Format(
                     "Bulk device Installation steps for communication method {0} & installation type {1} not implemented yet", communicationMethod, installationType));
+            }
+        }
+
+        [When(@"a Cloud MPS Installer is able to do both single device and bulk installation using ""(.*)"" communication and ""(.*)"" installation")]
+        public void WhenACloudMPSInstallerIsAbleToDoBothSingleDeviceAndBulkInstallationUsingCommunicationAndInstallation(string communicationMethod, string installationType)
+        {
+            if (communicationMethod.ToLower().Equals("cloud") && installationType.ToLower().Equals("usb"))
+            {
+                _mpsInstallerAgreement.SingleDeviceInstallationForCloudUsb(
+                    _contextData.AdditionalDeviceProperties[0]); // Single device installation for 1st device
+                _mpsInstallerAgreement.BulkInstallDevicesForCloudUsb();
+            }
+            else
+            {
+                Assert.Fail(
+                    string.Format(
+                    "Parallel Single and Bulk device Installation steps for communication method {0} & installation type {1} not implemented yet", communicationMethod, installationType));
             }
         }
     }

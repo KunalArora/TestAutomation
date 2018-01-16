@@ -197,6 +197,8 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDevicesUploadPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudWebPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationManageInstallationsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationSelectMethodPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDevicesPage.cs" />

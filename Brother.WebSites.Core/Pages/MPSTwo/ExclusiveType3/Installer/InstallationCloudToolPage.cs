@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -47,6 +48,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public IWebElement GetPinButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-btn-set-serial")]
         public IWebElement SetSerialButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#serialModal > .modal-dialog > .modal-content > .modal-header > button.close")]
+        public IWebElement CloseSetSerialNumberModalButtonElement;
+        [FindsBy(How = How.Id, Using = "content_0_Software_LinkDownloadSoftware")]
+        public IWebElement LinkDownloadSoftwareElement;       
 
 
         public bool IsDeviceConnected(string mpsDeviceId)
@@ -109,6 +114,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             return true;
         }
 
+        public void VerifySoftwareDownloadLink(string expectedSoftwareDownloadLink)
+        {
+            TestCheck.AssertTextContains(expectedSoftwareDownloadLink, LinkDownloadSoftwareElement.GetAttribute("href"), "Software Download link verification failed");
+        }
+
         private void SelectSerialNumberHelper(string serialNumber, int findElementTimeout)
         {
             var serialNumberTableElement = SeleniumHelper.FindElementByCssSelector(SelectSerialTableSelector, findElementTimeout);
@@ -123,9 +133,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                 }
             }
 
-            SeleniumHelper.ClickSafety(SetSerialButtonElement, findElementTimeout);
+            if(SetSerialButtonElement.Enabled)
+            {
+                SeleniumHelper.ClickSafety(SetSerialButtonElement, findElementTimeout);
+            }
+            else
+            {
+                SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement, findElementTimeout);
+            }
         }
-
-
     }
 }

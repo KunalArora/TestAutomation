@@ -13,7 +13,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public int VolumeMono { get; set; }
         public int CoverageColour { get; set; }
         public int VolumeColour { get; set; }
-        public string Installation { get; set; }
+        public string SendInstallationRequest { get; set; }
 
         public bool IncludeDelivery
         {

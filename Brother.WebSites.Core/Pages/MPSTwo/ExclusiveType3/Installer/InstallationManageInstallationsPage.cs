@@ -27,6 +27,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public IWebElement BulkInstallDevicesButton;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-paging-dt-select-all")]
         public IWebElement BulkSelectAllDevicesCheckboxElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
+        public IWebElement DeviceContainerElement;
 
+        public int NumberOfDevices()
+        {
+            return SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement).Count;
+        }
     }
 }

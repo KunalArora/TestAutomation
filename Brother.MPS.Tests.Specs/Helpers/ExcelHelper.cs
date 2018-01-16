@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.Helpers
 {
@@ -126,7 +127,8 @@ namespace Brother.Tests.Specs.Helpers
                     
                     // Fill Mandatory fields
                     ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value = mandatoryFieldValues.CompanyName;                  
-                    ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value = mandatoryFieldValues.FirstName;                  
+                    ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value = mandatoryFieldValues.FirstName;
+                    ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value = mandatoryFieldValues.LastName;
                     ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value = mandatoryFieldValues.PropertyNumber;                
                     ws.Cells[row, PROPERTY_STREET_COL_NUM].Value = mandatoryFieldValues.PropertyStreet;  
                     ws.Cells[row, PROPERTY_TOWN_COL_NUM].Value = mandatoryFieldValues.PropertyTown;               
@@ -135,7 +137,6 @@ namespace Brother.Tests.Specs.Helpers
                     if (optionalFieldValues != null)
                     {
                         // Fill Non Mandatory fields
-                        ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value = optionalFieldValues.LastName;
                         ws.Cells[row, TELEPHONE_COL_NUM].Value = optionalFieldValues.Telephone;
                         ws.Cells[row, EMAIL_COL_NUM].Value = optionalFieldValues.Email;
                         ws.Cells[row, PROPERTY_AREA_COL_NUM].Value = optionalFieldValues.PropertyArea;
@@ -183,6 +184,7 @@ namespace Brother.Tests.Specs.Helpers
 
                     // Customer details mandatory fields
                     deviceProperties.CustomerName = HandleNullCase(ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value);
+                    deviceProperties.ContactLastName = HandleNullCase(ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value);
                     deviceProperties.ContactFirstName = HandleNullCase(ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value);
                     deviceProperties.AddressNumber = HandleNullCase(ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value);
                     deviceProperties.AddressStreet = HandleNullCase(ws.Cells[row, PROPERTY_STREET_COL_NUM].Value);
@@ -191,7 +193,6 @@ namespace Brother.Tests.Specs.Helpers
 
 
                     // Customer details Non Mandatory fields
-                    deviceProperties.ContactLastName = HandleNullCase(ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value);
                     deviceProperties.Telephone = HandleNullCase(ws.Cells[row, TELEPHONE_COL_NUM].Value);
                     deviceProperties.Email = HandleNullCase(ws.Cells[row, EMAIL_COL_NUM].Value);
                     deviceProperties.AddressArea = HandleNullCase(ws.Cells[row, PROPERTY_AREA_COL_NUM].Value);
@@ -211,6 +212,30 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
+        public void VerifyDeviceStatusAndConnectionStatus(
+           string excelFilePath, int deviceRowIndex, string resourceDeviceStatus, string resourceConnectionStatus)
+        {
+            var fileInfo = new FileInfo(excelFilePath);
+            if (fileInfo.Exists)
+            {
+                using (ExcelPackage pack = new ExcelPackage(fileInfo))
+                {
+                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                    TestCheck.AssertIsEqual(resourceDeviceStatus, ws.Cells[deviceRowIndex, DEVICE_STATUS_COL_NUM].Value.ToString(), string.Format(
+                            "Installed device connection status could not be validated in Excel sheet = {0} for device id = {1}",
+                            excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
+
+                    TestCheck.AssertIsEqual(resourceConnectionStatus, ws.Cells[deviceRowIndex, CONNECTION_STATUS_COL_NUM].Value.ToString(), string.Format(
+                            "Installed device status could not be validated in Excel sheet = {0} for device id = {1}",
+                            excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+            }
+        }
 
         public void DeleteExcelFile(string filePath)
         {

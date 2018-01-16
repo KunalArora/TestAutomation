@@ -1,13 +1,13 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
@@ -16,7 +16,6 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 
 namespace Brother.Tests.Specs.StepActions.Agreement
@@ -107,21 +106,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<DealerAgreementCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerAgreementCreateClickPricePage AddThesePrintersToAgreementAndProceed(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage,
-            IEnumerable<PrinterProperties> products)
+        public DealerAgreementCreateClickPricePage AddThesePrintersToAgreementAndProceed(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage)
         {
+            int deviceCount = 0;
+            var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
+                deviceCount = deviceCount + product.Quantity;
                 PopulatePrinterDetails(dealerAgreementCreateProductsPage, product.Model, product.Quantity, product.InstallationPack, product.ServicePack);
             }
+            _contextData.DeviceCount = deviceCount;
             ClickSafety(dealerAgreementCreateProductsPage.NextButton, dealerAgreementCreateProductsPage);
             return PageService.GetPageObject<DealerAgreementCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerAgreementCreateSummaryPage PopulateCoverageAndVolumeAndProceed(
-            DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage,
-            IEnumerable<PrinterProperties> products)
+        public DealerAgreementCreateSummaryPage PopulateCoverageAndVolumeAndProceed(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage)
         {
+            var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
                 PopulatePrinterCoverageAndVolume(dealerAgreementCreateClickPricePage, 
@@ -345,7 +346,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                 foreach(var product in _contextData.PrintersProperties)
                 {
-                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         dealerAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                         devicesInstallingCount++;
@@ -384,7 +385,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                 foreach (var product in _contextData.PrintersProperties)
                 {
-                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         // Click Send Installation Request button in Actions dropdown
                         dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
@@ -463,6 +464,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 dealerAgreementDevicesPage.VerifySerialNumberOfDevice(
                     device.MpsDeviceId, device.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
             }
+
+            // Verify updated devices' data in excel sheet
+            VerifyUpdatedDeviceDataInExcelSheet(
+                dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding, resourceInstalledPrinterStatusInstalled);
         }
 
         #region private methods
@@ -585,6 +590,28 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private string RemoveCurrencySymbol(string value) // TODO: Extend this function to handle currencies for other countries
         {
             return value.Substring(1); // Removes 1st character from string
+        }
+
+        private void VerifyUpdatedDeviceDataInExcelSheet(
+            DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceDeviceConnectionStatusResponding, string resourceInstalledPrinterStatusInstalled)
+        {
+            // 1. Click Export All button
+            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+
+            // 2. Get Downloaded file path
+            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+
+            // 3. Verify Device status & Connection status mentioned in excel
+            int rows = _excelHelper.GetNumberOfRows(excelFilePath);
+            // Set initial value of row = 2 as 1st row is table header information
+            for (int row = 2; row <= rows; row++)
+            {
+                _excelHelper.VerifyDeviceStatusAndConnectionStatus(
+                    excelFilePath, row, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
+            }
+
+            // 4. Delete Excel
+            _excelHelper.DeleteExcelFile(excelFilePath);
         }
         #endregion
     }

@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Clic
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("MEDIUM")]
     public partial class CloudMPSClickPriceRefactorGermanyFeature
     {
         
@@ -42,7 +43,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Clic
                         "MPS",
                         "TEST",
                         "UAT",
-                        "BIEPC113"});
+                        "BIEPC113",
+                        "MEDIUM"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

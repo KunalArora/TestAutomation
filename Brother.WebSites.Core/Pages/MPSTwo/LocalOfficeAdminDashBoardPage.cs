@@ -3,12 +3,27 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminDashBoardPage : BasePage
+    public class LocalOfficeAdminDashBoardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/local-office/dashboard";
+        private const string _validationElementSelector = ".separator [href=\"/mps/local-office/admin\"]"; // Admin URL selector
+        private const string _url = "/mps/local-office/dashboard";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get { return _url; }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {

@@ -51,6 +51,16 @@ namespace Brother.Tests.Specs.Helpers
         AdditionalDeviceProperties GetDeviceDetails(string excelFilePath, int row);
 
         /// <summary>
+        /// Verify that the device status & connection status of the device in excel sheet given the device row number
+        /// </summary>
+        /// <param name="excelFilePath"></param>
+        /// <param name="deviceRow"></param>
+        /// <param name="resourceInstalledPrinterStatus"></param>
+        /// <param name="resourceDeviceConnectionStatus"></param>
+        void VerifyDeviceStatusAndConnectionStatus(
+           string excelFilePath, int deviceRow, string resourceInstalledPrinterStatus, string resourceDeviceConnectionStatus);
+
+        /// <summary>
         /// Delete Excel file
         /// </summary>
         /// <param name="filePath"></param>

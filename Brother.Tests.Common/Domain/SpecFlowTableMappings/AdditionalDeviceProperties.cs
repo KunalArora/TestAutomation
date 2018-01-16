@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
 {
-    // This class contains the fields which are present in Devices Excel sheet for Type 3
+    // This class contains the fields which are present in Devices Excel sheet for Type 3 plus some additional properties
     public class AdditionalDeviceProperties
     {
         public string AgreementId { get; set; }
@@ -41,5 +41,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
         public int DeviceIndex { get; set; }
+        public bool IsRegisteredOnBoc { get; set; }
     }
 }

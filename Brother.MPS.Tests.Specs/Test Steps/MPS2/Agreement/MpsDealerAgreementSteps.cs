@@ -136,8 +136,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             var products = printers.CreateSet<PrinterProperties>();
             _contextData.PrintersProperties = products;
-            _dealerAgreementCreateClickPricePage = _mpsDealerAgreement.AddThesePrintersToAgreementAndProceed(_dealerAgreementCreateProductsPage, products);
-            _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage, products);
+            _dealerAgreementCreateClickPricePage = _mpsDealerAgreement.AddThesePrintersToAgreementAndProceed(_dealerAgreementCreateProductsPage);
+            _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
         }                   
 
         [When(@"I complete the setup of agreement")]

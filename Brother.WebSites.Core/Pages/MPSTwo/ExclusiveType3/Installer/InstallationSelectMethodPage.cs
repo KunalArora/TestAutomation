@@ -29,13 +29,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-info.mps-alert.js-mps-alert")]
         public IWebElement AgreementReferenceAlertElement;
-
         [FindsBy(How = How.Id, Using = "content_0_LabelSelectDevicesInfo")]
         public IWebElement NumberOfDevicesAlertElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-more-install-options")]
+        public IWebElement MoreInstallationOptionsButtonElement;
+        
 
-
-
-        public void VerifyDeviceDetails(string expectedAgreementReference, int expectedNumberOfDevices, string modelName)
+        public void VerifyDeviceDetails(string expectedAgreementReference, int expectedNumberOfDevices, string modelName = null)
         {
             string displayedAgreementReference = AgreementReferenceAlertElement.Text;
 
@@ -45,9 +45,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
             string displayedNumberOfDevices = NumberOfDevicesAlertElement.Text;
 
-            TestCheck.AssertIsEqual(
-                displayedNumberOfDevices, string.Format("Total number of devices selected for installation: {0} (Model: {1})", expectedNumberOfDevices.ToString(), modelName),
-                "Number of devices/model name validation failed on Select Installation Method page");
+            if (modelName != null) // For single device installation
+            {
+                TestCheck.AssertIsEqual(
+                    displayedNumberOfDevices, string.Format("Total number of devices selected for installation: {0} (Model: {1})", expectedNumberOfDevices.ToString(), modelName), 
+                    "Number of devices/model name validation failed on Select Installation Method page");
+            }
+            else // For bulk installation
+            {
+                TestCheck.AssertIsEqual(
+                    displayedNumberOfDevices, string.Format("Total number of devices selected for installation: {0}", expectedNumberOfDevices.ToString()),
+                    "Number of devices validation failed on Select Installation Method page");
+            }
         }
 
         public IWebElement BORInstallationButton(int findElementTimeout)
@@ -58,6 +67,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public IWebElement WebInstallationButton(int findElementTimeout)
         {
             return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2", findElementTimeout);
+        }
+
+        public IWebElement USBInstallationButton(int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4", findElementTimeout);
         }
     }
 }

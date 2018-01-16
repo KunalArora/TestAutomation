@@ -98,7 +98,7 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeMono",
                         "CoverageColour",
                         "VolumeColour",
-                        "Installation"});
+                        "SendInstallationRequest"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "2",

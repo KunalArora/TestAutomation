@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -12,7 +13,6 @@ using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Common
 {
@@ -23,12 +23,14 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _loApproverWebDriver;
         private IWebDriver _customerWebDriver;
         private IWebDriver _serviceDeskWebDriver;
+        private IWebDriver _loAdminWebDriver;
         private IContextData _contextData;
 
         private const string dealerDashboardUrl = "/mps/dealer/dashboard";
         private const string loApproverDashboardUrl = "/mps/local-office/dashboard";
         private const string customerDashboardUrl = "/mps/customer/dashboard";
         private const string serviceDeskDashboardUrl = "/mps/local-office/dashboard";
+        private const string loAdminDashboardUrl = "/mps/local-office/dashboard";
 
 
         public MpsSignInStepActions (
@@ -90,6 +92,23 @@ namespace Brother.Tests.Specs.StepActions.Common
                 var uri = new Uri(_serviceDeskWebDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, serviceDeskDashboardUrl);
                 return PageService.LoadUrl<ServiceDeskDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _serviceDeskWebDriver);
+            }
+        }
+
+        public LocalOfficeAdminDashBoardPage SignInAsLocalOfficeAdmin(string email, string password, string url)
+        {
+            _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
+            _loAdminWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeAdmin]);
+            if (_loAdminWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _loAdminWebDriver);
+                return SignInToMpsDashboardAs<LocalOfficeAdminDashBoardPage>(signInPage, email, password, _loAdminWebDriver);
+            }
+            else
+            {
+                var uri = new Uri(_loAdminWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loAdminDashboardUrl);
+                return PageService.LoadUrl<LocalOfficeAdminDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loAdminWebDriver);
             }
         }
 

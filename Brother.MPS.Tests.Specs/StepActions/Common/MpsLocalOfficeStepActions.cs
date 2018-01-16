@@ -1,6 +1,5 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Domain.Enums;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -9,7 +8,6 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Common
 {
@@ -48,7 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                 foreach (var product in _contextData.PrintersProperties)
                 {
-                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         localOfficeAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                         devicesInstallingCount++;
@@ -87,7 +85,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
                 foreach (var product in _contextData.PrintersProperties)
                 {
-                    if (displayedModelName.Equals(product.Model) && product.Installation.ToLower().Equals("yes"))
+                    if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         // Click Send Installation Request button in Actions dropdown
                         localOfficeAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
@@ -108,6 +106,20 @@ namespace Brother.Tests.Specs.StepActions.Common
             }
 
             return localOfficeAgreementDevicesPage;
+        }
+
+        public void EnableInstallationOption(
+            LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string installationType, string communicationMethod)
+        {
+            // Click Customise button element
+            ClickSafety(localOfficeAgreementDevicesPage.CustomiseButtonElement, localOfficeAgreementDevicesPage);
+
+            // Enable installation option
+            localOfficeAgreementDevicesPage.EnableInstallationOption(
+                communicationMethod, installationType, RuntimeSettings.DefaultFindElementTimeout);
+
+            // Click Save Button
+            ClickSafety(localOfficeAgreementDevicesPage.InstallationOptionSaveButtonElement, localOfficeAgreementDevicesPage);
         }
 
         public void ClickSafety(IWebElement element, IPageObject pageObject)

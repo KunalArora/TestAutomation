@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEn
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
+    [NUnit.Framework.CategoryAttribute("MEDIUM")]
     public partial class CalculationEngineScenariosFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.CalculationEn
                         "ignore",
                         "TEST",
                         "UAT",
-                        "MPS"});
+                        "MPS",
+                        "MEDIUM"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

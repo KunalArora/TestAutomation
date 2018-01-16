@@ -128,6 +128,7 @@
     <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsInstallerAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsLocalOfficeAdminAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
     <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
@@ -1385,6 +1386,7 @@
     <Compile Include="Test Steps\MPS2\Agreement\MpsInstallerAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeAdminAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">

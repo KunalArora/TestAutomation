@@ -9,18 +9,21 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model      | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | Installation |
-		| DCP-8110DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes          |
-		| DCP-8250DN | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes          |
+		| Model      | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest |
+		| DCP-8110DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes                     |
+		| DCP-8250DN | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes                     |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
 And I edit device data one by one for all devices (Fill Optional fields: "<OptionalFields_2>")
 And I can verify that devices are ready for installation
 Then I can create and send a bulk installation request
+When I export the device data into excel and retrieve installation information
+And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
+Then I can verify that all devices are installed and responding
 
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 |
-		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            | Cloud               | Web              |

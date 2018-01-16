@@ -40,6 +40,7 @@ namespace Brother.Tests.Common.ContextData
         string CustomerFirstName { get; set; }
         string CustomerLastName { get; set; }
         string WebSwapInstallUrl { get; set; }
+        string SwapType { get; set; }
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
  
         // Exclusively Type 3
@@ -49,6 +50,6 @@ namespace Brother.Tests.Common.ContextData
         string LeasingFinanceReference { get; set; }
         string DealerReference { get; set; }
         List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
-        string SwapType { get; set; }
+        int DeviceCount { get; set; }
     }
 }
