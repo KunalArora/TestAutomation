@@ -1,5 +1,6 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Services;
+
 namespace Brother.Tests.Specs.StepActions.Common
 {
     public class MpsApiCallStepActions
