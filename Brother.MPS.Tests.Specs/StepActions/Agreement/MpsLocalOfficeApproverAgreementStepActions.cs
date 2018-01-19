@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -21,14 +22,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
+            ILoggingService loggingService,
             IRuntimeSettings runtimeSettings)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
+            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.LocalApprovalReportingElement, localOfficeApproverDashBoardPage);
             var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
@@ -37,16 +40,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage)
         {
+            WriteLogOnMethodEntry(dataQueryPage);
             return NavigateToAgreementDevicesPage(dataQueryPage, _loApproverWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
+            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendBulkInstallationRequest(localOfficeAgreementDevicesPage, _loApproverWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage SendSingleInstallationRequests(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
+            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendSingleInstallationRequests(localOfficeAgreementDevicesPage, _loApproverWebDriver);
         }
     }

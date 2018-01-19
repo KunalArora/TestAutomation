@@ -1,6 +1,8 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -11,7 +13,6 @@ using OpenQA.Selenium;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Customer
 {
@@ -29,8 +30,9 @@ namespace Brother.Tests.Specs.StepActions.Customer
             IUrlResolver urlResolver,
             IRuntimeSettings runtimeSettings,
             IMpsWebToolsService webToolService,
+            ILoggingService loggingService,
             MpsSignInStepActions mpsSignIn)
-             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
@@ -40,6 +42,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerDashBoardPage SignInAsCustomerAndNavigateToDashboard(string url)
         {
+            WriteLogOnMethodEntry(url);
             string email = _contextData.CustomerEmail;
             string password = _contextData.CustomerPassword;
             return _mpsSignIn.SignInAsCustomer(email, password, url);
@@ -47,17 +50,20 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerConsumablesDevicesPage ClickOnComsumablesTab(CustomerDashBoardPage customerDashBoardPage)
         {
+            WriteLogOnMethodEntry(customerDashBoardPage);
             ClickSafety(customerDashBoardPage.CustomerConsumablesTabElement, customerDashBoardPage);
             return PageService.GetPageObject<CustomerConsumablesDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
+            WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         public void VerifyRaisedConsumableOrderStatus(CustomerConsumablesDevicesPage customerConsumablesDevicesPage)
         {
+            WriteLogOnMethodEntry(customerConsumablesDevicesPage);
             var itemList = customerConsumablesDevicesPage.CreateElementValueList();
             var products = _contextData.PrintersProperties;
             foreach ( var product in products)
@@ -77,6 +83,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         private void AssertNormalOrHasCount(string propTonerInkStatus, string pageCellValue, string messageTonerName, PrinterProperties propForMessage)
         {
+            WriteLogOnMethodEntry(propTonerInkStatus, pageCellValue, messageTonerName, propForMessage);
             if (propTonerInkStatus != "Empty")
             {
                 return;
@@ -91,6 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public void VerifyHasRequestOnList(CustomerServiceRequestActivePage customerServiceRequestActivePage)
         {
+            WriteLogOnMethodEntry(customerServiceRequestActivePage);
             var products = _contextData.PrintersProperties;
 
             // LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3
@@ -109,6 +117,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerServiceRequestActivePage ClickOnServiceRequestsTab(CustomerDashBoardPage customerDashBoardPage)
         {
+            WriteLogOnMethodEntry(customerDashBoardPage);
             ClickSafety(customerDashBoardPage.CustomerServiceRequestTabElement, customerDashBoardPage);
             return PageService.GetPageObject<CustomerServiceRequestActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }

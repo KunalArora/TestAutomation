@@ -7,7 +7,7 @@ using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class DeviceSimulatorService : IDeviceSimulatorService
+    public class DeviceSimulatorService : MarshalByRefObject, IDeviceSimulatorService
     {
         private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";

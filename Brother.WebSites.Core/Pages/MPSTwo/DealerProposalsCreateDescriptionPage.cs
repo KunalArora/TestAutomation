@@ -1,4 +1,3 @@
-using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -271,7 +270,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateProposalName(string proposalName)
         {
-            SeleniumHelper.LoggingService.WriteLog(LoggingLevel.INFO, "PopulateProposalName({0})", proposalName);
             var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
             ClearAndType(proposalNameElement, proposalName.ToString());
         }

@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Common.Logging;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -134,9 +133,5 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         bool IsElementDisplayed(ISearchContext context, string selector);
 
-        /// <summary>
-        /// Logging Service
-        /// </summary>
-        ILoggingService LoggingService {get;}
     }
 }

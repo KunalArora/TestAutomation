@@ -10,7 +10,7 @@ using NUnit.Framework.Constraints;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class WebRequestService : IWebRequestService
+    public class WebRequestService : MarshalByRefObject, IWebRequestService
     {
         /// <summary>
         /// Sends an http/s request and returns a WebPageResponse object

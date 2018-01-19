@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Common.Logging;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -9,17 +8,15 @@ using System.Linq;
 
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
-    public class SeleniumHelper : ISeleniumHelper
+    public class SeleniumHelper : MarshalByRefObject, ISeleniumHelper
     {
         private IWebDriver _webDriver;
         private const string DATA_ATTRIBUTE_SELECTOR_PATTERN = "[data-{0}='{1}']";
         private const string ATTRIBUTE_SELECTOR_PATTERN = "['{0}'='{1}']";
-        private readonly ILoggingService _loggingService;
 
-        public SeleniumHelper(IWebDriver webDriver, ILoggingService loggingService)
+        public SeleniumHelper(IWebDriver webDriver)
         {
             _webDriver = webDriver;
-            _loggingService = loggingService;
         }
 
         public IWebElement FindElementByCssSelector(string selector, int timeout)
@@ -201,16 +198,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                 return false;
             }
         }
-
-        public ILoggingService LoggingService
-        {
-            get
-            {
-                return _loggingService;
-            }
-
-        }
-
 
     }
 }

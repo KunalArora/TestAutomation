@@ -17,7 +17,7 @@ using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class PageService : IPageService
+    public class PageService : MarshalByRefObject, IPageService
     {
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
@@ -63,8 +63,12 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,_loggingService), RuntimeSettings = _runtimeSettings };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver), RuntimeSettings = _runtimeSettings };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
+            if( pageObject is IILoggingService)
+            {
+                ((IILoggingService)pageObject).LoggingService = _loggingService;
+            }
 
             if (timeout != null)
             {
@@ -72,6 +76,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
+            pageObject = LoggingProxy.Wrap(_loggingService, pageObject);
             return pageObject;
         }
 

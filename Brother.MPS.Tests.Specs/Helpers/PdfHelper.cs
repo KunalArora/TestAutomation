@@ -1,9 +1,10 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using System;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    class PdfHelper : IPdfHelper
+    class PdfHelper : MarshalByRefObject, IPdfHelper
     {
         public void DeletePdf(string fileName)
         {

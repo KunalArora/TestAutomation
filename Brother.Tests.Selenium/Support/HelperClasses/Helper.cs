@@ -1,20 +1,19 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Xml;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
-    public abstract class Helper
+    public abstract class Helper : MarshalByRefObject
     {
         public static string OrpActivationCode { get; set; }
         public static int OrpNumLicenses { get; set; }

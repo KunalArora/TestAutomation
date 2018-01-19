@@ -1,17 +1,17 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Brother.Tests.Common.RuntimeSettings;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    public class ExcelHelper: IExcelHelper
+    public class ExcelHelper: MarshalByRefObject, IExcelHelper
     {
         // Excel Properties
         private const int TOTAL_NUMBER_OF_COLUMNS = 25;

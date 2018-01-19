@@ -8,7 +8,7 @@ using Brother.Tests.Specs.Resolvers;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class RunCommandService : IRunCommandService
+    public class RunCommandService : MarshalByRefObject, IRunCommandService
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;

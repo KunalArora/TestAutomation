@@ -1,15 +1,30 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
 {
-    public class MpsApiCallStepActions
+    public class MpsApiCallStepActions : StepActionBase
     {
         private readonly IContextData _contextData;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
         private readonly IRunCommandService _runCommandService;
 
-        public MpsApiCallStepActions(IContextData contextData, IDeviceSimulatorService deviceSimulatorService, IRunCommandService runCommandService)
+        public MpsApiCallStepActions(
+            IDeviceSimulatorService deviceSimulatorService,
+            IRunCommandService runCommandService,
+            IWebDriverFactory webDriverFactory,
+            IContextData contextData,
+            IPageService pageService,
+            ScenarioContext context,
+            IUrlResolver urlResolver,
+            ILoggingService loggingService,
+            IRuntimeSettings runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
@@ -18,6 +33,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void UpdateAndNotifyBOCForPrintCounts() // For Type 3
         {
+            WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             var devices = _contextData.AdditionalDeviceProperties;
 

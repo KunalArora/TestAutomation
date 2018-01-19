@@ -37,5 +37,11 @@ namespace Brother.Tests.Common.Logging
         /// <param name="args">An Object array containing zero or more objects to format</param>
         void WriteLog(LoggingLevel level, string format, params object[] args);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        bool IsLoggingEnable(LoggingLevel level);
     }
 }

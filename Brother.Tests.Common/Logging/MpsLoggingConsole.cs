@@ -45,14 +45,14 @@ namespace Brother.Tests.Common.Logging
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, exception.StackTrace));
         }
 
-        private bool IsLoggingEnable(LoggingLevel loggingLevel)
+        public bool IsLoggingEnable(LoggingLevel loggingLevel)
         {
             return loggingLevel >= _loggingLevel;
         }
 
         private string PreString(LoggingLevel level)
         {
-            var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.FFF");
+            var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
         }
     }
@@ -73,4 +73,5 @@ namespace Brother.Tests.Common.Logging
 #endif 
         }
     }
+
 }

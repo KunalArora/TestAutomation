@@ -1,6 +1,5 @@
-﻿using System;
-using System.Linq;
-using Brother.Online.TestSpecs._80.Test_Steps;
+﻿using Brother.Online.TestSpecs._80.Test_Steps;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -9,13 +8,13 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
-using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.OmniJoin;
 using OpenQA.Selenium;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
-    public abstract partial class BasePage
+    public abstract partial class BasePage : IILoggingService
     {
         public static string BrotherOnlineBaseUrl
         {
@@ -46,6 +45,9 @@ namespace Brother.WebSites.Core.Pages.Base
             get { return SetAtyoursideSignInUrl(); }
 
         }
+
+        public ILoggingService LoggingService { get; set; }
+
         // Home pages
         #region WebConferencing Home Page
         
