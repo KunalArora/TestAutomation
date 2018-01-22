@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
+using System;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class RunCommandService : MarshalByRefObject, IRunCommandService
+    public class RunCommandService : MarshalByRefObject, IRunCommandService, IILoggingService
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
@@ -16,11 +14,14 @@ namespace Brother.Tests.Specs.Services
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
-        public RunCommandService(IUrlResolver urlResolver, IWebRequestService webRequestService)
+        public ILoggingService LoggingService { get; set; }
+
+        public RunCommandService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService )
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/runcommand.aspx?command={{0}}", _urlResolver.CmsUrl);
+            LoggingService = loggingService;
         }
 
         /// <summary>

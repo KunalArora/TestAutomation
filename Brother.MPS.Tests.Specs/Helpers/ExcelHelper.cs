@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -11,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    public class ExcelHelper: MarshalByRefObject, IExcelHelper
+    public class ExcelHelper: MarshalByRefObject, IExcelHelper, IILoggingService
     {
+
+
         // Excel Properties
         private const int TOTAL_NUMBER_OF_COLUMNS = 25;
 
@@ -49,11 +52,15 @@ namespace Brother.Tests.Specs.Helpers
 
         private IRuntimeSettings _runtimeSettings;
 
+        public ILoggingService LoggingService { get; set; }
+
         public ExcelHelper(
-            IRuntimeSettings runtimeSettings
+            IRuntimeSettings runtimeSettings,
+            ILoggingService loggingService
             )
         {
             _runtimeSettings = runtimeSettings;
+            LoggingService = loggingService;
         }
 
         public string GetDownloadedExcelFilePath()

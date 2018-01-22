@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Brother.Tests.Specs.Configuration;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Newtonsoft.Json;
-using Brother.Tests.Common.RuntimeSettings;
+using System;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class DeviceSimulatorService : MarshalByRefObject, IDeviceSimulatorService
+    public class DeviceSimulatorService : MarshalByRefObject, IDeviceSimulatorService, IILoggingService
     {
         private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
@@ -20,10 +20,13 @@ namespace Brother.Tests.Specs.Services
         private readonly IWebRequestService _webRequestService;
         private readonly IRuntimeSettings _runtimeSettings;
 
-        public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings)
+        public ILoggingService LoggingService { get; set; }
+
+        public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings, ILoggingService loggingService )
         {
             _webRequestService = webRequestService;
             _runtimeSettings = runtimeSettings;
+            LoggingService = loggingService;
         }
 
         /// <summary>

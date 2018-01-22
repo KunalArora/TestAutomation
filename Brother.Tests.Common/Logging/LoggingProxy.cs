@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Activation;
@@ -9,36 +10,25 @@ using System.Runtime.Remoting.Services;
 namespace Brother.Tests.Common.Logging
 {
 
-    //[DebuggerStepThrough]
+    [DebuggerStepThrough]
     public class LoggingProxy : RealProxy 
     {
         private static readonly string[] IgnoreMethodNames = { "ToString" };
 
         private readonly object _target;
-        private readonly ILoggingService _loggingService;
 
-        public static TT Wrap<TT>(ILoggingService loggingService, TT target) 
+        public static TT Wrap<TT>(TT target) 
         {
-            return (TT)new LoggingProxy(loggingService, target).GetTransparentProxy();
+            return (TT)new LoggingProxy( target).GetTransparentProxy();
         }
 
-        public LoggingProxy(ILoggingService loggingService, object target) : base(target.GetType()) 
+        public LoggingProxy( object target) : this(target, target.GetType()) 
         {
-            if( (target is MarshalByRefObject) == false)
-            {
-                loggingService.WriteLog(LoggingLevel.WARNING, "{0} class does not support LoggingProxy.", target.GetType().FullName);
-            }
-            this._target = target;
-            this._loggingService = loggingService;
         }
 
         public LoggingProxy(object target, Type classToProxy) : base(classToProxy)
         {
             this._target = target;
-            if (target is IILoggingService)
-            {
-                this._loggingService = ((IILoggingService)target).LoggingService;
-            }
         }
 
         public override IMessage Invoke(IMessage msg)
@@ -64,13 +54,16 @@ namespace Brother.Tests.Common.Logging
 
         private IMessage Invoke(IMethodCallMessage call)
         {
+            ILoggingService _loggingService = (_target is IILoggingService) ?
+                ((IILoggingService)_target).LoggingService : null ;
+
             bool isIgnoreLogging = IgnoreMethodNames.Any(s => s == call.MethodBase.Name);
-            if (isIgnoreLogging == false)
+            if (_loggingService != null && isIgnoreLogging == false)
             {
                 LoggingUtil.LoggingOnMethodEntry(_loggingService, _target, call.MethodBase, call.Args);
             }             
             ReturnMessage response = RemotingServices.ExecuteMessage((MarshalByRefObject)_target, call) as ReturnMessage;
-            if (isIgnoreLogging == false && IsIgnoreLoggingInstance(response) == false )
+            if (_loggingService != null && isIgnoreLogging == false && IsIgnoreLoggingInstance(response) == false )
             {
                 _loggingService.WriteLog(LoggingLevel.DEBUG, "<< {0}", response.ReturnValue);
             }

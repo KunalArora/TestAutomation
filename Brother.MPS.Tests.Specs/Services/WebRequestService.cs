@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Specs.Domain;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using Brother.Tests.Specs.Domain;
-using NUnit.Framework.Constraints;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class WebRequestService : MarshalByRefObject, IWebRequestService
+    public class WebRequestService : MarshalByRefObject, IWebRequestService, IILoggingService
     {
+        public WebRequestService(ILoggingService loggingService) { LoggingService = loggingService; }
+
+        public ILoggingService LoggingService { get; set; }
+
         /// <summary>
         /// Sends an http/s request and returns a WebPageResponse object
         /// </summary>

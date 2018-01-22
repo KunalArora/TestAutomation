@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Extensions;
@@ -13,18 +14,19 @@ using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class PageService : MarshalByRefObject, IPageService
+    public class PageService : MarshalByRefObject, IPageService, IILoggingService
     {
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
-        private readonly ILoggingService _loggingService;
+        //private readonly ILoggingService _loggingService;
         private readonly IRuntimeSettings _runtimeSettings;
+
+        public ILoggingService LoggingService { get; set; }
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,
@@ -37,7 +39,7 @@ namespace Brother.Tests.Specs.Services
             _context = context;
             _urlResolver = urlResolver;
             _seleniumHelper = seleniumHelper;
-            _loggingService = loggingService;
+            LoggingService = loggingService;
             _runtimeSettings = runtimeSettings;
         }
 
@@ -63,11 +65,11 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver), RuntimeSettings = _runtimeSettings };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,LoggingService), RuntimeSettings = _runtimeSettings };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
             if( pageObject is IILoggingService)
             {
-                ((IILoggingService)pageObject).LoggingService = _loggingService;
+                ((IILoggingService)pageObject).LoggingService = LoggingService;
             }
 
             if (timeout != null)
@@ -76,7 +78,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
-            pageObject = LoggingProxy.Wrap(_loggingService, pageObject);
+            pageObject = LoggingProxy.Wrap( pageObject);
             return pageObject;
         }
 

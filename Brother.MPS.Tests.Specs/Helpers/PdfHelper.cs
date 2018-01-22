@@ -1,11 +1,15 @@
-﻿using iTextSharp.text.pdf;
+﻿using Brother.Tests.Common.Logging;
+using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    class PdfHelper : MarshalByRefObject, IPdfHelper
+    class PdfHelper : MarshalByRefObject, IPdfHelper, IILoggingService
     {
+        public PdfHelper(ILoggingService loggingService) { LoggingService = loggingService; }
+        public ILoggingService LoggingService { get; set; }
+
         public void DeletePdf(string fileName)
         {
             System.IO.File.Delete(fileName);
