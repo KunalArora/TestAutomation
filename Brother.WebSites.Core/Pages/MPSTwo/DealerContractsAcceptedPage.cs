@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Brother.Tests.Selenium.Lib.Helpers;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -51,6 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public void NavigateToSpecificManageDevicesPage(int proposalId, int findElementTimeout)
         {
+            WriteLogOnMethodEntry(proposalId, findElementTimeout);
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -65,6 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
+            WriteLogOnMethodEntry();
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -78,6 +75,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
+            WriteLogOnMethodEntry();
             MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);

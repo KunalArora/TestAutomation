@@ -48,7 +48,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationTypeTabDisplayed()
         {
-            if(InstallationTypeTabElement == null)
+            WriteLogOnMethodEntry();
+            if (InstallationTypeTabElement == null)
                 throw new Exception("Installation Type tab not displayed");
 
             AssertElementPresent(InstallationTypeTabElement, "Installtion Type tab");
@@ -56,16 +57,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetBORInstallationType()
         {
+            WriteLogOnMethodEntry();
             BORToolElement.Click();
         }
 
         public void SetWebInstallationType()
         {
+            WriteLogOnMethodEntry();
             WebInstallElement.Click();
         }
 
         public void SetInstallationType(string type)
         {
+            WriteLogOnMethodEntry(type);
             switch (type)
             {
                 case "BOR" :
@@ -79,7 +83,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProccedToDealerSendInstallationEmailPage()
         {
-           MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
+            WriteLogOnMethodEntry();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
            
             return GetInstance<DealerSendInstallationEmailPage>(Driver);
         }

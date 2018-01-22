@@ -87,7 +87,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClearSearchCriteria()
         {
-            if(ClearPreviousSearch == null)
+            WriteLogOnMethodEntry();
+            if (ClearPreviousSearch == null)
                 throw new Exception("Clear Search link is not returned as null");
 
             ClearPreviousSearch.Click();
@@ -96,6 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsResultDisplayedAfterSearch(int count)
         {
+            WriteLogOnMethodEntry(count);
             var containerCount = ProposalControlContainerTitle.Count;
 
             TestCheck.AssertIsEqual(true, containerCount.Equals(count), "");
@@ -103,18 +105,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void WaitForResultToBeBack()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, ProposalControlContainerTitle.Count > 0, "No result is returned");
             WebDriver.Wait(DurationType.Second, 2);
         }
 
         public void AreContractTypeAndUsageTypeReturned()
         {
+            WriteLogOnMethodEntry();
             WaitForResultToBeBack();
         }
 
         public void SearchWithDates()
         {
-            if(FromDateElement == null)
+            WriteLogOnMethodEntry();
+            if (FromDateElement == null)
                 throw new Exception("From Date is null");
             if (FromDateElement == null)
                 throw new Exception("To Date is null");
@@ -126,6 +131,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void InputDatesYearsBackBeforeSearch()
         {
+            WriteLogOnMethodEntry();
             var searchBegin = DateTime.Now.AddDays(-1095).ToString("ddMMyyyy");
             var searchEnd = DateTime.Now.AddDays(365).ToString("ddMMyyyy");
 
@@ -136,6 +142,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void InputDatesBeforeSearch()
         {
+            WriteLogOnMethodEntry();
             var searchBegin = DateTime.Now.AddDays(-1095).ToString("ddMMyyyy");
             var searchEnd = DateTime.Now.AddDays(365).ToString("ddMMyyyy");
 
@@ -146,6 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string ContractId()
         {
+            WriteLogOnMethodEntry();
             var contractid = SpecFlow.GetContext("SummaryPageContractId");
 
             return contractid;
@@ -153,7 +161,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SearchUsingSerialNumber(string serialNumber)
         {
-            if(SerialNumberSearchField == null)
+            WriteLogOnMethodEntry(serialNumber);
+            if (SerialNumberSearchField == null)
                 throw new Exception("Serial Number Search field is returned as null");
             ClearSearchCriteria();
 
@@ -164,12 +173,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ShowEndingContracts()
         {
-            
+            WriteLogOnMethodEntry();
         }
 
 
         public void FilterOpenProposalStatus()
         {
+            WriteLogOnMethodEntry();
             if (OpenProposalElement == null)
                 throw new Exception("Open proposal checkbox is null");
             ClearSearchCriteria();
@@ -182,6 +192,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterAwaitingApprovalProposalStatus()
         {
+            WriteLogOnMethodEntry();
             if (AwaitingApprovalProposalElement == null)
                 throw new Exception("Awaiting Approval proposal checkbox is null");
             ClearSearchCriteria();
@@ -194,6 +205,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterApprovedProposalStatus()
         {
+            WriteLogOnMethodEntry();
             if (ApprovedProposalElement == null)
                 throw new Exception("Approval proposal checkbox is null");
             ClearSearchCriteria();
@@ -206,6 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterClosedProposalStatus()
         {
+            WriteLogOnMethodEntry();
             if (ClosedProposalElement == null)
                 throw new Exception("Closed proposal checkbox is null");
             ClearSearchCriteria();
@@ -219,6 +232,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterDeclinedProposalStatus()
         {
+            WriteLogOnMethodEntry();
             if (DeclinedProposalElement == null)
                 throw new Exception("Declined proposal checkbox is null");
             ClearSearchCriteria();
@@ -231,6 +245,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterAwaitingAcceptanceContractStatus()
         {
+            WriteLogOnMethodEntry();
             if (AwaitingAcceptanceContractElement == null)
                 throw new Exception("Awaiting Acceptance contract checkbox is null");
             ClearSearchCriteria();
@@ -243,6 +258,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterAcceptedContractStatus()
         {
+            WriteLogOnMethodEntry();
             if (AcceptedContractElement == null)
                 throw new Exception("Accepted contract checkbox is null");
             ClearSearchCriteria();
@@ -255,6 +271,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterRunningContractStatus()
         {
+            WriteLogOnMethodEntry();
             if (RunningContractElement == null)
                 throw new Exception("Running contract checkbox is null");
             ClearSearchCriteria();
@@ -267,6 +284,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterClosedContractStatus()
         {
+            WriteLogOnMethodEntry();
             if (ClosedContractElement == null)
                 throw new Exception("Closed contract checkbox is null");
             ClearSearchCriteria();
@@ -279,6 +297,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterRejectedContractStatus()
         {
+            WriteLogOnMethodEntry();
             if (RejectedContractElement == null)
                 throw new Exception("Rejected contract checkbox is null");
             ClearSearchCriteria();
@@ -292,6 +311,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterLeaseAndClickContracts()
         {
+            WriteLogOnMethodEntry();
             if (LeaseClickElement == null)
                 throw new Exception("Lease and Click filter checkbox is null");
             ClearSearchCriteria();
@@ -304,6 +324,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterPurchaseAndClickContracts()
         {
+            WriteLogOnMethodEntry();
             if (PurchaseClickElement == null)
                 throw new Exception("Purchase and click filter checkbox is null");
             ClearSearchCriteria();
@@ -316,6 +337,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterMinimumVolumeContracts()
         {
+            WriteLogOnMethodEntry();
             if (MinimumVolumeElement == null)
                 throw new Exception("Minimum Volume checkbox is null");
             ClearSearchCriteria();
@@ -328,6 +350,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterPayAsYouGoContracts()
         {
+            WriteLogOnMethodEntry();
             if (PayAsYouGoElement == null)
                 throw new Exception("PAYG checkbox is null");
             ClearSearchCriteria();
@@ -340,6 +363,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SearchForNewlyCreatedProposal()
         {
+            WriteLogOnMethodEntry();
             if (DataQuerySearchField == null)
                 throw new Exception("Data Query Search Field is returned as null");
 
@@ -354,6 +378,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SearchWithGo()
         {
+            WriteLogOnMethodEntry();
             if (SearchButton == null)
                 throw new Exception("Search button returned null");
 
@@ -362,6 +387,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SearchWithContractId(string id)
         {
+            WriteLogOnMethodEntry();
             ClearSearchCriteria();
 
             WaitForElementToExistByCssSelector(".js-mps-list.js-mps-searchable");
@@ -373,6 +399,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SearchForNewlyCreatedProposalByProposalId()
         {
+            WriteLogOnMethodEntry();
             if (ProposalIdSearchField == null)
                 throw new Exception("ProposalId Search Field is returned as null");
             if (SearchButton == null)
@@ -389,6 +416,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportProposalSummaryPage ClickOnSearchedProposal()
         {
+            WriteLogOnMethodEntry();
             var displayedProposal = string.Format(SelectedProposal, ContractId());
             var proposalElement = Driver.FindElement(By.CssSelector(displayedProposal));
 
@@ -402,6 +430,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportProposalSummaryPage ClickOnTheFirstProposal()
         {
+            WriteLogOnMethodEntry();
             if (ProposalLinkElements == null)
                 throw new Exception("Proposal Element is returned as null");
 
@@ -412,6 +441,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterAndClickAgreement(int agreementId, int findElementTimeout)
         {
+            WriteLogOnMethodEntry(agreementId, findElementTimeout);
             // Wait for footer to load & then filter out the agreement
             SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector, findElementTimeout);
             ClearAndType(DataQuerySearchField, agreementId.ToString());

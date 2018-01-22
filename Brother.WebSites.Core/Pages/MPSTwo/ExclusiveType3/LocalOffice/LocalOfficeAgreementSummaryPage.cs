@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
@@ -28,6 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public IWebElement DevicesTabElement(int agreementId, int findElementTimeout)
         {
+            WriteLogOnMethodEntry(agreementId, findElementTimeout);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()), findElementTimeout);
         }

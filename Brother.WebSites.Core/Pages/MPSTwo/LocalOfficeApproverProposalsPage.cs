@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -73,6 +71,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAwaitingApprovalLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (AwaitingApprovalLinkElement == null) 
                 throw new Exception("Unable to locate Awaiting Approval Link");
 
@@ -81,6 +80,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsApprovedLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (ApprovedLinkElement == null)
                 throw new Exception("Unable to locate Approved");
 
@@ -89,6 +89,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeclinedLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (DeclinedLinkElement == null)
                 throw new Exception("Unable to locate Declined");
 
@@ -97,6 +98,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalSentToLocalOfficeApproverAwaitingProposalPage()
         {
+            WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -106,6 +108,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportingDashboardPage NavigateToReportDashboardPage()
         {
+            WriteLogOnMethodEntry();
             if (ReportTabElement == null)
                 throw new Exception("Approved Proposals Link Element is returned as null");
 
@@ -116,6 +119,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string Reason()
         {
+            WriteLogOnMethodEntry();
             var reason = "";
 
             if (IsUKSystem()|| IsIrelandSystem())
@@ -178,6 +182,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string BelgiumReason()
         {
+            WriteLogOnMethodEntry();
             var reason = "";
             var language = SpecFlow.GetContext("BelgianLanguage");
 
@@ -197,6 +202,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string SwissReason()
         {
+            WriteLogOnMethodEntry();
             var reason = "";
             var language = SpecFlow.GetContext("BelgianLanguage");
 
@@ -217,16 +223,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectRejectionReason()
         {
+            WriteLogOnMethodEntry();
             SelectFromDropdown(RejectionReasonDropdownElement, Reason());
         }
 
         public void EnterRejectionComment()
         {
+            WriteLogOnMethodEntry();
             ClearAndType(RejectionCommentBoxElement, "It is rejected by auto");
         }
 
         public void ClickOnRejectionButton()
         {
+            WriteLogOnMethodEntry();
             if (RejectButtonElement == null)
                 throw new Exception("Reject button not displayed, are you trying to reject the proposal?");
             RejectButtonElement.Click();
@@ -234,6 +243,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DeclineAnAwaitingApprovalProposal()
         {
+            WriteLogOnMethodEntry();
             ClickOnDeclineButton();
             SelectRejectionReason();
             EnterRejectionComment();
@@ -243,6 +253,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeclineButton()
         {
+            WriteLogOnMethodEntry();
             if (DeclineButtonElement == null)
                 throw new Exception("Proposal Decline Button not displayed, are you on Offer Summary page?");
             //WebDriver.Wait(DurationType.Second, 3);
@@ -253,11 +264,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalDeclined()
         {
+            WriteLogOnMethodEntry();
             IsProposalSentToBankAwaitingProposalPage();
         }
 
         public void IsProposalSentToBankAwaitingProposalPage()
         {
+            WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -267,17 +280,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnActionButtonAgainstRelevantProposal()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
         }
 
 
         public void NavigateToAwaitingApprovalSummaryPage()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
         }
         
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -286,6 +302,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToViewSummary(string name)
         {
+            WriteLogOnMethodEntry(name);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -294,6 +311,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsSummaryPage NavigateToProposalSummary()
         {
+            WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 2);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
@@ -303,24 +321,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NavigateToAwaitingApprovalPage()
         {
+            WriteLogOnMethodEntry();
             IsAwaitingApprovalLinkAvailable();
             AwaitingApprovalLinkElement.Click();
         }
 
         public void NavigateToDeclinedPage()
         {
+            WriteLogOnMethodEntry();
             IsDeclinedLinkAvailable();
             DeclinedLinkElement.Click();
         }
 
         public void NavigateToApprovedPage()
         {
+            WriteLogOnMethodEntry();
             IsApprovedLinkAvailable();
             ApprovedLinkElement.Click();
         }
 
         public void IsProposalSentToApproverAwaitingProposalPage()
         {
+            WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -330,17 +352,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyDeclinedProposalIsDisplayed()
         {
+            WriteLogOnMethodEntry();
             IsProposalSentToApproverAwaitingProposalPage();
         }
 
         public void VerifyApprovedProposalIsDisplayed()
         {
+            WriteLogOnMethodEntry();
             IsProposalSentToApproverAwaitingProposalPage();
         }
 
         
         public void IsProposalListAvailable()
         {
+            WriteLogOnMethodEntry();
             if (ProposalListContainerElement == null || !ProposalListContainerElement.Any())
                 throw new Exception("Unable to locate Proposal List");
 
@@ -349,6 +374,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
+            WriteLogOnMethodEntry(proposalId,driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1 , findElementTimeout);

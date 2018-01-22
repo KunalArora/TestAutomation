@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -33,6 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateContractReference(int proposalId)
         {
+            WriteLogOnMethodEntry(proposalId);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var contractReferenceElement = SeleniumHelper.FindElementByCssSelector(ContractReferenceSelector, findElementTimeout);
             ClearAndType(contractReferenceElement, proposalId.ToString());
@@ -40,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ProceedOnInstaller()
         {
+            WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
             nextButtonElement.Click();

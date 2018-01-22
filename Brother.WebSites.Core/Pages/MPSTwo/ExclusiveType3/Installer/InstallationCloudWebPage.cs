@@ -42,6 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         // Fill device details & hit connect for this deviceId
         public void FillDeviceDetailsAndClickConnect(string mpsDeviceId, int findElementTimeout, string windowHandle)
         {
+            WriteLogOnMethodEntry(mpsDeviceId,findElementTimeout,windowHandle);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach(var element in deviceRowElements)
             {
@@ -66,6 +67,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool AreAllDevicesConnected(int findElementTimeout)
         {
+            WriteLogOnMethodEntry(findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {

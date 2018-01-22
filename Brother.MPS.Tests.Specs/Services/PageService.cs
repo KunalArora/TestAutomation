@@ -17,7 +17,7 @@ using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class PageService : MarshalByRefObject, IPageService, IILoggingService
+    public class PageService : IPageService, IILoggingService
     {
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
@@ -56,9 +56,10 @@ namespace Brother.Tests.Specs.Services
 
         public TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
+            WriteLogOnMethodEntry(timeout, driver);
             #if DEBUG
-                //This is horrible but when stepping through code the WebDriverWait fails
-                Thread.Sleep(200);
+            //This is horrible but when stepping through code the WebDriverWait fails
+            Thread.Sleep(200);
             #endif
             if (driver == null)
             {
@@ -78,7 +79,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
-            pageObject = LoggingProxy.Wrap( pageObject);
+            
             return pageObject;
         }
 
@@ -91,6 +92,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="driver">Override the injected driver with a specific instance</param>
         public void LoadUrl(string url, int timeout, string validationElementSelector = null, IWebDriver driver = null)
         {
+            WriteLogOnMethodEntry(url,timeout,validationElementSelector,driver);
             var timeSpan = TimeSpan.FromSeconds(timeout);
 
             if (string.IsNullOrWhiteSpace(validationElementSelector))
@@ -121,6 +123,7 @@ namespace Brother.Tests.Specs.Services
 
         public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
+            WriteLogOnMethodEntry(url,timeout,validationElementSelector,addToContextAsCurrentPage,driver);
             LoadUrl(url, timeout, validationElementSelector, driver);
             var pageObject = GetPageObject<TPage>(timeout, driver);
 
@@ -131,5 +134,11 @@ namespace Brother.Tests.Specs.Services
 
             return pageObject;
         }
+
+        protected void WriteLogOnMethodEntry(params object[] args)
+        {
+            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
+        }
+
     }
 }

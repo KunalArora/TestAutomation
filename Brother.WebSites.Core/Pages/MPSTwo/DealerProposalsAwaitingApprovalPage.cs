@@ -54,12 +54,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private static string CreatedProposal()
         {
+            // $$static
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }
 
         public void IsProposalSentToDealerAwaitingProposalPage()
         {
+            WriteLogOnMethodEntry();
             var createdProposal = CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -69,6 +71,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage NavigateToViewSummary()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 

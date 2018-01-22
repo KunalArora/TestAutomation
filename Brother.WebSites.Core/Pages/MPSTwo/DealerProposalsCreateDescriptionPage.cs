@@ -69,6 +69,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPromptTextDisplayed()
         {
+            WriteLogOnMethodEntry();
             if (PromptText == null) throw new
                 NullReferenceException("Unable to locate text on New Proposal Process Screen");
            
@@ -77,16 +78,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetServerName(string refe)
         {
-           SpecFlow.SetContext("servername", refe); 
+            WriteLogOnMethodEntry(refe);
+            SpecFlow.SetContext("servername", refe); 
         }
 
         public String GetServerName()
         {
+            WriteLogOnMethodEntry();
             return SpecFlow.GetContext("servername");
         }
 
         public void EnterLeadCodeRef(string leadCodeRef)
         {
+            WriteLogOnMethodEntry(leadCodeRef);
             if (leadCodeRef.Equals(string.Empty))
             {
                 leadCodeRef = MpsUtil.GenerateUniqueLeadCodeRef();
@@ -107,28 +111,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private IWebElement ContractTypeSelectorDropdown()
         {
+            WriteLogOnMethodEntry();
             return GetElementByCssSelector(contractSelector, 10);
         }
 
 
         private IWebElement CustomerTabElement()
         {
+            WriteLogOnMethodEntry();
             return GetElementByCssSelector(customertab, 10);
         }
 
         public void CustomerTabNotDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(5, ProposalCreationTabs.Count, "");
         }
 
         public void CustomerTabIsDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(6, ProposalCreationTabs.Count, "");
         }
 
 
         public void SelectingContractType(string contract)
         {
+            WriteLogOnMethodEntry(contract);
             if (IsElementPresent(ContractTypeSelectorDropdown()))
                 SelectContractType(contract);
 
@@ -138,7 +147,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage NavigateToDealerProposalsCreateClickPricePage()
         {
-            if(ProposalClickPriceTab == null)
+            WriteLogOnMethodEntry();
+            if (ProposalClickPriceTab == null)
                 throw new Exception("proposal summary tab is returned as null");
 
             ProposalClickPriceTab.Click();
@@ -150,6 +160,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractType(string contract)
         {
+            WriteLogOnMethodEntry(contract);
             string selectable;
 
             switch (contract)
@@ -211,6 +222,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectingContractUsageType(string contract)
         {
+            WriteLogOnMethodEntry(contract);
             if (IsElementPresent(ContractTypeSelectorDropdown()))
                 SelectContractUsageType(contract);
 
@@ -218,6 +230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractUsageType(string usage)
         {
+            WriteLogOnMethodEntry(usage);
             var selectable = "";
 
             switch (usage)
@@ -241,6 +254,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterProposalName(string proposalName)
         {
+            WriteLogOnMethodEntry(proposalName);
             if (proposalName.Equals(string.Empty))
             {
                 proposalName = MpsUtil.GenerateUniqueProposalName();
@@ -254,6 +268,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateCustomerInformationPage ClickNextButton()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(NextButton);
             NextButton.Click();
 
@@ -262,6 +277,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateTermAndTypePage ClickNextButtonGermany()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(NextButton);
             NextButton.Click();
 
@@ -270,12 +286,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateProposalName(string proposalName)
         {
+            WriteLogOnMethodEntry(proposalName);
             var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
             ClearAndType(proposalNameElement, proposalName.ToString());
         }
 
         public string GetProposalName()
         {
+            WriteLogOnMethodEntry();
             var proposalName = ProposalNameField.GetAttribute("value");
             return proposalName;
         }

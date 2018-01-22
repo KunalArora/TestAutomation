@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -36,6 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //TODO: Refactoring
         public void OnClickAccept()
         {
+            WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.ClickSafety(AcceptButtonElement, findElementTimeout);
             SeleniumHelper.ClickSafety(FinalAcceptButtonElement, findElementTimeout);

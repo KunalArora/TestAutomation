@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class RunCommandService : MarshalByRefObject, IRunCommandService, IILoggingService
+    public class RunCommandService : IRunCommandService, IILoggingService
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
@@ -34,6 +34,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
         private void ExecuteRunCommand(string url, int timeOut = 30, bool retry = false, int retryInterval = 2, int retryFor = 60)
         {
+            WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
             var additionalHeaders = new Dictionary<string, string> {{_authTokenName, _authToken}};
             var startTime = DateTime.UtcNow;
 
@@ -51,6 +52,7 @@ namespace Brother.Tests.Specs.Services
 
         private bool RunCommandSuccess(WebPageResponse webPageResponse)
         {
+            WriteLogOnMethodEntry(webPageResponse);
             //Update this method to use response headers when runcommand has been updated
             if (webPageResponse.ResponseBody.Contains("Failure"))
             {
@@ -76,6 +78,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCreateCustomerAndPersonCommand()
         {
+            WriteLogOnMethodEntry();
             string commandName = "MPS:SystemJobCreateCustomerAndPersonCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -84,20 +87,22 @@ namespace Brother.Tests.Specs.Services
 
         public void RunRaiseClickRateInvoicesCommand()
         {
-
+            WriteLogOnMethodEntry();
         }
 
         public void RunInstallationCompleteCommand()
         {
-            
+            WriteLogOnMethodEntry();
         }
 
         public void RunMeterReadEmailSyncCommand()
         {
+            WriteLogOnMethodEntry();
         }
 
         public void RunMeterReadCloudSyncCommand(int proposalId) // Pass AgreementId in case of Type 3
         {
+            WriteLogOnMethodEntry(proposalId);
             string commandName = string.Format("MPS:NEW:MeterReadCloudSyncCommand&ProposalId={0}&CountryIso=GB", proposalId);
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -106,6 +111,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunConsumableOrderRequestsCommand()
         {
+            WriteLogOnMethodEntry();
             string commandName = string.Format("MPS:ConsumableOrderRequestsCommand");
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -114,16 +120,17 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCloseConsumableOrdersCommand()
         {
-            
+            WriteLogOnMethodEntry();
         }
 
         public void RunPollConsumableOrderStatusCommand()
         {
-            
+            WriteLogOnMethodEntry();
         }
 
         public void RunCheckForSilentEmailDevicesCommand()
         {
+            WriteLogOnMethodEntry();
             string commandName = "MPS:CheckForSilentEmailDevicesCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -132,7 +139,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCheckForSilentCloudDevicesCommand()
         {
-            
+            WriteLogOnMethodEntry();
         }
 
         public void RunCreateConsumableOrderCommand()
@@ -145,10 +152,17 @@ namespace Brother.Tests.Specs.Services
 
         public void RunSetupInstalledPrintersCommand()
         {
+            WriteLogOnMethodEntry();
             string commandName = "MPS:SystemJobSetupInstalledPrintersCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);
         }
+
+        protected void WriteLogOnMethodEntry(params object[] args)
+        {
+            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
+        }
+
     }
 }

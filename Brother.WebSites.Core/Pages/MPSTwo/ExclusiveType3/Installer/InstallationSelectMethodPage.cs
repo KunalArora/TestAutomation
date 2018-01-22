@@ -37,6 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public void VerifyDeviceDetails(string expectedAgreementReference, int expectedNumberOfDevices, string modelName = null)
         {
+            WriteLogOnMethodEntry(expectedAgreementReference,expectedNumberOfDevices,modelName);
             string displayedAgreementReference = AgreementReferenceAlertElement.Text;
 
             TestCheck.AssertIsEqual(
@@ -61,16 +62,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public IWebElement BORInstallationButton(int findElementTimeout)
         {
+            WriteLogOnMethodEntry(findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "1", findElementTimeout);
         }
 
         public IWebElement WebInstallationButton(int findElementTimeout)
         {
+            WriteLogOnMethodEntry(findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2", findElementTimeout);
         }
 
         public IWebElement USBInstallationButton(int findElementTimeout)
         {
+            WriteLogOnMethodEntry(findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4", findElementTimeout);
         }
     }

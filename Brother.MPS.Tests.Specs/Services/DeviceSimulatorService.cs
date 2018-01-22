@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class DeviceSimulatorService : MarshalByRefObject, IDeviceSimulatorService, IILoggingService
+    public class DeviceSimulatorService : IDeviceSimulatorService, IILoggingService
     {
         private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
@@ -37,6 +37,7 @@ namespace Brother.Tests.Specs.Services
         /// <returns>Newly created device id</returns>
         public string CreateNewDevice(string model, string serialNumber)
         {
+            WriteLogOnMethodEntry(model, serialNumber);
             string deviceId = CreateNewDeviceId();
             string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
@@ -53,6 +54,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="installationPin"></param>
         public void RegisterNewDevice(string deviceId, string installationPin)
         {
+            WriteLogOnMethodEntry(deviceId, installationPin);
             string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
@@ -67,6 +69,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="subscribe"></param>
         public void ChangeDeviceStatus(string deviceId, bool online, bool subscribe)
         {
+            WriteLogOnMethodEntry(deviceId, online, subscribe);
             string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
@@ -75,6 +78,7 @@ namespace Brother.Tests.Specs.Services
 
         public void NotifyBocOfDeviceChanges(string deviceId)
         {
+            WriteLogOnMethodEntry(deviceId);
             string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
@@ -83,6 +87,7 @@ namespace Brother.Tests.Specs.Services
 
         public void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount)
         {
+            WriteLogOnMethodEntry(deviceId, monoPrintCount, colourPrintCount);
             var printCount = monoPrintCount + colourPrintCount;
 
             var setSupplyRequest = new SetSupplyRequest
@@ -103,6 +108,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RaiseConsumableOrder(string deviceId, string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus)
         {
+            WriteLogOnMethodEntry(deviceId, tonerInkBlackStatus, tonerInkCyanStatus, tonerInkMagentaStatus, tonerInkYellowStatus);
             var setSupplyRequest = new SetSupplyRequest
             {
                 id = deviceId,
@@ -123,6 +129,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RaiseServiceRequest(string deviceId, string laserUnitStatus, string fuserUnitStatus, string paperFeedingKit1Status, string paperFeedingKit2Status, string paperFeedingKit3Status)
         {
+            WriteLogOnMethodEntry(deviceId, laserUnitStatus, fuserUnitStatus, paperFeedingKit1Status, paperFeedingKit2Status, paperFeedingKit3Status);
             var setSupplyRequest = new SetSupplyRequest
             {
                 id = deviceId,
@@ -144,6 +151,7 @@ namespace Brother.Tests.Specs.Services
 
         public void SetSupply(SetSupplyRequest setSupplyRequest)
         {
+            WriteLogOnMethodEntry(setSupplyRequest);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, SET_SUPPLY_PATTERN);
 
             var json = JsonConvert.SerializeObject(setSupplyRequest);
@@ -153,6 +161,7 @@ namespace Brother.Tests.Specs.Services
 
         public string CreateNewDeviceId()
         {
+            WriteLogOnMethodEntry();
             var guid = Guid.NewGuid().ToString();
             var deviceId = string.Format(DEVICE_ID_PATTERN, guid.Substring(8));
 
@@ -160,5 +169,10 @@ namespace Brother.Tests.Specs.Services
 
             return deviceId;
         }
+        protected void WriteLogOnMethodEntry(params object[] args)
+        {
+            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
+        }
+
     }
 }

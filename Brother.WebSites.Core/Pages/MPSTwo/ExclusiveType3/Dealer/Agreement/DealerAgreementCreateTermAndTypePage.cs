@@ -45,21 +45,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void SelectUsageType(string usage)
         {
+            WriteLogOnMethodEntry(usage);
             SelectFromDropdown(UsageTypeElement, usage);
         }
 
         public void SelectContractLength(string contractLength)
         {
+            WriteLogOnMethodEntry(contractLength);
             SelectFromDropdown(ContractLengthElement, contractLength);
         }
 
         public void SelectService(string service)
         {
+            WriteLogOnMethodEntry(service);
             SelectFromDropdown(ServiceElement, service);
         }
 
         public void ValidateServicePackAvailableOptions(string resourceUsageTypePayAsYouGo, string resourceServiceTypeIncludedInClickPrice)
         {
+            WriteLogOnMethodEntry(resourceUsageTypePayAsYouGo,resourceServiceTypeIncludedInClickPrice);
             SelectUsageType(resourceUsageTypePayAsYouGo);
             List<string> dropdownValues = SeleniumHelper.GetAllValuesOfDropdown(ServiceElement);
             if (dropdownValues.Exists(value => string.Equals(value, resourceServiceTypeIncludedInClickPrice, StringComparison.OrdinalIgnoreCase)))

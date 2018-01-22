@@ -36,6 +36,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string EnterInstallerEmail()
         {
+            WriteLogOnMethodEntry();
             string emailId = "steve.walters@brother.co.uk";
             ClearAndType(EmailFieldElement, emailId);
             return emailId;
@@ -43,6 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string EnterInstallerEmailAndProceed()
         {
+            WriteLogOnMethodEntry();
             string emailId = EnterInstallerEmail();
             SendEmailButton.Click(); // Send Email button
             return emailId;

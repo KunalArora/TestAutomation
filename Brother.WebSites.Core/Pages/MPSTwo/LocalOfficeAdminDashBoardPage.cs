@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Brother.Tests.Selenium.Lib.Helpers;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -50,6 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPurchaseAndClickLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (PurchaseAndClickLinkElement == null) 
                 throw new Exception("Unable to locate Purchase And Click link on dashboard page");
 
@@ -60,6 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDealerDefaultsLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (DealerDefaultsElement == null)
                 throw new Exception("Unable to locate dealer defaults link on dashboard page");
 
@@ -68,6 +70,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminProgramPage NavigateToLoProgramPage()
         {
+            WriteLogOnMethodEntry();
             if (LOAdminProgramElement == null)
                 throw new NullReferenceException("EPP link is not LOAdmin Dashboard");
             LOAdminProgramElement.Click();
@@ -76,6 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportingDashboardPage NavigateToReportPage()
         {
+            WriteLogOnMethodEntry();
             if (LOAdminReportElement == null)
                 throw new NullReferenceException("Report link is not LOAdmin Dashboard");
             LOAdminReportElement.Click();
@@ -85,6 +89,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()
         {
+            WriteLogOnMethodEntry();
             IsDealerDefaultsLinkAvailable();
             DealerDefaultsElement.Click();
             return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
@@ -92,7 +97,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminAdministrationDashboardPage NavigateToAdministrationPagePage()
         {
-            if(LOAdminAdministrationLinkElement == null)
+            WriteLogOnMethodEntry();
+            if (LOAdminAdministrationLinkElement == null)
                 throw new Exception("Administration link is not displayed");
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, LOAdminAdministrationLinkElement);
             return GetTabInstance<LocalOfficeAdminAdministrationDashboardPage>(Driver);

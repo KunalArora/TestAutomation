@@ -70,6 +70,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCreateNewProposalLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (CreateProposalLinkElement == null) 
                 throw new Exception("Unable to locate create new proposal link on dashboard page");
             
@@ -78,6 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBetweenMultipleLanguages(string language)
         {
+            WriteLogOnMethodEntry(language);
             if (IsBelgiumSystem())
             {
                 SwitchBelgianLanguage(language);
@@ -96,6 +98,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBelgianLanguage(string lang)
         {
+            WriteLogOnMethodEntry(lang);
             if (lang.Equals("French") || lang.Equals("Français"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -110,6 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchSwissLanguage(string lang)
         {
+            WriteLogOnMethodEntry(lang);
             if (lang.Equals("Deutsch"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -124,6 +128,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchFinnishLanguage(string lang)
         {
+            WriteLogOnMethodEntry(lang);
             if (lang.Equals("Suomi"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -138,7 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSwitchedLanguageSelected(string text)
         {
-            
+            WriteLogOnMethodEntry(text);
             try
             {
                 WaitForElementToExistByCssSelector("a[href='/mps/dealer/contracts'] .media-body .media-heading", 3, 5);
@@ -159,6 +164,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsExistingContractsLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (ExistingContractLinkElement == null) 
                 throw new Exception("Unable to locate existing contracts link on dashboard page");
 
@@ -167,6 +173,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsExistingCustomersLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (ExistingCustomerLinkElement == null) 
                 throw new Exception("Unable to locate existing customers link on dashboard page");
 
@@ -175,6 +182,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsAdminLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (AdminLinkElement == null) 
                 throw new Exception("Unable to locate create Admin link on dashboard page");
 
@@ -183,6 +191,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsAdminTabAvailable()
         {
+            WriteLogOnMethodEntry();
             if (DealerAdminTabElement == null) 
                 throw new Exception("Unable to locate create Admin link on dashboard page");
 
@@ -191,6 +200,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateDescriptionPage NavigateToCreateNewProposalPage()
         {
+            WriteLogOnMethodEntry();
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, CreateProposalLinkElement);
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
@@ -198,6 +208,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportingDashboardPage NavigateToReportPage()
         {
+            WriteLogOnMethodEntry();
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerReportLinkElement);
             return GetTabInstance<ReportingDashboardPage>();
@@ -205,6 +216,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerAdminDashBoardPage NavigateToAdminPage()
         {
+            WriteLogOnMethodEntry();
             IsAdminLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, AdminLinkElement);
             return GetTabInstance<DealerAdminDashBoardPage>(Driver);
@@ -212,6 +224,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsPage NavigateToContractScreenFromDealerDashboard()
         {
+            WriteLogOnMethodEntry();
             if (DashboardContractLinkElement == null)
                 throw new NullReferenceException("Contract link is not Dealer Dashboard");
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DashboardContractLinkElement);
@@ -220,6 +233,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerAdminDashBoardPage NavigateToAdminPageUsingTab()
         {
+            WriteLogOnMethodEntry();
             IsAdminTabAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerAdminTabElement);
             return GetTabInstance<DealerAdminDashBoardPage>(Driver);
@@ -227,7 +241,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public CloudExistingProposalPage NavigateToExistingProposalPage()
         {
-            if(ExistingProposalLinkElement == null)
+            WriteLogOnMethodEntry();
+            if (ExistingProposalLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, proposalTopElement);
 
@@ -236,6 +251,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerCustomersExistingPage NavigateToExistingCustomerPage()
         {
+            WriteLogOnMethodEntry();
             if (ExistingCustomerLinkElement == null)
                 throw new Exception("Are you sure you on dealer dashboard page?");
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingCustomerLinkElement);

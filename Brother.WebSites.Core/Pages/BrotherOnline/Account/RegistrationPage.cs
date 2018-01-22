@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Authentication;
-using System.Threading;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
@@ -10,6 +7,7 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
@@ -157,6 +155,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public bool IsWarningBarPresent(int retry, int timeToWait)
         {
+            WriteLogOnMethodEntry(retry,timeToWait);
             try
             {
                 if (WaitForElementToExistByCssSelector(".warning-bar", retry, timeToWait))
@@ -181,6 +180,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public bool IsAccountValidationSuccessMessagePresent(int retry, int timeToWait)
         {
+            WriteLogOnMethodEntry(retry, timeToWait);
             try
             {
                 if (WaitForElementToExistByCssSelector(".box-out.email-success", retry, timeToWait))
@@ -198,6 +198,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public bool IsResetYourPasswordButtonAvailable(int retry, int timeToWait)
         {
+            WriteLogOnMethodEntry(retry, timeToWait);
             try
             {
                 if (WaitForElementToExistByCssSelector("#content_1_ResetPasswordButton.button-blue", retry, timeToWait))
@@ -222,6 +223,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetYourPasswordButtonClick()
         {
+            WriteLogOnMethodEntry();
             if (
                 !WaitForElementToExistByCssSelector(
                     ".content.cf .wrapper .content-box.password-reset.cf .content-unit.six .box-out.reset-pass-container .generic-form .button-blue",
@@ -238,6 +240,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void IsEmailResetTextBoxAvailable()
         {
+            WriteLogOnMethodEntry();
             if (EmailAddressPasswordResetTextBox == null)
             {
                 throw new NullReferenceException("Unable to locate text box on page");
@@ -247,6 +250,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void IsSignInButtonAvailable()
         {
+            WriteLogOnMethodEntry();
             if (SignInButton == null)
             {
                 throw new NullReferenceException("Unable to locate button on page");
@@ -256,6 +260,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void IsResetPasswordLinkAvailable()
         {
+            WriteLogOnMethodEntry();
             if (ResetPasswordLink == null)
             {
                 throw new NullReferenceException("Unable to locate password reset link on page");
@@ -267,6 +272,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void ResetPasswordLinkClick()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(ResetPasswordLink);
             ResetPasswordLink.Click();
         }
@@ -274,6 +280,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         // Clicks the Sign In button and returns a Welcome Back page
         public WelcomeBackPage ClickSignInButton()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<WelcomeBackPage>(Driver);
@@ -282,6 +289,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         // Clicks the Sign In button and returns to Delivery Details Page
         public DeliveryDetailsPage ClickSignInToPurchaseItems()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<DeliveryDetailsPage>(Driver);
@@ -289,6 +297,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage SignInButtonToDashboard<TPage>() where TPage : BasePage, new()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<TPage>(Driver);            
@@ -296,6 +305,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public DealerDashBoardPage SignInButtonToDealerDashboard()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<DealerDashBoardPage>(Driver);
@@ -304,6 +314,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         
         public LocalOfficeAdminDashBoardPage SignInButtonToLocalOfficeDashboard()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<LocalOfficeAdminDashBoardPage>(Driver);
@@ -311,6 +322,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public LocalOfficeApproverDashBoardPage SignInButtonToLocalOfficeApproverDashboard()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<LocalOfficeApproverDashBoardPage>(Driver);
@@ -318,6 +330,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public BankDashBoardPage SignInButtonToBankUser()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<BankDashBoardPage>(Driver);
@@ -325,6 +338,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public ServiceDeskDashBoardPage SignInButtonToServiceDeskDashBoardPage()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<ServiceDeskDashBoardPage>(Driver);
@@ -332,6 +346,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public BieAdminDashboardPage SignInButtonToBieAdminDashboardPage()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<BieAdminDashboardPage>(Driver);
@@ -339,6 +354,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public FinanceDashboardPage SignInButtonToFinanceDashboardPage()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton); 
             SignInButton.Click();
             return GetInstance<FinanceDashboardPage>(Driver);
@@ -346,6 +362,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public RegistrationPage ClickSignUpButton()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
             return GetInstance<RegistrationPage>(Driver);
@@ -353,6 +370,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public RegistrationConfirmationPage ClickCreateAccountButton()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
             return GetInstance<RegistrationConfirmationPage>(Driver);
@@ -360,6 +378,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public BasketPage ClickCreateAccountButtonToCheckout()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(CreateYourAccountButton);
             CreateYourAccountButton.Click();
             return GetInstance<BasketPage>(Driver);
@@ -367,6 +386,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public RegistrationPage ClickSignInWithInvalidDetails()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<RegistrationPage>(Driver);
@@ -376,6 +396,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAdressForChangeOfPassword(string emailAddress)
         {
+            WriteLogOnMethodEntry(emailAddress);
             EmailAddressPasswordResetTextBox.Clear();
             EmailAddressPasswordResetTextBox.SendKeys(emailAddress);
             EmailAddressPasswordResetTextBox.SendKeys(Keys.Tab); // Tab out to trigger warning bar message
@@ -383,12 +404,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateFirstNameTextBox(string firstName)
         {
+            WriteLogOnMethodEntry(firstName);
             FirstNameTextBox.SendKeys(firstName);
             TestCheck.AssertIsEqual(firstName, GetTextBoxValue("FirstNameTextBox"), "FirstName Text Box");
         }
 
         public void PopulateCompanyNameTextBox(string companyName)
         {
+            WriteLogOnMethodEntry(companyName);
             ScrollTo(CompanyNameTextBox);
             CompanyNameTextBox.SendKeys(companyName);
             TestCheck.AssertIsEqual(companyName, GetTextBoxValue("CompanyNameTextBox"), "CompanyName Text Box");
@@ -396,6 +419,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateVatNumberTextBox(string vatNumber)
         {
+            WriteLogOnMethodEntry(vatNumber);
             ScrollTo(VatNumberTextBox);
             VatNumberTextBox.SendKeys(vatNumber);
             TestCheck.AssertIsEqual(vatNumber, GetTextBoxValue("VatNumberTextBox"), "Vat number Text Box");
@@ -403,12 +427,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateLastNameTextBox(string lastName)
         {
+            WriteLogOnMethodEntry(lastName);
             LastNameTextBox.SendKeys(lastName);
             TestCheck.AssertIsEqual(lastName, GetTextBoxValue("LastNameTextBox"), "LastName Text Box");
         }
 
         public void PopulatePasswordTextBox(string password)
         {
+            WriteLogOnMethodEntry(password);
             PasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password,
                 GetTextBoxValue("PasswordTextBox"), "Password Text Box");
@@ -416,6 +442,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateConfirmPasswordTextBox(string password)
         {
+            WriteLogOnMethodEntry(password);
             ConfirmPasswordTextBox.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password,
                 GetTextBoxValue("ConfirmPasswordTextBox"), "Confirm Password Text Box");
@@ -423,32 +450,38 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateNiNumberTextBox(string numeroDni)
         {
+            WriteLogOnMethodEntry(numeroDni);
             NiNumberTextBox.SendKeys(numeroDni);
         }
 
         public void PopulateTaxNumberTextBox(string codiceFiscale)
         {
+            WriteLogOnMethodEntry(codiceFiscale);
             TaxNumberTextBox.SendKeys(codiceFiscale);
         }
 
         public void PopulatePersonalNiNumberPortugalTextBox(string númerodeContribuinte)
         {
+            WriteLogOnMethodEntry(númerodeContribuinte);
             PersonalNiNumberPortugalTextBox.SendKeys(númerodeContribuinte);
         }
 
         public void PopulateInvalidTaxNumberTextBox(string invalidTaxCode)
         {
+            WriteLogOnMethodEntry(invalidTaxCode);
             TaxNumberTextBox.SendKeys(invalidTaxCode);
         }
 
         public void PopulateInvalidItalyVatNumber(string invalidVatNumber)
         {
+            WriteLogOnMethodEntry(invalidVatNumber);
             VatNumberTextBox.SendKeys(invalidVatNumber);
             VatNumberTextBox.SendKeys(Keys.Tab);
         }
 
         public void ErrorMessageDisplayedForUsingSameVATNumber()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, WarningMessageSameVATNumber.Displayed, "Is Warning message displayed");
         }
 
@@ -458,6 +491,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
         }
         public void DoNotHaveAnAccountOption()
         {
+            WriteLogOnMethodEntry();
             Driver.FindElement(By.CssSelector("#CreateNewAccountRadioButton"));
             DoNotHaveAnAccountOptionButton.Click();
             TestCheck.AssertIsEqual(true, DoNotHaveAnAccountOptionButton.Selected, "Do Not Have An Account Button");
@@ -465,24 +499,28 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmployeeCountDropDown(string numEmployees)
         {
+            WriteLogOnMethodEntry(numEmployees);
             SelectFromDropdown(EmployeeCountDropDownList, numEmployees);
             AssertItemIsSelected(EmployeeCountDropDownList, numEmployees, "Number of Employees Drop Down List");
         }
 
         public void PopulateBusinessSectorDropDown(string businessSector)
         {
+            WriteLogOnMethodEntry(businessSector);
             SelectFromDropdown(BusinessSectorDropDownList, businessSector);
             AssertItemIsSelected(BusinessSectorDropDownList, businessSector, "Business Sector Drop Down List");
         }
 
         public void DoHaveAnAccountOption()
         {
+            WriteLogOnMethodEntry();
             DoHaveAnAccountOptionButton.Click();
             TestCheck.AssertIsEqual("True", DoHaveAnAccountOptionButton.Selected.ToString(), "Do Have An Account Button");
         }
 
         public void DoNotUseAccountForBusiness()
         {
+            WriteLogOnMethodEntry();
             DoNotUseMyAccountForBusinessCheckbox.Click();
             TestCheck.AssertIsEqual("True", DoNotUseMyAccountForBusinessCheckbox.Selected.ToString(),
                 "Do Not Use Account For Business Button");
@@ -490,6 +528,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void UseAccountForBusiness()
         {
+            WriteLogOnMethodEntry();
             UseMyAccountForBusinessCheckbox.Click();
             TestCheck.AssertIsEqual("True", UseMyAccountForBusinessCheckbox.Selected.ToString(),
                 "Use Account For Business Button");
@@ -497,6 +536,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void CheckTermsAndConditions()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(AgreeToTermsAndConditions);
             AgreeToTermsAndConditions.Click();
             TestCheck.AssertIsEqual("True", AgreeToTermsAndConditions.Selected.ToString(),
@@ -505,12 +545,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void CheckTermsAndConditionsForItaly()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(AgreeToTermsAndConditions);
             AgreeToTermsAndConditions.Click();
         }
 
         public void PopulatePassword(string password)
         {
+            WriteLogOnMethodEntry(password);
             Password.SendKeys(password.Equals("@@@@@") ? Helper.Password : password);
             TestCheck.AssertIsEqual(password.Equals("@@@@@") ? Helper.Password : password, GetTextBoxValue("Password"),
                 "Password");
@@ -518,12 +560,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateMaxPassword()
         {
+            WriteLogOnMethodEntry();
             Password.SendKeys("Max30CharacterPasswooooooooord");
         }
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
-
+            WriteLogOnMethodEntry(emailAddress);
             //TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
 
             if (emailAddress.Equals(string.Empty))
@@ -539,6 +582,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBoxWithMaxLengthEmail(string emailAddress)
         {
+            WriteLogOnMethodEntry(emailAddress);
             TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
             if (emailAddress.Equals(string.Empty))
             {
@@ -553,104 +597,123 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddress1TextBox(string emailAddress)
         {
+            WriteLogOnMethodEntry(emailAddress);
             EmailAddress1TextBox.SendKeys(emailAddress);
             EmailAddress1TextBox.SendKeys(Keys.Tab);
         }
 
         public void PopulatePassword1TextBox(string password)
         {
+            WriteLogOnMethodEntry(password);
             Password1TextBox.SendKeys(password);
             Password1TextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyEmailAddressTextBox()
         {
+            WriteLogOnMethodEntry();
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyPasswordTextBox()
         {
+            WriteLogOnMethodEntry();
             PasswordTextBox.Clear();
             PasswordTextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyFirstNameTextBox()
         {
+            WriteLogOnMethodEntry();
             FirstNameTextBox.Clear();
             FirstNameTextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyLastNameTextBox()
         {
+            WriteLogOnMethodEntry();
             LastNameTextBox.Clear();
             LastNameTextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyCompanyNameTextBox()
         {
+            WriteLogOnMethodEntry();
             CompanyNameTextBox.Clear();
             CompanyNameTextBox.SendKeys(Keys.Tab);
         }
 
         public void EmptyBusinessSectorTextBox()
         {
+            WriteLogOnMethodEntry();
             BusinessSectorDropDownList.SendKeys(Keys.Tab);
         }
 
         public void IsErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, EmailAddressErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void PasswordErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             PasswordTextBox.SendKeys(Keys.Tab);
             TestCheck.AssertIsEqual(true, PasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void FirstNameErrorMessage()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, FirstNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
         public void LastNameErrorMessage()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, LastNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
         public void CompanyNameErrorMessage()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, CompanyNameErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
         public void BusinessSectorErrorMessage()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, BusinessSectorErrorMessageDisplayed.Displayed, "Is Error Message Displayed");
         }
 
         public void ConfirmPasswordErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, ConfirmPasswordErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void TermsAndConditionsErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, TermsAndConditionsErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void DuplicateEmailErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, DuplicateEmailErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void InvalidCredentialsErrorMessageDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, InvalidCredentialsErrorMessage.Displayed, "Is Error Message Displayed");
         }
 
         public void NavigateToMyAccountPage()
         {
+            WriteLogOnMethodEntry();
             MyAccountNavigationButton.Click();
         }
     }

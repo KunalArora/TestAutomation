@@ -39,41 +39,21 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterInstanceAs<IRuntimeSettings>(InitialiseRuntimeSettings());
             _container.RegisterInstanceAs<ILoggingServiceSettings>(CreateLoggingServiceSettings());
             _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
-            _container.RegisterTypeAs<PageService, IPageService>("_IPageService");
-            _container.RegisterFactoryAs<IPageService>(container => {
-                return LoggingProxy.Wrap((IPageService)_container.Resolve(typeof(IPageService), "_IPageService")); });
+            _container.RegisterTypeAs<PageService, IPageService>();
             _container.RegisterTypeAs<DefaultUserResolver, IUserResolver>();
             _container.RegisterTypeAs<DefaultUrlResolver, IUrlResolver>();
             _container.RegisterTypeAs<CountryService, ICountryService>();
             _container.RegisterTypeAs<DefaultProposalHelper, IProposalHelper>();
-            _container.RegisterTypeAs<SeleniumHelper, ISeleniumHelper>("_ISeleniumHelper");
-            _container.RegisterFactoryAs<ISeleniumHelper>(container => {
-                return LoggingProxy.Wrap((ISeleniumHelper)_container.Resolve(typeof(ISeleniumHelper), "_ISeleniumHelper"));
-            });
+            _container.RegisterTypeAs<SeleniumHelper, ISeleniumHelper>();
             _container.RegisterTypeAs<ExpectedTranslationService, ITranslationService>();
-            _container.RegisterTypeAs<WebRequestService, IWebRequestService>("_IWebRequestService");
-            _container.RegisterFactoryAs<IWebRequestService>(container => {
-                return LoggingProxy.Wrap((IWebRequestService)_container.Resolve(typeof(IWebRequestService), "_IWebRequestService"));
-            });
-            _container.RegisterTypeAs<DeviceSimulatorService, IDeviceSimulatorService>("_IDeviceSimulatorService");
-            _container.RegisterFactoryAs<IDeviceSimulatorService>(container => {
-                return LoggingProxy.Wrap((IDeviceSimulatorService)_container.Resolve(typeof(IDeviceSimulatorService), "_IDeviceSimulatorService"));
-            });
-            _container.RegisterTypeAs<RunCommandService, IRunCommandService>("_IRunCommandService");
-            _container.RegisterFactoryAs<IRunCommandService>(container => {
-                return LoggingProxy.Wrap((IRunCommandService)_container.Resolve(typeof(IRunCommandService), "_IRunCommandService"));
-            });
+            _container.RegisterTypeAs<WebRequestService, IWebRequestService>();
+            _container.RegisterTypeAs<DeviceSimulatorService, IDeviceSimulatorService>();
+            _container.RegisterTypeAs<RunCommandService, IRunCommandService>();
             _container.RegisterTypeAs<MpsWebToolsService, IMpsWebToolsService>();
             _container.RegisterTypeAs<CalculationService, ICalculationService>();
-            _container.RegisterTypeAs<PdfHelper, IPdfHelper>("_IPdfHelper");
-            _container.RegisterFactoryAs<IPdfHelper>(container => {
-                return LoggingProxy.Wrap((IPdfHelper)_container.Resolve(typeof(IPdfHelper), "_IPdfHelper"));
-            });
+            _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
-            _container.RegisterTypeAs<ExcelHelper, IExcelHelper>("_IExcelHelper");
-            _container.RegisterFactoryAs<IExcelHelper>(container => {
-                return LoggingProxy.Wrap((IExcelHelper)_container.Resolve(typeof(IExcelHelper), "_IExcelHelper"));
-            });
+            _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
         }
 

@@ -41,6 +41,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
+            WriteLogOnMethodEntry(proposalId,driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ContractFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 , findElementTimeout);
@@ -50,6 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
+            WriteLogOnMethodEntry(actionsButton);
             var actionsElement = Driver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;
         }
@@ -88,6 +90,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
+            WriteLogOnMethodEntry(proposalId,driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(FilterSearchFieldElement, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);

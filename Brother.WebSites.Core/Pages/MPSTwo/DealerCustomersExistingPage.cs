@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -65,12 +63,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FindExistingCustomerList()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsNotNull(customerListContainerElement,
                 "Existing customer table is not found.");
         }
 
         public void FindCreateCustomerButton()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsNotNull(createCustomerButtonElement,
                 "Create Customer Button is not found.");
         }
@@ -78,6 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerCustomersManagePage ClickCreateCustomerPage()
         {
+            WriteLogOnMethodEntry();
             var _createCustomerElement = SeleniumHelper.FindElementByCssSelector(CreateCustomerButtonSelector, 10);
             _createCustomerElement.Click();
             
@@ -86,6 +87,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmCreatedCustomer()
         {
+            WriteLogOnMethodEntry();
             var contact = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationContactDetail>(DealerLatestCreatedContact);
 
             var org = SpecFlow.GetObject<DealerCustomersManagePage.OrganisationDetail>(DealerLatestCreatedOrganization);
@@ -101,6 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement CreatedCreated()
         {
+            WriteLogOnMethodEntry();
             var createdEmail = String.Format("//td[text()=\"{0}\"]", SavedEmailAddress());
 
             return Driver.FindElement(By.XPath(createdEmail));
@@ -108,11 +111,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement FindExistingCustomerByEmail()
         {
+            WriteLogOnMethodEntry();
             return CreatedCreated();
         }
 
         private IWebElement FindNthProposalOfferElement(IWebDriver driver, int nth = 1)
         {
+            WriteLogOnMethodEntry();
             var format = string.Format(CustomerNthItemSelecterFormat, nth);
             return driver.FindElement(By.CssSelector(format));
         }
@@ -120,6 +125,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickAcceptOnConfrimation()
         {
+            WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Millisecond, 3000);
             //AcceptAlert();
             ClickAcceptOnJsAlert();
@@ -129,6 +135,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
+            WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Millisecond, 100);
             ClickDismissOnJsAlert();
             HeadlessDismissAlertCancel();
@@ -137,16 +144,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string SavedEmailAddress()
         {
+            WriteLogOnMethodEntry();
             return SpecFlow.GetContext("GeneratedEmailAddress");
         }
 
         private void ClickActionButtonOnOffer()
         {
-           ActionsModule.ClickOnSpecificCustomerActions(Driver);
+            WriteLogOnMethodEntry();
+            ActionsModule.ClickOnSpecificCustomerActions(Driver);
         }
 
         private bool ContainsItemById(ISearchContext driver, string id)
         {
+            WriteLogOnMethodEntry(driver,id);
             return
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
                 .Select(x => x.GetAttribute("data-person-id"))
@@ -155,16 +165,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated()
         {
+            WriteLogOnMethodEntry();
             ClickDelete();
         }
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreatedProposalCustomer()
         {
-           ClickDelete();
+            WriteLogOnMethodEntry();
+            ClickDelete();
         }
 
         private void ClickDelete()
         {
+            WriteLogOnMethodEntry();
             const string deleteButton = @".open .js-mps-delete";
             
             HeadlessDismissAlertOk();
@@ -184,6 +197,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItem(IWebDriver driver)
         {
+            WriteLogOnMethodEntry(driver);
             HeadlessDismissAlertOk();
            // var customerelem = FindNthProposalOfferElement(driver);
             //ClickActionButtonOnOffer();
@@ -209,7 +223,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NotExistTheDeletedItem(IWebDriver driver)
         {
-            
+            WriteLogOnMethodEntry(driver);
+
             var id = SpecFlow.GetContext(DealerLatestOperatingCustomerItemId);
             var exisitng = ContainsItemById(driver, id);
 
@@ -221,12 +236,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CustomerIsDisplayed()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.IsNewlyCreatedCustomerDisplayed(Driver);
         }
 
         public void IsCustomerDeleted()
         {
-           var cust = GetElementsByCssSelector(".js-mps-filter-ignore", 10).Count == 0;
+            WriteLogOnMethodEntry();
+            var cust = GetElementsByCssSelector(".js-mps-filter-ignore", 10).Count == 0;
 
             TestCheck.AssertIsEqual(true, cust, "Customer is not deleted");
 
@@ -234,17 +251,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerCreated()
         {
+            WriteLogOnMethodEntry();
             CustomerIsDisplayed();
 
         }
 
         public void ExistsNotDeletedItem(IWebDriver driver)
         {
+            WriteLogOnMethodEntry();
             CustomerIsDisplayed();
         }
 
         public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyCreated()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificCustomerActions(Driver);
             var editElem = Driver.FindElement(By.CssSelector(".open .js-mps-edit"));
             var id = editElem.GetAttribute("data-person-id");
@@ -255,6 +275,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerCustomersManagePage ClickOnEditOnActionItemAgainstNewlyEditedCustomer()
         {
+            WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificCustomerActions(Driver);
             var editElem = Driver.FindElement(By.CssSelector(".open .js-mps-edit"));
             editElem.Click();
@@ -263,6 +284,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifyItemByName(string customerInformationName, string customerEmail, int timeout)
         {
+            WriteLogOnMethodEntry();
             ClearAndType(PersonListFilter, customerEmail);
             try
             {

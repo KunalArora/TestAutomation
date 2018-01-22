@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    public class ExcelHelper: MarshalByRefObject, IExcelHelper, IILoggingService
+    public class ExcelHelper: IExcelHelper, IILoggingService
     {
 
 
@@ -65,6 +65,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public string GetDownloadedExcelFilePath()
         {
+            WriteLogOnMethodEntry();
             var fileList = ListDownloadsFolder();
             var task = WaitforNewfile(fileList);
             if (task.Wait(new TimeSpan(0, 0, _runtimeSettings.DefaultDownloadTimeout)))
@@ -79,11 +80,13 @@ namespace Brother.Tests.Specs.Helpers
 
         public void OpenExcel(string excelFilePath)
         {
+            WriteLogOnMethodEntry();
             System.Diagnostics.Process.Start(excelFilePath);
         }
 
         public int GetNumberOfRows(string excelFilePath)
         {
+            WriteLogOnMethodEntry();
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -103,6 +106,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public void VerifyTotalNumberOfColumns(string excelFilePath)
         {
+            WriteLogOnMethodEntry(excelFilePath);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -125,6 +129,7 @@ namespace Brother.Tests.Specs.Helpers
         public string EditExcelCustomerInformation(
             string excelFilePath, int row, CustomerInformationMandatoryFields mandatoryFieldValues, CustomerInformationOptionalFields optionalFieldValues = null)
         {
+            WriteLogOnMethodEntry(excelFilePath, row, mandatoryFieldValues, optionalFieldValues);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -167,6 +172,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public AdditionalDeviceProperties GetDeviceDetails(string excelFilePath, int row)
         {
+            WriteLogOnMethodEntry(excelFilePath, row);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -222,6 +228,7 @@ namespace Brother.Tests.Specs.Helpers
         public void VerifyDeviceStatusAndConnectionStatus(
            string excelFilePath, int deviceRowIndex, string resourceDeviceStatus, string resourceConnectionStatus)
         {
+            WriteLogOnMethodEntry(excelFilePath, deviceRowIndex, resourceDeviceStatus, resourceConnectionStatus);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -246,6 +253,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public void DeleteExcelFile(string filePath)
         {
+            WriteLogOnMethodEntry();
             try 
             { 
                 System.IO.File.Delete(filePath); 
@@ -260,6 +268,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.xlsx")
         {
+            WriteLogOnMethodEntry(orglist, pattern);
             // note: FileWatcher is not detecting file...
             for (int safetycount = 0; safetycount < 1000; safetycount++)
             {
@@ -276,6 +285,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string[] ListDownloadsFolder(string pattern = "*.xlsx")
         {
+            WriteLogOnMethodEntry(pattern);
             try
             {
                 string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
@@ -289,6 +299,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string HandleNullCase(Object variable)
         {
+            WriteLogOnMethodEntry(variable);
             if (variable != null)
             {
                 return variable.ToString();
@@ -298,6 +309,12 @@ namespace Brother.Tests.Specs.Helpers
                 return "";
             }
         }
+
+        protected void WriteLogOnMethodEntry(params object[] args)
+        {
+            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
+        }
+
         # endregion
     }
 }

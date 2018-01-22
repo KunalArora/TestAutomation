@@ -481,5 +481,11 @@ namespace Brother.WebSites.Core.Pages.Base
             MsgOutput(string.Format("Current WebDriver [driver.URL] value is [{0}]. Actual desired URL (the one we want) should be [{1}]", driver.Url, url));
             TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0} and the page source differences reflect this", url));
         }
+
+        protected void WriteLogOnMethodEntry(params object[] args)
+        {
+            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
+        }
+
     }
 }

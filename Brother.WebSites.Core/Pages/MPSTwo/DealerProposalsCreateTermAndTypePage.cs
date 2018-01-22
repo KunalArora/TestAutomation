@@ -66,60 +66,64 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTheRightPaymentMethodSelected(string pay)
         {
+            WriteLogOnMethodEntry(pay);
             var text = SelectedPaymentMethodElement.Text;
             TestCheck.AssertTextContains(text, pay);
         }
 
         public void HowManyServicePackPaymentIsDisplayed(int number)
         {
+            WriteLogOnMethodEntry(number);
             TestCheck.AssertIsEqual(number, NumberOfSelectOption(PaymentMethodElement), "The correct number of select option is not displayed"); 
         }
 
         public void PayServicePackMethod(string option)
         {
-                //var paymentMethod = "";
-            
-                //if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
-                //if (
-                //        option.Equals("Pay upfront")
-                //        || option.Equals("Im Voraus bezahlen") 
-                //        || option.Equals("Betale på forskud")
-                //        || option.Equals("Paiement au démarrage du contrat") 
-                //        || option.Equals("Pagamento anticipato") 
-                //        || option.Equals("Förskott")
-                //        || option.Equals("Betaling bij aanvang van het contract") 
-                //        || option.Equals("Płatność z góry")
-                //        || option.Equals("Maksu etukäteen")
-                //        || option.Equals("På forskudd")
-                    
-                //    )
-                //{
-                //    paymentMethod = "Pay upfront";
-                //}
-                //else if (
-                //            option.Equals("Included in Click Price")
-                //            || option.Equals("über den Seitenpreis zahlen") 
-                //            || option.Equals("Inkluderet i klikpris")
-                //            || option.Equals("Inclus dans le coût à la page") 
-                //            || option.Equals("Incluso nel click") 
-                //            || option.Equals("Per utskrift")
-                //            || option.Equals("Inbegrepen in de clickprijs") 
-                //            || option.Equals("Inclus dans le prix click") 
-                //            || option.Equals("Wliczyć w cenę za wydruk strony")
-                //            || option.Equals("Über den Seitenpreis zahlen")
-                //            || option.Equals("Sisältyy klikkihintaan")
-                //            || option.Equals("I klikk")
-                //    )
-                //{
-                //    paymentMethod = "Included in Click Price";
-                //}
+            WriteLogOnMethodEntry(option);
+            //var paymentMethod = "";
 
-                SelectFromDropdown(PaymentMethodElement, option);
+            //if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
+            //if (
+            //        option.Equals("Pay upfront")
+            //        || option.Equals("Im Voraus bezahlen") 
+            //        || option.Equals("Betale på forskud")
+            //        || option.Equals("Paiement au démarrage du contrat") 
+            //        || option.Equals("Pagamento anticipato") 
+            //        || option.Equals("Förskott")
+            //        || option.Equals("Betaling bij aanvang van het contract") 
+            //        || option.Equals("Płatność z góry")
+            //        || option.Equals("Maksu etukäteen")
+            //        || option.Equals("På forskudd")
+
+            //    )
+            //{
+            //    paymentMethod = "Pay upfront";
+            //}
+            //else if (
+            //            option.Equals("Included in Click Price")
+            //            || option.Equals("über den Seitenpreis zahlen") 
+            //            || option.Equals("Inkluderet i klikpris")
+            //            || option.Equals("Inclus dans le coût à la page") 
+            //            || option.Equals("Incluso nel click") 
+            //            || option.Equals("Per utskrift")
+            //            || option.Equals("Inbegrepen in de clickprijs") 
+            //            || option.Equals("Inclus dans le prix click") 
+            //            || option.Equals("Wliczyć w cenę za wydruk strony")
+            //            || option.Equals("Über den Seitenpreis zahlen")
+            //            || option.Equals("Sisältyy klikkihintaan")
+            //            || option.Equals("I klikk")
+            //    )
+            //{
+            //    paymentMethod = "Included in Click Price";
+            //}
+
+            SelectFromDropdown(PaymentMethodElement, option);
          }
             
 
         public void IsTermAndTypeTextDisplayed()
         {
+            WriteLogOnMethodEntry();
             if (TermAndTypeScreenTextElement == null) throw new
                 NullReferenceException("Unable to locate text on Term and Type Screen");
 
@@ -128,21 +132,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement PriceHardwareElementMissing()
         {
+            WriteLogOnMethodEntry();
             return GetElementByCssSelector(priceHardwareTickBox, 10);
         }
 
         public void VerifyPriceHardwareIsNotDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(false, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
         }
 
         public void VerifyPriceHardwareIsDisplayed()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
         }
 
         public void TickPriceHardware()
         {
+            WriteLogOnMethodEntry();
             if (PriceHardwareElement.Selected)
             {
                 return;
@@ -151,6 +159,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void UntickPriceHardware()
         {
+            WriteLogOnMethodEntry();
             if (PriceHardwareElement.Selected)
             {
                 PriceHardwareElement.Click();
@@ -159,12 +168,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotPriceHardwareElement()
         {
+            WriteLogOnMethodEntry();
             Boolean ret = IsElementPresent(GetElementByCssSelector("#content_1_InputPriceHardware_Input", 5));
             TestCheck.AssertIsEqual(false, ret, "PriceHardwareElement is displayed");
         }
 
         public void TickPriceHardware(string tickOption)
         {
+            WriteLogOnMethodEntry(tickOption);
             if (tickOption.Equals("Untick"))
             {
                 PriceHardwareElement.Click();
@@ -177,6 +188,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractLength(string length)
         {
+            WriteLogOnMethodEntry(length);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputContractLength_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedContractTerm", length);
             SelectFromDropdown(ContractLengthElement, length);
@@ -184,12 +196,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectLeaseBillingCycle(string lease)
         {
+            WriteLogOnMethodEntry(lease);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputLeasingRateBillingCycle_Input", 10))) return;
             SelectFromDropdown(LeaseBillingCycleElement, lease);
         }
 
         public void SelectPayPerClickBillingCycle(string billing)
         {
+            WriteLogOnMethodEntry(billing);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputClickRateBillingCycle_Input", 10))) return;
             SelectFromDropdown(PayPerClickBillingElement, billing);
         }
@@ -198,6 +212,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void SelectUsageType(string usage)
         {
+            WriteLogOnMethodEntry(usage);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputUsageType_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
             SelectFromDropdown(UsageTypeElement, usage);
@@ -206,6 +221,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateProductsPage ClickNextButton()
         {
+            WriteLogOnMethodEntry();
             ScrollTo(NextButton);
             //NextButton.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
@@ -214,6 +230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
         {
+            WriteLogOnMethodEntry(usageType,contractLength,billingType,servicePackOption);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);

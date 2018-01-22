@@ -59,7 +59,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSendCommunicationScreenDisplayed()
         {
-            if(SendCommunicationEmailElement == null)
+            WriteLogOnMethodEntry();
+            if (SendCommunicationEmailElement == null)
                 throw new Exception("Send communication email is not displayed");
 
             AssertElementPresent(SendCommunicationEmailElement, "Communication email screen");
@@ -67,7 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ArePinAndLabelFieldPopulated()
         {
-            
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(2) , "Pin and/or Reference not generated");
             SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
             SpecFlow.SetContext("InstallationPin", PinLabelElement.Last().Text);
@@ -77,6 +78,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceModelDisplayedOnSwapConfirmationPage()
         {
+            WriteLogOnMethodEntry();
             var aContainer = new List<String>();
             var serialNumber = SpecFlow.GetContext("SerialNumber");
 
@@ -93,7 +95,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPinFieldPopulated()
         {
-
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(1), "Pin and/or Reference not generated");
             SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
 
@@ -101,6 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SendInstallationRequest()
         {
+            WriteLogOnMethodEntry();
             NextButtonElement.Click();
             ConfirmInstallationEmailSent();
 
@@ -108,18 +111,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage SendPcbSwapInstallationRequest()
         {
+            WriteLogOnMethodEntry();
             return SendSwapInstallationRequest();
 
         }
 
         public DealerManageDevicesPage SendSwapInstallationRequest()
         {
+            WriteLogOnMethodEntry();
             NextButtonElement.Click();
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
         public string EnterInstallerEmail()
         {
+            WriteLogOnMethodEntry();
             string emailId = "steve.walters@brother.co.uk";
             ClearAndType(EmailFieldElement, emailId);
             return emailId;
@@ -127,18 +133,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationEmailSent()
         {
+            WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, SentConfirmationElement.Displayed, "Installation email not");
             
         }
 
         public DealerManageDevicesPage CompleteInstallation()
         {
+            WriteLogOnMethodEntry();
             FinishInstallationElement.Click();
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
         public string EnterInstallerEmailAndProceed()
         {
+            WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button

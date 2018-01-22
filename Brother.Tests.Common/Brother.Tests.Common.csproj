@@ -88,7 +88,6 @@
     <Compile Include="Logging\IILoggingService.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\ILoggingServiceSettings.cs" />
-    <Compile Include="Logging\LoggingProxy.cs" />
     <Compile Include="Logging\LoggingUtil.cs" />
     <Compile Include="Logging\MpsLoggingConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
