@@ -76,22 +76,44 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Agreement
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("MPS Dealer Create Agreement")]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Pay As You Go", "2 years", "Upfront", null)]
-        public virtual void MPSDealerCreateAgreement(string role, string country, string usageType, string contractTerm, string servicePackPayment, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "MINIMUM_VOLUME", "THREE_YEARS", "PAY_UPFRONT", new string[] {
+                "BUK"}, Category="BUK")]
+        public virtual void MPSDealerCreateAgreement(string country, string agreementType, string usageType, string contractTerm, string service, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MPS Dealer Create Agreement", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given(string.Format("I have navigated to the Create Agreement page as a \"{0}\" from \"{1}\"", role, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the Create Agreement page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("I enter the agreement description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I enter the agreement description for \"{0}\" type agreement", agreementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.And(string.Format("I select \"{0}\" as the Usage Type and I select \"{1}\" as the Contract Term", usageType, contractTerm), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term of \"{1}\" and Service of \"{2}\"", usageType, contractTerm, service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "Quantity",
+                        "InstallationPack",
+                        "ServicePack",
+                        "CoverageMono",
+                        "VolumeMono",
+                        "CoverageColour",
+                        "VolumeColour"});
+            table1.AddRow(new string[] {
+                        "DCP-8110DN",
+                        "1",
+                        "Yes",
+                        "Yes",
+                        "5",
+                        "1000",
+                        "0",
+                        "0"});
 #line 11
- testRunner.And("I add a printer to the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("I enter coverage and volume values on the click price calculation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
+#line 14
+testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.ContextData;
-using NUnit.Framework.Constraints;
+﻿using Brother.Tests.Common.ContextData;
 
 namespace Brother.Tests.Specs.Resolvers
 {
@@ -17,12 +11,15 @@ namespace Brother.Tests.Specs.Resolvers
         private const string TEST_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.test.brother.eu.com";
 
         private const string UAT_BASE_URL_FORMAT = "https://online65.{0}.cds.uat.brother.eu.com";
-        private const string UAT_CMS_URL_FORMAT = "http://online65.{0}.cms.uat.brother.eu.com";
+        private const string UAT_CMS_URL_FORMAT = "https://online65.{0}.cms.uat.brother.eu.com";
         private const string UAT_ATYOURSIDE_URL_FORMAT = "https://atyourside.{0}.cds.uat.brother.eu.com";
 
         private const string PRD_BASE_URL_FORMAT = "https://atyourside.brother.{0}";
         private const string PRD_CMS_URL_FORMAT = "http://online65.{0}.cms.prod.brother.eu.com";
         private const string PRD_ATYOURSIDE_URL_FORMAT = "https://atyourside.brother.{0}";
+
+        private const string DEV_BASE_URL_FORMAT = "http://online.brother.{0}.local";
+        private const string DEV_CMS_URL_FORMAT = "http://online.brother.{0}.local";
 
         public DefaultUrlResolver(IContextData contextData)
         {
@@ -44,6 +41,8 @@ namespace Brother.Tests.Specs.Resolvers
                         return string.Format(UAT_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
                         return string.Format(PRD_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
+                    case "DEV":
+                        return string.Format(DEV_BASE_URL_FORMAT, _contextData.Country.DomainSuffix);
                     default:
                         return string.Empty;
                 }
@@ -65,6 +64,8 @@ namespace Brother.Tests.Specs.Resolvers
                         return string.Format(UAT_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     case "PROD":
                         return string.Format(PRD_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
+                    case "DEV":
+                        return string.Format(DEV_CMS_URL_FORMAT, _contextData.Country.DomainSuffix);
                     default:
                         return string.Empty;
                 }

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Specs.ContextData;
+using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using Brother.Tests.Common.RuntimeSettings;
+ 
 
 namespace Brother.Tests.Specs.StepActions
 {
@@ -20,14 +22,14 @@ namespace Brother.Tests.Specs.StepActions
         protected readonly IPageService PageService;
         protected readonly ScenarioContext ScenarioContext;
         protected readonly IUrlResolver UrlResolver;
-        protected readonly RuntimeSettings RuntimeSettings;
+        protected readonly IRuntimeSettings RuntimeSettings;
 
         public StepActionBase(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext scenarioContext,
             IUrlResolver urlResolver,
-            RuntimeSettings runtimeSettings)
+            IRuntimeSettings runtimeSettings)
         {
             WebDriverFactory = webDriverFactory;
             ContextData = contextData;

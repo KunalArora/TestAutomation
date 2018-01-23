@@ -6,13 +6,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using Brother.Tests.Selenium.Lib.Properties;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
     public abstract partial class BasePage : SeleniumHelper
     {
+        public IRuntimeSettings RuntimeSettings;
         public string BaseURL { get; set; }
-
 
         private const string TestEnvSuffix = RunTimeTest;
         private const string UatEnvSuffix = RunTimeUat;

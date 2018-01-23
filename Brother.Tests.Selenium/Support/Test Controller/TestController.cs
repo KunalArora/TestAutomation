@@ -1,17 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Configuration;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Net.Mail;
-using Brother.Tests.Selenium.Lib.ExtentReport;
+﻿using Brother.Tests.Selenium.Lib.ExtentReport;
 using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -20,6 +12,10 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
 using RelevantCodes.ExtentReports;
+using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support
@@ -308,11 +304,14 @@ namespace Brother.Tests.Selenium.Lib.Support
             };
         }
 
+        public const string DownloadPath = @"C:\DataTest";
+
+
         private static ChromeOptions Options()
         {
             //var scenarioName = ScenarioContext.Current.ScenarioInfo.Title;
             var options = new ChromeOptions();
-            const string path = @"C:\DataTest";
+            //const string path = @"C:\DataTest";
 
             //if (!string.IsNullOrWhiteSpace(scenarioName))
             //{
@@ -325,12 +324,12 @@ namespace Brother.Tests.Selenium.Lib.Support
             //    path = Path.Combine(path, scenarioName);
             //    //path += scenarioName; //String.Format(@"C:\DataTest\{0}", scenarioName);
             //}
-            
-            
+
+            options.AddArguments("--lang=en-GB"); // for date stamp
             options.AddArguments("--disable-extensions");
            // options.AddArguments("start-maximized");
             options.AddUserProfilePreference("profile.default_content_settings.popups", 0);
-            options.AddUserProfilePreference("download.default_directory", path);
+            options.AddUserProfilePreference("download.default_directory", DownloadPath);
             options.AddArguments("no-sandbox");
 
             return options;

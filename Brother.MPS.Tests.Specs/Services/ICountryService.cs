@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Brother.Tests.Specs.Domain;
+using Brother.Tests.Common.Domain;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.Services
 {

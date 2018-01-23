@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsCreateCustomerInformationPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/customer-information";
-        private const string _validationElementSelector = ".form-group mps-radio-options"; //initial load to select new, existing or skip
+        private const string _validationElementSelector = "#content_1_ButtonNext"; //initial load to select new, existing or skip
         private const string _url = "/mps/dealer/proposals/create/customer-information";
 
         public string ValidationElementSelector
@@ -103,11 +101,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LegalFormDropdown;
         [FindsBy(How = How.CssSelector, Using = "#content_1_PersonManage_InputPersonMobile_Input")]
         public IWebElement MobileElement;
+
+        [FindsBy(How = How.CssSelector, Using = "[id*=content_1_PersonList_List_InputChoice_]")]
+        public IList<IWebElement> CustomerRadioButtonElement;
         
         
-        
-        
-        
+        public void SelectExistingCustomer(int findElementTimeout, string customerEmail)
+        {
+            SelectAnExistingContact(findElementTimeout, customerEmail);
+        }
+
+        private void SelectAnExistingContact(int findElementTimeout, string customerEmail)
+        {
+            var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer, findElementTimeout);
+            ClearAndType(ExistingCustomerFilterElement, customerEmail);
+            var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion, findElementTimeout);
+            SeleniumHelper.WaitUntil(d => CustomerRadioButtonElement.Count == 1, findElementTimeout);
+            SeleniumHelper.ClickSafety(CustomerRadioButton, findElementTimeout);
+
+        }
 
         public void SelectARandomExistingContact()
         {
@@ -144,7 +156,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void SelectAnExistingCustomer()
         {
             WaitForElementToExistByCssSelector(CustomerContainer);
- 
             try
                 {
                     var customerChoice =
@@ -155,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     var ranClick = new Random().Next(0, cust);
 
                     WaitForElementToExistByCssSelector(CustomerContainer);
-
+           
                     customerChoice.ElementAt(ranClick).Click();
                 }
                 catch (StaleElementReferenceException stale)
@@ -776,5 +787,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var email = driver.FindElement(By.CssSelector(emailselector)).Text;
             SpecFlow.SetContext("DealerLatestEditedCustomerEmail", email);
         }
+
+        private string GetFieldValue(IWebElement element)
+        {
+            return element.GetAttribute("value");
+        }
+
+        public string GetCompanyName()
+        {
+            return GetFieldValue(CompanyNameElement);
+        }
+
+        public string GetEmail()
+        {
+            return GetFieldValue(EmailElement);
+        }
+
+        public string GetFirstName()
+        {
+            return GetFieldValue(FirstNameElement);
+        }
+
+        public string GetLastName()
+        {
+            return GetFieldValue(LastNameElement);
+        }
+
     }
 }

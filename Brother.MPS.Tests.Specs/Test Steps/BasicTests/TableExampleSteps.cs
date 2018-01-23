@@ -1,5 +1,6 @@
 ﻿using System;
 using Brother.Tests.Specs.Domain;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

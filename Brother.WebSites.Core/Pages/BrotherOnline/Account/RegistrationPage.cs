@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Authentication;
 using System.Threading;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
@@ -10,11 +11,33 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
-    public class RegistrationPage : BasePage
+    public class RegistrationPage : BasePage, IPageObject
     {
         public static string Url = "/sign-in";
+
+        private const string _validationElementSelector = "#form-sign-in";
+        private const string _url = "/sign-in";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {
@@ -500,7 +523,9 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
-            TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+
+            //TestCheck.AssertIsEqual(false, EmailAddressErrorMessage.Displayed, "Is Email Error message displayed");
+
             if (emailAddress.Equals(string.Empty))
             {
                 emailAddress = Email.GenerateUniqueEmailAddress();

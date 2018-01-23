@@ -1,18 +1,19 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Resolvers;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherOnline.Account;
-using Brother.Tests.Specs.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
+using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -22,16 +23,22 @@ namespace Brother.Tests.Specs.Services
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
+        private readonly ILoggingService _loggingService;
+        private readonly IRuntimeSettings _runtimeSettings;
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,
+            ILoggingService loggingService,
             IUrlResolver urlResolver,
-            ISeleniumHelper seleniumHelper)
+            ISeleniumHelper seleniumHelper,
+            IRuntimeSettings runtimeSettings)
         {
             _driver = driver;
             _context = context;
             _urlResolver = urlResolver;
             _seleniumHelper = seleniumHelper;
+            _loggingService = loggingService;
+            _runtimeSettings = runtimeSettings;
         }
 
         #region Page loads
@@ -56,12 +63,12 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver) };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,_loggingService), RuntimeSettings = _runtimeSettings };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)
             {
-                var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { d.FindElement(By.CssSelector(validationElementSelector)); return true; } catch { return false; } });
             }
 
             PageFactory.InitElements(driver, pageObject);
@@ -96,7 +103,7 @@ namespace Brother.Tests.Specs.Services
             Helper.MsgOutput(string.Format("Load of url {0} started", url));
             try
             {
-                var webDriverWait = new WebDriverWait(driver, timeSpan).Until(d => d.FindElement(By.CssSelector(validationElementSelector)));
+                var webDriverWait = new WebDriverWait(driver, timeSpan).Until(d => { try { d.FindElement(By.CssSelector(validationElementSelector)); return true; } catch { return false; } });
                 Helper.MsgOutput(string.Format("Url {0} loaded - success indicated by presence of validation element {1}", url, validationElementSelector));
             }
             catch (Exception ex)

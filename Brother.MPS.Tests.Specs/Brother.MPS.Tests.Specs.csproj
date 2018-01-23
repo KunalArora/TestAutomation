@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>eb778189</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>f0779580</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +44,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\iTextSharp\itextsharp-dll-core\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -85,57 +93,54 @@
       <DependentUpon>TableExample.feature</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CommandLineSettings.cs" />
-    <Compile Include="Configuration\RuntimeSettings.cs" />
-    <Compile Include="ContextData\IContextData.cs" />
-    <Compile Include="ContextData\MpsContextData.cs" />
-    <Compile Include="Domain\Country.cs" />
-    <Compile Include="Domain\Enums\BusinessType.cs" />
-    <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
-    <Compile Include="Domain\Enums\UserType.cs" />
-    <Compile Include="Domain\PrinterProperties.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
+    <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
     <Compile Include="Domain\WebPageResponse.cs" />
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="Factories\IWebDriverFactory.cs" />
     <Compile Include="Factories\WebDriverFactory.cs" />
+    <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
+    <Compile Include="Helpers\ExcelHelper.cs" />
+    <Compile Include="Helpers\IAgreementHelper.cs" />
+    <Compile Include="Helpers\IExcelHelper.cs" />
+    <Compile Include="Helpers\IPdfHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />
+    <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
-    <Compile Include="Resources\ContractType\ContractType.en-gb.Designer.cs">
-      <DependentUpon>ContractType.en-gb.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ContractType\ContractType.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ContractType.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\InstallationPack\InstallationPack.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallationPack.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ServicePack\ServicePack.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServicePack.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Services\CalculationService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\DeviceSimulatorService.cs" />
-    <Compile Include="Services\ExpectedTranslationService.cs" />
+    <Compile Include="Services\ICalculationService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
+    <Compile Include="Services\IMpsWebToolsService.cs" />
     <Compile Include="Services\IPageService.cs" />
     <Compile Include="Services\IRunCommandService.cs" />
-    <Compile Include="Services\ITranslationService.cs" />
+    <Compile Include="Services\IWebRequestService.cs" />
+    <Compile Include="Services\MpsWebToolsService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\RunCommandService.cs" />
+    <Compile Include="Services\WebRequestService.cs" />
     <Compile Include="StepActions\Agreement\MpsDealerAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsInstallerAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsLocalOfficeAdminAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
+    <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
+    <Compile Include="StepActions\Common\MpsApiCallStepActions.cs" />
+    <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
+    <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
+    <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
+    <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
     <Compile Include="StepActions\StepActionBase.cs" />
     <Compile Include="Test Specifications\BrotherOnline\Account\Business Account.feature.cs">
       <AutoGen>True</AutoGen>
@@ -186,6 +191,81 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_1.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_2.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_3.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_3.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_4.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateCustomerSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateInstallationRequestSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCreateSwapInstallationRequestSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerDownloadsProposalSummaryPDF.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallerCompleteWebInstallationRequest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallerCompleteWebSwapInstallationRequest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApprovalProposalContractSteps.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_1.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_2.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_3.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_3.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_4.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_4.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1304,6 +1384,11 @@
     </Compile>
     <Compile Include="Test Steps\BasicTests\TableExampleSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\Account\SignInAtYourSideSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsInstallerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeAdminAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Common\MpsApiCallSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
     <Compile Include="Test Specifications\BrotherMainSite\Printer Search\Printers.feature.cs">
@@ -1426,7 +1511,13 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsInstallerContractSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsDealerContractSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Customer\MpsCustomerSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingContractSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ExistingProposalSteps.cs" />
@@ -1486,6 +1577,8 @@
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
+    <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
+    <Compile Include="UnitTests\RunCommandServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -1570,6 +1663,66 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_2.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_3.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_3.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateInstallationRequestSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerCreateSwapInstallationRequestSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DealerDownloadsProposalSummaryPDF.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApprovalProposalContractSteps.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InstallerCompleteWebSwapInstallationRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_2.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_3.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_3.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_4.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2539,6 +2692,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Brother.Tests.Common\Brother.Tests.Common.csproj">
+      <Project>{b9682f08-abf1-4a03-8255-61a8cbb8f99e}</Project>
+      <Name>Brother.Tests.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Brother.Tests.Selenium\Brother.Tests.Selenium.Lib.csproj">
       <Project>{165eba24-2c36-4274-b0ce-19b899de96cc}</Project>
       <Name>Brother.Tests.Selenium.Lib</Name>
@@ -2550,25 +2707,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ContractType\ContractType.en-gb.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContractType.en-gb.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ContractType\ContractType.fr-fr.resx" />
-    <EmbeddedResource Include="Resources\ContractType\ContractType.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContractType.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>InstallationPack.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ServicePack\ServicePack.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ServicePack.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
@@ -2585,7 +2723,7 @@
   </PropertyGroup>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
       <PropertyGroup>
@@ -2595,10 +2733,10 @@
         <testResultsXml>&quot;$(teamcity_build_checkoutDir)/TestResult.xml&quot;</testResultsXml>
         <projectFile>&quot;$(teamcity_build_checkoutDir)\CrazyEvents.AcceptanceTests\CrazyEvents.AcceptanceTests.csproj&quot;</projectFile>
       </PropertyGroup>
- 
+
     <Target Name="RunTests">
       <Exec Command="$(NUnitConsole) /labels /out=$(testResultsTxt) /xml=$(testResultsXml) $(projectFile)"/>
-    </Target>  
+    </Target>
   </Target>
     <Target Name="AfterBuild">
     </Target>

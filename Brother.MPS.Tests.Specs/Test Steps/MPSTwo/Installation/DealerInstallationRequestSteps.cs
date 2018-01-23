@@ -440,7 +440,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
             NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
            // CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
-            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallerEmail();
             CurrentPage.As<DealerSendInstallationEmailPage>().SendInstallationRequest();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().CompleteInstallation();
             //CurrentPage.As<DealerManageDevicesPage>().IsReinstallationRequestSent();
@@ -453,7 +453,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             NextPage = CurrentPage.As<DealerSetCommunicationMethodPage>().ProceedToNextPage();
             CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
             NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
-            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallerEmail();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendPcbSwapInstallationRequest();
         }
 
@@ -467,7 +467,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
             CurrentPage.As<DealerSetInstallationTypePage>().SetInstallationType(type);
             NextPage = CurrentPage.As<DealerSetInstallationTypePage>().ProccedToDealerSendInstallationEmailPage();
             CurrentPage.As<DealerSendInstallationEmailPage>().IsDeviceModelDisplayedOnSwapConfirmationPage();
-            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallerEmail();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().SendSwapInstallationRequest();
             CurrentPage.As<DealerManageDevicesPage>().IsSwapInstallationRequestSent();
             CurrentPage.As<DealerManageDevicesPage>().IsSwapProgressTextDisplayed();
@@ -702,7 +702,7 @@ namespace Brother.Tests.Specs.MPSTwo.Installation
                 CurrentPage.As<DealerSendInstallationEmailPage>().IsPinFieldPopulated();
             }
             
-            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallaterEmail();
+            CurrentPage.As<DealerSendInstallationEmailPage>().EnterInstallerEmail();
             CurrentPage.As<DealerSendInstallationEmailPage>().SendInstallationRequest();
             NextPage = CurrentPage.As<DealerSendInstallationEmailPage>().CompleteInstallation();
         }

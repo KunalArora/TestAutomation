@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -41,6 +36,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
+
+        private const string usageTypeSelector = "#content_1_InputUsageType_Input";
+        private const string contractLengthSelector = "#content_1_InputContractLength_Input";
+        private const string billingTypeSelector = "#content_1_InputClickRateBillingCycle_Input";
+        private const string servicePackOptionSelector = "#content_1_InputServicePaymentOption_Input";
 
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
 
@@ -210,6 +210,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             //NextButton.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
             return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
+        }
+
+        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
+            var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);
+            SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
+            SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
+ 
+            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector, findElementTimeout);
+            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector, findElementTimeout);
+            SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);
+            SeleniumHelper.SelectFromDropdownByText(servicePackOptionElement, servicePackOption);
         }
     }
 }

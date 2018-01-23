@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerManageDevicesPage : BasePage
+    public class DealerManageDevicesPage : BasePage, IPageObject
     {
         public static string Url = "/";
         //private string _body = "<" + "Status Notification" + ">" + "\r\n" + 
@@ -30,6 +27,48 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //                        "URL: http://10.135.102.139\r\n" +
         //                        "Page Count: 0 \r\n" + 
         //                        "Drum Count: 355 \r\n";
+
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]";
+        private const string _url = "/mps/dealer/contracts/manage-devices/manage";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
+
+        private const string InstallationRequestContainerSelector = ".js-mps-installation-request-list-container";
+        private const string InstallationRequestRowSelector = ".js-mps-searchable";
+        private const string InstallationRequestEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
+        private const string InstallationRequestCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
+        private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
+        private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
+        private const string InstallationRequestSelector = ".js-mps-show-installation-request-email";
+        private const string DeviceListContainerSelector = ".js-mps-device-list-container";
+        private const string DeviceListContainerRowSelector = ".js-mps-searchable";
+        private const string DeviceSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
+        private const string SwapDeviceButtonSelector = ".js-mps-swap-device";
+        private const string SwapDeviceModalSelector = ".js-mps-swap-device-confirmation";
+        private const string SwapDeviceConfirmSelector = ".js-mps-swap-device-confirm";
+        private const string SwapDeviceTypesSelector = ".js-mps-swap-device-swap-types";
+        private const string SwapDeviceTypesDataAttributeSelector = "swap-type-enum-id";
+        private const string SwapDeviceTypesModalNextButtonSelector = ".js-mps-swap-type-selected";
+        private const string DeviceStatusSelector = ".js-mps-filter-ignore";
+        private const string SwapDeviceReplacementModelListSelector = ".js-mps-replacement-model-list";
+        private const string SwapDeviceReplacementModelNextButtonSelector = ".js-mps-swap-replacement-model-selected-btn";
 
         private const string Body1 = @"&lt;Status Notification&gt;";
         private string _body2 = "<br/>";
@@ -61,6 +100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             get { return string.Empty; }
         }
+
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentIntroductionAlert")]
@@ -137,9 +177,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ReInstallCommencementButtonElement;
         [FindsBy(How = How.CssSelector, Using = "[data-original-title=\"Type: Email<br />Status: Responding\"]")]
         public IWebElement EmailGreenIconElement;
-        
-        
-        
+
+
+
+        private const string InstallationDeviceListSelector = ".js-mps-device-list-container";
+        private const string InstallationDeviceTableSelector = ".js-mps-searchable";
+        private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
+        private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
+        private const string InstallationTotalPagesSelector = "[id*=content_1_DeviceList_List_CellTotalPages_]";
+        private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
+
 
         
         public void IsInstallationRequestCancelled()
@@ -586,6 +633,73 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.RunServiceRequestCreationJobs();
         }
 
+        public void InstallationCompleteCheck(string serialNumber)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var deviceListContainer = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
+            var tableContainer = SeleniumHelper.FindElementByCssSelector(deviceListContainer, InstallationDeviceTableSelector, findElementTimeout);
+
+            var rows = SeleniumHelper.FindRowElementsWithinTable(tableContainer);
+            
+            foreach (var row in rows)
+            {
+                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                if (serialNumberElement.Text.Equals(serialNumber))
+                {
+                    var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector, findElementTimeout).Displayed;
+                    TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
+                    break;
+                }
+            }
+        }
+
+        public void CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber)
+        {
+            int retryCount = RuntimeSettings.DefaultRetryCount;
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var retries = 0;
+            var elementStatus = false;
+
+            do
+            {
+                try
+                {
+                    var showPrintCountButtonElement = SeleniumHelper.FindElementByCssSelector(ShowPrintCountButtonSelector, findElementTimeout);
+                    showPrintCountButtonElement.Click();
+                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
+                    var deviceTableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationDeviceTableSelector, findElementTimeout);
+
+                    var rows = SeleniumHelper.FindRowElementsWithinTable(deviceTableElement);
+
+                    foreach (var row in rows)
+                    {
+                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                        if(serialNumberElement.Text.Equals(serialNumber))
+                        {
+                            var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector, findElementTimeout);
+                            if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
+                            {
+                                elementStatus = true;
+                                break;
+                            }
+                            else
+                            {
+                                driver.Navigate().Refresh();
+                                retries++;
+                            }
+
+                        }
+                    }
+
+                }
+                catch(WebDriverException)
+                {
+                    driver.Navigate().Refresh();
+                    retries++;
+                }
+            } while ((!elementStatus) && (retries <= retryCount));
+        }
+
         public void IsInstallationCompleted()
         {
 
@@ -635,6 +749,113 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, LocationSelectionAlertElement.Displayed, "Location alert is not displayed"); 
         }
 
+        public string SelectLocation()
+        {
+            ScrollTo(CompanyLocationElement);
+            SelectElementOptionsByIndex(CompanyLocationElement, 1);
+            string companyLocation = SeleniumHelper.SelectDropdownElementTextByIndex(CompanyLocationElement, 1);
+            return companyLocation;
+        }
 
+        public void ClickCreateRequest()
+        {
+            ScrollTo(CreateRequestElement);
+            CreateRequestElement.Click();
+        }
+
+        public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
+            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
+            var elements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
+
+            foreach(var element in elements)
+            {
+                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
+                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
+                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    ActionsButtonElement.Click();
+                    var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector, findElementTimeout);
+                    ShowInstallationRequestButtonElement.Click();
+
+                    var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body", findElementTimeout);
+                    var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a", findElementTimeout);
+                    var url = InstallationRequestUrlElement.GetAttribute("href");
+
+                    InstallationRequestClosePopUpElement.Click();
+                    return url;
+                }
+            }
+            return null;
+        }
+
+        public void ClickOnSwapDevice(string serialNumber)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+
+            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector, findElementTimeout);
+            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector, findElementTimeout);
+            var elements = SeleniumHelper.FindRowElementsWithinTable(deviceListRowContainer);
+            foreach (var element in elements)
+            {
+                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector, findElementTimeout);
+                if (DeviceSerialNumberElement.Text.Equals(serialNumber))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    ActionsButtonElement.Click();
+                    var SwapDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(element, SwapDeviceButtonSelector, findElementTimeout);
+                    SwapDeviceButtonElement.Click();
+                    break;
+                }
+            }        
+        }
+
+        public void ConfirmSwapAndSelectSwapType(string swapType, string resourceSwapTypeReplaceWithDifferentModel)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+
+            var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector, findElementTimeout);
+            var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector, findElementTimeout);
+            SwapDeviceModalConfirmElement.Click();
+            var SwapDeviceTypesModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector, findElementTimeout);
+            var SwapTypeRadioButtonElement = SeleniumHelper.FindElementByDataAttributeValue(SwapDeviceTypesModalElement, SwapDeviceTypesDataAttributeSelector, swapType, findElementTimeout);
+            SwapTypeRadioButtonElement.Click();
+            var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector, findElementTimeout);
+            SwapTypeModalNextButtonElement.Click();
+            if (swapType.Equals(resourceSwapTypeReplaceWithDifferentModel))
+            {
+                var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector, findElementTimeout);
+                var SwapReplacementModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelListSelector, findElementTimeout);
+                // TODO: Add the replacement printer model in the feature file as variable & insert the logic here to use the value
+                // For now, just select the first model in the dropdown list
+                SelectElementOptionsByIndex(SwapReplacementModelDropdownElement, 1);
+                var SwapReplacementModelNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelNextButtonSelector, findElementTimeout);
+                SwapReplacementModelNextButtonElement.Click();
+            }
+        }
+
+        public bool VerifySwappedDeviceStatus(string serialNumber, string resourceInstalledPrinterStatusBeingReplaced)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            bool exists = false;
+            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector, findElementTimeout);
+            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector, findElementTimeout);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(deviceListRowContainer);
+            foreach (var element in deviceRowElements)
+            {
+                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector, findElementTimeout);
+                var DeviceStatusElement = SeleniumHelper.FindElementByCssSelector(element, DeviceStatusSelector, findElementTimeout);
+                if (DeviceSerialNumberElement.Text.Equals(serialNumber) && DeviceStatusElement.Text.Equals(resourceInstalledPrinterStatusBeingReplaced));
+                {
+                    exists = true;
+                    break;
+                }
+            }
+            return exists;
+        }
     }
 }

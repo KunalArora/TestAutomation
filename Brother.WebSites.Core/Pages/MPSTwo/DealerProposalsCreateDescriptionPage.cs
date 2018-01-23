@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -42,6 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string contractSelector = @"#content_1_InputContractType_Input";
         private const string customertab = @"a[href='/mps/dealer/proposals/create/customer-information']";
+        private const string proposalNameSelector = "#content_1_InputProposalName_Input";
 
         [FindsBy(How = How.Id, Using = "content_1_ComponentIntroductionAlert")]
         public IWebElement PromptText;
@@ -266,6 +267,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextButton.Click();
 
             return GetTabInstance<DealerProposalsCreateTermAndTypePage>(Driver);
+        }
+
+        public void PopulateProposalName(string proposalName)
+        {
+            SeleniumHelper.LoggingService.WriteLog(LoggingLevel.INFO, "PopulateProposalName({0})", proposalName);
+            var proposalNameElement = SeleniumHelper.FindElementByCssSelector(proposalNameSelector, 10);
+            ClearAndType(proposalNameElement, proposalName.ToString());
+        }
+
+        public string GetProposalName()
+        {
+            var proposalName = ProposalNameField.GetAttribute("value");
+            return proposalName;
         }
     }
 }

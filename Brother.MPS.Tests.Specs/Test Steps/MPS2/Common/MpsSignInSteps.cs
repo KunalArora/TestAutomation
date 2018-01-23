@@ -1,4 +1,4 @@
-﻿using Brother.Tests.Specs.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions;
@@ -45,12 +45,12 @@ namespace Brother.Tests.Specs.MPS2.Common
             if (role == "Cloud MPS Dealer")
             {
                 _mpsSignIn.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword,
-                    string.Format("{0}/sign-in", _urlResolver.AtYourSideUrl));
+                    string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             }
             else
             {
                 _mpsSignIn.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword,
-                    string.Format("{0}/sign-in", _urlResolver.AtYourSideUrl));                
+                    string.Format("{0}/sign-in", _urlResolver.BaseUrl));                
             }
         }
 

@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("BIEPC113")]
+    [NUnit.Framework.CategoryAttribute("MEDIUM")]
     public partial class CloudMPSVerifyGermanPDFContentsAreCorrectFeature
     {
         
@@ -41,7 +42,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.BIG_
                         "MPS",
                         "UAT",
                         "TEST",
-                        "BIEPC113"});
+                        "BIEPC113",
+                        "MEDIUM"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

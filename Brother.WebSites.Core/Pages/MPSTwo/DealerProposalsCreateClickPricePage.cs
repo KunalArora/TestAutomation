@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Services;
+using Brother.Tests.Common.Domain.Constants;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -32,7 +32,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public ISeleniumHelper SeleniumHelper { get; set; }
-        
 
         public override string DefaultTitle
         {
@@ -45,6 +44,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPricePageNext = @"#content_1_ButtonNext";
         private const string ClickPricePath = @"C:\DataTest\ClickPrice";
         private const string CsvFile = @"ClickPrice.csv";
+        private const string IsMonoOnly = "data-mono-only";
+        private const string ServicePackUnitCostGeneralSelector = "[id*=\"content_1_LineItems_ServicePackUnitCost_\"]";
+        private const string ServicePackUnitPriceGeneralSelector = "[id*=\"content_1_LineItems_ServicePackUnitPrice_\"]";
+        
+        private const string DataAttributeMonoCoverage = "mono-coverage";
+        private const string DataAttributeMonoVolume = "mono-volume";
+        private const string DataAttributeColourCoverage = "colour-coverage";
+        private const string DataAttributeColourVolume = "colour-volume";
+        private const string DataAttributeMonoMargin = "mono-margin";
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/summary\"]")]
         public IWebElement ProposalSummaryScreenElement;
@@ -85,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".col-sm-12.mps-paymentoptions")]
         public IWebElement ServicePackContainerElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputServicePaymentOption")]
-        public IWebElement ServicePackHiddenValueElement;
+        public IWebElement ServicePackHiddenValueElement;        
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitCost_0")]
         public IWebElement ServicePackUnitCostElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackUnitPrice_0")]
@@ -93,9 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_LineItems_ServicePackTotalPrice_0")]
         public IWebElement ServicePackTotalPriceElement;
 
-
-
-
+        
         public void IsServiceInClickLineDisplayedOnClickPricePage()
         {
             TestCheck.AssertIsEqual(true, ServicePackUnitCostElement.Displayed, "Service Pack Unit Cost is not displayed");
@@ -940,6 +946,108 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Convert.ToDouble(list[0]) != Convert.ToDouble(list[1]))
                 TestCheck.AssertFailTest("Mono Click Price calculation is invalid");
         }
+
+        public IWebElement getPrinterElement(string printerName, int findElementTimeout)
+        {
+            string attributeName = printerName;
+            var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
+            return printerElement;
+        }
         
+        public IWebElement PopulatePrinterCoverageAndVolume(string printerName, 
+            int coverageMono, 
+            int coverageColour, 
+            int volumeMono, 
+            int volumeColour,
+            string usageType,
+            string resourceUsageTypePayAsYouGo)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var printerContainer = getPrinterElement(printerName, findElementTimeout);
+            string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
+
+            var monoCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoCoverage, "true", findElementTimeout);
+            var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true", findElementTimeout);
+
+            ClearAndType(monoCoverageInput, coverageMono.ToString());
+            if(usageType.Equals(resourceUsageTypePayAsYouGo))
+            {
+                ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
+            }
+            else
+            {
+                SeleniumHelper.SelectFromDropdownByText(monoVolumeDropdownInput, volumeMono.ToString());
+            }
+
+            if ((isMonoOnly.ToLower()).Equals("false"))
+            {
+                var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true", findElementTimeout);
+                var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true", findElementTimeout);
+
+                ClearAndType(colourCoverageInput, coverageColour.ToString());
+                if (usageType.Equals(resourceUsageTypePayAsYouGo))
+                {
+                    ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
+                }
+                else
+                {
+                    SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
+                }
+            }
+
+            return printerContainer;           
+        }
+
+        public void ValidateServicePackContentOnClickPricePage(
+            IWebElement printerContainer,
+            string servicePackType,
+            string resourceServicePackTypeIncludedInClickPrice,
+            out string monoMargin,
+            out string servicePackUnitCost,
+            out string servicePackUnitPrice)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+
+            // Validation of content on click price page           
+            monoMargin = "";
+            servicePackUnitCost = "";
+            servicePackUnitPrice = "";
+
+            if (servicePackType.Equals(resourceServicePackTypeIncludedInClickPrice))
+            {
+                if (!SeleniumHelper.IsExistAllElements(ServicePackUnitCostElement, ServicePackUnitPriceElement, ServicePackTotalPriceElement))
+                {
+                    throw new Exception("Service Pack Content did not get validated");
+                }
+
+                var MonoMarginElement = SeleniumHelper.FindElementByDataAttributeValue(
+                    printerContainer, DataAttributeMonoMargin, "true", findElementTimeout);
+                monoMargin = MonoMarginElement.GetAttribute("value");
+
+                var ServicePackUnitCostValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
+                    ServicePackUnitCostGeneralSelector, findElementTimeout);
+                servicePackUnitCost = ServicePackUnitCostValueElement.Text;
+
+                var ServicePackUnitPriceValueElement = SeleniumHelper.FindElementByCssSelector(printerContainer,
+                    ServicePackUnitPriceGeneralSelector, findElementTimeout);
+                servicePackUnitPrice = ServicePackUnitPriceValueElement.Text;
+            }
+        }
+
+
+        public bool VerifyClickPriceValues()
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, findElementTimeout);
+            try
+            {
+                VerifyClickPriceValueIsDisplayed();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }                
+        }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -16,9 +13,27 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class InstallerDeviceInstallationPage : BasePage
+    public class InstallerDeviceInstallationPage : BasePage, IPageObject
     {
-        public static string Url = "/";
+        public static string _url = "/mps/web-installation/installation-devices";
+        private const string _validationElementSelector = "[id*=\"content_0_DeviceInstallList_List_InputSerialNumber\"].js-mps-device-serial-number-input";
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper { get; set; }
 
         private const string SerialNumber = @"A1T010001";
         private const string SerialNumberBig = @"A1T010002";
@@ -119,9 +134,220 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapNewMonoElement;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SwapNewDeviceInputColour")]
         public IWebElement SwapNewColourElement;
-        
-        
 
+
+        private const string InstallationDeviceInstallListSelector = ".js-mps-device-install-list-container";
+        private const string InstallationTableSelector = ".js-mps-searchable";
+        private const string InstallationSerialNumberSelector = "[id*=content_0_DeviceInstallList_List_InputSerialNumber_]";
+        private const string InstallationModelSelector = "[id*=content_0_DeviceInstallList_List_CellModel_]";
+        private const string InstallationSerialNumberValidSelector = ".has-success .glyphicon.glyphicon-ok";
+        private const string InstallationConnectButtonSelector = "[id*=content_0_DeviceInstallList_List_ButtonConnectDevice_]";
+        private const string InstallationIpAddressInput1 = "[id*=content_0_DeviceInstallList_List_InputIpPart1_]";
+        private const string InstallationIpAddressInput2 = "[id*=content_0_DeviceInstallList_List_InputIpPart2_]";
+        private const string InstallationIpAddressInput3 = "[id*=content_0_DeviceInstallList_List_InputIpPart3_]";
+        private const string InstallationIpAddressInput4 = "[id*=content_0_DeviceInstallList_List_InputIpPart4_]";
+        private const string InstallationPinCodeSelector = ".js-mps-pin-code";
+        private const string RefreshButtonSelector = "#content_0_ButtonRefresh";
+        private const string CompleteButtonSelector = "#content_0_ButtonCompleteCloudInstallation";
+        private const string InstallationSuccessfullyFinishedSelector = "#content_0_InstallationSuccessfullyFinished";
+
+        private const string SwapContainerSelector = "#content_0_SwapPlaceHolder.js-mps-swap-container";
+        private const string SwapTableBodySelector = "tbody";
+        private const string SwapOldDeviceSerialNumberSelector = "#content_0_SwapOldDeviceSerialNumber";
+        private const string SwapOldDeviceInputMonoSelector = "#content_0_SwapOldDeviceInputMono";
+        private const string SwapOldDeviceInputColourSelector = "#content_0_SwapOldDeviceColour";
+        private const string SwapNewDeviceSerialNumberSelector = "#content_0_SwapNewDeviceSerialNumber";
+        private const string SwapNewDeviceInputMonoSelector = "#content_0_SwapNewDeviceInputMono";
+        private const string SwapNewDeviceInputColourSelector = "#content_0_SwapNewDeviceInitialColour";
+
+        public void ResetSerialNumber(string serialNumber)
+        {
+            if (ContractReferencePageAlertElement == null)
+                throw new Exception("Installer page is not displayed");
+            AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
+
+            MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
+        }
+
+        public void ClosePopUp()
+        {
+            ClosePopUpModal();
+        }
+
+        public void EnterSerialNumber(string modelName, string serialNumber, string windowHandle, IWebDriver installerDriver)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector, findElementTimeout);
+            var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector, findElementTimeout);
+
+            var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
+            foreach (var row in rows)
+            {
+                ResetSerialNumber(serialNumber);
+                var modelElement = SeleniumHelper.FindElementByCssSelector(row, InstallationModelSelector, findElementTimeout);
+                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                if(modelElement.Text.Equals(modelName))
+                {
+                    ClearAndType(serialNumberElement, serialNumber);
+                    serialNumberElement.SendKeys(Keys.Tab);
+                    SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector, findElementTimeout);
+                    PopulateIpAddress(row, findElementTimeout);
+                    ClickOnConnect(row, findElementTimeout, installerDriver);
+                    RetryResetClickingHelper(findElementTimeout, serialNumber, windowHandle);
+                    break;
+                }
+            }
+        }
+
+        public void ClickOnConnect(IWebElement row, int findElementTimeout, IWebDriver driver)
+        {
+            var clickButtonElement = SeleniumHelper.FindElementByCssSelector(row, InstallationConnectButtonSelector, findElementTimeout);
+            clickButtonElement.Click();
+
+        }
+
+        public void RetryResetClickingHelper(int findElementTimeout, string serialNumber, string windowHandle)
+        {
+            var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
+
+            var isConnected = false;
+            var retries = 0;
+            var retryCount = 10;
+
+            while ((!isConnected) && (retries != retryCount))
+            {
+                try
+                {
+                    var refreshElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector, findElementTimeout);
+                    refreshElement.Click();
+
+                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector, findElementTimeout);
+                    var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector, findElementTimeout);
+
+                    var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
+                    foreach (var row in rows)
+                    {
+                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                        if (serialNumberElement.GetAttribute("value") == serialNumber)
+                        {
+                            var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector, findElementTimeout);
+                            isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
+                            if(isConnected)
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
+                    retries++;
+                }
+                catch (WebDriverException)
+                {
+                    retries++;
+                }
+            }
+        }
+
+        public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var SwapContainerElement = SeleniumHelper.FindElementByCssSelector(SwapContainerSelector, findElementTimeout);
+            var SwapTableBodyElement = SeleniumHelper.FindElementByCssSelector(SwapContainerElement, SwapTableBodySelector, findElementTimeout);
+
+            var SwapOldDeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceSerialNumberSelector, findElementTimeout);
+            if (SwapOldDeviceSerialNumberElement.Text.Equals(swapOldDeviceSerialNumber))
+            {
+                var SwapOldDeviceInputMonoElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceInputMonoSelector, findElementTimeout);
+                var SwapOldDeviceInputColourElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapOldDeviceInputColourSelector, findElementTimeout);
+                if (!(SwapOldDeviceInputMonoElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapOldDeviceInputMonoElement, swapOldDeviceMonoPrintCount.ToString());
+                }
+                if(!(SwapOldDeviceInputColourElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapOldDeviceInputColourElement, swapOldDeviceColorPrintCount.ToString());
+                }
+            }
+
+            var SwapNewDeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceSerialNumberSelector, findElementTimeout);
+            if (SwapNewDeviceSerialNumberElement.Text.Equals(swapNewDeviceSerialNumber))
+            {
+                var SwapNewDeviceInputMonoElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceInputMonoSelector, findElementTimeout);
+                var SwapNewDeviceInputColourElement = SeleniumHelper.FindElementByCssSelector(SwapTableBodyElement, SwapNewDeviceInputColourSelector, findElementTimeout);
+                if (!(SwapNewDeviceInputMonoElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapNewDeviceInputMonoElement, swapNewDeviceMonoPrintCount.ToString());
+                }
+                if (!(SwapNewDeviceInputColourElement.Text.Equals("-")))
+                {
+                    ClearAndType(SwapNewDeviceInputColourElement, swapNewDeviceColorPrintCount.ToString());
+                }
+            }
+        }
+
+        public void PopulateIpAddress(IWebElement row, int findElementTimeout)
+        {
+            var ipAddressInput1Element = SeleniumHelper.FindElementByCssSelector(row, InstallationIpAddressInput1, findElementTimeout);
+            var ipAddressInput2Element = SeleniumHelper.FindElementByCssSelector(row, InstallationIpAddressInput2, findElementTimeout);
+            var ipAddressInput3Element = SeleniumHelper.FindElementByCssSelector(row, InstallationIpAddressInput3, findElementTimeout);
+            var ipAddressInput4Element = SeleniumHelper.FindElementByCssSelector(row, InstallationIpAddressInput4, findElementTimeout);
+             
+            ClearAndType(ipAddressInput1Element, "1");
+            ipAddressInput1Element.SendKeys(Keys.Tab);
+
+            ClearAndType(ipAddressInput2Element, "1");
+            ipAddressInput2Element.SendKeys(Keys.Tab);
+
+            ClearAndType(ipAddressInput3Element, "1");
+            ipAddressInput3Element.SendKeys(Keys.Tab);
+
+            ClearAndType(ipAddressInput4Element, "1");
+            ipAddressInput4Element.SendKeys(Keys.Tab);
+        }
+
+        public string RetrieveInstallationPin()
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            return SeleniumHelper.FindElementByCssSelector(InstallationPinCodeSelector, findElementTimeout).GetAttribute("value");
+        }
+
+        public void CloudInstallationRefresh()
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            int retryCount = RuntimeSettings.DefaultRetryCount;
+            RetryRefreshClickingHelper(RefreshButtonSelector, CompleteButtonSelector, retryCount, findElementTimeout);
+        }
+
+        public void RetryRefreshClickingHelper(string element, string elementToVerify, int retryCount, int findElementTimeout)
+        {
+            var isConnected = false;
+            var retries = 0;
+
+            while((!isConnected) && (retries!=retryCount))
+            {
+                try
+                {
+                    var searchElement = SeleniumHelper.FindElementByCssSelector(element, findElementTimeout);
+                    searchElement.Click();
+                    isConnected = SeleniumHelper.FindElementByCssSelector(elementToVerify, findElementTimeout).Displayed;
+                    retries++;
+                }
+                catch (WebDriverException)
+                {
+                    retries++;
+                }
+            }
+        }
+
+        public void ConfirmInstallationComplete()
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var InstallationSuccessfullyFinishedElement = SeleniumHelper.FindElementByCssSelector(InstallationSuccessfullyFinishedSelector, findElementTimeout);
+            ScrollTo(InstallationSuccessfullyFinishedElement);
+            TestCheck.AssertIsEqual(true, InstallationSuccessfullyFinishedElement.Displayed,
+                                        "Complete Installation message not displayed");
+        }
         
         public void IsInstallerScreenDisplayed()
         {
@@ -1263,11 +1489,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetInstance<DealerContractsAcceptedPage>();
         }
-
-        
-
-        
-
-
     }
 }

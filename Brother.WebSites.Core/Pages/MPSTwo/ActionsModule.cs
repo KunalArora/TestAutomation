@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Xml;
-using Brother.Tests.Selenium.Lib.Mail;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Mail;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -28,8 +23,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ProposalCopyElementWithCustomer = @".open .js-mps-copy-with-customer";
         private const string ContractDownloadPdf = @".open .js-mps-download-contract-pdf";
         private const string ContractDownloadInvoicePdf = @".open .js-mps-download-contract-invoice-pdf";
+        private const string ManagedDevices = @".open .js-mps-manage-devices";
         private const string ActionButtion = @".js-mps-filter-ignore [type='button']";
         private const string SearchField = @"#content_1_ProposalListFilter_InputFilterBy";
+
         private const string CustomerSearchFieldElement = @"#content_1_PersonListFilter_InputFilterBy";
         private const string ContractSearchField = @"#content_1_ContractListFilter_InputFilterBy";
         private const string BelgianLanguages = @".mps-lang > span > a";
@@ -51,7 +48,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(ContractSearchField));
         }
 
-        private static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
+        public static IWebElement CopyProposalWithCustomerButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalCopyElementWithCustomer));
         }
@@ -86,7 +83,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(OpenOfferViewSummaryButton));
         }
 
-        private static IWebElement ProposalEditButtonElement(ISearchContext driver)
+        private static IWebElement ManageDevicesElement(ISearchContext driver)
+        {
+            return driver.FindElement(By.CssSelector(ManagedDevices));
+        }
+
+        public static IWebElement ProposalEditButtonElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(ProposalEditButton));
         }
@@ -478,6 +480,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, OpenOfferViewSummaryElement(driver));
         }
 
+        public static void NavigateToOpenProposalsPageUsingActionButton(IWebDriver driver)
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, CopyProposalWithCustomerButtonElement(driver));
+        }
+
+        public static void NavigateToManageDevicesActionButton(IWebDriver driver)
+        {
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, ManageDevicesElement(driver));
+        }
+
         public static void StartTheProposalEditProcess(IWebDriver driver)
         {
             
@@ -521,6 +533,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-       
+        private static void ClearAndType(IWebElement element, string value)
+        {
+            element.Clear();
+            element.SendKeys(value);
+        }
+
+        public static void SetFilter(string filterString, IWebElement ContractFilter, IList<IWebElement> ContractListContractNameRowElement, int findElementTimeout, IWebDriver driver)
+        {
+            ClearAndType(ContractFilter, filterString);
+            SeleniumHelper.WaitUpTo(findElementTimeout * 1000, () => ContractListContractNameRowElement.Count == 1, "");
+        }
+
+
     }
 }

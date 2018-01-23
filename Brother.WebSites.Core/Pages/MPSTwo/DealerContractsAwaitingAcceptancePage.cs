@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -13,8 +14,11 @@ using TechTalk.SpecFlow;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerContractsAwaitingAcceptancePage : BasePage
+    public class DealerContractsAwaitingAcceptancePage : BasePage, IPageObject
     {
+        private static string _url = "/mps/dealer/contracts/awaiting-acceptance";
+        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/awaiting-acceptance\"]"; //list Next
+
         public static string Url = "/mps/dealer/contracts";
         private const string UkText = @"Purchase + Click Agreement Number";
         private const string DeText = @"Mehrwertsteuer";
@@ -27,6 +31,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public override string DefaultTitle
         {
             get { return string.Empty; }
+        }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        public ISeleniumHelper SeleniumHelper
+        {
+            get; set;
         }
 
         [FindsBy(How = How.CssSelector, Using = ".active [href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
