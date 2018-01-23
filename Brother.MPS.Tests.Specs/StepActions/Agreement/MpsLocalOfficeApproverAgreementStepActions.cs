@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -23,8 +24,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ScenarioContext context,
             IUrlResolver urlResolver,
             ILoggingService loggingService,
-            IRuntimeSettings runtimeSettings)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
+            IRuntimeSettings runtimeSettings,
+            ITranslationService translationService,
+            IRunCommandService runCommandService)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
         }

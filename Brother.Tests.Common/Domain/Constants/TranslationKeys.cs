@@ -98,5 +98,10 @@
             public static string Responding { get { return "RESPONDING"; } }
         }
 
+        public static class ConsumableOrderStatus
+        {
+            public static string InProgress { get { return "IN_PROGRESS"; } }
+        }
+
     }
 }

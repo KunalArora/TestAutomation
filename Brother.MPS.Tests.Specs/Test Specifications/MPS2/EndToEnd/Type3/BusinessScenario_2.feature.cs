@@ -100,9 +100,13 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeColour",
                         "SendInstallationRequest",
                         "MonoPrintCount",
-                        "ColorPrintCount"});
+                        "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus"});
             table1.AddRow(new string[] {
-                        "DCP-8110DN",
+                        "HL-5470DW",
                         "2",
                         "No",
                         "No",
@@ -112,7 +116,11 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "0",
                         "Yes",
                         "2100",
-                        "0"});
+                        "0",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 14
@@ -138,6 +146,10 @@ testRunner.Then("I can verify that all devices are installed and responding", ((
 testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
 testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+testRunner.When("I manually raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+testRunner.Then("I can verify the generation of consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

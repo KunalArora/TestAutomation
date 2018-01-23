@@ -52,13 +52,26 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
-                // 1. Navigate to installation URL
+                // 1. Register the device on BOC using the Registration PIN
+                // Already Registered on BOC?
+                if (!device.IsRegisteredOnBoc)
+                {
+                    RegisterDeviceOnBOC(
+                        device.Model, device.RegistrationPin, device.DeviceIndex, out deviceId, out serialNumber);
+                    device.IsRegisteredOnBoc = true;
+
+                    // Save details to contextData
+                    device.BocDeviceId = deviceId;
+                    device.SerialNumber = serialNumber;
+                }
+
+                // 2. Navigate to installation URL
                 var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(device.InstallationLink);
 
-                // 2. Verify device details on InstallationSelectMethodPage
+                // 3. Verify device details on InstallationSelectMethodPage
                 installationSelectMethodPage.VerifyDeviceDetails(device.AgreementId, 1, device.Model); // Note: 1 is the number of devices (always 1 in case of one by one installation)
 
-                // 3. Select installation method as "BOR"
+                // 4. Select installation method as "BOR"
                 ClickSafety(
                     installationSelectMethodPage.BORInstallationButton(RuntimeSettings.DefaultFindElementTimeout), 
                     installationSelectMethodPage);
@@ -68,19 +81,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 // Verify that Software download link is correct
                 installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
 
-                // 4. Register the device on BOC using the Registration PIN
-                // Already Registered on BOC?
-                if (!device.IsRegisteredOnBoc)
-                {
-                    RegisterDeviceOnBOC(
-                        device.Model, installationCloudToolPage.InstallationPinElement.Text, device.DeviceIndex, out deviceId, out serialNumber);
-                    device.IsRegisteredOnBoc = true;
-
-                    // Save details to contextData
-                    device.BocDeviceId = deviceId;
-                    device.SerialNumber = serialNumber;
-                }
-          
                 // 5. Refresh until device is connected
                 RefreshUntilConnectedForCloudBor(installationCloudToolPage);
             }
@@ -146,28 +146,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void BulkInstallDevicesForCloudWeb()
         {
             WriteLogOnMethodEntry();
-
-            // 1. Navigate to Select method page & verify device details
-            var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
-
-            // 2. Select installation method as Web & Navigate to installation page
-            ClickSafety(
-                    installationSelectMethodPage.WebInstallationButton(RuntimeSettings.DefaultFindElementTimeout),
-                    installationSelectMethodPage);
-            var installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
-                RuntimeSettings.DefaultFindElementTimeout, _installerWebDriver);
-
             string bocDeviceId, serialNumber;
 
-            // Steps 3 & 4 are done for all devices one by one
-            foreach(var device in _contextData.AdditionalDeviceProperties)
+            // 1. Register devices on BOC
+            foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                // 3. Fill in the device details and hit connect
-                installationCloudWebPage.FillDeviceDetailsAndClickConnect(
-                    device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout, _contextData.WindowHandles[UserType.Installer]);
-
-                // 4. Register devices on BOC
-                
                 // Already Registered on BOC?
                 if (!device.IsRegisteredOnBoc)
                 {
@@ -177,7 +160,25 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     // Save details to context data
                     device.BocDeviceId = bocDeviceId;
                     device.SerialNumber = serialNumber;
-                }           
+                }
+            }
+
+            // 2. Navigate to Select method page & verify device details
+            var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
+
+            // 3. Select installation method as Web & Navigate to installation page
+            ClickSafety(
+                    installationSelectMethodPage.WebInstallationButton(RuntimeSettings.DefaultFindElementTimeout),
+                    installationSelectMethodPage);
+            var installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
+                RuntimeSettings.DefaultFindElementTimeout, _installerWebDriver);
+
+
+            // 4. Fill device information & hit connect
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {              
+                installationCloudWebPage.FillDeviceDetailsAndClickConnect(
+                    device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout, _contextData.WindowHandles[UserType.Installer]);
             }
             
             // 5. Hit Refresh until all devices are connected
@@ -215,9 +216,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var installationCloudUsbPage = PageService.GetPageObject<InstallationCloudUsbPage>(
                 RuntimeSettings.DefaultFindElementTimeout, _installerWebDriver);
 
-            // Verify that Software download link is correct
-            installationCloudUsbPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
-
             // 4. Register the device on BOC using the Registration PIN
             // Already Registered on BOC?
             if (!device.IsRegisteredOnBoc)
@@ -229,7 +227,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 // Save details to context data
                 device.BocDeviceId = bocDeviceId;
                 device.SerialNumber = serialNumber;
-            }           
+            }
+
+            // Verify that Software download link is correct
+            installationCloudUsbPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
             
             // 5. Refresh until device is connected
             RefreshUntilConnectedForCloudUsb(installationCloudUsbPage);

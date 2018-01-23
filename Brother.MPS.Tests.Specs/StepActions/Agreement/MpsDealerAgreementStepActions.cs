@@ -29,7 +29,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IContextData _contextData;
         private readonly IExcelHelper _excelHelper;
         private readonly ICalculationService _calculationService;
-        private readonly IRunCommandService _runtimeCommandService;
+        private readonly IRunCommandService _runCommandService;
+        private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -42,7 +43,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IExcelHelper excelHelper,
             ICalculationService calculationService,
             ILoggingService loggingService,
-            IRunCommandService runtimeCommandService)
+            IRunCommandService runCommandService,
+            MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -51,7 +53,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData = contextData;
             _excelHelper = excelHelper;
             _calculationService = calculationService;
-            _runtimeCommandService = runtimeCommandService;
+            _runCommandService = runCommandService;
+            _mpsLocalOfficeAdmin = mpsLocalOfficeAdmin;
         }
         //TODO: make all of the calls which specify a timeout pull the timeout value from config / command line
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -233,9 +236,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             validationExpression = dealerAgreementDevicesEditPage.EditDeviceData(optionalFields);
 
             ClickSafety(dealerAgreementDevicesEditPage.SaveButtonElement, dealerAgreementDevicesEditPage);
-            
+
             // Run job for retrieving BOC pin per device
-            _runtimeCommandService.RunSetupInstalledPrintersCommand();
+            _runCommandService.RunSetupInstalledPrintersCommand();
 
             var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
@@ -293,7 +296,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
 
             // 4. Call BOC Pin retrieval backend job
-            _runtimeCommandService.RunSetupInstalledPrintersCommand();
+            _runCommandService.RunSetupInstalledPrintersCommand();
 
             // 5. Delete Excel
             _excelHelper.DeleteExcelFile(excelFilePath);
@@ -498,6 +501,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage VerifyUpdatedPrintCounts(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            // Refreshes the print counts on MPS portal (after synchronizing BOC values)
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+
             // Switch back to Dealer window
             _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
 
@@ -505,6 +511,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             int retries = 0;
             while(!dealerAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
             {
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+                
                 _dealerWebDriver.Navigate().Refresh();
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                     RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -522,6 +530,89 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 dealerAgreementDevicesPage.VerifyPrintCountsOfDevice(
                     device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+            }
+
+            // Sets the agreement status to "Running"
+            _runCommandService.RunStartContractCommand();
+
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage RaiseConsumableOrdersManually(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            // Check if dealer can raise consumable orders manually
+            bool enabled = dealerAgreementDevicesPage.IsManualRaiseConsumableOptionEnabled();
+
+            if(!enabled)
+            {
+                _mpsLocalOfficeAdmin.EnableRaiseConsumableOrderOption();
+            }
+
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Raise consumable orders one by one
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                foreach (var device in _contextData.AdditionalDeviceProperties)
+                {
+                    if (device.Model.Equals(product.Model))
+                    {
+                        // Save consumable order status to Additional Device Properties as well for convenience
+                        device.TonerInkBlackStatus = product.TonerInkBlackStatus;
+                        device.TonerInkCyanStatus = product.TonerInkCyanStatus;
+                        device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
+                        device.TonerInkYellowStatus = product.TonerInkYellowStatus;
+
+
+                        if (device.hasEmptyInkToner)
+                        {
+                            dealerAgreementDevicesPage.ClickRaiseConsumableOrder(
+                                device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                            var dealerAgreementConsumablesCreatePage = PageService.GetPageObject<DealerAgreementConsumablesCreatePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                            // Select consumables
+                            dealerAgreementConsumablesCreatePage.SelectConsumables(
+                                device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
+
+                            ClickSafety(
+                                dealerAgreementConsumablesCreatePage.SubmitOrderButtonElement, dealerAgreementConsumablesCreatePage);
+                            dealerAgreementConsumablesCreatePage.SeleniumHelper.AcceptJavascriptAlert(
+                                RuntimeSettings.DefaultFindElementTimeout);
+
+                            // Verify success alert
+                            dealerAgreementConsumablesCreatePage.VerifySuccessfulOrderCreation();
+                            ClickSafety(dealerAgreementConsumablesCreatePage.BackButtonElement, dealerAgreementConsumablesCreatePage);
+                        }
+                    }
+                }
+            }
+            
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage VerifyConsumableOrders(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+
+            // Verify consumable order information one by one
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.hasEmptyInkToner)
+                {
+                    dealerAgreementDevicesPage.ClickShowConsumableOrders(
+                        device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                    var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(
+                        device.SerialNumber, resourceConsumableOrderStatusInProgress, RuntimeSettings.DefaultFindElementTimeout);
+
+                    ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage);
+                    dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                }
             }
 
             return dealerAgreementDevicesPage;

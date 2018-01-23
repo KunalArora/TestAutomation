@@ -61,6 +61,11 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.ProposalDeclineReason.ProposalDeclineReason.ResourceManager, name, culture);
         }
 
+        public string GetConsumableOrderStatusText(string name, string culture)
+        {
+            return GetText(Resources.ConsumableOrderStatus.ConsumableOrderStatus.ResourceManager, name, culture);
+        }
+
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)

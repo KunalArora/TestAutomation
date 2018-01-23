@@ -159,6 +159,14 @@ namespace Brother.Tests.Specs.Services
             ExecuteRunCommand(commandUrl);
         }
 
+        public void RunStartContractCommand()
+        {
+            string commandName = "MPS:SystemJobStartContractCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
+
         protected void WriteLogOnMethodEntry(params object[] args)
         {
             LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);

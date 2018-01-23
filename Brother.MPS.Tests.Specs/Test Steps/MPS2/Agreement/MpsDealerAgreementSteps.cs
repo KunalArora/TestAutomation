@@ -232,5 +232,17 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyUpdatedPrintCounts(_dealerAgreementDevicesPage);
         }
+
+        [When(@"I manually raise a consumable order for above devices")]
+        public void WhenIManuallyRaiseAConsumableOrderForAboveDevices()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.RaiseConsumableOrdersManually(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the generation of consumable orders alongwith status")]
+        public void ThenICanVerifyTheGenerationOfConsumableOrdersAlongwithStatus()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage);
+        }
     }
 }

@@ -30,10 +30,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Selectors
         private const string DeviceModelNameSelector = "[id*=content_1_Devices_ModelCell_]";
+        
+        // Action button selectors
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string EditDeviceDataButtonSelector = ".js-mps-edit-device-data";
         private const string SendInstallationRequestActionsButtonSelector = ".js-mps-send-installation-request";
         private const string ShowPrintCountsActionsButtonSelector = ".js-mps-view-print-count";
+        private const string ShowConsumableOrdersActionsButtonSelector = ".js-mps-view-consumable-orders";
+        private const string RaiseConsumableOrderActionsButtonSelector = ".js-mps-raise-consumable-order";
+
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
         private const string DeviceCheckboxSelector = ".js-mps-row-action";
@@ -48,9 +53,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string MonoPrintCountSelector = ".mps-print-count-mono";
         private const string TotalPrintCountSelector = ".mps-print-count-total";
 
+        // Tab link selectors
+        private const string MpsTabsSelector = ".mps-tabs-main";
+        private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
+
 
         // Web Elements
-
         // Alerts
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-warning.mps-alert.js-mps-alert")]
         public IWebElement WarningAlertElement;
@@ -76,8 +84,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement SendInstallationRequestElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-send-installation-request-modal-select")]
         public IWebElement SendInstallationRequestModalElement;
-
-
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-raise-consumable-order")]
+        public IWebElement RaiseConsumableOrderActionsButtonElement;
 
         // Click on Edit Device Data button for this particular model
         public void ClickOnEditDeviceData(string modelName, int findElementTimeout)
@@ -229,25 +237,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        // Returns true if print count values have been updated in the UI, otherwise, returns false
+        // Returns true if print count values have been updated in the UI for all devices, otherwise, returns false
         public bool IsPrintCountsUpdated(int findElementTimeout)
         {
             WriteLogOnMethodEntry(findElementTimeout);
             bool isUpdated = false;
-            var deviceRowFirstElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[0]; // Check for first device only
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
-            var PrintCountsRowElement = ClickShowPrintCounts(deviceRowFirstElement, findElementTimeout);
-            var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
-
-            if (!displayedTotalPrintCount.Text.Equals("-"))
+            foreach(var deviceRowElement in deviceRowElements)
             {
-                isUpdated = true;
-            }
+                var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement, findElementTimeout);
+                var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
 
-            // Close Modal
-            SeleniumHelper.ClickSafety(
-                SeleniumHelper.FindElementByCssSelector(
-                PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+                if (!displayedTotalPrintCount.Text.Equals("-"))
+                {
+                    isUpdated = true;
+                }
+                else
+                {
+                    isUpdated = false;
+                }
+
+                // Close Modal
+                SeleniumHelper.ClickSafety(
+                    SeleniumHelper.FindElementByCssSelector(
+                    PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+            }
 
             return isUpdated;
         }
@@ -294,6 +309,78 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     break;
                 }
             }
+        }
+
+        public IWebElement ConsumablesTabElement(int agreementId, int findElementTimeout)
+        {
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), findElementTimeout);
+        }
+
+        // Click Show Consumable Orders in Actions given the MPS device Id
+        public void ClickShowConsumableOrders(string mpsDeviceId, int findElementTimeout)
+        {
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+
+                    var ShowConsumableOrdersElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ShowConsumableOrdersActionsButtonSelector, findElementTimeout);
+                    ScrollTo(ShowConsumableOrdersElement);
+                    SeleniumHelper.ClickSafety(ShowConsumableOrdersElement, findElementTimeout);
+                    
+                    return;
+                }
+            }
+        }
+
+        // Click Raise Consumable Orders in Actions given the MPS device Id
+        public void ClickRaiseConsumableOrder(string mpsDeviceId, int findElementTimeout)
+        {
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+
+                    var RaiseConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, RaiseConsumableOrderActionsButtonSelector, findElementTimeout);
+                    ScrollTo(RaiseConsumableOrderElement);
+                    SeleniumHelper.ClickSafety(RaiseConsumableOrderElement, findElementTimeout);
+
+                    return;
+                }
+            }
+        }
+
+        public bool IsManualRaiseConsumableOptionEnabled()
+        {
+            bool enabled = false;
+
+            var deviceFirstRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[0];
+
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceFirstRowElement, ActionsButtonSelector, RuntimeSettings.DefaultFindElementTimeout);
+            SeleniumHelper.ClickSafety(ActionsButtonElement, RuntimeSettings.DefaultFindElementTimeout);
+
+            if(SeleniumHelper.IsElementDisplayed(RaiseConsumableOrderActionsButtonElement))
+            {
+                enabled = true;
+            }
+
+            return enabled;
         }
 
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values

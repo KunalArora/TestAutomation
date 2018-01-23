@@ -20,9 +20,18 @@ namespace Brother.Tests.Specs.Services
         void RunCheckForSilentCloudDevicesCommand();
         void RunCreateConsumableOrderCommand();
 
+        #region Exclusively Type 3 
+
         /// <summary>
         /// Job to retrieve BOC pin per device in the background
         /// </summary>
         void RunSetupInstalledPrintersCommand(); // Only for Type 3
+
+        /// <summary>
+        /// Job to force start a contract (/agreement) & put it into "Running" status
+        /// </summary>
+        void RunStartContractCommand();
+
+        #endregion
     }
 }
