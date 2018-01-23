@@ -107,9 +107,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsNewContractTemplateCreated(false);
         }
 
-        private static string CreatedProposalReference()
+        private string CreatedProposalReference()
         {
-            // $$static
+            WriteLogOnMethodEntry();
             var createdProposal = ScenarioContext.Current["GeneratedLeadCodeReference"].ToString();
             return createdProposal;
         }

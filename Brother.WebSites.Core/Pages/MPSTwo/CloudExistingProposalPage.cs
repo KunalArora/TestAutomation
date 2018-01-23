@@ -359,9 +359,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return proposalItems;
         }
 
-        private static string CreatedProposal()
+        private string CreatedProposal()
         {
-            // $$static
+            WriteLogOnMethodEntry();
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }
@@ -716,9 +716,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Deleted Item does not exist on table.");
         }
 
-        private static bool ContainsItemById(IWebDriver driver, string id)
+        private bool ContainsItemById(IWebDriver driver, string id)
         {
-            // $$static
+            WriteLogOnMethodEntry(driver,id);
             return
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
                 .Select(x => x.GetAttribute("data-proposal-id"))

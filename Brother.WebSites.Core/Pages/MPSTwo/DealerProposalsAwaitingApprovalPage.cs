@@ -52,9 +52,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //private IWebElement ThirdPartyApproval;
 
 
-        private static string CreatedProposal()
+        private string CreatedProposal()
         {
-            // $$static
+            WriteLogOnMethodEntry();
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }

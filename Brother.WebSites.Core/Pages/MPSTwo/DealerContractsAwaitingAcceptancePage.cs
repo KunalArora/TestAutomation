@@ -178,9 +178,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             Driver.Navigate().GoToUrl(downloadedPdf);
         }
 
-        private static string DownloadedPdf()
+        private string DownloadedPdf()
         {
-            // $$static
+            WriteLogOnMethodEntry();
             var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
             return downloadedPdf;
         }

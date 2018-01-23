@@ -413,9 +413,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerProposalPdfPage>();
         }
 
-        private static string DownloadedPdf()
+        private string DownloadedPdf()
         {
-            // $$static
+            WriteLogOnMethodEntry();
             var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
             return downloadedPdf;
         }
@@ -1676,9 +1676,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             VerifyCorrectContractTermIsDisplayedOnSummaryPage(contractterm);
         }
 
-        private static IWebElement FindItem(IWebDriver driver, string format, string type, int row)
+        private IWebElement FindItem(IWebDriver driver, string format, string type, int row)
         {
-            // $$static
+            WriteLogOnMethodEntry(driver,format,type,row);
             var selector = string.Format(format, type, row);
             return driver.FindElement(By.CssSelector(selector));
         }

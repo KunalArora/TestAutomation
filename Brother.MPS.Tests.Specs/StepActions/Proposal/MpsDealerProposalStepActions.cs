@@ -61,7 +61,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
             WriteLogOnMethodEntry(email, password, url);
-            _loggingService.WriteLog(LoggingLevel.INFO, "SignInAsDealerAndNavigateToDashboard({0},{1},{2})", email, password, url);
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 

@@ -79,7 +79,9 @@ namespace Brother.Tests.Specs.Services
                 }
             }
 
-            return PageResponse(webRequest);
+            var pageResponse =  PageResponse(webRequest);
+            LoggingService.WriteLog(LoggingLevel.DEBUG, "<< {0}", pageResponse);
+            return pageResponse;
         }
 
         private WebPageResponse PageResponse(WebRequest request)
