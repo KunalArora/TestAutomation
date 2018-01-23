@@ -18,5 +18,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Common
         {
             _mpsApiCall.UpdateAndNotifyBOCForPrintCounts();
         }
+
+        [When(@"the toner ink levels of the above devices become low")]
+        public void WhenTheTonerInkLevelsOfTheAboveDevicesBecomeLow()
+        {
+            _mpsApiCall.UpdateAndNotifyBOCForConsumableOrder();
+        }
     }
 }

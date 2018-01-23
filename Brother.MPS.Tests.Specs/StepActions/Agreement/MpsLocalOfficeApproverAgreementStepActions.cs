@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -21,8 +22,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            IRuntimeSettings runtimeSettings)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            IRuntimeSettings runtimeSettings,
+            ITranslationService translationService,
+            IRunCommandService runCommandService)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings, translationService, runCommandService)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
         }

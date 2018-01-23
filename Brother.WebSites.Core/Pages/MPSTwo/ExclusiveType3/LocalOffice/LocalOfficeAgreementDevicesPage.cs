@@ -1,5 +1,4 @@
 ﻿﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;

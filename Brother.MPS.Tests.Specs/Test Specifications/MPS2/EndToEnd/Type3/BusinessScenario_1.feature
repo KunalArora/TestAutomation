@@ -9,9 +9,9 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model      | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount |
-		| DCP-8110DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes                     | 500            | 0               |
-		| DCP-8250DN | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes                     | 600            | 0               |
+		| Model     | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus |
+		| HL-5450DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               |
+		| HL-5470DW | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -22,7 +22,9 @@ When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
+And the toner ink levels of the above devices become low
 Then a Cloud MPS Local Office Admin can verify the correct reflection of updated print counts
+And a Cloud MPS Local Office Admin can verify the generation of consumable orders alongwith status
 
 @BUK
 Scenarios: 

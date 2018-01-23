@@ -7,13 +7,11 @@ namespace Brother.Tests.Specs.StepActions.Common
     {
         private readonly IContextData _contextData;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
-        private readonly IRunCommandService _runCommandService;
 
-        public MpsApiCallStepActions(IContextData contextData, IDeviceSimulatorService deviceSimulatorService, IRunCommandService runCommandService)
+        public MpsApiCallStepActions(IContextData contextData, IDeviceSimulatorService deviceSimulatorService)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
-            _runCommandService = runCommandService;
         }
 
         public void UpdateAndNotifyBOCForPrintCounts() // For Type 3
@@ -31,13 +29,36 @@ namespace Brother.Tests.Specs.StepActions.Common
                         device.MonoPrintCount = product.MonoPrintCount;
                         device.ColorPrintCount = product.ColorPrintCount;
 
-                        _deviceSimulatorService.SetPrintCounts(device.BocDeviceId, product.MonoPrintCount, product.ColorPrintCount);
+                        _deviceSimulatorService.SetPrintCounts(device.BocDeviceId, device.MonoPrintCount, device.ColorPrintCount);
                         _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
                     }
                 }
             }
+        }
 
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId); // Note: Used for updating CMPS database to reflect print count changes on UI
+        public void UpdateAndNotifyBOCForConsumableOrder() // For Type 3
+        {
+            var products = _contextData.PrintersProperties;
+            var devices = _contextData.AdditionalDeviceProperties; 
+            
+            foreach (var product in products)
+            {
+                foreach(var device in devices)
+                {
+                    if (device.Model.Equals(product.Model))
+                    {
+                        // Save consumable order status to Additional Device Properties as well for convenience
+                        device.TonerInkBlackStatus = product.TonerInkBlackStatus;
+                        device.TonerInkCyanStatus = product.TonerInkCyanStatus;
+                        device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
+                        device.TonerInkYellowStatus = product.TonerInkYellowStatus;
+
+                        _deviceSimulatorService.RaiseConsumableOrder(
+                            device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
+                        _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
+                    }
+                }
+            }
         }
     }
 }

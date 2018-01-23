@@ -108,7 +108,7 @@ namespace Brother.Tests.Specs.Services
             string commandName = string.Format("MPS:ConsumableOrderRequestsCommand");
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
-            ExecuteRunCommand(commandUrl);            
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunCloseConsumableOrdersCommand()
@@ -139,12 +139,20 @@ namespace Brother.Tests.Specs.Services
             string commandName = "MPS:SystemJobCreateConsumableOrderCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
-            ExecuteRunCommand(commandUrl);          
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunSetupInstalledPrintersCommand()
         {
             string commandName = "MPS:SystemJobSetupInstalledPrintersCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
+
+        public void RunStartContractCommand()
+        {
+            string commandName = "MPS:SystemJobStartContractCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);

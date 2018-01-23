@@ -1,5 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -15,16 +17,22 @@ namespace Brother.Tests.Specs.StepActions.Common
     public class MpsLocalOfficeStepActions: StepActionBase
     {
         private readonly IContextData _contextData;
+        private readonly ITranslationService _translationService;
+        private readonly IRunCommandService _runCommandService;
 
         public MpsLocalOfficeStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
-            IRuntimeSettings runtimeSettings)
+            IRuntimeSettings runtimeSettings,
+            ITranslationService translationService,
+            IRunCommandService runCommandService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
         {
             _contextData = contextData;
+            _translationService = translationService;
+            _runCommandService = runCommandService;
         }
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
@@ -125,10 +133,16 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            // Refreshes the print counts on MPS portal (after synchronizing BOC values)
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+
             // Refresh page until print counts are updated
             int retries = 0;
             while (!localOfficeAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
             {
+                // Try print counts synchronization again
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+                
                 webDriver.Navigate().Refresh();
                 localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
                     RuntimeSettings.DefaultPageObjectTimeout, webDriver);
@@ -146,6 +160,67 @@ namespace Brother.Tests.Specs.StepActions.Common
             {
                 localOfficeAgreementDevicesPage.VerifyPrintCountsOfDevice(
                     device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+            }
+
+            // Sets the agreement status to "Running"
+            _runCommandService.RunStartContractCommand();
+
+            return localOfficeAgreementDevicesPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage VerifyGenerationOfConsumableOrders(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
+        {
+            // Run Jobs for synchronizing log data, raising consumable order & registering order in SAP
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+            _runCommandService.RunConsumableOrderRequestsCommand();
+            _runCommandService.RunCreateConsumableOrderCommand();
+
+            // Try refreshing until consumable order information is updated on UI
+            int retries = 0;
+            string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+
+            ClickSafety(
+                localOfficeAgreementDevicesPage.ConsumablesTabElement(
+                _contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout), localOfficeAgreementDevicesPage);
+
+            var localOfficeAgreementConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            while(localOfficeAgreementConsumablesPage.IsNoConsumablesFound(RuntimeSettings.DefaultFindElementTimeout))
+            {
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+                _runCommandService.RunConsumableOrderRequestsCommand();
+                _runCommandService.RunCreateConsumableOrderCommand();
+
+                // Refresh page
+                webDriver.Navigate().Refresh();
+                localOfficeAgreementConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception(
+                        string.Format("Number of retries exceeded the default limit during verification of consumable order generation for agreement {0}", _contextData.AgreementId));
+                }
+            }
+
+            ClickSafety(localOfficeAgreementConsumablesPage.BackButtonElement, localOfficeAgreementConsumablesPage);
+            localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            // Verify consumable order information one by one
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if(device.hasEmptyInkToner)
+                {
+                    localOfficeAgreementDevicesPage.ClickShowConsumableOrders(
+                        device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                    var localOfficeAgreementDeviceConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(
+                        device.SerialNumber, resourceConsumableOrderStatusInProgress, RuntimeSettings.DefaultFindElementTimeout);
+
+                    ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage);
+                    localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                }
             }
 
             return localOfficeAgreementDevicesPage;

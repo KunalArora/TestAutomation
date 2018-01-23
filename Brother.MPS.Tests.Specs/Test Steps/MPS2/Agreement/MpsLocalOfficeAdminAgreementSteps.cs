@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
@@ -12,6 +13,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         private readonly IUrlResolver _urlResolver;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLoAdminAgreement;
+
+        private LocalOfficeAgreementDevicesPage _localOfficeAdminAgreementDevicesPage;
 
         public MpsLocalOfficeAdminAgreementSteps(
             MpsLocalOfficeAdminAgreementStepActions mpsLoAdminAgreement,
@@ -31,8 +34,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             var localOfficeAdminDashboardPage = _mpsSignIn.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dataQueryPage = _mpsLoAdminAgreement.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
-            var localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
-            _mpsLoAdminAgreement.EnableInstallationOption(localOfficeAdminAgreementDevicesPage, installationType, communicationMethod);
+            _localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
+            _mpsLoAdminAgreement.EnableInstallationOption(_localOfficeAdminAgreementDevicesPage, installationType, communicationMethod);
         }
 
         [Then(@"a Cloud MPS Local Office Admin can verify the correct reflection of updated print counts")]
@@ -41,8 +44,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             var localOfficeAdminDashboardPage = _mpsSignIn.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dataQueryPage = _mpsLoAdminAgreement.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
-            var localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
-            localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.VerifyUpdatedPrintCounts(localOfficeAdminAgreementDevicesPage);
+            _localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
+            _localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.VerifyUpdatedPrintCounts(_localOfficeAdminAgreementDevicesPage);
+        }
+
+        [Then(@"a Cloud MPS Local Office Admin can verify the generation of consumable orders alongwith status")]
+        public void ThenACloudMPSLocalOfficeAdminCanVerifyTheGenerationOfConsumableOrdersAlongwithStatus()
+        {
+            _localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.VerifyGenerationOfConsumableOrders(_localOfficeAdminAgreementDevicesPage);
         }
     }
 }

@@ -51,5 +51,25 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                 return MonoPrintCount + ColorPrintCount;
             }
         }
+        public string TonerInkBlackStatus { get; set; }
+        public string TonerInkCyanStatus { get; set; }
+        public string TonerInkMagentaStatus { get; set; }
+        public string TonerInkYellowStatus { get; set; }
+
+        public bool hasEmptyInkToner
+        {
+            get
+            {
+                bool hasEmptyInkToner = false;
+                if (TonerInkBlackStatus.ToLower().Equals("empty") ||
+                    TonerInkCyanStatus.ToLower().Equals("empty") ||
+                    TonerInkMagentaStatus.ToLower().Equals("empty") ||
+                    TonerInkYellowStatus.ToLower().Equals("empty"))
+                {
+                    hasEmptyInkToner = true;
+                }
+                return hasEmptyInkToner;
+            }
+        }
     }
 }

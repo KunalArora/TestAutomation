@@ -99,6 +99,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumableOrderStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ContractTerm\ContractTerm.Designer.cs">
       <DependentUpon>ContractTerm.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -188,6 +193,11 @@
     <EmbeddedResource Include="Resources\BillingType\BillingType.en-gb.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.resx">
       <LastGenOutput>BillingType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConsumableOrderStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.resx">
