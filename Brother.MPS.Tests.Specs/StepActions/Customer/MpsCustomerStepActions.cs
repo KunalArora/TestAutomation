@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerDashBoardPage SignInAsCustomerAndNavigateToDashboard(string url)
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
             string email = _contextData.CustomerEmail;
             string password = _contextData.CustomerPassword;
             return _mpsSignIn.SignInAsCustomer(email, password, url);
@@ -50,20 +50,20 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerConsumablesDevicesPage ClickOnComsumablesTab(CustomerDashBoardPage customerDashBoardPage)
         {
-            WriteLogOnMethodEntry(customerDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(customerDashBoardPage);
             ClickSafety(customerDashBoardPage.CustomerConsumablesTabElement, customerDashBoardPage);
             return PageService.GetPageObject<CustomerConsumablesDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
-            WriteLogOnMethodEntry(element, pageObject);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         public void VerifyRaisedConsumableOrderStatus(CustomerConsumablesDevicesPage customerConsumablesDevicesPage)
         {
-            WriteLogOnMethodEntry(customerConsumablesDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(customerConsumablesDevicesPage);
             var itemList = customerConsumablesDevicesPage.CreateElementValueList();
             var products = _contextData.PrintersProperties;
             foreach ( var product in products)
@@ -83,7 +83,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         private void AssertNormalOrHasCount(string propTonerInkStatus, string pageCellValue, string messageTonerName, PrinterProperties propForMessage)
         {
-            WriteLogOnMethodEntry(propTonerInkStatus, pageCellValue, messageTonerName, propForMessage);
+            LoggingService.WriteLogOnMethodEntry(propTonerInkStatus, pageCellValue, messageTonerName, propForMessage);
             if (propTonerInkStatus != "Empty")
             {
                 return;
@@ -98,7 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public void VerifyHasRequestOnList(CustomerServiceRequestActivePage customerServiceRequestActivePage)
         {
-            WriteLogOnMethodEntry(customerServiceRequestActivePage);
+            LoggingService.WriteLogOnMethodEntry(customerServiceRequestActivePage);
             var products = _contextData.PrintersProperties;
 
             // LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3
@@ -117,7 +117,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public CustomerServiceRequestActivePage ClickOnServiceRequestsTab(CustomerDashBoardPage customerDashBoardPage)
         {
-            WriteLogOnMethodEntry(customerDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(customerDashBoardPage);
             ClickSafety(customerDashBoardPage.CustomerServiceRequestTabElement, customerDashBoardPage);
             return PageService.GetPageObject<CustomerServiceRequestActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }

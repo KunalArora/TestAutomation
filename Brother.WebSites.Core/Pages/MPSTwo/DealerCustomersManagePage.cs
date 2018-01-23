@@ -227,7 +227,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmOrganisationDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var org = SpecFlow.GetObject<OrganisationDetail>(DealerLatestCreatedOrganization);
 
             AssertElementValue(CompanyNameElement, org.Name);
@@ -243,7 +243,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmOrganisationContactDetail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var contact = SpecFlow.GetObject<OrganisationContactDetail>(DealerLatestCreatedContact);
 
             AssertElementValue(ContactTitleElement, contact.Title);
@@ -255,7 +255,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmOrganisationBankDetail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var bank = SpecFlow.GetObject<OrganisationBankDetail>(DealerLatestCreatedBank);
 
             AssertElementValue(PaymentTypeElement, bank.PaymentType);
@@ -263,7 +263,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectAPaymentTypeIfNotAlreadySelected()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (GetSelectedOptionText(PaymentTypeElement).Equals("Please Select"))
             {
                 SelectFromDropdown(PaymentTypeElement, "Invoice");
@@ -273,14 +273,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void AssertElementValue(IWebElement elem, string expected)
         {
-            WriteLogOnMethodEntry(elem,expected);
+            LoggingService.WriteLogOnMethodEntry(elem,expected);
             var value = elem.GetAttribute("value");
             TestCheck.AssertIsEqual(expected, value, "Input item is not matched");
         }
 
         public void IsAdditionalAddressSuccessfullyAdded()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerAdditionalAddressLineElement == null)
                 throw new Exception("Customer Additional Address Line Element is not displayed");
 
@@ -291,7 +291,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerContractLocationAddressDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerContractLocationAddressElement == null)
                 throw new Exception("Customer Contract Location Address Element is not displayed");
 
@@ -302,7 +302,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerTownNameDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PropertyStreetElement == null)
                 throw new Exception("Property Town Element is not displayed");
 
@@ -313,7 +313,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerDetailDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerContractEditedLocationAddressElement == null)
                 throw new Exception("edited customer detail element is not displayed");
 
@@ -324,7 +324,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerContactFirstNameDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerContactFirstNameElement == null)
                 throw new Exception("Property Town Element is not displayed");
 
@@ -335,7 +335,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedCustomerContactLastNameDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerContactLastNameElement == null)
                 throw new Exception("Property Town Element is not displayed");
 
@@ -346,7 +346,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerCustomerAdditionalAddressPage NavigateToCustomerAdditionalAddressPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CustomerAddAddressButtonElement == null)
                 throw new Exception("Customer Add Address Button Element is not displayed");
 
@@ -368,7 +368,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public string IbanNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var iban = "";
 
             if (!(IsNetherlandSystem()))
@@ -395,7 +395,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string BicNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var bic = "";
 
             if (IsBelgiumSystem())
@@ -413,7 +413,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillCustomerDetails(string payment, string country, string culture)
         {
-            WriteLogOnMethodEntry(payment,country,culture);
+            LoggingService.WriteLogOnMethodEntry(payment,country,culture);
             switch (country)
             {
                 case "Belgium" :
@@ -435,7 +435,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillCustomerDetails(string payment, string country)
         {
-            WriteLogOnMethodEntry(payment,country);
+            LoggingService.WriteLogOnMethodEntry(payment,country);
             switch (country)
             {
                 case "United Kingdom":
@@ -509,7 +509,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsEditedDetailsRetained()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var companyName = GetFieldValue(CompanyNameElement);
             var authorised = GetFieldValue(PropertyyAuthorisedSignatoryElement);
             var fname = GetFieldValue(FirstNameElement);
@@ -531,13 +531,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string GetFieldValue(IWebElement element)
         {
-            WriteLogOnMethodEntry(element);
+            LoggingService.WriteLogOnMethodEntry(element);
             return element.GetAttribute("value");
         }
 
         private void FillItalyOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -552,7 +552,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillItalyContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -564,7 +564,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillItalyBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
 
             if (payment.Equals("Fattura"))
@@ -588,7 +588,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNorwayOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -603,7 +603,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNorwayContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
             EnterContactTelephone(MpsUtil.CompanyTelephone());
@@ -614,7 +614,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNorwayBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
 
         }
@@ -622,7 +622,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillFinlandOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -637,7 +637,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillFinlandContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
             EnterContactTelephone(MpsUtil.CompanyTelephone());
@@ -650,7 +650,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSwedenOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -664,7 +664,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSwedenContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
             EnterContactTelephone(MpsUtil.CompanyTelephone());
@@ -676,7 +676,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private void FillAustriaOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
@@ -694,7 +694,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillAustriaContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -706,7 +706,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillAustriaBankDetails(string payment)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -717,7 +717,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillGermanyOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
@@ -735,7 +735,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillGermanyContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -747,7 +747,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillGermanyBankDetails(string payment)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -759,7 +759,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillBelgiumOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -775,7 +775,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillBelgiumContactInfo(string culture)
         {
-            WriteLogOnMethodEntry(culture);
+            LoggingService.WriteLogOnMethodEntry(culture);
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -789,7 +789,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillBelgiumBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankIbanNumber(IbanNumber());
@@ -800,7 +800,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillPolandOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
@@ -813,7 +813,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillPolandContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
             EnterContactTelephone(MpsUtil.CompanyTelephone());
@@ -829,7 +829,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillPolandBankDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankBicNumber(BicNumber());
             EnterBankName("Bank of MPS");
@@ -843,7 +843,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillIrelandOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             //EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
@@ -859,7 +859,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillIrelandContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -871,7 +871,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillIrelandBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -888,7 +888,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNetherlandOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -901,7 +901,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNetherlandContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -917,14 +917,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillNetherlandBankDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterBankIbanNumber(IbanNumber());
 
         }
 
         private void FillSwissOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -938,7 +938,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSwissContactInfo(string culture)
         {
-            WriteLogOnMethodEntry(culture);
+            LoggingService.WriteLogOnMethodEntry(culture);
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -950,7 +950,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSwissBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -962,7 +962,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillDenmarkOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown("Town");
@@ -976,7 +976,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillDenmarkContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
             EnterContactTelephone(MpsUtil.CompanyTelephone());
@@ -987,7 +987,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         private void FillSpainOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyArea("Area");
@@ -1002,7 +1002,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSpainContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -1013,7 +1013,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillSpainBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
 
             switch (payment)
@@ -1039,7 +1039,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillFranceOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyArea("Area");
@@ -1054,7 +1054,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillFranceContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -1065,7 +1065,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillFranceBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -1080,7 +1080,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillUkOrgDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName(MpsUtil.CompanyName());
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
@@ -1097,7 +1097,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillUkContactInfo()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectTitleFromDropdown();
             EnterContactFirstName(MpsUtil.FirstName());
             EnterContactSurName(MpsUtil.SurName());
@@ -1108,7 +1108,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillUkBankDetails(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             SelectPaymentType(payment);
             EnterBankAccountNumber(MpsUtil.AccountNumber());
             EnterBankSortCodeNumber(MpsUtil.BankCodeNumber());
@@ -1124,7 +1124,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var org = new OrganisationDetail
             {
                 Name = "Delete_" + MpsUtil.CompanyName(), // in order to boost linear search.
@@ -1162,7 +1162,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationContactDetail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var contact = new OrganisationContactDetail
             {
                 Title = "0002",
@@ -1183,7 +1183,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationBankDetail(string payment)
         {
-            WriteLogOnMethodEntry(payment);
+            LoggingService.WriteLogOnMethodEntry(payment);
             var bank = new OrganisationBankDetail();
             switch (payment)
             {
@@ -1206,7 +1206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterTextboxArea(IWebElement textbox, string text)
         {
-            WriteLogOnMethodEntry(textbox,text);
+            LoggingService.WriteLogOnMethodEntry(textbox,text);
             textbox.Clear();
             textbox.SendKeys(text);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1214,7 +1214,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCompanyName(string companyname)
         {
-            WriteLogOnMethodEntry(companyname);
+            LoggingService.WriteLogOnMethodEntry(companyname);
             CompanyNameElement.Clear();
             CompanyNameElement.SendKeys(companyname);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1222,7 +1222,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCostCentre(string cost)
         {
-            WriteLogOnMethodEntry(cost);
+            LoggingService.WriteLogOnMethodEntry(cost);
             PropertyCostCentreElement.Clear();
             PropertyCostCentreElement.SendKeys(cost);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1230,7 +1230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPaymentDetailDisplayedAfterEditing()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsFinlandSystem() || IsSwedenSystem() || IsDenmarkSystem())
             {
                 if (PaymentDisplayOnlyElement == null)
@@ -1262,7 +1262,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactPosition(string cost)
         {
-            WriteLogOnMethodEntry(cost);
+            LoggingService.WriteLogOnMethodEntry(cost);
             CustomerContactPositionElement.Clear();
             CustomerContactPositionElement.SendKeys(cost);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1270,7 +1270,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClickOnPersonResponsibleforOrdering()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (OrderingPersonElement == null)
                 throw new Exception("ordering person tick box not found");
 
@@ -1282,7 +1282,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyNumber(string propertyNumber)
         {
-            WriteLogOnMethodEntry(propertyNumber);
+            LoggingService.WriteLogOnMethodEntry(propertyNumber);
             PropertyNumberElement.Clear();
             PropertyNumberElement.SendKeys(propertyNumber);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1290,7 +1290,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyStreet(string propertyStreet)
         {
-            WriteLogOnMethodEntry(propertyStreet);
+            LoggingService.WriteLogOnMethodEntry(propertyStreet);
             PropertyStreetElement.Clear();
             PropertyStreetElement.SendKeys(propertyStreet);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1298,7 +1298,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyArea(string propertyArea)
         {
-            WriteLogOnMethodEntry(propertyArea);
+            LoggingService.WriteLogOnMethodEntry(propertyArea);
             if (IsNetherlandSystem()) return;
             PropertyAreaElement.Clear();
             PropertyAreaElement.SendKeys(propertyArea);
@@ -1307,7 +1307,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string TradingStyle()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var trading = "";
 
             if (IsUKSystem() || IsFranceSystem() || IsIrelandSystem())
@@ -1362,7 +1362,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterRegistrationNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsFranceSystem())
             {
                 ClearAndType(CompanyRegistrationNumerElement, "RCS PARIS 453 983 245");
@@ -1412,7 +1412,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInitialVat()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsItalySystem())
             {
                 ClearAndType(VatFieldElement, "IT00743110157");
@@ -1466,7 +1466,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string LegalForm()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var legal = "";
 
             if (IsGermanSystem() || IsAustriaSystem())
@@ -1514,7 +1514,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private String BelgianLegalForm()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string lang;
 
             string language;
@@ -1549,7 +1549,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private String SwissLegalForm()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string lang;
             string language;
 
@@ -1582,7 +1582,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyTown(string propertyTown)
         {
-            WriteLogOnMethodEntry(propertyTown);
+            LoggingService.WriteLogOnMethodEntry(propertyTown);
             PropertyTownElement.Clear();
             PropertyTownElement.SendKeys(propertyTown);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1590,7 +1590,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterPropertyPostCode(string postcode)
         {
-            WriteLogOnMethodEntry(postcode);
+            LoggingService.WriteLogOnMethodEntry(postcode);
             PropertyPostcodeElement.Clear();
             PropertyPostcodeElement.SendKeys(postcode);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1598,66 +1598,66 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectRegionFromDropdown(string region = "1")
         {
-            WriteLogOnMethodEntry(region);
+            LoggingService.WriteLogOnMethodEntry(region);
             SelectFromDropdownByValue(RegionElement, region);
         }
 
         private void SelectRegionFromDropdownByIndex(int region = 1)
         {
-            WriteLogOnMethodEntry(region);
+            LoggingService.WriteLogOnMethodEntry(region);
             SelectFromDropDownByIndex(RegionElement, region);
         }
 
         private void EnterPropertyLegalForm(string value = "1")
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropdownByValue(PropertyLegalFormElement, value);
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void EnterPropertyLegalFormByIndex(int value = 1)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropDownByIndex(PropertyLegalFormElement, value);
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void SelectCustomerCulture(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropdown(CustomerContractCultureElement, value);
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void EnterLegalForm(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropdown(PropertyLegalFormElement, value);
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void EnterLegalFormByIndex(int value = 1)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropDownByIndex(PropertyLegalFormElement, value);
             WebDriver.Wait(DurationType.Millisecond, 3000);
         }
 
         private void EnterPropertyTradingStyle(string value = "1")
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SelectFromDropdownByValue(PropertyTradingStyleElement, value);
         }
 
         private void EnterTradingStyle(string style)
         {
-            WriteLogOnMethodEntry(style);
+            LoggingService.WriteLogOnMethodEntry(style);
             SelectFromDropdown(PropertyTradingStyleElement, style);
         }
 
         private void EnterPropertyAuthorisedSignatory(string authsig)
         {
-            WriteLogOnMethodEntry(authsig);
+            LoggingService.WriteLogOnMethodEntry(authsig);
             PropertyyAuthorisedSignatoryElement.Clear();
             PropertyyAuthorisedSignatoryElement.SendKeys(authsig);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1665,14 +1665,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectTitleFromDropdown(string value = "0002")
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             if (ContactTitleElement != null)
                 SelectFromDropdownByValue(ContactTitleElement, value);
         }
 
         private void EnterContactFirstName(string firstname)
         {
-            WriteLogOnMethodEntry(firstname);
+            LoggingService.WriteLogOnMethodEntry(firstname);
             FirstNameElement.Clear();
             FirstNameElement.SendKeys(firstname);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1680,7 +1680,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterCreditReformNumber(string credit)
         {
-            WriteLogOnMethodEntry(credit);
+            LoggingService.WriteLogOnMethodEntry(credit);
             CustomerCreditReformNumberElement.Clear();
             CustomerCreditReformNumberElement.SendKeys(credit);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1690,7 +1690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactSurName(string surname)
         {
-            WriteLogOnMethodEntry(surname);
+            LoggingService.WriteLogOnMethodEntry(surname);
             LastNameElement.Clear();
             LastNameElement.SendKeys(surname);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1698,7 +1698,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactTelephone(string telephone)
         {
-            WriteLogOnMethodEntry(telephone);
+            LoggingService.WriteLogOnMethodEntry(telephone);
             TelephoneElement.Clear();
             TelephoneElement.SendKeys(telephone);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1707,7 +1707,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactMobile(string telephone)
         {
-            WriteLogOnMethodEntry(telephone);
+            LoggingService.WriteLogOnMethodEntry(telephone);
             CustomerContractMobileElement.Clear();
             CustomerContractMobileElement.SendKeys(telephone);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1716,7 +1716,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterContactEmailAdress(string email)
         {
-            WriteLogOnMethodEntry(email);
+            LoggingService.WriteLogOnMethodEntry(email);
             EmailElement.Clear();
             EmailElement.SendKeys(email);
             WebDriver.Wait(DurationType.Millisecond, 100);
@@ -1724,7 +1724,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectPaymentTypeFromDropdown(string value = "2")
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             if (PaymentTypeElement.Displayed)
                 SelectFromDropdownByValue(PaymentTypeElement, value);
 
@@ -1733,7 +1733,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectPaymentType(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             if (PaymentTypeElement.Displayed)
                 SelectFromDropdown(PaymentTypeElement, value);
 
@@ -1742,63 +1742,63 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterBankAccountNumber(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankAccountNumberElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankSortCodeNumber(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankSortCodeElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankIbanNumber(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankIbanElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankBicNumber(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankBicElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankName(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankNameElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankPropertyNumber(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankPropertyNumberElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankPropertyStreet(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankStreetElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankPropertyTown(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankTownElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankPostcode(string acc)
         {
-            WriteLogOnMethodEntry(acc);
+            LoggingService.WriteLogOnMethodEntry(acc);
             ClearAndType(BankPostcodeElement, acc);
             WebDriver.Wait(DurationType.Millisecond, 100);
         }
@@ -1807,32 +1807,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [System.Obsolete("saveButtonElement.Click() and PageService.GetPageObject<DealerProposalsCreateProductsPage>(...)")]
         public DealerCustomersExistingPage ClickSaveButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, saveButtonElement);
             //saveButtonElement.Click();
             return GetInstance<DealerCustomersExistingPage>();
         }
         public string GetCompanyName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(CompanyNameElement);
         }
 
         public  string GetEmail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(EmailElement);
         }
 
         public string GetFirstName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(FirstNameElement);
         }
 
         public string GetLastName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(LastNameElement);
         }
 

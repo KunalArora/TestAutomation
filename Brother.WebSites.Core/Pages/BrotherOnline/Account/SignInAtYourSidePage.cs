@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
-            WriteLogOnMethodEntry(emailAddress);
+            LoggingService.WriteLogOnMethodEntry(emailAddress);
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
             EmailAddressTextBox.SendKeys(Keys.Tab);
@@ -58,13 +58,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulatePassword(string password)
         {
-            WriteLogOnMethodEntry(password);
+            LoggingService.WriteLogOnMethodEntry(password);
             PasswordTextBox.SendKeys(password);
         }
 
         public void IsSignInButtonAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (SignInButton == null)
             {
                 throw new NullReferenceException("Unable to locate sign in button on page");
@@ -74,7 +74,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public MyAccountAtYourSidePage SignInButtonToMyAccount()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<MyAccountAtYourSidePage>(Driver);

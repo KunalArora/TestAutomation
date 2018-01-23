@@ -31,7 +31,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void UpdateAndNotifyBOCForPrintCounts() // For Type 3
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             var devices = _contextData.AdditionalDeviceProperties;
 
@@ -54,7 +54,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void UpdateAndNotifyBOCForConsumableOrder() // For Type 3
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             var devices = _contextData.AdditionalDeviceProperties; 
             

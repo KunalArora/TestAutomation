@@ -39,7 +39,7 @@ namespace Brother.Tests.Specs.StepActions.Common
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
         {
-            WriteLogOnMethodEntry(dataQueryPage, webDriver);
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
             dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
             ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(
@@ -49,7 +49,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
             int devicesInstallingCount = 0;
 
@@ -90,7 +90,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage SendSingleInstallationRequests(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
 
             // Tick checkboxes of devices which are to be installed according to feature file configuration
@@ -125,7 +125,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void EnableInstallationOption(
             LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string installationType, string communicationMethod)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, installationType,communicationMethod);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, installationType,communicationMethod);
 
             // Click Customise button element
             ClickSafety(localOfficeAgreementDevicesPage.CustomiseButtonElement, localOfficeAgreementDevicesPage);
@@ -140,7 +140,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Refreshes the print counts on MPS portal (after synchronizing BOC values)
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
 
@@ -178,7 +178,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyGenerationOfConsumableOrders(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Run Jobs for synchronizing log data, raising consumable order & registering order in SAP
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
             _runCommandService.RunConsumableOrderRequestsCommand();
@@ -237,7 +237,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void ClickSafety(IWebElement element, IPageObject pageObject)
         {
-            WriteLogOnMethodEntry(element, pageObject);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
     }

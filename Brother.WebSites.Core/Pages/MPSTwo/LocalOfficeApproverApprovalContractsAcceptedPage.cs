@@ -38,7 +38,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyContractFilter(int proposalId, string proposalName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(proposalId,proposalName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId,proposalName,findElementTimeout);
             ClearAndType(ContractFilter, proposalId.ToString());
             if(proposalName == null)
             {

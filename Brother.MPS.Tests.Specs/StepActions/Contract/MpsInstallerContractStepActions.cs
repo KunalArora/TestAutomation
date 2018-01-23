@@ -40,13 +40,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public InstallerContractReferenceInstallationPage NavigateToWebInstallationPage(string url)
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
            return _mpsSignIn.LoadInstallationPage(url);
         }
 
         public InstallerDeviceInstallationPage PopluateContractReferenceAndProceed(InstallerContractReferenceInstallationPage _installerContractReferenceInstallationPage, int proposalId)
         {
-            WriteLogOnMethodEntry(_installerContractReferenceInstallationPage, proposalId);
+            LoggingService.WriteLogOnMethodEntry(_installerContractReferenceInstallationPage, proposalId);
             _installerContractReferenceInstallationPage.PopulateContractReference(proposalId);
             _installerContractReferenceInstallationPage.ProceedOnInstaller();
             return PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
@@ -54,7 +54,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void PopulateSerialNumberAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver)
         {
-            WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver);
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver);
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
             var products = _contextData.PrintersProperties;
             var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
@@ -72,7 +72,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver, string swapNewDeviceSerialNumber)
         {
-            WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver, swapNewDeviceSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver, swapNewDeviceSerialNumber);
             var swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
             var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
@@ -90,13 +90,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void CloudInstallationRefresh(InstallerDeviceInstallationPage installerDeviceInstallationPage)
         {
-            WriteLogOnMethodEntry(installerDeviceInstallationPage);
+            LoggingService.WriteLogOnMethodEntry(installerDeviceInstallationPage);
             installerDeviceInstallationPage.CloudInstallationRefresh();
         }
 
         public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
         {
-            WriteLogOnMethodEntry(_installerDeviceInstallationPage, swapNewDeviceSerialNumber, swapNewDeviceSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, swapNewDeviceSerialNumber, swapNewDeviceSerialNumber);
             var products = _contextData.PrintersProperties;
             foreach(var product in products)
             {
@@ -111,7 +111,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         private void RegisterDeviceOnBOC(PrinterProperties product, string installationPin, string serialNumber)
         {
-            WriteLogOnMethodEntry(product, installationPin, serialNumber);
+            LoggingService.WriteLogOnMethodEntry(product, installationPin, serialNumber);
             var deviceId = _deviceSimulatorService.CreateNewDevice(product.Model, serialNumber);
             _deviceSimulatorService.RegisterNewDevice(deviceId, installationPin);
             _deviceSimulatorService.ChangeDeviceStatus(deviceId, true, true);

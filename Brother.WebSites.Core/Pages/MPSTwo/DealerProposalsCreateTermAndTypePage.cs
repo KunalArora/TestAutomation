@@ -66,20 +66,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTheRightPaymentMethodSelected(string pay)
         {
-            WriteLogOnMethodEntry(pay);
+            LoggingService.WriteLogOnMethodEntry(pay);
             var text = SelectedPaymentMethodElement.Text;
             TestCheck.AssertTextContains(text, pay);
         }
 
         public void HowManyServicePackPaymentIsDisplayed(int number)
         {
-            WriteLogOnMethodEntry(number);
+            LoggingService.WriteLogOnMethodEntry(number);
             TestCheck.AssertIsEqual(number, NumberOfSelectOption(PaymentMethodElement), "The correct number of select option is not displayed"); 
         }
 
         public void PayServicePackMethod(string option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             //var paymentMethod = "";
 
             //if (IsSpainSystem() || IsBelgiumSystem() || IsPolandSystem() || IsIrelandSystem() || IsNetherlandSystem()) return;
@@ -123,7 +123,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTermAndTypeTextDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (TermAndTypeScreenTextElement == null) throw new
                 NullReferenceException("Unable to locate text on Term and Type Screen");
 
@@ -132,25 +132,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement PriceHardwareElementMissing()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(priceHardwareTickBox, 10);
         }
 
         public void VerifyPriceHardwareIsNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(false, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
         }
 
         public void VerifyPriceHardwareIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PriceHardwareElementMissing().Displayed, "Price hardware checkbox is displayed");
         }
 
         public void TickPriceHardware()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PriceHardwareElement.Selected)
             {
                 return;
@@ -159,7 +159,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void UntickPriceHardware()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PriceHardwareElement.Selected)
             {
                 PriceHardwareElement.Click();
@@ -168,14 +168,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotPriceHardwareElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             Boolean ret = IsElementPresent(GetElementByCssSelector("#content_1_InputPriceHardware_Input", 5));
             TestCheck.AssertIsEqual(false, ret, "PriceHardwareElement is displayed");
         }
 
         public void TickPriceHardware(string tickOption)
         {
-            WriteLogOnMethodEntry(tickOption);
+            LoggingService.WriteLogOnMethodEntry(tickOption);
             if (tickOption.Equals("Untick"))
             {
                 PriceHardwareElement.Click();
@@ -188,7 +188,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectContractLength(string length)
         {
-            WriteLogOnMethodEntry(length);
+            LoggingService.WriteLogOnMethodEntry(length);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputContractLength_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedContractTerm", length);
             SelectFromDropdown(ContractLengthElement, length);
@@ -196,14 +196,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectLeaseBillingCycle(string lease)
         {
-            WriteLogOnMethodEntry(lease);
+            LoggingService.WriteLogOnMethodEntry(lease);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputLeasingRateBillingCycle_Input", 10))) return;
             SelectFromDropdown(LeaseBillingCycleElement, lease);
         }
 
         public void SelectPayPerClickBillingCycle(string billing)
         {
-            WriteLogOnMethodEntry(billing);
+            LoggingService.WriteLogOnMethodEntry(billing);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputClickRateBillingCycle_Input", 10))) return;
             SelectFromDropdown(PayPerClickBillingElement, billing);
         }
@@ -212,7 +212,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void SelectUsageType(string usage)
         {
-            WriteLogOnMethodEntry(usage);
+            LoggingService.WriteLogOnMethodEntry(usage);
             if (!IsElementPresent(GetElementByCssSelector("#content_1_InputUsageType_Input", 10))) return;
             SpecFlow.SetContext("DealerLatestEditedUsageType", usage);
             SelectFromDropdown(UsageTypeElement, usage);
@@ -221,7 +221,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateProductsPage ClickNextButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(NextButton);
             //NextButton.Click();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
@@ -230,7 +230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
         {
-            WriteLogOnMethodEntry(usageType,contractLength,billingType,servicePackOption);
+            LoggingService.WriteLogOnMethodEntry(usageType,contractLength,billingType,servicePackOption);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);

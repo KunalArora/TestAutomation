@@ -122,7 +122,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateDescriptionPage NavigateToProposalsCreateDescriptionPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CreateNewProposalButtonElement == null)
                 throw new Exception("Create a new proposal button is not displayed");
 
@@ -133,7 +133,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsAwaitingApprovalPage NavigateToProposalsAwaitingApproval()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (AwaitingProposalTabElement == null)
                 throw new Exception("Create a new proposal button is not displayed");
 
@@ -145,7 +145,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalFilterDiplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposalFilter == null)
             {
                 throw new NullReferenceException("Unable to locate text on the page");
@@ -155,7 +155,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSendToBankScreenDiplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (SendToBankScreenElement == null)
             {
                 throw new NullReferenceException("Unable to locate send to bank element on the page");
@@ -165,7 +165,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalListTemplateScreenDiplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposalListTemplateScreenElement == null)
             {
                 throw new NullReferenceException("Unable to locate text on the page");
@@ -176,7 +176,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalListProposalScreenDiplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposalListProposalsScreenElement == null)
             {
                 throw new NullReferenceException("Unable to locate text on the page");
@@ -187,7 +187,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NavigateToDeclinedProposalScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (proposalDeclinedTabElement == null)
                 throw new Exception("Cannot fine Declined Tab");
             proposalDeclinedTabElement.Click();
@@ -195,7 +195,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsDeclinedPage NavigateToDeclinedProposalPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (proposalDeclinedTabElement == null)
                 throw new Exception("Cannot find Declined Tab");
             proposalDeclinedTabElement.Click();
@@ -206,7 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalCopiedWithoutCustomer()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true,
                 ActionsModule.NumberOfActionButtonDisplayed(Driver).Equals(1),
                 "Proposal was copied with customer detail");  
@@ -215,7 +215,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalCopiedWithCustomer()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var companyName = SpecFlow.GetContext("GeneratedCompanyName");
 
             ActionsModule.SearchForNewlyProposalItem(Driver, companyName);
@@ -227,7 +227,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNewProposalTemplateCreated()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = CreatedProposal();
             
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -237,7 +237,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyNewProposal(string proposalName)
         {
-            WriteLogOnMethodEntry(proposalName);
+            LoggingService.WriteLogOnMethodEntry(proposalName);
             ClearAndType(ProposalFilter, proposalName);
             IsNewProposalTemplateCreated(true);
         }
@@ -245,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNewProposalTemplateCreated(bool option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
            var proposal = GetElementByCssSelector(".js-mps-filter-ignore", 10).Displayed;
 
             TestCheck.AssertIsEqual(option, proposal,
@@ -254,7 +254,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ActionButtonCount()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, GetElementByCssSelector(".dataTables_empty").Displayed, 
                                                                             "Is new proposal template created?");
         }
@@ -262,7 +262,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalSuccessfullyDeletedFromTheList()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WaitForElementToExistByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert");
 
             TestCheck.AssertIsEqual(true, GetElementByCssSelector(".alert.alert-success.fade.in.mps-alert.js-mps-alert").Displayed, 
@@ -276,7 +276,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void CopyAProposalWithoutCustomer(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             ActionsModule.CopyAProposal(driver);
             WebDriver.Wait(DurationType.Second, 5);
             IsProposalCopied();
@@ -284,14 +284,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CopyAProposalWithCustomer(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             ActionsModule.CopyAProposalWithCustomer(driver);
             IsProposalCopied();
         }
 
         public void IsProposalCopied()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var copiedProposal = MpsUtil.CopiedProposal();
             //var newlyCopied = @"//td[text()='{0}']";
             //newlyCopied = String.Format(newlyCopied, copiedProposal);
@@ -310,7 +310,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void ClickOnActionButtonAgainstRelevantProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             //var proposal = GetElementByCssSelector(".js-mps-filter-ignore", 10);
 
             ActionsModule.ClickOnSpecificActionsElement(Driver);
@@ -321,7 +321,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DeleteOpenProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
 
             HeadlessDismissAlertOk();
@@ -333,7 +333,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnActionButtonAgainstDeclinedProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -341,34 +341,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnActionButtonAgainstCopiedProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnCopiedProposalActionsElement(Driver);
         }
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
-            WriteLogOnMethodEntry(actionsButton);
+            LoggingService.WriteLogOnMethodEntry(actionsButton);
             var actionsElement = Driver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;
         }
 
         private ReadOnlyCollection<IWebElement> ProposalItemsElements(string proposalTableColumn)
         {
-            WriteLogOnMethodEntry(proposalTableColumn);
+            LoggingService.WriteLogOnMethodEntry(proposalTableColumn);
             var proposalItems = Driver.FindElements(By.CssSelector(proposalTableColumn));
             return proposalItems;
         }
 
         private string CreatedProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }
 
         public DealerConvertProposalCustomerInfo ClickOnConvertToContractButton(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             ActionsModule.StartConvertToContractProcess(driver);
             return GetTabInstance<DealerConvertProposalCustomerInfo>(Driver);
 
@@ -376,7 +376,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerConvertProposalSummaryPage ClickOnConvertToContractButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.StartConvertToContractProcess(Driver);
             return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
 
@@ -384,7 +384,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerConvertProposalSummaryPage ClickOnConvertToContractButtonForCopiedProposalWithCustomer(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             ActionsModule.StartConvertToContractProcess(driver);
             //VerifyThatTheCorrectProposalOpened();
             return GetTabInstance<DealerConvertProposalSummaryPage>(Driver);
@@ -393,28 +393,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerApprovedProposalPage NavigateToDealerApprovedProposalPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             approvedProposalsTabElement.Click();
             return GetTabInstance<DealerApprovedProposalPage>(Driver);
         }
 
         public void ClickOnEditOnActionItem()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.StartTheProposalEditProcess(Driver);
         }
 
         private IWebElement GetNthProposalOfferElement(IWebDriver driver, int nth = 1)
         {
-            WriteLogOnMethodEntry(driver, nth);
+            LoggingService.WriteLogOnMethodEntry(driver, nth);
             var format = string.Format(ProposalNthItemSelecterFormat, nth);
             return driver.FindElement(By.CssSelector(format));
         }
 
         private IWebElement GetNewlyCreatedProposalOfferElement(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var created = CreatedProposal();
             return
                 driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
@@ -426,7 +426,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement GetProposalOfferWithoutCustomerElement(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             return
                 driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
                 .First(x => x.FindElement(By.CssSelector("td:nth-child(4)")).Text == "-");
@@ -434,7 +434,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement GetProposalOfferWithCustomerElement(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             return
                 driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
                 .First(x => x.FindElement(By.CssSelector("td:nth-child(4)")).Text != "-");
@@ -442,14 +442,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ClickActionButtonOnOffer(IWebElement offerElement)
         {
-            WriteLogOnMethodEntry(offerElement);
+            LoggingService.WriteLogOnMethodEntry(offerElement);
             var actionitem = offerElement.FindElement(By.CssSelector(actionsButton));
             actionitem.Click();
         }
 
         public void CopyProposalWithOptions(string option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.ClickOnTheActionsDropdown(0, Driver);
             //var originCustomer = ActionsModule.CreatedProposalCustomerColumn().Text;
@@ -468,7 +468,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalCustomerCopied()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             //var copiedProposalCustomer = SpecFlow.GetContext("Original Customer");
             //var displayedCopiedCustomer = ActionsModule.ProposalCustomerColumn().Text;
 
@@ -480,7 +480,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnDeleteOnActionItem(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var offer = GetNthProposalOfferElement(driver);
             ClickActionButtonOnOffer(offer);
             var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
@@ -491,20 +491,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void AcceptConfirmationOnWarning()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             HeadlessDismissAlertOk();
         }
 
         public void DismissWarningMessage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             HeadlessDismissAlertCancel();
         }
 
 
         public void ClickOnDeleteOnActionItemAgainstNewlyCreated(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             //var offer = GetNewlyCreatedProposalOfferElement(driver);
             //ClickActionButtonOnOffer(offer);
             //var deleteElem = offer.FindElement(By.CssSelector(".js-mps-delete"));
@@ -518,7 +518,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnCopyOnActionItemWithoutCustomer(IWebDriver driver, string operation, string target)
         {
-            WriteLogOnMethodEntry(driver, operation, target);
+            LoggingService.WriteLogOnMethodEntry(driver, operation, target);
             IWebElement offer = null;
             string selector;
             var displayed = false;
@@ -566,7 +566,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ExistsCopiedProposalOffer(IWebDriver driver, string operation)
         {
-            WriteLogOnMethodEntry(driver, operation);
+            LoggingService.WriteLogOnMethodEntry(driver, operation);
             WebDriver.Wait(DurationType.Millisecond, 4000);
             var name = SpecFlow.GetContext(DealerLatestOperatingItemName);
             IWebElement copiedOffer;
@@ -602,7 +602,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement FindCopiedPoposalOfferByName(IWebDriver driver, string name)
         {
-            WriteLogOnMethodEntry(driver, name);
+            LoggingService.WriteLogOnMethodEntry(driver, name);
             return
                 driver.FindElements(By.CssSelector(ProposalItemsSelecterFormat))
                 .Reverse()
@@ -611,7 +611,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SaveProposalAsAContract()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (SaveAsContractButton == null) 
                 throw new NullReferenceException("Save Contract button not available");
             SaveAsContractButton.Click();
@@ -622,13 +622,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTheProposalSuccessfullyConverted()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsNewProposalTemplateCreated();
         }
 
         public DealerSendForApproverPage StartSendToBankProcess(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var actionsElement = ActionsDropdownElement(actionsButton);
             actionsElement.Last().Click();
             ActionsModule.SendProposalToBankButton(driver);
@@ -637,7 +637,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSubmitForApproval(int proposalId, string proposalName, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), findElementTimeout);
@@ -649,7 +649,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalName);
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
@@ -661,14 +661,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FindExistingPoposalList()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsNotNull(proposalListContainerElement,
                 "Existing proposal table is not found.");
         }
 
         public void HeadlessConfimation(string confirm)
         {
-            WriteLogOnMethodEntry(confirm);
+            LoggingService.WriteLogOnMethodEntry(confirm);
             if (confirm != "OK")
             {
                 HeadlessDismissAlertCancel();
@@ -683,14 +683,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickAcceptOnConfrimation(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             HeadlessDismissAlertOk();
             ClickAcceptOnJsAlert();
         }
 
         public void ClickDismissOnConfrimation(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             WebDriver.Wait(DurationType.Millisecond, 1000);
             HeadlessDismissAlertCancel();
             ClickDismissOnJsAlert();
@@ -698,7 +698,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NotExistTheDeletedItem(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var id = SpecFlow.GetContext(DealerLatestOperatingItemId);
             var exisitng = ContainsItemById(driver, id);
 
@@ -708,7 +708,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ExistsNotDeletedItem(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var id = SpecFlow.GetContext(DealerLatestOperatingItemId);
             var exisitng = ContainsItemById(driver, id);
 
@@ -718,7 +718,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private bool ContainsItemById(IWebDriver driver, string id)
         {
-            WriteLogOnMethodEntry(driver,id);
+            LoggingService.WriteLogOnMethodEntry(driver,id);
             return
                 driver.FindElements(By.CssSelector(".js-mps-delete"))
                 .Select(x => x.GetAttribute("data-proposal-id"))
@@ -727,19 +727,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerDashBoardPage NavigateToDashboard(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             DashboradLink.Click();
             return GetInstance<DealerDashBoardPage>();
         }
 
         public DealerProposalsCreateDescriptionPage NavigateToEditProposalPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
         public void IsDuplicateProposalDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var container = new List<string>();
             var noOfProposalId = AttachedProposalId.Count;
 
@@ -761,7 +761,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifySavedProposalInOpenProposalsList(int proposalId, string proposalName)
         {
-            WriteLogOnMethodEntry(proposalId, proposalName);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
 
             // Wait for footer to load & then filter out the proposal

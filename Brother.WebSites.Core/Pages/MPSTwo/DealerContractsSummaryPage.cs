@@ -72,14 +72,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickCancelButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(CancelButtonElement);
             CancelButtonElement.Click();
         }
 
         public DealerContractsPage ClickSignButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SignButtonElement);
             WebDriver.Wait(DurationType.Second, 3);
             SignButtonElement.Click();
@@ -89,7 +89,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsAwaitingAcceptancePage ClickSignButtonToNavigateToAwaitingAcceptance()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             StoreValuesFromSummaryPage();
             ScrollTo(SignButtonElement);
             WebDriver.Wait(DurationType.Second, 5);
@@ -100,7 +100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickReSignButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(ResignButtonElement);
             ResignButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
@@ -108,7 +108,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsPage ClickFinalReSignButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(FinalResignButtonElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, FinalResignButtonElement);
 
@@ -119,14 +119,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickResignInformationCheckbox()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ResignInformationCheckboxElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void IsContractSummaryPageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (SignButtonElement == null)
                 throw new Exception("Contract Summary not displayed");
             AssertElementPresent(SignButtonElement, "Is Contract Summary displayed");
@@ -134,7 +134,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsPage DealerSignsApprovedProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
             WebDriver.Wait(DurationType.Second, 3);
 
@@ -143,7 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void StoreValuesFromSummaryPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SpecFlow.SetContext("SummaryCustomerEmail", SummaryCustomerEmailElement.Text);
             SpecFlow.SetContext("SummaryCustomerOrCompanyName", SummaryCustomerOrCompanyNameElement.Text);
             SpecFlow.SetContext("SummaryContractTerm", SummaryContractTermElement.Text);
@@ -154,7 +154,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSpecialPricingMonoClickPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var mono = SummaryMonoClickRateElement.Text;
             var monoD = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
 
@@ -163,7 +163,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSpecialPricingColourClickPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var colour = SummaryColourClickRateElement.Text;
             var colourD = SpecFlow.GetContext("SpecialPriceColourClickPrice");
 
@@ -172,7 +172,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSpecialPricingInstallationUnitPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var install = SummaryInstallationUnitPriceElement.Text;
             var installD = SpecFlow.GetContext("SpecialPriceInstallation");
 
@@ -182,7 +182,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSpecialPricingServicePackUnitPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var servicePack = SummaryServicePackUnitPriceElement.Text;
             var servicePackD = SpecFlow.GetContext("SpecialPriceServicePack");
 
@@ -191,7 +191,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsAwaitingAcceptancePage DealerSignsApprovedProposalTAwaitingAcceptancePage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             StoreValuesFromSummaryPage();
 
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, SignButtonElement);
@@ -203,7 +203,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerClosedProposalPage CloseProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SummaryCloseProposalElement);
             SummaryCloseProposalElement.Click();
             ClickAcceptOnConfrimation();
@@ -212,7 +212,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickAcceptOnConfrimation()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ClickAcceptOnJsAlert();
         }
 

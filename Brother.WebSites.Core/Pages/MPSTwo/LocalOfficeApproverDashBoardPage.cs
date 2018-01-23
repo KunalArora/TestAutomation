@@ -57,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsApprovalLinkAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ApprovalTabElement == null)
                 throw new Exception("Unable to locate Approval link on dashboard page");
 
@@ -67,7 +67,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverApprovalPage NavigateToOfficeApproverApprovalPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsApprovalLinkAvailable();
             ApprovalTabElement.Click();
 
@@ -76,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportingDashboardPage NavigateToLocalOfficeApproverReportingPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsApprovalLinkAvailable();
             LocalApprovalReportingElement.Click();
 
@@ -85,7 +85,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchBetweenMultipleLanguages()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsBelgiumSystem())
             {
                 try
@@ -128,7 +128,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SwitchBelgianLanguage(string lang)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (lang.Equals("French"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -143,7 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SwitchFinnishLanguage(string lang)
         {
-            WriteLogOnMethodEntry(lang);
+            LoggingService.WriteLogOnMethodEntry(lang);
             if (lang.Equals("Suomi"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -158,7 +158,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SwitchSwissLanguage(string lang)
         {
-            WriteLogOnMethodEntry(lang);
+            LoggingService.WriteLogOnMethodEntry(lang);
             if (lang.Equals("Deutsch"))
             {
                 MultipleLanguagesElement.First().Click();
@@ -173,7 +173,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsSwitchedLanguageSelected(string text)
         {
-            WriteLogOnMethodEntry(text);
+            LoggingService.WriteLogOnMethodEntry(text);
             try
             {
                 WaitForElementToExistByCssSelector("a[href='/mps/dealer/contracts'] .media-body .media-heading", 3, 5);

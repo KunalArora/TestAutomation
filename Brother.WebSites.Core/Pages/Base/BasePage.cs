@@ -482,10 +482,5 @@ namespace Brother.WebSites.Core.Pages.Base
             TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0} and the page source differences reflect this", url));
         }
 
-        protected void WriteLogOnMethodEntry(params object[] args)
-        {
-            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
-        }
-
     }
 }

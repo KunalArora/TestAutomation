@@ -43,27 +43,27 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApproverAndNavigateToDashboard(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             return _mpsSignIn.SignInAsLocalOfficeApprover(email, password, url);
         }
 
         public LocalOfficeApproverApprovalPage NavigateToApprovalDashboard(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.ApprovalTabElement, localOfficeApproverDashBoardPage);
             return PageService.GetPageObject<LocalOfficeApproverApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverProposalsPage NavigateToApprovalListPage(LocalOfficeApproverApprovalPage localOfficeApproverApprovalPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalPage);
             ClickSafety( localOfficeApproverApprovalPage.ProposalLinkElement, localOfficeApproverApprovalPage );
             return PageService.GetPageObject<LocalOfficeApproverProposalsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverApprovalProposalsSummaryPage NavigateToViewSummary(LocalOfficeApproverProposalsPage localOfficeApproverProposalsPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverProposalsPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverProposalsPage);
             int proposalId = _contextData.ProposalId;
             localOfficeApproverProposalsPage.ClickOnSummaryPage(proposalId, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -71,7 +71,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverApprovalProposalsApprovedPage ApproveProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverAprovalProposalsSummaryPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverAprovalProposalsSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAprovalProposalsSummaryPage);
             localOfficeApproverAprovalProposalsSummaryPage.ClickOnAccept(RuntimeSettings.DefaultFindElementTimeout);
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
             
@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverReportsDataQueryPage NavigateToReportsDataQueryPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.LocalApprovalReportingElement, localOfficeApproverDashBoardPage);
             var localOfficeApproverReportsDashboardPage =  PageService.GetPageObject<LocalOfficeApproverReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
             ClickSafety( localOfficeApproverReportsDashboardPage.DataQueryElement, localOfficeApproverReportsDashboardPage);
@@ -88,7 +88,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverReportsProposalSummaryPage ClidkOnValidateAndApplySpecialPricing(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage);
             localOfficeApproverApprovalSpecialPricingPage.SeleniumHelper.WaitUntil(d => {
                 var isDisplayed = localOfficeApproverApprovalSpecialPricingPage.NextButton.Displayed;
                 var isHidden = localOfficeApproverApprovalSpecialPricingPage.NextButton.GetAttribute("class").Contains("hidden");
@@ -104,7 +104,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverReportsProposalSummaryPage NavigateToReportsProposalSummaryPage(LocalOfficeApproverReportsDataQueryPage localOfficeApproverReportsDataQueryPage, int proposalId )
         {
-            WriteLogOnMethodEntry(localOfficeApproverReportsDataQueryPage, proposalId);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsDataQueryPage, proposalId);
             var proposalIdString = proposalId.ToString();
             localOfficeApproverReportsDataQueryPage.ClickOnSearchedProposal(proposalId, RuntimeSettings.DefaultFindElementTimeout);
             return PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -112,7 +112,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public void PopulateSpecialPricingInstallation(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
             localOfficeApproverApprovalSpecialPricingPage.SwitchNavInstallTab(RuntimeSettings.DefaultFindElementTimeout);
             foreach (var specialPrice in specialPriceList)
             {
@@ -121,7 +121,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         }
         public void PopulateSpecialPricingService(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
             localOfficeApproverApprovalSpecialPricingPage.SwitchNavServiceTab(RuntimeSettings.DefaultFindElementTimeout);
             foreach (var specialPrice in specialPriceList)
             {
@@ -131,7 +131,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public void PopulateSpecialPricingClickPrice(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage, IEnumerable<SpecialPricingProperties> specialPriceClickList)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceClickList);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage, specialPriceClickList);
             localOfficeApproverApprovalSpecialPricingPage.SwitchNavClickTab(RuntimeSettings.DefaultFindElementTimeout);
             foreach( var specialPrice in specialPriceClickList) {
                 localOfficeApproverApprovalSpecialPricingPage.EnterSpecialPriceClick(specialPrice, RuntimeSettings.DefaultFindElementTimeout);
@@ -141,41 +141,41 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
         public LocalOfficeApproverApprovalSpecialPricingPage ClickOnSpecialPricing(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
             ClickSafety(localOfficeApproverReportsProposalSummaryPage.ButtonSpecialPricing, localOfficeApproverReportsProposalSummaryPage);
             return PageService.GetPageObject<LocalOfficeApproverApprovalSpecialPricingPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverApprovalContractsSummaryPage ClickViewSummary(LocalOfficeApproverContractsAwaitingAcceptancePage localofficeApproverApprovalContractsAwaitingAcceptancePage, int proposalId)
         {
-            WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage, proposalId);
+            LoggingService.WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage, proposalId);
             localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(proposalId, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverApprovalContractsAcceptedPage AcceptContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverApprovalContractsSummaryPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
             localOfficeApproverApprovalContractsSummaryPage.OnClickAccept();
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
         {
-            WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
+            LoggingService.WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
             _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
-            WriteLogOnMethodEntry(element, pageObject);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
 
         public LocalOfficeApproverApprovalProposalsDeclinedPage DeclineProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverApprovalProposalsSummaryPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalProposalsSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalProposalsSummaryPage);
             string proposalDeclineReasonExpired = _translationService.GetProposalDeclineReasonText(TranslationKeys.ProposalDeclineReason.Expired, _contextData.Culture);
 
             localOfficeApproverApprovalProposalsSummaryPage.DeclineProposal(proposalDeclineReasonExpired, RuntimeSettings.DefaultFindElementTimeout);

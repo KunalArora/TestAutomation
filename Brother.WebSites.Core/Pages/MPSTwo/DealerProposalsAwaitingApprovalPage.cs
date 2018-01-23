@@ -54,14 +54,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string CreatedProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }
 
         public void IsProposalSentToDealerAwaitingProposalPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -71,7 +71,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage NavigateToViewSummary()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 

@@ -34,7 +34,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.LocalApprovalReportingElement, localOfficeApproverDashBoardPage);
             var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
@@ -43,19 +43,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage)
         {
-            WriteLogOnMethodEntry(dataQueryPage);
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
             return NavigateToAgreementDevicesPage(dataQueryPage, _loApproverWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendBulkInstallationRequest(localOfficeAgreementDevicesPage, _loApproverWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage SendSingleInstallationRequests(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendSingleInstallationRequests(localOfficeAgreementDevicesPage, _loApproverWebDriver);
         }
     }

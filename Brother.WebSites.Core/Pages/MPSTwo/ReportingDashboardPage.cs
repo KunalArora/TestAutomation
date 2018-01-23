@@ -48,7 +48,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsReportingPageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ReportTabElement == null)
                 throw new Exception("Reporting page not displayed");
 
@@ -57,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadASpecifiedReport(string report)
         {
-            WriteLogOnMethodEntry(report);
+            LoggingService.WriteLogOnMethodEntry(report);
             switch (report)
             {
                 case "Basic Data Report":
@@ -80,7 +80,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DataQueryPage NavigateToDataQueryPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DataQueryElement);
             return GetInstance<DataQueryPage>();
@@ -88,7 +88,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void DownloadBasicDataReport()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             BasicDataReportElement.Click();
             IsReportDownloaded();
@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void DownloadDealerReport()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             DealerReportElement.Click();
             IsReportDownloaded();
@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsReportDownloaded()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 10);
            var downloaded = IsFileDownloaded(DownloadDirectory, "xlsx");
 
@@ -117,7 +117,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void DownloadSupplierOrdersReport()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             SupplierOrdersReportElement.Click();
             IsReportDownloaded();
@@ -126,7 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void DownloadPrintVolumeReport()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             PrintVolumeReportElement.Click();
             IsReportDownloaded();
@@ -135,7 +135,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void DownloadServiceRequestReport()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsReportingPageDisplayed();
             ServiceRequestReportElement.Click();
             IsReportDownloaded();

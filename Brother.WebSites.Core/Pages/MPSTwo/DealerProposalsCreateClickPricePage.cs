@@ -101,7 +101,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsServiceInClickLineDisplayedOnClickPricePage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, ServicePackUnitCostElement.Displayed, "Service Pack Unit Cost is not displayed");
             TestCheck.AssertIsEqual(true, ServicePackUnitPriceElement.Displayed, "Service Pack Unit Price is not displayed");
             TestCheck.AssertIsEqual(true, ServicePackTotalPriceElement.Displayed, "Service Pack Unit Total Price is not displayed");
@@ -110,13 +110,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement PaymentMethodElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(paymentMethod, 10);
         }
 
         public void VerifyPaymentMethodIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsSpainSystem() 
                 || IsBelgiumSystem() 
                 || IsNetherlandSystem()
@@ -126,7 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyPaymentMethodIsNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = PaymentMethodElement();
             if (element != null)
                 TestCheck.AssertIsNotNull(element, "Payment method is displayed");
@@ -134,19 +134,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement PayUpfrontElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("#content_1_InputServicePaymentOptions_Input_0");
         }
 
         private IWebElement InClickPriceElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("#content_1_InputServicePaymentOptions_Input_1");
         }
 
         public void PayServicePackMethod(string option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             //if (GetElementByCssSelector(".col-sm-12.mps-paymentoptions").Displayed)
 
             try
@@ -202,7 +202,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string PreSelectedServicePack(string pre)
         {
-            WriteLogOnMethodEntry(pre);
+            LoggingService.WriteLogOnMethodEntry(pre);
             switch (pre)
             {
                 case "1"     :
@@ -227,7 +227,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ColourVolumeElementClickPrice(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             string element = String.Format("#content_1_LineItems_InputColourVolumeBreaks_{0}", row);
 
             return GetElementByCssSelector(element);
@@ -235,7 +235,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement MonoVolumeElementClickPrice(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             string element = String.Format("#content_1_LineItems_InputMonoVolumeBreaks_{0}",row);
 
             return GetElementByCssSelector(element, 5);
@@ -243,7 +243,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectClickPriceAndCalculate(string volume, string colour, string row)
         {
-            WriteLogOnMethodEntry(volume,colour,row);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row);
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
 
@@ -263,7 +263,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public DealerProposalsCreateSummaryPage CalculateMultipleClickPriceAndProceed(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             CalculateMultipleClickPrice(volume, colour, "0");
             CalculateMultipleClickPrice(volume, colour, "1");
 
@@ -277,7 +277,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectMultipleClickPriceAndCalculate(string volume, string colour, string row)
         {
-            WriteLogOnMethodEntry(volume,colour,row);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row);
 
             if (CalculateClickPriceElement == null)
                 throw new NullReferenceException("CalculateClickPriceElement can not be found");
@@ -291,7 +291,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateMultipleClickPrice(string volume, string colour, string row, bool resetBeforeInput = false)
         {
-            WriteLogOnMethodEntry(volume,colour,row,resetBeforeInput);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row,resetBeforeInput);
             var instance = new DealerProposalsCreateClickPricePage();
 
             if (instance.MonoVolumeElement(row) != null)
@@ -309,7 +309,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage CalculateSelectedMultipleClickPrice(string mono, string colour)
         {
-            WriteLogOnMethodEntry(mono,colour);
+            LoggingService.WriteLogOnMethodEntry(mono,colour);
             var monoCount = MultiMonoVolumeDropdownElement.Count;
             var colourCount = MultiColourVolumeDropdownElement.Count;
 
@@ -338,7 +338,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage CalculateEnteredMultipleClickPrice(string mono, string colour)
         {
-            WriteLogOnMethodEntry(mono,colour);
+            LoggingService.WriteLogOnMethodEntry(mono,colour);
             var monoCount = MultiMonoVolumeInputFieldElement.Count;
             var colourCount = MultiColourVolumeInputFieldElement.Count;
 
@@ -368,7 +368,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterClickPriceMargin(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             if (MonoClickPriceMarginElements != null && (MonoClickPriceMarginElements != null || MonoClickPriceMarginElements.Any()))
             {
                 foreach (var monoClickPriceMarginElement in MonoClickPriceMarginElements)
@@ -391,7 +391,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterMultipleClickPriceValueAndCalculate(string volume, string colour, string row)
         {
-            WriteLogOnMethodEntry(volume,colour,row);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row);
             EnterMonoVolume(volume, row);
             EnterColourVolume(colour, row);
             WebDriver.Wait(DurationType.Second, 5);
@@ -400,26 +400,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateClickPriceAndStoreVal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             CalculateClickPriceElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void StoreMonoClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SpecFlow.SetContext("ClickPriceMonoValue", ClickPriceValue().First().Text);
         }
 
         public void StoreColourClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SpecFlow.SetContext("ClickPriceColourValue", ClickPriceColourValue().First().Text);
         }
 
         public void IsSpecialPricingNewMonoClickPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var displayedMono = ClickPriceValue().First().Text;
             var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceMonoClickPrice");
 
@@ -429,7 +429,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSpecialPricingNewColourClickPriceDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var displayedColour = ClickPriceValue().First().Text;
             var enterSpecialPricing = SpecFlow.GetContext("SpecialPriceColourClickPrice");
 
@@ -439,7 +439,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectMonoVolume(string volume, string row)
         {
-            WriteLogOnMethodEntry(volume,row);
+            LoggingService.WriteLogOnMethodEntry(volume,row);
             if (monoVolumeDropdownElement == null)
                 throw new NullReferenceException("monoVolumeDropdownElement can not be found");
             IWebElement element = MonoVolumeElementClickPrice(row);
@@ -449,7 +449,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectColorVolume(string volume, string row)
         {
-            WriteLogOnMethodEntry(volume,row);
+            LoggingService.WriteLogOnMethodEntry(volume,row);
             if (colourVolumeDropdownElement == null)
                 throw new NullReferenceException("monoVolumeDropdownElement can not be found");
             IWebElement element = ColourVolumeElementClickPrice(row);
@@ -459,19 +459,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> ClickPriceColourValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementsByCssSelector(clickPriceColourValue);
         }
 
         private IList<IWebElement> ClickPriceValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementsByCssSelector(clickPriceValue);
         }
 
         public void VerifyClickPriceValueIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(false, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
@@ -480,7 +480,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyClickPriceValueIsNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(true, ClickPriceValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
@@ -489,7 +489,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void VerifyClickPriceColourValueIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(false, ClickPriceColourValue().ElementAt(i).Text.Equals(string.Empty), "Price Value is Empty");
@@ -498,13 +498,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ClickPriceNextButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(clickPricePageNext);
         }
 
         public DealerProposalsCreateSummaryPage ClickAndProceedOnDealerProposalsCreateSummaryPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ClickPriceNextButton().Click();
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
@@ -512,7 +512,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ProceedToProposalSummaryFromClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var mono = ClickPriceValue().First().Text;
             var colour = ClickPriceColourValue().First().Text;
             SpecFlow.SetContext("ClickPriceMonoValue", mono);
@@ -525,7 +525,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             //MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour, "0");
             //WebDriver.Wait(Helper.DurationType.Second, 1);
@@ -538,7 +538,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateClickPrice(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             //MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour, "0");
             //WebDriver.Wait(Helper.DurationType.Second, 1);
@@ -550,7 +550,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateClickPrice(string volume, string colour, string row, bool resetBeforeInput = false)
         {
-            WriteLogOnMethodEntry(volume,colour,row,resetBeforeInput);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row,resetBeforeInput);
             if (MonoVolumeElement(row) != null)
                 EnterClickPriceValueAndCalculate(volume, colour, row);
             if (MonoVolumeElementClickPrice(row) != null)
@@ -565,14 +565,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ResetClickPrice(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             SelectMonoVolume("0", row);
             SelectColorVolume("250", row);
         }
 
         public void CalculateClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             CalculateClickPriceElement.Click();
             WebDriver.Wait(Helper.DurationType.Second, 5);
             MonoClickPriceValue();
@@ -581,7 +581,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage ForceGoThrowThisTab(IWebDriver driver, bool fillVolume = false)
         {
-            WriteLogOnMethodEntry(driver,fillVolume);
+            LoggingService.WriteLogOnMethodEntry(driver,fillVolume);
             if (fillVolume)
             {
                 FillVolume(driver, ".mps-line1", "Mono");
@@ -596,7 +596,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void FillVolume(IWebDriver driver, string lineselector, string type)
         {
-            WriteLogOnMethodEntry(driver,lineselector,type);
+            LoggingService.WriteLogOnMethodEntry(driver,lineselector,type);
             var lines = GetElementsByCssSelector(lineselector);
             var inputselectorformat = "#content_1_LineItems_Input{0}Volume_{1}";
 
@@ -614,7 +614,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage MoveToProposalSummaryScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(ProposalSummaryScreenElement);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalSummaryScreenElement);
 //            AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
@@ -624,14 +624,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterCoverageAndVolumeThenCalculate(string coverage, string volume)
         {
-            WriteLogOnMethodEntry(coverage,volume);
+            LoggingService.WriteLogOnMethodEntry(coverage,volume);
             EnterMonoCoverage(coverage);
             EnterMonoVolumeQuantity(volume);
         }
 
         private void EnterMonoVolumeQuantity(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             if (MonoVolumeInputFieldElement == null)
                 throw new NullReferenceException("Mono Volume field can not be found");
             if (CalculateClickPriceElement == null)
@@ -645,7 +645,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterMonoCoverage(string coverage)
         {
-            WriteLogOnMethodEntry(coverage);
+            LoggingService.WriteLogOnMethodEntry(coverage);
             if (MonoCoverageInputFieldElement == null)
                 throw new NullReferenceException("Mono Coverage field can not be found");
 
@@ -655,7 +655,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement MonoVolumeElement(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             string str = String.Format("#content_1_LineItems_InputMonoVolume_{0}", row);
 
             return GetElementByCssSelector(str, 5);
@@ -663,7 +663,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterMonoVolume(string volume, string row)
         {
-            WriteLogOnMethodEntry(volume,row);
+            LoggingService.WriteLogOnMethodEntry(volume,row);
             IWebElement element = MonoVolumeElement(row);
 
             if (element == null)
@@ -676,7 +676,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterColourCoverage(string coverage)
         {
-            WriteLogOnMethodEntry(coverage);
+            LoggingService.WriteLogOnMethodEntry(coverage);
             if (ColourCoverageInputFieldElement == null)
                 throw new NullReferenceException("Mono Coverage field can not be found");
 
@@ -686,7 +686,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ColourVolumeElement(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             string str = String.Format("#content_1_LineItems_InputColourVolume_{0}", row);
 
             return GetElementByCssSelector(str, 5);
@@ -694,7 +694,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterColourVolume(string volume, string row)
         {
-            WriteLogOnMethodEntry(volume,row);
+            LoggingService.WriteLogOnMethodEntry(volume,row);
             try
             {
                 IWebElement element = ColourVolumeElement(row);
@@ -719,7 +719,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterClickPriceValueAndCalculate(string volume, string colour, string row)
         {
-            WriteLogOnMethodEntry(volume,colour,row);
+            LoggingService.WriteLogOnMethodEntry(volume,colour,row);
             EnterMonoVolume(volume, row);
             EnterColourVolume(colour, row);
             WebDriver.Wait(DurationType.Second, 5);
@@ -729,7 +729,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceForMonoAndColourAndProceed(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             //            MoveToClickPriceScreen();
             EnterColourVolume(colour, "0");
             EnterMonoVolumeQuantity(volume);
@@ -743,7 +743,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage CalculateEnteredClickPriceAndProceed(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             //            MoveToClickPriceScreen();
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(DurationType.Second, 5);
@@ -756,7 +756,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void WritePrinterParametersToCsv(string printer, string servicePayment, string monoCoverage, string colourCoverage, string qty,
             string monoVol, string colourVol, string duration)
         {
-            WriteLogOnMethodEntry(printer,servicePayment,monoCoverage,colourCoverage,qty,monoVol,colourVol,duration);
+            LoggingService.WriteLogOnMethodEntry(printer,servicePayment,monoCoverage,colourCoverage,qty,monoVol,colourVol,duration);
             //before your loop
             var csv = new StringBuilder();
             StreamWriter log;
@@ -808,7 +808,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateEnteredClickPrice(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             //            MoveToClickPriceScreen();
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(DurationType.Second, 5);
@@ -818,7 +818,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateEnteredErrorClickPrice(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             EnterMonoVolumeQuantity(volume);
             WebDriver.Wait(DurationType.Second, 5);
             VerifyClickPriceValueIsNotDisplayed();
@@ -826,7 +826,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateEnteredMonoAndColourClickPrice(string mono, string colour)
         {
-            WriteLogOnMethodEntry(mono,colour);
+            LoggingService.WriteLogOnMethodEntry(mono,colour);
             //            MoveToClickPriceScreen();
             EnterColourVolume(colour, "0");
             EnterMonoVolumeQuantity(mono);
@@ -837,7 +837,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsLargeEstimatedVolumeErrorMessageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (WarningAlertElement == null)
                 throw new Exception("Expected warning not displayed");
 
@@ -846,7 +846,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCalculateButtonDisabled()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (DisabledCalculateButtonElement == null)
                 throw new Exception("Calculate button is not disabled");
 
@@ -855,7 +855,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCoverageErrorDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".js-mps-alert";
 
             AssertElementPresent(GetElementByCssSelector(element, 5), "Coverage error is not displayed");
@@ -863,7 +863,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void MonoClickPriceValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var str = ".mps-clickprice-group [data-click-price-mono=\"true\"]";
             var i = 0;
             foreach (var element in GetElementsByCssSelector(str, 5))
@@ -877,7 +877,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void ColourClickPriceValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string str = ".mps-clickprice-group [data-click-price-colour=\"true\"]";
             string val = "";
             int i = 0;
@@ -896,7 +896,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceValueForVolumeValueBecomeSmallerAndSmaller()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             List<string> list = new List<string>();
             foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
             {
@@ -911,7 +911,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyClickPriceValueForVolumeValueIsAllEqual()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             List<string> list = new List<string>();
             foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
             {
@@ -925,7 +925,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceDisplayedForTheColourIsChangedAccordingly()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             List<string> list = new List<string>();
             foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
             {
@@ -938,7 +938,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceDisplayedForTheMonoIsChangedAccordingly()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             List<string> list = new List<string>();
             foreach (KeyValuePair<string, object> item in SpecFlow.GetEnumerator())
             {
@@ -952,7 +952,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceForMonoIsNotChanged(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             List<string> list = new List<string>();
 
             string key = String.Format("MonoClickPrice{0}", row);
@@ -968,7 +968,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceForMonoIsChanged(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             List<string> list = new List<string>();
 
             string key = String.Format("MonoClickPrice{0}", row);
@@ -983,7 +983,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceForColourIsChanged(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             List<string> list = new List<string>();
 
             string key = String.Format("ColourClickPrice{0}", row);
@@ -998,7 +998,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatClickPriceForColourIsNotChanged(string row)
         {
-            WriteLogOnMethodEntry(row);
+            LoggingService.WriteLogOnMethodEntry(row);
             List<string> list = new List<string>();
 
             string key = String.Format("ColourClickPrice{0}", row);
@@ -1013,7 +1013,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement getPrinterElement(string printerName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName,findElementTimeout);
             string attributeName = printerName;
             var printerElement = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
             return printerElement;
@@ -1027,7 +1027,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             string usageType,
             string resourceUsageTypePayAsYouGo)
         {
-            WriteLogOnMethodEntry(printerName,coverageMono,coverageColour,volumeMono,volumeColour,usageType,resourceUsageTypePayAsYouGo);
+            LoggingService.WriteLogOnMethodEntry(printerName,coverageMono,coverageColour,volumeMono,volumeColour,usageType,resourceUsageTypePayAsYouGo);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var printerContainer = getPrinterElement(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
@@ -1072,7 +1072,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             out string servicePackUnitCost,
             out string servicePackUnitPrice)
         {
-            WriteLogOnMethodEntry(printerContainer, servicePackType, resourceServicePackTypeIncludedInClickPrice);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, servicePackType, resourceServicePackTypeIncludedInClickPrice);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
 
             // Validation of content on click price page           
@@ -1104,7 +1104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifyClickPriceValues()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.WaitUntilElementAppears(clickPricePageNext, findElementTimeout);
             try

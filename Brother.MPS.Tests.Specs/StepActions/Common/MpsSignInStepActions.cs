@@ -49,7 +49,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             if (_dealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
@@ -66,7 +66,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _loApproverWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeApprover]);
             if (_loApproverWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
@@ -84,7 +84,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public ServiceDeskDashBoardPage SignInAsServiceDesk(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
             _serviceDeskWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeSupportDesk]);
             if (_serviceDeskWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
@@ -102,7 +102,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAdminDashBoardPage SignInAsLocalOfficeAdmin(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _loAdminWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeAdmin]);
             if (_loAdminWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
@@ -120,7 +120,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public CustomerDashBoardPage SignInAsCustomer(string email, string password, string url)
         {
-            WriteLogOnMethodEntry(email, password, url);
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
             _customerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Customer);
             if (_customerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
@@ -135,7 +135,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(url, driver);
+            LoggingService.WriteLogOnMethodEntry(url, driver);
             var signInPage = PageService.LoadAtYourSideSignInPage(driver);
             ScenarioContext.SetCurrentPage(signInPage);
             return signInPage;
@@ -143,7 +143,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public RegistrationPage LoadBrotherOnlineSignInPage(string url, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(url, driver);
+            LoggingService.WriteLogOnMethodEntry(url, driver);
             var registrationPage = new RegistrationPage();
             registrationPage = PageService.LoadUrl<RegistrationPage>(url, RuntimeSettings.DefaultPageLoadTimeout, registrationPage.ValidationElementSelector, true, driver);
             return registrationPage;
@@ -151,7 +151,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         private TPage SignInToMpsDashboardAs<TPage>(RegistrationPage registrationPage, string email, string password, IWebDriver driver) where TPage : BasePage, IPageObject, new()
         {
-            WriteLogOnMethodEntry(registrationPage, email, password, driver);
+            LoggingService.WriteLogOnMethodEntry(registrationPage, email, password, driver);
             registrationPage.PopulateEmailAddressTextBox(email);
             registrationPage.PopulatePassword(password);
             registrationPage.ScrollTo(registrationPage.SignInButton);
@@ -161,7 +161,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         private TPage SignInToMpsDashboardAs<TPage>(SignInAtYourSidePage signInAtYourSidePage, string email, string password, string dashboardUrl, IWebDriver driver) where TPage : BasePage, IPageObject, new()
         {
-            WriteLogOnMethodEntry(signInAtYourSidePage, email, password, dashboardUrl, driver);
+            LoggingService.WriteLogOnMethodEntry(signInAtYourSidePage, email, password, dashboardUrl, driver);
             signInAtYourSidePage.PopulateEmailAddressTextBox(email);
             signInAtYourSidePage.PopulatePassword(password);
             signInAtYourSidePage.SignInButton.Click();
@@ -171,7 +171,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public InstallerContractReferenceInstallationPage LoadInstallationPage(string url)
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
             _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
             var installationPage = new InstallerContractReferenceInstallationPage();
             installationPage = PageService.LoadUrl<InstallerContractReferenceInstallationPage>(url, RuntimeSettings.DefaultPageLoadTimeout, installationPage.ValidationElementSelector, true, _installerWebDriver);
@@ -180,7 +180,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public InstallationSelectMethodPage LoadInstallationSelectMethodPageType3(string url)
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
             _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
             var installationPage = new InstallationSelectMethodPage();
             installationPage = PageService.LoadUrl<InstallationSelectMethodPage>(url, RuntimeSettings.DefaultPageLoadTimeout, installationPage.ValidationElementSelector, true, _installerWebDriver);
@@ -189,7 +189,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public InstallationManageInstallationsPage LoadInstallationManageInstallationsPageType3(string url)
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
             _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
             var installationPage = new InstallationManageInstallationsPage();
             installationPage = PageService.LoadUrl<InstallationManageInstallationsPage>(url, RuntimeSettings.DefaultPageLoadTimeout, installationPage.ValidationElementSelector, true, _installerWebDriver);

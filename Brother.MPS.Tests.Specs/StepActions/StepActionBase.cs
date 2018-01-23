@@ -36,10 +36,6 @@ namespace Brother.Tests.Specs.StepActions
             RuntimeSettings = runtimeSettings;
         }
 
-        protected void WriteLogOnMethodEntry(params object[] args)
-        {
-            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
-        }
     }
 
 

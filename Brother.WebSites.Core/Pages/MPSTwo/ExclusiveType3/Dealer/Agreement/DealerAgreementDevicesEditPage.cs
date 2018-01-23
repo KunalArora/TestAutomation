@@ -76,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void FillMandatoryDetails(CustomerInformationMandatoryFields values)
         {
-            WriteLogOnMethodEntry(values);
+            LoggingService.WriteLogOnMethodEntry(values);
             ClearAndType(CustomerNameInputElement, values.CompanyName);
             ClearAndType(ContactFirstNameInputElement, values.FirstName);
             ClearAndType(ContactLastNameInputElement, values.LastName);
@@ -88,7 +88,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void FillNonMandatoryDetails(CustomerInformationOptionalFields values)
         {
-            WriteLogOnMethodEntry(values);
+            LoggingService.WriteLogOnMethodEntry(values);
             // Address
             ClearAndType(EmailInputElement, values.Email);
             ClearAndType(TelephoneInputElement, values.Telephone);
@@ -108,7 +108,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public string EditDeviceData(string isOptionalValues)
         {
-            WriteLogOnMethodEntry(isOptionalValues);
+            LoggingService.WriteLogOnMethodEntry(isOptionalValues);
             CustomerInformationMandatoryFields mandatoryValues = new CustomerInformationMandatoryFields();
             FillMandatoryDetails(mandatoryValues);
             CustomerInformationOptionalFields nonMandatoryValues = null;
@@ -125,7 +125,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // It is the Address string which is displayed on Devices page after editing device data. 
         public string ValidationExpression(CustomerInformationMandatoryFields mandatoryValues, CustomerInformationOptionalFields optionalValues = null)
         {
-            WriteLogOnMethodEntry(mandatoryValues,optionalValues);
+            LoggingService.WriteLogOnMethodEntry(mandatoryValues,optionalValues);
             List<string> validationExpression = new string[] {
                 mandatoryValues.CompanyName, string.Format("{0} {1}", mandatoryValues.PropertyNumber, mandatoryValues.PropertyStreet),
                 mandatoryValues.PropertyTown, mandatoryValues.PostCode }.ToList();

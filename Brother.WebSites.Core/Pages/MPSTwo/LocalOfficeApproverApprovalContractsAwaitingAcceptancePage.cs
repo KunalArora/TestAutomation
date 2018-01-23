@@ -42,7 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewSummary(int proposalId, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(proposalId,driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
             ClearAndType(ContractFilter, proposalId.ToString());

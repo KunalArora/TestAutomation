@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public IWebElement SelectClickPriceGroup(string printerName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName,findElementTimeout);
             var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
 
             return clickPriceContainer;
@@ -52,7 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             int findElementTimeout,
             string resourceUsageTypePayAsYouGo)
         {
-            WriteLogOnMethodEntry(printerName, coverageMono, volumeMono, coverageColour, volumeColour, usageType, findElementTimeout, resourceUsageTypePayAsYouGo);
+            LoggingService.WriteLogOnMethodEntry(printerName, coverageMono, volumeMono, coverageColour, volumeColour, usageType, findElementTimeout, resourceUsageTypePayAsYouGo);
             var printerContainer = SelectClickPriceGroup(printerName, findElementTimeout);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 

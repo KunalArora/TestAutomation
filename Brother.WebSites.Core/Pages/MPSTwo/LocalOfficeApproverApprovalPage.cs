@@ -47,7 +47,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProposalsLinkAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposalLinkElement == null)
                 throw new Exception("Unable to locate Proposals link on dashboard page");
 
@@ -56,7 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsContractsLinkAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ContractLinkElement == null)
                 throw new Exception("Unable to locate Contracts link on dashboard page");
 
@@ -66,7 +66,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverProposalsPage NavigateToProposalsPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsProposalsLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProposalLinkElement);
             return GetTabInstance<LocalOfficeApproverProposalsPage>(Driver);
@@ -74,7 +74,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeApproverContractsPage NavigateToContractsPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsContractsLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ContractLinkElement);
             return GetTabInstance<LocalOfficeApproverContractsPage>(Driver);

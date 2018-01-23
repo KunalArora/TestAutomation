@@ -237,7 +237,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         private IWebElement FaxCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"fax\"]";
 
             return GetElementByCssSelector(element);
@@ -245,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ScannerCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"scanner\"]";
 
             return GetElementByCssSelector(element);
@@ -253,7 +253,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement DuplexCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"duplex\"]";
 
             return GetElementByCssSelector(element);
@@ -261,7 +261,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement AdditionalTrayCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"additionalTray\"]";
 
             return GetElementByCssSelector(element);
@@ -269,7 +269,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement A4CheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"a4\"]";
 
             return GetElementByCssSelector(element);
@@ -277,7 +277,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement A3CheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = "input[data-name=\"a3\"]";
 
             return GetElementByCssSelector(element);
@@ -285,7 +285,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement MonoCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"mono\"]";
 
             return GetElementByCssSelector(element);
@@ -293,7 +293,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ColourCheckboxElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = "input[data-name=\"colour\"]";
 
             return GetElementByCssSelector(element);
@@ -301,7 +301,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchFax()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = FaxCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -311,7 +311,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchScanner()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = ScannerCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -321,7 +321,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchDuplex()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = DuplexCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -331,7 +331,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchAdditionalTray()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = AdditionalTrayCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -341,7 +341,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchA4()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = A4CheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -351,7 +351,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchA3()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = A3CheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -361,7 +361,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchMono()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = MonoCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -371,7 +371,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TickRelineSearchColour()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = ColourCheckboxElement();
 
             WebDriver.Wait(DurationType.Second, 3);
@@ -381,7 +381,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedPrintersElements()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = ".mps-product-configuration";
 
             return GetElementsByCssSelector(element);
@@ -389,7 +389,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveFaxFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i=0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterFaxproperty.Displayed, 
@@ -399,7 +399,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveScanFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterScanproperty.Displayed, 
@@ -410,7 +410,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveDuplexFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterDuplexproperty.Displayed, 
@@ -420,7 +420,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveAdditionalTrayFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterTrayproperty.Displayed, 
@@ -430,7 +430,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveA4Facility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterA4property.Displayed,
@@ -440,7 +440,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveA3Facility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i <= PropertyContainerElement.Count; i++)
             {
                 TestCheck.AssertIsEqual(true, PrinterA3property.Displayed,
@@ -450,7 +450,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveMonoFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProductPageImageVerifier != null)
             {
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
@@ -478,7 +478,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllPrintersHaveColourFacility()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProductPageImageVerifier != null)
             {
                 for (var i = 0; i <= PropertyContainerElement.Count; i++)
@@ -503,7 +503,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProductScreenTextDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 1);
             if (ProductsScreenAlertElement == null) throw new
                 NullReferenceException("Unable to locate text on Product Screen");
@@ -513,7 +513,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceScreenDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 1);
             TestCheck.AssertIsEqual(true, 
                 DeviceScreenValidator.Displayed, 
@@ -523,7 +523,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TypeIntoRHSFreeTextFilter(string model)
         {
-            WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(model);
             WebDriver.Wait(DurationType.Second, 4);
             ClearAndType(InputSearchProductElement, model);
             WebDriver.Wait(DurationType.Second, 1);
@@ -531,7 +531,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersByFilteringOfFreeTextElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = ".js-mps-product-open-container[style=\"display: list-item;\"]";
 
             return GetElementsByCssSelector(element);
@@ -539,7 +539,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedPrintersAfterFreeTextFiltering(string model)
         {
-            WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(model);
             var element = String.Format("#pc-{0}", model);
             return GetElementsByCssSelector(element);
         }
@@ -560,7 +560,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersAsFlatListElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = ".mps-product-configuration-container-flat";
 
             return GetElementsByCssSelector(element);
@@ -568,7 +568,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> DisplayedAllPrintersWithImagesElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = ".mps-product-img";
 
             return GetElementsByCssSelector(element);
@@ -576,21 +576,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatAllProductsDisplayedAsAFlatListWithNoImages()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersAsFlatListElement()[0], "Displayed with images");
         }
 
         public void VerifyThatAllProductsDisplayedAsAWithImages()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 1);
             AssertElementPresent(DisplayedAllPrintersWithImagesElement()[0], "Displayed as flat list");
         }
 
         public void ChangeProductViewToWithImages()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (withImagesClickButtonElement == null)
                 throw new NullReferenceException("Button to change product view is not displayed");
 
@@ -599,7 +599,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ChangeProductViewToFlatList()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (flatListClickButtonElement == null)
                 throw new NullReferenceException("Button to change product view is not displayed");
 
@@ -608,31 +608,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement OptionQuantity0Element()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("#OptionQuantity0", 5);
         }
 
         private IWebElement OptionCostPrice0Element()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("#OptionCostPrice0", 5);
         }
 
         private IWebElement OptionsSellPrice0Element()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("OptionSellPrice0", 5);
         }
 
         private IWebElement OptionsMargin0Element()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector("OptionMargin0", 5);
         }
 
         public void StoreDefaultProductConfiguration()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (hogeIsFullDeviceScreenDisplayed())
             {
                 if (IsElementPresent(ProductQuantityElement))
@@ -659,7 +659,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterDeliveryCost(string delivery)
         {
-            WriteLogOnMethodEntry(delivery);
+            LoggingService.WriteLogOnMethodEntry(delivery);
             if (delivery.Equals("Yes"))
             {
                 ClearAndType(DeliveryCostPriceElement, "100");
@@ -668,7 +668,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetInstallationDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsElementPresent(InstallationSRPElement))
                 SpecFlow.SetContext("InstallationSRP", GetValueInstallationSrpElement());
             if (IsElementPresent(InstallationPackCostPriceElement))
@@ -682,7 +682,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void StoreExtraValuesOnProductPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (hogeIsFullDeviceScreenDisplayed())
             {
                 if (IsElementPresent(ProductQuantityElement))
@@ -708,13 +708,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ProductFlatListAddElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(flatItemsIdentifier, 10);
         }
 
         public void ClickOnAPrinter(string printer)
         {
-            WriteLogOnMethodEntry(printer);
+            LoggingService.WriteLogOnMethodEntry(printer);
             SpecFlow.SetContext("InitialProductPageText", ProductsScreenAlertElement.Text);
 
             var element = IsElementPresent(ProductFlatListAddElement()) ? "#pc-{0} .js-mps-product-open" : "#pc-{0} .js-mps-product-open-add";
@@ -730,7 +730,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPrinterUnitCost(string price)
         {
-            WriteLogOnMethodEntry(price);
+            LoggingService.WriteLogOnMethodEntry(price);
             var element = "input#CostPrice.form-control.input-sm";
             var productUnitCostField = GetElementByCssSelector(element);
             ClearAndType(productUnitCostField, price);
@@ -738,7 +738,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterDeliveryUnitCost(string delivery)
         {
-            WriteLogOnMethodEntry(delivery);
+            LoggingService.WriteLogOnMethodEntry(delivery);
             var delivery_cost = (delivery.Equals("Yes")) ? "1" : "0";
             var element = "input#DeliveryCostPrice.form-control.input-sm";
             var deliveryUnitCostField = GetElementByCssSelector(element);
@@ -747,7 +747,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IEnumerable<IWebElement> QtyForAccessoriesElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".mps-qa-option .mps-txt-r [name=\"OptionQuantity\"][data-mps-val-numeric-min]";
 
             return GetElementsByCssSelector(element);
@@ -755,7 +755,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsQtyForAccessoriesAreDefaultToZero()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             foreach (IWebElement element in QtyForAccessoriesElement())
             {
                 TestCheck.AssertIsEqual("0", element.GetAttribute("data-mps-val-numeric-min"), "Quantity For Accessory is not defaulted zero");
@@ -764,13 +764,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string GetValueOfProductMarginValueElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return ProductMarginValueElement.GetAttribute("value");
         }
 
         public void StrictVerifyMarginFieldValues()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("HardwareDefaultMargin");
             string after = GetValueOfProductMarginValueElement();
             TestCheck.AssertIsEqual(before, after, "Hardware Default Margin value is not equal to the value of Local Office Dealer Default");
@@ -778,7 +778,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterAllMarginRandomly()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterProductMargin(Math.Round((new Random().NextDouble()+1) * new Random().Next(5, 20), 1).ToString());
             EnterOptionMargin(Math.Round((new Random().NextDouble() + 1) * new Random().Next(5, 20), 1).ToString(), "0");
             EnterOptionsQuantity0("1");
@@ -789,7 +789,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterProductMargin(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SpecFlow.SetContext("EnteredProductMargin", value);
             ClearAndType(ProductMarginElement, value);
             ProductMarginElement.SendKeys(Keys.Tab);
@@ -797,7 +797,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterOptionMargin(string value, string row)
         {
-            WriteLogOnMethodEntry(value,row);
+            LoggingService.WriteLogOnMethodEntry(value,row);
             try
             {
                 string sel = String.Format("#OptionMargin{0}", row);
@@ -825,7 +825,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterDeliveryMargin(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SpecFlow.SetContext("EnteredDeliveryMargin", value);
             ClearAndType(DeliveryMarginElement, value);
             DeliveryMarginElement.SendKeys(Keys.Tab);
@@ -833,7 +833,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInstallationPackMargin(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SpecFlow.SetContext("EnteredInstallationPackMargin", value);
             ClearAndType(InstallationPackMarginElement, value);
             InstallationPackMarginElement.SendKeys(Keys.Tab);
@@ -841,7 +841,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterServicePackMargin(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             SpecFlow.SetContext("EnteredServicePackMargin", value);
             ClearAndType(ServicePackMarginElement, value);
             ServicePackMarginElement.SendKeys(Keys.Tab);
@@ -849,26 +849,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterProductQuantity(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             ClearAndType(ProductQuantityElement, value);
         }
 
         public void EnterProductCostPrice(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             ClearAndType(ProductCostPriceElement, value);
         }
 
         public void EnterProductSellPrice(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             ClearAndType(ProductSellPriceElement, value);
             ProductSellPriceElement.SendKeys(Keys.Tab);
         }
 
         public void EnterOptionsQuantity0(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             try
             {
                 ClearAndType(OptionsQuantityElement, value);
@@ -887,14 +887,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterDeliverySellPrice(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             ClearAndType(DeliverySellPriceElement, value);
             DeliverySellPriceElement.SendKeys(Keys.Tab);
         }
 
         public void AddAllDetailsToProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(AddToProposalElement);
             AddToProposalElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
@@ -902,7 +902,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement AddToProposalButtonElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".js-mps-product-configuration-submit.disabled";
 
             return GetElementByCssSelector(element);
@@ -910,20 +910,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAddToProposalButtonGrayout()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(AddToProposalElement);
             AssertElementPresent(AddToProposalButtonElement(), "add to proposal grayout");
         }
 
         private string GetValueOfDeliveryMarginValueElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return ProductMarginValueElement.GetAttribute("value");
         }
 
         public void IsDealerMarginRevertedToTheOriginalValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("EnteredDeliveryMargin");
             string after = GetValueOfDeliveryMarginValueElement();
             TestCheck.AssertIsNotEqual(before, after, "Delivery Margin value is not reverted to the original value");
@@ -931,7 +931,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDealerMarginRetainedByDealerAdminDefaultMargin()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("DealerAdminHardwareDefaultMargin");
             string after = ProductMarginElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Dealer Admin Hardware default margin value is not retained");
@@ -939,7 +939,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement InstallationPackUnitCostLessThanErrorElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".alert-danger";
 
             return GetElementByCssSelector(element);
@@ -947,20 +947,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationPackUnitCostLessThanErrorDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             AssertElementPresent(InstallationPackUnitCostLessThanErrorElement(), "installation pack unit cost less than error");
         }
 
         public void EnterInstallationPackCostPrice(string value)
         {
-            WriteLogOnMethodEntry(value);
+            LoggingService.WriteLogOnMethodEntry(value);
             ClearAndType(InstallationPackCostPriceElement, value);
             
         }
 
         public void IsInstallationCostReadOnly()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, InstallationPackReadOnlyCostPriceElement.Displayed, 
                                             "Installation cost is not read only");
         }
@@ -968,19 +968,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsErrorMessageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, ErrorMessageForInstallationCost.Displayed, "Installation Error was not displayed");
         }
 
         public void IsCurrencyInErrorMessageCorrect(string currency)
         {
-            WriteLogOnMethodEntry(currency);
+            LoggingService.WriteLogOnMethodEntry(currency);
             TestCheck.AssertTextContains(ErrorMessageForInstallationCost.Text, currency);    
         }
 
         public decimal InstallationPackCostPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
 
             var priceText = InstallationSRPElement.Text;
 
@@ -999,7 +999,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public decimal InstallationPackUnitPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var priceText = InstallationPackCostPriceElement.GetAttribute("value");
             var decimalVal = Decimal.Parse(priceText);
 
@@ -1009,33 +1009,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInstallationPackCostPriceLessThanDefault()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var price = InstallationPackUnitPrice();
             EnterInstallationPackCostPrice((price - 1).ToString());
         }
 
         public void IsNotTheProductAddedToTheProposal()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             AssertElementPresent(CloseWithoutSavingElement, "Close without saving button element");            
         }
 
         private IWebElement FullDeviceScreenElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".js-mps-product-configuration[data-price-hardware=\"true\"]";
             return GetElementByCssSelector(element);
         }
 
         public void IsFullDeviceScreenDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
         }
 
         private IWebElement ReducedDeviceScreenElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".js-mps-product-configuration[data-price-hardware=\"false\"]";
 
             return GetElementByCssSelector(element);
@@ -1043,13 +1043,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsReducedDeviceScreenDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
 
         private bool hogeIsFullDeviceScreenDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".js-mps-product-configuration";
             string ret = GetElementByCssSelector(element).GetAttribute("data-price-hardware");
 
@@ -1063,7 +1063,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void MoveToProposalSummaryScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(ProposalSummaryScreenElement);
             ProposalSummaryScreenElement.Click();
             AssertElementPresent(SummaryConfirmationTextElement, "Product Confirmation Message");
@@ -1071,7 +1071,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> TotalPriceForAllItem()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = "[data-total-price=\"true\"]";
 
             return GetElementsByCssSelector(element);
@@ -1079,7 +1079,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement TotalLinePriceElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = "[data-total-line-price=\"true\"]";
 
             return GetElementByCssSelector(element);
@@ -1087,7 +1087,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsGrandTotalPriceCorrect()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             decimal sum = 0;
             foreach (IWebElement element in TotalPriceForAllItem())
             {
@@ -1100,7 +1100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTheTotalPriceTheProductOfQTYAndUnitPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string Quantity = OptionsQuantityElement.GetAttribute("value");
             string UnitPrice = OptionsSellPriceElement.GetAttribute("value");
             decimal calcurated = Convert.ToDecimal(Quantity) * Convert.ToDecimal(UnitPrice);
@@ -1111,7 +1111,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillProductDetails()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterProductQuantity("2");
             EnterProductCostPrice("50");
             EnterProductSellPrice("60");
@@ -1121,7 +1121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyMarginFieldValues()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 2);
             var marginText = ProductMarginElement.Text;
             TestCheck.AssertIsNotNull(ProductMarginElement.GetAttribute("value"), "Product Margin Element");
@@ -1130,7 +1130,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> TotalForAllAccessoriesElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".mps-qa-option  [data-total-price=\"true\"]";
 
             return GetElementsByCssSelector(element);
@@ -1138,21 +1138,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsTotalForAllAccessoriesAreDefaultToZero()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             foreach (IWebElement element in TotalForAllAccessoriesElement())
                 TestCheck.AssertIsEqual((decimal)0, MpsUtil.GetValue(element.Text), "Total for all accessories are not defaulted zero");
         }
 
         public DealerProposalsCreateClickPricePage NextButtonClick()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             NextButtonElement.Click();
             return GetTabInstance<DealerProposalsCreateClickPricePage>(Driver);
         }
 
         public void ChangeDeviceInstallationType()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectFromDropdownByValue(GetElementByCssSelector("#InstallationPackId"), "1");
             var installationCost = InstallationSRPElement.Text;
 
@@ -1164,7 +1164,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectDeviceInstallationType(string type)
         {
-            WriteLogOnMethodEntry(type);
+            LoggingService.WriteLogOnMethodEntry(type);
             var install = "";
 
             switch (type)
@@ -1186,12 +1186,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string GetValueInstallationSrpElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return InstallationSRPElement.Text;
         }
         public void VerifyThatInstallationSrpValueChange()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string hoge = GetValueInstallationSrpElement();
             TestCheck.AssertIsNotEqual(SpecFlow.GetContext("InstallationSRP"), 
                 GetValueInstallationSrpElement(), "Installation SRP not changed");
@@ -1203,7 +1203,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsProductUnitPriceChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("ProductSellPrice");
             string after = ProductSellPriceElement.GetAttribute("value");
             TestCheck.AssertIsNotEqual(before, after, "Product sell price should changed");
@@ -1211,7 +1211,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsProductMarginChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("ProductMargin");
             string after = ProductMarginElement.GetAttribute("value");
             TestCheck.AssertIsNotEqual(before, after, "Product sell price should changed");
@@ -1219,7 +1219,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotProductMarginChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("ProductMargin");
             string after = ProductMarginElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Product margin should not change");
@@ -1227,7 +1227,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotProductUnitCostChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("ProductCostPrice");
             string after = ProductCostPriceElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Product cost price should not change");
@@ -1235,7 +1235,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotDeliveryCostPriceChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("DeliveryCostPrice");
             string after = DeliveryCostPriceElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Delivery cost price should not change");
@@ -1243,7 +1243,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNotDeliverySellPriceChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string before = SpecFlow.GetContext("DeliverySellPrice");
             string after = DeliverySellPriceElement.GetAttribute("value");
             TestCheck.AssertIsEqual(before, after, "Delivery sell price should not change");
@@ -1251,7 +1251,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> ModelNameElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = ".mps-product-configuration .col-xs-8 h4";
 
             return GetElementsByCssSelector(element);
@@ -1259,7 +1259,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private bool SearchModelName(string model)
         {
-            WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(model);
             bool found = false;
             foreach (IWebElement element in ModelNameElement())
             {
@@ -1274,20 +1274,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsModelFound(string model)
         {
-            WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(model);
             TestCheck.AssertIsEqual(true, SearchModelName(model), "model not found");
         }
 
         public void IsNotModelFound(string model)
         {
-            WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(model);
             WebDriver.Wait(DurationType.Second, 5);
             TestCheck.AssertIsEqual(false, SearchModelName(model), "model found");            
         }
 
         private IList<IWebElement> AllSRPElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             const string element = ".mps-qa-srp";
 
             return GetElementsByCssSelector(element);
@@ -1295,7 +1295,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsAllSRPNotEditable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsNotEqual(0, AllSRPElement().Count, "srp field nothing");
             IList<IWebElement> element = GetElementsByCssSelector(".mps-qa-srp input", 5);
             TestCheck.AssertIsEqual(0, element.Count, "element is not null");
@@ -1305,7 +1305,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement DeliveryQuantityElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = String.Format("{0} {1}", DeliveryQuantityElementString, QuantityElementString);
 
             return GetElementByCssSelector(element);
@@ -1313,7 +1313,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeliveryQuantityNotEditable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = String.Format("{0} {1} input", DeliveryQuantityElementString, QuantityElementString);
 
             TestCheck.AssertIsNotEqual(0, DeliveryQuantityElement(), "Unable to locate Delivery Quantity field");
@@ -1323,13 +1323,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string OptionSrpText()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return OptionSrpElement.Text;
         }
 
         public void EnterOptionCostPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             try
             {
                 if (IsSwedenSystem() || IsDenmarkSystem())
@@ -1362,7 +1362,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
         public void EnterModelUnitCost()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             //if (!ModelSrpElement.Text.Contains("£")) return;
             if (IsAustriaSystem() || IsGermanSystem() || IsSwedenSystem()
                 || IsDenmarkSystem())
@@ -1390,7 +1390,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string GetValueFromCurrencyText(string text)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var value = text.Replace(" ", "");
 
             if (IsNorwaySystem())
@@ -1416,14 +1416,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetProductCostPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsElementPresent(ProductCostPriceElement))
                 SpecFlow.SetContext("ProductCostPrice", ProductCostPriceElement.GetAttribute("value"));
         }
 
         private IWebElement InstallationQuantityElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = String.Format("{0} {1}", InstallationQuantityElementString, QuantityElementString);
 
             return GetElementByCssSelector(element);
@@ -1431,7 +1431,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationQuantityNotEditable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = String.Format("{0} {1} input", InstallationQuantityElementString, QuantityElementString);
 
             TestCheck.AssertIsNotEqual(0, InstallationQuantityElement(), "Unable to locate Installation Quantity field");
@@ -1441,7 +1441,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ServicepackQuantityElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = String.Format("{0} {1}", ServicePackElementString, QuantityElementString);
 
             return GetElementByCssSelector(element);
@@ -1449,7 +1449,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsServicepackQuantityNotEditable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var element = String.Format("{0} {1} input", ServicePackElementString, QuantityElementString);
 
             TestCheck.AssertIsNotEqual(0, ServicepackQuantityElement(), "Unable to locate Servicepack Quantity field");
@@ -1459,7 +1459,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyThatProductQuantityElementChanged()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var before = SpecFlow.GetContext("ProductQuantity");
             var after = ProductQuantityElement.GetAttribute("value");
             TestCheck.AssertIsNotEqual(before, after, "ProductQuantity value is changed");
@@ -1467,20 +1467,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsFullDeviceScreenDisplayedForPrinterSelected()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 5);
             AssertElementPresent(FullDeviceScreenElement(), "Full device screen is not displayed");
         }
 
         public void IsReducedDeviceScreenDisplayedForPrinterSelected()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             AssertElementPresent(ReducedDeviceScreenElement(), "Reduced device screen is not displayed");
         }
 
         public void VerifyTypeOfDeviceScreenDisplayed(string option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             if (option.Equals("Full"))
             {
                // IsFullDeviceScreenDisplayedForPrinterSelected();
@@ -1495,7 +1495,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage MoveToClickPriceScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(ClickPriceScreenElement);
             ClickPriceScreenElement.Click();
 
@@ -1504,7 +1504,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage MoveToClickPriceScreenWithButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(MoveToClickPriceButton);
             MoveToClickPriceButton.Click();
 
@@ -1513,7 +1513,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyProductAdditionConfirmationMessage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Millisecond, 2000);
             ScrollTo(ProductsScreenAlertElement);
             var storedProductScreenText = SpecFlow.GetContext("InitialProductPageText");
@@ -1523,19 +1523,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement PaymentMethodElement()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(paymentMethod, 10);
         }
 
         public void VerifyPaymentMethodIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PaymentMethodElement().Displayed, "Payment method is not displayed");
         }
 
         public void VerifyPaymentMethodIsNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (!IsElementPresent(PaymentMethodElement()))
             {
                 TestCheck.AssertIsEqual(false, PaymentMethodElement().Displayed, "Payment method is displayed");
@@ -1544,19 +1544,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement MonoVolumeElementClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(monoVolume);
         }
 
         private IWebElement ColourVolumeElementClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(colourVolume);
         }
 
         private void CalculateClickPrice(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             if (colourVolumeDropdownElement == null)
                 throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
@@ -1574,7 +1574,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void CalculateEPPClickPrice(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             if (monoVolumeDropdownElement == null)
                 throw new NullReferenceException("ClickVolumeElement can not be found");
             if (CalculateClickPriceElement == null)
@@ -1586,31 +1586,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IList<IWebElement> ClickPriceValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementsByCssSelector(clickPriceValue);
         }
 
         private IList<IWebElement> ClickPriceColourValue()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementsByCssSelector(clickPriceColourValue);
         }
 
         private IWebElement ClickPriceNextButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetElementByCssSelector(clickPricePageNext);
         }
 
         private void ProceedToProposalSummaryFromClickPrice()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ClickPriceNextButton().Click();
         }
 
         private void VerifyClickPriceValueIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             for (var i = 0; i < ClickPriceValue().Count; i++)
             {
                 TestCheck.AssertIsEqual(false, 
@@ -1621,7 +1621,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CalculateClickPriceAndProceed(string volume, string colour)
         {
-            WriteLogOnMethodEntry(volume,colour);
+            LoggingService.WriteLogOnMethodEntry(volume,colour);
             MoveToClickPriceScreen();
             CalculateClickPrice(volume, colour);
             WebDriver.Wait(DurationType.Second, 5);
@@ -1633,7 +1633,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterMonoVolumeQuantity(string volume)
         {
-            WriteLogOnMethodEntry(volume);
+            LoggingService.WriteLogOnMethodEntry(volume);
             if (MonoVolumeInputFieldElement == null)
                 throw new NullReferenceException("Mono Volume field can not be found");
             if (CalculateClickPriceElement == null)
@@ -1648,7 +1648,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
       
         public DealerProposalsCreateClickPricePage EditAndUpdateExistingProducts(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             string infoalertselector = @"div.alert-info.js-mps-alert";
             var infoalert = GetElementByCssSelector(infoalertselector, 5);
             if (infoalert != null)
@@ -1674,7 +1674,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage ForceGoThrowThisTab(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             //danger
             string selector = @"div.alert-danger.js-mps-alert";
             var alert = GetElementByCssSelector(selector, 5);
@@ -1690,7 +1690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EditProducts(IWebDriver driver, string infoalertselector)
         {
-            WriteLogOnMethodEntry(driver,infoalertselector);
+            LoggingService.WriteLogOnMethodEntry(driver,infoalertselector);
             string linkselector = @"a.alert-link.js-mps-product-link";
 
             var links = GetElementsByCssSelector(linkselector);
@@ -1712,7 +1712,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private ProductDetail EditProduct(IWebDriver driver, string name)
         {
-            WriteLogOnMethodEntry(driver,name);
+            LoggingService.WriteLogOnMethodEntry(driver,name);
             var productselector = string.Format(@"li#pc-{0}", name);
             var productlistitem = GetElementByCssSelector(productselector, 5);
             var producttable = GetElementByCssSelector(productlistitem, "table.table-condensed", 5);
@@ -1738,7 +1738,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private ItemDetail EditItemDetail(IWebElement table, int row)
         {
-            WriteLogOnMethodEntry(table,row);
+            LoggingService.WriteLogOnMethodEntry(table,row);
             var rowselector = string.Format(@"tbody>tr:nth-child({0})", row);
             var tr = table.FindElement(By.CssSelector(rowselector));
 
@@ -1776,7 +1776,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string UpdateIntegerNumber(string item)
         {
-            WriteLogOnMethodEntry(item);
+            LoggingService.WriteLogOnMethodEntry(item);
             var str = RemoveUnites(item);
             var d = int.Parse(str);
             d += 1;
@@ -1785,7 +1785,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string UpdateDoubleNumber(string item)
         {
-            WriteLogOnMethodEntry(item);
+            LoggingService.WriteLogOnMethodEntry(item);
             var str = RemoveUnites(item);
             var d = double.Parse(str);
             d += 0.1;
@@ -1794,7 +1794,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string RemoveUnites(string str)
         {
-            WriteLogOnMethodEntry(str);
+            LoggingService.WriteLogOnMethodEntry(str);
             string[] units = {"£", " %"};
 
             return units.Aggregate(str, (current, u) => current.Replace(u, ""));
@@ -1802,7 +1802,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void UpdateExistingProduxts(IWebDriver driver, string selector)
         {
-            WriteLogOnMethodEntry(driver,selector);
+            LoggingService.WriteLogOnMethodEntry(driver,selector);
             string linkselector = @"a.alert-link.js-mps-product-link";
 
             while (true)
@@ -1830,7 +1830,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void AddNewProduct(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var printer = "DCP-8110DN";
 
             ClickOnAPrinter(printer);
@@ -1850,7 +1850,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateClickPricePage GoNextPage(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             WebDriver.Wait(DurationType.Second, 5);
 
             if (!IsPolandSystem())
@@ -1869,7 +1869,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void RemoveOldProduct(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             var linkselector = @"a.alert-link.js-mps-product-link";
 
             var links = GetElementsByCssSelector(linkselector);
@@ -1890,7 +1890,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName,findElementTimeout);
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
@@ -1912,7 +1912,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             out string unitPrice,
             out IWebElement printerContainer)
         {
-            WriteLogOnMethodEntry(printerName, printerPrice, installationPack, delivery, servicePackType, resourceServicePackTypeIncludedInClickPrice);
+            LoggingService.WriteLogOnMethodEntry(printerName, printerPrice, installationPack, delivery, servicePackType, resourceServicePackTypeIncludedInClickPrice);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
@@ -1951,7 +1951,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton)
         {
-            WriteLogOnMethodEntry(printerContainer, addToProposalButton);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, addToProposalButton);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.ClickSafety(addToProposalButton, findElementTimeout);
             SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
@@ -1959,7 +1959,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public List<string> RetrieveAllTotalPriceValues(IWebElement printerContainer, out string expectedTotalPrice)
         {
-            WriteLogOnMethodEntry(printerContainer);
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var totalPriceValues = new List<string>();
             var tableBodyContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableBodySelector, findElementTimeout);

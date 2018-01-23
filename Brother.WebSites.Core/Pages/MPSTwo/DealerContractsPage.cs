@@ -86,7 +86,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsContractScreenDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (OpenedApprovedProposalTabElement == null)
                 throw new NullReferenceException("Contract Screen is not displayed");
             AssertElementPresent(OpenedApprovedProposalTabElement, "The opened contract screen");
@@ -94,13 +94,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyRejectedContractIsDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsSignedContractDisplayed();
         }
 
         public void VerifyAcceptedContractIsNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
             
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -109,14 +109,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string CreatedProposalReference()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = ScenarioContext.Current["GeneratedLeadCodeReference"].ToString();
             return createdProposal;
         }
 
         public void NavigateToConfirmedOfferScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (DealerConfirmedOfferTabElement == null)
                 throw new NullReferenceException("Confirmed Offer tab is not displayed");
             DealerConfirmedOfferTabElement.Click();
@@ -124,7 +124,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NavigateToRejectedOfferScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (RejectedLinkElement == null)
                 throw new NullReferenceException("Rejected Offer tab is not displayed");
             RejectedLinkElement.Click();
@@ -132,7 +132,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DealerSignNewContract(IWebDriver driver)
         {
-            WriteLogOnMethodEntry(driver);
+            LoggingService.WriteLogOnMethodEntry(driver);
             if (DealerContractSignButtonElement == null)
                 throw new NullReferenceException("Sign button is not displayed");
 
@@ -147,7 +147,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void NavigateToSignedOfferScreen()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (DealerSignedOfferTabElement == null)
                 throw new NullReferenceException("Signed Offer tab is not displayed");
             DealerSignedOfferTabElement.Click();
@@ -158,7 +158,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void DownloadAContractPDF()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.OpenTheFirstActionButton(Driver);
             ActionsModule.DownloadContractPDFAction(Driver);
         }
@@ -166,14 +166,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadAContractInvoicePDF()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePdfAction(Driver);
         }
 
         public void NavigateToAwaitingAcceptance()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (AwaitingAcceptanceTabElement == null)
                 throw new Exception("Awaiting Acceptance Tab is not displayed");
 
@@ -182,7 +182,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsAcceptedPage NavigateToAcceptedContract()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (AcceptedTabElement == null)
                 throw new Exception("Accepted Tab is not displayed");
 
@@ -194,7 +194,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void NavigateToRejectedContract()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (RejectedLinkElement == null)
                 throw new Exception("Rejected Tab is not displayed");
 
@@ -203,7 +203,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterSerialNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (printerSerialNumberFieldElement == null)
                 throw new NullReferenceException("Serial numbers fields not displayed");
 
@@ -221,7 +221,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void MoveToPreInstallationSummary()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PreInstallationNextButtonElement == null)
                 throw new NullReferenceException("Next button not visible");
             PreInstallationNextButtonElement.Click();
@@ -230,7 +230,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void CompletePreInstallation()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PreInstallationCompleteButtonElement == null)
                 throw new NullReferenceException("Complete Installation button not visible");
 
@@ -240,7 +240,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private IWebElement ActionButtonElementByName(string name, string tdcol)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string element = String.Format("//td[text()=\"{0}\"]/parent::tr/td[{1}]/div/button", name, tdcol);                
 
             return Driver.FindElement(By.XPath(element));
@@ -248,7 +248,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToViewOfferOnApprovedProposalsTab()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
@@ -257,7 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToViewSummaryOnRejectedTab()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string proposalname = "";
             foreach (KeyValuePair<string, object> pair in SpecFlow.GetEnumerator())
             {
@@ -286,7 +286,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsApprovedProposalContractPageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ValidUntilLabelElement == null)
                 throw new Exception("Contracts Approved Proposal page not opened");
 
@@ -295,7 +295,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerContractsSummaryPage NavigateToDealerContractSummaryPage(IWebDriver driver)
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             WebDriver.Wait(DurationType.Second, 3);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
@@ -305,7 +305,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void IsAwaitingAcceptanceContractDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (AwaitingAcceptanceTabElement == null)
                 throw new Exception("Opened Awaiting Acceptance Tab not displayed");
             AssertElementPresent(AwaitingAcceptanceTabElement, "Is Opened Awaiting Acceptance Tab displayed?");
@@ -313,7 +313,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSignedContractDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
             //var newlyAdded = @"//td[text()='{0}']";
             //newlyAdded = String.Format(newlyAdded, createdProposal);
@@ -329,7 +329,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsNewContractTemplateCreated(bool option)
         {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             var proposal = GetElementByCssSelector(".js-mps-filter-ignore", 10).Displayed;
 
             TestCheck.AssertIsEqual(option, proposal,
@@ -338,7 +338,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FilterContractUsingProposalId(int proposalId)
         {
-            WriteLogOnMethodEntry(proposalId);
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector, findElementTimeout);
             ClearAndType(FilterContractInput, proposalId.ToString());
@@ -346,7 +346,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void MoveToAcceptedContracts()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             AcceptedTabElement.Click();
             SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector, findElementTimeout);
@@ -356,7 +356,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         // Only for first contract displayed in list
         public void ClickOnManageDevicesButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
             ActionsButtonElement.Click();

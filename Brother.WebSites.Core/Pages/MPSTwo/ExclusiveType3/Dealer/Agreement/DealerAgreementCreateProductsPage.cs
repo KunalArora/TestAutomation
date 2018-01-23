@@ -47,7 +47,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerName, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName, findElementTimeout);
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
@@ -67,7 +67,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             out IWebElement printerContainer
             )
         {
-            WriteLogOnMethodEntry(printerName, quantity, installationPack, servicePack, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName, quantity, installationPack, servicePack, findElementTimeout);
             string quantityInputSelector = "#Quantity";
             string installationPackInputSelector = "#InstallationPackId";
             string servicePackInputSelector = "#ServicePackId";
@@ -105,68 +105,68 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void ClickAddToAgreementButton(IWebElement printerContainer, IWebElement addToAgreementButton, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, addToAgreementButton, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, addToAgreementButton, findElementTimeout);
             SeleniumHelper.ClickSafety(addToAgreementButton, findElementTimeout);
             SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
         }
 
         public IWebElement GetInstallationPackRowElement(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackRowSelector, findElementTimeout);
         }
 
         public string InstallationPackQuantity(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetInstallationPackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public string InstallationPackUnitPrice(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetInstallationPackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public string InstallationPackTotalPrice(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetInstallationPackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public IWebElement GetServicePackRowElement(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackRowSelector, findElementTimeout);
         }
 
         public string ServicePackQuantity(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetServicePackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public string ServicePackUnitPrice(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetServicePackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public string ServicePackTotalPrice(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 GetServicePackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
         }
 
         public string TotalLinePrice(IWebElement printerContainer, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(printerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, findElementTimeout);
             return SeleniumHelper.FindElementByDataAttributeValue(
                 TotalLinePriceDataAttributeSelector, "true", findElementTimeout).Text;
         }

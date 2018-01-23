@@ -27,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public IWebElement DevicesTabElement(int agreementId, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(agreementId, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(agreementId, findElementTimeout);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()), findElementTimeout);
         }

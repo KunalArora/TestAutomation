@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnCopyWithCustomerActionItem(int proposalId, int findElementTimeout, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(proposalId,findElementTimeout,driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId,findElementTimeout,driver);
             ClearAndType(ProposalFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector, findElementTimeout);
@@ -55,7 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDuplicateProposalDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var container = new List<string>();
             var noOfProposalId = AttachedProposalId.Count;
 

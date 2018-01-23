@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void PopulateContractReference(int proposalId)
         {
-            WriteLogOnMethodEntry(proposalId);
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var contractReferenceElement = SeleniumHelper.FindElementByCssSelector(ContractReferenceSelector, findElementTimeout);
             ClearAndType(contractReferenceElement, proposalId.ToString());
@@ -40,7 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ProceedOnInstaller()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
             nextButtonElement.Click();

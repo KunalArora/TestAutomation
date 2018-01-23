@@ -47,7 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverContractsAwaitingAcceptancePage NavigateToApprovalContractsAwaitingAcceptancePage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.ApprovalTabElement, localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalPage = PageService.GetPageObject<LocalOfficeApproverApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
             ClickSafety(localOfficeApproverApprovalPage.ContractLinkElement, localOfficeApproverApprovalPage);
@@ -58,7 +58,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverApprovalContractsSummaryPage ClickViewSummary(LocalOfficeApproverContractsAwaitingAcceptancePage localofficeApproverApprovalContractsAwaitingAcceptancePage)
         {
-            WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage);
+            LoggingService.WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage);
             int proposalId = _contextData.ProposalId;
             localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(proposalId, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -66,33 +66,33 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverApprovalContractsAcceptedPage AcceptContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverApprovalContractsSummaryPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
             localOfficeApproverApprovalContractsSummaryPage.OnClickAccept();
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
         {
-            WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
+            LoggingService.WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
             _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
-            WriteLogOnMethodEntry(element, pageObject);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
         public LocalOfficeApproverManageDevicesContractsPage NavigateToDeviceManagementPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
             ClickSafety(localOfficeApproverDashBoardPage.DeviceManagementTabTabElement, localOfficeApproverDashBoardPage);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverManageDevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManageDevicesContractsPage localOfficeApproverManagedevicesContractsPage, int proposalId)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage, proposalId);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage, proposalId);
             ActionsModule.SetFilter(proposalId.ToString(), localOfficeApproverManagedevicesContractsPage.InputFilterBy, localOfficeApproverManagedevicesContractsPage.ContractOrProposalNameElementList, RuntimeSettings.DefaultFindElementTimeout, _localOfficeApproverWebDriver);
             ActionsModule.ClickOnTheActionsDropdown(0, _localOfficeApproverWebDriver);
             ActionsModule.NavigateToManageDevicesActionButton(_localOfficeApproverWebDriver);
@@ -101,7 +101,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverManageDevicesSetCommunicationMethodPage CreateInstallationRequest(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             _contextData.CompanyLocation = localOfficeApproverManagedevicesManagePage.SelectLocation();
 
             localOfficeApproverManagedevicesManagePage.ClickCreateRequest();
@@ -110,7 +110,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverManageDevicesSetInstallationTypePage SelectCommunicationMethodAndProceed(LocalOfficeApproverManageDevicesSetCommunicationMethodPage localOfficeApproverSetCommunicationMethodPage, string communicationMethod)
         {
-            WriteLogOnMethodEntry(localOfficeApproverSetCommunicationMethodPage, communicationMethod);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverSetCommunicationMethodPage, communicationMethod);
             switch (communicationMethod)
             {
                 case "Cloud":
@@ -129,21 +129,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverManageDevicesSendInstallationEmailPage SelectInstallationTypeAndProceed(LocalOfficeApproverManageDevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
             SelectInstallationTypeAndClickNext(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmail(LocalOfficeApproverManageDevicesSendInstallationEmailPage localOfficeApproverManagedevicesSendInstallationEmailPage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendInstallationEmailPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendInstallationEmailPage);
             _contextData.InstallerEmail = localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public string RetrieveInstallationRequestUrl(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);
             string installerEmail = _contextData.InstallerEmail;
             string companyLocation = _contextData.CompanyLocation;
@@ -159,7 +159,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void InstallationCompleteCheck(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, IEnumerable<PrinterProperties> products)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, products);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, products);
             foreach (var product in products)
             {
                 localOfficeApproverManagedevicesManagePage.InstallationCompleteCheck(product.SerialNumber);
@@ -169,7 +169,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverManageDevicesManagePage RetrieveDealerManageDevicesPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string currentUrl = _localOfficeApproverWebDriver.Url;
             string validationElementSelector = new LocalOfficeApproverManageDevicesManagePage().ValidationElementSelector;
             return PageService.LoadUrl<LocalOfficeApproverManageDevicesManagePage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, validationElementSelector, true, _localOfficeApproverWebDriver);
@@ -177,7 +177,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void CheckForUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -188,35 +188,35 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeApproverManageDevicesSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapType, string resourceSwapTypeReplaceWithDifferentModel)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapType, resourceSwapTypeReplaceWithDifferentModel);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapType, resourceSwapTypeReplaceWithDifferentModel);
             localOfficeApproverManagedevicesManagePage.ConfirmSwapAndSelectSwapType(swapType, resourceSwapTypeReplaceWithDifferentModel);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail SelectInstallationTypeAndProceedForSwap(LocalOfficeApproverManageDevicesSetInstallationTypePage localOfficeApproverManagedevicesSetInstallationTypePage, string installationType)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
             SelectInstallationTypeAndClickNext(localOfficeApproverManagedevicesSetInstallationTypePage, installationType);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmailForSwap(LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail);
             _contextData.InstallerEmail = localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
         public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapNewDeviceSerialNumber)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
             localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, swapNewDeviceSerialNumber);
         }
 
         public void VerifySwappedDeviceStatus(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             string resourceInstalledPrinterStatusBeingReplaced = _translationService.GetInstalledPrinterStatusText(TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
             string swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
 
@@ -233,7 +233,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         private void SelectInstallationTypeAndClickNext(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {
-            WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
+            LoggingService.WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
             switch (installationType)
             {
                 case "Web":

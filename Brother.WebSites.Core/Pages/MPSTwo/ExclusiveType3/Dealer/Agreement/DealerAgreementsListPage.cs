@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public bool VerifyCreatedAgreement(int agreementId, string agreementName, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(agreementId,agreementName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(agreementId,agreementName,findElementTimeout);
             // Wait for footer to load & then filter out the agreement
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, findElementTimeout);
             ClearAndType(AgreementFilter, agreementId.ToString());
@@ -58,7 +58,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // TODO: Generalize it by taking agreementId as parameter in the future
         public void ClickOnManageDevicesButton(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
             SeleniumHelper.ClickSafety(ManageDevicesButtonElement, findElementTimeout);
         }

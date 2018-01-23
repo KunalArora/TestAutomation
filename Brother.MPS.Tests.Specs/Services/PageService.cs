@@ -56,7 +56,7 @@ namespace Brother.Tests.Specs.Services
 
         public TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
-            WriteLogOnMethodEntry(timeout, driver);
+            LoggingService.WriteLogOnMethodEntry(timeout, driver);
             #if DEBUG
             //This is horrible but when stepping through code the WebDriverWait fails
             Thread.Sleep(200);
@@ -92,7 +92,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="driver">Override the injected driver with a specific instance</param>
         public void LoadUrl(string url, int timeout, string validationElementSelector = null, IWebDriver driver = null)
         {
-            WriteLogOnMethodEntry(url,timeout,validationElementSelector,driver);
+            LoggingService.WriteLogOnMethodEntry(url,timeout,validationElementSelector,driver);
             var timeSpan = TimeSpan.FromSeconds(timeout);
 
             if (string.IsNullOrWhiteSpace(validationElementSelector))
@@ -123,7 +123,7 @@ namespace Brother.Tests.Specs.Services
 
         public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
-            WriteLogOnMethodEntry(url,timeout,validationElementSelector,addToContextAsCurrentPage,driver);
+            LoggingService.WriteLogOnMethodEntry(url,timeout,validationElementSelector,addToContextAsCurrentPage,driver);
             LoadUrl(url, timeout, validationElementSelector, driver);
             var pageObject = GetPageObject<TPage>(timeout, driver);
 
@@ -133,11 +133,6 @@ namespace Brother.Tests.Specs.Services
             }
 
             return pageObject;
-        }
-
-        protected void WriteLogOnMethodEntry(params object[] args)
-        {
-            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
         }
 
     }

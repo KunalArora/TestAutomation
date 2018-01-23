@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
         {
-            WriteLogOnMethodEntry(localOfficeAdminDashBoardPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashBoardPage);
             ClickSafety(localOfficeAdminDashBoardPage.LOAdminReportElement, localOfficeAdminDashBoardPage);
             var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
@@ -51,13 +51,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage)
         {
-            WriteLogOnMethodEntry(dataQueryPage);
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
             return NavigateToAgreementDevicesPage(dataQueryPage, _loAdminWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
-            WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return VerifyUpdatedPrintCounts(localOfficeAgreementDevicesPage, _loAdminWebDriver);
         }
 

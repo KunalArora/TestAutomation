@@ -32,7 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public int NumberOfDevices()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement).Count;
         }
     }

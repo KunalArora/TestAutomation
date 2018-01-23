@@ -11,13 +11,13 @@ namespace Brother.Tests.Specs.Helpers
 
         public void DeletePdf(string fileName)
         {
-            WriteLogOnMethodEntry(fileName);
+            LoggingService.WriteLogOnMethodEntry(fileName);
             System.IO.File.Delete(fileName);
         }
 
         public bool PdfContainsText(string pdfFileName, string searchText)
         {
-            WriteLogOnMethodEntry(pdfFileName, searchText);
+            LoggingService.WriteLogOnMethodEntry(pdfFileName, searchText);
             using (var reader = new PdfReader(pdfFileName))
             {
                 var strategy = new SimpleTextExtractionStrategy();
@@ -36,13 +36,8 @@ namespace Brother.Tests.Specs.Helpers
 
         public bool PdfExists(string fileName)
         {
-            WriteLogOnMethodEntry(fileName);
+            LoggingService.WriteLogOnMethodEntry(fileName);
             return System.IO.File.Exists(fileName);
-        }
-
-        protected void WriteLogOnMethodEntry(params object[] args)
-        {
-            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
         }
 
 

@@ -48,7 +48,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSetCommunicationTabDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (SetCommunicationTabElement == null)
                 throw new Exception("Set Communication Screen not displayed");
 
@@ -57,19 +57,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetCloudCommunicationMethod()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             CloudCommunicationElement.Click();
         }
 
         public void SetEmailCommunicationMethod()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EmailCommunicationTabElement.Click();
         }
 
         public void SetCommunicationMethod(string method)
         {
-            WriteLogOnMethodEntry(method);
+            LoggingService.WriteLogOnMethodEntry(method);
             switch (method)
             {
                 case  "Cloud" :
@@ -84,7 +84,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetInstallationTypePage ProceedToNextPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
             
             return GetTabInstance<DealerSetInstallationTypePage>(Driver);
@@ -93,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProceedToNextPageForEmail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
 
             return GetTabInstance<DealerSendInstallationEmailPage>(Driver);

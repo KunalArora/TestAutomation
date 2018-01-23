@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSubmitForApproval(int proposalId, int findElementTimeout, IWebDriver driver)
         {
-            WriteLogOnMethodEntry(proposalId,findElementTimeout,driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId,findElementTimeout,driver);
             ClearAndType(ProposalFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
             SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();

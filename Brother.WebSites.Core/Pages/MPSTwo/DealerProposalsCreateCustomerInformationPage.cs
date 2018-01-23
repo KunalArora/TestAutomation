@@ -108,13 +108,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void SelectExistingCustomer(int findElementTimeout, string customerEmail)
         {
-            WriteLogOnMethodEntry(findElementTimeout,customerEmail);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout,customerEmail);
             SelectAnExistingContact(findElementTimeout, customerEmail);
         }
 
         private void SelectAnExistingContact(int findElementTimeout, string customerEmail)
         {
-            WriteLogOnMethodEntry(findElementTimeout,customerEmail);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout,customerEmail);
             var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer, findElementTimeout);
             ClearAndType(ExistingCustomerFilterElement, customerEmail);
             var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion, findElementTimeout);
@@ -125,14 +125,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectARandomExistingContact()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             SelectAnExistingCustomer();
             
         }
 
         public void SelectASpecificExistingContact(string contact)
         {
-            WriteLogOnMethodEntry(contact);
+            LoggingService.WriteLogOnMethodEntry(contact);
             WaitForElementToExistByCssSelector(CustomerContainer);
             ClearAndType(ExistingCustomerFilterElement, contact);
             WebDriver.Wait(DurationType.Second, 3);
@@ -158,7 +158,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectAnExistingCustomer()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             WaitForElementToExistByCssSelector(CustomerContainer);
             try
                 {
@@ -186,7 +186,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerInfoTextDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsBigAtSystem()) return;
             if (CustomerInfomationElement == null) throw new 
                 NullReferenceException("Unable to locate text on Customer Information Screen");
@@ -197,7 +197,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void CheckPrivateLiableBox(string liable)
         {
-            WriteLogOnMethodEntry(liable);
+            LoggingService.WriteLogOnMethodEntry(liable);
             if (liable.ToLower().Equals("tick"))
             {
                 PrivateLiableElement.Click();
@@ -207,14 +207,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void _ClickNextButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(NextButton);
             NextButton.Click();
         }
 
         public DealerProposalsCreateTermAndTypePage ClickNextButton()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             //WebDriver.Wait(Helper.DurationType.Second, 2);
             ScrollTo(NextButton);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextButton);
@@ -224,14 +224,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void ClickBackButtonDuringProposalProcess()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(proposalProcessBackButtonElement);
            proposalProcessBackButtonElement.Click();
        }
 
        public void ClickCreateNewCustomerButtonAndProceed()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(CreateNewCustomerElement);
            CreateNewCustomerElement.Click();
            _ClickNextButton();
@@ -239,7 +239,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void ClickSelectExistingCustomerButtonAndProceed()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SelectExistingCustomerElement);
            SelectExistingCustomerElement.Click();
            _ClickNextButton();
@@ -247,7 +247,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public DealerProposalsCreateTermAndTypePage ClickSkipCustomerButtonAndProceed()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SkipCustomerElement);
            SkipCustomerElement.Click();
 
@@ -256,7 +256,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void CustomerCreationOptions(string option)
        {
-            WriteLogOnMethodEntry(option);
+            LoggingService.WriteLogOnMethodEntry(option);
             switch (option)
            {
                case "Create new customer":
@@ -275,14 +275,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void ClickNewOrganisationButton()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(NewOrganisationElement);
            NewOrganisationElement.Click();
        }
 
        public void SelectSwissCustomerLanguage(string lang)
        {
-            WriteLogOnMethodEntry(lang);
+            LoggingService.WriteLogOnMethodEntry(lang);
             string language;
 
            switch (lang)
@@ -306,7 +306,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SelectBelgianCustomerLanguage(string lang)
         {
-            WriteLogOnMethodEntry(lang);
+            LoggingService.WriteLogOnMethodEntry(lang);
             string language;
             
             switch (lang)
@@ -330,7 +330,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void MultipleLanguageSelectorNotDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsBelgiumSystem()) return;
             try
             {
@@ -345,7 +345,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillOrganisationDetails()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName();
 
             if (IsPolandSystem()) return;
@@ -389,7 +389,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterMobileNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem() || IsSwedenSystem())
             {
                 MobileElement.SendKeys("01234567890");
@@ -399,7 +399,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterRegistrationNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsFranceSystem())
             {
                 ClearAndType(CompanyRegistrationNumerElement, "RCS PARIS 453 983 245");
@@ -448,7 +448,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterInitialVat()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsItalySystem())
             {
                 ClearAndType(VatFieldElement, "IT00743110157");
@@ -501,25 +501,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void EnterContactFirstName()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             FirstNameElement.SendKeys(MpsUtil.FirstName());
        }
 
        public void EnterContactSurName()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             LastNameElement.SendKeys(MpsUtil.SurName());
        }
 
        public void EnterContactTelephone()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             TelephoneElement.SendKeys(MpsUtil.CompanyTelephone());
        }
 
        public void EnterContactEmailAdress()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             var email = MpsUtil.GenerateUniqueEmail();
            SpecFlow.SetContext("DealerLatestCreatedCustomerEmail", email);
            EmailElement.SendKeys(email);
@@ -527,7 +527,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void FillOrganisationContactDetail()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsPolandSystem()) return;
            SelectTitleFromDropdown();
            EnterContactFirstName();
@@ -540,7 +540,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        private String SwissLegalForm()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string lang;
            string language;
 
@@ -574,7 +574,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        public void SelectALegalForm()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsGermanSystem() || IsAustriaSystem())
            {
                SelectFromDropdown(LegalFormDropdown, "Aktiengesellschaft");
@@ -629,7 +629,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
        private String BelgianLegalForm()
        {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string lang;
            string language;
 
@@ -664,14 +664,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
       
         public void EnterCompanyName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (CompanyNameElement == null) return;
             CompanyNameElement.SendKeys(MpsUtil.CompanyName());
         }
 
         public void EnterPropertyNumber()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (
                 IsFranceSystem()
                 ||IsSpainSystem()
@@ -690,7 +690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyStreet()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PropertyStreetElement == null) return;
             PropertyStreetElement.SendKeys(MpsUtil.PropertyStreet());
         }
@@ -699,13 +699,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyArea()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             PropertyAreaElement.SendKeys(MpsUtil.FirstName());
         }
 
         public void EnterPropertyTown()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PropertyTownElement == null) return;
                 PropertyTownElement.SendKeys(MpsUtil.PropertyTown());
         }
@@ -713,7 +713,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string PostCode()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             string code = null;
 
             if (IsGermanSystem())
@@ -786,19 +786,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterPropertyPostCode()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             PropertyPostcodeElement.SendKeys(PostCode());
         }
 
         public void SelectRegionFromDropdown(string region)
         {
-            WriteLogOnMethodEntry(region);
+            LoggingService.WriteLogOnMethodEntry(region);
             SelectFromDropdown(RegionElement, region);
         }
 
         public void SelectTitleFromDropdown()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (IsSwedenSystem()||IsDenmarkSystem() || IsFinlandSystem() || IsNorwaySystem()) return;
                 //SelectFromDropdownByValue(ContactTitleElement, "0002");
                 SelectFromDropDownByIndex(ContactTitleElement, 2);
@@ -808,7 +808,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EditProposalCustomerInformation(IWebDriver driver, int nth = 0)
         {
-            WriteLogOnMethodEntry(driver,nth);
+            LoggingService.WriteLogOnMethodEntry(driver,nth);
             var choiceselector = string.Format(NthCustomerChoice, nth);
             var orgselector = string.Format(NthCustomerOrg, nth);
             var nameselector = string.Format(NthCustomerName, nth);
@@ -828,31 +828,31 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string GetFieldValue(IWebElement element)
         {
-            WriteLogOnMethodEntry(element);
+            LoggingService.WriteLogOnMethodEntry(element);
             return element.GetAttribute("value");
         }
 
         public string GetCompanyName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(CompanyNameElement);
         }
 
         public string GetEmail()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(EmailElement);
         }
 
         public string GetFirstName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(FirstNameElement);
         }
 
         public string GetLastName()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return GetFieldValue(LastNameElement);
         }
 

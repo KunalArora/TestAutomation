@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Brother.Tests.Common.Logging
@@ -48,6 +49,40 @@ namespace Brother.Tests.Common.Logging
         public bool IsLoggingEnable(LoggingLevel loggingLevel)
         {
             return loggingLevel >= _loggingLevel;
+        }
+
+        public void WriteLogOnMethodEntry(object[] args)
+        {
+            int skipFrames = 1;
+            var loggingService = this;
+            try
+            {
+                var callerFrame = new StackFrame(skipFrames);
+                var method = callerFrame.GetMethod();
+                var methodName = method.Name;
+                var className = method.ReflectedType.Name;
+
+                if (loggingService.IsLoggingEnable(LoggingLevel.DEBUG))
+                {
+                    var stringList = new List<string>();
+                    foreach (var parameter in method.GetParameters())
+                    {
+                        if (parameter.IsOut) continue;
+                        stringList.Add(string.Format("{0}={1}", parameter.Name, args[stringList.Count]));
+                    }
+                    var prms = string.Join(",", stringList.ToArray());
+                    loggingService.WriteLog(LoggingLevel.DEBUG, "{0}#{1}({2})", className, methodName, prms);
+                }
+                else if (loggingService.IsLoggingEnable(LoggingLevel.INFO))
+                {
+                    loggingService.WriteLog(LoggingLevel.INFO, "{0}#{1}()", className, methodName);
+                }
+
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         private string PreString(LoggingLevel level)

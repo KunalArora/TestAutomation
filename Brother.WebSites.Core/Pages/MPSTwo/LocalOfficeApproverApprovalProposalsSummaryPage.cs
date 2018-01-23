@@ -41,14 +41,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnAccept(int timeout)
         {
-            WriteLogOnMethodEntry(timeout);
+            LoggingService.WriteLogOnMethodEntry(timeout);
             SeleniumHelper.ClickSafety( ApproveButtonElement, timeout);
             SeleniumHelper.ClickSafety( AcceptButtonElement, timeout,true);
         }
 
         public void DeclineProposal(string proposalDeclineReasonExpired, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(proposalDeclineReasonExpired,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalDeclineReasonExpired,findElementTimeout);
             SeleniumHelper.ClickSafety(DeclineButtonElement, findElementTimeout);
             var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector, findElementTimeout);
             SeleniumHelper.SelectFromDropdownByText(InputReasonElement, proposalDeclineReasonExpired);

@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        
         public void NavigateToSpecificManageDevicesPage(int proposalId, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(proposalId, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId, findElementTimeout);
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -61,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -75,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);

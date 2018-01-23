@@ -35,7 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //TODO: Refactoring
         public void OnClickAccept()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             SeleniumHelper.ClickSafety(AcceptButtonElement, findElementTimeout);
             SeleniumHelper.ClickSafety(FinalAcceptButtonElement, findElementTimeout);

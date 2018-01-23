@@ -51,28 +51,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SwitchNavInstallTab(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.ClickSafety(NavInstallTabA, findElementTimeout);
             SeleniumHelper.WaitUntil(d => NavInstallTab.GetAttribute("class") == "active", findElementTimeout);
         }
 
         public void SwitchNavServiceTab(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.ClickSafety(NavServiceTabA, findElementTimeout);
             SeleniumHelper.WaitUntil(d => NavServiceTab.GetAttribute("class") == "active", findElementTimeout);
         }
 
         public void SwitchNavClickTab(int findElementTimeout )
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.ClickSafety(NavClickTabA, findElementTimeout);
             SeleniumHelper.WaitUntil(d => NavClickTab.GetAttribute("class") == "active", findElementTimeout);
         }
 
         public void EnterAdditionalAuditInformation(int findElementTimeout, string message = @"This is automation changes added to special pricing" )
         {
-            WriteLogOnMethodEntry(findElementTimeout,message);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout,message);
             SeleniumHelper.WaitUntil(d =>
             {
                 try
@@ -88,7 +88,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterSpecialPriceInstallation(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
-            WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingInstallationRowSelector);
             foreach (var modelElement in modelElementList)
@@ -110,7 +110,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterSpecialPriceService(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
-            WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingServiceRowSelector);
             foreach (var modelElement in modelElementList)
@@ -133,7 +133,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterSpecialPriceClick(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
         {
-            WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(specialPrice, defaultFindElementTimeout);
             var modelRegex = new Regex(specialPrice.Model,RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingClickRowSelector);
             foreach( var modelElement in modelElementList)
@@ -168,7 +168,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void EnterSpecialPrice(IWebElement modelElement,  string byName , string itemValue )
         {
-            WriteLogOnMethodEntry(modelElement,byName,itemValue);
+            LoggingService.WriteLogOnMethodEntry(modelElement,byName,itemValue);
             try
             {
                 if (string.IsNullOrWhiteSpace(itemValue)  ) return;

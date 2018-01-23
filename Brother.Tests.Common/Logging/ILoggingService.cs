@@ -43,5 +43,14 @@ namespace Brother.Tests.Common.Logging
         /// <param name="level"></param>
         /// <returns></returns>
         bool IsLoggingEnable(LoggingLevel level);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        void WriteLogOnMethodEntry(params object[] args);
+
+
+
     }
 }

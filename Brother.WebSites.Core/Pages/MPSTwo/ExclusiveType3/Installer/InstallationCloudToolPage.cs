@@ -55,7 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool IsDeviceConnected(string mpsDeviceId)
         {
-            WriteLogOnMethodEntry(mpsDeviceId);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach(var element in deviceRowElements)
             {
@@ -69,14 +69,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public string GetPin(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "", findElementTimeout);
             return InstallationPinElement.Text;
         }
 
         public bool IsSerialNumberForAllDevicesDetected(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {
@@ -90,7 +90,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool SelectSerialNumber(IWebElement element, string mpsDeviceId, string serialNumber, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(element,mpsDeviceId,serialNumber,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(element,mpsDeviceId,serialNumber,findElementTimeout);
             var dataId = element.GetAttribute("data-id");
             if ((dataId == mpsDeviceId) && SeleniumHelper.IsElementDisplayed(
                 element, SelectSerialLinkSelector))
@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool AreAllDevicesConnected(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {
@@ -120,13 +120,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public void VerifySoftwareDownloadLink(string expectedSoftwareDownloadLink)
         {
-            WriteLogOnMethodEntry(expectedSoftwareDownloadLink);
+            LoggingService.WriteLogOnMethodEntry(expectedSoftwareDownloadLink);
             TestCheck.AssertTextContains(expectedSoftwareDownloadLink, LinkDownloadSoftwareElement.GetAttribute("href"), "Software Download link verification failed");
         }
 
         private void SelectSerialNumberHelper(string serialNumber, int findElementTimeout)
         {
-            WriteLogOnMethodEntry(serialNumber,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(serialNumber,findElementTimeout);
             var serialNumberTableElement = SeleniumHelper.FindElementByCssSelector(SelectSerialTableSelector, findElementTimeout);
             var rowElements = SeleniumHelper.FindElementsByCssSelector(serialNumberTableElement, SerialNumberTableRowElementSelector);
             

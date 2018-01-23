@@ -35,7 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDashboardPageDisplayed()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ServiceDeskLink == null)
                 throw new Exception("Service Desk dashboard page is not displayed");
 
@@ -44,14 +44,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ServiceDeskServiceRequestsPage NavigateToServiceDeskPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceDeskLink);
             return GetInstance<ServiceDeskServiceRequestsPage>();
         }
 
         public ReportingDashboardPage NavigateToServiceDeskReportPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceReportLink);
             return GetInstance<ReportingDashboardPage>();
         }

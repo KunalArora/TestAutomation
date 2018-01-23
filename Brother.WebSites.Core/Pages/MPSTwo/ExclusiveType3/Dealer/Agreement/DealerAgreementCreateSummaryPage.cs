@@ -65,13 +65,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public int AgreementId()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             return Int32.Parse(AgreementDetailsContainer.GetAttribute("data-mps-qa-id"));         
         }
 
         public void AcceptJavascriptPopupOnCompleteSetup(int findElementTimeout)
         {
-            WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);
         }
 
@@ -79,7 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             string LeadCodeReference, string LeasingFinanceReference, string ContractType,
             string UsageType, string DealerReference )
         {
-            WriteLogOnMethodEntry(AgreementName, ContractTerm, LeadCodeReference, LeasingFinanceReference, ContractType, UsageType, DealerReference);
+            LoggingService.WriteLogOnMethodEntry(AgreementName, ContractTerm, LeadCodeReference, LeasingFinanceReference, ContractType, UsageType, DealerReference);
             TestCheck.AssertIsEqual(AgreementNameElement.Text, AgreementName, "Agreement Name validation failed on summary page");
             TestCheck.AssertIsEqual(ContractTermElement.Text, ContractTerm, "Contract Term validation failed on summary page");
             TestCheck.AssertIsEqual(LeadCodeReferenceElement.Text, LeadCodeReference, "Lead code reference validation failed on summary page");

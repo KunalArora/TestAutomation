@@ -36,13 +36,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillSubmitForApprovalField()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             EnterProposedStartDateForContract();
         }
 
         public void EnterProposedStartDateForContract()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
             ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
@@ -51,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GiveThirdPartyCheckApproval()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = GetElementByCssSelector("#content_1_InputSendToLeasingBank_Label", 5);
             if (element != null)
                 ThirdPartyApproval.Click();

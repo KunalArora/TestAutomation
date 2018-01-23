@@ -42,7 +42,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage ClickAccessMpsDashboardButtonToDashboard<TPage>() where TPage : BasePage, new()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(AccessMpsDashboardButton);
             AccessMpsDashboardButton.Click();
             return GetInstance<TPage>(Driver);            
@@ -50,14 +50,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage RedirectToMpsDashboard<TPage>(string url) where TPage : BasePage, new()
         {
-            WriteLogOnMethodEntry(url);
+            LoggingService.WriteLogOnMethodEntry(url);
             NavigateToPage(Driver, url);
             return GetInstance<TPage>(Driver);
         }
 
         private void IsAccessMpsDashboardButtonAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (AccessMpsDashboardButton == null)
             {
                 throw new NullReferenceException("Unable to locate Access MPS Dashboard button on page");

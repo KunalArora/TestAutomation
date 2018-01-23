@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPurchaseAndClickLinkAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (PurchaseAndClickLinkElement == null) 
                 throw new Exception("Unable to locate Purchase And Click link on dashboard page");
 
@@ -61,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDealerDefaultsLinkAvailable()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (DealerDefaultsElement == null)
                 throw new Exception("Unable to locate dealer defaults link on dashboard page");
 
@@ -70,7 +70,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminProgramPage NavigateToLoProgramPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (LOAdminProgramElement == null)
                 throw new NullReferenceException("EPP link is not LOAdmin Dashboard");
             LOAdminProgramElement.Click();
@@ -79,7 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ReportingDashboardPage NavigateToReportPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (LOAdminReportElement == null)
                 throw new NullReferenceException("Report link is not LOAdmin Dashboard");
             LOAdminReportElement.Click();
@@ -89,7 +89,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminDealerDefaultsPage NavigateToDealerDefaultsPage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             IsDealerDefaultsLinkAvailable();
             DealerDefaultsElement.Click();
             return GetTabInstance<LocalOfficeAdminDealerDefaultsPage>(Driver);
@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public LocalOfficeAdminAdministrationDashboardPage NavigateToAdministrationPagePage()
         {
-            WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry();
             if (LOAdminAdministrationLinkElement == null)
                 throw new Exception("Administration link is not displayed");
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, LOAdminAdministrationLinkElement);

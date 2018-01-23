@@ -29,7 +29,7 @@ namespace Brother.Tests.Specs.Services
         public WebPageResponse GetPageResponse(string url, string method, int timeout, string contentType = null,
             string body = null, Dictionary<string, string> additionalHeaders = null)
         {
-            WriteLogOnMethodEntry(url, method, timeout, contentType, body, additionalHeaders);
+            LoggingService.WriteLogOnMethodEntry(url, method, timeout, contentType, body, additionalHeaders);
             method = method.ToUpper();
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
@@ -86,7 +86,7 @@ namespace Brother.Tests.Specs.Services
 
         private WebPageResponse PageResponse(WebRequest request)
         {
-            WriteLogOnMethodEntry(request);
+            LoggingService.WriteLogOnMethodEntry(request);
             WebPageResponse webPageResponse = new WebPageResponse
             {
                 ResponseBody = string.Empty,
@@ -151,11 +151,6 @@ namespace Brother.Tests.Specs.Services
 
             Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
             return webPageResponse;
-        }
-
-        protected void WriteLogOnMethodEntry(params object[] args)
-        {
-            LoggingUtil.WriteLogOnMethodEntry(LoggingService, args);
         }
 
     }
