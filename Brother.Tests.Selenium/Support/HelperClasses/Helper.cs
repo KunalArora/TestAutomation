@@ -13,7 +13,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
-    public abstract class Helper : MarshalByRefObject
+    public abstract class Helper
     {
         public static string OrpActivationCode { get; set; }
         public static int OrpNumLicenses { get; set; }

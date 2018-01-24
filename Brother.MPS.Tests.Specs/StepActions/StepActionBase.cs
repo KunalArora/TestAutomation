@@ -4,12 +4,11 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions
 {
-    public class StepActionBase : MarshalByRefObject
+    public class StepActionBase
     {
         protected readonly IWebDriverFactory WebDriverFactory;
         protected readonly IContextData ContextData;
