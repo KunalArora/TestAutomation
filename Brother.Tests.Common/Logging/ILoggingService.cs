@@ -42,7 +42,7 @@ namespace Brother.Tests.Common.Logging
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        bool IsLoggingEnable(LoggingLevel level);
+        bool IsLoggingEnabled(LoggingLevel level);
 
         /// <summary>
         /// 

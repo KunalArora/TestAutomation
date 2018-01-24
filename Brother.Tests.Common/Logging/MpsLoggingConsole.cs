@@ -26,13 +26,13 @@ namespace Brother.Tests.Common.Logging
         }
         public void WriteLog(LoggingLevel level, object message)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
         }
 
         public void WriteLog(LoggingLevel level, string format, params object[] args)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             var message = string.Format(format, args);
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
 
@@ -40,13 +40,13 @@ namespace Brother.Tests.Common.Logging
 
         public void WriteLog(LoggingLevel level, object message, Exception exception)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             var preString = PreString(level);
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, message));
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, exception.StackTrace));
         }
 
-        public bool IsLoggingEnable(LoggingLevel loggingLevel)
+        public bool IsLoggingEnabled(LoggingLevel loggingLevel)
         {
             return loggingLevel >= _loggingLevel;
         }
@@ -62,7 +62,7 @@ namespace Brother.Tests.Common.Logging
                 var methodName = method.Name;
                 var className = method.ReflectedType.Name;
 
-                if (loggingService.IsLoggingEnable(LoggingLevel.DEBUG))
+                if (loggingService.IsLoggingEnabled(LoggingLevel.DEBUG))
                 {
                     var stringList = new List<string>();
                     foreach (var parameter in method.GetParameters())
@@ -73,7 +73,7 @@ namespace Brother.Tests.Common.Logging
                     var prms = string.Join(",", stringList.ToArray());
                     loggingService.WriteLog(LoggingLevel.DEBUG, "{0}#{1}({2})", className, methodName, prms);
                 }
-                else if (loggingService.IsLoggingEnable(LoggingLevel.INFO))
+                else if (loggingService.IsLoggingEnabled(LoggingLevel.INFO))
                 {
                     loggingService.WriteLog(LoggingLevel.INFO, "{0}#{1}()", className, methodName);
                 }
