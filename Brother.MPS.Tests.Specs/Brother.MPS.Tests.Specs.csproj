@@ -113,9 +113,11 @@
     <Compile Include="Resolvers\IUrlResolver.cs" />
     <Compile Include="Resolvers\IUserResolver.cs" />
     <Compile Include="Services\CalculationService.cs" />
+    <Compile Include="Services\ContractShiftService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\DeviceSimulatorService.cs" />
     <Compile Include="Services\ICalculationService.cs" />
+    <Compile Include="Services\IContractShiftService.cs" />
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\IDeviceSimulatorService.cs" />
     <Compile Include="Services\IMpsWebToolsService.cs" />
