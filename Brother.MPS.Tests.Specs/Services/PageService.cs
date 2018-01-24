@@ -66,12 +66,8 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,LoggingService), RuntimeSettings = _runtimeSettings };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,LoggingService), RuntimeSettings = _runtimeSettings, LoggingService = this.LoggingService };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
-            if( pageObject is IILoggingService)
-            {
-                ((IILoggingService)pageObject).LoggingService = LoggingService;
-            }
 
             if (timeout != null)
             {
