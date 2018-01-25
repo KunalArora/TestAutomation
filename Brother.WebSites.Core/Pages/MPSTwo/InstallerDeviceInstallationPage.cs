@@ -33,7 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string SerialNumber = @"A1T010001";
         private const string SerialNumberBig = @"A1T010002";

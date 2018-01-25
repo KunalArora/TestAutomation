@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -26,8 +25,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return Url;
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallerEmailAddress_Input")]
         public IWebElement EmailFieldElement;

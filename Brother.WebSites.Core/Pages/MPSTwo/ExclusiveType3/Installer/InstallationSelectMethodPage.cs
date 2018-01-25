@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string InstallationMethodDataAttributeSelector = "install-option-id";
         

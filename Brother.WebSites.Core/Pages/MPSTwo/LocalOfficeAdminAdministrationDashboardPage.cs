@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
 
         // Web Elements

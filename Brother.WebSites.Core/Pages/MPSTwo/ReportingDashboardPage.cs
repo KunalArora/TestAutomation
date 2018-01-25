@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
         
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"reports\"]")]
         public IWebElement ReportTabElement;

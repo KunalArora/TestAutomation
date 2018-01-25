@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         //WebElement properties
         [FindsBy(How = How.Id, Using = "content_1_InputUsageType_Input")]

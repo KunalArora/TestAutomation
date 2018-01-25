@@ -1,18 +1,15 @@
-using System;
-using System.Configuration;
-using System.Net;
+using Brother.Tests.Selenium.Lib.Properties;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using Brother.Tests.Selenium.Lib.Properties;
-using Brother.Tests.Common.RuntimeSettings;
+using System;
+using System.Configuration;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
     public abstract partial class BasePage : SeleniumHelper
     {
-        public IRuntimeSettings RuntimeSettings;
         public string BaseURL { get; set; }
 
         private const string TestEnvSuffix = RunTimeTest;

@@ -24,7 +24,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string DataItemTypeSelector = "item-type";

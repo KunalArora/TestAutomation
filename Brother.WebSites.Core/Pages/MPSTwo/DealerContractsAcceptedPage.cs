@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -33,8 +32,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return URL;
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
 
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class DeviceSimulatorService : IDeviceSimulatorService, IILoggingService
+    public class DeviceSimulatorService : IDeviceSimulatorService
     {
         private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
@@ -20,7 +20,7 @@ namespace Brother.Tests.Specs.Services
         private readonly IWebRequestService _webRequestService;
         private readonly IRuntimeSettings _runtimeSettings;
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings, ILoggingService loggingService )
         {

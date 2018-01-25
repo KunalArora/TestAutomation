@@ -9,13 +9,13 @@ using System.Linq;
 
 namespace Brother.Tests.Selenium.Lib.Helpers
 {
-    public class SeleniumHelper : ISeleniumHelper, IILoggingService
+    public class SeleniumHelper : ISeleniumHelper
     {
         private IWebDriver _webDriver;
         private const string DATA_ATTRIBUTE_SELECTOR_PATTERN = "[data-{0}='{1}']";
         private const string ATTRIBUTE_SELECTOR_PATTERN = "['{0}'='{1}']";
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public SeleniumHelper(IWebDriver webDriver, ILoggingService loggingService)
         {

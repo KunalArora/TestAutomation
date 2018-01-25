@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.BrotherMainSite.Basket;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
@@ -35,7 +34,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {

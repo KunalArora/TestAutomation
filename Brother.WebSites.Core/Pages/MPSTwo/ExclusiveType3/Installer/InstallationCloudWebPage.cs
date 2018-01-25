@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string IPAddress1Selector = "[id*=content_0_List_InputIp1_]";
         private const string IPAddress2Selector = "[id*=content_0_List_InputIp2_]";

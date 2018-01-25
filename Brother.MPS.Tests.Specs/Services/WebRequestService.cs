@@ -10,11 +10,11 @@ using System.Text;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class WebRequestService : IWebRequestService, IILoggingService
+    public class WebRequestService : IWebRequestService
     {
         public WebRequestService(ILoggingService loggingService) { LoggingService = loggingService; }
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         /// <summary>
         /// Sends an http/s request and returns a WebPageResponse object

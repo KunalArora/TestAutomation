@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -35,8 +34,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return Url;
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         private const string NextButtonSelector = "#content_1_ButtonNext";
 

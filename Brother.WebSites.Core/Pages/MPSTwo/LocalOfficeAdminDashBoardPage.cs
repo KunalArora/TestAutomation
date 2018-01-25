@@ -23,7 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public override string DefaultTitle
         {

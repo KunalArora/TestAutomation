@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string InstallationPinSelector = ".js-mps-boc-pin";
         private const string IsConnectedSelector = ".responding";

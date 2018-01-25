@@ -20,7 +20,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-install-devices")]

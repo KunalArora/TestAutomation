@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.MPS;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -23,8 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
+        
         [FindsBy(How = How.Id, Using = "content_1_InputEnvisagedStartDate_Input")]
         public IWebElement ProposedStartDate;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputSendToLeasingBank_Label")]

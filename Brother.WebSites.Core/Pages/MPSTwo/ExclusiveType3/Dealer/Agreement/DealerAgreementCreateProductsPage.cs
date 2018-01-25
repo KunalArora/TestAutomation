@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement FilterProductElement;
 
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public IWebElement SelectPrinter(string printerName, int findElementTimeout)
         {

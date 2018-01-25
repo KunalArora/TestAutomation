@@ -1,5 +1,7 @@
 ﻿using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -14,7 +16,7 @@ using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
-    public abstract partial class BasePage : IILoggingService
+    public abstract partial class BasePage
     {
         public static string BrotherOnlineBaseUrl
         {
@@ -46,11 +48,15 @@ namespace Brother.WebSites.Core.Pages.Base
 
         }
 
+        #region IPageObject instance
+        
         public ILoggingService LoggingService { get; set; }
-
+        public IRuntimeSettings RuntimeSettings { get; set; }
+        public ISeleniumHelper SeleniumHelper { get; set; }
+        #endregion
         // Home pages
         #region WebConferencing Home Page
-        
+
         public static WebConferencingHomePage LoadWebConferencingHomePage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);

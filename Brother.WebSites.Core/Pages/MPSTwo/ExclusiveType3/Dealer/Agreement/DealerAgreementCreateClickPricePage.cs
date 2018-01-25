@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string IsMonoOnly = "data-mono-only";

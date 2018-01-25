@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    public class ExcelHelper: IExcelHelper, IILoggingService
+    public class ExcelHelper: IExcelHelper
     {
 
 
@@ -52,7 +52,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private IRuntimeSettings _runtimeSettings;
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public ExcelHelper(
             IRuntimeSettings runtimeSettings,

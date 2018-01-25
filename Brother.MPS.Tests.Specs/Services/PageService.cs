@@ -17,16 +17,15 @@ using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class PageService : IPageService, IILoggingService
+    public class PageService : IPageService
     {
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
-        //private readonly ILoggingService _loggingService;
         private readonly IRuntimeSettings _runtimeSettings;
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,

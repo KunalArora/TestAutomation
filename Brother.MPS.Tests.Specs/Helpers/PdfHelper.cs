@@ -4,10 +4,10 @@ using iTextSharp.text.pdf.parser;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    class PdfHelper : IPdfHelper, IILoggingService
+    class PdfHelper : IPdfHelper
     {
         public PdfHelper(ILoggingService loggingService) { LoggingService = loggingService; }
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public void DeletePdf(string fileName)
         {

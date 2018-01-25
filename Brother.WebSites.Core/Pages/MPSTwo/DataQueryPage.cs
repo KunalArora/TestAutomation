@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -27,8 +26,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _url;
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         private const string SelectedProposal = @"#proposal-{0} .js-mps-proposal-link";
         private const string MpsListNotesSelector = ".mps-list-notes";

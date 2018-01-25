@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string MpsTabsSelector = ".mps-tabs-main";

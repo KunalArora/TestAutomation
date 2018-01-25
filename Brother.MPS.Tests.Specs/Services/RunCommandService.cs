@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
-    public class RunCommandService : IRunCommandService, IILoggingService
+    public class RunCommandService : IRunCommandService
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
@@ -14,7 +14,7 @@ namespace Brother.Tests.Specs.Services
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
-        public ILoggingService LoggingService { get; set; }
+        private ILoggingService LoggingService { get; set; }
 
         public RunCommandService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService )
         {
