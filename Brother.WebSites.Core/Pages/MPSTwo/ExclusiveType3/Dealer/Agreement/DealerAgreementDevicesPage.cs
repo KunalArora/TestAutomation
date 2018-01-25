@@ -40,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ShowPrintCountsActionsButtonSelector = ".js-mps-view-print-count";
         private const string ShowConsumableOrdersActionsButtonSelector = ".js-mps-view-consumable-orders";
         private const string RaiseConsumableOrderActionsButtonSelector = ".js-mps-raise-consumable-order";
+        private const string RaiseServiceRequestActionsButtonSelector = ".js-mps-raise-service-request";
 
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
@@ -57,7 +58,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Tab link selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
-        private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
+        private const string MpsTabsAgreementSelector = " a[href=\"/mps/dealer/agreement/";
 
 
         // Web Elements
@@ -300,10 +301,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public IWebElement ConsumablesTabElement(int agreementId, int findElementTimeout)
+        public IWebElement ConsumablesTabElement(int agreementId)
         {
             return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), findElementTimeout);
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
+        }
+
+        public IWebElement ServiceRequestsTabElement(int agreementId)
+        {
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
         }
 
         // Click Show Consumable Orders in Actions given the MPS device Id
@@ -370,6 +377,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
 
             return enabled;
+        }
+
+        public void ClickRaiseServiceRequest(string mpsDeviceId)
+        {
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+
+                    var RaiseServiceRequestElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, RaiseServiceRequestActionsButtonSelector, findElementTimeout);
+                    ScrollTo(RaiseServiceRequestElement);
+                    SeleniumHelper.ClickSafety(RaiseServiceRequestElement, findElementTimeout);
+                    return;
+                }
+            }
         }
 
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values

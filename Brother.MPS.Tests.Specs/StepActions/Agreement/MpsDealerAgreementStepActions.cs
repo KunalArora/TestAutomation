@@ -560,6 +560,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                             // Verify success alert
                             dealerAgreementConsumablesCreatePage.VerifySuccessfulOrderCreation();
                             ClickSafety(dealerAgreementConsumablesCreatePage.BackButtonElement, dealerAgreementConsumablesCreatePage);
+
+                            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                         }
                     }
                 }
@@ -590,6 +592,52 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
 
             return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage RaiseServiceRequestsManually(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            string resourceServiceRequestStatusNew = _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.New, _contextData.Culture);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {  
+                dealerAgreementDevicesPage.ClickRaiseServiceRequest(device.MpsDeviceId);
+
+                var dealerAgreementServiceRequestsCreatePage = PageService.GetPageObject<DealerAgreementServiceRequestsCreatePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                // Fill Problem Description & save Service Request type to context data for later verification
+                device.ServiceRequestType = dealerAgreementServiceRequestsCreatePage.FillProblemDescription();
+
+                ClickSafety(
+                    dealerAgreementServiceRequestsCreatePage.RaiseServiceRequestButtonElement, dealerAgreementServiceRequestsCreatePage);
+
+                dealerAgreementServiceRequestsCreatePage.SeleniumHelper.AcceptJavascriptAlert(
+                    RuntimeSettings.DefaultFindElementTimeout);
+
+                var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                device.ServiceRequestId = dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatusNew, device.ServiceRequestType);
+
+                ClickSafety(
+                    dealerAgreementServiceRequestsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementServiceRequestsPage);
+
+                _dealerWebDriver.Navigate().Refresh();
+
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+
+            return dealerAgreementDevicesPage;
+        }
+
+        public void VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
+        {
+            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
+
+            var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatus, device.ServiceRequestType, true);
+            }
         }
 
         #region private methods

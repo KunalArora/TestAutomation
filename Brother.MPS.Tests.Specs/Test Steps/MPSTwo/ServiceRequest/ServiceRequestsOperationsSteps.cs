@@ -58,16 +58,16 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
             NextPage = CurrentPage.As<ServiceDeskDashBoardPage>().NavigateToServiceDeskPage();
             CurrentPage.As<ServiceDeskServiceRequestsPage>().IsServiceRequestDashBoardDisplayed();
             NextPage = CurrentPage.As<ServiceDeskServiceRequestsPage>().NavigateToServiceRequestsPage();
-            CurrentPage.As<ServiceRequestsPage>().IsServiceRequestPageDisplayed();
-            CurrentPage.As<ServiceRequestsPage>().IsCreatedServiceRequestDisplayed();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().IsServiceRequestPageDisplayed();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().IsCreatedServiceRequestDisplayed();
 
         }
 
         [Then(@"Service Desk can close the service request")]
         public void ThenServiceDeskCanCloseTheServiceRequest()
         {
-            CurrentPage.As<ServiceRequestsPage>().OpenServiceRequestDetail();
-            CurrentPage.As<ServiceRequestsPage>().CloseServiceRequest();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().OpenServiceRequestDetail();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().CloseServiceRequest();
         }
 
         [When(@"I can send message to Service Desk user")]
@@ -79,9 +79,9 @@ namespace Brother.Tests.Specs.MPSTwo.ServiceRequest
         [Then(@"I can see the message sent by customer and reply")]
         public void ThenICanSeeTheMessageSentByCustomerAndReply()
         {
-            CurrentPage.As<ServiceRequestsPage>().OpenServiceRequestDetail();
-            CurrentPage.As<ServiceRequestsPage>().IsServiceDeskMessageDisplayed(1);
-            CurrentPage.As<ServiceRequestsPage>().ServiceDeskSendMessage();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().OpenServiceRequestDetail();
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().IsServiceDeskMessageDisplayed(1);
+            CurrentPage.As<ServiceDeskServiceRequestsActivePage>().ServiceDeskSendMessage();
         }
 
         [Then(@"I can see the reply from Service Desk")]

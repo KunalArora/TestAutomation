@@ -244,5 +244,17 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage);
         }
+
+        [When(@"I manually raise a service request for above devices")]
+        public void WhenIManuallyRaiseAServiceRequestForAboveDevices()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.RaiseServiceRequestsManually(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify that service request has been closed succesfully")]
+        public void ThenICanVerifyThatServiceRequestHasBeenClosedSuccesfully()
+        {
+            _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
+        }
     }
 }

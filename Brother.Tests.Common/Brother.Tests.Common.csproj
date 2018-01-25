@@ -164,6 +164,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\ServiceRequestStatus\ServiceRequestStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRequestStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SwapType\SwapType.Designer.cs">
       <DependentUpon>SwapType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -248,6 +253,11 @@
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ServiceRequestStatus\ServiceRequestStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ServiceRequestStatus\ServiceRequestStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceRequestStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SwapType\SwapType.en-gb.resx" />
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">
