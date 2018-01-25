@@ -80,14 +80,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I enter the agreement description for ""(.*)"" type agreement")]
         public void WhenIEnterTheAgreementDescriptionForTypeAgreement(string agreementType)
         {
-            _contextData.ContractType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
+            _contextData.AgreementType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
             _dealerAgreementCreateTermAndTypePage = _mpsDealerAgreement.PopulateAgreementDescriptionAndProceed(_dealerAgreementCreateDescriptionPage, _agreementHelper.GenerateAgreementName());
         }
 
         [When(@"I input the fields \(Fill Optional fields: ""(.*)""\) on Agreement Description Page for ""(.*)"" type agreement")]
         public void WhenIInputTheFieldsFillOptionalFieldsOnAgreementDescriptionPageForTypeAgreement(string optionalFields, string agreementType)
         {
-            _contextData.ContractType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
+            _contextData.AgreementType = _translationService.GetAgreementTypeText(agreementType, _contextData.Culture);
             if (optionalFields.ToLower().Equals("true"))
             {
                 string reference = _agreementHelper.GenerateReference();
@@ -255,6 +255,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyThatServiceRequestHasBeenClosedSuccesfully()
         {
             _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
+        }
+
+        [Then(@"I can verify the device details using show device details option")]
+        public void ThenICanVerifyTheDeviceDetailsUsingShowDeviceDetailsOption()
+        {
+            _mpsDealerAgreement.VerifyDeviceDetails(_dealerAgreementDevicesPage);
         }
     }
 }

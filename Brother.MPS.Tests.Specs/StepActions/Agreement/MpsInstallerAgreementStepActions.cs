@@ -173,9 +173,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {              
                 installationCloudWebPage.FillDeviceDetailsAndClickConnect(
-                    device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout, _contextData.WindowHandles[UserType.Installer]);
+                    device, _contextData.WindowHandles[UserType.Installer]);
             }
-            
+
             // 5. Hit Refresh until all devices are connected
             int retries = 0;
             while (!installationCloudWebPage.AreAllDevicesConnected(RuntimeSettings.DefaultFindElementTimeout))

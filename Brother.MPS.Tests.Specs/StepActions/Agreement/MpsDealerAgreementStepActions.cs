@@ -461,9 +461,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Verify that devices are responding
             VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding);
             
-            // Verify the serial number of all devices used during installation (pick up from context data)
+            
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
+                device.ConnectionStatus = resourceDeviceConnectionStatusResponding;
+                device.DeviceStatus = resourceInstalledPrinterStatusInstalled;
+
+                // Verify the serial number of all devices used during installation (pick up from context data)
                 dealerAgreementDevicesPage.VerifySerialNumberOfDevice(
                     device.MpsDeviceId, device.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
             }
@@ -640,6 +644,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
         }
 
+        public void VerifyDeviceDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
+                dealerAgreementDevicesPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
+
+                _dealerWebDriver.Navigate().Refresh();
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
@@ -744,7 +760,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _contextData.ContractTerm,
                 _contextData.LeadCodeReference,
                 _contextData.LeasingFinanceReference,
-                _contextData.ContractType,
+                _contextData.AgreementType,
                 _contextData.UsageType,
                 _contextData.DealerReference);
             
