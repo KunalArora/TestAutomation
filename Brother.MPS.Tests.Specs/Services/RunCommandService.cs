@@ -1,8 +1,8 @@
+﻿using System;
+using System.Collections.Generic;
 ﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
-using System;
-using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -87,12 +87,12 @@ namespace Brother.Tests.Specs.Services
 
         public void RunRaiseClickRateInvoicesCommand()
         {
-            LoggingService.WriteLogOnMethodEntry();
+
         }
 
         public void RunInstallationCompleteCommand()
         {
-            LoggingService.WriteLogOnMethodEntry();
+            
         }
 
         public void RunMeterReadEmailSyncCommand()
@@ -115,7 +115,7 @@ namespace Brother.Tests.Specs.Services
             string commandName = string.Format("MPS:ConsumableOrderRequestsCommand");
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
-            ExecuteRunCommand(commandUrl);            
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunCloseConsumableOrdersCommand()
@@ -147,7 +147,7 @@ namespace Brother.Tests.Specs.Services
             string commandName = "MPS:SystemJobCreateConsumableOrderCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
-            ExecuteRunCommand(commandUrl);          
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunSetupInstalledPrintersCommand()

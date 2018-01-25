@@ -27,6 +27,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string InstallationOptionIdSelector = "installation-option-id";
         private const string CustomiseInstallOptionsModalSelector = ".js-mps-manage-customise-install-options-modal";
 
+        // Tab link selectors
+        private const string MpsTabsSelector = ".mps-tabs-main";
+        private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
+
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-customise-installation-options-data")]
         public IWebElement CustomiseButtonElement;
@@ -130,6 +134,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             return element;
         }
 
+        public IWebElement ConsumablesTabElement(int agreementId)
+        {
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
+        }
         #endregion
     }
 }

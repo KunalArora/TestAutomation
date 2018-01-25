@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
@@ -17,6 +18,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
     public class MpsServiceDeskAgreementStepActions : MpsLocalOfficeStepActions
     {
         private readonly IWebDriver _serviceDeskWebDriver;
+        private readonly IContextData _contextData;
+        private readonly ITranslationService _translationService;
 
         public MpsServiceDeskAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -30,6 +33,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
         {
             _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
+            _contextData = contextData;
+            _translationService = translationService;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(ServiceDeskDashBoardPage serviceDeskDashBoardPage)
@@ -57,6 +62,24 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendSingleInstallationRequests(localOfficeAgreementDevicesPage, _serviceDeskWebDriver);           
+        }
+
+        public void VerifyServiceRequestAndCloseIt(ServiceDeskDashBoardPage serviceDeskDashBoardPage)
+        {
+            string resourceServiceRequestStatusNew = _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.New, _contextData.Culture);
+
+            ClickSafety(serviceDeskDashBoardPage.ServiceDeskLink, serviceDeskDashBoardPage);
+            var serviceDeskServiceDeskDashBoardPage = PageService.GetPageObject<ServiceDeskServiceDeskDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
+
+            ClickSafety(serviceDeskServiceDeskDashBoardPage.ServiceRequestsLink, serviceDeskServiceDeskDashBoardPage);
+            var serviceDeskServiceRequestsActivePage = PageService.GetPageObject<ServiceDeskServiceRequestsActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
+
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                device.ServiceRequestReplyMessage = serviceDeskServiceRequestsActivePage.VerifyAndCloseServiceRequest(device.Model, device.SerialNumber, device.ServiceRequestId, device.ServiceRequestType, resourceServiceRequestStatusNew);
+                _serviceDeskWebDriver.Navigate().Refresh();
+                serviceDeskServiceRequestsActivePage = PageService.GetPageObject<ServiceDeskServiceRequestsActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
+            }
         }
     }
 }

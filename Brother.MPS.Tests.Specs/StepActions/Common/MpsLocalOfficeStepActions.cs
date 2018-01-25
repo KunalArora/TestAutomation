@@ -189,8 +189,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
 
             ClickSafety(
-                localOfficeAgreementDevicesPage.ConsumablesTabElement(
-                _contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout), localOfficeAgreementDevicesPage);
+                localOfficeAgreementDevicesPage.ConsumablesTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
 
             var localOfficeAgreementConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 

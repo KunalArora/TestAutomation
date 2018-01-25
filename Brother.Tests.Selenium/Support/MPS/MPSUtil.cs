@@ -1294,5 +1294,41 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var note = notes[new Random().Next(3)];
             return note;
         }
+
+        public static string ServiceRequestSubject()
+        {
+            String[] notes =
+            {
+                "Major issue",
+                "Critical issue",
+                "Minor issue",
+            };
+            var note = notes[new Random().Next(3)];
+            return note;
+        }
+
+        public static string ServiceRequestDescription()
+        {
+            String[] notes =
+            {
+                "Not printing",
+                "Machine making noise",
+                "Ink is leaking",
+            };
+            var note = notes[new Random().Next(3)];
+            return note;
+        }
+
+        public static string ServiceRequestReplyMessage()
+        {
+            String[] notes =
+            {
+                "Service Request Canceled...Closing....",
+                "Invalid Service Request..Closing...",
+                "Problem Solved...Closing",
+            };
+            var note = notes[new Random().Next(3)];
+            return note;
+        }
     }
 }

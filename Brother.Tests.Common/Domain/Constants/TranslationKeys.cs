@@ -103,5 +103,10 @@
             public static string InProgress { get { return "IN_PROGRESS"; } }
         }
 
+        public static class ServiceRequestStatus
+        {
+            public static string New { get { return "NEW"; } }
+            public static string Closed { get { return "CLOSED"; } }
+        }
     }
 }

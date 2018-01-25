@@ -34,6 +34,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string TotalPriceDataAttributeSelector = "total-price";
         private const string TotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
+        private const string PreloaderSelector = ".js-mps-preloader";
 
 
         // Web Elements
@@ -55,6 +56,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
 
             SeleniumHelper.ClickSafety(addButton, findElementTimeout);
+
+            // Note: Click Add button once again if it doesn't succeed first time
+            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector, findElementTimeout).Displayed)
+            {
+                SeleniumHelper.ClickSafety(addButton, findElementTimeout);
+            }
 
             return printerContainer;
         }

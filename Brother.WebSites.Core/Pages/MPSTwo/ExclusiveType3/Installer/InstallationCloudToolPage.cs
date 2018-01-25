@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string SelectSerialLinkSelector = ".js-mps-select-serial-link";
         private const string SerialNumberWarningIconSelector = ".js-mps-icon-serial.glyphicon.glyphicon-warning-sign";
         private const string SerialNumberRefreshIconSelector = ".js-mps-icon-serial.glyphicon.glyphicon-refresh";
-        private const string SelectSerialTableSelector = ".js-mps-serials-select-table > .js-mps-searchable";
+        private const string SelectSerialTableSelector = ".js-mps-serials-select-table > tbody";
         private const string SerialNumberTableRowElementSelector = ".js-mps-boc-device";
         private const string SelectDeviceRadioButtonSelector = ".js-mps-select-boc-device";
         

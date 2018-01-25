@@ -12,7 +12,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly MpsSignInStepActions _mpsSignIn;
-        private readonly MpsServiceDeskAgreementStepActions _mpsServiceDeskAgreement; 
+        private readonly MpsServiceDeskAgreementStepActions _mpsServiceDeskAgreement;
 
         // Page objects
         private LocalOfficeAgreementDevicesPage _serviceDeskAgreementDevicesPage;
@@ -36,6 +36,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             var dataQueryPage = _mpsServiceDeskAgreement.NavigateToReportsDataQuery(serviceDeskDashboardPage);
             var serviceDeskAgreementDevicesPage = _mpsServiceDeskAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
             _serviceDeskAgreementDevicesPage = _mpsServiceDeskAgreement.SendSingleInstallationRequests(serviceDeskAgreementDevicesPage);
-        }    
+        }
+
+        [Then(@"a Cloud MPS Service Desk can verify the service request and close it")]
+        public void ThenACloudMPSServiceDeskCanVerifyTheServiceRequestAndCloseIt()
+        {
+            var serviceDeskDashboardPage = _mpsSignIn.SignInAsServiceDesk(
+                _userResolver.ServiceDeskUsername, _userResolver.ServiceDeskPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _mpsServiceDeskAgreement.VerifyServiceRequestAndCloseIt(serviceDeskDashboardPage);
+        }
     }
 }

@@ -199,6 +199,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDevicesUploadConfirmationPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDevicesUploadPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsCreatePage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
@@ -287,8 +288,9 @@
     <Compile Include="Pages\MPSTwo\ReportProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskReportingPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceDeskServiceDeskDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsPage.cs" />
-    <Compile Include="Pages\MPSTwo\ServiceRequestsPage.cs" />
+    <Compile Include="Pages\MPSTwo\ServiceDeskServiceRequestsActivePage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CancelSubscriptionPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CodeActivationPage.cs" />
     <Compile Include="Pages\OmniJoin\PartnerPortal\CreateActivationCodesPage.cs" />
