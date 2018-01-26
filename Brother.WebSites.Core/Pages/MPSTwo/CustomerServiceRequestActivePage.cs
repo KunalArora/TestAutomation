@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
@@ -17,11 +16,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 return _url;
             }
-        }
-
-        public ISeleniumHelper SeleniumHelper
-        {
-            get;set;
         }
 
         public string ValidationElementSelector

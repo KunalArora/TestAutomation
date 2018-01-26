@@ -1,12 +1,10 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
@@ -28,8 +26,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 return _url; 
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         // Selectors
         private const string DeviceModelNameSelector = "[id*=content_1_Devices_ModelCell_]";
@@ -101,6 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click on Edit Device Data button for this particular model
         public void ClickOnEditDeviceData(string modelName, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(modelName,findElementTimeout);
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var element in elements)
             {
@@ -119,6 +116,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click on Edit Device Data button for this particular row index
         public void ClickOnEditDeviceData(int rowIndex, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(rowIndex, findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
             SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
@@ -128,6 +126,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void VerifyTheStatusOfAllDevices(int findElementTimeout, string expectedStatus)
         {
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout,expectedStatus);
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach(var element in elements)
             {
@@ -143,6 +142,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click on Checkbox for this particular device row index
         public void ClickOnDeviceCheckbox(int rowIndex, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], DeviceCheckboxSelector, findElementTimeout);
             SeleniumHelper.ClickSafety(CheckboxElement, findElementTimeout);
@@ -151,6 +151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Verify address of the edited device given the row index & expected address
         public void VerifyAddressOfEditedDevice(int rowIndex, string expectedAddress)
         {
+            LoggingService.WriteLogOnMethodEntry(rowIndex,expectedAddress);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
             // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
@@ -163,12 +164,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Get total number of rows of the device table
         public int DeviceTableRowsCount()
         {
+            LoggingService.WriteLogOnMethodEntry();
             return SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement).Count;
         }
 
         // Validate address of the device given the device id & expected address string
         public void ValidateDeviceAddress(string mpsDeviceId, string expectedAddress, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId, expectedAddress,findElementTimeout);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify device address for a device with Device Id null");
@@ -195,12 +198,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Get model name of the device given the row index
         public string DeviceModelName(int rowIndex, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
             var deviceRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[rowIndex];
             return SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector, findElementTimeout).Text;
         }
 
         public void SendInstallationRequest(int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             // Input Email ID
             SeleniumHelper.FindElementByCssSelector(InputEmailSelector, findElementTimeout).SendKeys(MpsUtil.GenerateUniqueEmail());
             
@@ -215,6 +220,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click on Send Installation Request in Actions for this particular device row index
         public void ClickSendInstallationRequestInActions(int rowIndex, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
@@ -228,6 +234,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void VerifySerialNumberOfDevice(string mpsDeviceId, string expectedSerialNumber, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,expectedSerialNumber,findElementTimeout);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify serial number for a device with Device Id null");
@@ -254,6 +261,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Returns true if print count values have been updated in the UI for all devices, otherwise, returns false
         public bool IsPrintCountsUpdated(int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             bool isUpdated = false;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
@@ -284,6 +292,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public void VerifyPrintCountsOfDevice(
             string mpsDeviceId, int colourPrintCount, int monoPrintCount, int totalPrintCount, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,colourPrintCount,monoPrintCount,totalPrintCount,findElementTimeout);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify print counts for a device with Device Id null");
@@ -332,12 +341,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public IWebElement ConsumablesTabElement(int agreementId)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
         }
 
         public IWebElement ServiceRequestsTabElement(int agreementId)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
         }
@@ -345,6 +356,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click Show Consumable Orders in Actions given the MPS device Id
         public void ClickShowConsumableOrders(string mpsDeviceId, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,findElementTimeout);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Show Consumable Orders for a device with Device Id null");
@@ -376,6 +388,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click Raise Consumable Orders in Actions given the MPS device Id
         public void ClickRaiseConsumableOrder(string mpsDeviceId, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,findElementTimeout);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Raise Consumable Order for a device with Device Id null");
@@ -406,6 +419,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public bool IsManualRaiseConsumableOptionEnabled()
         {
+            LoggingService.WriteLogOnMethodEntry();
             bool enabled = false;
 
             var deviceFirstRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[0];
@@ -424,6 +438,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void ClickRaiseServiceRequest(string mpsDeviceId)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Raise Service Request for a device with Device Id null");
@@ -454,6 +469,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void ClickShowDeviceDetails(string mpsDeviceId)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Show Device Details for a device with Device Id null");
@@ -485,6 +501,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType)
         {
+            LoggingService.WriteLogOnMethodEntry(device,agreementType,agreementLength,usageType);
             var DeviceDetailsContainerElement = SeleniumHelper.FindElementByCssSelector(
                 DeviceDetailsModalDeviceContainerSelector, RuntimeSettings.DefaultFindElementTimeout);
 
@@ -529,6 +546,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values
         private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(deviceRowElement,findElementTimeout);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
                         deviceRowElement, ActionsButtonSelector, findElementTimeout);
             SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);

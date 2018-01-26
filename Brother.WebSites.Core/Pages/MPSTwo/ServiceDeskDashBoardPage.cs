@@ -22,7 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
 
 
@@ -35,7 +35,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDashboardPageDisplayed()
         {
-            if(ServiceDeskLink == null)
+            LoggingService.WriteLogOnMethodEntry();
+            if (ServiceDeskLink == null)
                 throw new Exception("Service Desk dashboard page is not displayed");
 
             AssertElementPresent(ServiceDeskLink, "Service Desk dashboard page");
@@ -43,12 +44,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public ServiceDeskServiceRequestsPage NavigateToServiceDeskPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceDeskLink);
             return GetInstance<ServiceDeskServiceRequestsPage>();
         }
 
         public ReportingDashboardPage NavigateToServiceDeskReportPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceReportLink);
             return GetInstance<ReportingDashboardPage>();
         }

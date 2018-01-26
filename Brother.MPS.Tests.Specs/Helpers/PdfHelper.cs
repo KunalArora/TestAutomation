@@ -1,17 +1,23 @@
-﻿using iTextSharp.text.pdf;
+﻿using Brother.Tests.Common.Logging;
+using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 
 namespace Brother.Tests.Specs.Helpers
 {
     class PdfHelper : IPdfHelper
     {
+        public PdfHelper(ILoggingService loggingService) { LoggingService = loggingService; }
+        private ILoggingService LoggingService { get; set; }
+
         public void DeletePdf(string fileName)
         {
+            LoggingService.WriteLogOnMethodEntry(fileName);
             System.IO.File.Delete(fileName);
         }
 
         public bool PdfContainsText(string pdfFileName, string searchText)
         {
+            LoggingService.WriteLogOnMethodEntry(pdfFileName, searchText);
             using (var reader = new PdfReader(pdfFileName))
             {
                 var strategy = new SimpleTextExtractionStrategy();
@@ -30,8 +36,10 @@ namespace Brother.Tests.Specs.Helpers
 
         public bool PdfExists(string fileName)
         {
+            LoggingService.WriteLogOnMethodEntry(fileName);
             return System.IO.File.Exists(fileName);
         }
+
 
     }
 }

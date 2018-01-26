@@ -19,7 +19,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
@@ -27,6 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public IWebElement DevicesTabElement(int agreementId, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId, findElementTimeout);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()), findElementTimeout);
         }

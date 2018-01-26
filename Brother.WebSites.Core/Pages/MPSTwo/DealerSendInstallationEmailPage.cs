@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -36,8 +35,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         private const string NextButtonSelector = "#content_1_ButtonNext";
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/send-installation-email\"]")]
@@ -59,7 +56,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSendCommunicationScreenDisplayed()
         {
-            if(SendCommunicationEmailElement == null)
+            LoggingService.WriteLogOnMethodEntry();
+            if (SendCommunicationEmailElement == null)
                 throw new Exception("Send communication email is not displayed");
 
             AssertElementPresent(SendCommunicationEmailElement, "Communication email screen");
@@ -67,7 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ArePinAndLabelFieldPopulated()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(2) , "Pin and/or Reference not generated");
             SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
             SpecFlow.SetContext("InstallationPin", PinLabelElement.Last().Text);
@@ -77,6 +75,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDeviceModelDisplayedOnSwapConfirmationPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var aContainer = new List<String>();
             var serialNumber = SpecFlow.GetContext("SerialNumber");
 
@@ -93,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsPinFieldPopulated()
         {
-
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, PinLabelElement.Count.Equals(1), "Pin and/or Reference not generated");
             SpecFlow.SetContext("ProposalId", PinLabelElement.First().Text);
 
@@ -101,6 +100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SendInstallationRequest()
         {
+            LoggingService.WriteLogOnMethodEntry();
             NextButtonElement.Click();
             ConfirmInstallationEmailSent();
 
@@ -108,18 +108,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage SendPcbSwapInstallationRequest()
         {
+            LoggingService.WriteLogOnMethodEntry();
             return SendSwapInstallationRequest();
 
         }
 
         public DealerManageDevicesPage SendSwapInstallationRequest()
         {
+            LoggingService.WriteLogOnMethodEntry();
             NextButtonElement.Click();
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
         public string EnterInstallerEmail()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string emailId = "steve.walters@brother.co.uk";
             ClearAndType(EmailFieldElement, emailId);
             return emailId;
@@ -127,18 +130,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ConfirmInstallationEmailSent()
         {
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertIsEqual(true, SentConfirmationElement.Displayed, "Installation email not");
             
         }
 
         public DealerManageDevicesPage CompleteInstallation()
         {
+            LoggingService.WriteLogOnMethodEntry();
             FinishInstallationElement.Click();
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
         public string EnterInstallerEmailAndProceed()
         {
+            LoggingService.WriteLogOnMethodEntry();
             int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button

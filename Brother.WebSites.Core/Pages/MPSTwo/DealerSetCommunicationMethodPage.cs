@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.MPS;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -34,8 +33,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-communication-method\"]")]
         public IWebElement SetCommunicationTabElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputCloud_Input")]
@@ -48,7 +45,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSetCommunicationTabDisplayed()
         {
-            if(SetCommunicationTabElement == null)
+            LoggingService.WriteLogOnMethodEntry();
+            if (SetCommunicationTabElement == null)
                 throw new Exception("Set Communication Screen not displayed");
 
             AssertElementPresent(SetCommunicationTabElement, "Set communication screen");
@@ -56,16 +54,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetCloudCommunicationMethod()
         {
+            LoggingService.WriteLogOnMethodEntry();
             CloudCommunicationElement.Click();
         }
 
         public void SetEmailCommunicationMethod()
         {
+            LoggingService.WriteLogOnMethodEntry();
             EmailCommunicationTabElement.Click();
         }
 
         public void SetCommunicationMethod(string method)
         {
+            LoggingService.WriteLogOnMethodEntry(method);
             switch (method)
             {
                 case  "Cloud" :
@@ -80,7 +81,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSetInstallationTypePage ProceedToNextPage()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
             
             return GetTabInstance<DealerSetInstallationTypePage>(Driver);
@@ -89,7 +90,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProceedToNextPageForEmail()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ProceedElement);
 
             return GetTabInstance<DealerSendInstallationEmailPage>(Driver);

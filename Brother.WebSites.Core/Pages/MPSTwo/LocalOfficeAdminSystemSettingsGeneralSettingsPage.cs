@@ -23,7 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string SaveSuccessMessageSelector = "#content_1_ComponentSuccessMessage";
 

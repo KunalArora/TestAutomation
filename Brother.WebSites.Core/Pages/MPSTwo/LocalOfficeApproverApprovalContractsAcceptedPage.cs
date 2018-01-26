@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -38,6 +38,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyContractFilter(int proposalId, string proposalName, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId,proposalName,findElementTimeout);
             ClearAndType(ContractFilter, proposalId.ToString());
             if(proposalName == null)
             {

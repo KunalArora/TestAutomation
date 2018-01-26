@@ -1,8 +1,7 @@
-﻿using System;
-using Brother.WebSites.Core.Pages.Base;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
@@ -27,8 +26,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
+        
         [FindsBy(How = How.Id,
             Using =
                 "email"
@@ -50,6 +48,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulateEmailAddressTextBox(string emailAddress)
         {
+            LoggingService.WriteLogOnMethodEntry(emailAddress);
             EmailAddressTextBox.Clear();
             EmailAddressTextBox.SendKeys(emailAddress);
             EmailAddressTextBox.SendKeys(Keys.Tab);
@@ -57,11 +56,13 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public void PopulatePassword(string password)
         {
+            LoggingService.WriteLogOnMethodEntry(password);
             PasswordTextBox.SendKeys(password);
         }
 
         public void IsSignInButtonAvailable()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (SignInButton == null)
             {
                 throw new NullReferenceException("Unable to locate sign in button on page");
@@ -71,6 +72,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public MyAccountAtYourSidePage SignInButtonToMyAccount()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(SignInButton);
             SignInButton.Click();
             return GetInstance<MyAccountAtYourSidePage>(Driver);

@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Extensions;
@@ -13,7 +14,6 @@ using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -23,8 +23,9 @@ namespace Brother.Tests.Specs.Services
         private readonly ScenarioContext _context;
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
-        private readonly ILoggingService _loggingService;
         private readonly IRuntimeSettings _runtimeSettings;
+
+        private ILoggingService LoggingService { get; set; }
 
         public PageService(IWebDriver driver, 
             ScenarioContext context,
@@ -37,7 +38,7 @@ namespace Brother.Tests.Specs.Services
             _context = context;
             _urlResolver = urlResolver;
             _seleniumHelper = seleniumHelper;
-            _loggingService = loggingService;
+            LoggingService = loggingService;
             _runtimeSettings = runtimeSettings;
         }
 
@@ -54,16 +55,17 @@ namespace Brother.Tests.Specs.Services
 
         public TPage GetPageObject<TPage>(int? timeout = null, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
+            LoggingService.WriteLogOnMethodEntry(timeout, driver);
             #if DEBUG
-                //This is horrible but when stepping through code the WebDriverWait fails
-                Thread.Sleep(200);
+            //This is horrible but when stepping through code the WebDriverWait fails
+            Thread.Sleep(200);
             #endif
             if (driver == null)
             {
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,_loggingService), RuntimeSettings = _runtimeSettings };
+            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver,LoggingService), RuntimeSettings = _runtimeSettings, LoggingService = this.LoggingService };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)
@@ -72,6 +74,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
+            
             return pageObject;
         }
 
@@ -84,6 +87,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="driver">Override the injected driver with a specific instance</param>
         public void LoadUrl(string url, int timeout, string validationElementSelector = null, IWebDriver driver = null)
         {
+            LoggingService.WriteLogOnMethodEntry(url,timeout,validationElementSelector,driver);
             var timeSpan = TimeSpan.FromSeconds(timeout);
 
             if (string.IsNullOrWhiteSpace(validationElementSelector))
@@ -114,6 +118,7 @@ namespace Brother.Tests.Specs.Services
 
         public TPage LoadUrl<TPage>(string url, int timeout, string validationElementSelector = null, bool addToContextAsCurrentPage = false, IWebDriver driver = null) where TPage : BasePage, IPageObject, new()
         {
+            LoggingService.WriteLogOnMethodEntry(url,timeout,validationElementSelector,addToContextAsCurrentPage,driver);
             LoadUrl(url, timeout, validationElementSelector, driver);
             var pageObject = GetPageObject<TPage>(timeout, driver);
 
@@ -124,5 +129,6 @@ namespace Brother.Tests.Specs.Services
 
             return pageObject;
         }
+
     }
 }

@@ -40,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public void EnableInstallationOption(string communicationMethod, string installationType, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(communicationMethod,installationType,findElementTimeout);
             SeleniumHelper.FindElementByCssSelector(CustomiseInstallOptionsModalSelector, findElementTimeout);
 
             IWebElement element = null;
@@ -78,6 +79,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         private IWebElement GetInstallationTypeElementForCloudDevice(string installationType, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(installationType,findElementTimeout);
             string dataAttributeValue;
             switch (installationType)
             {
@@ -113,6 +115,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         private IWebElement GetInstallationTypeElementForEmailDevice(string installationType, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(installationType, findElementTimeout);
             IWebElement element;
             switch (installationType)
             {

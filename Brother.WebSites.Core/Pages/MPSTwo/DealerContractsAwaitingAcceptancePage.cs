@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TechTalk.SpecFlow;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -49,10 +42,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper
-        {
-            get; set;
-        }
 
         [FindsBy(How = How.CssSelector, Using = ".active [href=\"/mps/dealer/contracts/awaiting-acceptance\"]")]
         public IWebElement ContractAwaitingAcceptanceTabElement;
@@ -64,7 +53,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsContractAwaitingAcceptanceTabDisplayed()
         {
-            if(ContractAwaitingAcceptanceTabElement == null)
+            LoggingService.WriteLogOnMethodEntry();
+            if (ContractAwaitingAcceptanceTabElement == null)
                 throw new Exception("Dealer Contract Awaiting Acceptance tab is not displayed");
             AssertElementPresent(ContractAwaitingAcceptanceTabElement, "Dealer Contract Awaiting Acceptance tab");
         }
@@ -72,6 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyAcceptedContractIsDisplayed()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = MpsUtil.CreatedProposal();
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
@@ -79,6 +70,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -92,12 +84,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DownloadContractPdfOnDealerAwaitingAcceptanceContractPages()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.DownloadContractInvoicePdfAction(Driver);
         }
 
         private string DownloadFolderPath()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var path = "";
 
             if (IsAustriaSystem() || IsGermanSystem() || IsSwissSystem())
@@ -161,6 +155,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GetDownloadedPdfPath()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             var contractid = DownloadContractPdfElement.GetAttribute("data-contract-id");
             SpecFlow.SetContext("DownloadedContractId", contractid);
@@ -173,18 +168,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void DisplayDownloadedPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var downloadedPdf = DownloadedPdf();
             Driver.Navigate().GoToUrl(downloadedPdf);
         }
 
-        private static string DownloadedPdf()
+        private string DownloadedPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var downloadedPdf = SpecFlow.GetContext("DownloadedPdfPath");
             return downloadedPdf;
         }
 
         public void DoesPdfContentContainSomeText()
         {
+            LoggingService.WriteLogOnMethodEntry();
             WebDriver.Wait(DurationType.Second, 10);
 
             var contractType = MpsUtil.GetContractType();
@@ -208,13 +206,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void PurgeDownloadsDirectory()
         {
+            LoggingService.WriteLogOnMethodEntry();
             //Driver.Navigate().Back();
             PurgeDownloads(DownloadDirectory);
         }
 
         public void IsCustomerEmailPresentInPdf()
         {
-            if(IsBigAtSystem() || IsSpainSystem() || IsPolandSystem()) return;
+            LoggingService.WriteLogOnMethodEntry();
+            if (IsBigAtSystem() || IsSpainSystem() || IsPolandSystem()) return;
             var customerEmail = SpecFlow.GetContext("SummaryCustomerEmail");
             TestCheck.AssertTextContains(customerEmail, ExtractTextFromPdf(DownloadedPdf()),
                 "Customer Email is not available in the PDF");
@@ -222,6 +222,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCustomerNamePresentInPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (IsSpainSystem()) return;
             var customerName = SpecFlow.GetContext("SummaryCustomerOrCompanyName");
             TestCheck.AssertTextContains(customerName.Substring(0, 9), ExtractTextFromPdf(DownloadedPdf()),
@@ -230,6 +231,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string ConvertTermForUk(string term)
         {
+            LoggingService.WriteLogOnMethodEntry(term);
             var convertedTerm = "";
             if (!IsUKSystem()) return convertedTerm;
             switch (term)
@@ -251,6 +253,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryContractTermPresentInPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (IsBigAtSystem()) return;
             var contractTerm = SpecFlow.GetContext("SummaryContractTerm");
             contractTerm = ConvertTermForUk(contractTerm);
@@ -260,6 +263,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryContractTypePresentInPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (IsBigAtSystem() || IsPolandSystem() || IsDenmarkSystem()) return;
             var contractType = IsItalySystem() ? "Programma \"Pagine+ Cloud\"" : SpecFlow.GetContext("SummaryContractType");
 
@@ -278,6 +282,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryMonoClickRatePresentInPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var monoClickRate = SpecFlow.GetContext("SummaryMonoClickRate");
            // monoClickRate = ConvertClickRatePrice(monoClickRate);
             var colourClickRateFormat = IsBigAtSystem() ? AddCommaToColourClickPrice(monoClickRate) : ConvertClickRatePrice(monoClickRate);
@@ -287,7 +292,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string ConvertClickRatePrice(string clickPrice)
         {
-            
+            LoggingService.WriteLogOnMethodEntry(clickPrice);
             decimal clickDecimal = 0;
 
             if (IsBigAtSystem())
@@ -301,6 +306,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string AddCommaToColourClickPrice(string clickRate)
         {
+            LoggingService.WriteLogOnMethodEntry(clickRate);
             string coJoin = null;
 
             if ((IsAustriaSystem() && GetContractType() == "Leasing & Service"))
@@ -324,6 +330,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsSummaryColourClickRatePresentInPdf()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var colourClickRate = SpecFlow.GetContext("SummaryColourClickRate");
 
             var colourClickRateFormat = IsBigAtSystem() ? AddCommaToColourClickPrice(colourClickRate) : ConvertClickRatePrice(colourClickRate);
@@ -334,6 +341,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private string SpecificLanguageText()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var lang = "";
 
             if (IsAustriaSystem())
@@ -364,6 +372,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsCorrectLanguagePdfDownloaded()
         {
+            LoggingService.WriteLogOnMethodEntry();
             TestCheck.AssertTextContains(SpecificLanguageText(), ExtractTextFromPdf(DownloadedPdf()),
                 "The correct language PDF is not downloaded");
         }

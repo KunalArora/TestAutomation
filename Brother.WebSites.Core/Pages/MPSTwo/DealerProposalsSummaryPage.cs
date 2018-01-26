@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -28,11 +27,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 return _url;
             }
-        }
-
-        public ISeleniumHelper SeleniumHelper
-        {
-            get; set;
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonDownloadProposalPdf")]

@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Specs.Domain;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using Brother.Tests.Specs.Domain;
-using NUnit.Framework.Constraints;
 
 namespace Brother.Tests.Specs.Services
 {
     public class WebRequestService : IWebRequestService
     {
+        public WebRequestService(ILoggingService loggingService) { LoggingService = loggingService; }
+
+        private ILoggingService LoggingService { get; set; }
+
         /// <summary>
         /// Sends an http/s request and returns a WebPageResponse object
         /// </summary>
@@ -25,6 +29,7 @@ namespace Brother.Tests.Specs.Services
         public WebPageResponse GetPageResponse(string url, string method, int timeout, string contentType = null,
             string body = null, Dictionary<string, string> additionalHeaders = null)
         {
+            LoggingService.WriteLogOnMethodEntry(url, method, timeout, contentType, body, additionalHeaders);
             method = method.ToUpper();
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
@@ -74,11 +79,14 @@ namespace Brother.Tests.Specs.Services
                 }
             }
 
-            return PageResponse(webRequest);
+            var pageResponse =  PageResponse(webRequest);
+            LoggingService.WriteLog(LoggingLevel.DEBUG, "<< {0}", pageResponse);
+            return pageResponse;
         }
 
         private WebPageResponse PageResponse(WebRequest request)
         {
+            LoggingService.WriteLogOnMethodEntry(request);
             WebPageResponse webPageResponse = new WebPageResponse
             {
                 ResponseBody = string.Empty,
@@ -144,5 +152,6 @@ namespace Brother.Tests.Specs.Services
             Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
             return webPageResponse;
         }
+
     }
 }

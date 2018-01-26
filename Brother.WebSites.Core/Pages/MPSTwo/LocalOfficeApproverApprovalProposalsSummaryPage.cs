@@ -17,7 +17,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -41,12 +41,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnAccept(int timeout)
         {
+            LoggingService.WriteLogOnMethodEntry(timeout);
             SeleniumHelper.ClickSafety( ApproveButtonElement, timeout);
             SeleniumHelper.ClickSafety( AcceptButtonElement, timeout,true);
         }
 
         public void DeclineProposal(string proposalDeclineReasonExpired, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalDeclineReasonExpired,findElementTimeout);
             SeleniumHelper.ClickSafety(DeclineButtonElement, findElementTimeout);
             var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector, findElementTimeout);
             SeleniumHelper.SelectFromDropdownByText(InputReasonElement, proposalDeclineReasonExpired);

@@ -1,18 +1,21 @@
-﻿using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Brother.Tests.Common.RuntimeSettings;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.Helpers
 {
     public class ExcelHelper: IExcelHelper
     {
+
+
         // Excel Properties
         private const int TOTAL_NUMBER_OF_COLUMNS = 25;
 
@@ -49,15 +52,20 @@ namespace Brother.Tests.Specs.Helpers
 
         private IRuntimeSettings _runtimeSettings;
 
+        private ILoggingService LoggingService { get; set; }
+
         public ExcelHelper(
-            IRuntimeSettings runtimeSettings
+            IRuntimeSettings runtimeSettings,
+            ILoggingService loggingService
             )
         {
             _runtimeSettings = runtimeSettings;
+            LoggingService = loggingService;
         }
 
         public string GetDownloadedExcelFilePath()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var fileList = ListDownloadsFolder();
             var task = WaitforNewfile(fileList);
             if (task.Wait(new TimeSpan(0, 0, _runtimeSettings.DefaultDownloadTimeout)))
@@ -72,11 +80,13 @@ namespace Brother.Tests.Specs.Helpers
 
         public void OpenExcel(string excelFilePath)
         {
+            LoggingService.WriteLogOnMethodEntry();
             System.Diagnostics.Process.Start(excelFilePath);
         }
 
         public int GetNumberOfRows(string excelFilePath)
         {
+            LoggingService.WriteLogOnMethodEntry();
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -96,6 +106,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public void VerifyTotalNumberOfColumns(string excelFilePath)
         {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -118,6 +129,7 @@ namespace Brother.Tests.Specs.Helpers
         public string EditExcelCustomerInformation(
             string excelFilePath, int row, CustomerInformationMandatoryFields mandatoryFieldValues, CustomerInformationOptionalFields optionalFieldValues = null)
         {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath, row, mandatoryFieldValues, optionalFieldValues);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -160,6 +172,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public AdditionalDeviceProperties GetDeviceDetails(string excelFilePath, int row)
         {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath, row);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -215,6 +228,7 @@ namespace Brother.Tests.Specs.Helpers
         public void VerifyDeviceStatusAndConnectionStatus(
            string excelFilePath, int deviceRowIndex, string resourceDeviceStatus, string resourceConnectionStatus)
         {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath, deviceRowIndex, resourceDeviceStatus, resourceConnectionStatus);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -239,6 +253,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public void DeleteExcelFile(string filePath)
         {
+            LoggingService.WriteLogOnMethodEntry();
             try 
             { 
                 System.IO.File.Delete(filePath); 
@@ -253,6 +268,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.xlsx")
         {
+            LoggingService.WriteLogOnMethodEntry(orglist, pattern);
             // note: FileWatcher is not detecting file...
             for (int safetycount = 0; safetycount < 1000; safetycount++)
             {
@@ -269,6 +285,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string[] ListDownloadsFolder(string pattern = "*.xlsx")
         {
+            LoggingService.WriteLogOnMethodEntry(pattern);
             try
             {
                 string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
@@ -282,6 +299,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string HandleNullCase(Object variable)
         {
+            LoggingService.WriteLogOnMethodEntry(variable);
             if (variable != null)
             {
                 return variable.ToString();
@@ -291,6 +309,8 @@ namespace Brother.Tests.Specs.Helpers
                 return "";
             }
         }
+
+
         # endregion
     }
 }

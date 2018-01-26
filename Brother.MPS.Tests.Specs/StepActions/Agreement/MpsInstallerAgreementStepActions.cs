@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
@@ -33,8 +34,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRuntimeSettings runtimeSettings,
             MpsSignInStepActions mpsSignIn,
             IDeviceSimulatorService deviceSimulatorService,
+            ILoggingService loggingService,
             IAgreementHelper agreementHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
             _contextData = contextData;
@@ -45,6 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void InstallDevicesOneByOneForCloudBor()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string deviceId, serialNumber;
 
             foreach(var device in _contextData.AdditionalDeviceProperties)
@@ -85,6 +88,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void BulkInstallDevicesForCloudBor()
         {
+            LoggingService.WriteLogOnMethodEntry();
             // 1. Navigate to Select method page & verify device details
             var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
             
@@ -141,6 +145,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void BulkInstallDevicesForCloudWeb()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string bocDeviceId, serialNumber;
 
             // 1. Register devices on BOC
@@ -194,6 +199,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void SingleDeviceInstallationForCloudUsb(AdditionalDeviceProperties device)
         {
+            LoggingService.WriteLogOnMethodEntry(device);
             string bocDeviceId, serialNumber;
 
             // 1. Navigate to installation URL
@@ -232,6 +238,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void BulkInstallDevicesForCloudUsb()
         {
+            LoggingService.WriteLogOnMethodEntry();
             // 1. Navigate to Select method page & verify device details
             var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
 
@@ -308,6 +315,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private void RegisterDeviceOnBOC(string deviceModel, string installationPin, int deviceIndex, out string deviceId, out string serialNumber)
         {
+            LoggingService.WriteLogOnMethodEntry(deviceModel, installationPin, deviceIndex);
             // 1. Create new device
             serialNumber = _agreementHelper.GenerateSerialNumber(deviceIndex);
             deviceId = _deviceSimulatorService.CreateNewDevice(deviceModel, serialNumber);
@@ -324,6 +332,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private InstallationSelectMethodPage NavigateToSelectMethodPageForBulk()
         {
+            LoggingService.WriteLogOnMethodEntry();
+
             // Navigate to advanced installation URL
             var installationManageInstallationsPage = _mpsSignIn.LoadInstallationManageInstallationsPageType3(
                 _contextData.AdditionalDeviceProperties[0].AdvancedInstallationLink);
@@ -345,6 +355,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private InstallationCloudToolPage SelectSerialNumbersHelper(InstallationCloudToolPage installationCloudToolPage)
         {
+            LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 var deviceRowElements = installationCloudToolPage.SeleniumHelper.FindRowElementsWithinTable(
@@ -369,6 +380,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private void RefreshUntilConnectedForCloudBor(InstallationCloudToolPage installationCloudToolPage)
         {
+			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
+
             int retries = 0;
             while (!installationCloudToolPage.AreAllDevicesConnected(RuntimeSettings.DefaultFindElementTimeout))
             {
@@ -386,6 +399,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         private void RefreshUntilConnectedForCloudUsb(InstallationCloudUsbPage installationCloudUsbPage)
         {
+			LoggingService.WriteLogOnMethodEntry(installationCloudUsbPage);
+
             int retries = 0;
             while (!installationCloudUsbPage.AreAllDevicesConnected(RuntimeSettings.DefaultFindElementTimeout))
             {
@@ -403,6 +418,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 

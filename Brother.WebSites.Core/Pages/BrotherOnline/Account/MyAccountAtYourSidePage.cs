@@ -1,9 +1,7 @@
-﻿using System;
-using System.Data;
-using Brother.WebSites.Core.Pages.Base;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
@@ -28,7 +26,6 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.CssSelector,
             Using =
@@ -43,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage ClickAccessMpsDashboardButtonToDashboard<TPage>() where TPage : BasePage, new()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ScrollTo(AccessMpsDashboardButton);
             AccessMpsDashboardButton.Click();
             return GetInstance<TPage>(Driver);            
@@ -50,12 +48,14 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 
         public TPage RedirectToMpsDashboard<TPage>(string url) where TPage : BasePage, new()
         {
+            LoggingService.WriteLogOnMethodEntry(url);
             NavigateToPage(Driver, url);
             return GetInstance<TPage>(Driver);
         }
 
         private void IsAccessMpsDashboardButtonAvailable()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (AccessMpsDashboardButton == null)
             {
                 throw new NullReferenceException("Unable to locate Access MPS Dashboard button on page");

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
- 
 
 namespace Brother.Tests.Specs.StepActions
 {
@@ -23,12 +16,14 @@ namespace Brother.Tests.Specs.StepActions
         protected readonly ScenarioContext ScenarioContext;
         protected readonly IUrlResolver UrlResolver;
         protected readonly IRuntimeSettings RuntimeSettings;
+        protected readonly ILoggingService LoggingService;
 
         public StepActionBase(IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext scenarioContext,
             IUrlResolver urlResolver,
+            ILoggingService loggingService,
             IRuntimeSettings runtimeSettings)
         {
             WebDriverFactory = webDriverFactory;
@@ -36,7 +31,11 @@ namespace Brother.Tests.Specs.StepActions
             PageService = pageService;
             ScenarioContext = scenarioContext;
             UrlResolver = urlResolver;
+            LoggingService = loggingService;
             RuntimeSettings = runtimeSettings;
         }
+
     }
+
+
 }

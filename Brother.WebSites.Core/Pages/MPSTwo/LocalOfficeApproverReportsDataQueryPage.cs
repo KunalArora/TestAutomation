@@ -25,6 +25,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSearchedProposal(int proposalId, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId,findElementTimeout);
             var proposalIdString = proposalId.ToString();
             SeleniumHelper.WaitUntil(d =>
             {

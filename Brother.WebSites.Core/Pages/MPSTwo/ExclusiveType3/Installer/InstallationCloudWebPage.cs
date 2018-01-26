@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -22,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string IPAddress1Selector = "[id*=content_0_List_InputIp1_]";
         private const string IPAddress2Selector = "[id*=content_0_List_InputIp2_]";
@@ -43,6 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         // Fill device details & hit connect for this device
         public void FillDeviceDetailsAndClickConnect(AdditionalDeviceProperties device, string windowHandle)
         {
+            LoggingService.WriteLogOnMethodEntry(device, windowHandle);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach(var element in deviceRowElements)
             {
@@ -71,6 +71,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool AreAllDevicesConnected(int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {

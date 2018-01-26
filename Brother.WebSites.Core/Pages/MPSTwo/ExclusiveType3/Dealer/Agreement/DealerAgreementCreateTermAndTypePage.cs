@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         //WebElement properties
         [FindsBy(How = How.Id, Using = "content_1_InputUsageType_Input")]
@@ -45,21 +45,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public void SelectUsageType(string usage)
         {
+            LoggingService.WriteLogOnMethodEntry(usage);
             SelectFromDropdown(UsageTypeElement, usage);
         }
 
         public void SelectContractLength(string contractLength)
         {
+            LoggingService.WriteLogOnMethodEntry(contractLength);
             SelectFromDropdown(ContractLengthElement, contractLength);
         }
 
         public void SelectService(string service)
         {
+            LoggingService.WriteLogOnMethodEntry(service);
             SelectFromDropdown(ServiceElement, service);
         }
 
         public void ValidateServicePackAvailableOptions(string resourceUsageTypePayAsYouGo, string resourceServiceTypeIncludedInClickPrice)
         {
+            LoggingService.WriteLogOnMethodEntry(resourceUsageTypePayAsYouGo,resourceServiceTypeIncludedInClickPrice);
             SelectUsageType(resourceUsageTypePayAsYouGo);
             List<string> dropdownValues = SeleniumHelper.GetAllValuesOfDropdown(ServiceElement);
             if (dropdownValues.Exists(value => string.Equals(value, resourceServiceTypeIncludedInClickPrice, StringComparison.OrdinalIgnoreCase)))

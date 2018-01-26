@@ -1,14 +1,4 @@
-﻿using Brother.WebSites.Core.Pages.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Helpers;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium;
-
-namespace Brother.WebSites.Core.Pages.MPSTwo
+﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class LocalOfficeApproverApprovalContractsApprovedProposalsPage : LocalOfficeApproverContractsPage, IPageObject
     {
@@ -21,11 +11,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 return _url;
             }
-        }
-
-        public ISeleniumHelper SeleniumHelper
-        {
-            get; set;
         }
 
         public string ValidationElementSelector

@@ -22,7 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string DataTablesFooterSelector = ".mps-dataTables-footer";
@@ -39,6 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public bool VerifyCreatedAgreement(int agreementId, string agreementName, int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId,agreementName,findElementTimeout);
             // Wait for footer to load & then filter out the agreement
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, findElementTimeout);
             ClearAndType(AgreementFilter, agreementId.ToString());
@@ -57,6 +58,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // TODO: Generalize it by taking agreementId as parameter in the future
         public void ClickOnManageDevicesButton(int findElementTimeout)
         {
+            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
             SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
             SeleniumHelper.ClickSafety(ManageDevicesButtonElement, findElementTimeout);
         }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages
@@ -31,6 +28,12 @@ namespace Brother.WebSites.Core.Pages
             }
         }
 
+
+
+        public ILoggingService LoggingService { get; set; }
+
         public ISeleniumHelper SeleniumHelper { get; set; }
+
+        public IRuntimeSettings RuntimeSettings { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
@@ -25,10 +26,11 @@ namespace Brother.Tests.Specs.StepActions.Common
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
+            ILoggingService loggingService,
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _translationService = translationService;
@@ -37,6 +39,7 @@ namespace Brother.Tests.Specs.StepActions.Common
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
             dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
             ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(
@@ -46,6 +49,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
             int devicesInstallingCount = 0;
 
@@ -86,6 +90,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage SendSingleInstallationRequests(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
 
             // Tick checkboxes of devices which are to be installed according to feature file configuration
@@ -120,6 +125,8 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void EnableInstallationOption(
             LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string installationType, string communicationMethod)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, installationType,communicationMethod);
+
             // Click Customise button element
             ClickSafety(localOfficeAgreementDevicesPage.CustomiseButtonElement, localOfficeAgreementDevicesPage);
 
@@ -133,6 +140,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Refreshes the print counts on MPS portal (after synchronizing BOC values)
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
 
@@ -170,6 +178,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyGenerationOfConsumableOrders(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Run Jobs for synchronizing log data, raising consumable order & registering order in SAP
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
             _runCommandService.RunConsumableOrderRequestsCommand();
@@ -227,6 +236,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void ClickSafety(IWebElement element, IPageObject pageObject)
         {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
     }

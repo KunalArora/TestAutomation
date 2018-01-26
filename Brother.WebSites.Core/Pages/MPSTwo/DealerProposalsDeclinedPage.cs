@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
@@ -19,8 +18,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _url;
             }
         }
-
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public string ValidationElementSelector
         {
@@ -43,6 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnCopyWithCustomerActionItem(int proposalId, int findElementTimeout, IWebDriver driver)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId,findElementTimeout,driver);
             ClearAndType(ProposalFilter, proposalId.ToString());
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector, findElementTimeout);
@@ -54,6 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsDuplicateProposalDisplayed()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var container = new List<string>();
             var noOfProposalId = AttachedProposalId.Count;
 

@@ -1,7 +1,8 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -10,7 +11,6 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Customer
 {
@@ -26,8 +26,9 @@ namespace Brother.Tests.Specs.StepActions.Customer
             ScenarioContext context,
             IUrlResolver urlResolver,
             IRuntimeSettings runtimeSettings,
+            ILoggingService loggingService,
             MpsSignInStepActions mpsSignIn)
-             : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
@@ -36,6 +37,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public DealerCustomersExistingPage NavigateToCustomerContractPage(DealerDashBoardPage dealerDashboardPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             dealerDashboardPage.ExistingCustomerLinkElement.Click();
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
@@ -44,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, out string eMailName, Country country, string payment = "Invoice")
         {
+            LoggingService.WriteLogOnMethodEntry(dealerCustomersManagePage, country, payment); // $$
             dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
             customerName = dealerCustomersManagePage.GetCompanyName();
             eMailName = dealerCustomersManagePage.GetEmail();
@@ -56,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
         {
+            LoggingService.WriteLogOnMethodEntry(_dealerCustomersExistingPage, customerInformationName, customerEmail);
             bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail, RuntimeSettings.DefaultFindElementTimeout);
             if (exists)
             {
