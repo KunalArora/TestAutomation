@@ -9,5 +9,6 @@
         void RemoveConsumableOrderByInstalledPrinter(string serialNumber);
         void SetConsumableOrderStatus(int orderId, int statusId);
         void RegisterCustomer(string idIsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB");
+        void RemoveProductionSmokeTests();
     }
 }
