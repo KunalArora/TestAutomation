@@ -18,27 +18,27 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloudMPSProductionRegressionTestServer3And4")]
+    [NUnit.Framework.DescriptionAttribute("CloudMPSProductionRegressionTestServer3")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("PROD")]
-    [NUnit.Framework.CategoryAttribute("SERVER34")]
-    public partial class CloudMPSProductionRegressionTestServer3And4Feature
+    [NUnit.Framework.CategoryAttribute("SERVER3")]
+    public partial class CloudMPSProductionRegressionTestServer3Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloudMPSProductionRegressionTestServer3And4.feature"
+#line 1 "CloudMPSProductionRegressionTestServer3.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSProductionRegressionTestServer3And4", "\tIn order to progress an approved proposal to contract\r\n\tAs a dealer\r\n\tI want to " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSProductionRegressionTestServer3", "\tIn order to progress an approved proposal to contract\r\n\tAs a dealer\r\n\tI want to " +
                     "be able to sign an approve proposal", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "PROD",
-                        "SERVER34"});
+                        "SERVER3"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.PRODUCTION
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Dealer Can Sign A Purchase And Click Contract in Prod")]
         [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://p3.online.brother.co.uk", "Web_3", "Cloud", "Web", null)]
-        [NUnit.Framework.TestCaseAttribute("Cloud MPS Dealer", "United Kingdom", "Cloud MPS Local Office Approver", "https://p4.online.brother.co.uk", "Web_4", "Cloud", "Web", null)]
         public virtual void DealerCanSignAPurchaseAndClickContractInProd(string role, string country, string role2, string web, string serverName, string method, string type, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Dealer Can Sign A Purchase And Click Contract in Prod", exampleTags);

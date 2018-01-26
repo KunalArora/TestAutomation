@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Specs.Resolvers;
+﻿using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -23,12 +24,22 @@ namespace Brother.Tests.Specs.Services
 
         }
 
-        private void ExecuteWebTool(string url)
+        private void ExecuteWebTool(string url, string authToken = null)
         {
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? _authToken } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+        }
+
+        private WebPageResponse GetWebToolResponse(string url, string authToken = null)
+        {
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? _authToken } };
+            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
+
+            Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+
+            return response;
         }
 
         public void RecycleSerialNumber(string serialNumber)
@@ -83,5 +94,13 @@ namespace Brother.Tests.Specs.Services
 
         }
 
+        public void RemoveProductionSmokeTests()
+        {
+            string actionPath = "automation/deletesmokeproposals.aspx";
+            string url = string.Format(_baseUrl, actionPath);
+
+            var response = GetWebToolResponse(url, @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$"); //production auth header       
+
+        }
     }
 }

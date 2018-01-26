@@ -106,6 +106,15 @@ namespace Brother.Tests.Specs.AdditionalBindings
                 var logging = _container.Resolve<ILoggingService>();
                 logging.WriteLog(LoggingLevel.FAILURE, ScenarioContext.Current.TestError.Message);
             }
+
+            if (_container.Resolve<IContextData>().Environment.ToUpper() == "PROD")
+            {
+                //A bit heavy handed but ensures that any production scenario removes smoke tests
+                var logging = _container.Resolve<ILoggingService>();
+                var mpsWebToolsService = _container.Resolve<IMpsWebToolsService>();
+                logging.WriteLog(LoggingLevel.INFO, "Clearing production smoke tests");
+                mpsWebToolsService.RemoveProductionSmokeTests();
+            }
         }
 
         private string DefaultEnvironment()
