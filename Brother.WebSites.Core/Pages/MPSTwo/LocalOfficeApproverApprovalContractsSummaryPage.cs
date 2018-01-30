@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -18,7 +17,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -36,9 +35,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //TODO: Refactoring
         public void OnClickAccept()
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            SeleniumHelper.ClickSafety(AcceptButtonElement, findElementTimeout);
-            SeleniumHelper.ClickSafety(FinalAcceptButtonElement, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(AcceptButtonElement);
+            SeleniumHelper.ClickSafety(FinalAcceptButtonElement);
         }
     }
 }

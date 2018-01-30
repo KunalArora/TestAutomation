@@ -1,10 +1,10 @@
-﻿using Brother.Tests.Common.Logging;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -108,7 +108,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""(.*)""")]
         public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom(string country)
         {
-            _loggingService.WriteLog(LoggingLevel.INFO,"GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom({0})", country);
             GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(country);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }

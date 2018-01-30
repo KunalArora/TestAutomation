@@ -1,10 +1,7 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
@@ -37,6 +34,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string TotalPriceDataAttributeSelector = "total-price";
         private const string TotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
+        private const string PreloaderSelector = ".js-mps-preloader";
 
 
         // Web Elements
@@ -46,17 +44,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement FilterProductElement;
 
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
-        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
+
+        public IWebElement SelectPrinter(string printerName)
         {
+            LoggingService.WriteLogOnMethodEntry(printerName);
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
-            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector);
 
-            SeleniumHelper.ClickSafety(addButton, findElementTimeout);
+            SeleniumHelper.ClickSafety(addButton);
+
+            // Note: Click Add button once again if it doesn't succeed first time
+            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
+            {
+                SeleniumHelper.ClickSafety(addButton);
+            }
 
             return printerContainer;
         }
@@ -65,10 +70,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             int quantity,
             string installationPack,
             string servicePack,
-            int findElementTimeout,
             out IWebElement printerContainer
             )
         {
+            LoggingService.WriteLogOnMethodEntry(printerName, quantity, installationPack, servicePack);
             string quantityInputSelector = "#Quantity";
             string installationPackInputSelector = "#InstallationPackId";
             string servicePackInputSelector = "#ServicePackId";
@@ -77,16 +82,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
 
-            printerContainer = SelectPrinter(printerName, findElementTimeout);
+            printerContainer = SelectPrinter(printerName);
 
             var quantityInput = SeleniumHelper.FindElementByCssSelector(
-                printerContainer, quantityInputSelector, findElementTimeout);
+                printerContainer, quantityInputSelector);
             var installationPackInput = SeleniumHelper.FindElementByCssSelector(
-                printerContainer, installationPackInputSelector, findElementTimeout);
+                printerContainer, installationPackInputSelector);
             var servicePackInput = SeleniumHelper.FindElementByCssSelector(
-                printerContainer, servicePackInputSelector, findElementTimeout);
+                printerContainer, servicePackInputSelector);
             var addToAgreementButton = SeleniumHelper.FindElementByCssSelector(
-                printerContainer, addToAgreementButtonSelector, findElementTimeout);
+                printerContainer, addToAgreementButtonSelector);
          
             quantityInput.Clear();
             quantityInput.SendKeys(quantity.ToString());
@@ -104,62 +109,72 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return addToAgreementButton;
         }
 
-        public void ClickAddToAgreementButton(IWebElement printerContainer, IWebElement addToAgreementButton, int findElementTimeout)
+        public void ClickAddToAgreementButton(IWebElement printerContainer, IWebElement addToAgreementButton)
         {
-            SeleniumHelper.ClickSafety(addToAgreementButton, findElementTimeout);
-            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer, addToAgreementButton);
+            SeleniumHelper.ClickSafety(addToAgreementButton);
+            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector);
         }
 
-        public IWebElement GetInstallationPackRowElement(IWebElement printerContainer, int findElementTimeout)
+        public IWebElement GetInstallationPackRowElement(IWebElement printerContainer)
         {
-            return SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackRowSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackRowSelector);
         }
 
-        public string InstallationPackQuantity(IWebElement printerContainer, int findElementTimeout)
+        public string InstallationPackQuantity(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetInstallationPackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
+                GetInstallationPackRowElement(printerContainer), QuantityDataAttributeSelector, "true").Text;
         }
 
-        public string InstallationPackUnitPrice(IWebElement printerContainer, int findElementTimeout)
+        public string InstallationPackUnitPrice(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetInstallationPackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
+                GetInstallationPackRowElement(printerContainer), UnitPriceDataAttributeSelector, "true").Text;
         }
 
-        public string InstallationPackTotalPrice(IWebElement printerContainer, int findElementTimeout)
+        public string InstallationPackTotalPrice(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetInstallationPackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
+                GetInstallationPackRowElement(printerContainer), TotalPriceDataAttributeSelector, "true").Text;
         }
 
-        public IWebElement GetServicePackRowElement(IWebElement printerContainer, int findElementTimeout)
+        public IWebElement GetServicePackRowElement(IWebElement printerContainer)
         {
-            return SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackRowSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackRowSelector);
         }
 
-        public string ServicePackQuantity(IWebElement printerContainer, int findElementTimeout)
+        public string ServicePackQuantity(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetServicePackRowElement(printerContainer, findElementTimeout), QuantityDataAttributeSelector, "true", findElementTimeout).Text;
+                GetServicePackRowElement(printerContainer), QuantityDataAttributeSelector, "true").Text;
         }
 
-        public string ServicePackUnitPrice(IWebElement printerContainer, int findElementTimeout)
+        public string ServicePackUnitPrice(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetServicePackRowElement(printerContainer, findElementTimeout), UnitPriceDataAttributeSelector, "true", findElementTimeout).Text;
+                GetServicePackRowElement(printerContainer), UnitPriceDataAttributeSelector, "true").Text;
         }
 
-        public string ServicePackTotalPrice(IWebElement printerContainer, int findElementTimeout)
+        public string ServicePackTotalPrice(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                GetServicePackRowElement(printerContainer, findElementTimeout), TotalPriceDataAttributeSelector, "true", findElementTimeout).Text;
+                GetServicePackRowElement(printerContainer), TotalPriceDataAttributeSelector, "true").Text;
         }
 
-        public string TotalLinePrice(IWebElement printerContainer, int findElementTimeout)
+        public string TotalLinePrice(IWebElement printerContainer)
         {
+            LoggingService.WriteLogOnMethodEntry(printerContainer);
             return SeleniumHelper.FindElementByDataAttributeValue(
-                TotalLinePriceDataAttributeSelector, "true", findElementTimeout).Text;
+                TotalLinePriceDataAttributeSelector, "true").Text;
         }
     }
 }

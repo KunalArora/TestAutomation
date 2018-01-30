@@ -22,7 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string DataTablesFooterSelector = ".mps-dataTables-footer";
@@ -37,14 +37,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         [FindsBy(How = How.CssSelector, Using = ".js-mps-manage-devices")]
         public IWebElement ManageDevicesButtonElement;
 
-        public bool VerifyCreatedAgreement(int agreementId, string agreementName, int findElementTimeout)
+        public bool VerifyCreatedAgreement(int agreementId, string agreementName)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId, agreementName);
+
             // Wait for footer to load & then filter out the agreement
-            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, findElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector);
             ClearAndType(AgreementFilter, agreementId.ToString());
             try
             {
-                SeleniumHelper.WaitUntil(d => AgreementListNameRowElement.First(element => element.Text == agreementName), findElementTimeout);
+                SeleniumHelper.WaitUntil(d => AgreementListNameRowElement.First(element => element.Text == agreementName));
                 return true;
             }
             catch
@@ -55,11 +57,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Click Manage devices button for first device showing
         // TODO: Generalize it by taking agreementId as parameter in the future
-        public void ClickOnManageDevicesButton(int findElementTimeout)
+        public void ClickOnManageDevicesButton()
         {
-            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
-            SeleniumHelper.ClickSafety(ManageDevicesButtonElement, findElementTimeout);
-        }
+            LoggingService.WriteLogOnMethodEntry();
 
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+            SeleniumHelper.ClickSafety(ManageDevicesButtonElement);
+        }
     }
 }

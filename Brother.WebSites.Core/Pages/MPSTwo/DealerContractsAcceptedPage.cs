@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Brother.Tests.Selenium.Lib.Helpers;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -39,8 +33,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-manage-devices")]
         public IWebElement ManageDevicesElement;
@@ -49,22 +41,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ActionsButtonSelector = ".btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesSelector = ".js-mps-manage-devices";
        
-        public void NavigateToSpecificManageDevicesPage(int proposalId, int findElementTimeout)
+        public void NavigateToSpecificManageDevicesPage(int proposalId)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
-            var SearchFieldElement = SeleniumHelper.FindElementByCssSelector(SearchFieldSelector, findElementTimeout);
+            var SearchFieldElement = SeleniumHelper.FindElementByCssSelector(SearchFieldSelector);
             ClearAndType(SearchFieldElement, proposalId.ToString());
-            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
             ActionsButtonElement.Click();
-            var ManageDevicesAction = SeleniumHelper.FindElementByCssSelector(ManageDevicesSelector, findElementTimeout);
+            var ManageDevicesAction = SeleniumHelper.FindElementByCssSelector(ManageDevicesSelector);
             ScrollTo(ManageDevicesAction);
             ManageDevicesAction.Click();
         }
 
         public DealerManageDevicesPage NavigateToManageDevicesPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
@@ -78,6 +72,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerManageDevicesPage NavigateToManageDevicesPageToConfirmThatInstallationRequestAvailability()
         {
+            LoggingService.WriteLogOnMethodEntry();
             MpsJobRunnerPage.RunCompleteInstallationCommandJob(MpsUtil.CreatedProposal());
             MpsJobRunnerPage.RunRefreshPrintCountsFromMedioCommandJob(MpsUtil.CreatedProposal(), Locale);
             MpsJobRunnerPage.RunRefreshPrintCountsFromEmailCommandJob(Locale);

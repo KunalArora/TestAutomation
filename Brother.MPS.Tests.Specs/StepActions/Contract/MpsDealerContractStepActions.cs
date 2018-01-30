@@ -1,18 +1,16 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Domain.Enums;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Common.Services;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using Brother.Tests.Common.RuntimeSettings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -32,8 +30,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IRuntimeSettings runtimeSettings,
             DeviceSimulatorService deviceSimulatorService,
             ITranslationService translationService,
+            ILoggingService loggingService,
             RunCommandService runCommandService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _contextData = contextData;
@@ -44,24 +43,29 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             dealerDashboardPage.ExistingContractLinkElement.Click();
             return PageService.GetPageObject<DealerContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerContractsAcceptedPage NavigateToContractsAcceptedPage(DealerContractsPage dealerContractsPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.AcceptedTabElement.Click();
             return PageService.GetPageObject<DealerContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerManageDevicesPage NavigateToManageDevicesPageFix(DealerContractsAcceptedPage dealerContractsAcceptedPage, int proposalId)
         {
-            dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId, RuntimeSettings.DefaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(dealerContractsAcceptedPage, proposalId);
+
+            dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId);
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public void InstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(_dealerManageDevicesPage);
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -72,6 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void UpdateAndNotifyBOCForPrintCounts()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -84,6 +89,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void UpdateAndNotifyBOCForConsumableOrder()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -95,6 +101,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void UpdateAndNotifyBOCForServiceRequest()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -106,6 +113,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void RunCommandServicesRequests()
         {
+            LoggingService.WriteLogOnMethodEntry();
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();
@@ -113,12 +121,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage RetrieveDealerManageDevicesPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string currentUrl = _dealerWebDriver.Url;
             return PageService.LoadUrl<DealerManageDevicesPage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]", true, _dealerWebDriver);
         }
 
         public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
@@ -129,6 +139,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string swappedSerialNumber)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage,swappedSerialNumber);
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
             dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, swappedSerialNumber);
         }
@@ -136,23 +147,27 @@ namespace Brother.Tests.Specs.StepActions.Contract
         //Similar function is already present in this file so, refactor this particular function.
         public void MoveToAcceptedContractsTab(DealerContractsPage dealerContractsPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.MoveToAcceptedContracts();
         }
         
         public void FilterContractUsingProposalIdAction(DealerContractsPage dealerContractsPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             int proposalId = _contextData.ProposalId;
             dealerContractsPage.FilterContractUsingProposalId(proposalId);
         }
 
         public DealerManageDevicesPage ClickOnManageDevicesAndProceed(DealerContractsPage dealerContractsPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.ClickOnManageDevicesButton();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerSetCommunicationMethodPage CreateInstallationRequest(DealerManageDevicesPage dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             // Filter Location
             _contextData.CompanyLocation = dealerManageDevicesPage.SelectLocation();
             
@@ -162,6 +177,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerSetInstallationTypePage SelectCommunicationMethodAndProceed(DealerSetCommunicationMethodPage dealerSetCommunicationMethodPage, string communicationMethod)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage, communicationMethod);
             switch(communicationMethod)
             {
                 case "Cloud":
@@ -180,18 +196,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerSendInstallationEmailPage SelectInstallationTypeAndProceed(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
             SelectInstallationTypeAndClickNext(dealerSetInstallationTypePage, installationType);
             return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmail(DealerSendInstallationEmailPage dealerSendInstallationEmailPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSendInstallationEmailPage);
             _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);
             string installerEmail = _contextData.InstallerEmail;
             string companyLocation = _contextData.CompanyLocation;
@@ -207,11 +226,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void ClickOnSwapDevice(DealerManageDevicesPage dealerManageDevicesPage, string serialNumber)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage, serialNumber);
             dealerManageDevicesPage.ClickOnSwapDevice(serialNumber);
         }
 
         public DealerSetCommunicationMethodPage ConfirmSwapAndSelectSwapType(DealerManageDevicesPage dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             string resourceSwapTypeReplaceWithDifferentModel = _translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, _contextData.Culture);
             string swapType = _contextData.SwapType;
             dealerManageDevicesPage.ConfirmSwapAndSelectSwapType(swapType, resourceSwapTypeReplaceWithDifferentModel);
@@ -220,18 +241,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerSendSwapInstallationEmailPage SelectInstallationTypeAndProceedForSwap(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
             SelectInstallationTypeAndClickNext(dealerSetInstallationTypePage, installationType);
             return PageService.GetPageObject<DealerSendSwapInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmailForSwap(DealerSendSwapInstallationEmailPage dealerSendSwapInstallationEmailPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSendSwapInstallationEmailPage);
             _contextData.InstallerEmail = dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public void VerifySwappedDeviceStatusAction(DealerManageDevicesPage dealerManageDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             string resourceInstalledPrinterStatusBeingReplaced = _translationService.GetInstalledPrinterStatusText(TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
             string swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
 
@@ -248,6 +272,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         private void SelectInstallationTypeAndClickNext(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
             switch (installationType)
             {
                 case "Web":

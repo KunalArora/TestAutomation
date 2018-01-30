@@ -27,6 +27,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string InstallationOptionIdSelector = "installation-option-id";
         private const string CustomiseInstallOptionsModalSelector = ".js-mps-manage-customise-install-options-modal";
 
+        // Tab link selectors
+        private const string MpsTabsSelector = ".mps-tabs-main";
+        private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
+
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-ribbon-customise-installation-options-data")]
         public IWebElement CustomiseButtonElement;
@@ -34,21 +38,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         public IWebElement InstallationOptionSaveButtonElement;
         
 
-        public void EnableInstallationOption(string communicationMethod, string installationType, int findElementTimeout)
+        public void EnableInstallationOption(string communicationMethod, string installationType)
         {
-            SeleniumHelper.FindElementByCssSelector(CustomiseInstallOptionsModalSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(communicationMethod, installationType);
+            SeleniumHelper.FindElementByCssSelector(CustomiseInstallOptionsModalSelector);
 
             IWebElement element = null;
             switch(communicationMethod.ToLower())
             {
                 case "cloud":
                     {
-                        element = GetInstallationTypeElementForCloudDevice(installationType.ToLower(), findElementTimeout);
+                        element = GetInstallationTypeElementForCloudDevice(installationType.ToLower());
                         break;
                     }
                 case "email":
                     {
-                        element = GetInstallationTypeElementForEmailDevice(installationType.ToLower(), findElementTimeout);
+                        element = GetInstallationTypeElementForEmailDevice(installationType.ToLower());
                         break;
                     }
                 default:
@@ -61,7 +66,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             {
                 if (!element.Selected)
                 {
-                    SeleniumHelper.ClickSafety(element, findElementTimeout);
+                    SeleniumHelper.ClickSafety(element);
                 }
             }
             else
@@ -72,8 +77,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         #region private methods
 
-        private IWebElement GetInstallationTypeElementForCloudDevice(string installationType, int findElementTimeout)
+        private IWebElement GetInstallationTypeElementForCloudDevice(string installationType)
         {
+            LoggingService.WriteLogOnMethodEntry(installationType);
             string dataAttributeValue;
             switch (installationType)
             {
@@ -104,17 +110,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                         installationType));
             }
 
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationOptionIdSelector, dataAttributeValue, findElementTimeout);
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationOptionIdSelector, dataAttributeValue);
         }
 
-        private IWebElement GetInstallationTypeElementForEmailDevice(string installationType, int findElementTimeout)
+        private IWebElement GetInstallationTypeElementForEmailDevice(string installationType)
         {
+            LoggingService.WriteLogOnMethodEntry(installationType);
             IWebElement element;
             switch (installationType)
             {
                 case "web":
                     {
-                        element = SeleniumHelper.FindElementByDataAttributeValue(InstallationOptionIdSelector, "3", findElementTimeout);
+                        element = SeleniumHelper.FindElementByDataAttributeValue(InstallationOptionIdSelector, "3");
                         break;
                     }
                 default:
@@ -127,6 +134,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             return element;
         }
 
+        public IWebElement ConsumablesTabElement(int agreementId)
+        {
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()));
+        }
         #endregion
     }
 }

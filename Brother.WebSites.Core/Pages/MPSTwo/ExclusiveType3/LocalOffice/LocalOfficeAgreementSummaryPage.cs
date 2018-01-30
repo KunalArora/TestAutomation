@@ -19,16 +19,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
         private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
 
-        public IWebElement DevicesTabElement(int agreementId, int findElementTimeout)
+        public IWebElement DevicesTabElement(int agreementId)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()), findElementTimeout);
+                string.Format(
+                MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()));
         }
     }
 }

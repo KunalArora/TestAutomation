@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 
@@ -16,11 +14,14 @@ namespace Brother.Tests.Specs.Services
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
-        public RunCommandService(IUrlResolver urlResolver, IWebRequestService webRequestService)
+        private ILoggingService LoggingService { get; set; }
+
+        public RunCommandService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService )
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/runcommand.aspx?command={{0}}", _urlResolver.CmsUrl);
+            LoggingService = loggingService;
         }
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
         private void ExecuteRunCommand(string url, int timeOut = 30, bool retry = false, int retryInterval = 2, int retryFor = 60)
         {
+            LoggingService.WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
             var additionalHeaders = new Dictionary<string, string> {{_authTokenName, _authToken}};
             var startTime = DateTime.UtcNow;
 
@@ -50,6 +52,7 @@ namespace Brother.Tests.Specs.Services
 
         private bool RunCommandSuccess(WebPageResponse webPageResponse)
         {
+            LoggingService.WriteLogOnMethodEntry(webPageResponse);
             //Update this method to use response headers when runcommand has been updated
             if (webPageResponse.ResponseBody.Contains("Failure"))
             {
@@ -75,6 +78,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCreateCustomerAndPersonCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = "MPS:SystemJobCreateCustomerAndPersonCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -93,10 +97,12 @@ namespace Brother.Tests.Specs.Services
 
         public void RunMeterReadEmailSyncCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
         }
 
         public void RunMeterReadCloudSyncCommand(int proposalId) // Pass AgreementId in case of Type 3
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             string commandName = string.Format("MPS:NEW:MeterReadCloudSyncCommand&ProposalId={0}&CountryIso=GB", proposalId);
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -105,6 +111,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunConsumableOrderRequestsCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = string.Format("MPS:ConsumableOrderRequestsCommand");
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -113,16 +120,17 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCloseConsumableOrdersCommand()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
         }
 
         public void RunPollConsumableOrderStatusCommand()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
         }
 
         public void RunCheckForSilentEmailDevicesCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = "MPS:CheckForSilentEmailDevicesCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -131,7 +139,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCheckForSilentCloudDevicesCommand()
         {
-            
+            LoggingService.WriteLogOnMethodEntry();
         }
 
         public void RunCreateConsumableOrderCommand()
@@ -144,6 +152,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunSetupInstalledPrintersCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = "MPS:SystemJobSetupInstalledPrintersCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -157,5 +166,6 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteRunCommand(commandUrl);
         }
+
     }
 }

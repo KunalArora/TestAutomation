@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -36,16 +36,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractListContractNameRowElement;
 
-        public void VerifyContractFilter(int proposalId, string proposalName, int findElementTimeout)
+        public void VerifyContractFilter(int proposalId, string proposalName)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
             ClearAndType(ContractFilter, proposalId.ToString());
             if(proposalName == null)
             {
-                SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);
+                SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1);
             }
             else
             {
-                SeleniumHelper.WaitUntil(d => { try { return ContractListContractNameRowElement.First().Text == proposalName; } catch { return false; } }, findElementTimeout);
+                SeleniumHelper.WaitUntil(d => { try { return ContractListContractNameRowElement.First().Text == proposalName; } catch { return false; } });
             }
             
         }

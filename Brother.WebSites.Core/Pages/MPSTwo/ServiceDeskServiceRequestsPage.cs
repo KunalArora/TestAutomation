@@ -27,10 +27,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ServiceDeskServiceRequestLink, "Service Request dashboard");
         }
 
-        public ServiceRequestsPage NavigateToServiceRequestsPage()
+        public ServiceDeskServiceRequestsActivePage NavigateToServiceRequestsPage()
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceDeskServiceRequestLink);
-            return GetInstance<ServiceRequestsPage>();
+            return GetInstance<ServiceDeskServiceRequestsActivePage>();
         }
 
     }

@@ -23,8 +23,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void ClickOnSearchedProposal(int proposalId, int findElementTimeout)
+        public void ClickOnSearchedProposal(int proposalId)
         {
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             var proposalIdString = proposalId.ToString();
             SeleniumHelper.WaitUntil(d =>
             {
@@ -35,7 +36,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     return true;
                 }
                 catch { return false; }
-            }, findElementTimeout);
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Brother.Tests.Common.Logging
@@ -25,13 +26,13 @@ namespace Brother.Tests.Common.Logging
         }
         public void WriteLog(LoggingLevel level, object message)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
         }
 
         public void WriteLog(LoggingLevel level, string format, params object[] args)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             var message = string.Format(format, args);
             _loggingStream.WriteLine(string.Format("{0}{1}", PreString(level), message));
 
@@ -39,20 +40,54 @@ namespace Brother.Tests.Common.Logging
 
         public void WriteLog(LoggingLevel level, object message, Exception exception)
         {
-            if (IsLoggingEnable(level) == false) return;
+            if (IsLoggingEnabled(level) == false) return;
             var preString = PreString(level);
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, message));
             _loggingStream.WriteLine(string.Format("{0}{1}", preString, exception.StackTrace));
         }
 
-        private bool IsLoggingEnable(LoggingLevel loggingLevel)
+        public bool IsLoggingEnabled(LoggingLevel loggingLevel)
         {
             return loggingLevel >= _loggingLevel;
         }
 
+        public void WriteLogOnMethodEntry(object[] args)
+        {
+            int skipFrames = 1;
+            var loggingService = this;
+            try
+            {
+                var callerFrame = new StackFrame(skipFrames);
+                var method = callerFrame.GetMethod();
+                var methodName = method.Name;
+                var className = method.ReflectedType.Name;
+
+                if (loggingService.IsLoggingEnabled(LoggingLevel.DEBUG))
+                {
+                    var stringList = new List<string>();
+                    foreach (var parameter in method.GetParameters())
+                    {
+                        if (parameter.IsOut) continue;
+                        stringList.Add(string.Format("{0}={1}", parameter.Name, args[stringList.Count]));
+                    }
+                    var prms = string.Join(",", stringList.ToArray());
+                    loggingService.WriteLog(LoggingLevel.DEBUG, "{0}#{1}({2})", className, methodName, prms);
+                }
+                else if (loggingService.IsLoggingEnabled(LoggingLevel.INFO))
+                {
+                    loggingService.WriteLog(LoggingLevel.INFO, "{0}#{1}()", className, methodName);
+                }
+
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
         private string PreString(LoggingLevel level)
         {
-            var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.FFF");
+            var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
         }
     }
@@ -73,4 +108,5 @@ namespace Brother.Tests.Common.Logging
 #endif 
         }
     }
+
 }

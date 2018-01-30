@@ -71,5 +71,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                 return hasEmptyInkToner;
             }
         }
+
+        public string ServiceRequestId { get; set; }
+        public string ServiceRequestType { get; set; }
+        public string ServiceRequestReplyMessage { get; set; }
     }
 }

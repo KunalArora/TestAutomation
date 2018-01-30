@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
@@ -29,8 +30,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ITranslationService translationService,
             MpsSignInStepActions mpsSignIn,
             IUserResolver userResolver,
+            ILoggingService loggingService,
             IRunCommandService runCommandService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings, translationService, runCommandService)
+            : base( webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
         {
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _mpsSignIn = mpsSignIn;
@@ -40,6 +42,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashBoardPage);
             ClickSafety(localOfficeAdminDashBoardPage.LOAdminReportElement, localOfficeAdminDashBoardPage);
             var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
@@ -48,11 +51,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
             return NavigateToAgreementDevicesPage(dataQueryPage, _loAdminWebDriver);
         }
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return VerifyUpdatedPrintCounts(localOfficeAgreementDevicesPage, _loAdminWebDriver);
         }
 

@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
@@ -22,8 +21,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         public string ValidationElementSelector
         {
             get
@@ -41,15 +38,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
             ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 , findElementTimeout);
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout) ;
+            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 );
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last()) ;
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
 
         private ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
+            LoggingService.WriteLogOnMethodEntry(actionsButton);
             var actionsElement = Driver.FindElements(By.CssSelector(actionsButton));
             return actionsElement;
         }
@@ -69,7 +67,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public string ValidationElementSelector
         {
@@ -88,10 +85,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
             ClearAndType(FilterSearchFieldElement, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
     }

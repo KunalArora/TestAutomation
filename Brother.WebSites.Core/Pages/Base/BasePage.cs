@@ -1,6 +1,7 @@
-﻿using System;
-using System.Linq;
-using Brother.Online.TestSpecs._80.Test_Steps;
+﻿using Brother.Online.TestSpecs._80.Test_Steps;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.BrotherMainSite;
@@ -9,9 +10,9 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Account;
 using Brother.WebSites.Core.Pages.BrotherOnline.AccountManagement;
 using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
-using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.OmniJoin;
 using OpenQA.Selenium;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.Base
 {
@@ -46,9 +47,16 @@ namespace Brother.WebSites.Core.Pages.Base
             get { return SetAtyoursideSignInUrl(); }
 
         }
+
+        #region IPageObject instance
+        
+        public ILoggingService LoggingService { get; set; }
+        public IRuntimeSettings RuntimeSettings { get; set; }
+        public ISeleniumHelper SeleniumHelper { get; set; }
+        #endregion
         // Home pages
         #region WebConferencing Home Page
-        
+
         public static WebConferencingHomePage LoadWebConferencingHomePage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
@@ -479,5 +487,6 @@ namespace Brother.WebSites.Core.Pages.Base
             MsgOutput(string.Format("Current WebDriver [driver.URL] value is [{0}]. Actual desired URL (the one we want) should be [{1}]", driver.Url, url));
             TestCheck.AssertIsEqual(true, (currentPageSource != driver.PageSource), string.Format("Page Source Mismatch - could not navigate to URL {0} and the page source differences reflect this", url));
         }
+
     }
 }

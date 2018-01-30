@@ -1,7 +1,9 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
@@ -23,7 +25,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Web Elements
 
@@ -39,9 +41,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         [FindsBy(How = How.CssSelector, Using = ".js-mps-create-service-request-raise")]
         public IWebElement RaiseServiceRequestButtonElement;
 
-        /*public string FillProblemDescription()
+        public string FillProblemDescription()
         {
-            
-        }*/
+            ClearAndType(SubjectInputElement, MpsUtil.ServiceRequestSubject());
+            string requestType = SeleniumHelper.SelectDropdownElementTextByIndex(
+                RequestTypeDropdownElement, new Random().Next(1, 7));
+            SelectFromDropdown(RequestTypeDropdownElement, requestType);
+            ClearAndType(DescriptionInputElement, MpsUtil.ServiceRequestDescription());
+
+            return requestType;
+        }
     }
 }

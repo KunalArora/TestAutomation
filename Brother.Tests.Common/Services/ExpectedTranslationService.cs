@@ -66,6 +66,12 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.ConsumableOrderStatus.ConsumableOrderStatus.ResourceManager, name, culture);
         }
 
+        public string GetServiceRequestStatusText(string name, string culture)
+        {
+            return GetText(Resources.ServiceRequestStatus.ServiceRequestStatus.ResourceManager, name, culture);
+        }
+
+
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)

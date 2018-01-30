@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.MPS;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -34,7 +33,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".active a[href*=\"/set-installation-type\"]")]
         public IWebElement InstallationTypeTabElement;
@@ -48,7 +46,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void IsInstallationTypeTabDisplayed()
         {
-            if(InstallationTypeTabElement == null)
+            LoggingService.WriteLogOnMethodEntry();
+            if (InstallationTypeTabElement == null)
                 throw new Exception("Installation Type tab not displayed");
 
             AssertElementPresent(InstallationTypeTabElement, "Installtion Type tab");
@@ -56,16 +55,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SetBORInstallationType()
         {
+            LoggingService.WriteLogOnMethodEntry();
             BORToolElement.Click();
         }
 
         public void SetWebInstallationType()
         {
+            LoggingService.WriteLogOnMethodEntry();
             WebInstallElement.Click();
         }
 
         public void SetInstallationType(string type)
         {
+            LoggingService.WriteLogOnMethodEntry(type);
             switch (type)
             {
                 case "BOR" :
@@ -79,7 +81,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerSendInstallationEmailPage ProccedToDealerSendInstallationEmailPage()
         {
-           MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
+            LoggingService.WriteLogOnMethodEntry();
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, NextElement);
            
             return GetInstance<DealerSendInstallationEmailPage>(Driver);
         }

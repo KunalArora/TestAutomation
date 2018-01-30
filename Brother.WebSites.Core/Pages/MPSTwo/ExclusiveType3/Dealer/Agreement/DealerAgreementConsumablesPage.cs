@@ -26,7 +26,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string ConsumableTableContainerSelector = ".js-mps-searchable";
@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement NoConsumablesFoundAlertElement;
 
         // Returns true if no consumables are found, otherwise false if consumables are present
-        public bool IsNoConsumablesFound(int findElementTimeout)
+        public bool IsNoConsumablesFound()
         {
             bool isNoConsumablesFound = false;
             
@@ -52,10 +52,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         public void VerifyConsumableOrderInformation(
-            string serialNumber, string resourceConsumableOrderStatusInProgress, int findElementTimeout)
+            string serialNumber, string resourceConsumableOrderStatusInProgress)
         {
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(
-                SeleniumHelper.FindElementByCssSelector(ConsumableTableContainerSelector, findElementTimeout));
+                SeleniumHelper.FindElementByCssSelector(ConsumableTableContainerSelector));
             foreach (var deviceRowElement in deviceRowElements)
             {
                 // TODO: Replace this with the conventional element finding method after ID/Class of the Serial number Element has been fixed

@@ -147,8 +147,10 @@ testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the 
 #line 23
 testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 24
-testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I can verify the device details using show device details option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
+testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
 testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

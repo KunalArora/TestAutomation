@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string InstallationPinSelector = ".js-mps-boc-pin";
         private const string IsConnectedSelector = ".responding";
@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string SelectSerialLinkSelector = ".js-mps-select-serial-link";
         private const string SerialNumberWarningIconSelector = ".js-mps-icon-serial.glyphicon.glyphicon-warning-sign";
         private const string SerialNumberRefreshIconSelector = ".js-mps-icon-serial.glyphicon.glyphicon-refresh";
-        private const string SelectSerialTableSelector = ".js-mps-serials-select-table > .js-mps-searchable";
+        private const string SelectSerialTableSelector = ".js-mps-serials-select-table > tbody";
         private const string SerialNumberTableRowElementSelector = ".js-mps-boc-device";
         private const string SelectDeviceRadioButtonSelector = ".js-mps-select-boc-device";
         
@@ -55,6 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public bool IsDeviceConnected(string mpsDeviceId)
         {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach(var element in deviceRowElements)
             {
@@ -66,14 +67,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             return false;
         }
 
-        public string GetPin(int findElementTimeout)
+        public string GetPin()
         {
-            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "");
             return InstallationPinElement.Text;
         }
 
-        public bool IsSerialNumberForAllDevicesDetected(int findElementTimeout)
+        public bool IsSerialNumberForAllDevicesDetected()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {
@@ -85,23 +88,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             return true;
         }
 
-        public bool SelectSerialNumber(IWebElement element, string mpsDeviceId, string serialNumber, int findElementTimeout)
+        public bool SelectSerialNumber(IWebElement element, string mpsDeviceId, string serialNumber)
         {
+            LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
             var dataId = element.GetAttribute("data-id");
             if ((dataId == mpsDeviceId) && SeleniumHelper.IsElementDisplayed(
                 element, SelectSerialLinkSelector))
             {
                 SeleniumHelper.ClickSafety(
-                    element.FindElement(By.CssSelector(SelectSerialLinkSelector)), findElementTimeout);
+                    element.FindElement(By.CssSelector(SelectSerialLinkSelector)));
                 SelectSerialNumberHelper(
-                    serialNumber, findElementTimeout);
+                    serialNumber);
                 return true;
             }
             return false;           
         }
 
-        public bool AreAllDevicesConnected(int findElementTimeout)
+        public bool AreAllDevicesConnected()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {
@@ -115,30 +120,32 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public void VerifySoftwareDownloadLink(string expectedSoftwareDownloadLink)
         {
+            LoggingService.WriteLogOnMethodEntry(expectedSoftwareDownloadLink);
             TestCheck.AssertTextContains(expectedSoftwareDownloadLink, LinkDownloadSoftwareElement.GetAttribute("href"), "Software Download link verification failed");
         }
 
-        private void SelectSerialNumberHelper(string serialNumber, int findElementTimeout)
+        private void SelectSerialNumberHelper(string serialNumber)
         {
-            var serialNumberTableElement = SeleniumHelper.FindElementByCssSelector(SelectSerialTableSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
+            var serialNumberTableElement = SeleniumHelper.FindElementByCssSelector(SelectSerialTableSelector);
             var rowElements = SeleniumHelper.FindElementsByCssSelector(serialNumberTableElement, SerialNumberTableRowElementSelector);
             
             foreach(var element in rowElements)
             {
                 if (element.GetAttribute("data-serial-number").Equals(serialNumber))
                 {
-                    SeleniumHelper.ClickSafety(element.FindElement(By.CssSelector(SelectDeviceRadioButtonSelector)), findElementTimeout);
+                    SeleniumHelper.ClickSafety(element.FindElement(By.CssSelector(SelectDeviceRadioButtonSelector)));
                     break;
                 }
             }
 
             if(SetSerialButtonElement.Enabled)
             {
-                SeleniumHelper.ClickSafety(SetSerialButtonElement, findElementTimeout);
+                SeleniumHelper.ClickSafety(SetSerialButtonElement);
             }
             else
             {
-                SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement, findElementTimeout);
+                SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -22,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         // Selectors
         private const string IsMonoOnly = "data-mono-only";
@@ -36,9 +35,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement NextButton;
 
 
-        public IWebElement SelectClickPriceGroup(string printerName, int findElementTimeout)
+        public IWebElement SelectClickPriceGroup(string printerName)
         {
-            var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            var clickPriceContainer = SeleniumHelper.FindElementByDataAttributeValue("model", printerName);
 
             return clickPriceContainer;
         }
@@ -49,14 +49,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             int coverageColour,
             int volumeColour,
             string usageType,
-            int findElementTimeout,
             string resourceUsageTypePayAsYouGo)
         {
-            var printerContainer = SelectClickPriceGroup(printerName, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName, coverageMono, volumeMono, coverageColour, volumeColour, usageType, resourceUsageTypePayAsYouGo);
+            
+            var printerContainer = SelectClickPriceGroup(printerName);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 
-            var monoCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoCoverage, "true", findElementTimeout);
-            var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true", findElementTimeout);
+            var monoCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoCoverage, "true");
+            var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true");
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
 
@@ -72,8 +73,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             
             if ((isMonoOnly.ToLower()).Equals("false"))
             {
-                var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true", findElementTimeout);
-                var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true", findElementTimeout);
+                var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true");
+                var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true");
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
 

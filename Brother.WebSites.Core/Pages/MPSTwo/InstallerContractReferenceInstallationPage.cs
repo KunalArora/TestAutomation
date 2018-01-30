@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -29,19 +28,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public void PopulateContractReference(int proposalId)
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var contractReferenceElement = SeleniumHelper.FindElementByCssSelector(ContractReferenceSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId);
+            var contractReferenceElement = SeleniumHelper.FindElementByCssSelector(ContractReferenceSelector);
             ClearAndType(contractReferenceElement, proposalId.ToString());
         }
 
         public void ProceedOnInstaller()
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
             nextButtonElement.Click();
         }
 

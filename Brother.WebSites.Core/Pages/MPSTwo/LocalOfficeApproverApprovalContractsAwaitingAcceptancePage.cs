@@ -3,7 +3,6 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -22,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -43,11 +42,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewSummary(int proposalId, IWebDriver driver)
         {
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
             ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1);
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
 

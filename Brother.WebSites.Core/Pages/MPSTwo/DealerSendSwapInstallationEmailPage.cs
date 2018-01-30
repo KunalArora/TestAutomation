@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -27,8 +26,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallerEmailAddress_Input")]
         public IWebElement EmailFieldElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-val-btn-next")]
@@ -36,6 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string EnterInstallerEmail()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string emailId = "steve.walters@brother.co.uk";
             ClearAndType(EmailFieldElement, emailId);
             return emailId;
@@ -43,6 +41,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string EnterInstallerEmailAndProceed()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string emailId = EnterInstallerEmail();
             SendEmailButton.Click(); // Send Email button
             return emailId;

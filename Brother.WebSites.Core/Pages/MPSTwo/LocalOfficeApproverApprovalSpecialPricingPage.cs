@@ -1,8 +1,8 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Selenium.Lib.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Text.RegularExpressions;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -18,7 +18,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         public string ValidationElementSelector
         {
@@ -49,26 +49,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
 
-        public void SwitchNavInstallTab(int findElementTimeout)
+        public void SwitchNavInstallTab()
         {
-            SeleniumHelper.ClickSafety(NavInstallTabA, findElementTimeout);
-            SeleniumHelper.WaitUntil(d => NavInstallTab.GetAttribute("class") == "active", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(NavInstallTabA);
+            SeleniumHelper.WaitUntil(d => NavInstallTab.GetAttribute("class") == "active");
         }
 
-        public void SwitchNavServiceTab(int findElementTimeout)
+        public void SwitchNavServiceTab()
         {
-            SeleniumHelper.ClickSafety(NavServiceTabA, findElementTimeout);
-            SeleniumHelper.WaitUntil(d => NavServiceTab.GetAttribute("class") == "active", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(NavServiceTabA);
+            SeleniumHelper.WaitUntil(d => NavServiceTab.GetAttribute("class") == "active");
         }
 
-        public void SwitchNavClickTab(int findElementTimeout )
+        public void SwitchNavClickTab()
         {
-            SeleniumHelper.ClickSafety(NavClickTabA, findElementTimeout);
-            SeleniumHelper.WaitUntil(d => NavClickTab.GetAttribute("class") == "active", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(NavClickTabA);
+            SeleniumHelper.WaitUntil(d => NavClickTab.GetAttribute("class") == "active");
         }
 
-        public void EnterAdditionalAuditInformation(int findElementTimeout, string message = @"This is automation changes added to special pricing" )
+        public void EnterAdditionalAuditInformation(string message = @"This is automation changes added to special pricing" )
         {
+            LoggingService.WriteLogOnMethodEntry(message);
             SeleniumHelper.WaitUntil(d =>
             {
                 try
@@ -79,11 +83,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     return true;
                 }
                 catch { return false; }
-            }, findElementTimeout);
+            });
         }
 
-        public void EnterSpecialPriceInstallation(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceInstallation(SpecialPricingProperties specialPrice)
         {
+            LoggingService.WriteLogOnMethodEntry(specialPrice);
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingInstallationRowSelector);
             foreach (var modelElement in modelElementList)
@@ -103,8 +108,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void EnterSpecialPriceService(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceService(SpecialPricingProperties specialPrice)
         {
+            LoggingService.WriteLogOnMethodEntry(specialPrice);
             var modelRegex = new Regex(specialPrice.Model, RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingServiceRowSelector);
             foreach (var modelElement in modelElementList)
@@ -125,8 +131,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void EnterSpecialPriceClick(SpecialPricingProperties specialPrice, int defaultFindElementTimeout)
+        public void EnterSpecialPriceClick(SpecialPricingProperties specialPrice)
         {
+            LoggingService.WriteLogOnMethodEntry(specialPrice);
             var modelRegex = new Regex(specialPrice.Model,RegexOptions.IgnoreCase);
             var modelElementList = SeleniumHelper.FindElementsByCssSelector(JsSpecialPricingClickRowSelector);
             foreach( var modelElement in modelElementList)
@@ -159,8 +166,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        private void EnterSpecialPrice(IWebElement modelElement,  string byName , string itemValue )
+        private void EnterSpecialPrice(IWebElement modelElement,  string byName , string itemValue)
         {
+            LoggingService.WriteLogOnMethodEntry(modelElement,byName,itemValue);
             try
             {
                 if (string.IsNullOrWhiteSpace(itemValue)  ) return;

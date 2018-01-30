@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -41,8 +40,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         public override string DefaultTitle
         {
             get { return string.Empty; }
@@ -52,14 +49,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //private IWebElement ThirdPartyApproval;
 
 
-        private static string CreatedProposal()
+        private string CreatedProposal()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
         }
 
         public void IsProposalSentToDealerAwaitingProposalPage()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var createdProposal = CreatedProposal();
 
             ActionsModule.SearchForNewlyProposalItem(Driver, createdProposal);
@@ -69,6 +68,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public DealerProposalsCreateSummaryPage NavigateToViewSummary()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ActionsModule.ClickOnSpecificActionsElement(Driver);
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 

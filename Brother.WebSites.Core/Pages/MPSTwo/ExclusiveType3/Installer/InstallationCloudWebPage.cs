@@ -1,4 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string IPAddress1Selector = "[id*=content_0_List_InputIp1_]";
         private const string IPAddress2Selector = "[id*=content_0_List_InputIp2_]";
@@ -39,24 +39,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         [FindsBy(How = How.CssSelector, Using = ".panel-body > .table.table-striped > tbody")]
         public IWebElement DeviceTableContainerElement;
 
-        // Fill device details & hit connect for this deviceId
-        public void FillDeviceDetailsAndClickConnect(string mpsDeviceId, int findElementTimeout, string windowHandle)
+        // Fill device details & hit connect for this device
+        public void FillDeviceDetailsAndClickConnect(AdditionalDeviceProperties device, string windowHandle)
         {
+            LoggingService.WriteLogOnMethodEntry(device, windowHandle);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach(var element in deviceRowElements)
             {
-                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                if (element.GetAttribute("data-id").Equals(device.MpsDeviceId))
                 {
                     ClearAndType(element.FindElement(By.CssSelector(IPAddress1Selector)), "1");
                     ClearAndType(element.FindElement(By.CssSelector(IPAddress2Selector)), "1");
                     ClearAndType(element.FindElement(By.CssSelector(IPAddress3Selector)), "1");
                     ClearAndType(element.FindElement(By.CssSelector(IPAddress4Selector)), "1");
 
-                    ClearAndType(element.FindElement(By.CssSelector(DeviceLocationSelector)), MpsUtil.DeviceLocation());
-                    ClearAndType(element.FindElement(By.CssSelector(CostCentreSelector)), MpsUtil.CostCentre());
+                    device.DeviceLocation = MpsUtil.DeviceLocation();
+                    device.CostCentre = MpsUtil.CostCentre();
+
+                    ClearAndType(element.FindElement(By.CssSelector(DeviceLocationSelector)), device.DeviceLocation);
+                    ClearAndType(element.FindElement(By.CssSelector(CostCentreSelector)), device.CostCentre);
 
                     SeleniumHelper.ClickSafety(
-                        SeleniumHelper.FindElementByCssSelector(element, ConnectButtonSelector, findElementTimeout), findElementTimeout);
+                        SeleniumHelper.FindElementByCssSelector(
+                        element, ConnectButtonSelector));
 
                     SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                 }
@@ -64,8 +69,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         }
 
 
-        public bool AreAllDevicesConnected(int findElementTimeout)
+        public bool AreAllDevicesConnected()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {

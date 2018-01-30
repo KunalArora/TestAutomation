@@ -1,4 +1,3 @@
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -24,7 +23,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
 
         public override string DefaultTitle
         {

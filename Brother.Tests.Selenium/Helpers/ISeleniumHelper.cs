@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Common.Logging;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,8 +7,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public interface ISeleniumHelper
     {
-        IWebElement FindElementByCssSelector(string selector, int timeout);
-        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout);
+        IWebElement FindElementByCssSelector(string selector, int timeout = -1);
+        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1);
         /// <summary>
         /// Attempts to find an element which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
@@ -19,7 +18,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="dataAttributeValue">The value to match</param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        IWebElement FindElementByDataAttributeValue(string dataAttributeName, string dataAttributeValue, int timeout);
+        IWebElement FindElementByDataAttributeValue(string dataAttributeName, string dataAttributeValue, int timeout = -1);
         /// <summary>
         /// Attempts to find an element in the given search context which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
@@ -30,14 +29,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="dataAttributeValue">The value to match</param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        IWebElement FindElementByDataAttributeValue(ISearchContext context, string dataAttributeName, string dataAttributeValue, int timeout);
+        IWebElement FindElementByDataAttributeValue(ISearchContext context, string dataAttributeName, string dataAttributeValue, int timeout = -1);
         
         /// <summary>
         /// Wait until an element appears
         /// </summary>
         /// <param name="selector"></param>
         /// <param name="timeout"></param>
-        void WaitUntilElementAppears(string selector, int timeout);
+        void WaitUntilElementAppears(string selector, int timeout = -1);
         List<IWebElement> FindElementsByCssSelector(ISearchContext context, string selector);
         List<IWebElement> FindElementsByCssSelector(string selector);
         
@@ -55,7 +54,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="conditions"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout);
+        TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout = -1);
  
         /// <summary>
         /// Return all row elements within a table element
@@ -78,13 +77,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="element"></param>
         /// <param name="defaultFindElementTimeout"></param>
         /// <param name="IsUntilUrlChanges"></param>
-        void ClickSafety(IWebElement element, int IsWaitForAnotherPageDefaultFindElementTimeout, bool IsUntilUrlChanges=false);
+        void ClickSafety(IWebElement element, int IsWaitForAnotherPageDefaultFindElementTimeout = -1, bool IsUntilUrlChanges = false);
         
         /// <summary>
         /// Accept Javascript alert 
         /// </summary>
         /// <param name="timeout"></param>
-        void AcceptJavascriptAlert(int timeout);
+        void AcceptJavascriptAlert(int timeout = -1);
 
         /// <summary>
         /// 
@@ -134,9 +133,5 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         bool IsElementDisplayed(ISearchContext context, string selector);
 
-        /// <summary>
-        /// Logging Service
-        /// </summary>
-        ILoggingService LoggingService {get;}
     }
 }

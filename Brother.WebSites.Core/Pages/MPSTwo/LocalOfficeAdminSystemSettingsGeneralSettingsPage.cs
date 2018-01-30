@@ -23,7 +23,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string SaveSuccessMessageSelector = "#content_1_ComponentSuccessMessage";
 
@@ -36,9 +36,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             if(!ConsumableOrderEnableManualOrderingCheckboxElement.Selected)
             {
-                SeleniumHelper.ClickSafety(ConsumableOrderEnableManualOrderingCheckboxElement, RuntimeSettings.DefaultFindElementTimeout);
-                SeleniumHelper.ClickSafety(SaveButtonElement, RuntimeSettings.DefaultFindElementTimeout);
-                SeleniumHelper.FindElementByCssSelector(SaveSuccessMessageSelector, RuntimeSettings.DefaultFindElementTimeout);
+                SeleniumHelper.ClickSafety(ConsumableOrderEnableManualOrderingCheckboxElement);
+                SeleniumHelper.ClickSafety(SaveButtonElement);
+                SeleniumHelper.FindElementByCssSelector(SaveSuccessMessageSelector);
             }
         }
     }

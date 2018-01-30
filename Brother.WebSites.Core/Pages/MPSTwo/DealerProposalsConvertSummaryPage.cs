@@ -1,6 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.MPS;
-using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -24,8 +22,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
+        
         [FindsBy(How = How.Id, Using = "content_1_InputEnvisagedStartDate_Input")]
         public IWebElement ProposedStartDate;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputSendToLeasingBank_Label")]
@@ -37,11 +34,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void FillSubmitForApprovalField()
         {
+            LoggingService.WriteLogOnMethodEntry();
             EnterProposedStartDateForContract();
         }
 
         public void EnterProposedStartDateForContract()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
             ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
@@ -50,6 +49,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void GiveThirdPartyCheckApproval()
         {
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = GetElementByCssSelector("#content_1_InputSendToLeasingBank_Label", 5);
             if (element != null)
                 ThirdPartyApproval.Click();

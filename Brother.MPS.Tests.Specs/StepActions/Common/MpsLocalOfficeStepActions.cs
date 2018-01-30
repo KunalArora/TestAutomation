@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
@@ -25,10 +26,11 @@ namespace Brother.Tests.Specs.StepActions.Common
             IPageService pageService,
             ScenarioContext context,
             IUrlResolver urlResolver,
+            ILoggingService loggingService,
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, runtimeSettings)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _translationService = translationService;
@@ -37,27 +39,29 @@ namespace Brother.Tests.Specs.StepActions.Common
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
         {
-            dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
+
+            dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
-            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(
-                _contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout), localOfficeAgreementSummaryPage);
+            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
             int devicesInstallingCount = 0;
 
             // Tick checkboxes of devices which are to be installed according to feature file configuration
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex);
                 foreach (var product in _contextData.PrintersProperties)
                 {
                     if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
-                        localOfficeAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        localOfficeAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex);
                         devicesInstallingCount++;
                         break;
                     }
@@ -77,7 +81,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 default: // For Bulk installation request
                     // Click Send Installation Request button (used for bulk)
                     ClickSafety(localOfficeAgreementDevicesPage.SendInstallationRequestElement, localOfficeAgreementDevicesPage);
-                    localOfficeAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                    localOfficeAgreementDevicesPage.SendInstallationRequest();
                     break;
             }
 
@@ -86,21 +90,22 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage SendSingleInstallationRequests(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             var deviceRowCount = localOfficeAgreementDevicesPage.DeviceTableRowsCount();
 
             // Tick checkboxes of devices which are to be installed according to feature file configuration
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                string displayedModelName = localOfficeAgreementDevicesPage.DeviceModelName(rowIndex);
                 foreach (var product in _contextData.PrintersProperties)
                 {
                     if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         // Click Send Installation Request button in Actions dropdown
-                        localOfficeAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        localOfficeAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex);
                         
                         // Handle Send Installation Request modal
-                        localOfficeAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                        localOfficeAgreementDevicesPage.SendInstallationRequest();
                         break;
                     }
                 }
@@ -120,12 +125,13 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void EnableInstallationOption(
             LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string installationType, string communicationMethod)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, installationType,communicationMethod);
+
             // Click Customise button element
             ClickSafety(localOfficeAgreementDevicesPage.CustomiseButtonElement, localOfficeAgreementDevicesPage);
 
             // Enable installation option
-            localOfficeAgreementDevicesPage.EnableInstallationOption(
-                communicationMethod, installationType, RuntimeSettings.DefaultFindElementTimeout);
+            localOfficeAgreementDevicesPage.EnableInstallationOption(communicationMethod, installationType);
 
             // Click Save Button
             ClickSafety(localOfficeAgreementDevicesPage.InstallationOptionSaveButtonElement, localOfficeAgreementDevicesPage);
@@ -133,12 +139,13 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyUpdatedPrintCounts(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Refreshes the print counts on MPS portal (after synchronizing BOC values)
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
 
             // Refresh page until print counts are updated
             int retries = 0;
-            while (!localOfficeAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
+            while (!localOfficeAgreementDevicesPage.IsPrintCountsUpdated())
             {
                 // Try print counts synchronization again
                 _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
@@ -159,7 +166,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 localOfficeAgreementDevicesPage.VerifyPrintCountsOfDevice(
-                    device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+                    device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount);
             }
 
             // Sets the agreement status to "Running"
@@ -170,6 +177,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public LocalOfficeAgreementDevicesPage VerifyGenerationOfConsumableOrders(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Run Jobs for synchronizing log data, raising consumable order & registering order in SAP
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
             _runCommandService.RunConsumableOrderRequestsCommand();
@@ -180,12 +188,11 @@ namespace Brother.Tests.Specs.StepActions.Common
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
 
             ClickSafety(
-                localOfficeAgreementDevicesPage.ConsumablesTabElement(
-                _contextData.AgreementId, RuntimeSettings.DefaultFindElementTimeout), localOfficeAgreementDevicesPage);
+                localOfficeAgreementDevicesPage.ConsumablesTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
 
             var localOfficeAgreementConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
-            while(localOfficeAgreementConsumablesPage.IsNoConsumablesFound(RuntimeSettings.DefaultFindElementTimeout))
+            while(localOfficeAgreementConsumablesPage.IsNoConsumablesFound())
             {
                 _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
                 _runCommandService.RunConsumableOrderRequestsCommand();
@@ -211,12 +218,10 @@ namespace Brother.Tests.Specs.StepActions.Common
             {
                 if(device.hasEmptyInkToner)
                 {
-                    localOfficeAgreementDevicesPage.ClickShowConsumableOrders(
-                        device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                    localOfficeAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var localOfficeAgreementDeviceConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
-                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(
-                        device.SerialNumber, resourceConsumableOrderStatusInProgress, RuntimeSettings.DefaultFindElementTimeout);
+                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
 
                     ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage);
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
@@ -228,7 +233,8 @@ namespace Brother.Tests.Specs.StepActions.Common
 
         public void ClickSafety(IWebElement element, IPageObject pageObject)
         {
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
     }
 }

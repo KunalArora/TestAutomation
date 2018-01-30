@@ -21,7 +21,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
+
 
         private const string InstallationMethodDataAttributeSelector = "install-option-id";
         
@@ -37,6 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
         public void VerifyDeviceDetails(string expectedAgreementReference, int expectedNumberOfDevices, string modelName = null)
         {
+            LoggingService.WriteLogOnMethodEntry(expectedAgreementReference,expectedNumberOfDevices,modelName);
             string displayedAgreementReference = AgreementReferenceAlertElement.Text;
 
             TestCheck.AssertIsEqual(
@@ -59,19 +60,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             }
         }
 
-        public IWebElement BORInstallationButton(int findElementTimeout)
+        public IWebElement BORInstallationButton()
         {
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "1", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "1");
         }
 
-        public IWebElement WebInstallationButton(int findElementTimeout)
+        public IWebElement WebInstallationButton()
         {
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2");
         }
 
-        public IWebElement USBInstallationButton(int findElementTimeout)
+        public IWebElement USBInstallationButton()
         {
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4");
         }
     }
 }
