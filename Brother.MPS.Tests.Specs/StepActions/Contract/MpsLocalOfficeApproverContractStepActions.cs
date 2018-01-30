@@ -74,13 +74,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
         {
             LoggingService.WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
-            _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName, RuntimeSettings.DefaultFindElementTimeout);
+            _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
 
         public LocalOfficeApproverManageDevicesContractsPage NavigateToDeviceManagementPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)

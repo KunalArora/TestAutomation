@@ -69,10 +69,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return Int32.Parse(AgreementDetailsContainer.GetAttribute("data-mps-qa-id"));         
         }
 
-        public void AcceptJavascriptPopupOnCompleteSetup(int findElementTimeout)
+        public void AcceptJavascriptPopupOnCompleteSetup()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
-            SeleniumHelper.AcceptJavascriptAlert(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.AcceptJavascriptAlert();
         }
 
         public void VerifyContentOnSummaryPage( string AgreementName, string ContractTerm, 

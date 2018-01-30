@@ -671,18 +671,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void InstallationCompleteCheck(string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var deviceListContainer = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
-            var tableContainer = SeleniumHelper.FindElementByCssSelector(deviceListContainer, InstallationDeviceTableSelector, findElementTimeout);
+            var deviceListContainer = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector);
+            var tableContainer = SeleniumHelper.FindElementByCssSelector(deviceListContainer, InstallationDeviceTableSelector);
 
             var rows = SeleniumHelper.FindRowElementsWithinTable(tableContainer);
             
             foreach (var row in rows)
             {
-                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
                 if (serialNumberElement.Text.Equals(serialNumber))
                 {
-                    var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector, findElementTimeout).Displayed;
+                    var connection = SeleniumHelper.FindElementByCssSelector(row, InstallationRespondingTypeSelector).Displayed;
                     TestCheck.AssertIsEqual(true, connection, "Installation is not successfully connected to BOC");
                     break;
                 }
@@ -693,7 +692,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(driver,totalPageCount,serialNumber);
             int retryCount = RuntimeSettings.DefaultRetryCount;
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var retries = 0;
             var elementStatus = false;
 
@@ -701,19 +699,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 try
                 {
-                    var showPrintCountButtonElement = SeleniumHelper.FindElementByCssSelector(ShowPrintCountButtonSelector, findElementTimeout);
+                    var showPrintCountButtonElement = SeleniumHelper.FindElementByCssSelector(ShowPrintCountButtonSelector);
                     showPrintCountButtonElement.Click();
-                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector, findElementTimeout);
-                    var deviceTableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationDeviceTableSelector, findElementTimeout);
+                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceListSelector);
+                    var deviceTableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationDeviceTableSelector);
 
                     var rows = SeleniumHelper.FindRowElementsWithinTable(deviceTableElement);
 
                     foreach (var row in rows)
                     {
-                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector, findElementTimeout);
+                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
                         if(serialNumberElement.Text.Equals(serialNumber))
                         {
-                            var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector, findElementTimeout);
+                            var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector);
                             if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
                             {
                                 elementStatus = true;
@@ -807,25 +805,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
         {
             LoggingService.WriteLogOnMethodEntry(installerEmail,companyLocation,resourceInstallationStatusNotStarted);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector, findElementTimeout);
-            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector, findElementTimeout);
+            var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector);
+            var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector);
             var elements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
 
             foreach(var element in elements)
             {
-                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector, findElementTimeout);
-                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector, findElementTimeout);
-                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector, findElementTimeout);
+                var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector);
+                var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector);
                 if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
                 {
-                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
                     ActionsButtonElement.Click();
-                    var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector, findElementTimeout);
+                    var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector);
                     ShowInstallationRequestButtonElement.Click();
 
-                    var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body", findElementTimeout);
-                    var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a", findElementTimeout);
+                    var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body");
+                    var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a");
                     var url = InstallationRequestUrlElement.GetAttribute("href");
 
                     InstallationRequestClosePopUpElement.Click();
@@ -838,19 +835,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSwapDevice(string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
 
-            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector, findElementTimeout);
-            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector, findElementTimeout);
+            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector);
+            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector);
             var elements = SeleniumHelper.FindRowElementsWithinTable(deviceListRowContainer);
             foreach (var element in elements)
             {
-                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector, findElementTimeout);
+                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector);
                 if (DeviceSerialNumberElement.Text.Equals(serialNumber))
                 {
-                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
                     ActionsButtonElement.Click();
-                    var SwapDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(element, SwapDeviceButtonSelector, findElementTimeout);
+                    var SwapDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(element, SwapDeviceButtonSelector);
                     SwapDeviceButtonElement.Click();
                     break;
                 }
@@ -860,24 +856,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ConfirmSwapAndSelectSwapType(string swapType, string resourceSwapTypeReplaceWithDifferentModel)
         {
             LoggingService.WriteLogOnMethodEntry(swapType,resourceSwapTypeReplaceWithDifferentModel);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
 
-            var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector, findElementTimeout);
-            var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector, findElementTimeout);
+            var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector);
+            var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector);
             SwapDeviceModalConfirmElement.Click();
-            var SwapDeviceTypesModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector, findElementTimeout);
-            var SwapTypeRadioButtonElement = SeleniumHelper.FindElementByDataAttributeValue(SwapDeviceTypesModalElement, SwapDeviceTypesDataAttributeSelector, swapType, findElementTimeout);
+            var SwapDeviceTypesModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
+            var SwapTypeRadioButtonElement = SeleniumHelper.FindElementByDataAttributeValue(SwapDeviceTypesModalElement, SwapDeviceTypesDataAttributeSelector, swapType);
             SwapTypeRadioButtonElement.Click();
-            var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector, findElementTimeout);
+            var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector);
             SwapTypeModalNextButtonElement.Click();
             if (swapType.Equals(resourceSwapTypeReplaceWithDifferentModel))
             {
-                var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector, findElementTimeout);
-                var SwapReplacementModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelListSelector, findElementTimeout);
+                var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
+                var SwapReplacementModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelListSelector);
                 // TODO: Add the replacement printer model in the feature file as variable & insert the logic here to use the value
                 // For now, just select the first model in the dropdown list
                 SelectElementOptionsByIndex(SwapReplacementModelDropdownElement, 1);
-                var SwapReplacementModelNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelNextButtonSelector, findElementTimeout);
+                var SwapReplacementModelNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelNextButtonSelector);
                 SwapReplacementModelNextButtonElement.Click();
             }
         }
@@ -885,15 +880,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public bool VerifySwappedDeviceStatus(string serialNumber, string resourceInstalledPrinterStatusBeingReplaced)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber,resourceInstalledPrinterStatusBeingReplaced);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             bool exists = false;
-            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector, findElementTimeout);
-            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector, findElementTimeout);
+            var deviceContainer = SeleniumHelper.FindElementByCssSelector(DeviceListContainerSelector);
+            var deviceListRowContainer = SeleniumHelper.FindElementByCssSelector(deviceContainer, DeviceListContainerRowSelector);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(deviceListRowContainer);
             foreach (var element in deviceRowElements)
             {
-                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector, findElementTimeout);
-                var DeviceStatusElement = SeleniumHelper.FindElementByCssSelector(element, DeviceStatusSelector, findElementTimeout);
+                var DeviceSerialNumberElement = SeleniumHelper.FindElementByCssSelector(element, DeviceSerialNumberSelector);
+                var DeviceStatusElement = SeleniumHelper.FindElementByCssSelector(element, DeviceStatusSelector);
                 if (DeviceSerialNumberElement.Text.Equals(serialNumber) && DeviceStatusElement.Text.Equals(resourceInstalledPrinterStatusBeingReplaced));
                 {
                     exists = true;

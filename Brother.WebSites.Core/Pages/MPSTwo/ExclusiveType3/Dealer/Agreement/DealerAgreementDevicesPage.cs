@@ -95,18 +95,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
 
         // Click on Edit Device Data button for this particular model
-        public void ClickOnEditDeviceData(string modelName, int findElementTimeout)
+        public void ClickOnEditDeviceData(string modelName)
         {
-            LoggingService.WriteLogOnMethodEntry(modelName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(modelName);
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var element in elements)
             {
-                var DeviceModelNameElement = SeleniumHelper.FindElementByCssSelector(element, DeviceModelNameSelector, findElementTimeout);
+                var DeviceModelNameElement = SeleniumHelper.FindElementByCssSelector(element, DeviceModelNameSelector);
                 if (DeviceModelNameElement.Text.Equals(modelName))
                 {
-                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector, findElementTimeout);
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
                     ActionsButtonElement.Click();
-                    var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(element, EditDeviceDataButtonSelector, findElementTimeout);
+                    var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(element, EditDeviceDataButtonSelector);
                     EditDeviceDataButtonElement.Click();
                     break;
                 }
@@ -114,23 +114,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Click on Edit Device Data button for this particular row index
-        public void ClickOnEditDeviceData(int rowIndex, int findElementTimeout)
+        public void ClickOnEditDeviceData(int rowIndex)
         {
-            LoggingService.WriteLogOnMethodEntry(rowIndex, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
-            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
-            var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(EditDeviceDataButtonElement, findElementTimeout);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+            var EditDeviceDataButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector);
+            SeleniumHelper.ClickSafety(EditDeviceDataButtonElement);
         }
 
-        public void VerifyTheStatusOfAllDevices(int findElementTimeout, string expectedStatus)
+        public void VerifyTheStatusOfAllDevices(string expectedStatus)
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout,expectedStatus);
+            LoggingService.WriteLogOnMethodEntry(expectedStatus);
             var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach(var element in elements)
             {
-                var StatusToolTipElement = SeleniumHelper.FindElementByCssSelector(element, StatusToolTipSelector, findElementTimeout);
+                var StatusToolTipElement = SeleniumHelper.FindElementByCssSelector(element, StatusToolTipSelector);
                 string displayedStatus = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
 
                 TestCheck.AssertTextContains(
@@ -140,12 +140,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
 
         // Click on Checkbox for this particular device row index
-        public void ClickOnDeviceCheckbox(int rowIndex, int findElementTimeout)
+        public void ClickOnDeviceCheckbox(int rowIndex)
         {
-            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
-            var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], DeviceCheckboxSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(CheckboxElement, findElementTimeout);
+            var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], DeviceCheckboxSelector);
+            SeleniumHelper.ClickSafety(CheckboxElement);
         }
 
         // Verify address of the edited device given the row index & expected address
@@ -169,9 +169,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Validate address of the device given the device id & expected address string
-        public void ValidateDeviceAddress(string mpsDeviceId, string expectedAddress, int findElementTimeout)
+        public void ValidateDeviceAddress(string mpsDeviceId, string expectedAddress)
         {
-            LoggingService.WriteLogOnMethodEntry(mpsDeviceId, expectedAddress,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId, expectedAddress);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify device address for a device with Device Id null");
@@ -181,7 +181,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
@@ -196,45 +196,46 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Get model name of the device given the row index
-        public string DeviceModelName(int rowIndex, int findElementTimeout)
+        public string DeviceModelName(int rowIndex)
         {
-            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
             var deviceRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[rowIndex];
-            return SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector, findElementTimeout).Text;
+            return SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector).Text;
         }
 
-        public void SendInstallationRequest(int findElementTimeout)
+        public void SendInstallationRequest()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+
             // Input Email ID
-            SeleniumHelper.FindElementByCssSelector(InputEmailSelector, findElementTimeout).SendKeys(MpsUtil.GenerateUniqueEmail());
+            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
             
             // Click Send Installation Request button on modal
-            SeleniumHelper.ClickSafety(SendInstallationRequestModalElement, findElementTimeout);
+            SeleniumHelper.ClickSafety(SendInstallationRequestModalElement);
 
             // Verify success & close modal alert
-            var modalSuccessElement = SeleniumHelper.FindElementByCssSelector(ModalAlertSuccessSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(modalSuccessElement.FindElement(By.ClassName("close")), findElementTimeout);
+            var modalSuccessElement = SeleniumHelper.FindElementByCssSelector(ModalAlertSuccessSelector);
+            SeleniumHelper.ClickSafety(modalSuccessElement.FindElement(By.ClassName("close")));
         }
 
         // Click on Send Installation Request in Actions for this particular device row index
-        public void ClickSendInstallationRequestInActions(int rowIndex, int findElementTimeout)
+        public void ClickSendInstallationRequestInActions(int rowIndex)
         {
-            LoggingService.WriteLogOnMethodEntry(rowIndex,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                deviceRowElements[rowIndex], ActionsButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                deviceRowElements[rowIndex], ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
 
             var SendInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(
-                deviceRowElements[rowIndex], SendInstallationRequestActionsButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(SendInstallationRequestButtonElement, findElementTimeout);
+                deviceRowElements[rowIndex], SendInstallationRequestActionsButtonSelector);
+            SeleniumHelper.ClickSafety(SendInstallationRequestButtonElement);
         }
 
-        public void VerifySerialNumberOfDevice(string mpsDeviceId, string expectedSerialNumber, int findElementTimeout)
+        public void VerifySerialNumberOfDevice(string mpsDeviceId, string expectedSerialNumber)
         {
-            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,expectedSerialNumber,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,expectedSerialNumber);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify serial number for a device with Device Id null");
@@ -244,7 +245,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
@@ -259,16 +260,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Returns true if print count values have been updated in the UI for all devices, otherwise, returns false
-        public bool IsPrintCountsUpdated(int findElementTimeout)
+        public bool IsPrintCountsUpdated()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+
             bool isUpdated = false;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
 
             foreach(var deviceRowElement in deviceRowElements)
             {
-                var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement, findElementTimeout);
-                var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
+                var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement);
+                var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector);
 
                 if (!displayedTotalPrintCount.Text.Equals("-"))
                 {
@@ -282,7 +284,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 // Close Modal
                 SeleniumHelper.ClickSafety(
                     SeleniumHelper.FindElementByCssSelector(
-                    PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+                    PrintCountsModalCloseButtonSelector));
             }
 
             return isUpdated;
@@ -290,9 +292,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Verify the Total print count, Mono print count and Colour print count of the device given the mpsDeviceId
         public void VerifyPrintCountsOfDevice(
-            string mpsDeviceId, int colourPrintCount, int monoPrintCount, int totalPrintCount, int findElementTimeout)
+            string mpsDeviceId, int colourPrintCount, int monoPrintCount, int totalPrintCount)
         {
-            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,colourPrintCount,monoPrintCount,totalPrintCount,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId, colourPrintCount, monoPrintCount, totalPrintCount);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot verify print counts for a device with Device Id null");
@@ -301,15 +303,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 string displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
-                    var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement, findElementTimeout);
-                    var displayedDateTime = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, PrintCountsModalDateTimeSelector, findElementTimeout);
-                    var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector, findElementTimeout);
-                    var displayedColourPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, ColourPrintCountSelector, findElementTimeout);
-                    var displayedMonoPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, MonoPrintCountSelector, findElementTimeout);
+                    var PrintCountsRowElement = ClickShowPrintCounts(deviceRowElement);
+                    var displayedDateTime = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, PrintCountsModalDateTimeSelector);
+                    var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, TotalPrintCountSelector);
+                    var displayedColourPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, ColourPrintCountSelector);
+                    var displayedMonoPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElement, MonoPrintCountSelector);
                     
                     // Verify that date time is valid
                     TestCheck.AssertIsNotEqual("-", displayedDateTime.Text, string.Format("Date Timestamp for print counts could not be verified for the device with device id = {0}", mpsDeviceId));
@@ -330,7 +332,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     // Close Modal
                     SeleniumHelper.ClickSafety(
                         SeleniumHelper.FindElementByCssSelector(
-                        PrintCountsModalCloseButtonSelector, findElementTimeout), findElementTimeout);
+                        PrintCountsModalCloseButtonSelector));
 
                     return;
                 }
@@ -343,20 +345,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()));
         }
 
         public IWebElement ServiceRequestsTabElement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()));
         }
 
         // Click Show Consumable Orders in Actions given the MPS device Id
-        public void ClickShowConsumableOrders(string mpsDeviceId, int findElementTimeout)
+        public void ClickShowConsumableOrders(string mpsDeviceId)
         {
-            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Show Consumable Orders for a device with Device Id null");
@@ -365,18 +367,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 string displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
-                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
 
                     var ShowConsumableOrdersElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ShowConsumableOrdersActionsButtonSelector, findElementTimeout);
+                        deviceRowElement, ShowConsumableOrdersActionsButtonSelector);
                     ScrollTo(ShowConsumableOrdersElement);
-                    SeleniumHelper.ClickSafety(ShowConsumableOrdersElement, findElementTimeout);
+                    SeleniumHelper.ClickSafety(ShowConsumableOrdersElement);
                     
                     return;
                 }
@@ -386,9 +388,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Click Raise Consumable Orders in Actions given the MPS device Id
-        public void ClickRaiseConsumableOrder(string mpsDeviceId, int findElementTimeout)
+        public void ClickRaiseConsumableOrder(string mpsDeviceId)
         {
-            LoggingService.WriteLogOnMethodEntry(mpsDeviceId,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             if (mpsDeviceId == null)
             {
                 throw new Exception("Cannot click Raise Consumable Order for a device with Device Id null");
@@ -397,18 +399,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 string displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
-                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
 
                     var RaiseConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, RaiseConsumableOrderActionsButtonSelector, findElementTimeout);
+                        deviceRowElement, RaiseConsumableOrderActionsButtonSelector);
                     ScrollTo(RaiseConsumableOrderElement);
-                    SeleniumHelper.ClickSafety(RaiseConsumableOrderElement, findElementTimeout);
+                    SeleniumHelper.ClickSafety(RaiseConsumableOrderElement);
 
                     return;
                 }
@@ -425,8 +427,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var deviceFirstRowElement = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement)[0];
 
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceFirstRowElement, ActionsButtonSelector, RuntimeSettings.DefaultFindElementTimeout);
-            SeleniumHelper.ClickSafety(ActionsButtonElement, RuntimeSettings.DefaultFindElementTimeout);
+                        deviceFirstRowElement, ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
 
             if(SeleniumHelper.IsElementDisplayed(RaiseConsumableOrderActionsButtonElement))
             {
@@ -444,22 +446,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 throw new Exception("Cannot click Raise Service Request for a device with Device Id null");
             }
 
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 string displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
-                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
 
                     var RaiseServiceRequestElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, RaiseServiceRequestActionsButtonSelector, findElementTimeout);
+                        deviceRowElement, RaiseServiceRequestActionsButtonSelector);
                     ScrollTo(RaiseServiceRequestElement);
-                    SeleniumHelper.ClickSafety(RaiseServiceRequestElement, findElementTimeout);
+                    SeleniumHelper.ClickSafety(RaiseServiceRequestElement);
                     return;
                 }
             }
@@ -475,23 +476,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 throw new Exception("Cannot click Show Device Details for a device with Device Id null");
             }
             
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
          
             foreach (var deviceRowElement in deviceRowElements)
             {
-                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector, findElementTimeout);
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
                 string displayedDeviceId = CheckboxElement.GetAttribute("value");
                 if (displayedDeviceId.Equals(mpsDeviceId))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
-                    SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
 
                     var ShowDeviceDetailsElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ShowDeviceDetailsActionsButtonSelector, findElementTimeout);
+                        deviceRowElement, ShowDeviceDetailsActionsButtonSelector);
                     ScrollTo(ShowDeviceDetailsElement);
-                    SeleniumHelper.ClickSafety(ShowDeviceDetailsElement, findElementTimeout);
+                    SeleniumHelper.ClickSafety(ShowDeviceDetailsElement);
                     return;
                 }
             }
@@ -503,7 +503,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(device,agreementType,agreementLength,usageType);
             var DeviceDetailsContainerElement = SeleniumHelper.FindElementByCssSelector(
-                DeviceDetailsModalDeviceContainerSelector, RuntimeSettings.DefaultFindElementTimeout);
+                DeviceDetailsModalDeviceContainerSelector);
 
             // TODO: Replace this method after Id/class of the elements is fixed
             var detailColumnElements = SeleniumHelper.FindElementsByCssSelector(DeviceDetailsContainerElement, ".col-sm-4");
@@ -539,28 +539,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertTextContains(
                     device.CostCentre, AdditionalData, string.Format("CostCentre = {0} of the device could not be verified", device.CostCentre));
 
-            SeleniumHelper.ClickSafety(DeviceDetailsModalCloseButtonElement, RuntimeSettings.DefaultFindElementTimeout);
+            SeleniumHelper.ClickSafety(DeviceDetailsModalCloseButtonElement);
         }
 
 
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values
-        private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement, int findElementTimeout)
+        private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement)
         {
-            LoggingService.WriteLogOnMethodEntry(deviceRowElement,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(deviceRowElement);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        deviceRowElement, ActionsButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(ActionsButtonElement, findElementTimeout);
+                        deviceRowElement, ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
 
             var ShowPrintCountsElement = SeleniumHelper.FindElementByCssSelector(
-                deviceRowElement, ShowPrintCountsActionsButtonSelector, findElementTimeout);
-            SeleniumHelper.ClickSafety(ShowPrintCountsElement, findElementTimeout);
+                deviceRowElement, ShowPrintCountsActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ShowPrintCountsElement);
 
-            var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalTableBodySelector, findElementTimeout);
+            var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalTableBodySelector);
             var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement); 
             
             foreach(var rowElement in PrintCountsRowElements)
             {
-                var TotalPrintCountElement = SeleniumHelper.FindElementByCssSelector(rowElement, TotalPrintCountSelector, findElementTimeout);
+                var TotalPrintCountElement = SeleniumHelper.FindElementByCssSelector(rowElement, TotalPrintCountSelector);
                 if (!TotalPrintCountElement.Text.Equals("-"))
                 {
                     return rowElement;

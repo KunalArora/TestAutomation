@@ -442,7 +442,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                 var tcpListener = new System.Net.Sockets.TcpListener(ipAddr, Convert.ToInt32(portNumber));
                 tcpListener.Start();
             }
-            catch (System.Net.Sockets.SocketException ex)
+            catch (System.Net.Sockets.SocketException)
             {
                 MsgOutput(string.Format("Unable to connect to port [{0}] as it is already in use", portNumber));
                 return true;

@@ -60,7 +60,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
         public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
         {
             LoggingService.WriteLogOnMethodEntry(_dealerCustomersExistingPage, customerInformationName, customerEmail);
-            bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail, RuntimeSettings.DefaultFindElementTimeout);
+            bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail);
             if (exists)
             {
                 return;

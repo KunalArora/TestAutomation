@@ -636,9 +636,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSubmitForApproval(int proposalId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName));
             var actionsElement = ActionsDropdownElement(actionsButton);
             actionsElement.Last().Click();
             var submitForApprovalElement = ActionsModule.ConvertButtonElement(driver);
@@ -648,12 +647,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ProposalFilter, proposalName);
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
-            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
+            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
             actionButtonElement.Click();
-            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector, findElementTimeout);
+            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector);
             proposalEditButtonElement.Click();
         }
 
@@ -760,14 +758,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public bool VerifySavedProposalInOpenProposalsList(int proposalId, string proposalName)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
 
             // Wait for footer to load & then filter out the proposal
-            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector, findElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector);
             ClearAndType(ProposalFilter, proposalId.ToString());
             try
             {
-                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName), findElementTimeout );
+                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName));
                 return true;
             }
             catch

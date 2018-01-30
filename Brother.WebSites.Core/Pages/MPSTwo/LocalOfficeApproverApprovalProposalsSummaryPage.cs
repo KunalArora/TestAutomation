@@ -39,20 +39,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string InputReasonSelector = "#content_1_InputProposalDeclineReason_Input";
 
-        public void ClickOnAccept(int timeout)
+        public void ClickOnAccept()
         {
-            LoggingService.WriteLogOnMethodEntry(timeout);
-            SeleniumHelper.ClickSafety( ApproveButtonElement, timeout);
-            SeleniumHelper.ClickSafety( AcceptButtonElement, timeout,true);
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety( ApproveButtonElement);
+            SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout, true);
         }
 
-        public void DeclineProposal(string proposalDeclineReasonExpired, int findElementTimeout)
+        public void DeclineProposal(string proposalDeclineReasonExpired)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalDeclineReasonExpired,findElementTimeout);
-            SeleniumHelper.ClickSafety(DeclineButtonElement, findElementTimeout);
-            var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalDeclineReasonExpired);
+            SeleniumHelper.ClickSafety(DeclineButtonElement);
+            var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector);
             SeleniumHelper.SelectFromDropdownByText(InputReasonElement, proposalDeclineReasonExpired);
-            SeleniumHelper.ClickSafety(FinalDeclineButtonElement, findElementTimeout);
+            SeleniumHelper.ClickSafety(FinalDeclineButtonElement);
         }
     }
 }

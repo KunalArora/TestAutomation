@@ -41,17 +41,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ActionsButtonSelector = ".btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesSelector = ".js-mps-manage-devices";
        
-        public void NavigateToSpecificManageDevicesPage(int proposalId, int findElementTimeout)
+        public void NavigateToSpecificManageDevicesPage(int proposalId)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId);
             if (ManageDevicesElement == null)
                 throw new Exception("Manage Device Element is not displayed");
 
-            var SearchFieldElement = SeleniumHelper.FindElementByCssSelector(SearchFieldSelector, findElementTimeout);
+            var SearchFieldElement = SeleniumHelper.FindElementByCssSelector(SearchFieldSelector);
             ClearAndType(SearchFieldElement, proposalId.ToString());
-            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
             ActionsButtonElement.Click();
-            var ManageDevicesAction = SeleniumHelper.FindElementByCssSelector(ManageDevicesSelector, findElementTimeout);
+            var ManageDevicesAction = SeleniumHelper.FindElementByCssSelector(ManageDevicesSelector);
             ScrollTo(ManageDevicesAction);
             ManageDevicesAction.Click();
         }

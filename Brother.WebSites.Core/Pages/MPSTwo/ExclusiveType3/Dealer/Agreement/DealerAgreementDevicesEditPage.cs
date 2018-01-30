@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -118,12 +119,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 FillNonMandatoryDetails(nonMandatoryValues);
             }
 
-            return ValidationExpression(mandatoryValues, nonMandatoryValues);          
+            return ValidationExpression(LoggingService, mandatoryValues, nonMandatoryValues);          
         }
 
         // This is used for validation purpose. 
         // It is the Address string which is displayed on Devices page after editing device data. 
-        public string ValidationExpression(CustomerInformationMandatoryFields mandatoryValues, CustomerInformationOptionalFields optionalValues = null)
+        public string ValidationExpression(ILoggingService LoggingService, CustomerInformationMandatoryFields mandatoryValues, CustomerInformationOptionalFields optionalValues = null)
         {
             LoggingService.WriteLogOnMethodEntry(mandatoryValues,optionalValues);
             List<string> validationExpression = new string[] {

@@ -103,20 +103,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> CustomerRadioButtonElement;
         
         
-        public void SelectExistingCustomer(int findElementTimeout, string customerEmail)
+        public void SelectExistingCustomer(string customerEmail)
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout,customerEmail);
-            SelectAnExistingContact(findElementTimeout, customerEmail);
+            LoggingService.WriteLogOnMethodEntry(customerEmail);
+            SelectAnExistingContact(customerEmail);
         }
 
-        private void SelectAnExistingContact(int findElementTimeout, string customerEmail)
+        private void SelectAnExistingContact(string customerEmail)
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout,customerEmail);
-            var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(customerEmail);
+            var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer);
             ClearAndType(ExistingCustomerFilterElement, customerEmail);
-            var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion, findElementTimeout);
-            SeleniumHelper.WaitUntil(d => CustomerRadioButtonElement.Count == 1, findElementTimeout);
-            SeleniumHelper.ClickSafety(CustomerRadioButton, findElementTimeout);
+            var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion);
+            SeleniumHelper.WaitUntil(d => CustomerRadioButtonElement.Count == 1);
+            SeleniumHelper.ClickSafety(CustomerRadioButton);
 
         }
 

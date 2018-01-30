@@ -61,7 +61,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
                     SeleniumHelper.ClickSafety(
                         SeleniumHelper.FindElementByCssSelector(
-                        element, ConnectButtonSelector, RuntimeSettings.DefaultFindElementTimeout), RuntimeSettings.DefaultFindElementTimeout);
+                        element, ConnectButtonSelector));
 
                     SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                 }
@@ -69,9 +69,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         }
 
 
-        public bool AreAllDevicesConnected(int findElementTimeout)
+        public bool AreAllDevicesConnected()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
             foreach (var element in deviceRowElements)
             {

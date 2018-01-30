@@ -36,17 +36,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractListContractNameRowElement;
 
-        public void VerifyContractFilter(int proposalId, string proposalName, int findElementTimeout)
+        public void VerifyContractFilter(int proposalId, string proposalName)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId,proposalName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
             ClearAndType(ContractFilter, proposalId.ToString());
             if(proposalName == null)
             {
-                SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);
+                SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1);
             }
             else
             {
-                SeleniumHelper.WaitUntil(d => { try { return ContractListContractNameRowElement.First().Text == proposalName; } catch { return false; } }, findElementTimeout);
+                SeleniumHelper.WaitUntil(d => { try { return ContractListContractNameRowElement.First().Text == proposalName; } catch { return false; } });
             }
             
         }

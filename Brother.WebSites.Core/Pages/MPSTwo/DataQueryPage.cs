@@ -436,14 +436,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<ReportProposalSummaryPage>();
         }
 
-        public void FilterAndClickAgreement(int agreementId, int findElementTimeout)
+        public void FilterAndClickAgreement(int agreementId)
         {
-            LoggingService.WriteLogOnMethodEntry(agreementId, findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(agreementId);
             // Wait for footer to load & then filter out the agreement
-            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector, findElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
             ClearAndType(DataQuerySearchField, agreementId.ToString());
-            var agreementRowLinkElement = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString(), findElementTimeout);
-            SeleniumHelper.ClickSafety(agreementRowLinkElement, findElementTimeout);
+            var agreementRowLinkElement = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString());
+            SeleniumHelper.ClickSafety(agreementRowLinkElement);
         }
     }
 }

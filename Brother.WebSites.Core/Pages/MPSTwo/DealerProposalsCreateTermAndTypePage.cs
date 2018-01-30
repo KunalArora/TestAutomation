@@ -229,14 +229,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
         {
             LoggingService.WriteLogOnMethodEntry(usageType,contractLength,billingType,servicePackOption);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector, findElementTimeout);
-            var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector, findElementTimeout);
+            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector);
+            var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector);
             SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
             SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
  
-            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector, findElementTimeout);
-            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector, findElementTimeout);
+            var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector);
+            var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector);
             SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);
             SeleniumHelper.SelectFromDropdownByText(servicePackOptionElement, servicePackOption);
         }

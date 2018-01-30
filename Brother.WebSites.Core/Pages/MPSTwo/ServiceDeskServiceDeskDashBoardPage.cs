@@ -23,8 +23,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         // Web Elements
 
         [FindsBy(How = How.CssSelector, Using = ".media-list a[href=\"/mps/local-office/service-desk/service-requests\"] h4")]

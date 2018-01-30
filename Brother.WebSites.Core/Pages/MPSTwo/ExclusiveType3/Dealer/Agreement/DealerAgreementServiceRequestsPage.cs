@@ -27,8 +27,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         // Selectors
         private const string ServiceRequestRowSelector = "[id*=content_1_ServiceRequests_Row_]";
         private const string ServiceRequestIdSelector = "data-service-request-id";
@@ -46,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public string VerifyServiceRequestInformation(string model, string serialNumber, string serviceRequestStatus, string serviceRequestType, bool verifyDateClosed = false)
         {
-            SeleniumHelper.FindElementByCssSelector(ServiceRequestRowSelector, RuntimeSettings.DefaultFindElementTimeout);
+            SeleniumHelper.FindElementByCssSelector(ServiceRequestRowSelector);
             ClearAndType(ServiceRequestFilterElement, string.Format(model + " " + serialNumber));
 
             IWebElement serviceRequestRowElement = null;
@@ -61,14 +59,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                         element.FindElements(By.TagName("td")).ToList()[1].Text == model &&
                         element.FindElements(By.TagName("td")).ToList()[2].Text == serialNumber &&
                         element.FindElements(By.TagName("td")).ToList()[3].Text == serviceRequestStatus &&
-                        element.FindElements(By.TagName("td")).ToList()[4].Text == serviceRequestType),
-                        RuntimeSettings.DefaultFindElementTimeout);
+                        element.FindElements(By.TagName("td")).ToList()[4].Text == serviceRequestType));
 
                 if (verifyDateClosed)
                 {
                     TestCheck.AssertIsNotEqual(
                         SeleniumHelper.FindElementByCssSelector(
-                        serviceRequestRowElement, ServiceRequestRowDateClosedSelector, RuntimeSettings.DefaultFindElementTimeout).Text,
+                        serviceRequestRowElement, ServiceRequestRowDateClosedSelector).Text,
                         "-", 
                         string.Format("Data closed of the service request for device = {0} and serial number = {1} could not be verified", model, serialNumber));
                 }
@@ -84,7 +81,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement DevicesTabElement(int agreementId)
         {
             return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()), RuntimeSettings.DefaultFindElementTimeout);
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()));
         }
     }
 }

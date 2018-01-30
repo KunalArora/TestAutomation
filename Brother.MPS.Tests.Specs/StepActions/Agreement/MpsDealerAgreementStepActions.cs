@@ -158,14 +158,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);
 
             ClickSafety(dealerAgreementCreateSummaryPage.CompleteSetupButton, dealerAgreementCreateSummaryPage);
-            dealerAgreementCreateSummaryPage.AcceptJavascriptPopupOnCompleteSetup(RuntimeSettings.DefaultFindElementTimeout);
+            dealerAgreementCreateSummaryPage.AcceptJavascriptPopupOnCompleteSetup();
             return PageService.GetPageObject<DealerAgreementsListPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
-            bool exists = dealerAgreementsListPage.VerifyCreatedAgreement(_contextData.AgreementId, _contextData.AgreementName, RuntimeSettings.DefaultFindElementTimeout);
+            bool exists = dealerAgreementsListPage.VerifyCreatedAgreement(_contextData.AgreementId, _contextData.AgreementName);
             if (!exists)
             {
                 throw new Exception(string.Format("Agreement = {0} not found ", _contextData.AgreementId));
@@ -175,12 +175,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage NavigateToManageDevicesPage(DealerAgreementsListPage dealerAgreementsListPage, string resourceInstalledPrinterStatusAddressRequired)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);
-            dealerAgreementsListPage.ClickOnManageDevicesButton(RuntimeSettings.DefaultFindElementTimeout);
+
+            dealerAgreementsListPage.ClickOnManageDevicesButton();
             var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             
             // Verify that all devices are in "address required" state
-            dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(
-                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatusAddressRequired);
+            dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(resourceInstalledPrinterStatusAddressRequired);
 
             return dealerAgreementDevicesPage;
         }
@@ -192,8 +192,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                dealerAgreementDevicesPage.ClickOnEditDeviceData(
-                    rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                dealerAgreementDevicesPage.ClickOnEditDeviceData(rowIndex);
                 dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
                 
                 // Validate address field of edited device
@@ -208,8 +207,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceInstalledPrinterStatus);
             // Verify that all devices are in "resourceInstalledPrinterStatus" status
-            dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(
-                RuntimeSettings.DefaultFindElementTimeout, resourceInstalledPrinterStatus);
+            dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(resourceInstalledPrinterStatus);
         }
 
         public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
@@ -285,7 +283,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device_id = _excelHelper.EditExcelCustomerInformation(excelFilePath, row, mandatoryFields, nonMandatoryFields);
 
                 // Get the validation expression, i.e., the address string
-                validationExpression = dealerAgreementDevicesEditPage.ValidationExpression(
+                validationExpression = dealerAgreementDevicesEditPage.ValidationExpression(LoggingService,
                     mandatoryFields, nonMandatoryFields);
 
                 // Create a tuple of device_id & address string (& add to a list) for a later verification
@@ -307,8 +305,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             foreach (var tuple in validationTupleList)
             {
-                dealerAgreementDevicesPage.ValidateDeviceAddress(
-                    tuple.Item1 /*device_id*/, tuple.Item2 /*expectedAddressString*/, RuntimeSettings.DefaultFindElementTimeout);
+                dealerAgreementDevicesPage.ValidateDeviceAddress(tuple.Item1 /*device_id*/, tuple.Item2 /*expectedAddressString*/);
             }
       
             return dealerAgreementDevicesPage;
@@ -320,14 +317,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             string validationExpression;
 
             // Excel edit for first 2 devices
-            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(0, RuntimeSettings.DefaultFindElementTimeout);  // 1st device
-            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(1, RuntimeSettings.DefaultFindElementTimeout);  // 2nd device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(0);  // 1st device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(1);  // 2nd device
             ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
             dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
 
             // Bulk edit for next 2 devices
-            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(2, RuntimeSettings.DefaultFindElementTimeout);  // 3rd device
-            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(3, RuntimeSettings.DefaultFindElementTimeout);  // 4th device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(2);  // 3rd device
+            dealerAgreementDevicesPage.ClickOnDeviceCheckbox(3);  // 4th device
             ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
             dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
             dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(2, validationExpression); // Verify address of 3rd device
@@ -351,7 +348,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, rowIndex, optionalFields);
             string validationExpression;
-            dealerAgreementDevicesPage.ClickOnEditDeviceData(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+            dealerAgreementDevicesPage.ClickOnEditDeviceData(rowIndex);
             dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
             dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(rowIndex, validationExpression); // Verify address field of edited device
             return dealerAgreementDevicesPage;
@@ -366,12 +363,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Tick checkboxes of devices which are to be installed according to feature file configuration
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex);
                 foreach(var product in _contextData.PrintersProperties)
                 {
                     if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
-                        dealerAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        dealerAgreementDevicesPage.ClickOnDeviceCheckbox(rowIndex);
                         devicesInstallingCount++;
                         break;
                     }
@@ -391,7 +388,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 default: // For Bulk installation request
                     // Click Send Installation Request button (used for bulk)
                     ClickSafety(dealerAgreementDevicesPage.SendInstallationRequestElement, dealerAgreementDevicesPage);
-                    dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                    dealerAgreementDevicesPage.SendInstallationRequest();
                     break;
             }
 
@@ -406,16 +403,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Tick checkboxes of devices which are to be installed according to feature file configuration
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                string displayedModelName = dealerAgreementDevicesPage.DeviceModelName(rowIndex);
                 foreach (var product in _contextData.PrintersProperties)
                 {
                     if (displayedModelName.Equals(product.Model) && product.SendInstallationRequest.ToLower().Equals("yes"))
                     {
                         // Click Send Installation Request button in Actions dropdown
-                        dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex, RuntimeSettings.DefaultFindElementTimeout);
+                        dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex);
                         
                         // Handle Send Installation Request modal
-                        dealerAgreementDevicesPage.SendInstallationRequest(RuntimeSettings.DefaultFindElementTimeout);
+                        dealerAgreementDevicesPage.SendInstallationRequest();
                         break;
                     }
                 }
@@ -491,8 +488,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device.DeviceStatus = resourceInstalledPrinterStatusInstalled;
 
                 // Verify the serial number of all devices used during installation (pick up from context data)
-                dealerAgreementDevicesPage.VerifySerialNumberOfDevice(
-                    device.MpsDeviceId, device.SerialNumber, RuntimeSettings.DefaultFindElementTimeout);
+                dealerAgreementDevicesPage.VerifySerialNumberOfDevice(device.MpsDeviceId, device.SerialNumber);
             }
 
             // Verify updated devices' data in excel sheet
@@ -513,7 +509,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             // Refresh page until print counts are updated
             int retries = 0;
-            while(!dealerAgreementDevicesPage.IsPrintCountsUpdated(RuntimeSettings.DefaultFindElementTimeout))
+            while(!dealerAgreementDevicesPage.IsPrintCountsUpdated())
             {
                 _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
                 
@@ -532,8 +528,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Verify print count values for all devices one by one
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
-                dealerAgreementDevicesPage.VerifyPrintCountsOfDevice(
-                    device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount, RuntimeSettings.DefaultFindElementTimeout);
+                dealerAgreementDevicesPage.VerifyPrintCountsOfDevice(device.MpsDeviceId, device.ColorPrintCount, device.MonoPrintCount, device.TotalPrintCount);
             }
 
             // Sets the agreement status to "Running"
@@ -573,8 +568,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                         if (device.hasEmptyInkToner)
                         {
-                            dealerAgreementDevicesPage.ClickRaiseConsumableOrder(
-                                device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                            dealerAgreementDevicesPage.ClickRaiseConsumableOrder(device.MpsDeviceId);
                             var dealerAgreementConsumablesCreatePage = PageService.GetPageObject<DealerAgreementConsumablesCreatePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
                             // Select consumables
@@ -583,8 +577,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                             ClickSafety(
                                 dealerAgreementConsumablesCreatePage.SubmitOrderButtonElement, dealerAgreementConsumablesCreatePage);
-                            dealerAgreementConsumablesCreatePage.SeleniumHelper.AcceptJavascriptAlert(
-                                RuntimeSettings.DefaultFindElementTimeout);
+                            dealerAgreementConsumablesCreatePage.SeleniumHelper.AcceptJavascriptAlert();
 
                             // Verify success alert
                             dealerAgreementConsumablesCreatePage.VerifySuccessfulOrderCreation();
@@ -609,12 +602,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 if (device.hasEmptyInkToner)
                 {
-                    dealerAgreementDevicesPage.ClickShowConsumableOrders(
-                        device.MpsDeviceId, RuntimeSettings.DefaultFindElementTimeout);
+                    dealerAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(
-                        device.SerialNumber, resourceConsumableOrderStatusInProgress, RuntimeSettings.DefaultFindElementTimeout);
+                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
 
                     ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -640,8 +631,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 ClickSafety(
                     dealerAgreementServiceRequestsCreatePage.RaiseServiceRequestButtonElement, dealerAgreementServiceRequestsCreatePage);
 
-                dealerAgreementServiceRequestsCreatePage.SeleniumHelper.AcceptJavascriptAlert(
-                    RuntimeSettings.DefaultFindElementTimeout);
+                dealerAgreementServiceRequestsCreatePage.SeleniumHelper.AcceptJavascriptAlert();
 
                 var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
@@ -718,14 +708,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 quantity, 
                 installationPack, 
                 servicePack,
-                RuntimeSettings.DefaultFindElementTimeout,
                 out printerContainer);
 
             // Validate calculations on products page
             ValidateCalculationOnProductsPage(dealerAgreementCreateProductsPage, printerContainer);
 
             dealerAgreementCreateProductsPage.ClickAddToAgreementButton(
-                printerContainer, addToAgreementButton, RuntimeSettings.DefaultFindElementTimeout);
+                printerContainer, addToAgreementButton);
         }
 
         private void PopulatePrinterCoverageAndVolume(DealerAgreementCreateClickPricePage dealerAgreementCreateClickPricePage, string printerName, int monoCoverage, int monoVolume, int colorCoverage, int colorVolume)
@@ -734,14 +723,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             string resourceUsageTypePayAsYouGo = _translationService.GetUsageTypeText(
                 TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
             dealerAgreementCreateClickPricePage.PopulatePrinterCoverageAndVolume(
-                printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, _contextData.UsageType,
-                RuntimeSettings.DefaultFindElementTimeout, resourceUsageTypePayAsYouGo);
+                printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, _contextData.UsageType, resourceUsageTypePayAsYouGo);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             LoggingService.WriteLogOnMethodEntry(element,pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
 
         private void ImportExcelFile(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath)
@@ -766,15 +754,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private void ValidateCalculationOnProductsPage(DealerAgreementCreateProductsPage dealerAgreementCreateProductsPage, IWebElement printerContainer)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateProductsPage,printerContainer);
-            var installationPackQuantity = dealerAgreementCreateProductsPage.InstallationPackQuantity(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
-            var installationPackUnitPrice = dealerAgreementCreateProductsPage.InstallationPackUnitPrice(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
-            var installationPackTotalPrice = dealerAgreementCreateProductsPage.InstallationPackTotalPrice(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
 
-            var servicePackQuantity = dealerAgreementCreateProductsPage.ServicePackQuantity(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
-            var servicePackUnitPrice = dealerAgreementCreateProductsPage.ServicePackUnitPrice(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
-            var servicePackTotalPrice = dealerAgreementCreateProductsPage.ServicePackTotalPrice(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
+            var installationPackQuantity = dealerAgreementCreateProductsPage.InstallationPackQuantity(printerContainer);
+            var installationPackUnitPrice = dealerAgreementCreateProductsPage.InstallationPackUnitPrice(printerContainer);
+            var installationPackTotalPrice = dealerAgreementCreateProductsPage.InstallationPackTotalPrice(printerContainer);
 
-            var totalLinePrice = dealerAgreementCreateProductsPage.TotalLinePrice(printerContainer, RuntimeSettings.DefaultFindElementTimeout);
+            var servicePackQuantity = dealerAgreementCreateProductsPage.ServicePackQuantity(printerContainer);
+            var servicePackUnitPrice = dealerAgreementCreateProductsPage.ServicePackUnitPrice(printerContainer);
+            var servicePackTotalPrice = dealerAgreementCreateProductsPage.ServicePackTotalPrice(printerContainer);
+
+            var totalLinePrice = dealerAgreementCreateProductsPage.TotalLinePrice(printerContainer);
 
             _calculationService.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso, new List<string> { installationPackTotalPrice, servicePackTotalPrice, totalLinePrice });
             _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, RemoveCurrencySymbol(installationPackTotalPrice));

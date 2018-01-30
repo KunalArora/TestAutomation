@@ -145,10 +145,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public string EnterInstallerEmailAndProceed()
         {
             LoggingService.WriteLogOnMethodEntry();
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button
-            var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector, findElementTimeout);
+            var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
             _nextButtonElement.Click(); // Next button
             return emailId;
         }

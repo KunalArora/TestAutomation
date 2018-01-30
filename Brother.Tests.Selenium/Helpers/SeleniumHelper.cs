@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -16,18 +17,20 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         private const string ATTRIBUTE_SELECTOR_PATTERN = "['{0}'='{1}']";
 
         private ILoggingService LoggingService { get; set; }
+        private IRuntimeSettings RuntimeSettings { get; set; }
 
-        public SeleniumHelper(IWebDriver webDriver, ILoggingService loggingService)
+        public SeleniumHelper(IWebDriver webDriver, ILoggingService loggingService, IRuntimeSettings runtimeSettings)
         {
             _webDriver = webDriver;
             LoggingService = loggingService;
+            RuntimeSettings = runtimeSettings;
         }
 
         public IWebElement FindElementByCssSelector(string selector, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(selector, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
-
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
 
             return target;
@@ -36,10 +39,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(context, selector, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
-
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
-
             return target;
         }
 
@@ -47,6 +49,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             string dataAttributeValue, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(dataAttributeName, dataAttributeValue, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
             var selector = string.Format(DATA_ATTRIBUTE_SELECTOR_PATTERN, dataAttributeName, dataAttributeValue);
 
@@ -59,6 +62,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             string dataAttributeValue, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(context, dataAttributeName, dataAttributeValue, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
             var selector = string.Format(DATA_ATTRIBUTE_SELECTOR_PATTERN, dataAttributeName, dataAttributeValue);
 
@@ -76,12 +80,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void WaitUntilElementAppears(string selector, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(selector, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.CssSelector(selector)));
         }
 
-        public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout )
+        public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(conditions, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             TResult res = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(conditions);
             return res;
         }
@@ -119,6 +125,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void AcceptJavascriptAlert(int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout));
             IAlert alert = webDriverWait.Until(ExpectedConditions.AlertIsPresent());
             alert.Accept();
@@ -138,11 +145,12 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return actionsElement;
         }
 
-        public void ClickSafety(IWebElement element, int defaultFindElementTimeout, bool IsUntilUrlChanges)
+        public void ClickSafety(IWebElement element, int timeout, bool IsUntilUrlChanges)
         {
-            LoggingService.WriteLogOnMethodEntry(element, defaultFindElementTimeout, IsUntilUrlChanges);
+            LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             var url= _webDriver.Url;
-            WaitUntil(d => { try { element.Click(); return IsUntilUrlChanges == false || _webDriver.Url != url; } catch { return false; } }, defaultFindElementTimeout);
+            WaitUntil(d => { try { element.Click(); return IsUntilUrlChanges == false || _webDriver.Url != url; } catch { return false; } }, timeout);
         }
 
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)

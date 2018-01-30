@@ -146,7 +146,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             ClickSafety(dealerProposalsCreateCustomerInformationPage.SelectExistingCustomerElement, dealerProposalsCreateCustomerInformationPage);
             ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
             var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(RuntimeSettings.DefaultFindElementTimeout, _contextData.CustomerEmail);
+            dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(_contextData.CustomerEmail);
             ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -597,7 +597,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsInprogressPage);
-            dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -628,7 +628,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void ThenICanSeeTheCustomerCreatedAboveInTheCustomersContactsList(DealerCustomersExistingPage _dealerCustomersExistingPage, string customerInformationName, string customerEmail)
         {
             LoggingService.WriteLogOnMethodEntry(_dealerCustomersExistingPage, customerInformationName, customerEmail);
-            bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail, RuntimeSettings.DefaultFindElementTimeout);
+            bool exists = _dealerCustomersExistingPage.VerifyItemByName(customerInformationName, customerEmail);
             if (exists)
             {
                 return;
@@ -678,7 +678,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public CloudExistingProposalPage ClickOnCopyWithCustomerTab(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, int proposalId)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, proposalId);
-            dealerProposalsDeclinedPage.ClickOnCopyWithCustomerActionItem(proposalId, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsDeclinedPage.ClickOnCopyWithCustomerActionItem(proposalId, _dealerWebDriver);
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -813,7 +813,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
         #endregion
     }

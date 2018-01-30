@@ -60,22 +60,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             }
         }
 
-        public IWebElement BORInstallationButton(int findElementTimeout)
+        public IWebElement BORInstallationButton()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "1", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "1");
         }
 
-        public IWebElement WebInstallationButton(int findElementTimeout)
+        public IWebElement WebInstallationButton()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "2");
         }
 
-        public IWebElement USBInstallationButton(int findElementTimeout)
+        public IWebElement USBInstallationButton()
         {
-            LoggingService.WriteLogOnMethodEntry(findElementTimeout);
-            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4", findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry();
+            return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4");
         }
     }
 }

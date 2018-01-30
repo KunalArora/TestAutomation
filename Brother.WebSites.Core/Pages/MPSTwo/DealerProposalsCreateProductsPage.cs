@@ -1888,21 +1888,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickAcceptOnJsAlert();
         }
 
-        public IWebElement SelectPrinter(string printerName, int findElementTimeout)
+        public IWebElement SelectPrinter(string printerName)
         {
-            LoggingService.WriteLogOnMethodEntry(printerName,findElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(printerName);
             string containerSelector = string.Format("li#pc-{0}", printerName);
             string addButtonSelector = ".js-mps-product-open-add";
 
-            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector, findElementTimeout);
-            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector, findElementTimeout);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector);
+            var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector);
 
-            SeleniumHelper.ClickSafety(addButton, findElementTimeout);
+            SeleniumHelper.ClickSafety(addButton);
 
             // Note: Click Add button once again if it doesn't succeed first time
-            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector, findElementTimeout).Displayed)
+            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
             {
-                SeleniumHelper.ClickSafety(addButton, findElementTimeout);
+                SeleniumHelper.ClickSafety(addButton);
             }
 
             return printerContainer;
@@ -1919,16 +1919,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             out IWebElement printerContainer)
         {
             LoggingService.WriteLogOnMethodEntry(printerName, printerPrice, installationPack, delivery, servicePackType, resourceServicePackTypeIncludedInClickPrice);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
 
-            printerContainer = SelectPrinter(printerName, findElementTimeout);
+            printerContainer = SelectPrinter(printerName);
             ScrollTo(printerContainer);
-            var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector, findElementTimeout);
-            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector, findElementTimeout);
-            var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector, findElementTimeout);
-            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector, findElementTimeout);
+            var printerPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, printerPriceSelector);
+            var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector);
+            var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector);
+            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector);
 
             ClearAndType(printerPriceInput, printerPrice.ToString());
 
@@ -1939,8 +1938,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
  
             SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
             
-            margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector, findElementTimeout).GetAttribute("value");            
-            unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector, findElementTimeout).GetAttribute("value");
+            margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector).GetAttribute("value");            
+            unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector).GetAttribute("value");
 
             // Validate that service pack margin & unit price input fields are disabled in case of "Included in Click Price" service packs
             if (servicePackType.Equals(resourceServicePackTypeIncludedInClickPrice))
@@ -1958,24 +1957,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton)
         {
             LoggingService.WriteLogOnMethodEntry(printerContainer, addToProposalButton);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            SeleniumHelper.ClickSafety(addToProposalButton, findElementTimeout);
-            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector, findElementTimeout);
+            SeleniumHelper.ClickSafety(addToProposalButton);
+            SeleniumHelper.FindElementByCssSelector(printerContainer, alertSuccessContinueSelector);
         }
 
         public List<string> RetrieveAllTotalPriceValues(IWebElement printerContainer, out string expectedTotalPrice)
         {
             LoggingService.WriteLogOnMethodEntry(printerContainer);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             var totalPriceValues = new List<string>();
-            var tableBodyContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableBodySelector, findElementTimeout);
+            var tableBodyContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableBodySelector);
             var bodyRowElements = SeleniumHelper.FindRowElementsWithinTable(tableBodyContainer);
             foreach (var element in bodyRowElements)
             {
-                totalPriceValues.Add(SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true", findElementTimeout).Text.Substring(1));
+                totalPriceValues.Add(SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text.Substring(1));
             }
-            var tableFootContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableFootSelector, findElementTimeout);
-            expectedTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true", findElementTimeout).Text.Substring(1);
+            var tableFootContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableFootSelector);
+            expectedTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text.Substring(1);
             return totalPriceValues;
         }
     }

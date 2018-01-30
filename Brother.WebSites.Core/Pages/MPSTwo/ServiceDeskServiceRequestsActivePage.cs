@@ -25,8 +25,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             get { return _url; }
         }
 
-        public ISeleniumHelper SeleniumHelper { get; set; }
-
         private const string CloseService = @".js-mps-service-request-close";
         private const string ServiceRequestMessageSubmitButtonSelector = ".js-mps-service-request-response-submit";
         private const string ServiceRequestMessageInputDataAttributeSelector = "response-input";
@@ -131,31 +129,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     {
                         SeleniumHelper.WaitUntil(
                         d => 
-                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowModelSelector, RuntimeSettings.DefaultFindElementTimeout).Text == model &&
-                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowSerialNumberSelector, RuntimeSettings.DefaultFindElementTimeout).Text == serialNumber &&
-                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowStatusSelector, RuntimeSettings.DefaultFindElementTimeout).Text == resourceServiceRequestStatusNew &&
-                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowSRequestTypeSelector, RuntimeSettings.DefaultFindElementTimeout).Text == serviceRequestType, 
-                        RuntimeSettings.DefaultFindElementTimeout);
+                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowModelSelector).Text == model &&
+                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowSerialNumberSelector).Text == serialNumber &&
+                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowStatusSelector).Text == resourceServiceRequestStatusNew &&
+                        SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowSRequestTypeSelector).Text == serviceRequestType);
                     }
                     catch
                     {
                         throw new Exception(string.Format("Service Request = {0} information could not be verified for device = {1} with serial number = {2}", serviceRequestId, model, serialNumber));
                     }
 
-                    SeleniumHelper.ClickSafety(serviceRequestRowElement, RuntimeSettings.DefaultFindElementTimeout);
+                    SeleniumHelper.ClickSafety(serviceRequestRowElement);
 
                     var SubmitButtonElement = SeleniumHelper.FindElementByCssSelector(
-                        ServiceRequestMessageSubmitButtonSelector, RuntimeSettings.DefaultFindElementTimeout);
+                        ServiceRequestMessageSubmitButtonSelector);
 
-                    var MessageInputElement = SeleniumHelper.FindElementByDataAttributeValue(ServiceRequestMessageInputDataAttributeSelector, "true", RuntimeSettings.DefaultFindElementTimeout);
+                    var MessageInputElement = SeleniumHelper.FindElementByDataAttributeValue(ServiceRequestMessageInputDataAttributeSelector, "true");
 
                     ClearAndType(MessageInputElement, inputMessage);
-                    SeleniumHelper.ClickSafety(SubmitButtonElement, RuntimeSettings.DefaultFindElementTimeout);
+                    SeleniumHelper.ClickSafety(SubmitButtonElement);
 
-                    var CloseServiceRequestElement = SeleniumHelper.FindElementByCssSelector(CloseServiceRequestSelector, RuntimeSettings.DefaultFindElementTimeout);
+                    var CloseServiceRequestElement = SeleniumHelper.FindElementByCssSelector(CloseServiceRequestSelector);
 
-                    SeleniumHelper.ClickSafety(CloseServiceRequestElement, RuntimeSettings.DefaultFindElementTimeout);
-                    SeleniumHelper.AcceptJavascriptAlert(RuntimeSettings.DefaultFindElementTimeout);
+                    SeleniumHelper.ClickSafety(CloseServiceRequestElement);
+                    SeleniumHelper.AcceptJavascriptAlert();
                     break;
                 }
             }

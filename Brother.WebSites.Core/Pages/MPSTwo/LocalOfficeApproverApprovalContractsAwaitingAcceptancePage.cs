@@ -43,11 +43,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnViewSummary(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
             ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1, findElementTimeout);
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1);
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
 

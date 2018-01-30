@@ -337,28 +337,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void FilterContractUsingProposalId(int proposalId)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector, findElementTimeout);
+            var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector);
             ClearAndType(FilterContractInput, proposalId.ToString());
         }
 
         public void MoveToAcceptedContracts()
         {
             LoggingService.WriteLogOnMethodEntry();
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             AcceptedTabElement.Click();
-            SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector, findElementTimeout);
-            SeleniumHelper.WaitUntilElementAppears(PaginateSelector, findElementTimeout);
+            SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
         }
 
         // Only for first contract displayed in list
         public void ClickOnManageDevicesButton()
         {
             LoggingService.WriteLogOnMethodEntry();
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
-            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector, findElementTimeout);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
             ActionsButtonElement.Click();
-            var ManageDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(ManageDevicesButtonSelector, findElementTimeout);
+            var ManageDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(ManageDevicesButtonSelector);
             ManageDeviceButtonElement.Click();
         }
     }

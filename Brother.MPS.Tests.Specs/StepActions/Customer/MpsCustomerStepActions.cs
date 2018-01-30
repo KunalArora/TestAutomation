@@ -58,7 +58,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
 
         public void VerifyRaisedConsumableOrderStatus(CustomerConsumablesDevicesPage customerConsumablesDevicesPage)
@@ -111,7 +111,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
                 }
                 string filterText = string.Format("{0} {1}", product.SerialNumber, product.Model);
                 customerServiceRequestActivePage.ClearAndType(customerServiceRequestActivePage.FilterSearchFieldElement, filterText);
-                customerServiceRequestActivePage.SeleniumHelper.WaitUntil(d => customerServiceRequestActivePage.List_Row.Count == 1, RuntimeSettings.DefaultFindElementTimeout);
+                customerServiceRequestActivePage.SeleniumHelper.WaitUntil(d => customerServiceRequestActivePage.List_Row.Count == 1);
             }
         }
 

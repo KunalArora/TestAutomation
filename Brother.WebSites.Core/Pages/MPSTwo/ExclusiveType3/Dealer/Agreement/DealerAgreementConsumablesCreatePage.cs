@@ -63,19 +63,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public void VerifySuccessfulOrderCreation()
         {
             // Verify success & close modal alert
-            var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(AlertSuccessSelector, RuntimeSettings.DefaultFindElementTimeout);
-            SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")), RuntimeSettings.DefaultFindElementTimeout);
+            var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(AlertSuccessSelector);
+            SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")));
         }
 
 
         private void SelectConsumableCheckBox(string DataItemTypeValue)
         {
-            var element = SeleniumHelper.FindElementByDataAttributeValue(DataItemTypeSelector, DataItemTypeValue, RuntimeSettings.DefaultFindElementTimeout);
+            var element = SeleniumHelper.FindElementByDataAttributeValue(DataItemTypeSelector, DataItemTypeValue);
             if (element != null || !element.Enabled)
             {
                 if (!element.Selected)
                 {
-                    SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+                    SeleniumHelper.ClickSafety(element);
                 }
             }
             else

@@ -57,8 +57,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public DealerManageDevicesPage NavigateToManageDevicesPageFix(DealerContractsAcceptedPage dealerContractsAcceptedPage, int proposalId)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerContractsAcceptedPage,proposalId);
-            dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId, RuntimeSettings.DefaultFindElementTimeout);
+            LoggingService.WriteLogOnMethodEntry(dealerContractsAcceptedPage, proposalId);
+
+            dealerContractsAcceptedPage.NavigateToSpecificManageDevicesPage(proposalId);
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

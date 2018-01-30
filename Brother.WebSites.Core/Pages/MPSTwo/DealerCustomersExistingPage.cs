@@ -279,14 +279,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersManagePage>();
         }
 
-        public bool VerifyItemByName(string customerInformationName, string customerEmail, int timeout)
+        public bool VerifyItemByName(string customerInformationName, string customerEmail)
         {
             LoggingService.WriteLogOnMethodEntry();
             ClearAndType(PersonListFilter, customerEmail);
             try
             {
-                SeleniumHelper.WaitUntil(d => PersonListNameRowElement.First(element => element.Text == customerInformationName), timeout);
-                SeleniumHelper.WaitUntil(d => PersonListEmailRowElement.First(element => element.Text == customerEmail), timeout);
+                SeleniumHelper.WaitUntil(d => PersonListNameRowElement.First(element => element.Text == customerInformationName));
+                SeleniumHelper.WaitUntil(d => PersonListEmailRowElement.First(element => element.Text == customerEmail));
                 return true;
             }
             catch

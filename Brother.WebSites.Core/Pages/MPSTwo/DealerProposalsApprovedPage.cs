@@ -39,10 +39,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 , findElementTimeout);
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout) ;
+            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 );
+            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last()) ;
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
 
@@ -87,10 +86,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
             ClearAndType(FilterSearchFieldElement, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1, findElementTimeout);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
+            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
     }
