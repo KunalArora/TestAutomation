@@ -30,7 +30,7 @@
 
         public static class BillingType
         {
-            public static string HalfYearly { get { return "HALF_YEARLY"; } }
+            public static string HalfYearlyInArrears { get { return "HALF_YEARLY_IN_ARREARS"; } }
             public static string Monthly { get { return "MONTHLY"; } }
             public static string MonthlyInAdvance { get { return "MONTHLY_IN_ADVANCE"; } }
             public static string PolandSixMonthly { get { return "POLAND_SIX_MONTHLY"; } }
@@ -107,6 +107,12 @@
         {
             public static string New { get { return "NEW"; } }
             public static string Closed { get { return "CLOSED"; } }
+        }
+
+        public static class OverusageText
+        {
+            public static string ColourText { get { return "COLOUR_TEXT"; } }
+            public static string MonoText { get { return "MONO_TEXT"; } }
         }
     }
 }

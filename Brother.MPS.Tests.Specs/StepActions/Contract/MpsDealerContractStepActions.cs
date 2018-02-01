@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
         private readonly ITranslationService _translationService;
+        private readonly IContractShiftService _contractShiftService;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -31,7 +32,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             DeviceSimulatorService deviceSimulatorService,
             ITranslationService translationService,
             ILoggingService loggingService,
-            RunCommandService runCommandService)
+            RunCommandService runCommandService,
+            IContractShiftService contractShiftService)            
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
@@ -39,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
             _translationService = translationService;
+            _contractShiftService = contractShiftService;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -117,6 +120,42 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();
+        }
+
+        public void ApplyOverusage(int contractShiftTimeOffsetValue)
+        {
+            LoggingService.WriteLogOnMethodEntry(contractShiftTimeOffsetValue);
+
+            var products = _contextData.PrintersProperties;
+            // Shift the contract 2 times to update print counts and generate Invoices for upto 3 Billing periods.
+            for (int i = 0; i < 2; i++)
+            {
+                // Calling contract shift API and shifting by 6 months(in case of Half yearly) and 3 months(in case of Quarterly).
+                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue, "m", false, false, "Any");
+                foreach (var product in products)
+                {
+                    int updatedMono; 
+                    int updatedColor;
+                    // Calculate the mono and colour print count for the next billing period depending on MonoPrintCount and Volume Mono. 
+                    // Making sure that the updated print count is more than Minimum Volume for the billing period.
+                    updatedMono = contractShiftTimeOffsetValue * product.MonoPrintCount + (product.MonoPrintCount!=0 ? product.VolumeMono : 0);
+                    updatedColor = contractShiftTimeOffsetValue * product.ColorPrintCount + (product.ColorPrintCount!=0 ? product.VolumeColour : 0);
+
+                    string deviceId = product.DeviceId;
+                    _deviceSimulatorService.SetPrintCounts(deviceId, updatedMono, updatedColor);
+                    _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                    // Calculate the Overusage for mono and colour for each printer to verify it in the Invoice PDF.
+                    // Subtract the previous Billing period's print count and Minimum volume for the current billing period from the latest/updated print counts. 
+                    product.monoOverusage = updatedMono - product.MonoPrintCount - contractShiftTimeOffsetValue * product.VolumeMono;
+                    product.colorOverusage = updatedColor - product.ColorPrintCount - contractShiftTimeOffsetValue * product.VolumeColour;
+                    // Update the product's print counts with the latest print count values
+                    product.MonoPrintCount = updatedMono;
+                    product.ColorPrintCount = updatedColor;
+                }
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            }
+            // Finally, run the contract shift API to generate Billing Invoices upto 3 Billing Periods 
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue, "m", false, true, "Any");
         }
 
         public DealerManageDevicesPage RetrieveDealerManageDevicesPage()

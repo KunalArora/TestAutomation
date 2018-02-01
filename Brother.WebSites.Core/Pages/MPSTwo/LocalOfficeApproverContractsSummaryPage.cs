@@ -1,19 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverContractsSummaryPage : BasePage
+    public class LocalOfficeApproverContractsSummaryPage : BasePage, IPageObject
     {
         public static string Url = "/mps/local-office/contracts/summary";
         private const string AcceptancePanel = @".js-mps-acceptance-panel";
 
+        private const string _validationElementSelector = ".js-mps-report-list-container";
+        private const string _url = "/mps/local-office/contracts/summary";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return Url;
+            }
+        }
+        
         public override string DefaultTitle
         {
             get { return string.Empty; }

@@ -14,17 +14,21 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using Brother.Tests.Specs.StepActions.Common;
+using Brother.Tests.Specs.Helpers;
+using System.Globalization;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
     [Binding]
-    class MpsLocalOfficeApproverContractStepActions : StepActionBase
+    class MpsLocalOfficeApproverContractStepActions : MpsLocalOfficeStepActions 
     {
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
         private readonly IWebDriver _localOfficeApproverWebDriver;
         private readonly ITranslationService _translationService;
+        private readonly IPdfHelper _pdfHelper;
 
         public MpsLocalOfficeApproverContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -35,14 +39,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
             DeviceSimulatorService deviceSimulatorService,
             ITranslationService translationService,
             ILoggingService loggingService,
+            IPdfHelper pdfHelper,
             RunCommandService runCommandService)
-                    : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
+                    : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
             _localOfficeApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _translationService = translationService;
+            _pdfHelper = pdfHelper;
         }
 
         public LocalOfficeApproverContractsAwaitingAcceptancePage NavigateToApprovalContractsAwaitingAcceptancePage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -249,5 +255,81 @@ namespace Brother.Tests.Specs.StepActions.Contract
             dealerSetInstallationTypePage.NextElement.Click();
         }
 
+
+        public LocalOfficeApproverReportsDashboardPage NavigateToReportsDashboardPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            ClickSafety(localOfficeApproverDashBoardPage.LocalApprovalReportingElement, localOfficeApproverDashBoardPage);
+            return PageService.GetPageObject<LocalOfficeApproverReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public DataQueryPage NavigateToReportsDataQueryPage(LocalOfficeApproverReportsDashboardPage localOfficeApproverReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsDashboardPage);
+            ClickSafety(localOfficeApproverReportsDashboardPage.DataQueryElement, localOfficeApproverReportsDashboardPage);
+            return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage localOfficeApproverReportsDataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsDataQueryPage);
+            return NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage, _localOfficeApproverWebDriver);
+        }
+
+        public string DownloadPdf(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
+            var fileList = _pdfHelper.ListDownloadsFolder();
+            localOfficeApproverReportsProposalsSummaryPage.ClickOnBillAction();
+            var task = _pdfHelper.WaitforNewfile(fileList);
+            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
+            {
+                return task.Result;
+            }
+            else
+            {
+                throw new Exception("download pdf timeout");
+            }
+        }
+                
+        public void AssertAreEqualOverusageValues(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            string monoOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, _contextData.Culture);
+            string colourOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, _contextData.Culture);
+            var products = _contextData.PrintersProperties;
+
+            if(_pdfHelper.PdfExists(pdfFile) == false )
+            {
+                throw new Exception("pdf file does not exist=" + pdfFile);
+            }
+            foreach (var product in products)
+            {
+                var searchTextArray = new List<string>();
+                if (product.VolumeMono!= 0 && product.monoOverusage > 0)
+                {
+                    string expected = product.monoOverusage.ToString("N0", new CultureInfo(_contextData.Culture)); 
+                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + monoOverusageText + " " + expected);
+                }
+                if (product.VolumeColour!=0 && product.colorOverusage > 0)
+                {
+                    string expected = product.colorOverusage.ToString("N0", new CultureInfo(_contextData.Culture));
+                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + colourOverusageText + " " + expected);
+                }
+                searchTextArray.ForEach(expected =>
+                {
+                    if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                    {
+                        throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
+                    }
+                });
+            }
+        }
+
+        public void DeletePdfFIle(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */ }
+        }
     }
 }

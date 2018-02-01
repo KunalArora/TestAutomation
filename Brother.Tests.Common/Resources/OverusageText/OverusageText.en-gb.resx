@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HALF_YEARLY_IN_ARREARS" xml:space="preserve">
-    <value>Half Yearly in Arrears</value>
+  <data name="COLOUR_TEXT" xml:space="preserve">
+    <value>Colour Run-Ons</value>
   </data>
-  <data name="MONTHLY" xml:space="preserve">
-    <value>Monthly</value>
-  </data>
-  <data name="MONTHLY_IN_ADVANCE" xml:space="preserve">
-    <value>Monthly in Advance</value>
-  </data>
-  <data name="POLAND_SIX_MONTHLY" xml:space="preserve">
-    <value>Poland 6 monthly</value>
-  </data>
-  <data name="QUARTERLY_IN_ADVANCE" xml:space="preserve">
-    <value>Quarterly in Advance</value>
-  </data>
-  <data name="QUARTERLY_IN_ARREARS" xml:space="preserve">
-    <value>Quarterly in Arrears</value>
-  </data>
-  <data name="TEST_MIN" xml:space="preserve">
-    <value>Test Min</value>
+  <data name="MONO_TEXT" xml:space="preserve">
+    <value>Mono Run-Ons</value>
   </data>
 </root>

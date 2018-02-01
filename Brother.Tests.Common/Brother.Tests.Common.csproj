@@ -144,6 +144,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\OverusageText\OverusageText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverusageText.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\PaymentType\PaymentType.Designer.cs">
       <DependentUpon>PaymentType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -236,6 +241,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.resx">
       <LastGenOutput>InstalledPrinterStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
