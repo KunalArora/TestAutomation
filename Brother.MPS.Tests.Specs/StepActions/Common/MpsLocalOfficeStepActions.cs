@@ -36,6 +36,13 @@ namespace Brother.Tests.Specs.StepActions.Common
             _translationService = translationService;
             _runCommandService = runCommandService;
         }
+
+        public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
+            dataQueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+        }
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
         {

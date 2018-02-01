@@ -8,6 +8,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         private const string _url = "/mps/local-office/reports/proposal-summary";
         private const string _validationElementSelector = "#content_0_ButtonBack"; // back
+        
         public string PageUrl
         {
             get
@@ -15,9 +16,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _url;
             }
         }
-
-
-
+        
         public string ValidationElementSelector
         {
             get
@@ -25,10 +24,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _validationElementSelector;
             }
         }
-
+       
         [FindsBy(How = How.CssSelector, Using = "#content_0_ButtonSpecialPricing")]
         public IWebElement ButtonSpecialPricing;
 
+        private const string billingDatesSelector =  ".mps-billing-dates-container";
+        private const string billingDatesRowSelector = "#content_0_BillingDatesList_BillingDates_CellActions_2";
+        private const string actionButtonSelector = ".btn-xs.dropdown-toggle";
+        private const string billSelector = ".js-mps-download-invoice-pdf";
 
+        public void ClickOnBillAction()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var billingDatesContainer = SeleniumHelper.FindElementByCssSelector(billingDatesSelector);
+            ScrollTo(billingDatesContainer);
+            var billingDatesRow2Container = SeleniumHelper.FindElementByCssSelector(billingDatesContainer, billingDatesRowSelector);
+            var actionButtonContainer = SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, actionButtonSelector);
+            actionButtonContainer.Click();
+            var billContainer = SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, billSelector);
+            billContainer.Click();
+        }
     }
 }

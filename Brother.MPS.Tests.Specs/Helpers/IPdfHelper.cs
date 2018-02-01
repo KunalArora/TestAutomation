@@ -26,5 +26,18 @@ namespace Brother.Tests.Specs.Helpers
         /// </summary>
         /// <param name="filename"></param>
         void DeletePdf(string filename);
+        /// <summary>
+        /// Wait for a pdf file to be downloaded
+        /// </summary>
+        /// <param name="orglist"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf");
+        /// <summary>
+        /// List the file which is downloaded
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        string[] ListDownloadsFolder(string pattern = "*.pdf");
     }
 }

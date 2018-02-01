@@ -27,7 +27,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
         private LocalOfficeApproverManageDevicesManagePage _localOfficeApproverManagedevicesManagePage;
-        
+       
 
         public MpsLocalOfficeApproverContractSteps(
             MpsSignInStepActions mpsSignInStepActions,
@@ -156,6 +156,23 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
         }
 
+        [When(@"a Cloud MPS Local Office Approver verify the Overusage")]
+        public void WhenACloudMPSLocalOfficeApproverVerifyTheOverusage()
+        {
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverReportsDashboardPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDashboardPage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDataQueryPage(localOfficeApproverReportsDashboardPage);
+            var localOfficeApproverReportsProposalsSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
+            var pdfFile = _mpsLocalOfficeApproverContractStepActions.DownloadPdf(localOfficeApproverReportsProposalsSummaryPage);
+            try
+            {
+                _mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
+            }
+            finally
+            {
+                _mpsLocalOfficeApproverContractStepActions.DeletePdfFIle(pdfFile);
+            }
+        }
 
     }
 }

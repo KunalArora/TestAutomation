@@ -5,7 +5,6 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -18,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -520,9 +518,9 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public string DownloadPdf(DealerProposalsSummaryPage dealerProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsSummaryPage);
-            var fileList = ListDownloadsFolder();
+            var fileList = _pdfHelper.ListDownloadsFolder();
             ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
-            var task = WaitforNewfile(fileList);
+            var task = _pdfHelper.WaitforNewfile(fileList);
             if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
             {
                 return task.Result;
@@ -530,38 +528,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 throw new Exception("download pdf timeout");
             }
-        }
-
-        private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf")
-        {
-            LoggingService.WriteLogOnMethodEntry(orglist, pattern);
-            // note: FileWatcher is not detecting file...
-            for (int safetycount=0;safetycount < 1000; safetycount++)
-            {
-                var newlist = ListDownloadsFolder(pattern);
-                var difflist = newlist.Except(orglist);
-                if(difflist.Count() > 0)
-                {
-                    return difflist.First();
-                }
-                await Task.Delay(new TimeSpan(0, 0, 1));
-            }
-            throw new Exception("safety count retryout");
-        }
-
-        private string[] ListDownloadsFolder(string pattern="*.pdf")
-        {
-            LoggingService.WriteLogOnMethodEntry(pattern);
-            try
-            {
-                string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
-                return files;
-            }catch
-            {
-                return new string[0];
-            }
-            
-            
         }
 
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)

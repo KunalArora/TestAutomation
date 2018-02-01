@@ -71,6 +71,10 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.ServiceRequestStatus.ServiceRequestStatus.ResourceManager, name, culture);
         }
 
+        public string GetOverusageText(string name, string culture)
+        {
+            return GetText(Resources.OverusageText.OverusageText.ResourceManager, name, culture);
+        }
 
         #region Exclusively Type 3
 

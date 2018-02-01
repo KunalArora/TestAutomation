@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Common.Services;
@@ -9,6 +8,7 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using System;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -88,8 +88,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
                 }
             }
         }
-
-
+        
         [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
         public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
         {
@@ -122,6 +121,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
+        [When(@"I update the print count and verify it on the Manage devices page")]
+        public void WhenIUpdateThePrintCountAndVerifyItOnTheManageDevicesPage()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+            ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts();
+        }
+
+
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
         {
@@ -131,6 +139,35 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
+        [When(@"I apply overusage to the contract depending on usagetype and billingtype")]
+        public void WhenIApplyOverusageToTheContractDependingOnUsagetypeAndBillingtype()
+        {
+            int contractShiftTimeOffsetValue;
+            var billingType = _contextData.BillingType;
+
+            // TODO: Create a function in the IContractShiftService class to do this process
+            switch (billingType)
+            {
+                case "Half Yearly in Arrears":
+                    contractShiftTimeOffsetValue = 6;
+                    break;
+                case "Quarterly in Arrears":
+                    contractShiftTimeOffsetValue = 3;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            _mpsDealerContractStepActions.ApplyOverusage(contractShiftTimeOffsetValue);
+        }
+
+        [When(@"I will raise consumable order and service request for above devices")]
+        public void WhenIWillRaiseConsumableOrderAndServiceRequestForAboveDevices()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForServiceRequest();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+        }
 
         [When(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
@@ -146,8 +183,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
             _contextData.WebSwapInstallUrl = url;
         }
-
-
+        
         [When(@"I sign the above proposal")]
         public void WhenISignTheAboveProposal()
         {
