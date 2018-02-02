@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementServiceRequestsPage: BasePage, IPageObject
     {
-        private const string _validationElementSelector = ".active a[href*=\"/service-requests\"]";
+        private const string _validationElementSelector = "#content_1_ServiceRequests_Row_0";
         private const string _url = "/mps/dealer/agreement/{agreementId}/service-requests"; // TODO: Replace agreementId with dynamic parameter
 
         public string ValidationElementSelector
