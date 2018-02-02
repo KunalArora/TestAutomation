@@ -1899,8 +1899,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             SeleniumHelper.ClickSafety(addButton);
 
-            // Note: Click Add button once again if it doesn't succeed first time
-            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
+            // Note: Repeatedly click Add button if it doesn't succeed
+            while(!SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
             {
                 SeleniumHelper.ClickSafety(addButton);
             }

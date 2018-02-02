@@ -13,7 +13,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         private const string DownloadDirectory = @"C:\DataTest";
 
-        private const string _validationElementSelector = ".js-mps-report-list-container";
+        private const string _validationElementSelector = "a[href=\"/mps/local-office/reports/data-query\"]";
         private const string _url = "/mps/local-office/reports/dashboard"; 
 
         public string ValidationElementSelector
@@ -43,12 +43,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintVolumeReportElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/service-request-report\"] .media-heading")]
         public IWebElement ServiceRequestReportElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-filter-search-field")]
-        public IWebElement FilterSearchFieldElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal mps-list-row")]
-        public IList<IWebElement> ProposalListProposalNameRowElement;
-        
-        private const string proposalLink = "a[href=\"#\"] .js-mps-proposal-link";
 
         public void IsReportingPageDisplayed()
         {
@@ -144,14 +138,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ServiceRequestReportElement.Click();
             IsReportDownloaded();
             PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
-        }
-
-        public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
-        {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            ClearAndType(FilterSearchFieldElement, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
-            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(proposalLink));
         }
     }
 }

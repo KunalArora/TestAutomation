@@ -9,5 +9,6 @@
         int DefaultDeviceSimulatorTimeout { get; set; }
         int DefaultRemoteWebDriverTimeout { get; set; }
         int DefaultDownloadTimeout { get; set; }
+        int DefaultAPIResponseTimeout { get; set; }
     }
 }

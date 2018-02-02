@@ -1,8 +1,10 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -70,7 +72,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public string GetPin()
         {
             LoggingService.WriteLogOnMethodEntry();
-            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "");
+            
+            int start_time, elapsed_time;
+            start_time = DateTime.Now.Second;
+
+            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "", RuntimeSettings.DefaultAPIResponseTimeout); // BOC Pin API is being called here, hence larger timeout value
+            
+            elapsed_time = DateTime.Now.Second - start_time;
+            if (elapsed_time > 10) 
+            {
+                LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC pin generator API has a slow response. Time taken = {0}", elapsed_time));
+            }
+
             return InstallationPinElement.Text;
         }
 

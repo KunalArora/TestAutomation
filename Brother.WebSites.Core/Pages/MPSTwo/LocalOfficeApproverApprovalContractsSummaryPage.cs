@@ -7,7 +7,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class LocalOfficeApproverApprovalContractsSummaryPage : BaseSummaryPage, IPageObject
     {
         public static string _url = "/mps/local-office/approval/contracts/summary";
-        private const string _validationElementSelector = ".js-mps-contract-summary-contract-accept"; // Accept button as "#content_1_ButtonAccept"
+        private const string _validationElementSelector = ".js-mps-contract-summary-contract-accept";
 
         public string PageUrl
         {
@@ -27,17 +27,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        [FindsBy(How = How.Id, Using = "content_1_ButtonAccept")]
+        private const string FinalAcceptButtonSelector = ".js-mps-contract-summary-contract-accept-confirm";
+
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-summary-contract-accept")]
         public IWebElement AcceptButtonElement;
-        [FindsBy(How = How.Id, Using = "content_1_ButtonContractAcceptAccept")]
-        public IWebElement FinalAcceptButtonElement;
 
         //TODO: Refactoring
         public void OnClickAccept()
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety(AcceptButtonElement);
-            SeleniumHelper.ClickSafety(FinalAcceptButtonElement);
+            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(FinalAcceptButtonSelector)); // Second accept is dynamic element, hence apply wait
         }
     }
 }

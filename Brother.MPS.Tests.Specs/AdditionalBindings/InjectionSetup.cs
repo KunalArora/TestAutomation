@@ -131,8 +131,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultPageObjectTimeout: AppSettingToInt("RuntimeSettings.DefaultPageObjectTimeout"),
                     defaultRemoteWebDriverTimeout: AppSettingToInt("RuntimeSettings.DefaultRemoteWebDriverTimeout"),
                     defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount"),
-                    defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout")
-
+                    defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout"),
+                    defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout")
             );
 
             return runtimeSettings;
