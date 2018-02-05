@@ -216,36 +216,79 @@ testRunner.And("I have navigated to the Approved Proposals page and navigate to 
                     "ary page for this proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
 testRunner.And("I click the download proposal button and verify if I am able to open the PDF", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
-testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "InstallUnitCost",
+                        "InstallMargin",
+                        "InstallUnitPrice",
+                        "ServiceUnitCost",
+                        "ServiceMargin",
+                        "ServiceUnitPrice",
+                        "MonoClickServiceCost",
+                        "MonoClickServicePrice",
+                        "MonoClickCoverage",
+                        "MonoClickVolume",
+                        "MonoClickMargin",
+                        "MonoClick",
+                        "ColourClickServiceCost",
+                        "ColourClickServicePrice",
+                        "ColourClickCoverage",
+                        "ColourClickVolume",
+                        "ColourClickMargin",
+                        "ColourClick"});
+            table2.AddRow(new string[] {
+                        "*",
+                        "100",
+                        "50",
+                        "",
+                        "120",
+                        "50",
+                        "",
+                        "",
+                        "",
+                        "10",
+                        "100",
+                        "50.00",
+                        "0.01300",
+                        "",
+                        "",
+                        "40",
+                        "300",
+                        "50.00",
+                        "0.10700"});
 #line 25
-testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
-testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
-                    "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
-testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
-testRunner.And("I will be able to see the installation request created above on the Manage Device" +
-                    "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver Set a Special Pricing:", ((string)(null)), table2, "And ");
 #line 29
-testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
-                    "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
-testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
+testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+testRunner.And("I will be able to see the installation request created above on the Manage Device" +
+                    "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
+                    "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
+                    "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 38
 testRunner.And("I update the print count, raise consumable order and service request for above de" +
                     "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 39
 testRunner.And("I will be able to see on the Manage Devices page that above devices have updated " +
                     "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
+#line 40
 testRunner.Then("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

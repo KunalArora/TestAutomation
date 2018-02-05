@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety(AcceptButtonElement);
-            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(FinalAcceptButtonSelector)); // Second accept is dynamic element, hence apply wait
+            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(FinalAcceptButtonSelector), RuntimeSettings.DefaultFindElementTimeout, true); // Second accept is dynamic element, hence apply wait
         }
     }
 }
