@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -240,10 +241,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
+            int retries = 0;
+
             while(dealerAgreementDevicesPage.SeleniumHelper.IsElementDisplayed(dealerAgreementDevicesPage.WarningAlertElement))
             {
                 _dealerWebDriver.Navigate().Refresh();
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Number of retries exceeded the default limit during verification of boc pin codes generation for agreement {0}", _contextData.AgreementId));
+                }
             }
 
             return dealerAgreementDevicesPage;
@@ -653,6 +663,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
 
             var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Make sure that the service requests exist before verifying the information
+            int retries = 0;
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                while (!dealerAgreementServiceRequestsPage.DoesServiceRequestExist(device.SerialNumber))
+                {
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            string.Format("Number of retries exceeded the default limit during service request information verification for agreement {0}", _contextData.AgreementId));
+                    }
+                }
+            }
 
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {

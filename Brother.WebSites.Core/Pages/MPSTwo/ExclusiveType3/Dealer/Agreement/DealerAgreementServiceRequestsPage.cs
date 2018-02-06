@@ -31,6 +31,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ServiceRequestRowSelector = "[id*=content_1_ServiceRequests_Row_]";
         private const string ServiceRequestIdSelector = "data-service-request-id";
         private const string ServiceRequestRowDateClosedSelector = "[id*=content_1_ServiceRequests_DateClosedRow_]";
+        private const string ServiceRequestContainerSelector = ".js-mps-searchable";
 
         // Tab link selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
@@ -41,6 +42,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement ServiceRequestFilterElement;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_ServiceRequests_Row_]")]
         public IList<IWebElement> ServiceRequestRowElementList;
+
+        public bool DoesServiceRequestExist(string serialNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
+
+            bool exists = false;
+            try
+            {
+                var ServiceRequestContainerElement = SeleniumHelper.FindElementByCssSelector(ServiceRequestContainerSelector);
+                var serviceRequestRowElements = SeleniumHelper.FindRowElementsWithinTable(ServiceRequestContainerElement);
+                foreach (var serviceRequestRowElement in serviceRequestRowElements)
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                    string displayedSerialNumber = serviceRequestRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                    if (displayedSerialNumber.Equals(serialNumber))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                return exists;
+            }
+            catch
+            {
+                return exists;
+            }
+        }
 
         public string VerifyServiceRequestInformation(string model, string serialNumber, string serviceRequestStatus, string serviceRequestType, bool verifyDateClosed = false)
         {
