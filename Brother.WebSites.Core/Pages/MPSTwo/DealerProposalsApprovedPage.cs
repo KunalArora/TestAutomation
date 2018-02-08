@@ -38,10 +38,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 );
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last()) ;
+            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
+            int findElementTimeout = RuntimeSettings.DefaultFindElementTimeout;
+            //ClearAndType(ContractFilter, proposalId.ToString());
+            SeleniumHelper.WaitUntil(d => {
+                ClearAndType(ContractFilter, proposalId.ToString(),true);
+                if (ContractListContractNameRowElement.Count == 0)
+                {
+                    driver.Navigate().Refresh();
+                    return false;
+                }
+                return ContractListContractNameRowElement.Count == 1;
+            }, findElementTimeout);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last(), findElementTimeout);
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
 

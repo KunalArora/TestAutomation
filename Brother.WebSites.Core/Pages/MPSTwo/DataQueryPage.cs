@@ -439,11 +439,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void FilterAndClickAgreement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
-            // Wait for footer to load & then filter out the agreement
-            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
-            ClearAndType(DataQuerySearchField, agreementId.ToString());
-            var agreementRowLinkElement = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString());
-            SeleniumHelper.ClickSafety(agreementRowLinkElement);
+            var agreementRowLinkElement = SeleniumHelper.WaitUntil(d =>
+           {
+               try
+               {
+                   // Wait for footer to load & then filter out the agreement
+                   SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
+                   ClearAndType(DataQuerySearchField, agreementId.ToString(),true);
+                   return SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString(),1);
+               }
+               catch
+               {
+                   // maybe proposal not ready yet, browser reloading.
+                   d.Navigate().Refresh();
+                   return null;
+               }
+           }, RuntimeSettings.DefaultFindElementTimeout);
+            SeleniumHelper.ClickSafety(agreementRowLinkElement, IsUntilUrlChanges:true);
         }
     }
 }
