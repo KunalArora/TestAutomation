@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Brother.Tests.Common.Logging
 {
@@ -89,6 +90,24 @@ namespace Brother.Tests.Common.Logging
         {
             var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
+        }
+
+        public T WriteLogWhenTimeTooMatch<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = "too much time", [CallerLineNumber]int lineNumber = 0)
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            var result = p(this);
+            sw.Stop();
+            var elapsedSec = sw.ElapsedMilliseconds / 1000;
+            if (elapsedSec >= timeOut)
+            {
+                var callerFrame = new StackFrame(1);
+                var method = callerFrame.GetMethod();
+                var methodName = method.Name;
+                var className = method.ReflectedType.Name;
+                WriteLog(LoggingLevel.WARNING, "{0}#{1}({2}) exectime={3}s {4}",className,methodName,lineNumber, elapsedSec, warningMessageWhenTimeExceed);
+            }
+            return result;
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace Brother.Tests.Common.Logging
 {
@@ -50,7 +51,14 @@ namespace Brother.Tests.Common.Logging
         /// <param name="args"></param>
         void WriteLogOnMethodEntry(params object[] args);
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="p">lambda function for </param>
+        /// <param name="timeOut">in sec</param>
+        /// <param name="warningMessageWhenTimeExceed">warning message when lambda process time >= timeOut</param>
+        /// <returns></returns>
+        T WriteLogWhenTimeTooMatch<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = @"too much time", [CallerLineNumber]int lineNumber = 0) ;
     }
 }
