@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Selenium.Lib.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Text.RegularExpressions;
@@ -77,7 +76,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 try
                 {
-                    ClearAndType(ConfirmationAdditionalInformation, message);
+                    ClearAndType(ConfirmationAdditionalInformation, message, true);
                     ConfirmationAdditionalInformation.SendKeys(Keys.Tab);
 
                     return true;

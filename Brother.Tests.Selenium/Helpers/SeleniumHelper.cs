@@ -149,8 +149,20 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            var url= _webDriver.Url;
-            WaitUntil(d => { try { element.Click(); return IsUntilUrlChanges == false || _webDriver.Url != url; } catch { return false; } }, timeout);
+            var url= string.Copy(_webDriver.Url);
+            WaitUntil(d =>
+            {
+                try
+                {
+                    if (IsUntilUrlChanges && (_webDriver.Url != url)) return true;
+                    element.Click();
+                    return IsUntilUrlChanges == false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }, timeout);
         }
 
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)
