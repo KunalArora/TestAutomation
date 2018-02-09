@@ -92,7 +92,7 @@ namespace Brother.Tests.Common.Logging
             return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
         }
 
-        public T WriteLogWhenTimeTooMatch<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = "too much time", [CallerLineNumber]int lineNumber = 0)
+        public T WriteLogWhenWarningTimeoutExceeds<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = "too much time", [CallerLineNumber]int lineNumber = 0)
         {
             var sw = new Stopwatch();
             sw.Start();

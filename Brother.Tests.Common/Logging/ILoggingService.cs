@@ -59,6 +59,6 @@ namespace Brother.Tests.Common.Logging
         /// <param name="timeOut">in sec</param>
         /// <param name="warningMessageWhenTimeExceed">warning message when lambda process time >= timeOut</param>
         /// <returns></returns>
-        T WriteLogWhenTimeTooMatch<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = @"too much time", [CallerLineNumber]int lineNumber = 0) ;
+        T WriteLogWhenWarningTimeoutExceeds<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = @"too much time", [CallerLineNumber]int lineNumber = 0) ;
     }
 }

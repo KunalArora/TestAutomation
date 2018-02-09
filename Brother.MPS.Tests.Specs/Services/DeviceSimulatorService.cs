@@ -44,7 +44,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CREATE_NEW_DEVICE_PATTERN, model, serialNumber, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = LoggingService.WriteLogWhenTimeTooMatch( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec ) ;
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec ) ;
 
             return deviceId;
         }
@@ -60,7 +60,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(REGISTER_NEW_DEVICE_PATTERN, deviceId, installationPin);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
             
-            var response = LoggingService.WriteLogWhenTimeTooMatch( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec );
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec );
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(CHANGE_DEVICE_STATUS_PATTERN, deviceId, online.ToString().ToLower(), subscribe.ToString().ToLower());
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = LoggingService.WriteLogWhenTimeTooMatch( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);
         }
 
         public void NotifyBocOfDeviceChanges(string deviceId)
@@ -84,7 +84,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format(NOTIFY_BOC_PATTERN, deviceId);
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
-            var response = LoggingService.WriteLogWhenTimeTooMatch( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);            
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);            
         }
 
         public void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount)
@@ -158,7 +158,7 @@ namespace Brother.Tests.Specs.Services
 
             var json = JsonConvert.SerializeObject(setSupplyRequest);
 
-            var response = LoggingService.WriteLogWhenTimeTooMatch( l => _webRequestService.GetPageResponse(url, "POST", _runtimeSettings.DefaultDeviceSimulatorTimeout, "application/json", json),_warningSec);
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "POST", _runtimeSettings.DefaultDeviceSimulatorTimeout, "application/json", json),_warningSec);
         }
 
         public string CreateNewDeviceId()
