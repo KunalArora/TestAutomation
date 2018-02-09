@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.Factories
 
         private string WebDriverKey(string userType)
         {
-            return string.Format("__driverInstance_ " + userType);
+            return string.Format("__driverInstance_" + userType);
         }
     }
 }

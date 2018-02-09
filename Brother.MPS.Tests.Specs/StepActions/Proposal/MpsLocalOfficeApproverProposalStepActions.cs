@@ -97,7 +97,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             });
             ClickSafety(localOfficeApproverApprovalSpecialPricingPage.ValidateButton, localOfficeApproverApprovalSpecialPricingPage);
             localOfficeApproverApprovalSpecialPricingPage.EnterAdditionalAuditInformation();
-            ClickSafety(localOfficeApproverApprovalSpecialPricingPage.ApplySpecialPricing, localOfficeApproverApprovalSpecialPricingPage);
+            ClickSafety(localOfficeApproverApprovalSpecialPricingPage.ApplySpecialPricing, localOfficeApproverApprovalSpecialPricingPage, IsUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);            
         }
 
@@ -168,10 +168,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
         }
 
 
