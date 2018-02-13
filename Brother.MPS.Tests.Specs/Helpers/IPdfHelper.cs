@@ -1,13 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Brother.Tests.Specs.Helpers
 {
     public interface IPdfHelper
     {
+        /// <summary>
+        /// download pdf
+        /// </summary>
+        /// <param name="clickOnDownloadFunc">ex. element.click()</param>
+        /// <param name="downloadTimeout">in sec. default(-1)=RuntimeSettings.DefaultDownloadTimeout</param>
+        /// <param name="filter">target extension.</param>
+        /// <param name="changeType">download trigger. recommend: WatcherChangeTypes.Renamed or WatcherChangeTypes.Changed</param>
+        /// <returns></returns>
+        string Download(Func<IPdfHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.pdf", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed);
         /// <summary>
         /// simply check for the existence of the file in the download location.
         /// </summary>
@@ -32,12 +38,12 @@ namespace Brother.Tests.Specs.Helpers
         /// <param name="orglist"></param>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf");
+        //Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf");
         /// <summary>
         /// List the file which is downloaded
         /// </summary>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        string[] ListDownloadsFolder(string pattern = "*.pdf");
+        //string[] ListDownloadsFolder(string pattern = "*.pdf");
     }
 }

@@ -6,17 +6,17 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using TechTalk.SpecFlow;
-using Brother.Tests.Specs.StepActions.Common;
-using Brother.Tests.Specs.Helpers;
 using System.Globalization;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -279,17 +279,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public string DownloadPdf(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
-            var fileList = _pdfHelper.ListDownloadsFolder();
-            localOfficeApproverReportsProposalsSummaryPage.ClickOnBillAction();
-            var task = _pdfHelper.WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
-            {
-                return task.Result;
-            }
-            else
-            {
-                throw new Exception("download pdf timeout");
-            }
+            return _pdfHelper.Download(ph =>
+           {
+               localOfficeApproverReportsProposalsSummaryPage.ClickOnBillAction();
+               return true;
+           });
         }
                 
         public void AssertAreEqualOverusageValues(string pdfFile)

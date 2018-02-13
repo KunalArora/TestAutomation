@@ -1,16 +1,22 @@
 ﻿
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using System;
+using System.IO;
+
 namespace Brother.Tests.Specs.Helpers
 {
     public interface IExcelHelper
     {
         /// <summary>
-        /// Get downloaded excel file path
+        /// 
         /// </summary>
+        /// <param name="clickOnDownloadFunc"></param>
+        /// <param name="downloadTimeout"></param>
+        /// <param name="filter"></param>
+        /// <param name="changeType"></param>
         /// <returns></returns>
-        string GetDownloadedExcelFilePath();
-
+        string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed);
         /// <summary>
         /// Open an Excel file
         /// </summary>

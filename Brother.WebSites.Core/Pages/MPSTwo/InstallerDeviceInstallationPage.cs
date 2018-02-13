@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
@@ -134,6 +133,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapNewMonoElement;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SwapNewDeviceInputColour")]
         public IWebElement SwapNewColourElement;
+        [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal > div > div > div.modal-header > button")]
+        public IWebElement WhereIsMySerialNumberModalCloseButtonElement;
 
 
         private const string InstallationDeviceInstallListSelector = ".js-mps-device-install-list-container";
@@ -204,9 +205,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnConnect(IWebElement row, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(row, driver);
+            TryClosePopup();
             var clickButtonElement = SeleniumHelper.FindElementByCssSelector(row, InstallationConnectButtonSelector);
             clickButtonElement.Click();
 
+        }
+
+        private void TryClosePopup()
+        {
+            try {
+                WhereIsMySerialNumberModalCloseButtonElement.Click();
+                SeleniumHelper.WaitUntil(d => WhereIsMySerialNumberModalCloseButtonElement.Displayed == false);
+            } catch { };
         }
 
         public void RetryResetClickingHelper(string serialNumber, string windowHandle)

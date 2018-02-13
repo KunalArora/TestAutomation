@@ -8,7 +8,6 @@ using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
@@ -61,21 +60,6 @@ namespace Brother.Tests.Specs.Helpers
         {
             _runtimeSettings = runtimeSettings;
             LoggingService = loggingService;
-        }
-
-        public string GetDownloadedExcelFilePath()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-            var fileList = ListDownloadsFolder();
-            var task = WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, _runtimeSettings.DefaultDownloadTimeout)))
-            {
-                return task.Result;
-            }
-            else
-            {
-                throw new Exception("Download Excel Timeout");
-            }
         }
 
         public void OpenExcel(string excelFilePath)
@@ -264,38 +248,37 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
+        public string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
+        {
+            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout);
+            downloadTimeout = downloadTimeout < 0 ? _runtimeSettings.DefaultDownloadTimeout : downloadTimeout;
+            FileSystemWatcher fsWatcher = new FileSystemWatcher();
+            fsWatcher.Path = TestController.DownloadPath;
+            fsWatcher.Filter = filter;
+            fsWatcher.IncludeSubdirectories = false;
+            fsWatcher.NotifyFilter = NotifyFilters.Attributes |
+                                     NotifyFilters.CreationTime |
+                                     NotifyFilters.DirectoryName |
+                                     NotifyFilters.FileName |
+                                     NotifyFilters.LastAccess |
+                                     NotifyFilters.LastWrite |
+                                     NotifyFilters.Security |
+                                     NotifyFilters.Size;
+            fsWatcher.EnableRaisingEvents = true;
+            if (clickOnDownloadFunc(this) == false)
+            {
+                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
+            }
+            var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
+            if (changedResult.TimedOut)
+            {
+                throw new Exception("download pdf timeout");
+            }
+            var fullPath = System.IO.Path.Combine(fsWatcher.Path, changedResult.Name);
+            return fullPath;
+        }
+
         # region private methods
-
-        private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.xlsx")
-        {
-            LoggingService.WriteLogOnMethodEntry(orglist, pattern);
-            // note: FileWatcher is not detecting file...
-            for (int safetycount = 0; safetycount < 1000; safetycount++)
-            {
-                var newlist = ListDownloadsFolder(pattern);
-                var difflist = newlist.Except(orglist);
-                if (difflist.Count() > 0)
-                {
-                    return difflist.First();
-                }
-                await Task.Delay(new TimeSpan(0, 0, 1));
-            }
-            throw new Exception("Safety Count RetryOut");
-        }
-
-        private string[] ListDownloadsFolder(string pattern = "*.xlsx")
-        {
-            LoggingService.WriteLogOnMethodEntry(pattern);
-            try
-            {
-                string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
-                return files;
-            }
-            catch
-            {
-                return new string[0];
-            }
-        }
 
         private string HandleNullCase(Object variable)
         {

@@ -262,15 +262,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, optionalFields);
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
-            return ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
+            var excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
+            return ProcessExcelEdit(dealerAgreementDevicesPage, excelFilePath, optionalFields);
         }
 
-        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string isOptionalFields)
+        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath,  string isOptionalFields)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, isOptionalFields);
             // 1. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            //string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
 
             // 2. Edit Excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);
@@ -329,8 +333,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Excel edit for first 2 devices
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(0);  // 1st device
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(1);  // 2nd device
-            ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
-            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
+            var excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
+                return true;
+            });
+            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, excelFilePath, optionalFields);
 
             // Bulk edit for next 2 devices
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(2);  // 3rd device
@@ -449,11 +457,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _dealerWebDriver.Navigate().Refresh();
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-            // 1. Click Export All button
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
-
             // 2. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            string excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                // 1. Click Export All button
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
 
             // 3. Read Excel to retrieve installation details
             
@@ -832,11 +842,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceDeviceConnectionStatusResponding, string resourceInstalledPrinterStatusInstalled)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding, resourceInstalledPrinterStatusInstalled);
-            // 1. Click Export All button
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
 
             // 2. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            string excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                // 1. Click Export All button
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
 
             // 3. Verify Device status & Connection status mentioned in excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);

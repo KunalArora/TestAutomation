@@ -518,16 +518,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public string DownloadPdf(DealerProposalsSummaryPage dealerProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsSummaryPage);
-            var fileList = _pdfHelper.ListDownloadsFolder();
-            ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
-            var task = _pdfHelper.WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
+            return _pdfHelper.Download(ph =>
             {
-                return task.Result;
-            }else
-            {
-                throw new Exception("download pdf timeout");
-            }
+                ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
+                return true;
+            });
         }
 
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)

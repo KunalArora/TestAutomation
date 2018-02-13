@@ -1,17 +1,22 @@
 ﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
-using System.Threading.Tasks;
-using System.Linq;
+using System.IO;
 
 namespace Brother.Tests.Specs.Helpers
 {
     class PdfHelper : IPdfHelper
     {
-        public PdfHelper(ILoggingService loggingService) { LoggingService = loggingService; }
+        public PdfHelper(ILoggingService loggingService, IRuntimeSettings runtimeSettings) {
+            LoggingService = loggingService;
+            RuntimeSettings = runtimeSettings;
+        }
         private ILoggingService LoggingService { get; set; }
+        private IRuntimeSettings RuntimeSettings { get; set; }
+
 
         public void DeletePdf(string fileName)
         {
@@ -44,35 +49,35 @@ namespace Brother.Tests.Specs.Helpers
             return System.IO.File.Exists(fileName);
         }
 
-        public async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.pdf")
+        public string Download(Func<IPdfHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.pdf", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
         {
-            LoggingService.WriteLogOnMethodEntry(orglist, pattern);
-            // note: FileWatcher is not detecting file...
-            for (int safetycount = 0; safetycount < 1000; safetycount++)
+            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout);
+            downloadTimeout = downloadTimeout < 0 ? RuntimeSettings.DefaultDownloadTimeout : downloadTimeout;
+            FileSystemWatcher fsWatcher = new FileSystemWatcher();
+            fsWatcher.Path = TestController.DownloadPath;
+            fsWatcher.Filter = filter;
+            fsWatcher.IncludeSubdirectories = false;
+            fsWatcher.NotifyFilter = NotifyFilters.Attributes |
+                                     NotifyFilters.CreationTime |
+                                     NotifyFilters.DirectoryName |
+                                     NotifyFilters.FileName |
+                                     NotifyFilters.LastAccess |
+                                     NotifyFilters.LastWrite |
+                                     NotifyFilters.Security |
+                                     NotifyFilters.Size;
+            fsWatcher.EnableRaisingEvents = true;
+            if (clickOnDownloadFunc(this) == false)
             {
-                var newlist = ListDownloadsFolder(pattern);
-                var difflist = newlist.Except(orglist);
-                if (difflist.Count() > 0)
-                {
-                    return difflist.First();
-                }
-                await Task.Delay(new TimeSpan(0, 0, 1));
+                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
             }
-            throw new Exception("safety count retryout");
+            var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
+            if (changedResult.TimedOut)
+            {
+                throw new Exception("download pdf timeout");
+            }
+            var fullPath = System.IO.Path.Combine(fsWatcher.Path, changedResult.Name);
+            return fullPath;
         }
 
-        public string[] ListDownloadsFolder(string pattern = "*.pdf")
-        {
-            LoggingService.WriteLogOnMethodEntry(pattern);
-            try
-            {
-                string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
-                return files;
-            }
-            catch
-            {
-                return new string[0];
-            }
-        }
     }
 }
