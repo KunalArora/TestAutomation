@@ -147,8 +147,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             {
                 if (element.GetAttribute("data-serial-number").Equals(serialNumber))
                 {
-                    SeleniumHelper.ClickSafety(element.FindElement(By.CssSelector(SelectDeviceRadioButtonSelector)));
-                    break;
+                    var radioButton = SeleniumHelper.FindElementByCssSelector(element, SelectDeviceRadioButtonSelector);
+                    SeleniumHelper.ClickRadioButtonSafely(radioButton);
                 }
             }
 

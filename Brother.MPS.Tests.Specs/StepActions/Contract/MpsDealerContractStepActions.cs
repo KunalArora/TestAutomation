@@ -4,6 +4,7 @@ using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -243,6 +244,27 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmail(DealerSendInstallationEmailPage dealerSendInstallationEmailPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerSendInstallationEmailPage);
+
+            int retries = 0;
+
+            while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement))
+            {
+                _dealerWebDriver.Navigate().Refresh();
+                dealerSendInstallationEmailPage = PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                if (retries > RuntimeSettings.DefaultRetryCount / 2)
+                {
+                    LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC Pin Generation/Sap Customer Validation is taking time for proposal {0}", _contextData.ProposalId));
+                }
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Number of retries exceeded the default limit during verification of boc pin codes generation/Sap customer validation for proposal {0}. BOC server may be slow in responding.", _contextData.ProposalId));
+                }
+            }
+
             _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }

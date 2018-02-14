@@ -183,7 +183,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.InstallationPack, product.IncludeDelivery);
             }
-            ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage)  ;
+            ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -776,10 +776,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
         }
         #endregion
     }

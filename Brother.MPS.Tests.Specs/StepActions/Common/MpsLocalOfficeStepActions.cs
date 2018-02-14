@@ -50,7 +50,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
-            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage);
+            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
@@ -238,10 +238,10 @@ namespace Brother.Tests.Specs.StepActions.Common
             return localOfficeAgreementDevicesPage;
         }
 
-        public void ClickSafety(IWebElement element, IPageObject pageObject)
+        public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
         {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
     }
 }

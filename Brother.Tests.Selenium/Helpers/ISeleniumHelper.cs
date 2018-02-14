@@ -133,5 +133,10 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         bool IsElementDisplayed(ISearchContext context, string selector);
 
+        /// <summary>
+        /// Clicks the radio button & ensures that it has been clicked properly
+        /// </summary>
+        /// <param name="radioButtonElement"></param>
+        void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout = -1);
     }
 }

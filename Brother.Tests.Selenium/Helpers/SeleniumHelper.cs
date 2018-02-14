@@ -244,5 +244,23 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
+        public void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout)
+        {
+            LoggingService.WriteLogOnMethodEntry(radioButtonElement, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
+            WaitUntil(d =>
+            {
+                try
+                {
+                    if (radioButtonElement.Selected) return true;
+                    radioButtonElement.Click();
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }, timeout);
+        }
     }
 }
