@@ -12,7 +12,7 @@ namespace Brother.Tests.Specs.Helpers
         /// <param name="downloadTimeout">in sec. default(-1)=RuntimeSettings.DefaultDownloadTimeout</param>
         /// <param name="filter">target extension.</param>
         /// <param name="changeType">download trigger. recommend: WatcherChangeTypes.Renamed or WatcherChangeTypes.Changed</param>
-        /// <returns></returns>
+        /// <returns>file path(full path)</returns>
         string Download(Func<IPdfHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.pdf", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed);
         /// <summary>
         /// simply check for the existence of the file in the download location.

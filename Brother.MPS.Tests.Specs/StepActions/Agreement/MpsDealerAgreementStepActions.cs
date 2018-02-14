@@ -273,10 +273,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath,  string isOptionalFields)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, isOptionalFields);
-            // 1. Get Downloaded file path
-            //string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
 
-            // 2. Edit Excel
+            // 1. Edit Excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);
             _excelHelper.VerifyTotalNumberOfColumns(excelFilePath); // Verify the total number of columns in excel
             DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
@@ -304,17 +302,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 validationTupleList.Add(new Tuple<string, string>(device_id, validationExpression));
             }
 
-            // 3. Import Excel
+            // 2. Import Excel
             ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
 
-            // 4. Call BOC Pin retrieval backend job
+            // 3. Call BOC Pin retrieval backend job
             _runCommandService.RunSetupInstalledPrintersCommand();
 
-            // 5. Delete Excel
+            // 4. Delete Excel
             _excelHelper.DeleteExcelFile(excelFilePath);
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-            // 6. Validation of imported data
+            // 5. Validation of imported data
             // Validate only addresses of edited devices for now
 
             foreach (var tuple in validationTupleList)
