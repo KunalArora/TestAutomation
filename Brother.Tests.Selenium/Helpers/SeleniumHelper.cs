@@ -337,7 +337,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                         case 0:
                             // nothing to reload
                             _webDriver.Navigate().Refresh();
-                            WaitUntil(dd => filterElement.Displayed && rowElementListForExistCheck.Count != 0, timeout);
+                            WaitUntil(dd => filterElement.Displayed , timeout);
                             return false;
                         case 1:
                             return true;
@@ -350,7 +350,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
             catch( TimeoutException e)
             {
-                throw new TimeoutException("not found item id=" + filterId, e);
+                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ",filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
             }
         }
     }
