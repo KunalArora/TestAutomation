@@ -1,5 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
@@ -16,7 +18,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public MpsWebToolsServiceTests()
         {
-            _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "UAT", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(null));
+            _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "UAT", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new MpsLoggingConsole(new LoggingServiceSettings()));
         }
 
         [Test]
