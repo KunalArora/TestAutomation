@@ -183,7 +183,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.InstallationPack, product.IncludeDelivery);
             }
-            ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage)  ;
+            ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -475,7 +475,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsCreateDescriptionPage ClickOnActionsEdit(DealerProposalsInprogressPage dealerProposalsInprogressPage, string filterString)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsInprogressPage, filterString);
-            ActionsModule.SetFilter(filterString, dealerProposalsInprogressPage.ProposalFilter, dealerProposalsInprogressPage.ProposalListProposalNameRowElement, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsInprogressPage.SetListFilter(filterString);
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.StartTheProposalEditProcess(_dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
@@ -484,7 +484,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsInprogressPage ClickOnActionsCopy(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, string filterString, out string proposalNameForSearch)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, filterString);
-            ActionsModule.SetFilter(filterString, dealerProposalsDeclinedPage.InputFilterByElement, dealerProposalsDeclinedPage.NameRowElementList, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsDeclinedPage.SetListFilter(filterString);
             proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.CopyAProposal(_dealerWebDriver);
@@ -771,10 +771,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
         }
         #endregion
     }

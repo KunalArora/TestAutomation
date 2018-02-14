@@ -73,7 +73,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         public string VerifyServiceRequestInformation(string model, string serialNumber, string serviceRequestStatus, string serviceRequestType, bool verifyDateClosed = false)
         {
-            SeleniumHelper.FindElementByCssSelector(ServiceRequestRowSelector);
+            SeleniumHelper.FindElementByCssSelector(".mps-dataTables-footer");
             ClearAndType(ServiceRequestFilterElement, string.Format(model + " " + serialNumber));
 
             IWebElement serviceRequestRowElement = null;
@@ -96,7 +96,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                         SeleniumHelper.FindElementByCssSelector(
                         serviceRequestRowElement, ServiceRequestRowDateClosedSelector).Text,
                         "-", 
-                        string.Format("Data closed of the service request for device = {0} and serial number = {1} could not be verified", model, serialNumber));
+                        string.Format("Date closed of the service request for device = {0} and serial number = {1} could not be verified", model, serialNumber));
                 }
             }
             catch

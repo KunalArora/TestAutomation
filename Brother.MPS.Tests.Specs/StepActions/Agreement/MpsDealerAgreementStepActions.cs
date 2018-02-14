@@ -127,7 +127,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 PopulatePrinterDetails(dealerAgreementCreateProductsPage, product.Model, product.Quantity, product.InstallationPack, product.ServicePack);
             }
             _contextData.DeviceCount = deviceCount;
-            ClickSafety(dealerAgreementCreateProductsPage.NextButton, dealerAgreementCreateProductsPage);
+            ClickSafety(dealerAgreementCreateProductsPage.NextButton, dealerAgreementCreateProductsPage, true);
             return PageService.GetPageObject<DealerAgreementCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -248,11 +248,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _dealerWebDriver.Navigate().Refresh();
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
+                if (retries > RuntimeSettings.DefaultRetryCount/2)
+                {
+                    LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC server is responding slow with respect to BOC PIN generation for agreement {0}", _contextData.AgreementId));
+                }
+
                 retries++;
                 if (retries > RuntimeSettings.DefaultRetryCount)
                 {
                     TestCheck.AssertFailTest(
-                        string.Format("Number of retries exceeded the default limit during verification of boc pin codes generation for agreement {0}", _contextData.AgreementId));
+                        string.Format("Number of retries exceeded the default limit during verification of boc pin codes generation for agreement {0}. BOC server may be slow in responding.", _contextData.AgreementId));
                 }
             }
 
@@ -656,7 +661,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device.ServiceRequestId = dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatusNew, device.ServiceRequestType);
 
                 ClickSafety(
-                    dealerAgreementServiceRequestsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementServiceRequestsPage);
+                    dealerAgreementServiceRequestsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
 
                 _dealerWebDriver.Navigate().Refresh();
 
@@ -761,10 +766,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 printerName, monoCoverage, monoVolume, colorCoverage, colorVolume, _contextData.UsageType, resourceUsageTypePayAsYouGo);
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        private void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
         {
-            LoggingService.WriteLogOnMethodEntry(element,pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
 
         private void ImportExcelFile(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath)

@@ -49,7 +49,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SentConfirmationElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement FinishInstallationElement;
-        
+        [FindsBy(How = How.CssSelector, Using = ".alert.alert-warning.mps-alert.js-mps-alert")]
+        public IWebElement WarningAlertElement;
         
         
 

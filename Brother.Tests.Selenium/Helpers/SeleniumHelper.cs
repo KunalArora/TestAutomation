@@ -178,6 +178,15 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             element.Clear();
             element.SendKeys(value);
         }
+        public void ClearAndType(IWebElement element, string value, bool IsVerify = false, int timeOut = -1)
+        {
+            element.Clear();
+            element.SendKeys(value);
+            if (IsVerify == false) return;
+            timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
+            new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timeOut)).Until(d => element.GetAttribute("value").Equals(value));
+        }
+
 
         public ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
@@ -293,5 +302,56 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
+        public void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout)
+        {
+            LoggingService.WriteLogOnMethodEntry(radioButtonElement, timeout);
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
+            WaitUntil(d =>
+            {
+                try
+                {
+                    if (radioButtonElement.Selected) return true;
+                    radioButtonElement.Click();
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }, timeout);
+        }
+
+        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout=-1)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
+            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
+            timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            try
+            {
+                WaitUntil(d =>
+                {
+                    ClearAndType(filterElement, filterId, IsVerify: true);
+                    var count = rowElementListForExistCheck.Count;
+                    switch( count)
+                    {
+                        case 0:
+                            // nothing to reload
+                            _webDriver.Navigate().Refresh();
+                            WaitUntil(dd => filterElement.Displayed && rowElementListForExistCheck.Count != 0, timeout);
+                            return false;
+                        case 1:
+                            return true;
+                        default:
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
+                            return true;
+
+                    }
+                }, timeout);
+            }
+            catch( TimeoutException e)
+            {
+                throw new TimeoutException("not found item id=" + filterId, e);
+            }
+        }
     }
 }
