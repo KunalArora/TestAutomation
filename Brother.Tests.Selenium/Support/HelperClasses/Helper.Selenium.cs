@@ -172,11 +172,19 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// <returns>Void</returns>
         public void ClearAndType(IWebElement element, string value, bool IsVerify = false, int timeOut = -1 )
         {
-            element.Clear(); 
-            element.SendKeys(value);
-            if (IsVerify == false) return;
-            timeOut = timeOut < 0 ? value.Length : timeOut ; // default T/O:  1s/charactor
-            new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.GetAttribute("value").Equals(value));
+            try
+            {
+                timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
+                new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.Displayed);
+                element.Clear();
+                element.SendKeys(value);
+                if (IsVerify == false) return;
+                new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.GetAttribute("value").Equals(value));
+            }
+            catch ( TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("element.Displayed={0}, value=[{1}], GetAttribute(value)=[{2}]", element.Displayed, value, element.GetAttribute("value")), e);
+            }
         }
 
         public void TypeSpace(IWebElement element)
