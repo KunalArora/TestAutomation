@@ -41,7 +41,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnCopyWithCustomerActionItem(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId.ToString(), ProposalListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector);
             actionsButtonElement.Click();
             var copyWithCustomerElement = SeleniumHelper.FindElementByCssSelector(copyWithCustomerSelector);

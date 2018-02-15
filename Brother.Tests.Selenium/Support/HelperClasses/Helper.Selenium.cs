@@ -175,7 +175,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             try
             {
                 timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
-                new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.Displayed);
+                if (IsVerify)
+                {
+                    new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.Displayed);
+                }
                 element.Clear();
                 element.SendKeys(value);
                 if (IsVerify == false) return;

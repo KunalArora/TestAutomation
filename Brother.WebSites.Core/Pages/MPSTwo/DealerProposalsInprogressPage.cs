@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSubmitForApproval(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId.ToString(), ProposalListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
             SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();
             ActionsModule.StartConvertToContractProcess(driver); // = Submit for Approval
         }

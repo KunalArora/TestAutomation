@@ -142,9 +142,18 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// filter proposal/contract helper
         /// </summary>
         /// <param name="filterElement">input field</param>
-        /// <param name="filterId">id set to filter element</param>
+        /// <param name="filterString">id set to filter element</param>
         /// <param name="rowElementListForExistCheck">check until list count==1</param>
         /// <param name="timeout">in sec. -1 is default from RuntimeSettings.DefaultXXXTimeout</param>
-        void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1);
+        void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterElement"></param>
+        /// <param name="filterId"></param>
+        /// <param name="rowElementListForExistCheck"></param>
+        /// <param name="timeout"></param>
+        /// <returns>target element</returns>
+        IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1);
     }
 }

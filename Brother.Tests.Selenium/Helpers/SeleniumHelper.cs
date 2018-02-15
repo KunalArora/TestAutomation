@@ -178,7 +178,10 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             try
             {
                 timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
-                new WebDriverWait(_webDriver, TimeSpan.FromSeconds(RuntimeSettings.DefaultFindElementTimeout)).Until(d => element.Displayed);
+                if(IsVerify)
+                {
+                    new WebDriverWait(_webDriver, TimeSpan.FromSeconds(RuntimeSettings.DefaultFindElementTimeout)).Until(d => element.Displayed);
+                }
                 element.Clear();
                 element.SendKeys(value);
                 if (IsVerify == false) return;
@@ -324,23 +327,58 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }, timeout);
         }
 
-        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout=-1)
+        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout=-1)
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
             timeout = timeout < 0 ? defaultMaxTimeout : timeout;
             try
             {
-                WaitUntil(d =>
+                var resultElement = WaitUntil(d =>
                 {
-                    ClearAndType(filterElement, filterId, IsVerify: true);
+                    ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
                     var count = rowElementListForExistCheck.Count;
                     switch( count)
                     {
                         case 0:
                             // nothing to reload
+                            LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
                             _webDriver.Navigate().Refresh();
                             WaitUntil(dd => filterElement.Displayed , timeout);
+                            return null;
+                        case 1:
+                            return FindElementByDataAttributeValue("proposal-id", filterId.ToString(), 1);
+                        default:
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
+                            return FindElementByDataAttributeValue("proposal-id", filterId.ToString(), 1);
+
+                    }
+                }, timeout);
+                return resultElement;
+            }
+            catch( TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ",filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
+            }
+        }
+
+        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
+            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
+            timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            try
+            {
+                var resultElement = WaitUntil(d =>
+                {
+                    ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
+                    var count = rowElementListForExistCheck.Count;
+                    switch (count)
+                    {
+                        case 0:
+                            // nothing to reload
+                            _webDriver.Navigate().Refresh();
+                            WaitUntil(dd => filterElement.Displayed, timeout);
                             return false;
                         case 1:
                             return true;
@@ -350,11 +388,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
                     }
                 }, timeout);
+                
             }
-            catch( TimeoutException e)
+            catch (TimeoutException e)
             {
-                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ",filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
+                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ", filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
             }
         }
+
     }
 }

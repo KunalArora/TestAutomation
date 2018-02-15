@@ -340,6 +340,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var isConnected = false;
             var retries = 0;
 
+            var startTime = DateTime.Now;
             while((!isConnected) && (retries!=retryCount))
             {
                 try
@@ -353,6 +354,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     retries++;
                 }
+            }
+            if ( !isConnected)
+            {
+                var elapsedTimeMs = (DateTime.Now - startTime).Milliseconds;
+                throw new Exception("RetryRefreshClickingHelper. Please check BOC simulator or MPS too slow. isConnected=" + isConnected + " time(ms)="+elapsedTimeMs);
             }
         }
 

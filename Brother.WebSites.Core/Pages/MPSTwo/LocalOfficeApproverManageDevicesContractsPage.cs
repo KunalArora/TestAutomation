@@ -33,7 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SetListFilter(int proposalId)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId);
-            SeleniumHelper.SetListFilter(InputFilterBy, proposalId.ToString(), ContractOrProposalNameElementList);
+            SeleniumHelper.SetListFilter(InputFilterBy, proposalId, ContractOrProposalNameElementList);
         }
     }
 }
