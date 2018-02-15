@@ -647,7 +647,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalName, ProposalListProposalNameRowElement);
             var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
             actionButtonElement.Click();
             var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector);
