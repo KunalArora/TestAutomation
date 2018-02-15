@@ -357,7 +357,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             if ( !isConnected)
             {
-                var elapsedTimeMs = (DateTime.Now - startTime).Milliseconds;
+                var elapsedTimeMs = (DateTime.Now - startTime).TotalMilliseconds;
                 throw new Exception("RetryRefreshClickingHelper. Please check BOC simulator or MPS too slow. isConnected=" + isConnected + " time(ms)="+elapsedTimeMs);
             }
         }
