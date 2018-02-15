@@ -327,7 +327,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }, timeout);
         }
 
-        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout=-1)
+        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id")
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
@@ -347,10 +347,10 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                             WaitUntil(dd => filterElement.Displayed , timeout);
                             return null;
                         case 1:
-                            return FindElementByDataAttributeValue("proposal-id", filterId.ToString(), 1);
+                            return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
                         default:
                             LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
-                            return FindElementByDataAttributeValue("proposal-id", filterId.ToString(), 1);
+                            return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
 
                     }
                 }, timeout);

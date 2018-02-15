@@ -30,10 +30,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractOrProposalNameElementList;
 
-        public void SetListFilter(int proposalId)
+        public void SetListFilter(int contractId)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId);
-            SeleniumHelper.SetListFilter(InputFilterBy, proposalId, ContractOrProposalNameElementList);
+            LoggingService.WriteLogOnMethodEntry(contractId);
+            SeleniumHelper.SetListFilter(InputFilterBy, contractId, ContractOrProposalNameElementList);
         }
     }
 }

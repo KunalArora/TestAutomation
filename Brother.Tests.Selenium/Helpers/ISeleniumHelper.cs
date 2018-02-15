@@ -153,7 +153,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="filterId"></param>
         /// <param name="rowElementListForExistCheck"></param>
         /// <param name="timeout"></param>
-        /// <returns>target element</returns>
-        IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1);
+        /// <param name="dataAttibuteName">proposal-id or contract-id. default=null </param>
+        /// <returns>target element when dataAttibuteName != null othewise N/A</returns>
+        IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttibuteName=null);
     }
 }
