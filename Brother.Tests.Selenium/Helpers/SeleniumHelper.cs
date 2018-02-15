@@ -344,7 +344,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                             // nothing to reload
                             LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
                             _webDriver.Navigate().Refresh();
-                            WaitUntil(dd => filterElement.Displayed , timeout);
+                            _webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                            //WaitUntil(dd => filterElement.Displayed , timeout);
                             return null;
                         case 1:
                             return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
@@ -378,7 +379,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                         case 0:
                             // nothing to reload
                             _webDriver.Navigate().Refresh();
-                            WaitUntil(dd => filterElement.Displayed, timeout);
+                            _webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                            //WaitUntil(dd => filterElement.Displayed, timeout);
                             return false;
                         case 1:
                             return true;

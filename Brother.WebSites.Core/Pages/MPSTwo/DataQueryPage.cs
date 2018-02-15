@@ -440,7 +440,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void FilterAndClickAgreement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
-            var agreementRowLinkElement = SeleniumHelper.SetListFilter(DataQuerySearchField, agreementId, VisibleItemDivElements, dataAttibuteName:"contract-id");
+            // note: from MpsLocalOfficeStepActions#NavigateToContractsSummaryPage(...)
+            var agreementRowLinkElement = SeleniumHelper.SetListFilter(DataQuerySearchField, agreementId, VisibleItemDivElements, dataAttibuteName:"proposal-id"); 
             SeleniumHelper.ClickSafety(agreementRowLinkElement, IsUntilUrlChanges:true);
         }
     }
