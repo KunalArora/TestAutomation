@@ -52,7 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(DeclineButtonElement);
             var InputReasonElement = SeleniumHelper.FindElementByCssSelector(InputReasonSelector);
             SeleniumHelper.SelectFromDropdownByText(InputReasonElement, proposalDeclineReasonExpired);
-            SeleniumHelper.ClickSafety(FinalDeclineButtonElement);
+            SeleniumHelper.ClickSafety(FinalDeclineButtonElement,IsUntilUrlChanges:true);
         }
     }
 }
