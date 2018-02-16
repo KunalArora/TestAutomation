@@ -5,6 +5,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Brother.Tests.Specs.Helpers
 {
@@ -73,10 +74,27 @@ namespace Brother.Tests.Specs.Helpers
             var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
             if (changedResult.TimedOut)
             {
-                throw new Exception("download pdf timeout");
+                var altFullpath = GetLatestFile(fsWatcher.Path, filter, downloadTimeout);
+                LoggingService.WriteLog(LoggingLevel.WARNING, "FileSystemWatcher listen timeout. alternate={0}", altFullpath);
+                return altFullpath;
             }
             var fullPath = System.IO.Path.Combine(fsWatcher.Path, changedResult.Name);
             return fullPath;
+        }
+
+        private string GetLatestFile(string cpath, string filter, int downloadTimeout)
+        {
+            LoggingService.WriteLogOnMethodEntry(filter);
+            var ext = "."+filter.Replace("*.", "");
+            var minTime = DateTime.Now.AddSeconds(-(downloadTimeout*1.5)); // 1.5=safety factor.
+            var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);
+            var fileLatest = files
+                .Select(f => new System.IO.FileInfo(System.IO.Path.Combine(cpath, f)))
+                .Where(fi => fi.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                .Where(fi => fi.LastAccessTime > minTime)
+                .OrderByDescending(fi => fi.CreationTime)
+                .FirstOrDefault();
+            return fileLatest.FullName;
         }
 
     }
