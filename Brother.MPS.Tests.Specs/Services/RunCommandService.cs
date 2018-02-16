@@ -43,11 +43,11 @@ namespace Brother.Tests.Specs.Services
                 var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
                 if (RunCommandSuccess(response))
                 {
-                    break;
+                    return;
                 }
 
             } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-            
+            throw new Exception("ExecuteRunCommand retry error");
         }
 
         private bool RunCommandSuccess(WebPageResponse webPageResponse)
