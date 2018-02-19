@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Domain;
 
@@ -9,65 +10,43 @@ namespace Brother.Tests.Specs.Services
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
+        private readonly ILoggingService _loggingService;
         private string _commandBaseUrl = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
-        public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService)
+        public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService)
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
+            _loggingService = loggingService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/contracttimeshift.aspx?contractid={{0}}&timeoffset={{1}}&timeoffsetunit={{2}}&generateprintcounts={{3}}&generateinvoices={{4}}&printvolume={{5}}", _urlResolver.CmsUrl);
         }
 
 
         /// <summary>
-        /// Calls ContractShiftCommand and optionally retries
+        /// Calls ContractShiftCommand
         /// </summary>
         /// <param name="url">Full url to contractshiftcommand including parameters</param>
         /// <param name="timeOut">Timeout, in seconds, for a single call to contractshiftcommand</param>
-        /// <param name="retry">Retry if command fails or is already running</param>
-        /// <param name="retryInterval">The time to wait, in seconds, between retries</param>
-        /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
-        private void ExecuteContractShiftCommand(string url, int timeOut = 30, bool retry = false, int retryInterval = 2, int retryFor = 60)
+        private void ExecuteContractShiftCommand(string url, int timeOut = 30)
         {
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
             var startTime = DateTime.UtcNow;
 
-            do
-            {
-                var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
-                if (ContractShiftCommandSuccess(response))
-                {
-                    break;
-                }
-
-            } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-
+            var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
+            ContractShiftCommandSuccess(response);
         }
 
         private bool ContractShiftCommandSuccess(WebPageResponse webPageResponse)
         {
-            //Update this method to use response headers when runcommand has been updated
-            if (webPageResponse.ResponseBody.Contains("Failure"))
+            if (webPageResponse.Headers["brother-commandstatus"].Equals("SUCCESS"))
             {
-                Console.WriteLine("Call to runcommand failed");
-                return false;
-            }
-
-            if (webPageResponse.ResponseBody.Contains("Already running"))
-            {
-                Console.WriteLine("Command is already running");
-                return false;
-            }
-
-            if (webPageResponse.ResponseBody.Contains("Command run"))
-            {
-                Console.WriteLine("Command successful");
+                _loggingService.WriteLog(LoggingLevel.INFO, "Contract time shift successful");
                 return true;
             }
 
-            Console.WriteLine("Unable to determine command status");
+            _loggingService.WriteLog(LoggingLevel.FAILURE, "Contract time shift failed");
             return false;
         }
 
