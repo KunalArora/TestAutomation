@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
             ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
-
+        
         }
 
         public void GiveThirdPartyCheckApproval()

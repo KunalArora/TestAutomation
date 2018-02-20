@@ -1580,6 +1580,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\ContractShiftServiceTests.cs" />
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
     <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
     <Compile Include="UnitTests\RunCommandServiceTests.cs" />

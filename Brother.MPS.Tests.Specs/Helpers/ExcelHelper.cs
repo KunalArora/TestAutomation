@@ -36,7 +36,7 @@ namespace Brother.Tests.Specs.Helpers
         private const int PROPERTY_STREET_COL_NUM = 15;
         private const int PROPERTY_TOWN_COL_NUM = 17;
         private const int PROPERTY_POSTCODE_COL_NUM = 18;
-
+            
         // Non-Mandatory Input Field column numbers
         private const int CONTACT_LAST_NAME_COL_NUM = 11;
         private const int TELEPHONE_COL_NUM = 12;
