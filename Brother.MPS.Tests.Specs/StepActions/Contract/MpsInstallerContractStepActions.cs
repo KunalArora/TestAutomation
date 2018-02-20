@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
             }
             _installerDeviceInstallationPage.CloudInstallationRefresh();
-            _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
+            _installerDeviceInstallationPage.SeleniumHelper.ClickSafety(_installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement);
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 
