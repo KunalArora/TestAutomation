@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 1")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145626", "100", "0", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145606", "100", "0", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void BusinessScenario1(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
         {
@@ -124,7 +124,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145620",
+                        "A3P145600",
                         "23",
                         "0",
                         "Empty",
@@ -146,7 +146,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145621",
+                        "A3P145601",
                         "0",
                         "0",
                         "Normal",
@@ -168,7 +168,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "250",
-                        "A3P145622",
+                        "A3P145602",
                         "3000",
                         "1500",
                         "Normal",
@@ -190,7 +190,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "200",
-                        "A3P145623",
+                        "A3P145603",
                         "0",
                         "0",
                         "Normal",

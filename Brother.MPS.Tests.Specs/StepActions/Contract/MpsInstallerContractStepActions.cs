@@ -66,7 +66,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 if (RuntimeSettings.DefaultSerialNumberOffset != 0)
                 {
                     int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
-                    last2SerialNumbervalue = last2SerialNumbervalue - RuntimeSettings.DefaultSerialNumberOffset;
+                    last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
                     serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + last2SerialNumbervalue.ToString();
                 }
                 else
@@ -99,7 +99,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     if (RuntimeSettings.DefaultSerialNumberOffset != 0)
                     {
                         int last2SerialNumbervalue = Int32.Parse(swapNewDeviceSerialNumber.Substring(swapNewDeviceSerialNumber.Length - 2));
-                        last2SerialNumbervalue = last2SerialNumbervalue - RuntimeSettings.DefaultSerialNumberOffset;
+                        last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
                         serialNumber = swapNewDeviceSerialNumber.Remove(swapNewDeviceSerialNumber.Length - 2, 2) + last2SerialNumbervalue.ToString();
                     }
                     else
