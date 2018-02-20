@@ -3,6 +3,7 @@ using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -47,33 +48,22 @@ namespace Brother.Tests.Specs.Services
                 }
 
             } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-            throw new Exception("ExecuteContractShiftCommand retry error");
+    //        throw new Exception("ExecuteContractShiftCommand retry error");
         }
 
         private bool ContractShiftCommandSuccess(WebPageResponse webPageResponse)
         {
             LoggingService.WriteLogOnMethodEntry(webPageResponse);
             //Update this method to use response headers when runcommand has been updated
-            if (webPageResponse.ResponseBody.Contains("Failure"))
+            try
             {
-                Console.WriteLine("Call to runcommand failed");
+                return webPageResponse.Headers.GetValues("Brother-CommandStatus").Any(ss => ss == "SUCCESS");
+            }
+            catch
+            {
                 return false;
             }
 
-            if (webPageResponse.ResponseBody.Contains("Already running"))
-            {
-                Console.WriteLine("Command is already running");
-                return false;
-            }
-
-            if (webPageResponse.ResponseBody.Contains("Command run"))
-            {
-                Console.WriteLine("Command successful");
-                return true;
-            }
-
-            Console.WriteLine("Unable to determine command status");
-            return false;
         }
 
         public void ContractTimeShiftCommand(int contractId, int timeoffset, string timeoffsetunit, bool generateprintcounts, bool generateinvoices, string printvolume)

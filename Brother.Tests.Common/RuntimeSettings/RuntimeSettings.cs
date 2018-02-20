@@ -10,6 +10,7 @@
         private int _defaultRemoteWebDriverTimeout = 30;
         private int _defaultDownloadTimeout = 30;
         private int _defaultAPIResponseTimeout = 30;
+        private int _defaultSerialNumberOffset = 0;
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -31,7 +32,8 @@
             int? defaultDeviceSimulatorTimeout,
             int? defaultRemoteWebDriverTimeout,
             int? defaultDownloadTimeout,
-            int? defaultAPIResponseTimeout
+            int? defaultAPIResponseTimeout,
+            int? defaultSerialNumberOffset
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -42,6 +44,7 @@
             DefaultRemoteWebDriverTimeout = defaultRemoteWebDriverTimeout ?? _defaultRemoteWebDriverTimeout;
             DefaultDownloadTimeout = defaultDownloadTimeout ?? _defaultDownloadTimeout;
             DefaultAPIResponseTimeout = defaultAPIResponseTimeout ?? _defaultAPIResponseTimeout;
+            DefaultSerialNumberOffset = defaultSerialNumberOffset ?? _defaultSerialNumberOffset;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -52,5 +55,6 @@
         public int DefaultDownloadTimeout { get; set; }
         public int DefaultRemoteWebDriverTimeout { get; set; }
         public int DefaultAPIResponseTimeout { get; set; }
+        public int DefaultSerialNumberOffset { get; set; }
     }
 }

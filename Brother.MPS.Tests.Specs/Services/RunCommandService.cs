@@ -47,7 +47,7 @@ namespace Brother.Tests.Specs.Services
                 }
 
             } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-            throw new Exception("ExecuteRunCommand retry error");
+    //        throw new Exception("ExecuteRunCommand retry error");
         }
 
         private bool RunCommandSuccess(WebPageResponse webPageResponse)

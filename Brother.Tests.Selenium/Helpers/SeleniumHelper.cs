@@ -369,7 +369,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
-            timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            //timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            timeout = 60;
             try
             {
                 var resultElement = WaitUntil(d =>
