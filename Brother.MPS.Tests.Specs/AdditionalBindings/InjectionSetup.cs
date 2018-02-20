@@ -6,6 +6,7 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
@@ -56,6 +57,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
+
+            //necessary in order for 'old' (non-DI) framework to get hold of an ILoggingService instance
+            Helper.LoggingService = _container.Resolve<ILoggingService>();
         }
 
 
