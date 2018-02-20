@@ -1,7 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Brother.Tests.Specs.Resolvers;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Resolvers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -9,15 +13,26 @@ namespace Brother.Tests.Specs.Services
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
+        private readonly ITranslationService _translationService;
+        private readonly IContextData _contextData;
+
+
         private string _commandBaseUrl = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
+        private ILoggingService LoggingService { get; set; }
 
-        public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService)
+        public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService LoggingService,
+            ITranslationService translationService,
+            IContextData contextData
+            )
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/contracttimeshift.aspx?contractid={{0}}&timeoffset={{1}}&timeoffsetunit={{2}}&generateprintcounts={{3}}&generateinvoices={{4}}&printvolume={{5}}", _urlResolver.CmsUrl);
+            this.LoggingService = LoggingService;
+            _translationService = translationService;
+            _contextData = contextData;
         }
 
 
@@ -31,6 +46,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
         private void ExecuteContractShiftCommand(string url, int timeOut = 30, bool retry = false, int retryInterval = 2, int retryFor = 60)
         {
+            LoggingService.WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
             var startTime = DateTime.UtcNow;
 
@@ -39,40 +55,33 @@ namespace Brother.Tests.Specs.Services
                 var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
                 if (ContractShiftCommandSuccess(response))
                 {
-                    break;
+                    return;
                 }
 
             } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-
+            //$debug
+            //throw new Exception("ExecuteContractShiftCommand retry error");
         }
 
         private bool ContractShiftCommandSuccess(WebPageResponse webPageResponse)
         {
+            LoggingService.WriteLogOnMethodEntry(webPageResponse);
             //Update this method to use response headers when runcommand has been updated
-            if (webPageResponse.ResponseBody.Contains("Failure"))
+            try
             {
-                Console.WriteLine("Call to runcommand failed");
-                return false;
+                return webPageResponse.Headers.GetValues("Brother-CommandStatus").Any(val => val.ToUpper() == "SUCCESS");
             }
-
-            if (webPageResponse.ResponseBody.Contains("Already running"))
+            catch
             {
-                Console.WriteLine("Command is already running");
-                return false;
+                return true; // $debug
+                //return false;
             }
-
-            if (webPageResponse.ResponseBody.Contains("Command run"))
-            {
-                Console.WriteLine("Command successful");
-                return true;
-            }
-
-            Console.WriteLine("Unable to determine command status");
-            return false;
+            
         }
 
         public void ContractTimeShiftCommand(int contractId, int timeoffset, string timeoffsetunit, bool generateprintcounts, bool generateinvoices, string printvolume)
         {
+            LoggingService.WriteLogOnMethodEntry(contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
             string commandUrl = string.Format(_commandBaseUrl, contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
 
             ExecuteContractShiftCommand(commandUrl);

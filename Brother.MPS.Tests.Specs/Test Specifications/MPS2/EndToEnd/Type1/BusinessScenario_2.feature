@@ -40,6 +40,9 @@ And I apply overusage to the contract depending on usagetype and billingtype
 And a Cloud MPS Local Office Approver verify the Overusage
 And I will raise consumable order and service request for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
+Given a Local Office Admin navigate the contract end screen 
+When a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract 
+Then a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file 
 
 @BUK
 Scenarios: 

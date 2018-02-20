@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
@@ -58,6 +58,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedProposalName");
             return createdProposal;
+        }
+
+        public static string DateTimeString(DateTime dateTime)
+        {
+            return dateTime.ToString("dd/MM/yyyy");
         }
 
         public static string SubdealerEmail()
