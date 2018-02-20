@@ -235,6 +235,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     var refreshElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
                     refreshElement.Click();
 
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                     var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
                     var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
 
@@ -253,7 +254,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         }
 
                     }
-                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                     retries++;
                 }
                 catch (WebDriverException)
