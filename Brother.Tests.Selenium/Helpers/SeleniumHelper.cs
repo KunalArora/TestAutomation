@@ -327,15 +327,19 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }, timeout);
         }
 
-        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id")
+        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
         {
-            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
+            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout, dataAttributeName, waitSelector);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
             timeout = timeout < 0 ? defaultMaxTimeout : timeout;
             try
             {
                 var resultElement = WaitUntil(d =>
                 {
+                    if (waitSelector!=null)
+                    {
+                        FindElementByCssSelector(waitSelector, timeout);
+                    }
                     ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
                     var count = rowElementListForExistCheck.Count;
                     switch( count)
@@ -344,8 +348,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                             // nothing to reload
                             LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
                             _webDriver.Navigate().Refresh();
-                            _webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
-                            //WaitUntil(dd => filterElement.Displayed , timeout);
                             return null;
                         case 1:
                             return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
