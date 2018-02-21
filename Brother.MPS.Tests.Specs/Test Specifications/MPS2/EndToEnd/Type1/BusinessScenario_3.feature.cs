@@ -312,9 +312,9 @@ testRunner.And("a Brother installer has navigated to the Web Swap Installation p
 testRunner.And(string.Format("Enter the serial number for new device \"{0}\" with new Mono \"{1}\" and color \"{2}\" " +
                         "print count and complete Installation", swapNewDeviceSerialNumber, swapNewDeviceMonoPrintCount, swapNewDeviceColorPrintCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 48
-testRunner.Then(string.Format("a Cloud MPS Local Office Approver will be able to see the status of the swap devi" +
-                        "ce \"{0}\" is set Being Swapped with updated print counts on the Manage Devices pa" +
-                        "ge for the above proposal", swapNewDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("a Cloud MPS Local Office Approver will be able to see the status of the swap devi" +
+                    "ce is set Being Swapped with updated print counts on the Manage Devices page for" +
+                    " the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

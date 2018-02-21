@@ -63,16 +63,18 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach(var product in products)
             {
                 string serialNumber;
-                if (RuntimeSettings.DefaultSerialNumberOffset != 0)
+                string lastValue;
+                int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
+                last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
+                if (last2SerialNumbervalue < 9)
                 {
-                    int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
-                    last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-                    serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + last2SerialNumbervalue.ToString();
+                    lastValue = '0' + last2SerialNumbervalue.ToString();
                 }
                 else
                 {
-                    serialNumber = product.SerialNumber;
+                    lastValue = last2SerialNumbervalue.ToString();
                 }
+                serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + lastValue;               
                 product.SerialNumber = serialNumber;
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
                 _installerDeviceInstallationPage.ClosePopUp();
@@ -96,16 +98,18 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 if(product.SerialNumber.Equals(swapOldDeviceSerialNumber))
                 {
                     string serialNumber;
-                    if (RuntimeSettings.DefaultSerialNumberOffset != 0)
+                    string lastValue;
+                    int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(swapNewDeviceSerialNumber.Length - 2));
+                    last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
+                    if (last2SerialNumbervalue < 9)
                     {
-                        int last2SerialNumbervalue = Int32.Parse(swapNewDeviceSerialNumber.Substring(swapNewDeviceSerialNumber.Length - 2));
-                        last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-                        serialNumber = swapNewDeviceSerialNumber.Remove(swapNewDeviceSerialNumber.Length - 2, 2) + last2SerialNumbervalue.ToString();
+                        lastValue = '0' + last2SerialNumbervalue.ToString();
                     }
                     else
                     {
-                        serialNumber = swapNewDeviceSerialNumber;
+                        lastValue = last2SerialNumbervalue.ToString();
                     }
+                    serialNumber = swapNewDeviceSerialNumber.Remove(swapNewDeviceSerialNumber.Length - 2, 2) + lastValue;
                     _contextData.SwapNewDeviceSerialNumber = serialNumber;
                     RegisterDeviceOnBOC(product, installationPin, serialNumber);
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);

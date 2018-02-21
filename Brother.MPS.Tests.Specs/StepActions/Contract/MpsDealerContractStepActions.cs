@@ -179,11 +179,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
-        public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage, string swappedSerialNumber)
+        public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage,swappedSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, swappedSerialNumber);
+            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber);
         }
 
         //Similar function is already present in this file so, refactor this particular function.

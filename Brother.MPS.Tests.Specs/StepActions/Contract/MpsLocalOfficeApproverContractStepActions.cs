@@ -235,11 +235,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapNewDeviceSerialNumber)
+        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, swapNewDeviceSerialNumber);
+            localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber);
         }
 
         public void VerifySwappedDeviceStatus(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)

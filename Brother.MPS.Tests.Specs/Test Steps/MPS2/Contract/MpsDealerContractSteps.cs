@@ -204,11 +204,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
-        [Then(@"I will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage, swapNewDeviceSerialNumber);
+            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
     }

@@ -149,11 +149,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _contextData.WebSwapInstallUrl = url;
         }
 
-        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage);
         }
 
         [When(@"a Cloud MPS Local Office Approver verify the Overusage")]
