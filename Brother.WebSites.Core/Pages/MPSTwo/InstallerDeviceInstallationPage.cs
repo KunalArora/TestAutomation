@@ -214,7 +214,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void TryClosePopup()
         {
             try {
-                WhereIsMySerialNumberModalCloseButtonElement.Click();
+                SeleniumHelper.ClickSafety(WhereIsMySerialNumberModalCloseButtonElement);
                 SeleniumHelper.WaitUntil(d => WhereIsMySerialNumberModalCloseButtonElement.Displayed == false);
             } catch { };
         }
