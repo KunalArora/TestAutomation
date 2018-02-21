@@ -154,7 +154,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     product.ColorPrintCount = updatedColor;
                 }
                 //The Print Counts are not updated on the MPS portal if implicit wait is not applied as the system processing is slow.
-                _dealerWebDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                _dealerWebDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                 _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
             }
             // Finally, run the contract shift API to generate Billing Invoices upto 3 Billing Periods 

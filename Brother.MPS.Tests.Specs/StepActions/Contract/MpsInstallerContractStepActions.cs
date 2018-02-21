@@ -106,6 +106,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     {
                         serialNumber = swapNewDeviceSerialNumber;
                     }
+                    _contextData.SwapNewDeviceSerialNumber = serialNumber;
                     RegisterDeviceOnBOC(product, installationPin, serialNumber);
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
                 }

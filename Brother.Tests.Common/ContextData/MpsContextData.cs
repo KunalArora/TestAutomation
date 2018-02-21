@@ -25,6 +25,7 @@ namespace Brother.Tests.Common.ContextData
         public string CompanyLocation { get; set; }
         public string InstallerEmail { get; set; }
         public string SwapOldDeviceSerialNumber { get; set; }
+        public string SwapNewDeviceSerialNumber { get; set; }
         public int SwapNewDeviceMonoPrintCount { get; set; }
         public int SwapNewDeviceColourPrintCount { get; set; }
 
