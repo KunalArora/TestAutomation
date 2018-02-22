@@ -62,6 +62,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             foreach(var product in products)
             {
+                int retries = 0;
+                int serialEnterRetry = 0;
                 string serialNumber;
                 string lastValue;
                 int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
@@ -77,10 +79,26 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + lastValue;               
                 product.SerialNumber = serialNumber;
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
-                _installerDeviceInstallationPage.ClosePopUp();
+                _installerDeviceInstallationPage.TryClosePopup();
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
+                while(!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, product.SerialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
+                {
+//                    _installerWebDriver.Navigate().Refresh();
+                    _installerDeviceInstallationPage.ClickOnRefreshButton();
+                    _installerWebDriver.Navigate().Refresh();
+                    _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
+
+                    serialEnterRetry = serialEnterRetry + 1;
+
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        throw new Exception("Error while installing the device=" + product.SerialNumber + "Retry count exceeded the default value" + retries);
+                    }
+                    continue;
+                }
             }
-            _installerDeviceInstallationPage.CloudInstallationRefresh();
+//            _installerDeviceInstallationPage.CloudInstallationRefresh();
             _installerDeviceInstallationPage.SeleniumHelper.ClickSafety(_installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement);
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
