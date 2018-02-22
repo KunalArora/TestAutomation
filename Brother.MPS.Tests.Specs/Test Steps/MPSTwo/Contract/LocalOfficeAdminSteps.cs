@@ -76,7 +76,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [When(@"a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract")]
         public void WhenALocalOfficeAdminSetTheCancellationDateAndSetTheReasonOfCancellationAndCancelTheContract()
         {
-            _stepActions.ClickOnCancelContract(_localOfficeAdminReportsProposalSummaryPage);
             var localOfficeAdminContractsEditEndDatePage = _stepActions.ClickOnCancelContract(_localOfficeAdminReportsProposalSummaryPage);
             _localOfficeAdminReportsProposalSummaryPage = _stepActions.EnterContractCancellationDetailsAndSave(localOfficeAdminContractsEditEndDatePage, _contextData.BillingType);
 
@@ -85,7 +84,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [Then(@"a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file")]
         public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresentAndAssertSomeValueAmountTextOnPDFFile()
         {
-            ScenarioContext.Current.Pending();
+            _stepActions.SetPrintCountForOverusage();
+            _stepActions.TimeShiftForOutOfDay();
+            _stepActions.ValidateFinalInvoice();
+
         }
 
     }

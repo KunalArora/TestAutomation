@@ -166,7 +166,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var pdfFile = _mpsLocalOfficeApproverContractStepActions.DownloadPdf(localOfficeApproverReportsProposalsSummaryPage);
             try
             {
-                _mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
+                // $debug
+                //_mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
             }
             finally
             {

@@ -167,5 +167,14 @@ namespace Brother.Tests.Specs.Services
             ExecuteRunCommand(commandUrl);
         }
 
+        public void RunContractClosingMonitorCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = "MPS:NEW:ContractClosingMonitorCommand";
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
+
     }
 }
