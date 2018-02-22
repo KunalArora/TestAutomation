@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -65,13 +66,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeAdminContractsEditEndDatePage ClickOnCancelContract(LocalOfficeAdminReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
-            // save print count
 
-
-
-            // contract end
-            ActionsModule.ClickOnTheActionsDropdown((5+4)/* =contract end */, _webDriver);
-            ActionsModule.NavigateToCacncelContracrActionButton(_webDriver);
+            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
+            ActionsModule.NavigateToCacncelContractActionButton(_webDriver);
             return PageService.GetPageObject<LocalOfficeAdminContractsEditEndDatePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
@@ -101,7 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             // Seek Out of Date
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 2, "d", false, false, "Any");
-            BocNotifyIndicateOnline();
+            BocNotifyInclementMono();
 
             // Generate Final Invoice
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 0, "d", false, true, "Any");
@@ -110,17 +107,28 @@ namespace Brother.Tests.Specs.StepActions.Contract
             // download Final Invoice
             var pdfName = _pdfHelper.Download(ph =>
             {
-                ActionsModule.ClickOnTheActionsDropdown(7/* =Billing dates No.4 */, _webDriver);
-                ActionsModule.DownloadContractInvoicePdfAction(_webDriver,3);
-                return true;
+                var endDate = MpsUtil.DateTimeString(DateTime.Today.AddDays(-1));
+                var trlist = _webDriver
+                    .FindElement(By.CssSelector("table.table-striped.mps-billing-dates-container"))
+                    .FindElement(By.TagName("tbody"))
+                    .FindElements(By.TagName("tr"));
+                foreach( var tr in trlist)
+                {
+                    var endDateElement = tr.FindElement(By.CssSelector("[id*=_BillingDatesList_BillingDates_CellEndDate_]"));
+                    if(endDate == endDateElement.Text.Trim())
+                    {
+                        var actionButton = tr.FindElement(By.TagName("button"));
+                        actionButton.Click();
+                        var viewBillButton = tr.FindElement(By.TagName("a"));
+                        viewBillButton.Click();
+                        return true;
+                    }
+                }
+                throw new Exception("pdf download target view bill button not found.");
+                //ActionsModule.ClickOnTheActionsDropdown(-2/* =Billing dates No.4 S2=7 */, _webDriver);
+                //ActionsModule.DownloadContractInvoicePdfAction(_webDriver,3);
+                //return false;
             });
-
-            // TODO adjust over usage count (ask to @tak)
-            foreach( var pp in _contextData.PrintersProperties)
-            {
-                if (pp.colorOverusage != 0) pp.colorOverusage++;
-                if (pp.monoOverusage != 0) pp.monoOverusage++;
-            }
 
             // validate pdf
             _pdfHelper.AssertAreEqualOverusageValues(pdfName, _contextData.PrintersProperties, _contextData.Culture);
@@ -163,19 +171,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         }
 
-        private void BocNotifyIndicateOnline()
+        private void BocNotifyInclementMono()
         {
             LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
                 string deviceId = product.DeviceId;
-                //_deviceSimulatorService.SetPrintCounts(deviceId, updatedMono, updatedColor);
-                _deviceSimulatorService.SetPrintCounts(product.DeviceId,
-                    //product.MonoPrintCount != 0 ? (product.MonoPrintCount + 1) : 0,
-                    product.MonoPrintCount + 1,
-                    product.ColorPrintCount != 0 ? (product.ColorPrintCount + 1) : 0);
+                _deviceSimulatorService.SetPrintCounts(product.DeviceId,++ product.MonoPrintCount,product.ColorPrintCount );
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                if (product.monoOverusage != 0) product.monoOverusage++;
             }
             _webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);

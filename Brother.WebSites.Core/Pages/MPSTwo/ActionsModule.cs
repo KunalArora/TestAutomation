@@ -64,7 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(MaintainOfferButton));
         }
 
-        public static void NavigateToCacncelContracrActionButton(IWebDriver driver)
+        public static void NavigateToCacncelContractActionButton(IWebDriver driver)
         {
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, driver.FindElement(By.CssSelector(CancelContract)));
         }
@@ -448,6 +448,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void ClickOnTheActionsDropdown(int index, IWebDriver driver)
         {
             var actionsElement = ActionsDropdownElement(driver);
+            if( index < 0)
+            {
+                index = actionsElement.Count + index;
+            }
             actionsElement.ElementAt(index).Click();
         }
 

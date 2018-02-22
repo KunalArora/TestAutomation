@@ -38,6 +38,10 @@ And I will be able to see on the Manage Devices page that all devices for the ab
 And I update the print count, raise consumable order and service request for above devices
 And I will be able to see on the Manage Devices page that above devices have updated Print Counts
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
+Given a Local Office Admin navigate the contract end screen 
+When a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract 
+Then a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file 
+
 
 @BUK
 Scenarios: 

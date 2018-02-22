@@ -70,7 +70,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dataQueryPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
             _localOfficeAdminReportsProposalSummaryPage = _stepActions.NavigateToContractSummaryPage(dataQueryPage, _contextData.ProposalId);
-            //return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>()
         }
 
         [When(@"a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract")]
