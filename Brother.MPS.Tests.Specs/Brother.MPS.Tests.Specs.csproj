@@ -1590,6 +1590,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="App.config.local">
+      <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
     <None Include="BasicTests\TableExample.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TableExample.feature.cs</LastGenOutput>

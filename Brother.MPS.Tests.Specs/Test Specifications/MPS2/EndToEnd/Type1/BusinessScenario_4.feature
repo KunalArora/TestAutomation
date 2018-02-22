@@ -40,7 +40,7 @@ And I will be able to see on the Manage Devices page that above devices have upd
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
 Given a Local Office Admin navigate the contract end screen 
 When a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract 
-Then a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file 
+Then a Local Office Admin assert the final bill is generated/present
 
 
 @BUK

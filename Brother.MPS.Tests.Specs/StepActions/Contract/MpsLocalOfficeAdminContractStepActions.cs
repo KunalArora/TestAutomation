@@ -91,7 +91,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
         }
 
-        public void ApplyOverUsageAndContractShiftAndValidate()
+        public string ApplyOverUsageAndContractShiftAndDownload()
         {
             LoggingService.WriteLogOnMethodEntry();
             ApplyOverusage();
@@ -112,10 +112,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     .FindElement(By.CssSelector("table.table-striped.mps-billing-dates-container"))
                     .FindElement(By.TagName("tbody"))
                     .FindElements(By.TagName("tr"));
-                foreach( var tr in trlist)
+                foreach (var tr in trlist)
                 {
                     var endDateElement = tr.FindElement(By.CssSelector("[id*=_BillingDatesList_BillingDates_CellEndDate_]"));
-                    if(endDate == endDateElement.Text.Trim())
+                    if (endDate == endDateElement.Text.Trim())
                     {
                         var actionButton = tr.FindElement(By.TagName("button"));
                         actionButton.Click();
@@ -125,13 +125,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     }
                 }
                 throw new Exception("pdf download target view bill button not found.");
-                //ActionsModule.ClickOnTheActionsDropdown(-2/* =Billing dates No.4 S2=7 */, _webDriver);
-                //ActionsModule.DownloadContractInvoicePdfAction(_webDriver,3);
-                //return false;
             });
-
+            return pdfName;
+        }
+        public void ApplyOverUsageAndContractShiftAndValidate(string pdfFinalInvoice)
+        {
             // validate pdf
-            _pdfHelper.AssertAreEqualOverusageValues(pdfName, _contextData.PrintersProperties, _contextData.Culture);
+            _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
         }
 
         private void ApplyOverusage()
