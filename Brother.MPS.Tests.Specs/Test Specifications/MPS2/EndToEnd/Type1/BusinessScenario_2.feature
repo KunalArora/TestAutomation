@@ -14,10 +14,10 @@ And I select an existing customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 |
-		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145600    | 0              | 0               | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           |
-		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
+		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145600    | 10             | 0               | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           |
+		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145601    | 10             | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
 		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 250          | A3P145602    | 1000           | 250             | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
-		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
+		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 200          | A3P145603    | 10             | 10              | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval for existing customer
 And a Cloud MPS Local Office Approver declines the above proposal
@@ -36,8 +36,7 @@ And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count and verify it on the Manage devices page
-And I apply overusage to the contract depending on usagetype and billingtype
-And a Cloud MPS Local Office Approver verify the Overusage
+And a Cloud MPS Local Office Approver apply and verify the Overusage
 And I will raise consumable order and service request for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
 

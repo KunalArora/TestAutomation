@@ -147,7 +147,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "0",
                         "A3P145601",
-                        "0",
+                        "10",
                         "0",
                         "Normal",
                         "Normal",
@@ -191,8 +191,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "20",
                         "200",
                         "A3P145603",
-                        "0",
-                        "0",
+                        "10",
+                        "10",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -242,30 +242,28 @@ testRunner.And("I will be able to see on the Manage Devices page that all device
 #line 34
 testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
-testRunner.And("I apply overusage to the contract depending on usagetype and billingtype", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver apply and verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-testRunner.And("a Cloud MPS Local Office Approver verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
 testRunner.And("I will raise consumable order and service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 37
 testRunner.And("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 38
 testRunner.And("I click Swap Device in the Actions menu for device to be swapped on the Manage de" +
                     "vices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 39
 testRunner.And(string.Format("I create a \"{0}\" swap installation request with \"{1}\" installation type for \"{2}\"" +
                         " communication", swapType, installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 40
 testRunner.And("I will be able to see the status of the installed device is set Being Replaced on" +
                     " the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 41
 testRunner.And("a Brother installer has navigated to the Web Swap Installation page and verify Co" +
                     "ntract Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
+#line 42
 testRunner.And(string.Format("Enter the serial number for new device \"{0}\" with new Mono \"{1}\" and color \"{2}\" " +
                         "print count and complete Installation", swapNewDeviceSerialNumber, swapNewDeviceMonoPrintCount, swapNewDeviceColorPrintCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 43
 testRunner.Then("I will be able to see the status of the swap device is set Being Swapped with upd" +
                     "ated print counts on the Manage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
