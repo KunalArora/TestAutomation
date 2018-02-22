@@ -356,7 +356,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             foreach (var product in _contextData.PrintersProperties)
             {
-                while (!localOfficeApproverReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount, product.TotalPageCount))
+                while (!localOfficeApproverReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.TotalPageCount))
                 {
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
 

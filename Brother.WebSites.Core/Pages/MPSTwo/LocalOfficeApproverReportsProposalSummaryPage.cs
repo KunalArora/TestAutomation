@@ -62,36 +62,43 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             billContainer.Click();
         }
 
-        public bool VerifyPrintCountsOfDevice( string serialNumber, int monoPrintCount, int colorPrintCount, int totalPrintCount)
+        public bool VerifyPrintCountsOfDevice( string serialNumber, int totalPrintCount)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(serialNumber, totalPrintCount);
 
             bool isUpdated = true;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintersContainerElement);
             foreach (var row in deviceRowElements)
-            {   
+            {
                 var SerialNumberElement = SeleniumHelper.FindElementByCssSelector(row, DeviceSerialNumberSelector);
                 string displayedSerialNumber = SerialNumberElement.Text;
                 if(displayedSerialNumber.Equals(serialNumber)) 
                 {
-                    var PrintCountsElement = ClickShowPrintCounts(row);
-                    var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsElement, PrintCountsModalTableBodySelector);
-                    var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement);
-
-                    var displayedDateTime = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], PrintCountsModalDateTimeSelector);
-                    var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], TotalPrintCountSelector);
-                    var displayedColorPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], ColorPrintCountSelector);
-                    var displayedMonoPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], MonoPrintCountSelector);
-
-                    if(!(displayedTotalPrintCount.Text.Equals(totalPrintCount.ToString())))
+                    var ShowPrintCountElement = ShowPrintCountActionElement(row);
+                    SeleniumHelper.ClickSafety(ShowPrintCountElement);
+                    
+                    try
                     {
-                        isUpdated = false;
-                    }
+                        var PrintCountsElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalSelector);
+                        var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsElement, PrintCountsModalTableBodySelector);
+                        var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement);
 
-                    // Close Modal
-                    SeleniumHelper.ClickSafety(
-                        SeleniumHelper.FindElementByCssSelector(
-                        PrintCountsElement, PrintCountsModalCloseButtonSelector));
+                        var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], TotalPrintCountSelector);
+
+                        if (!(displayedTotalPrintCount.Text.Equals(totalPrintCount.ToString())))
+                        {
+                            isUpdated = false;
+                        }
+
+                        // Close Modal
+                        SeleniumHelper.ClickSafety(
+                            SeleniumHelper.FindElementByCssSelector(
+                            PrintCountsElement, PrintCountsModalCloseButtonSelector));
+                    }
+                    catch
+                    {
+                        return false;
+                    }
 
                 }
             }
@@ -99,17 +106,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement)
+        private IWebElement ShowPrintCountActionElement(IWebElement deviceRowElement)
         {
             LoggingService.WriteLogOnMethodEntry(deviceRowElement);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ActionsButtonSelector);
             SeleniumHelper.ClickSafety(ActionsButtonElement);
 
             var ShowPrintCountsElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ShowPrintCountsActionsButtonSelector);
-            SeleniumHelper.ClickSafety(ShowPrintCountsElement);
 
-            var PrintCountsModalElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalSelector);
-            return PrintCountsModalElement;
+            return ShowPrintCountsElement;
         }        
     }
 }
