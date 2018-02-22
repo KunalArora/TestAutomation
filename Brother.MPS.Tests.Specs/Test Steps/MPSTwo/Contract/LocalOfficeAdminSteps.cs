@@ -84,10 +84,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [Then(@"a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file")]
         public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresentAndAssertSomeValueAmountTextOnPDFFile()
         {
-            _stepActions.SetPrintCountForOverusage();
-            _stepActions.TimeShiftForOutOfDay();
-            _stepActions.ValidateFinalInvoice();
-
+            _stepActions.ApplyOverUsageAndContractShiftAndValidate();
         }
 
     }

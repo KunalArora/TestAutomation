@@ -259,6 +259,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             action.Click();
 
         }
+        public static void DownloadContractInvoicePdfAction(IWebDriver driver, int index)
+        {
+            var action = driver.FindElement(By.Id("content_0_BillingDatesList_BillingDates_Actions_"+index+"_ActionLink_0"));
+            action.Click();
+        }
 
         public static IWebElement SearchFieldFucntionality(IWebDriver driver)
         {
