@@ -180,26 +180,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage);
             int retries = 0;
+            int serialEnterRetry = 0;
             var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
             foreach (var product in _contextData.PrintersProperties)
             {
                 if (product.IsSwap)
                 {
-                    int serialEnterRetry = 0;
-                    string serialNumber;
-                    string lastValue;
-                    int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
-                    last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-                    if (last2SerialNumbervalue < 9)
-                    {
-                        lastValue = '0' + last2SerialNumbervalue.ToString();
-                    }
-                    else
-                    {
-                        lastValue = last2SerialNumbervalue.ToString();
-                    }
-                    serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + lastValue;
-                    product.SerialNumber = serialNumber;
                     while (!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, product.SerialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
                     {
                         _installerDeviceInstallationPage.ClickOnRefreshButton();
