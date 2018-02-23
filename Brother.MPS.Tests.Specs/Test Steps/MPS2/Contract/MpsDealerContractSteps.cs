@@ -139,28 +139,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
-        [When(@"I apply overusage to the contract depending on usagetype and billingtype")]
-        public void WhenIApplyOverusageToTheContractDependingOnUsagetypeAndBillingtype()
-        {
-            int contractShiftTimeOffsetValue;
-            var billingType = _contextData.BillingType;
-
-            // TODO: Create a function in the IContractShiftService class to do this process
-            switch (billingType)
-            {
-                case "Half Yearly in Arrears":
-                    contractShiftTimeOffsetValue = 6;
-                    break;
-                case "Quarterly in Arrears":
-                    contractShiftTimeOffsetValue = 3;
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-
-            _mpsDealerContractStepActions.ApplyOverusage(contractShiftTimeOffsetValue);
-        }
-
         [When(@"I will raise consumable order and service request for above devices")]
         public void WhenIWillRaiseConsumableOrderAndServiceRequestForAboveDevices()
         {
@@ -204,11 +182,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
-        [Then(@"I will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage, swapNewDeviceSerialNumber);
+            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
     }

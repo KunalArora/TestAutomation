@@ -145,7 +145,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="filterString">id set to filter element</param>
         /// <param name="rowElementListForExistCheck">check until list count==1</param>
         /// <param name="timeout">in sec. -1 is default from RuntimeSettings.DefaultXXXTimeout</param>
-        void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1);
+        void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null);
         /// <summary>
         /// 
         /// </summary>

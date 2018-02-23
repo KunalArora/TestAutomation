@@ -128,7 +128,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "0",
                         "A3P145600",
-                        "0",
+                        "10",
                         "0",
                         "Empty",
                         "Normal",
@@ -149,7 +149,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "0",
                         "A3P145601",
-                        "0",
+                        "10",
                         "0",
                         "Normal",
                         "Normal",
@@ -191,8 +191,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "20",
                         "200",
                         "A3P145603",
-                        "0",
-                        "0",
+                        "10",
+                        "10",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -248,12 +248,10 @@ testRunner.And("I will be able to see on the Manage Devices page that all device
 #line 38
 testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
-testRunner.And("I apply overusage to the contract depending on usagetype and billingtype", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver apply and verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-testRunner.And("a Cloud MPS Local Office Approver verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
 testRunner.And("I will raise consumable order and service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 41
 testRunner.Then("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 43

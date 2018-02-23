@@ -45,7 +45,7 @@ And a Cloud MPS Local Office Approver create a "<SwapType>" swap installation re
 And a Cloud MPS Local Office Approver will be able to see the status of the installed device is set Being Replaced on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Swap Installation page and verify Contract Reference
 And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
-Then a Cloud MPS Local Office Approver will be able to see the status of the swap device "<SwapNewDeviceSerialNumber>" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
+Then a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
 @BUK
 Scenarios: 

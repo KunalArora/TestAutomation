@@ -143,6 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationModelSelector = "[id*=content_0_DeviceInstallList_List_CellModel_]";
         private const string InstallationSerialNumberValidSelector = ".has-success .glyphicon.glyphicon-ok";
         private const string InstallationConnectButtonSelector = "[id*=content_0_DeviceInstallList_List_ButtonConnectDevice_]";
+        private const string InstallationResetButtonSelector = "[id*=content_0_DeviceInstallList_List_ButtonResetDevice_]";
         private const string InstallationIpAddressInput1 = "[id*=content_0_DeviceInstallList_List_InputIpPart1_]";
         private const string InstallationIpAddressInput2 = "[id*=content_0_DeviceInstallList_List_InputIpPart2_]";
         private const string InstallationIpAddressInput3 = "[id*=content_0_DeviceInstallList_List_InputIpPart3_]";
@@ -171,15 +172,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
 
-        public void ClosePopUp()
+        public void EnterSerialNumber(string modelName, string serialNumber, IWebDriver installerDriver)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            ClosePopUpModal();
-        }
-
-        public void EnterSerialNumber(string modelName, string serialNumber, string windowHandle, IWebDriver installerDriver)
-        {
-            LoggingService.WriteLogOnMethodEntry(modelName,serialNumber,windowHandle,installerDriver);
+            LoggingService.WriteLogOnMethodEntry(modelName, serialNumber, installerDriver);
             var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
             var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
 
@@ -194,9 +189,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     ClearAndType(serialNumberElement, serialNumber);
                     serialNumberElement.SendKeys(Keys.Tab);
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector);
+                    TryClosePopup();
                     PopulateIpAddress(row);
                     ClickOnConnect(row, installerDriver);
-                    RetryResetClickingHelper(serialNumber, windowHandle);
                     break;
                 }
             }
@@ -211,56 +206,60 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        private void TryClosePopup()
+        public void TryClosePopup()
         {
             try {
-                WhereIsMySerialNumberModalCloseButtonElement.Click();
+                if (!(WhereIsMySerialNumberModalCloseButtonElement.Displayed == false))
+                {
+                    SeleniumHelper.ClickSafety(WhereIsMySerialNumberModalCloseButtonElement);
+                }
                 SeleniumHelper.WaitUntil(d => WhereIsMySerialNumberModalCloseButtonElement.Displayed == false);
             } catch { };
         }
 
-        public void RetryResetClickingHelper(string serialNumber, string windowHandle)
+        public bool RetryResetClickingHelper(string modalName, string serialNumber, string windowHandle, IWebDriver installerDriver, int serialEnterRetry)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber, windowHandle);
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
             var isConnected = false;
-            var retries = 0;
-            var retryCount = 10;
 
-            while ((!isConnected) && (retries != retryCount))
+            try
             {
-                try
+                var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
+                var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
+
+                var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
+                foreach (var row in rows)
                 {
-                    var refreshElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
-                    refreshElement.Click();
-
-                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
-                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
-                    var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
-
-                    var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
-                    foreach (var row in rows)
+                    var modelElement = SeleniumHelper.FindElementByCssSelector(row, InstallationModelSelector);
+                    var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
+                    if (serialNumberElement.GetAttribute("value") == serialNumber)
                     {
-                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
-                        if (serialNumberElement.GetAttribute("value") == serialNumber)
+                        var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector);
+                        isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
+                        if(isConnected)
                         {
-                            var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector);
-                            isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
-                            if(isConnected)
-                            {
-                                break;
-                            }
+                            SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
+                            return isConnected;
                         }
-
                     }
-                    retries++;
-                }
-                catch (WebDriverException)
-                {
-                    retries++;
+                    else
+                    {
+                        if (serialEnterRetry == 1 && modelElement.Text.Equals(modalName))
+                        {
+                            EnterSerialNumber(modalName, serialNumber, installerDriver);
+                        }
+                        else if (serialEnterRetry > 1 && modelElement.Text.Equals(modalName))
+                        {
+                            throw new Exception("Serial number does not persist on the UI even after retrying it 2 times.");
+                        }
+                    }
+                    SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                 }
             }
+            catch { }
+            return isConnected;
         }
 
         public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount)
@@ -331,7 +330,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             int retryCount = RuntimeSettings.DefaultRetryCount;
-            RetryRefreshClickingHelper(RefreshButtonSelector, CompleteButtonSelector, retryCount);
+
+        }
+
+        public void ClickOnRefreshButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var refreshButtonElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
+                refreshButtonElement.Click();
+            }
+            catch { }
+        }
+
+        public bool CompleteButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var completeButton = SeleniumHelper.FindElementByCssSelector(CompleteButtonSelector);
+                SeleniumHelper.ClickSafety(completeButton);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void RetryRefreshClickingHelper(string element, string elementToVerify, int retryCount)

@@ -363,7 +363,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
-        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1)
+        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null)
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
@@ -373,15 +373,18 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             {
                 var resultElement = WaitUntil(d =>
                 {
+                    if (waitSelector != null)
+                    {
+                        FindElementByCssSelector(waitSelector, timeout);
+                    }
                     ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
                     var count = rowElementListForExistCheck.Count;
                     switch (count)
                     {
                         case 0:
                             // nothing to reload
+                            LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
                             _webDriver.Navigate().Refresh();
-                            _webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
-                            //WaitUntil(dd => filterElement.Displayed, timeout);
                             return false;
                         case 1:
                             return true;
