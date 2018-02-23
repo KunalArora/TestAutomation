@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -76,7 +77,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 completeRetries++;
                 if(completeRetries > RuntimeSettings.DefaultRetryCount)
                 {
-                    throw new Exception("Complete Confirmation button not found even after default retry count exceeded");
+                    TestCheck.AssertFailTest("Complete Confirmation button not found even after default retry count exceeded");
                 }
             }
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
@@ -157,7 +158,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 retries++;
                 if (retries > RuntimeSettings.DefaultRetryCount)
                 {
-                    throw new Exception("Error while installing the device=" + serialNumber + "Retry count exceeded the default value" + retries);
+                    TestCheck.AssertFailTest("Error while installing the device=" + serialNumber + "Retry count exceeded the default value" + retries);
                 }
                 continue;
             }

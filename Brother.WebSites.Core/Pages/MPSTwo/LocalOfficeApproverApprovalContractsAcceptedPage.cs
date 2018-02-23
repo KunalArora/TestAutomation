@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -45,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var actual = ContractListContractNameRowElement.First().Text;
             if (proposalName.Equals(actual) == false)
             {
-                throw new Exception(string.Format("VerifyContractFilter error proposalId={0}, expectName={1}, actual={2}", proposalId, proposalName, actual));
+                TestCheck.AssertFailTest(string.Format("VerifyContractFilter error proposalId={0}, expectName={1}, actual={2}", proposalId, proposalName, actual));
             }
         }
     }

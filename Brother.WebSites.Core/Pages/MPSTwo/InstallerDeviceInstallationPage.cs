@@ -166,7 +166,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
             if (ContractReferencePageAlertElement == null)
-                throw new Exception("Installer page is not displayed");
+                TestCheck.AssertFailTest("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
@@ -252,7 +252,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         }
                         else if (serialEnterRetry > 1 && modelElement.Text.Equals(modalName))
                         {
-                            throw new Exception("Serial number does not persist on the UI even after retrying it 2 times.");
+                            TestCheck.AssertFailTest("Serial number does not persist on the UI even after retrying it 2 times.");
                         }
                     }
                     SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
@@ -383,7 +383,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if ( !isConnected)
             {
                 var elapsedTimeMs = (DateTime.Now - startTime).TotalMilliseconds;
-                throw new Exception("RetryRefreshClickingHelper. Please check BOC simulator or MPS too slow. isConnected=" + isConnected + " time(ms)="+elapsedTimeMs);
+                TestCheck.AssertFailTest("RetryRefreshClickingHelper. Please check BOC simulator or MPS too slow. isConnected=" + isConnected + " time(ms)="+elapsedTimeMs);
             }
         }
 
@@ -400,7 +400,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ContractReferencePageAlertElement == null)
-                throw new Exception("Installer page is not displayed");
+                TestCheck.AssertFailTest("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
             MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
@@ -1223,7 +1223,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapOldMonoElement == null)
-                throw new Exception("Old Mono field is not null");
+                TestCheck.AssertFailTest("Old Mono field is not null");
 
             TestCheck.AssertIsEqual(true, SwapOldMonoElement.Displayed, "Old Mono field is not displayed");
         }
@@ -1232,7 +1232,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapOldColourElement == null)
-                throw new Exception("Old Colour field is not null");
+                TestCheck.AssertFailTest("Old Colour field is not null");
 
             TestCheck.AssertIsEqual(true, SwapOldColourElement.Displayed, "Old Colour field is not displayed");
         }
@@ -1241,7 +1241,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapNewMonoElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             TestCheck.AssertIsEqual(true, SwapNewMonoElement.GetAttribute("value").Equals("0"), "new Mono field is not displayed");
         }
@@ -1250,7 +1250,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapNewColourElement == null)
-                throw new Exception("new Colour field is not null");
+                TestCheck.AssertFailTest("new Colour field is not null");
 
             TestCheck.AssertIsEqual(true, SwapNewColourElement.GetAttribute("value").Equals("0"), "new Colour field is not displayed");
         }
@@ -1260,7 +1260,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(mono);
             if (SwapNewMonoElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             ClearAndType(SwapNewMonoElement, mono);
         }
@@ -1269,7 +1269,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(colour);
             if (SwapNewColourElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             ClearAndType(SwapNewColourElement, colour);
         }
@@ -1333,7 +1333,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
             
         }
@@ -1368,7 +1368,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
         }
 
@@ -1381,7 +1381,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
         }
 
@@ -1419,7 +1419,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
 
         }
@@ -1470,7 +1470,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception)
             {
-                throw new Exception("Complete Installation Button is not displayed");
+                TestCheck.AssertFailTest("Complete Installation Button is not displayed");
             }
         }
 

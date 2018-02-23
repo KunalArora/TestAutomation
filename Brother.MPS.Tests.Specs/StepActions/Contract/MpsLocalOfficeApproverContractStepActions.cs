@@ -196,7 +196,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             CheckForUpdatedPrintCount(localOfficeApproverManagedevicesManagePage);
         }
-
+   
         public LocalOfficeApproverManageDevicesManagePage RetrieveDealerManageDevicesPage()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -278,7 +278,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             dealerSetInstallationTypePage.NextElement.Click();
         }
-
 
         public LocalOfficeApproverReportsDashboardPage NavigateToReportsDashboardPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
@@ -365,7 +364,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     retries++;
                     if (retries > RuntimeSettings.DefaultRetryCount)
                     {
-                        throw new Exception(
+                        TestCheck.AssertFailTest(
                             string.Format("Number of retries exceeded the default limit during verification of print counts for agreement {0}", _contextData.ProposalId));
                     }
                     continue;
@@ -397,7 +396,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             if(_pdfHelper.PdfExists(pdfFile) == false )
             {
-                throw new Exception("pdf file does not exist=" + pdfFile);
+                TestCheck.AssertFailTest("pdf file does not exist=" + pdfFile);
             }
             foreach (var product in products)
             {
@@ -416,7 +415,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 {
                     if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
                     {
-                        throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
+                        TestCheck.AssertFailTest(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
                     }
                 });
             }

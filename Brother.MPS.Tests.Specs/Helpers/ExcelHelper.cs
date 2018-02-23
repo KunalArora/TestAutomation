@@ -100,13 +100,13 @@ namespace Brother.Tests.Specs.Helpers
 
                     if (ws.Dimension.Columns != TOTAL_NUMBER_OF_COLUMNS)
                     {
-                        throw new Exception(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
+                        TestCheck.AssertFailTest(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
                     }
                 }
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
@@ -205,7 +205,7 @@ namespace Brother.Tests.Specs.Helpers
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
@@ -231,7 +231,7 @@ namespace Brother.Tests.Specs.Helpers
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
@@ -267,7 +267,7 @@ namespace Brother.Tests.Specs.Helpers
             fsWatcher.EnableRaisingEvents = true;
             if (clickOnDownloadFunc(this) == false)
             {
-                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
+                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
             }
             var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
             if (changedResult.TimedOut)
