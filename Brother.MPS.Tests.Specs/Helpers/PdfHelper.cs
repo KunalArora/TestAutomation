@@ -69,7 +69,7 @@ namespace Brother.Tests.Specs.Helpers
             fsWatcher.EnableRaisingEvents = true;
             if (clickOnDownloadFunc(this) == false)
             {
-                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
+                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
             }
             var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
             if (changedResult.TimedOut)
