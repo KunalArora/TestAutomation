@@ -79,11 +79,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + lastValue;               
                 product.SerialNumber = serialNumber;
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
-                _installerDeviceInstallationPage.TryClosePopup();
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
                 while(!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, product.SerialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
                 {
-//                    _installerWebDriver.Navigate().Refresh();
                     _installerDeviceInstallationPage.ClickOnRefreshButton();
                     _installerWebDriver.Navigate().Refresh();
                     _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
@@ -98,8 +96,18 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     continue;
                 }
             }
-//            _installerDeviceInstallationPage.CloudInstallationRefresh();
-            _installerDeviceInstallationPage.SeleniumHelper.ClickSafety(_installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement);
+            if (!_installerDeviceInstallationPage.CompleteButton())
+            {
+                int completeRetries = 0;
+                _installerWebDriver.Navigate().Refresh();
+                _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
+
+                completeRetries++;
+                if(completeRetries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception("Complete Confirmation button not found even after default retrie count exceeded");
+                }
+            }
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 
@@ -115,6 +123,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 if(product.SerialNumber.Equals(swapOldDeviceSerialNumber))
                 {
+                    int retries = 0;
+                    int serialEnterRetry = 0;
                     string serialNumber;
                     string lastValue;
                     int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(swapNewDeviceSerialNumber.Length - 2));
@@ -131,14 +141,24 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     _contextData.SwapNewDeviceSerialNumber = serialNumber;
                     RegisterDeviceOnBOC(product, installationPin, serialNumber);
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
+                    while (!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, serialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
+                    {
+                        _installerDeviceInstallationPage.ClickOnRefreshButton();
+                        _installerWebDriver.Navigate().Refresh();
+                        _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
+
+                        serialEnterRetry = serialEnterRetry + 1;
+
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            throw new Exception("Error while installing the device=" + product.SerialNumber + "Retry count exceeded the default value" + retries);
+                        }
+                        continue;
+                    }
+
                 }
             }
-        }
-
-        public void CloudInstallationRefresh(InstallerDeviceInstallationPage installerDeviceInstallationPage)
-        {
-            LoggingService.WriteLogOnMethodEntry(installerDeviceInstallationPage);
-            installerDeviceInstallationPage.CloudInstallationRefresh();
         }
 
         public void EnterSwapPrintCountAndCompleteInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColorPrintcount)
@@ -152,7 +172,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     _installerDeviceInstallationPage.EnterSwapPrintCount(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColorPrintcount);
                 }
             }
-            _installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement.Click();
+            _installerDeviceInstallationPage.SeleniumHelper.ClickSafety(_installerDeviceInstallationPage.CompleteCloudInstallationComfirmationElement);
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 

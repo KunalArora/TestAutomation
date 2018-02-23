@@ -189,6 +189,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     ClearAndType(serialNumberElement, serialNumber);
                     serialNumberElement.SendKeys(Keys.Tab);
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector);
+                    TryClosePopup();
                     PopulateIpAddress(row);
                     ClickOnConnect(row, installerDriver);
                     break;
@@ -329,14 +330,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             int retryCount = RuntimeSettings.DefaultRetryCount;
-            RetryRefreshClickingHelper(RefreshButtonSelector, CompleteButtonSelector, retryCount);
+
         }
 
         public void ClickOnRefreshButton()
         {
             LoggingService.WriteLogOnMethodEntry();
-            var refreshButtonElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
-            refreshButtonElement.Click();
+            try
+            {
+                var refreshButtonElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
+                refreshButtonElement.Click();
+            }
+            catch { }
+        }
+
+        public bool CompleteButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var completeButton = SeleniumHelper.FindElementByCssSelector(CompleteButtonSelector);
+                SeleniumHelper.ClickSafety(completeButton);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void RetryRefreshClickingHelper(string element, string elementToVerify, int retryCount)
