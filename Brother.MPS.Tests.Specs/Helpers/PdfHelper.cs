@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;

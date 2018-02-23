@@ -205,7 +205,7 @@ namespace Brother.Tests.Specs.Helpers
             }
             else
             {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
