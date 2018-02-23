@@ -104,8 +104,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage, proposalId);
             localOfficeApproverManagedevicesContractsPage.SetListFilter(proposalId);
-            ActionsModule.ClickOnTheActionsDropdown(0, _localOfficeApproverWebDriver);
-            ActionsModule.NavigateToManageDevicesActionButton(_localOfficeApproverWebDriver);
+            localOfficeApproverManagedevicesContractsPage.NavigateToManageDevicesPage();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
