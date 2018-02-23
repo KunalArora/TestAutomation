@@ -153,23 +153,28 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 int updatedMono;
                 int updatedColor;
 
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0},product.MonoPrintCount={1}, product.VolumeMono={2}", product.Model, product.MonoPrintCount, product.VolumeMono);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0},product.ColorPrintCount={1}, product.VolumeColour={2}", product.Model, product.ColorPrintCount, product.VolumeColour);
+                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, .deviceId={1}, .MonoPrintCount={2}, .VolumeMono={3}, .ColorPrintCount={4}, .VolumeColour={5}", 
+                    product.Model, product.DeviceId,
+                    product.MonoPrintCount, product.VolumeMono,
+                    product.ColorPrintCount, product.VolumeColour
+                    );
                 updatedMono =  product.MonoPrintCount  + (product.MonoPrintCount  != 0 ? product.VolumeMono   : 0);
                 updatedColor = product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour : 0);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "updatedMono={0},updatedColor={1}", updatedMono, updatedColor);
+                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, updatedMono={1}, updatedColor={2}", product.Model, updatedMono, updatedColor);
 
                 string deviceId = product.DeviceId;
                 _deviceSimulatorService.SetPrintCounts(deviceId, updatedMono, updatedColor);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+
                 // divorce coefficient= 1/30..1/1. The contract end day is yesterday (at caluclation).
                 var divorce = Math.Min(((double)DateTime.Today.AddDays(-1).Day) / 30.0, 1.0);
-                var divorceVolumeMono = (int)(product.VolumeMono * divorce);
-                var divorceVolumeColour = (int)(product.VolumeColour * divorce);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "divorce={0} mono={1} colour={2}", divorce, divorceVolumeMono, divorceVolumeColour);
+                var divorceVolumeMono = (int)Math.Round(product.VolumeMono * divorce);
+                var divorceVolumeColour = (int)Math.Round(product.VolumeColour * divorce);
+                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, divorce={1}, VolumeMono={2}, VolumeColour={3}", product.Model, divorce, divorceVolumeMono, divorceVolumeColour);
+
                 product.monoOverusage = Math.Max( updatedMono - product.MonoPrintCount -  divorceVolumeMono, 0);
                 product.colorOverusage = Math.Max( updatedColor - product.ColorPrintCount - divorceVolumeColour, 0);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.monoOverusage={0}, product.colorOverusage={1}", product.monoOverusage, product.colorOverusage);
+                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, product.monoOverusage={1}, product.colorOverusage={2}", product.Model, product.monoOverusage, product.colorOverusage);
                 // Update the product's print counts with the latest print count values
                 product.MonoPrintCount = updatedMono;
                 product.ColorPrintCount = updatedColor;
