@@ -1,8 +1,8 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -166,8 +166,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var pdfFile = _mpsLocalOfficeApproverContractStepActions.DownloadPdf(localOfficeApproverReportsProposalsSummaryPage);
             try
             {
-                // $debug
-                //_mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
+                _mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
             }
             finally
             {

@@ -11,6 +11,7 @@ using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
@@ -117,10 +118,18 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     var endDateElement = tr.FindElement(By.CssSelector("[id*=_BillingDatesList_BillingDates_CellEndDate_]"));
                     if (endDate == endDateElement.Text.Trim())
                     {
-                        var actionButton = tr.FindElement(By.TagName("button"));
-                        actionButton.Click();
-                        var viewBillButton = tr.FindElement(By.TagName("a"));
-                        viewBillButton.Click();
+                        var step = "";
+                        try
+                        {
+                            step = "button";
+                            tr.FindElement(By.TagName("button")).Click();
+                            step = "a";
+                            tr.FindElement(By.TagName("a")).Click();
+                        }
+                        catch (Exception e)
+                        {
+                            Assert.Fail("Actions ViewBill can't click target line endate={0} step={1} e={2}",endDate,step,e);
+                        }
                         return true;
                     }
                 }
@@ -128,7 +137,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             });
             return pdfName;
         }
-        public void ApplyOverUsageAndContractShiftAndValidate(string pdfFinalInvoice)
+        public void AssertAreEqualOverusageValues(string pdfFinalInvoice)
         {
             // validate pdf
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);

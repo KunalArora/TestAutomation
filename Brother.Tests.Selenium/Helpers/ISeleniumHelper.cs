@@ -7,8 +7,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public interface ISeleniumHelper
     {
-        IWebElement FindElementByCssSelector(string selector, int timeout = -1);
-        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1);
+        IWebElement FindElementByCssSelector(string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
+        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
         /// <summary>
         /// Attempts to find an element which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue

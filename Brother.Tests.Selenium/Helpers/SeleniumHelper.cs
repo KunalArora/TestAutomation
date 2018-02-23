@@ -26,29 +26,27 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             RuntimeSettings = runtimeSettings;
         }
 
-        public IWebElement FindElementByCssSelector(string selector, int timeout)
+        public IWebElement FindElementByCssSelector(string selector, int timeout, bool isWaitforDisplayed = false, bool isWaitforEnabled = false)
         {
-            LoggingService.WriteLogOnMethodEntry(selector, timeout);
-            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            IWebElement target = null;
-            try {
-                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
-                return target;
-            }
-            catch (TimeoutException e)
-            {
-                throw new TimeoutException("selector=" + selector, e);
-            }
+            //LoggingService.WriteLogOnMethodEntry(selector, timeout);
+            return FindElementByCssSelector(_webDriver, selector, timeout, isWaitforDisplayed, isWaitforEnabled);
         }
 
-        public IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout)
+        public IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout, bool isWaitforDisplayed = false, bool isWaitforEnabled = false)
         {
-            LoggingService.WriteLogOnMethodEntry(context, selector, timeout);
+            LoggingService.WriteLogOnMethodEntry(context, selector, timeout,isWaitforDisplayed,isWaitforEnabled);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            IWebElement target = null;
             try
             {
-                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                IWebElement target = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout))
+                    .Until(d => { try
+                        {
+                            var element = context.FindElement(By.CssSelector(selector));
+                            var isDisplayed = isWaitforDisplayed == false || element.Displayed;
+                            var isEnabled = isWaitforEnabled == false || element.Enabled;
+                            return element != null && isDisplayed && isEnabled ? element : null;
+                        }
+                        catch { return null; } });
                 return target;
             }
             catch (TimeoutException e)

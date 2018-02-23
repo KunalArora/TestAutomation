@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -15,9 +16,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using TechTalk.SpecFlow;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -311,35 +310,37 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void AssertAreEqualOverusageValues(string pdfFile)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
-            string monoOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, _contextData.Culture);
-            string colourOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, _contextData.Culture);
-            var products = _contextData.PrintersProperties;
+            _pdfHelper.AssertAreEqualOverusageValues(pdfFile, _contextData.PrintersProperties, _contextData.Culture);
+            //LoggingService.WriteLogOnMethodEntry(pdfFile);
+            //string monoOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, _contextData.Culture);
+            //string colourOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, _contextData.Culture);
+            //var products = _contextData.PrintersProperties;
 
-            if(_pdfHelper.PdfExists(pdfFile) == false )
-            {
-                throw new Exception("pdf file does not exist=" + pdfFile);
-            }
-            foreach (var product in products)
-            {
-                var searchTextArray = new List<string>();
-                if (product.VolumeMono!= 0 && product.monoOverusage > 0)
-                {
-                    string expected = product.monoOverusage.ToString("N0", new CultureInfo(_contextData.Culture)); 
-                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + monoOverusageText + " " + expected);
-                }
-                if (product.VolumeColour!=0 && product.colorOverusage > 0)
-                {
-                    string expected = product.colorOverusage.ToString("N0", new CultureInfo(_contextData.Culture));
-                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + colourOverusageText + " " + expected);
-                }
-                searchTextArray.ForEach(expected =>
-                {
-                    if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
-                    {
-                        throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
-                    }
-                });
-            }
+            //if(_pdfHelper.PdfExists(pdfFile) == false )
+            //{
+            //    throw new Exception("pdf file does not exist=" + pdfFile);
+            //}
+            //foreach (var product in products)
+            //{
+            //    var searchTextArray = new List<string>();
+            //    if (product.VolumeMono!= 0 && product.monoOverusage > 0)
+            //    {
+            //        string expected = product.monoOverusage.ToString("N0", new CultureInfo(_contextData.Culture)); 
+            //        searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + monoOverusageText + " " + expected);
+            //    }
+            //    if (product.VolumeColour!=0 && product.colorOverusage > 0)
+            //    {
+            //        string expected = product.colorOverusage.ToString("N0", new CultureInfo(_contextData.Culture));
+            //        searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + colourOverusageText + " " + expected);
+            //    }
+            //    searchTextArray.ForEach(expected =>
+            //    {
+            //        if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
+            //        {
+            //            throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
+            //        }
+            //    });
+            //}
         }
 
         public void DeletePdfFIle(string pdfFile)
