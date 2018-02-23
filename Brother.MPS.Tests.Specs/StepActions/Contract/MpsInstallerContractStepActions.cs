@@ -58,43 +58,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver);
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
             var products = _contextData.PrintersProperties;
-            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
 
             foreach(var product in products)
             {
-                int retries = 0;
-                int serialEnterRetry = 0;
-                string serialNumber;
-                string lastValue;
-                int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(product.SerialNumber.Length - 2));
-                last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-                if (last2SerialNumbervalue < 9)
-                {
-                    lastValue = '0' + last2SerialNumbervalue.ToString();
-                }
-                else
-                {
-                    lastValue = last2SerialNumbervalue.ToString();
-                }
-                serialNumber = product.SerialNumber.Remove(product.SerialNumber.Length - 2, 2) + lastValue;               
+                string serialNumber = SerialNumberCalculationHelper(product.SerialNumber);
                 product.SerialNumber = serialNumber;
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
-                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
-                while(!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, product.SerialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
-                {
-                    _installerDeviceInstallationPage.ClickOnRefreshButton();
-                    _installerWebDriver.Navigate().Refresh();
-                    _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
-
-                    serialEnterRetry = serialEnterRetry + 1;
-
-                    retries++;
-                    if (retries > RuntimeSettings.DefaultRetryCount)
-                    {
-                        throw new Exception("Error while installing the device=" + product.SerialNumber + "Retry count exceeded the default value" + retries);
-                    }
-                    continue;
-                }
+                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
+                RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, product.SerialNumber, installerDriver);
             }
             if (!_installerDeviceInstallationPage.CompleteButton())
             {
@@ -105,7 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 completeRetries++;
                 if(completeRetries > RuntimeSettings.DefaultRetryCount)
                 {
-                    throw new Exception("Complete Confirmation button not found even after default retrie count exceeded");
+                    throw new Exception("Complete Confirmation button not found even after default retry count exceeded");
                 }
             }
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
@@ -116,47 +87,17 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver, swapNewDeviceSerialNumber);
             var swapOldDeviceSerialNumber = _contextData.SwapOldDeviceSerialNumber;
             var installationPin = _installerDeviceInstallationPage.RetrieveInstallationPin();
-            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
             var products = _contextData.PrintersProperties;
 
             foreach(var product in products)
             {
                 if(product.SerialNumber.Equals(swapOldDeviceSerialNumber))
                 {
-                    int retries = 0;
-                    int serialEnterRetry = 0;
-                    string serialNumber;
-                    string lastValue;
-                    int last2SerialNumbervalue = Int32.Parse(product.SerialNumber.Substring(swapNewDeviceSerialNumber.Length - 2));
-                    last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-                    if (last2SerialNumbervalue < 9)
-                    {
-                        lastValue = '0' + last2SerialNumbervalue.ToString();
-                    }
-                    else
-                    {
-                        lastValue = last2SerialNumbervalue.ToString();
-                    }
-                    serialNumber = swapNewDeviceSerialNumber.Remove(swapNewDeviceSerialNumber.Length - 2, 2) + lastValue;
+                    string serialNumber = SerialNumberCalculationHelper(swapNewDeviceSerialNumber);
                     _contextData.SwapNewDeviceSerialNumber = serialNumber;
                     RegisterDeviceOnBOC(product, installationPin, serialNumber);
-                    _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerWindowHandle, installerDriver);
-                    while (!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, serialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
-                    {
-                        _installerDeviceInstallationPage.ClickOnRefreshButton();
-                        _installerWebDriver.Navigate().Refresh();
-                        _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
-
-                        serialEnterRetry = serialEnterRetry + 1;
-
-                        retries++;
-                        if (retries > RuntimeSettings.DefaultRetryCount)
-                        {
-                            throw new Exception("Error while installing the device=" + product.SerialNumber + "Retry count exceeded the default value" + retries);
-                        }
-                        continue;
-                    }
-
+                    _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
+                    RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, serialNumber, installerDriver);
                 }
             }
         }
@@ -178,28 +119,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public void RetryRefresh(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver) 
         {
-            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage);
-            int retries = 0;
-            int serialEnterRetry = 0;
-            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver);
             foreach (var product in _contextData.PrintersProperties)
             {
                 if (product.IsSwap)
                 {
-                    while (!(_installerDeviceInstallationPage.RetryResetClickingHelper(product.Model, product.SerialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
-                    {
-                        _installerDeviceInstallationPage.ClickOnRefreshButton();
-                        _installerWebDriver.Navigate().Refresh();
-                        _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
-
-                        serialEnterRetry++;
-                        retries++;
-                        if (retries > RuntimeSettings.DefaultRetryCount)
-                        {
-                            throw new Exception("Error while installing the device=" + product.SerialNumber + "Retry count exceeded the default value" + retries);
-                        }
-                        continue;
-                    }
+                    _contextData.SwapNewDeviceSerialNumber = product.SerialNumber;
+                    RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, product.SerialNumber, installerDriver);
                 }
             }
         }
@@ -214,5 +140,48 @@ namespace Brother.Tests.Specs.StepActions.Contract
             product.DeviceId = deviceId;
         }
 
+        private void RetryRefreshHelper(InstallerDeviceInstallationPage _installerDeviceInstallationPage, string model, string serialNumber, IWebDriver installerDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, model, serialNumber, installerDriver);
+            int serialEnterRetry = 0;
+            int retries = 0;
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+
+            while (!(_installerDeviceInstallationPage.RetryResetClickingHelper(model, serialNumber, installerWindowHandle, installerDriver, serialEnterRetry)))
+            {
+                _installerDeviceInstallationPage.ClickOnRefreshButton();
+                _installerWebDriver.Navigate().Refresh();
+                _installerDeviceInstallationPage = PageService.GetPageObject<InstallerDeviceInstallationPage>(RuntimeSettings.DefaultPageLoadTimeout, _installerWebDriver);
+
+                serialEnterRetry++;
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception("Error while installing the device=" + serialNumber + "Retry count exceeded the default value" + retries);
+                }
+                continue;
+            }
+
+        }
+
+        private string SerialNumberCalculationHelper(string serialNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
+            string serialNumberResponse;
+            string lastValue;
+            int last2SerialNumbervalue = Int32.Parse(serialNumber.Substring(serialNumber.Length - 2));
+            last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
+            if (last2SerialNumbervalue < 9)
+            {
+                lastValue = '0' + last2SerialNumbervalue.ToString();
+            }
+            else
+            {
+                lastValue = last2SerialNumbervalue.ToString();
+            }
+            serialNumberResponse = serialNumber.Remove(serialNumber.Length - 2, 2) + lastValue;
+
+            return serialNumberResponse;
+        }
     }
 }

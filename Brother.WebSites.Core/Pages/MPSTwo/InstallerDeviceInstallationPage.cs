@@ -172,9 +172,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
 
-        public void EnterSerialNumber(string modelName, string serialNumber, string windowHandle, IWebDriver installerDriver)
+        public void EnterSerialNumber(string modelName, string serialNumber, IWebDriver installerDriver)
         {
-            LoggingService.WriteLogOnMethodEntry(modelName,serialNumber,windowHandle,installerDriver);
+            LoggingService.WriteLogOnMethodEntry(modelName, serialNumber, installerDriver);
             var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
             var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
 
@@ -248,7 +248,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     {
                         if (serialEnterRetry == 1 && modelElement.Text.Equals(modalName))
                         {
-                            EnterSerialNumber(modalName, serialNumber, windowHandle, installerDriver);
+                            EnterSerialNumber(modalName, serialNumber, installerDriver);
                         }
                         else if (serialEnterRetry > 1 && modelElement.Text.Equals(modalName))
                         {

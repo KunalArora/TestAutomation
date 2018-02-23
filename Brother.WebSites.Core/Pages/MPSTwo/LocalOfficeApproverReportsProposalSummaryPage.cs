@@ -84,7 +84,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     
                     try
                     {
-                        var PrintCountsElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalSelector);
+                        var PrintCountsElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalSelector, 10);
                         var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsElement, PrintCountsModalTableBodySelector);
                         var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement);
 

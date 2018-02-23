@@ -185,8 +185,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationTotalPagesSelector = "[id*=content_1_DeviceList_List_CellTotalPages_]";
         private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
 
+        private const string InstallationCommunicationTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationTypeIcon_]";
 
-        
+
+
         public void IsInstallationRequestCancelled()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -709,7 +711,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     foreach (var row in rows)
                     {
                         var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
-                        if(serialNumberElement.Text.Equals(serialNumber))
+                        var InstallationCommunicationTypeElement = SeleniumHelper.FindElementByCssSelector(row, InstallationCommunicationTypeSelector);
+                        var communicationType = InstallationCommunicationTypeElement.GetAttribute("data-original-title").Contains("Responding");
+                        if(serialNumberElement.Text.Equals(serialNumber) && communicationType)
                         {
                             var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector);
                             if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
@@ -729,6 +733,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
                 catch(WebDriverException)
                 {
+                    if(retries > retryCount)
+                    {
+                        throw new Exception("Updated print count for swapped device cannnot be verified");
+                    }
                     driver.Navigate().Refresh();
                     retries++;
                 }
