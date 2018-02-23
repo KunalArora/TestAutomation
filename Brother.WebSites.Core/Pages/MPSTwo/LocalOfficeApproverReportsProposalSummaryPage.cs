@@ -2,6 +2,7 @@
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -72,10 +73,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 var SerialNumberElement = SeleniumHelper.FindElementByCssSelector(row, DeviceSerialNumberSelector);
                 string displayedSerialNumber = SerialNumberElement.Text;
+                if (displayedSerialNumber.Equals("-"))
+                {
+                    throw new Exception("The Serial Number is not displayed on the Summary page probably due to System Bug");
+                }
                 if(displayedSerialNumber.Equals(serialNumber)) 
                 {
                     var ShowPrintCountElement = ShowPrintCountActionElement(row);
-                    SeleniumHelper.ClickSafety(ShowPrintCountElement);
+                    SeleniumHelper.ClickSafety(ShowPrintCountElement, 10);
                     
                     try
                     {
