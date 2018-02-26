@@ -1,9 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
-
 namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 {
-    public interface IClickBillExcelHelper
+    public interface IServiceInstallationBillExcelHelper
     {
         /// <summary>
         /// download excel
@@ -22,22 +22,11 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         void DeleteExcelFile(string filePath);
 
         /// <summary>
-        /// Verifies the summary tab of the click rate excel sheet
+        /// Verifies the detail tab of the service installation bill excel sheet
         /// </summary>
-        /// <param name="excelFilePath"></param>
+        /// <param name="excelFilePath">Downloaded Excel file path</param>
         /// <param name="startDate">Billing period start date</param>
         /// <param name="endDate">Billing period end date</param>
-        /// <param name="expectedClickRateTotal">Expected value of click rate total (picked from UI)</param>
-        void VerifySummaryWorksheet(string excelFilePath, string startDate, string endDate, string expectedClickRateTotal);
-
-        /// <summary>
-        /// Verifies the click charges tab of the click rate excel sheet
-        /// </summary>
-        /// <param name="excelFilePath"></param>
-        /// <param name="startDate">Billing period start date</param>
-        /// <param name="endDate">Billing period end date</param>
-        /// <param name="isFirstBillingPeriod">True if this period is the first billing period, otherwise false</param>
-        void VerifyClickChargesWorksheet(string excelFilePath, string startDate, string endDate, bool isFirstBillingPeriod);
-
+        void VerifyDetailWorksheet(string excelFilePath, string startDate, string endDate, string expectedServiceInstallationTotal);
     }
 }

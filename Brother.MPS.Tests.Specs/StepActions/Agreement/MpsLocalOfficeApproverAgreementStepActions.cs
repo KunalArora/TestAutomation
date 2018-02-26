@@ -28,8 +28,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService,
-            IClickBillExcelHelper clickBillExcelHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper)
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
         }

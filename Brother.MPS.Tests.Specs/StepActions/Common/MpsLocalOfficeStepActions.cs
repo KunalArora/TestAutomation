@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
@@ -22,6 +23,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private readonly ITranslationService _translationService;
         private readonly IRunCommandService _runCommandService;
         private readonly IClickBillExcelHelper _clickBillExcelHelper;
+        private readonly IServiceInstallationBillExcelHelper _serviceInstallationBillExcelHelper;
 
         public MpsLocalOfficeStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -32,13 +34,15 @@ namespace Brother.Tests.Specs.StepActions.Common
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService,
-            IClickBillExcelHelper clickBillExcelHelper)
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _translationService = translationService;
             _runCommandService = runCommandService;
             _clickBillExcelHelper = clickBillExcelHelper;
+            _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
         }
 
         public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
@@ -265,8 +269,8 @@ namespace Brother.Tests.Specs.StepActions.Common
                 retries++;
                 if (retries > RuntimeSettings.DefaultRetryCount)
                 {
-                    throw new Exception(
-                        string.Format("Number of retries exceeded the default limit during verification of billing (invoice not generated) for agreement {0}", _contextData.AgreementId));
+                    TestCheck.AssertFailTest(
+                        "Number of retries exceeded the default limit during verification of click rate billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
                 }
             }
 
@@ -320,6 +324,78 @@ namespace Brother.Tests.Specs.StepActions.Common
                         break;
                     }
                 }
+            }
+
+            return localOfficeAgreementBillingPage;
+        }
+
+        public LocalOfficeAgreementBillingPage VerifyServiceInstallationInvoice(LocalOfficeAgreementBillingPage localOfficeAgreementBillingPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementBillingPage);
+
+            // Verify that no invoice is generated if installation packs/service packs (for all devices) are not selected
+
+            bool shouldGenerateInvoice = false;
+            foreach (var product in _contextData.PrintersProperties)
+            {
+                if (product.ServicePack.ToLower().Equals("yes") || product.InstallationPack.ToLower().Equals("yes"))
+                {
+                    shouldGenerateInvoice = true;
+                }
+            }
+
+            int retries = 0;
+            if (!shouldGenerateInvoice)
+            {
+                // Verify that no invoice is generated and make sure by retrying a few times
+                while (retries < 2)
+                {
+                    TestCheck.AssertIsEqual(
+                        false, localOfficeAgreementBillingPage.IsServiceInstallationTotalPopulated(0), string.Format("Service/Installation invoice is generated even when no service pack/installation pack was selected for any device for agreement {0}", _contextData.AgreementId));
+
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                }
+            }
+            else
+            {
+                // Verify the invoice details
+
+                // Refresh the billing page if the service/installation total for first billing period is not already populated
+                while (!localOfficeAgreementBillingPage.IsServiceInstallationTotalPopulated(0))
+                {
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            "Number of retries exceeded the default limit during verification of service installation billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
+                    }
+                }
+
+                int rowIndex = 0;
+
+
+                // 1. Download service installation invoice excel
+                string excelFilePath = _serviceInstallationBillExcelHelper.Download(() =>
+                    {
+                        localOfficeAgreementBillingPage.ClickDownloadServiceInstallationBill(rowIndex);
+                        return true;
+                    }
+                    );
+
+                // Get expected values
+                string startDate = localOfficeAgreementBillingPage.GetBillingStartDate(rowIndex);
+                string endDate = localOfficeAgreementBillingPage.GetBillingEndDate(rowIndex);
+                string expectedServiceInstallationTotal = localOfficeAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
+
+                // 2. Verify service installation invoice excel
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedServiceInstallationTotal));
+
+                // 3. Delete excel file
+                _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
             }
 
             return localOfficeAgreementBillingPage;

@@ -299,7 +299,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify the service/installation billing invoice")]
         public void ThenICanVerifyTheServiceInstallationBillingInvoice()
         {
-            ScenarioContext.Current.Pending();
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyServiceInstallationInvoice(_dealerAgreementBillingPage);
         }
     }
 }

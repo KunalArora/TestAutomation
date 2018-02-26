@@ -27,7 +27,7 @@ Then a Cloud MPS Local Office Admin can verify the correct reflection of updated
 And a Cloud MPS Local Office Admin can verify the generation of consumable orders alongwith status
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then a Cloud MPS Local Office Admin can verify the click rate billing invoice
-#And a Cloud MPS Local Office Admin can verify the service/installation billing invoice
+And a Cloud MPS Local Office Admin can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 

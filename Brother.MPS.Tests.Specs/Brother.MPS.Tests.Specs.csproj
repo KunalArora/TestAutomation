@@ -107,6 +107,8 @@
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\IAgreementHelper.cs" />
     <Compile Include="Helpers\IPdfHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />

@@ -183,6 +183,9 @@ testRunner.Then("I can verify the correct reflection of updated print counts", (
 testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
 testRunner.Then("a Cloud MPS Local Office Admin can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
+testRunner.And("a Cloud MPS Local Office Admin can verify the service/installation billing invoic" +
+                    "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

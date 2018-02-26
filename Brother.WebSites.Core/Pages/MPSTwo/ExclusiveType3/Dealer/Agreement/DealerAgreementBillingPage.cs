@@ -23,9 +23,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        // Selectos
+        // Selectors
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string DownloadClickRateBillSelector = ".js-mps-download-click-rate-invoice";
+        private const string DownloadServiceInstallationBillSelector = ".js-mps-download-service-installation-invoice";
+
 
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
@@ -70,12 +72,45 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             {
                 return SeleniumHelper.WaitUntil(
                     d => (billingDatesRowElements[rowIndex].FindElements(By.TagName("td")).ToList()[3].Text != "-") // TODO: Use conventional approach to find element once id/class is fixed
-                 );
+                 , RuntimeSettings.DefaultInvoiceGenerationTimeout);
             }
             catch
             {
                 return false;
             }
+        }
+
+        public bool IsServiceInstallationTotalPopulated(int rowIndex)
+        {
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
+            var billingDatesRowElements = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
+            try
+            {
+                return SeleniumHelper.WaitUntil(
+                    d => (billingDatesRowElements[rowIndex].FindElements(By.TagName("td")).ToList()[5].Text != "-") // TODO: Use conventional approach to find element once id/class is fixed
+                 , RuntimeSettings.DefaultInvoiceGenerationTimeout);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void ClickDownloadServiceInstallationBill(int rowIndex)
+        {
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
+            var billingDatesRowElements = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(billingDatesRowElements[rowIndex], ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+            var DownloadServiceInstallationBillButtonElement = SeleniumHelper.FindElementByCssSelector(billingDatesRowElements[rowIndex], DownloadServiceInstallationBillSelector);
+            SeleniumHelper.ClickSafety(DownloadServiceInstallationBillButtonElement);
+        }
+
+        public string GetServiceInstallationTotal(int rowIndex)
+        {
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
+            var billingDatesRowElements = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
+            return billingDatesRowElements[rowIndex].FindElements(By.TagName("td")).ToList()[5].Text; // TODO: Use conventional approach to find element once id/class is fixed
         }
     }
 }

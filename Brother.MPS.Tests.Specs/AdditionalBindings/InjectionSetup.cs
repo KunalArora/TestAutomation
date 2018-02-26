@@ -59,6 +59,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
             _container.RegisterTypeAs<DevicesExcelHelper, IDevicesExcelHelper>();
             _container.RegisterTypeAs<ClickBillExcelHelper, IClickBillExcelHelper>();
+            _container.RegisterTypeAs<ServiceInstallationBillExcelHelper, IServiceInstallationBillExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
         }
@@ -156,7 +157,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount"),
                     defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout"),
                     defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout"),
-                    defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset")
+                    defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
+                    defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout")
             );
 
             return runtimeSettings;

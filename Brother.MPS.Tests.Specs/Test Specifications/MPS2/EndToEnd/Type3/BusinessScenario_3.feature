@@ -26,7 +26,7 @@ When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice
-#And I can verify the service/installation billing invoice
+And I can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 

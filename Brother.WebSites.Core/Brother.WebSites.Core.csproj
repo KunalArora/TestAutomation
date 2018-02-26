@@ -194,6 +194,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementCreateProductsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementCreateSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementCreateTermAndTypePage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDetailsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDeviceConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDevicesEditPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementDevicesPage.cs" />

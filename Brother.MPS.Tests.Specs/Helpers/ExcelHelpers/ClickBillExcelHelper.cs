@@ -44,7 +44,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         private const int ClickCharges_BillPeriodTo_Col_No = 11;
         private const int ClickCharges_ProductName_Col_No = 12;
         private const int ClickCharges_SerialNumber_Col_No = 13;
-        private const int ClickCharges_StartData_Col_No = 14;
+        private const int ClickCharges_StartDate_Col_No = 14;
         private const int ClickCharges_EndDate_Col_No = 15;
         private const int ClickCharges_MinimumVolumeMono_Col_No = 16;
         private const int ClickCharges_StartMonoPrintCount_Col_No = 17;

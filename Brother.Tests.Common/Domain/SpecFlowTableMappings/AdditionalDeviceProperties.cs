@@ -80,5 +80,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ServiceRequestId { get; set; }
         public string ServiceRequestType { get; set; }
         public string ServiceRequestReplyMessage { get; set; }
+        public string InstallationPack { get; set; }
+        public string ServicePack { get; set; }
+        public string InstallationPackPrice { get; set; }
+        public string ServicePackPrice { get; set; }
     }
 }

@@ -33,8 +33,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IUserResolver userResolver,
             ILoggingService loggingService,
             IRunCommandService runCommandService,
-            IClickBillExcelHelper clickBillExcelHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper)
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _mpsSignIn = mpsSignIn;
@@ -91,6 +92,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return VerifyClickRateInvoice(localOfficeAgreementDevicesPage, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAgreementBillingPage VerifyServiceInstallationInvoice(LocalOfficeAgreementBillingPage localOfficeAgreementBillingPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementBillingPage);
+            return VerifyServiceInstallationInvoice(localOfficeAgreementBillingPage, _loAdminWebDriver);
         }
     }
 }

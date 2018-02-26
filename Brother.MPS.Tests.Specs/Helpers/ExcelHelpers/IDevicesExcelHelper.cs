@@ -46,7 +46,7 @@ namespace Brother.Tests.Specs.Helpers
         /// Retrieve the device details for a particular device row in excel (in Type 3)
         /// </summary>
         /// <param name="excelFilePath"></param>
-        /// <param name="row"></param>
+        /// <param name="row">Row number of which device details are required</param>
         /// <returns></returns>
         AdditionalDeviceProperties GetDeviceDetails(string excelFilePath, int row);
 
@@ -54,9 +54,9 @@ namespace Brother.Tests.Specs.Helpers
         /// Verify that the device status & connection status of the device in excel sheet given the device row number
         /// </summary>
         /// <param name="excelFilePath"></param>
-        /// <param name="deviceRow"></param>
-        /// <param name="resourceInstalledPrinterStatus"></param>
-        /// <param name="resourceDeviceConnectionStatus"></param>
+        /// <param name="deviceRow">Device row number</param>
+        /// <param name="resourceInstalledPrinterStatus">Translated value of Installed Printer status</param>
+        /// <param name="resourceDeviceConnectionStatus">Translated value of Device Connection status</param>
         void VerifyDeviceStatusAndConnectionStatus(
            string excelFilePath, int deviceRow, string resourceInstalledPrinterStatus, string resourceDeviceConnectionStatus);
 

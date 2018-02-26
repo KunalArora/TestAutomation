@@ -31,6 +31,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IContextData _contextData;
         private readonly IDevicesExcelHelper _devicesExcelHelper;
         private readonly IClickBillExcelHelper _clickBillExcelHelper;
+        private readonly IServiceInstallationBillExcelHelper _serviceInstallationBillExcelHelper;
         private readonly ICalculationService _calculationService;
         private readonly IRunCommandService _runCommandService;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
@@ -45,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             MpsSignInStepActions mpsSignIn,
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
             ICalculationService calculationService,
             ILoggingService loggingService,
             IRunCommandService runCommandService,
@@ -60,6 +62,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _runCommandService = runCommandService;
             _mpsLocalOfficeAdmin = mpsLocalOfficeAdmin;
             _clickBillExcelHelper = clickBillExcelHelper;
+            _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -537,6 +540,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.VolumeMono = product.VolumeMono;
                         device.VolumeColour = product.VolumeColour;
                         device.IsMonochrome = product.IsMonochrome;
+                        device.ServicePack = product.ServicePack;
+                        device.InstallationPack = product.InstallationPack;
                     }
                 }
             }
@@ -577,6 +582,20 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             VerifyUpdatedDeviceDataInExcelSheet(
                 dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding, resourceInstalledPrinterStatusInstalled);
 
+
+            // Save service pack & installation prices for all devices used for later verification
+            ClickSafety(dealerAgreementDevicesPage.DetailsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
+            var dealerAgreementDetailsPage = PageService.GetPageObject<DealerAgreementDetailsPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                device.InstallationPackPrice = RemoveCurrencySymbol(dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model));
+                device.ServicePackPrice = RemoveCurrencySymbol(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
+            }
+
+            ClickSafety(dealerAgreementDetailsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementDetailsPage);
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             return dealerAgreementDevicesPage;
         }
 
@@ -776,7 +795,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementBillingPage VerifyClickRateInvoice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, _dealerWebDriver);
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             ClickSafety(dealerAgreementDevicesPage.BillingTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
             var dealerAgreementBillingPage = PageService.GetPageObject<DealerAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
@@ -792,8 +811,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 retries++;
                 if (retries > RuntimeSettings.DefaultRetryCount)
                 {
-                    throw new Exception(
-                        string.Format("Number of retries exceeded the default limit during verification of billing (invoice not generated) for agreement {0}", _contextData.AgreementId));
+                    TestCheck.AssertFailTest(
+                        "Number of retries exceeded the default limit during verification of click rate billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
                 }
             }
 
@@ -848,6 +867,78 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     }
                 }
             }
+
+            return dealerAgreementBillingPage;
+        }
+
+        public DealerAgreementBillingPage VerifyServiceInstallationInvoice(DealerAgreementBillingPage dealerAgreementBillingPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementBillingPage);
+
+            // Verify that no invoice is generated if installation packs/service packs (for all devices) are not selected
+
+            bool shouldGenerateInvoice = false;
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                if (product.ServicePack.ToLower().Equals("yes") || product.InstallationPack.ToLower().Equals("yes"))
+                {
+                    shouldGenerateInvoice = true;
+                }
+            }
+
+            int retries = 0;
+            if (!shouldGenerateInvoice)
+            {
+                // Verify that no invoice is generated and make sure by retrying a few times
+                while (retries < 2)
+                {
+                    TestCheck.AssertIsEqual(
+                        false, dealerAgreementBillingPage.IsServiceInstallationTotalPopulated(0), string.Format("Service/Installation invoice is generated even when no service pack/installation pack was selected for any device for agreement {0}", _contextData.AgreementId));
+
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerAgreementBillingPage = PageService.GetPageObject<DealerAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                    retries++;
+                }
+            }
+            else
+            { 
+                // Verify the invoice details
+
+                // Refresh the billing page if the service/installation total for first billing period is not already populated
+                while (!dealerAgreementBillingPage.IsServiceInstallationTotalPopulated(0))
+                {
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerAgreementBillingPage = PageService.GetPageObject<DealerAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            "Number of retries exceeded the default limit during verification of service installation billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
+                    }
+                }
+
+                int rowIndex = 0;
+
+                // 1. Download service installation invoice excel
+                string excelFilePath = _serviceInstallationBillExcelHelper.Download(() =>
+                    {
+                        dealerAgreementBillingPage.ClickDownloadServiceInstallationBill(rowIndex);
+                        return true;
+                    }
+                    );
+
+                // Get expected values
+                string startDate = dealerAgreementBillingPage.GetBillingStartDate(rowIndex);
+                string endDate = dealerAgreementBillingPage.GetBillingEndDate(rowIndex);
+                string expectedServiceInstallationTotal = dealerAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
+
+                // 2. Verify service installation invoice excel
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedServiceInstallationTotal));
+
+                // 3. Delete excel file
+                _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
+            }
+
 
             return dealerAgreementBillingPage;
         }

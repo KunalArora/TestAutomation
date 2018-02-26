@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using TechTalk.SpecFlow;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -46,8 +45,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IPdfHelper pdfHelper,
             RunCommandService runCommandService,
             IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
             IContractShiftService contractShiftService)
-                    : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;

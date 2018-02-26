@@ -353,6 +353,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/summary\"]", agreementId.ToString()));
         }
 
+        public IWebElement DetailsTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/details\"]", agreementId.ToString()));
+        }
 
         public IWebElement ConsumablesTabElement(int agreementId)
         {
