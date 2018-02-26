@@ -9,9 +9,9 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model      | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount |
-		| DCP-8110DN | 2        | Yes              | Yes         | 100          | 4000       | 0              | 0            | Yes                     | 4000           | 0               |
-		| DCP-8250DN | 1        | Yes              | Yes         | 100          | 4000       | 0              | 0            | Yes                     | 4000           | 0               |
+		| Model      | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | ResetDevice |
+		| DCP-8110DN | 2        | Yes              | Yes         | 100          | 4000       | 0              | 0            | Yes                     | 4000           | 0               | Yes         |
+		| DCP-8250DN | 1        | Yes              | Yes         | 100          | 4000       | 0              | 0            | Yes                     | 4000           | 0               | No          |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -20,12 +20,16 @@ And I can verify that devices are ready for installation
 Then a Cloud MPS LO Approver can create and send a bulk installation request
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
+And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
 And I can verify the device details using show device details option
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind
+Then I can verify the click rate billing invoice
+And I can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType |
-		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              | 40                 |

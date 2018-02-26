@@ -1,10 +1,12 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
-    public class LocalOfficeAgreementSummaryPage: BasePage, IPageObject
+    public class LocalOfficeAgreementSummaryPage: DealerAgreementSummaryPage, IPageObject
     {
         private const string _validationElementSelector = "#content_1_SummaryTable_ProposalDetailsContainer"; // Agreement Details Container
         private const string _url = "/mps/local-office/agreement/{agreementId}/summary"; // TODO: Replace agreementId with dynamic parameter
@@ -20,10 +22,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         }
 
 
-
         // Selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
         private const string MpsTabsAgreementSelector = " a[href=\"/mps/local-office/agreement/";
+
+        // Web elements
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealershipName")]
+        public IWebElement DealershipNameElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerSapNumber")]
+        public IWebElement DealershipSapNumberElement;
+ 
 
         public IWebElement DevicesTabElement(int agreementId)
         {

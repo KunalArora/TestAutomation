@@ -346,6 +346,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
         }
 
+        public IWebElement SummaryTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/summary\"]", agreementId.ToString()));
+        }
+
+        public IWebElement DetailsTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/details\"]", agreementId.ToString()));
+        }
+
         public IWebElement ConsumablesTabElement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
@@ -358,6 +372,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()));
+        }
+
+        public IWebElement BillingTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/billing\"]", agreementId.ToString()));
         }
 
         // Click Show Consumable Orders in Actions given the MPS device Id

@@ -42,6 +42,11 @@ namespace Brother.Tests.Specs.Resolvers
             string pattern;
             string loginPatternNumber;
 
+            if (_contextData.SpecificDealerUsername != null)
+            {
+                return _contextData.SpecificDealerUsername;
+            }
+
             switch (businessType) {
                 case BusinessType.Type1:
                     // Only Type1
@@ -63,6 +68,11 @@ namespace Brother.Tests.Specs.Resolvers
         public string GetDealerPassword(BusinessType businessType)
         {
             string pattern;
+
+            if (_contextData.SpecificDealerPassword != null)
+            {
+                return _contextData.SpecificDealerPassword;
+            }
 
             switch (businessType)
             {

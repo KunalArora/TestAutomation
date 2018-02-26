@@ -93,6 +93,7 @@
       <DependentUpon>TableExample.feature</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CommandLineSettings.cs" />
+    <Compile Include="Configuration\LoggingServiceSettings.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
     <Compile Include="Domain\WebPageResponse.cs" />
@@ -101,13 +102,17 @@
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
-    <Compile Include="Helpers\ExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\IAgreementHelper.cs" />
-    <Compile Include="Helpers\IExcelHelper.cs" />
     <Compile Include="Helpers\IPdfHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
-    <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
@@ -1380,6 +1385,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSProductionRegressionTestServer3And4.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature.cs">
+      <DependentUpon>ProductionSmokeDealerCanCreateAgreement.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\PaymentProvider\PurchasesWithNewCard.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1580,6 +1590,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\CountryServiceTests.cs" />
     <Compile Include="UnitTests\ContractShiftServiceTests.cs" />
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
     <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
@@ -2652,6 +2663,10 @@
     <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionRegressionTestServer3And4.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProductionSmokeDealerCanCreateAgreement.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

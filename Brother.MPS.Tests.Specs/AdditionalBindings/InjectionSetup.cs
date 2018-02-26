@@ -1,14 +1,16 @@
-﻿
 using BoDi;
+using Brother.Tests.Common.CommandLineSettings;
 using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
@@ -24,10 +26,12 @@ namespace Brother.Tests.Specs.AdditionalBindings
     public class InjectionSetup
     {
         private readonly IObjectContainer _container;
+        private readonly ICommandLineSettings _commandLineSettings;
 
         public InjectionSetup(IObjectContainer container)
         {
             _container = container;
+            _commandLineSettings = new CommandLineSettings();
         }
 
         [BeforeScenario]
@@ -35,7 +39,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var webDriver = TestController.CurrentDriver; //temporary until static classes are refactored
             _container.RegisterInstanceAs<IWebDriver>(webDriver); //default driver when only a single instance is required
-            _container.RegisterInstanceAs<IContextData>(setContextData());
+            _container.RegisterInstanceAs<IContextData>(SetContextData());
             _container.RegisterInstanceAs<IRuntimeSettings>(InitialiseRuntimeSettings());
             _container.RegisterInstanceAs<ILoggingServiceSettings>(CreateLoggingServiceSettings());
             _container.RegisterTypeAs<WebDriverFactory, IWebDriverFactory>();
@@ -53,7 +57,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<CalculationService, ICalculationService>();
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
-            _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
+            _container.RegisterTypeAs<DevicesExcelHelper, IDevicesExcelHelper>();
+            _container.RegisterTypeAs<ClickBillExcelHelper, IClickBillExcelHelper>();
+            _container.RegisterTypeAs<ServiceInstallationBillExcelHelper, IServiceInstallationBillExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
         }
@@ -61,37 +67,34 @@ namespace Brother.Tests.Specs.AdditionalBindings
 
         private ILoggingServiceSettings CreateLoggingServiceSettings()
         {
-            var loggingServiceSettings = new LoggingServiceSettings();
-            SetToCommandLineSettings(loggingServiceSettings);
-            loggingServiceSettings.ScenarioName = ScenarioContext.Current.ScenarioInfo.Title ?? "";
+            var loggingServiceSettings = new LoggingServiceSettings
+            {
+                ScenarioName = ScenarioContext.Current.ScenarioInfo.Title ?? "",
+                LoggingLevel = _commandLineSettings.LoggingLevel ?? DefaultLoggingLevel()
+            };
             return loggingServiceSettings;
         }
 
-        private void SetToCommandLineSettings(ICommandLineSettings commandLineSettings )
+        private IContextData SetContextData()
         {
-            commandLineSettings.LoggingLevel = TestContext.Parameters.Get("logging_level", DefaultLoggingLevel());
-        }
-
-        private IContextData setContextData()
-        {
-            string env = TestContext.Parameters.Exists("env") ? TestContext.Parameters.Get("env") : DefaultEnvironment();
-            string cultureName = TestContext.Parameters.Exists("culture") ? TestContext.Parameters.Get("culture") : "en-GB";
-            string baseUrl = TestContext.Parameters.Exists("base_url") ? TestContext.Parameters.Get("base_url") : string.Empty;
-            CultureInfo culture = new CultureInfo(cultureName);
-            RegionInfo region = new RegionInfo(culture.LCID);
-            string country = region.TwoLetterISORegionName;
+            //apply defaults, changed per scenario as required
+            var countryService = new CountryService();
+            var env = _commandLineSettings.EnvironmentUnderTest ?? DefaultEnvironment();
+            var culture = _commandLineSettings.Culture ?? DefaultCulture();
 
             Console.WriteLine("Initialising scenario for environment {0}", env);
-
-            //apply defaults, changed per scenario as required
-            CountryService countryService = new CountryService();
             
+            SetLegacyHelperProperties(_commandLineSettings.OutputPath, env);
+
             return new MpsContextData
             {
                 Environment = env,
-                Culture = cultureName,
+                Culture = culture,
+                BaseUrl = _commandLineSettings.BaseUrl ?? DefaultBaseUrl(),
                 BusinessType = Brother.Tests.Common.Domain.Enums.BusinessType.Type1,
-                Country = countryService.GetByName("United Kingdom")
+                Country = countryService.GetByCulture(culture),
+                SpecificDealerUsername = _commandLineSettings.DealerUsername ?? SpecificDealerUsername(),
+                SpecificDealerPassword = _commandLineSettings.DealerPassword ?? SpecificDealerPassword()
             };
         }
 
@@ -112,14 +115,35 @@ namespace Brother.Tests.Specs.AdditionalBindings
 
         private string DefaultEnvironment()
         {
-            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultRuntimeEnvironment");
+            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultRuntimeEnvironment");
             return defaultRuntimeEnvironment ?? "UAT";
+        }
+
+        private string DefaultBaseUrl()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultBaseUrl");
+        }
+
+        private string SpecificDealerUsername()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.SpecificDealerUsername");
+        }
+
+        private string SpecificDealerPassword()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.SpecificDealerPassword");
         }
 
         private string DefaultLoggingLevel()
         {
-            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("DefaultLoggingLevel");
+            var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultLoggingLevel");
             return defaultRuntimeEnvironment ?? LoggingLevel.WARNING.ToString();
+        }
+
+        private string DefaultCulture()
+        {
+            var defaultCulture = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultCulture");
+            return defaultCulture ?? "en-GB";
         }
 
         private RuntimeSettings InitialiseRuntimeSettings()
@@ -133,7 +157,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultRetryCount: AppSettingToInt("RuntimeSettings.DefaultRetryCount"),
                     defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout"),
                     defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout"),
-                    defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset")
+                    defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
+                    defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout")
             );
 
             return runtimeSettings;
@@ -153,6 +178,12 @@ namespace Brother.Tests.Specs.AdditionalBindings
             }
 
             return null;
+        }
+
+        private void SetLegacyHelperProperties(string outputPath, string env)
+        {
+            Helper.OutputPath = outputPath;
+            Helper.EnvironmentUnderTest = env;
         }
     }
 }

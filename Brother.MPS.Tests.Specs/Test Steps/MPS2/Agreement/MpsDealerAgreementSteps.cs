@@ -43,6 +43,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
+        private DealerAgreementBillingPage _dealerAgreementBillingPage;
 
         public MpsDealerAgreementSteps(
             MpsSignInStepActions mpsSignIn,
@@ -150,6 +151,32 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheCreationOfAgreementInTheAgreementList()
         {
             _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
+        [When(@"I can verify the creation of agreement in the agreement list")]
+        public void WhenICanVerifyTheCreationOfAgreementInTheAgreementList()
+        {
+            _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can delete the agreement")]
+        public void ThenICanDeleteTheAgreement()
+        {
+            _mpsDealerAgreement.DeleteAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can verify that the agreement is removed from the agreement list")]
+        public void ThenICanVerifyThatTheAgreementIsRemovedFromTheAgreementList()
+        {
+            //TODO: A more conclusive test for the removal of an agreement is to check the
+            //database directly - but requires the db connector. See ticket MPS-4955
+            _mpsDealerAgreement.VerifyAgreementIsRemoved(_dealerAgreementsListPage);
+        }
+
+        [When(@"I navigate to the agreement list")]
+        public void WhenINavigateToTheAgreementList()
+        {
+            _mpsDealerAgreement.NavigateToAgreementsListPage();
         }
 
         [When(@"I navigate to edit device data page")]
@@ -261,6 +288,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheDeviceDetailsUsingShowDeviceDetailsOption()
         {
             _mpsDealerAgreement.VerifyDeviceDetails(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the click rate billing invoice")]
+        public void ThenICanVerifyTheClickRateBillingInvoice()
+        {
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyClickRateInvoice(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the service/installation billing invoice")]
+        public void ThenICanVerifyTheServiceInstallationBillingInvoice()
+        {
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyServiceInstallationInvoice(_dealerAgreementBillingPage);
         }
     }
 }

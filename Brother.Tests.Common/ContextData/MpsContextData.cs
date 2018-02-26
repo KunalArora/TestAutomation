@@ -13,6 +13,8 @@ namespace Brother.Tests.Common.ContextData
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }
         public BusinessType BusinessType { get; set; }
+        public string SpecificDealerUsername { get; set; }
+        public string SpecificDealerPassword { get; set; }
 
         public string ProposalName { get; set; }
         public int ProposalId { get; set; }
@@ -29,6 +31,8 @@ namespace Brother.Tests.Common.ContextData
         public int SwapNewDeviceMonoPrintCount { get; set; }
         public int SwapNewDeviceColourPrintCount { get; set; }
 
+        public string CommunicationMethod { get; set; }
+        public string InstallationType { get; set; }
 
         public MpsContextData()
         {
@@ -75,5 +79,7 @@ namespace Brother.Tests.Common.ContextData
         public string DealerReference { get; set; }
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         public int DeviceCount { get; set; }
+        public string DealerName { get; set; }
+        public string DealerSAPAccountNumber { get; set; }
     }
 }

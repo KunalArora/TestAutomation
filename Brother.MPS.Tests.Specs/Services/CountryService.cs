@@ -32,6 +32,11 @@ namespace Brother.Tests.Specs.Services
             return _countries.First(x => x.BrotherCode.Equals(brotherCode));
         }
 
+        public Country GetByCulture(string culture)
+        {
+            return _countries.First(x => x.Cultures.Any(c => c == culture));
+        }
+
         private void InitialiseCountries()
         {
 
@@ -42,7 +47,8 @@ namespace Brother.Tests.Specs.Services
                 BrotherCode = "BUK",
                 Cultures = new List<string> { "en-GB" },
                 DomainSuffix = "co.uk",
-                PasswordCountryAbbreviation = "UK"
+                PasswordCountryAbbreviation = "UK",
+                AtYourSideEnabled = true
             });
 
             _countries.Add(new Country

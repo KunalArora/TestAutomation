@@ -16,7 +16,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public RunCommandServiceTests()
         {
-            _runCommandService = new RunCommandService(new DefaultUrlResolver(new MpsContextData{Environment = "UAT", Country = new Country{ DomainSuffix = "co.uk" } }), new WebRequestService(null),null);
+            _runCommandService = new RunCommandService(new DefaultUrlResolver(new MpsContextData{Environment = "UAT", Country = new Country{ DomainSuffix = "co.uk" } }), new WebRequestService(null),null, new MpsContextData());
         }
 
         [Test]

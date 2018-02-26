@@ -26,8 +26,11 @@ And a Cloud MPS Installer is able to do both single device and bulk installation
 Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind
+Then a Cloud MPS Local Office Admin can verify the click rate billing invoice
+And a Cloud MPS Local Office Admin can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType     | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType |
-		| United Kingdom | CPP_AGREEMENT | True             | PAY_AS_YOU_GO | THREE_YEARS  | PAY_UPFRONT | True             | Cloud               | Usb              |
+		| Country        | AgreementType | OptionalFields_1 | UsageType     | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays |
+		| United Kingdom | CPP_AGREEMENT | True             | PAY_AS_YOU_GO | THREE_YEARS  | PAY_UPFRONT | True             | Cloud               | Usb              | 35                 |

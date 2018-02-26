@@ -15,6 +15,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string BrotherCode { get; set; }
         public List<string> Cultures { get; set; }
         public string DomainSuffix { get; set; }
+        public bool AtYourSideEnabled { get; set; }
 
         public string PasswordCountryAbbreviation
         {

@@ -14,6 +14,8 @@ namespace Brother.Tests.Common.ContextData
         string BaseUrl { get; set; }
         string EnvironmentName { get; set; }
         string Environment { get; set; }
+        string SpecificDealerUsername { get; set; }
+        string SpecificDealerPassword { get; set; }
         BusinessType BusinessType { get; set; }
 
         string ProposalName { get; set; }
@@ -34,7 +36,9 @@ namespace Brother.Tests.Common.ContextData
         string SwapNewDeviceSerialNumber { get; set; }
         int SwapNewDeviceMonoPrintCount { get; set; }
         int SwapNewDeviceColourPrintCount { get; set; }
-        
+
+        string CommunicationMethod { get; set; }
+        string InstallationType { get; set; }
         void SetBusinessType(string businessTypeId);
         string WebInstallUrl { get; set; }
         Dictionary<UserType, string> WindowHandles { get; set; }
@@ -52,5 +56,7 @@ namespace Brother.Tests.Common.ContextData
         string DealerReference { get; set; }
         List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         int DeviceCount { get; set; }
+        string DealerName { get; set; }
+        string DealerSAPAccountNumber { get; set; }
     }
 }

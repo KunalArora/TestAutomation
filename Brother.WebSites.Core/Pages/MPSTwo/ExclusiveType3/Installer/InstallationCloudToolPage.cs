@@ -1,9 +1,12 @@
-﻿using Brother.Tests.Common.Logging;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
@@ -34,6 +37,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string SelectSerialTableSelector = ".js-mps-serials-select-table > tbody";
         private const string SerialNumberTableRowElementSelector = ".js-mps-boc-device";
         private const string SelectDeviceRadioButtonSelector = ".js-mps-select-boc-device";
+        private const string ResetButtonSelector = ".js-mps-button-reset";
+        private const string NotConnectedSelector = ".glyphicon-remove";
+        private const string DeviceLocationSelector = ".js-mps-input-device-location";
+        private const string CostCentreSelector = ".js-mps-input-device-costcentre";
         
 
         // Web Elements
@@ -159,6 +166,64 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             else
             {
                 SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement);
+            }
+        }
+
+        public void ClickReset(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    var ResetButtonElement = SeleniumHelper.FindElementByCssSelector(element, ResetButtonSelector);
+                    SeleniumHelper.ClickSafety(ResetButtonElement);
+
+                    SeleniumHelper.AcceptJavascriptAlert();
+
+                    // Page gets refreshed few seconds after clicking reset button. We need to wait those few seconds.
+                    SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(ResetButtonElement));
+                    break;
+                }
+            }
+        }
+
+        public void VerifyNotConnectedStatus(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    try
+                    {
+                        SeleniumHelper.WaitUntil(d => SeleniumHelper.IsElementDisplayed(element, NotConnectedSelector));
+                        break;
+                    }
+                    catch
+                    {
+                        TestCheck.AssertFailTest(string.Format("Not connected status of the device {0} could not be verified after reset of device", mpsDeviceId));
+                    }
+                }
+            }
+        }
+
+        public void FillDeviceDetails(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(device.MpsDeviceId))
+                {
+                    device.DeviceLocation = MpsUtil.DeviceLocation();
+                    device.CostCentre = MpsUtil.CostCentre();
+
+                    ClearAndType(SeleniumHelper.FindElementByCssSelector(element, DeviceLocationSelector), device.DeviceLocation);
+                    ClearAndType(SeleniumHelper.FindElementByCssSelector(element, CostCentreSelector), device.CostCentre);
+                }
             }
         }
     }

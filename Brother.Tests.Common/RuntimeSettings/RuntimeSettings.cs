@@ -11,6 +11,7 @@
         private int _defaultDownloadTimeout = 30;
         private int _defaultAPIResponseTimeout = 30;
         private int _defaultSerialNumberOffset = 0;
+        private int _defaultInvoiceGenerationTimeout = 20;
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -33,7 +34,8 @@
             int? defaultRemoteWebDriverTimeout,
             int? defaultDownloadTimeout,
             int? defaultAPIResponseTimeout,
-            int? defaultSerialNumberOffset
+            int? defaultSerialNumberOffset,
+            int? defaultInvoiceGenerationTimeout
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -45,6 +47,7 @@
             DefaultDownloadTimeout = defaultDownloadTimeout ?? _defaultDownloadTimeout;
             DefaultAPIResponseTimeout = defaultAPIResponseTimeout ?? _defaultAPIResponseTimeout;
             DefaultSerialNumberOffset = defaultSerialNumberOffset ?? _defaultSerialNumberOffset;
+            DefaultInvoiceGenerationTimeout = defaultInvoiceGenerationTimeout ?? _defaultInvoiceGenerationTimeout;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -56,5 +59,6 @@
         public int DefaultRemoteWebDriverTimeout { get; set; }
         public int DefaultAPIResponseTimeout { get; set; }
         public int DefaultSerialNumberOffset { get; set; }
+        public int DefaultInvoiceGenerationTimeout { get; set; }
     }
 }

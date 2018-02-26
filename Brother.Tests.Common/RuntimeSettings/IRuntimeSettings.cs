@@ -11,5 +11,6 @@
         int DefaultDownloadTimeout { get; set; }
         int DefaultAPIResponseTimeout { get; set; }
         int DefaultSerialNumberOffset { get; set; }
+        int DefaultInvoiceGenerationTimeout { get; set; }
     }
 }
