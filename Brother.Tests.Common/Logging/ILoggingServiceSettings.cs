@@ -1,7 +1,8 @@
 ﻿namespace Brother.Tests.Common.Logging
 {
-    public interface ILoggingServiceSettings : ICommandLineSettings
+    public interface ILoggingServiceSettings
     {
+        string LoggingLevel { get; set; }
         string ScenarioName { get; set; }
     }
 }

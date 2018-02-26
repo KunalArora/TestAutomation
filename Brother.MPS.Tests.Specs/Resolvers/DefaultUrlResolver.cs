@@ -28,11 +28,17 @@ namespace Brother.Tests.Specs.Resolvers
 
         /// <summary>
         /// Return base url without trailing slash for current environment and country
+        /// If ContextData.BaseUrl is not null it overrides environment / country
         /// </summary>
         public string BaseUrl
         {
             get
             {
+                if (_contextData.BaseUrl != null)
+                {
+                    return _contextData.BaseUrl;
+                }
+
                 switch (_contextData.Environment.ToUpper())
                 {
                     case "TEST":

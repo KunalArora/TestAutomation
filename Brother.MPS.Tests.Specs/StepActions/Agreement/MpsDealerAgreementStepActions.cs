@@ -57,7 +57,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _runCommandService = runCommandService;
             _mpsLocalOfficeAdmin = mpsLocalOfficeAdmin;
         }
-        //TODO: make all of the calls which specify a timeout pull the timeout value from config / command line
+        
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
@@ -163,6 +163,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<DealerAgreementsListPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerAgreementsListPage NavigateToAgreementsListPage()
+        {
+            return PageService.LoadUrl<DealerAgreementsListPage>(string.Format("{0}/mps/dealer/agreements/list", UrlResolver.BaseUrl), RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", false, _dealerWebDriver);
+        }
+
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
@@ -171,6 +176,29 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 throw new Exception(string.Format("Agreement = {0} not found ", _contextData.AgreementId));
             }    
+        }
+
+        public DealerAgreementsListPage DeleteAgreement(DealerAgreementsListPage dealerAgreementsListPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
+
+            if (dealerAgreementsListPage.VerifyCreatedAgreement(_contextData.AgreementId, _contextData.AgreementName))
+            {
+                dealerAgreementsListPage.ClickOnDeleteAgreementButton(_contextData.AgreementId);
+            }
+            else
+            {
+                throw new Exception(string.Format("Agreement = {0} not found ", _contextData.AgreementId));
+            }
+
+            return dealerAgreementsListPage;
+        }
+
+        public void VerifyAgreementIsRemoved(DealerAgreementsListPage dealerAgreementsListPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
+
+            dealerAgreementsListPage.VerifyAgreementNotPresent(_contextData.AgreementId);
         }
 
         public DealerAgreementDevicesPage NavigateToManageDevicesPage(DealerAgreementsListPage dealerAgreementsListPage, string resourceInstalledPrinterStatusAddressRequired)

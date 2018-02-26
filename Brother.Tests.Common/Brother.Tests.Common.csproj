@@ -76,15 +76,17 @@
   <ItemGroup>
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Domain\Constants\RunCommands.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
+    <Compile Include="Domain\Enums\RuntimeEnvironment.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\SpecialPricingProperties.cs" />
-    <Compile Include="Logging\ICommandLineSettings.cs" />
+    <Compile Include="CommandLineSettings\ICommandLineSettings.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\ILoggingServiceSettings.cs" />
     <Compile Include="Logging\MpsLoggingConsole.cs" />

@@ -12,17 +12,17 @@ namespace Brother.Tests.Common.Logging
         private readonly string _scenarioName;
         private readonly IOutputLoggingStream _loggingStream;
 
-        public MpsLoggingConsole(ILoggingServiceSettings commandLineSettings ) 
+        public MpsLoggingConsole(ILoggingServiceSettings loggingServiceSettings ) 
         {
             try
             {
-                _loggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), commandLineSettings.LoggingLevel.ToUpper());
+                _loggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), loggingServiceSettings.LoggingLevel.ToUpper());
             }
             catch
             {
                 _loggingLevel = LoggingLevel.WARNING;
             }
-            _scenarioName = string.IsNullOrWhiteSpace(commandLineSettings.ScenarioName) ? "(UNKNOWN)" : commandLineSettings.ScenarioName;
+            _scenarioName = string.IsNullOrWhiteSpace(loggingServiceSettings.ScenarioName) ? "(UNKNOWN)" : loggingServiceSettings.ScenarioName;
             _loggingStream = new MpsOutputLoggingStream();
         }
         public void WriteLog(LoggingLevel level, object message)

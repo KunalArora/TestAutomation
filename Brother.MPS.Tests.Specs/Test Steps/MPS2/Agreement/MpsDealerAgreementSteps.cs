@@ -152,6 +152,32 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
         }
 
+        [When(@"I can verify the creation of agreement in the agreement list")]
+        public void WhenICanVerifyTheCreationOfAgreementInTheAgreementList()
+        {
+            _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can delete the agreement")]
+        public void ThenICanDeleteTheAgreement()
+        {
+            _mpsDealerAgreement.DeleteAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can verify that the agreement is removed from the agreement list")]
+        public void ThenICanVerifyThatTheAgreementIsRemovedFromTheAgreementList()
+        {
+            //TODO: A more conclusive test for the removal of an agreement is to check the
+            //database directly - but requires the db connector. See ticket MPS-4955
+            _mpsDealerAgreement.VerifyAgreementIsRemoved(_dealerAgreementsListPage);
+        }
+
+        [When(@"I navigate to the agreement list")]
+        public void WhenINavigateToTheAgreementList()
+        {
+            _mpsDealerAgreement.NavigateToAgreementsListPage();
+        }
+
         [When(@"I navigate to edit device data page")]
         public void WhenINavigateToEditDeviceDataPage()
         {

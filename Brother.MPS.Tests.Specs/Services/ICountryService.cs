@@ -13,5 +13,6 @@ namespace Brother.Tests.Specs.Services
         Country GetByCountryIso(string countryIso);
         Country GetByName(string name);
         Country GetByBrotherCode(string brotherCode);
+        Country GetByCulture(string culture);
     }
 }

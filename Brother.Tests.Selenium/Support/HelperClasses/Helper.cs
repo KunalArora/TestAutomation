@@ -696,14 +696,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 Directory.CreateDirectory(snapshotLocation);
             }
-
+            
             TakeDriverSnapshot(TestController.CurrentDriver, null, snapshotLocation, additionalInformation);
 
             foreach (var item in ScenarioContext.Current)
             {
                 if (item.Key.StartsWith(DRIVER_INSTANCE_PREFIX))
                 {
-                    var driver = (IWebDriver)item.Value;
+                    var driver = (IWebDriver) item.Value;
                     var driverName = item.Key.Replace(DRIVER_INSTANCE_PREFIX, "");
 
                     TakeDriverSnapshot(driver, driverName, snapshotLocation, additionalInformation);
@@ -728,7 +728,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             catch (PathTooLongException pathTooLong)
             {
                 TestCheck.AssertFailTest(string.Format("Snapshot path length was too long - [{0}]", pathTooLong));
-            }
+            }            
         }
 
         public static void SavePageSource()

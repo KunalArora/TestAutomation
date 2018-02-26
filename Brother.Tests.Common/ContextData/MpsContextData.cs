@@ -13,6 +13,8 @@ namespace Brother.Tests.Common.ContextData
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }
         public BusinessType BusinessType { get; set; }
+        public string SpecificDealerUsername { get; set; }
+        public string SpecificDealerPassword { get; set; }
 
         public string ProposalName { get; set; }
         public int ProposalId { get; set; }

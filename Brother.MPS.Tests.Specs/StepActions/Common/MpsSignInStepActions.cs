@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -53,8 +54,16 @@ namespace Brother.Tests.Specs.StepActions.Common
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             if (_dealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
-                var signInPage = LoadBrotherOnlineSignInPage(url, _dealerWebDriver);
-                return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
+                if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
+                {
+                    var signInPage = LoadAtYourSideSignInPage(url, _dealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
+                }
+                else
+                {
+                    var signInPage = LoadBrotherOnlineSignInPage(url, _dealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
+                }
             }
             else
             {
@@ -133,11 +142,25 @@ namespace Brother.Tests.Specs.StepActions.Common
             
         }
 
-        public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver)
+        public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver, bool acceptCookiePolicy = true)
         {
             LoggingService.WriteLogOnMethodEntry(url, driver);
             var signInPage = PageService.LoadAtYourSideSignInPage(driver);
             ScenarioContext.SetCurrentPage(signInPage);
+
+            if (acceptCookiePolicy)
+            {
+                var cookie = driver.Manage().Cookies.GetCookieNamed("allowCookies");
+
+                if (cookie == null || cookie.Value.ToLower() != "yes")
+                {
+                    var seleniumHelper = new SeleniumHelper(driver, LoggingService, RuntimeSettings);
+                    var acceptButton = seleniumHelper.FindElementByCssSelector("#AcceptCookieLawHyperLink", -1);
+                
+                    acceptButton.Click();
+                }
+            }
+
             return signInPage;
         }
 
