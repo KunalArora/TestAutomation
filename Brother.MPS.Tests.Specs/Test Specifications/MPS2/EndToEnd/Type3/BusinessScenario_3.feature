@@ -24,8 +24,11 @@ Then I can verify that all devices are installed and responding
 And I can verify the device details using show device details option
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind
+Then I can verify the click rate billing invoice
+#And I can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType |
-		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | FIVE_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              | 40                 |

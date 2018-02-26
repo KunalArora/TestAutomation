@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 2")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "True", "Cloud", "Bor", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "True", "Cloud", "Bor", "63", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario2(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void BusinessScenario2(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 2", exampleTags);
 #line 7
@@ -156,6 +156,10 @@ testRunner.When("I manually raise a service request for above devices", ((string
 testRunner.Then("a Cloud MPS Service Desk can verify the service request and close it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 29
 testRunner.And("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -43,7 +43,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         {
             var serviceDeskDashboardPage = _mpsSignIn.SignInAsServiceDesk(
                 _userResolver.ServiceDeskUsername, _userResolver.ServiceDeskPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            _mpsServiceDeskAgreement.VerifyServiceRequestAndCloseIt(serviceDeskDashboardPage);
+            
+            // Below 2 steps are implemented just to retrieve dealer details from agreement summary page for later validation
+            var dataQueryPage = _mpsServiceDeskAgreement.NavigateToReportsDataQuery(serviceDeskDashboardPage);
+            var serviceDeskAgreementDevicesPage = _mpsServiceDeskAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
+
+            _mpsServiceDeskAgreement.VerifyServiceRequestAndCloseIt(serviceDeskAgreementDevicesPage);
         }
     }
 }

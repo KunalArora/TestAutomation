@@ -186,6 +186,7 @@
     <Compile Include="Pages\MPSTwo\DeleteSubDealerHandoverPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\EnhancedUsageMonitoringPrinterEnginePage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementBillingPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementConsumablesCreatePage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementCreateClickPricePage.cs" />
@@ -201,11 +202,13 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsCreatePage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudWebPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationManageInstallationsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationSelectMethodPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementBillingPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDeviceConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDevicesPage.cs" />

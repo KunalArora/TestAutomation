@@ -80,7 +80,6 @@
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
-    <Compile Include="Domain\Enums\RuntimeEnvironment.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />

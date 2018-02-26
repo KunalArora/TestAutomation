@@ -38,6 +38,11 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string AdvancedInstallationLink { get; set; }
 
         // Extra properties not in Excel
+        public string MonoClickPrice { get; set; }
+        public string ColourClickPrice { get; set; }
+        public int VolumeMono { get; set; }
+        public int VolumeColour { get; set; }
+        public bool IsMonochrome { get; set; }
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
         public int DeviceIndex { get; set; }

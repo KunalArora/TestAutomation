@@ -1,8 +1,9 @@
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Resolvers;
 using System;
 using System.Collections.Generic;
-using Brother.Tests.Specs.Resolvers;
-using Brother.Tests.Specs.Domain;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -10,19 +11,20 @@ namespace Brother.Tests.Specs.Services
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
-        private readonly ILoggingService _loggingService;
         private string _commandBaseUrl = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
+        private readonly int _warningSec;
+
         private ILoggingService LoggingService { get; set; }
 
         public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService)
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
-            _loggingService = loggingService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/contracttimeshift.aspx?contractid={{0}}&timeoffset={{1}}&timeoffsetunit={{2}}&generateprintcounts={{3}}&generateinvoices={{4}}&printvolume={{5}}", _urlResolver.CmsUrl);
             LoggingService = loggingService;
+            _warningSec = 20;
         }
 
 
@@ -45,11 +47,11 @@ namespace Brother.Tests.Specs.Services
         {
             if (webPageResponse.Headers["brother-commandstatus"].Equals("SUCCESS"))
             {
-                _loggingService.WriteLog(LoggingLevel.INFO, "Contract time shift successful");
+                LoggingService.WriteLog(LoggingLevel.INFO, "Contract time shift successful");
                 return true;
             }
 
-            _loggingService.WriteLog(LoggingLevel.FAILURE, "Contract time shift failed");
+            LoggingService.WriteLog(LoggingLevel.FAILURE, "Contract time shift failed");
             return false;
         }
 
@@ -58,8 +60,7 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry(contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
             string commandUrl = string.Format(_commandBaseUrl, contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
 
-            ExecuteContractShiftCommand(commandUrl);
+            LoggingService.WriteLogWhenWarningTimeoutExceeds(l => { ExecuteContractShiftCommand(commandUrl); return true; }, _warningSec, "Contract Shift API is responding slow");
         }
-
     }
 }

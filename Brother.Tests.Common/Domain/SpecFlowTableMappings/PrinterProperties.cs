@@ -9,10 +9,13 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string InstallationPack { get; set; }
         public string ServicePack { get; set; }
         public string Delivery { get; set; }
+        public bool IsMonochrome { get; set; }
         public int CoverageMono { get; set; }
         public int VolumeMono { get; set; }
         public int CoverageColour { get; set; }
         public int VolumeColour { get; set; }
+        public string MonoClickPrice { get; set; }
+        public string ColourClickPrice { get; set; }
         public string SendInstallationRequest { get; set; }
 
         public bool IncludeDelivery

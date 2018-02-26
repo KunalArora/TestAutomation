@@ -15,6 +15,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLoAdminAgreement;
 
         private LocalOfficeAgreementDevicesPage _localOfficeAdminAgreementDevicesPage;
+        private LocalOfficeAgreementBillingPage _localOfficeAdminAgreementBillingPage;
 
         public MpsLocalOfficeAdminAgreementSteps(
             MpsLocalOfficeAdminAgreementStepActions mpsLoAdminAgreement,
@@ -52,6 +53,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         public void ThenACloudMPSLocalOfficeAdminCanVerifyTheGenerationOfConsumableOrdersAlongwithStatus()
         {
             _localOfficeAdminAgreementDevicesPage = _mpsLoAdminAgreement.VerifyGenerationOfConsumableOrders(_localOfficeAdminAgreementDevicesPage);
+        }
+
+        [Then(@"a Cloud MPS Local Office Admin can verify the click rate billing invoice")]
+        public void ThenACloudMPSLocalOfficeAdminCanVerifyTheClickRateBillingInvoice()
+        {
+            _localOfficeAdminAgreementBillingPage = _mpsLoAdminAgreement.VerifyClickRateInvoice(_localOfficeAdminAgreementDevicesPage);
+        }
+
+        [Then(@"a Cloud MPS Local Office Admin can verify the service/installation billing invoice")]
+        public void ThenACloudMPSLocalOfficeAdminCanVerifyTheServiceInstallationBillingInvoice()
+        {
+            ScenarioContext.Current.Pending();
         }
     }
 }

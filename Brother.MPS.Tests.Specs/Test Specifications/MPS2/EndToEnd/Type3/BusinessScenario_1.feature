@@ -25,8 +25,11 @@ When the print counts of the devices are updated
 And the toner ink levels of the above devices become low
 Then a Cloud MPS Local Office Admin can verify the correct reflection of updated print counts
 And a Cloud MPS Local Office Admin can verify the generation of consumable orders alongwith status
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind
+Then a Cloud MPS Local Office Admin can verify the click rate billing invoice
+#And a Cloud MPS Local Office Admin can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType |
-		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            | Cloud               | Web              |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            | Cloud               | Web              | 91                 |

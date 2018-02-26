@@ -4,6 +4,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -31,8 +32,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             MpsSignInStepActions mpsSignIn,
             IUserResolver userResolver,
             ILoggingService loggingService,
-            IRunCommandService runCommandService)
-            : base( webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
+            IRunCommandService runCommandService,
+            IClickBillExcelHelper clickBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper)
         {
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _mpsSignIn = mpsSignIn;
@@ -63,11 +65,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDevicesPage VerifyGenerationOfConsumableOrders(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return VerifyGenerationOfConsumableOrders(localOfficeAgreementDevicesPage, _loAdminWebDriver);
         }
 
         public void EnableRaiseConsumableOrderOption()
         {
+            LoggingService.WriteLogOnMethodEntry();
+
             var localOfficeAdminDashboardPage = _mpsSignIn.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
@@ -80,6 +85,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var localOfficeAdminSystemSettingsGeneralSettingsPage = PageService.GetPageObject<LocalOfficeAdminSystemSettingsGeneralSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
 
             localOfficeAdminSystemSettingsGeneralSettingsPage.EnableConsumableOrderManualOrdering();
+        }
+
+        public LocalOfficeAgreementBillingPage VerifyClickRateInvoice(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            return VerifyClickRateInvoice(localOfficeAgreementDevicesPage, _loAdminWebDriver);
         }
     }
 }

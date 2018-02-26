@@ -55,5 +55,14 @@ namespace Brother.Tests.Specs.Services
         /// <param name="countryIso"></param>
         /// <param name="values"></param>
         void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso, List<string> values);
+
+        /// <summary>
+        /// Calculate proportional minimum volume for the given time period
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        string CalculateProportionalVolume(int minimumVolume, string startDate, string endDate);
     }
 }

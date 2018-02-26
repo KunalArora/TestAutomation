@@ -36,6 +36,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         public IWebElement CustomiseButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-save-installation-options-modal")]
         public IWebElement InstallationOptionSaveButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".separator [href=\"/mps/local-office/dashboard\"]")]
+        public IWebElement LocalOfficeDashboardButtonLink;
         
 
         public void EnableInstallationOption(string communicationMethod, string installationType)
@@ -136,9 +138,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public IWebElement ConsumablesTabElement(int agreementId)
         {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()));
         }
+
+        public IWebElement BillingTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/billing\"]", agreementId.ToString()));
+        }
         #endregion
+
     }
 }

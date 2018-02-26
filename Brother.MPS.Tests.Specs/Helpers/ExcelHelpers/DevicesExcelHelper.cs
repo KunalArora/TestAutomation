@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OfficeOpenXml;
@@ -9,12 +8,10 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Brother.Tests.Specs.Helpers
+namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 {
-    public class ExcelHelper: IExcelHelper
+    public class DevicesExcelHelper: ExcelBaseHelper, IDevicesExcelHelper
     {
-
-
         // Excel Properties
         private const int TOTAL_NUMBER_OF_COLUMNS = 25;
 
@@ -49,43 +46,14 @@ namespace Brother.Tests.Specs.Helpers
         private const int REFERENCE_3_COL_NUM = 23;
         private const int INSTALLATION_NOTES_COL_NUM = 24;
 
-        private IRuntimeSettings _runtimeSettings;
-
         private ILoggingService LoggingService { get; set; }
 
-        public ExcelHelper(
+        public DevicesExcelHelper(
             IRuntimeSettings runtimeSettings,
             ILoggingService loggingService
-            )
+            ): base(loggingService, runtimeSettings)
         {
-            _runtimeSettings = runtimeSettings;
             LoggingService = loggingService;
-        }
-
-        public void OpenExcel(string excelFilePath)
-        {
-            LoggingService.WriteLogOnMethodEntry(excelFilePath);
-            System.Diagnostics.Process.Start(excelFilePath);
-        }
-
-        public int GetNumberOfRows(string excelFilePath)
-        {
-            LoggingService.WriteLogOnMethodEntry(excelFilePath);
-            var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
-            {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
-
-                    int rowCount = ws.Dimension.Rows;
-                    return rowCount;
-                }
-            }
-            else
-            {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
-            }
         }
 
         public void VerifyTotalNumberOfColumns(string excelFilePath)
@@ -158,13 +126,13 @@ namespace Brother.Tests.Specs.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath, row);
             var fileInfo = new FileInfo(excelFilePath);
+            AdditionalDeviceProperties deviceProperties = new AdditionalDeviceProperties();
             if (fileInfo.Exists)
             {
                 using (ExcelPackage pack = new ExcelPackage(fileInfo))
                 {
                     ExcelWorksheet ws = pack.Workbook.Worksheets.First();
 
-                    AdditionalDeviceProperties deviceProperties = new AdditionalDeviceProperties();
 
                     deviceProperties.DeviceIndex = row - 1;
 
@@ -199,14 +167,14 @@ namespace Brother.Tests.Specs.Helpers
                     deviceProperties.Reference2 = HandleNullCase(ws.Cells[row, REFERENCE_2_COL_NUM].Value);
                     deviceProperties.Reference3 =  HandleNullCase(ws.Cells[row, REFERENCE_3_COL_NUM].Value);
                     deviceProperties.InstallationNotes = HandleNullCase(ws.Cells[row, INSTALLATION_NOTES_COL_NUM].Value);
-
-                    return deviceProperties;
                 }
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
+
+            return deviceProperties;
         }
 
         public void VerifyDeviceStatusAndConnectionStatus(
@@ -234,83 +202,5 @@ namespace Brother.Tests.Specs.Helpers
                 TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
-
-        public void DeleteExcelFile(string filePath)
-        {
-            LoggingService.WriteLogOnMethodEntry(filePath);
-            try 
-            { 
-                System.IO.File.Delete(filePath); 
-            }
-            catch
-            {
-                Console.WriteLine(string.Format("Excel File = {0} could not be deleted", filePath));
-            }
-        }
-
-        public string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
-        {
-            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout, filter, changeType);
-            downloadTimeout = downloadTimeout < 0 ? _runtimeSettings.DefaultDownloadTimeout : downloadTimeout;
-            FileSystemWatcher fsWatcher = new FileSystemWatcher();
-            fsWatcher.Path = TestController.DownloadPath;
-            fsWatcher.Filter = filter;
-            fsWatcher.IncludeSubdirectories = false;
-            fsWatcher.NotifyFilter = NotifyFilters.Attributes |
-                                     NotifyFilters.CreationTime |
-                                     NotifyFilters.DirectoryName |
-                                     NotifyFilters.FileName |
-                                     NotifyFilters.LastAccess |
-                                     NotifyFilters.LastWrite |
-                                     NotifyFilters.Security |
-                                     NotifyFilters.Size;
-            fsWatcher.EnableRaisingEvents = true;
-            if (clickOnDownloadFunc(this) == false)
-            {
-                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
-            }
-            var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
-            if (changedResult.TimedOut)
-            {
-                var altFullpath = GetLatestFile(fsWatcher.Path, filter,downloadTimeout);
-                LoggingService.WriteLog(LoggingLevel.WARNING, "FileSystemWatcher listen timeout. alternate={0}", altFullpath);
-                return altFullpath;
-            }
-            var fullPath = System.IO.Path.Combine(fsWatcher.Path, changedResult.Name);
-            return fullPath;
-        }
-
-        #region private methods
-
-        private string GetLatestFile(string cpath, string filter, int downloadTimeout)
-        {
-            LoggingService.WriteLogOnMethodEntry(cpath, filter, downloadTimeout);
-            var ext = "." + filter.Replace("*.", "");
-            var minTime = DateTime.Now.AddSeconds(-(downloadTimeout * 1.5)); // 1.5=safety factor.
-            var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);
-            var fileLatest = files
-                .Select(f => new System.IO.FileInfo(System.IO.Path.Combine(cpath, f)))
-                .Where(fi => fi.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
-                .Where(fi => fi.LastAccessTime > minTime)
-                .OrderByDescending(fi => fi.CreationTime)
-                .FirstOrDefault();
-            return fileLatest.FullName;
-        }
-
-        private string HandleNullCase(Object variable)
-        {
-            LoggingService.WriteLogOnMethodEntry(variable);
-            if (variable != null)
-            {
-                return variable.ToString();
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-
-        # endregion
     }
 }

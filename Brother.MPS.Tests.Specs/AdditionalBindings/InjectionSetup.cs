@@ -1,4 +1,3 @@
-﻿
 using BoDi;
 using Brother.Tests.Common.CommandLineSettings;
 using Brother.Tests.Common.ContextData;
@@ -11,6 +10,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
@@ -57,7 +57,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<CalculationService, ICalculationService>();
             _container.RegisterTypeAs<PdfHelper, IPdfHelper>();
             _container.RegisterTypeAs<DefaultAgreementHelper, IAgreementHelper>();
-            _container.RegisterTypeAs<ExcelHelper, IExcelHelper>();
+            _container.RegisterTypeAs<DevicesExcelHelper, IDevicesExcelHelper>();
+            _container.RegisterTypeAs<ClickBillExcelHelper, IClickBillExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
         }

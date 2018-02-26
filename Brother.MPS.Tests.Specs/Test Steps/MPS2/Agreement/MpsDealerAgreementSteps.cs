@@ -43,6 +43,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
+        private DealerAgreementBillingPage _dealerAgreementBillingPage;
 
         public MpsDealerAgreementSteps(
             MpsSignInStepActions mpsSignIn,
@@ -287,6 +288,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheDeviceDetailsUsingShowDeviceDetailsOption()
         {
             _mpsDealerAgreement.VerifyDeviceDetails(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the click rate billing invoice")]
+        public void ThenICanVerifyTheClickRateBillingInvoice()
+        {
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyClickRateInvoice(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the service/installation billing invoice")]
+        public void ThenICanVerifyTheServiceInstallationBillingInvoice()
+        {
+            ScenarioContext.Current.Pending();
         }
     }
 }

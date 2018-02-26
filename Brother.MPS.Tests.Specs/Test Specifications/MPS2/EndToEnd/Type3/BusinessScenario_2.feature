@@ -27,8 +27,11 @@ Then I can verify the generation of consumable orders alongwith status
 When I manually raise a service request for above devices
 Then a Cloud MPS Service Desk can verify the service request and close it
 And I can verify that service request has been closed succesfully
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind
+Then I can verify the click rate billing invoice
+#And I can verify the service/installation billing invoice
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType |
-		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays |
+		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | True             | Cloud               | Bor              | 63                 |

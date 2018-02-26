@@ -22,7 +22,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             get { return _url; }
         }
 
-
+        // Selectors
+        private const string PrinterContainerSelector = ".mps-qa-printer-";
+        private const string MonoClickRateSelector = "[id*=content_1_SummaryTable_RepeaterModels_MonoClickRate_]";
+        private const string ColourClickRateSelector = "[id*=content_1_SummaryTable_RepeaterModels_ColourClickRate_]";
 
         //WebElement properties
 
@@ -41,6 +44,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement UsageTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerReference")]
         public IWebElement DealerReferenceElement;
+
+        // Dealer details
+
 
 
         //Buttons
@@ -87,6 +93,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertIsEqual(ContractTypeElement.Text, ContractType, "Contract Type validation failed on summary page");
             TestCheck.AssertIsEqual(UsageTypeElement.Text, UsageType, "Usage Type validation failed on summary page");
             TestCheck.AssertIsEqual(DealerReferenceElement.Text, DealerReference, "Dealer Reference validation failed on summary page");
+        }
+
+        public string GetMonoClickPrice(string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerSelector + printerName);
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text;
+        }
+
+        public string GetColourClickPrice(string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerSelector + printerName);
+            return SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text;
         }
     }
 }

@@ -54,5 +54,7 @@ namespace Brother.Tests.Common.ContextData
         string DealerReference { get; set; }
         List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         int DeviceCount { get; set; }
+        string DealerName { get; set; }
+        string DealerSAPAccountNumber { get; set; }
     }
 }

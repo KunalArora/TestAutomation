@@ -102,7 +102,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
-       
+        public static DateTime StringToDateTimeFormat(string date)
+        {
+            return DateTime.ParseExact(date, "dd/MM/yyyy", null);
+        }
 
         public static string CustomerReference()
         {

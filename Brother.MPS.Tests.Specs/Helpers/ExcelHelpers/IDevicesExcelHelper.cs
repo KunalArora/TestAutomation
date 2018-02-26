@@ -1,12 +1,11 @@
-﻿
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using System;
 using System.IO;
 
 namespace Brother.Tests.Specs.Helpers
 {
-    public interface IExcelHelper
+    public interface IDevicesExcelHelper
     {
         /// <summary>
         /// download excel
@@ -16,19 +15,14 @@ namespace Brother.Tests.Specs.Helpers
         /// <param name="filter">target extension.</param>
         /// <param name="changeType">download trigger. recommend: WatcherChangeTypes.Renamed or WatcherChangeTypes.Changed</param>
         /// <returns>file path(full path)</returns>
-        string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed);
-        /// <summary>
-        /// Open an Excel file
-        /// </summary>
-        /// <param name="excelFilePath"></param>
-        void OpenExcel(string excelFilePath);
+        string Download(Func<bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed);
         
         /// <summary>
         /// Return the number of rows in an excel file
         /// </summary>
         /// <param name="excelFilePath"></param>
         /// <returns></returns>
-        int GetNumberOfRows(string excelFilePath);
+        int GetNumberOfRows(string excelFilePath, int worksheetIndex = 1);
 
         /// <summary>
         /// Verify the total number of columns in an excel file

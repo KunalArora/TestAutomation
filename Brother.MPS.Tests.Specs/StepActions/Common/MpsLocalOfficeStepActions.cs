@@ -1,9 +1,10 @@
 ﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
@@ -20,6 +21,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private readonly IContextData _contextData;
         private readonly ITranslationService _translationService;
         private readonly IRunCommandService _runCommandService;
+        private readonly IClickBillExcelHelper _clickBillExcelHelper;
 
         public MpsLocalOfficeStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -29,12 +31,14 @@ namespace Brother.Tests.Specs.StepActions.Common
             ILoggingService loggingService,
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
-            IRunCommandService runCommandService)
+            IRunCommandService runCommandService,
+            IClickBillExcelHelper clickBillExcelHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _translationService = translationService;
             _runCommandService = runCommandService;
+            _clickBillExcelHelper = clickBillExcelHelper;
         }
 
         public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
@@ -50,6 +54,11 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            // Save dealer details for future validation
+            _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
+            _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
+
             ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
@@ -236,6 +245,84 @@ namespace Brother.Tests.Specs.StepActions.Common
             }
 
             return localOfficeAgreementDevicesPage;
+        }
+
+        public LocalOfficeAgreementBillingPage VerifyClickRateInvoice(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            ClickSafety(localOfficeAgreementDevicesPage.BillingTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
+            var localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            int rowIndex = 0;
+            int retries = 0;
+
+
+            // Refresh the billing page if the click rate total for first billing period is not already populated
+            while (!localOfficeAgreementBillingPage.IsClickRateTotalPopulated(rowIndex))
+            {
+                webDriver.Navigate().Refresh();
+                localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception(
+                        string.Format("Number of retries exceeded the default limit during verification of billing (invoice not generated) for agreement {0}", _contextData.AgreementId));
+                }
+            }
+
+            retries = 0;
+
+            // Verify Click rate invoice
+            while(true) // As don't know how many invoices will be generated (it depends on the time the agreement is shifted backwards)
+            {
+                if (localOfficeAgreementBillingPage.IsClickRateTotalPopulated(rowIndex))
+                {
+                    // 1. Download click rate invoice excel
+                    string excelFilePath = _clickBillExcelHelper.Download(() =>
+                        {
+                            localOfficeAgreementBillingPage.ClickDownloadClickRateBill(rowIndex);
+                            return true;
+                        });
+
+                    // Get expected values
+                    string startDate = localOfficeAgreementBillingPage.GetBillingStartDate(rowIndex);
+                    string endDate = localOfficeAgreementBillingPage.GetBillingEndDate(rowIndex);
+                    string expectedClickRateTotal = localOfficeAgreementBillingPage.GetBillingClickRateTotal(rowIndex);
+                    bool isFirstBillingPeriod = false;
+
+                    if (rowIndex == 0)
+                    {
+                        isFirstBillingPeriod = true;
+                    }
+
+                    // 2. Verify click rate invoice excel
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
+
+                    // 3. Delete excel file
+                    _clickBillExcelHelper.DeleteExcelFile(excelFilePath);
+
+                    // Refresh page to load any unloaded invoices onto billing page
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    rowIndex++;
+                    retries = 0; // Reset retries count
+                }
+                else
+                {
+                    // Refresh page to load any unloaded invoices onto billing page
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                    if (retries >= 2)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return localOfficeAgreementBillingPage;
         }
 
         public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)

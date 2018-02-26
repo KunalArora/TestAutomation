@@ -12,8 +12,10 @@ namespace Brother.Tests.Specs.StepActions.Common
     {
         private readonly IContextData _contextData;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
+        private readonly IContractShiftService _agreementShiftService;
 
         public MpsApiCallStepActions(
+            IContractShiftService agreementShiftService,
             IDeviceSimulatorService deviceSimulatorService,
             IRunCommandService runCommandService,
             IWebDriverFactory webDriverFactory,
@@ -27,6 +29,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
+            _agreementShiftService = agreementShiftService;
         }
 
         public void UpdateAndNotifyBOCForPrintCounts() // For Type 3
@@ -76,6 +79,12 @@ namespace Brother.Tests.Specs.StepActions.Common
                     }
                 }
             }
+        }
+
+        public void ShiftAgreementStartDateBy(int agreementShiftDays)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
+            _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, true, "Any");
         }
     }
 }
