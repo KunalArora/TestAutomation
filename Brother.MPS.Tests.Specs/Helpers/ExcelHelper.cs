@@ -64,13 +64,13 @@ namespace Brother.Tests.Specs.Helpers
 
         public void OpenExcel(string excelFilePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
             System.Diagnostics.Process.Start(excelFilePath);
         }
 
         public int GetNumberOfRows(string excelFilePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -100,13 +100,13 @@ namespace Brother.Tests.Specs.Helpers
 
                     if (ws.Dimension.Columns != TOTAL_NUMBER_OF_COLUMNS)
                     {
-                        throw new Exception(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
+                        TestCheck.AssertFailTest(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
                     }
                 }
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
@@ -231,13 +231,13 @@ namespace Brother.Tests.Specs.Helpers
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
         public void DeleteExcelFile(string filePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(filePath);
             try 
             { 
                 System.IO.File.Delete(filePath); 
@@ -250,7 +250,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
         {
-            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout);
+            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout, filter, changeType);
             downloadTimeout = downloadTimeout < 0 ? _runtimeSettings.DefaultDownloadTimeout : downloadTimeout;
             FileSystemWatcher fsWatcher = new FileSystemWatcher();
             fsWatcher.Path = TestController.DownloadPath;
@@ -267,7 +267,7 @@ namespace Brother.Tests.Specs.Helpers
             fsWatcher.EnableRaisingEvents = true;
             if (clickOnDownloadFunc(this) == false)
             {
-                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
+                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
             }
             var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
             if (changedResult.TimedOut)
@@ -284,7 +284,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string GetLatestFile(string cpath, string filter, int downloadTimeout)
         {
-            LoggingService.WriteLogOnMethodEntry(filter);
+            LoggingService.WriteLogOnMethodEntry(cpath, filter, downloadTimeout);
             var ext = "." + filter.Replace("*.", "");
             var minTime = DateTime.Now.AddSeconds(-(downloadTimeout * 1.5)); // 1.5=safety factor.
             var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);

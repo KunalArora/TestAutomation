@@ -4,6 +4,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
@@ -58,7 +59,7 @@ namespace Brother.Tests.Specs.Helpers
 
         public string Download(Func<IPdfHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.pdf", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
         {
-            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout);
+            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout, filter, changeType);
             downloadTimeout = downloadTimeout < 0 ? RuntimeSettings.DefaultDownloadTimeout : downloadTimeout;
             FileSystemWatcher fsWatcher = new FileSystemWatcher();
             fsWatcher.Path = TestController.DownloadPath;
@@ -75,7 +76,7 @@ namespace Brother.Tests.Specs.Helpers
             fsWatcher.EnableRaisingEvents = true;
             if (clickOnDownloadFunc(this) == false)
             {
-                throw new Exception("download pdf prefunction error " + clickOnDownloadFunc);
+                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
             }
             var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
             if (changedResult.TimedOut)
@@ -90,7 +91,7 @@ namespace Brother.Tests.Specs.Helpers
 
         private string GetLatestFile(string cpath, string filter, int downloadTimeout)
         {
-            LoggingService.WriteLogOnMethodEntry(filter);
+            LoggingService.WriteLogOnMethodEntry(cpath, filter, downloadTimeout);
             var ext = "."+filter.Replace("*.", "");
             var minTime = DateTime.Now.AddSeconds(-(downloadTimeout*1.5)); // 1.5=safety factor.
             var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);

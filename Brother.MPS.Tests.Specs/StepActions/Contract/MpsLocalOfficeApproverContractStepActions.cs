@@ -195,7 +195,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             CheckForUpdatedPrintCount(localOfficeApproverManagedevicesManagePage);
         }
-
+   
         public LocalOfficeApproverManageDevicesManagePage RetrieveDealerManageDevicesPage()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -277,7 +277,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             dealerSetInstallationTypePage.NextElement.Click();
         }
-
 
         public LocalOfficeApproverReportsDashboardPage NavigateToReportsDashboardPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
@@ -364,7 +363,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     retries++;
                     if (retries > RuntimeSettings.DefaultRetryCount)
                     {
-                        throw new Exception(
+                        TestCheck.AssertFailTest(
                             string.Format("Number of retries exceeded the default limit during verification of print counts for agreement {0}", _contextData.ProposalId));
                     }
                     continue;
@@ -391,36 +390,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.AssertAreEqualOverusageValues(pdfFile, _contextData.PrintersProperties, _contextData.Culture);
-            //LoggingService.WriteLogOnMethodEntry(pdfFile);
-            //string monoOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, _contextData.Culture);
-            //string colourOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, _contextData.Culture);
-            //var products = _contextData.PrintersProperties;
-
-            //if(_pdfHelper.PdfExists(pdfFile) == false )
-            //{
-            //    throw new Exception("pdf file does not exist=" + pdfFile);
-            //}
-            //foreach (var product in products)
-            //{
-            //    var searchTextArray = new List<string>();
-            //    if (product.VolumeMono!= 0 && product.monoOverusage > 0)
-            //    {
-            //        string expected = product.monoOverusage.ToString("N0", new CultureInfo(_contextData.Culture)); 
-            //        searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + monoOverusageText + " " + expected);
-            //    }
-            //    if (product.VolumeColour!=0 && product.colorOverusage > 0)
-            //    {
-            //        string expected = product.colorOverusage.ToString("N0", new CultureInfo(_contextData.Culture));
-            //        searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + colourOverusageText + " " + expected);
-            //    }
-            //    searchTextArray.ForEach(expected =>
-            //    {
-            //        if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
-            //        {
-            //            throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
-            //        }
-            //    });
-            //}
         }
 
         public void DeletePdfFIle(string pdfFile)

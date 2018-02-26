@@ -75,7 +75,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 string displayedSerialNumber = SerialNumberElement.Text;
                 if (displayedSerialNumber.Equals("-"))
                 {
-                    throw new Exception("The Serial Number is not displayed on the Summary page probably due to System Bug");
+                    TestCheck.AssertFailTest("The Serial Number is not displayed on the Summary page probably due to System Bug");
                 }
                 if(displayedSerialNumber.Equals(serialNumber)) 
                 {
