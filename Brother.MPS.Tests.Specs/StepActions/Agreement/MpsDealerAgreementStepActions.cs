@@ -277,7 +277,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath,  string isOptionalFields)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, isOptionalFields);
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, excelFilePath, isOptionalFields);
 
             // 1. Edit Excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);
@@ -640,6 +640,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementDevicesPage RaiseServiceRequestsManually(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             string resourceServiceRequestStatusNew = _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.New, _contextData.Culture);
 
             foreach (var device in _contextData.AdditionalDeviceProperties)
@@ -673,6 +674,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceServiceRequestStatus);
             ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
 
             var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -702,6 +704,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void VerifyDeviceDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);

@@ -208,6 +208,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void TryClosePopup()
         {
+            LoggingService.WriteLogOnMethodEntry();
             try {
                 if (!(WhereIsMySerialNumberModalCloseButtonElement.Displayed == false))
                 {
@@ -219,7 +220,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool RetryResetClickingHelper(string modalName, string serialNumber, string windowHandle, IWebDriver installerDriver, int serialEnterRetry)
         {
-            LoggingService.WriteLogOnMethodEntry(serialNumber, windowHandle);
+            LoggingService.WriteLogOnMethodEntry(modalName, serialNumber, windowHandle, installerDriver, serialEnterRetry );
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
             var isConnected = false;
@@ -446,7 +447,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyTimeZoneIsDisplayed(string method)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(method);
             SpecFlow.SetContext("InstallationMethod", method);
             if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
@@ -674,7 +675,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void CreateNewSerialNumber(string serialNumber)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
             var serial = "U63783" + serialNumber;
 
             SpecFlow.SetContext("JoinedSerialNumber", serial);
