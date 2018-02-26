@@ -690,7 +690,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber)
+        public bool CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(driver,totalPageCount,serialNumber);
             int retryCount = RuntimeSettings.DefaultRetryCount;
@@ -719,14 +719,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                             if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
                             {
                                 elementStatus = true;
-                                break;
+                                return elementStatus;
                             }
-                            else
+                            else if (totalPagesElement.Text.Equals("8128"))
                             {
-                                driver.Navigate().Refresh();
-                                retries++;
+                                return false;
                             }
-
                         }
                     }
 
@@ -735,12 +733,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     if(retries > retryCount)
                     {
-                        TestCheck.AssertFailTest("Updated print count for swapped device cannnot be verified");
+                        TestCheck.AssertFailTest("Updated print count for device cannnot be verified");
                     }
-                    driver.Navigate().Refresh();
-                    retries++;
                 }
             } while ((!elementStatus) && (retries <= retryCount));
+            return elementStatus;
         }
 
         public void IsInstallationCompleted()

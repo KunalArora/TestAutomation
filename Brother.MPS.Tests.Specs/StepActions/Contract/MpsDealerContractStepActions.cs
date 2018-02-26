@@ -122,7 +122,15 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach (var product in products)
             {
                 var totalPageCount = product.TotalPageCount; 
-                dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber);
+                while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
+                {
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                    continue;
+                }
+                _dealerWebDriver.Navigate().Refresh();
+                dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);               
             }
         }
 
