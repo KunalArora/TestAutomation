@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -31,6 +32,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string CostCentreSelector = "[id*=content_0_List_InputCostCentre_]";
         private const string ConnectButtonSelector = ".js-mps-button-connect";
         private const string IsConnectedSelector = ".responding";
+        private const string ResetButtonSelector = ".js-mps-button-reset";
+        private const string NotConnectedSelector = ".glyphicon-remove";
 
 
         // Web Elements
@@ -81,6 +84,46 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                 }
             }
             return true;
+        }
+
+        public void ClickReset(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    SeleniumHelper.ClickSafety(
+                        SeleniumHelper.FindElementByCssSelector(
+                        element, ResetButtonSelector));
+
+                    SeleniumHelper.AcceptJavascriptAlert();
+
+                    break;
+                }
+            }
+        }
+
+        public void VerifyNotConnectedStatus(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    try
+                    {
+                        SeleniumHelper.WaitUntil(d => SeleniumHelper.IsElementDisplayed(element, NotConnectedSelector));
+                        break;
+                    }
+                    catch
+                    {
+                        TestCheck.AssertFailTest(string.Format("Not connected status of the device {0} could not be verified after reset of device", mpsDeviceId));
+                    }
+                }
+            }
         }
     }
 }

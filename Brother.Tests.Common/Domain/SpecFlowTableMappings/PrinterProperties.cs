@@ -49,5 +49,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public bool IsSwap { get; set; }
         public int monoOverusage { get; set; }
         public int colorOverusage { get; set; }
+        public string ResetDevice { get; set; }
     }
 }

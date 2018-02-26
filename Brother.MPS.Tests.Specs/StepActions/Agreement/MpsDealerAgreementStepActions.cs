@@ -527,8 +527,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             // Save to context data for later use
             _contextData.AdditionalDeviceProperties = additionalDeviceProperties;
+            SavePrinterPropertiesToAdditionalDeviceProperties();
 
-            // Save other printer properties to device properties for future validation
+            // 4. Delete Excel
+            _devicesExcelHelper.DeleteExcelFile(excelFilePath);
+        }
+
+        public void SavePrinterPropertiesToAdditionalDeviceProperties()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            // Save printer properties to device properties for future validation
             foreach (var product in _contextData.PrintersProperties)
             {
                 foreach (var device in _contextData.AdditionalDeviceProperties)
@@ -542,12 +550,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.IsMonochrome = product.IsMonochrome;
                         device.ServicePack = product.ServicePack;
                         device.InstallationPack = product.InstallationPack;
+                        device.ResetDevice = product.ResetDevice;
                     }
                 }
             }
-
-            // 4. Delete Excel
-            _devicesExcelHelper.DeleteExcelFile(excelFilePath);
         }
 
         public DealerAgreementDevicesPage VerifyThatDevicesAreInstalled(DealerAgreementDevicesPage dealerAgreementDevicesPage,
@@ -682,7 +688,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                             // Verify success alert
                             dealerAgreementConsumablesCreatePage.VerifySuccessfulOrderCreation();
-                            ClickSafety(dealerAgreementConsumablesCreatePage.BackButtonElement, dealerAgreementConsumablesCreatePage);
+                            ClickSafety(dealerAgreementConsumablesCreatePage.BackButtonElement, dealerAgreementConsumablesCreatePage, true);
 
                             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                         }
@@ -708,7 +714,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                     dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
 
-                    ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage);
+                    ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage, true);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                 }
             }

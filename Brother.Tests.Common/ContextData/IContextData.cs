@@ -36,7 +36,9 @@ namespace Brother.Tests.Common.ContextData
         string SwapNewDeviceSerialNumber { get; set; }
         int SwapNewDeviceMonoPrintCount { get; set; }
         int SwapNewDeviceColourPrintCount { get; set; }
-        
+
+        string CommunicationMethod { get; set; }
+        string InstallationType { get; set; }
         void SetBusinessType(string businessTypeId);
         string WebInstallUrl { get; set; }
         Dictionary<UserType, string> WindowHandles { get; set; }

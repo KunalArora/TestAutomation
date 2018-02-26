@@ -9,9 +9,9 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model     | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus |
-		| HL-5450DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               |
-		| HL-5470DW | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               |
+		| Model     | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | ResetDevice |
+		| HL-5450DN | 1        | Yes              | Yes         | 5            | 500        | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | Yes         |
+		| HL-5470DW | 1        | Yes              | Yes         | 5            | 1000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -20,6 +20,7 @@ And I can verify that devices are ready for installation
 Then I can create and send a bulk installation request
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
+And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
 And the toner ink levels of the above devices become low

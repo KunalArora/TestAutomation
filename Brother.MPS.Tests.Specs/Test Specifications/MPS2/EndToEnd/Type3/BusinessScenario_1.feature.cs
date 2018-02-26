@@ -104,7 +104,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "TonerInkBlackStatus",
                         "TonerInkCyanStatus",
                         "TonerInkMagentaStatus",
-                        "TonerInkYellowStatus"});
+                        "TonerInkYellowStatus",
+                        "ResetDevice"});
             table1.AddRow(new string[] {
                         "HL-5450DN",
                         "1",
@@ -120,7 +121,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Empty",
                         "Normal",
                         "Normal",
-                        "Normal"});
+                        "Normal",
+                        "Yes"});
             table1.AddRow(new string[] {
                         "HL-5470DW",
                         "1",
@@ -136,7 +138,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Empty",
                         "Normal",
                         "Normal",
-                        "Normal"});
+                        "Normal",
+                        "No"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 15
@@ -157,22 +160,24 @@ testRunner.When("I export the device data into excel and retrieve installation i
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
-testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
-testRunner.And("the toner ink levels of the above devices become low", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
+testRunner.And("the toner ink levels of the above devices become low", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
 testRunner.Then("a Cloud MPS Local Office Admin can verify the correct reflection of updated print" +
                     " counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
+#line 28
 testRunner.And("a Cloud MPS Local Office Admin can verify the generation of consumable orders alo" +
                     "ngwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
-testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
-testRunner.Then("a Cloud MPS Local Office Admin can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
+testRunner.Then("a Cloud MPS Local Office Admin can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
 testRunner.And("a Cloud MPS Local Office Admin can verify the service/installation billing invoic" +
                     "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

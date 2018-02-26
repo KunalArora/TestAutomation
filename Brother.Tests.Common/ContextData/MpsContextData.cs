@@ -31,6 +31,8 @@ namespace Brother.Tests.Common.ContextData
         public int SwapNewDeviceMonoPrintCount { get; set; }
         public int SwapNewDeviceColourPrintCount { get; set; }
 
+        public string CommunicationMethod { get; set; }
+        public string InstallationType { get; set; }
 
         public MpsContextData()
         {

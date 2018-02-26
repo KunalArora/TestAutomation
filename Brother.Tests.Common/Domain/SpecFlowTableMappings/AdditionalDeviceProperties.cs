@@ -45,6 +45,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public bool IsMonochrome { get; set; }
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
+        public string ResetDevice { get; set; }
         public int DeviceIndex { get; set; }
         public bool IsRegisteredOnBoc { get; set; }
         public int MonoPrintCount { get; set; }

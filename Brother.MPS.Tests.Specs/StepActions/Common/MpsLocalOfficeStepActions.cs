@@ -230,7 +230,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 }
             }
 
-            ClickSafety(localOfficeAgreementConsumablesPage.BackButtonElement, localOfficeAgreementConsumablesPage);
+            ClickSafety(localOfficeAgreementConsumablesPage.BackButtonElement, localOfficeAgreementConsumablesPage, true);
             localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
             // Verify consumable order information one by one
@@ -243,7 +243,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
                     localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
 
-                    ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage);
+                    ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage, true);
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
                 }
             }
