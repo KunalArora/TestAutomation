@@ -295,17 +295,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementDevicesPage EditDeviceDataUsingExcelEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, optionalFields);
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
-            return ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
+            var excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
+            return ProcessExcelEdit(dealerAgreementDevicesPage, excelFilePath, optionalFields);
         }
 
-        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string isOptionalFields)
+        public DealerAgreementDevicesPage ProcessExcelEdit(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath,  string isOptionalFields)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, isOptionalFields);
-            // 1. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, excelFilePath, isOptionalFields);
 
-            // 2. Edit Excel
+            // 1. Edit Excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);
             _excelHelper.VerifyTotalNumberOfColumns(excelFilePath); // Verify the total number of columns in excel
             DealerAgreementDevicesEditPage dealerAgreementDevicesEditPage = new DealerAgreementDevicesEditPage();
@@ -333,17 +335,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 validationTupleList.Add(new Tuple<string, string>(device_id, validationExpression));
             }
 
-            // 3. Import Excel
+            // 2. Import Excel
             ImportExcelFile(dealerAgreementDevicesPage, excelFilePath);
 
-            // 4. Call BOC Pin retrieval backend job
+            // 3. Call BOC Pin retrieval backend job
             _runCommandService.RunSetupInstalledPrintersCommand();
 
-            // 5. Delete Excel
+            // 4. Delete Excel
             _excelHelper.DeleteExcelFile(excelFilePath);
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-            // 6. Validation of imported data
+            // 5. Validation of imported data
             // Validate only addresses of edited devices for now
 
             foreach (var tuple in validationTupleList)
@@ -362,8 +364,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Excel edit for first 2 devices
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(0);  // 1st device
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(1);  // 2nd device
-            ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
-            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, optionalFields);
+            var excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                ClickSafety(dealerAgreementDevicesPage.ExportDataElement, dealerAgreementDevicesPage);
+                return true;
+            });
+            dealerAgreementDevicesPage = ProcessExcelEdit(dealerAgreementDevicesPage, excelFilePath, optionalFields);
 
             // Bulk edit for next 2 devices
             dealerAgreementDevicesPage.ClickOnDeviceCheckbox(2);  // 3rd device
@@ -482,11 +488,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _dealerWebDriver.Navigate().Refresh();
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-            // 1. Click Export All button
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
-
             // 2. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            string excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                // 1. Click Export All button
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
 
             // 3. Read Excel to retrieve installation details
             
@@ -660,6 +668,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public DealerAgreementDevicesPage RaiseServiceRequestsManually(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             string resourceServiceRequestStatusNew = _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.New, _contextData.Culture);
 
             foreach (var device in _contextData.AdditionalDeviceProperties)
@@ -693,6 +702,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceServiceRequestStatus);
             ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
 
             var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -722,6 +732,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void VerifyDeviceDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
@@ -865,11 +876,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceDeviceConnectionStatusResponding, string resourceInstalledPrinterStatusInstalled)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceDeviceConnectionStatusResponding, resourceInstalledPrinterStatusInstalled);
-            // 1. Click Export All button
-            ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
 
             // 2. Get Downloaded file path
-            string excelFilePath = _excelHelper.GetDownloadedExcelFilePath();
+            string excelFilePath = _excelHelper.Download(excelHelper =>
+            {
+                // 1. Click Export All button
+                ClickSafety(dealerAgreementDevicesPage.ExportAllElement, dealerAgreementDevicesPage);
+                return true;
+            });
 
             // 3. Verify Device status & Connection status mentioned in excel
             int rows = _excelHelper.GetNumberOfRows(excelFilePath);

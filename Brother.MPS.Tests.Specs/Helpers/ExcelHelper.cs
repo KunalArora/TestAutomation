@@ -8,7 +8,6 @@ using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
@@ -37,7 +36,7 @@ namespace Brother.Tests.Specs.Helpers
         private const int PROPERTY_STREET_COL_NUM = 15;
         private const int PROPERTY_TOWN_COL_NUM = 17;
         private const int PROPERTY_POSTCODE_COL_NUM = 18;
-
+            
         // Non-Mandatory Input Field column numbers
         private const int CONTACT_LAST_NAME_COL_NUM = 11;
         private const int TELEPHONE_COL_NUM = 12;
@@ -63,30 +62,15 @@ namespace Brother.Tests.Specs.Helpers
             LoggingService = loggingService;
         }
 
-        public string GetDownloadedExcelFilePath()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-            var fileList = ListDownloadsFolder();
-            var task = WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, _runtimeSettings.DefaultDownloadTimeout)))
-            {
-                return task.Result;
-            }
-            else
-            {
-                throw new Exception("Download Excel Timeout");
-            }
-        }
-
         public void OpenExcel(string excelFilePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
             System.Diagnostics.Process.Start(excelFilePath);
         }
 
         public int GetNumberOfRows(string excelFilePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var fileInfo = new FileInfo(excelFilePath);
             if (fileInfo.Exists)
             {
@@ -116,13 +100,13 @@ namespace Brother.Tests.Specs.Helpers
 
                     if (ws.Dimension.Columns != TOTAL_NUMBER_OF_COLUMNS)
                     {
-                        throw new Exception(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
+                        TestCheck.AssertFailTest(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
                     }
                 }
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
@@ -247,13 +231,13 @@ namespace Brother.Tests.Specs.Helpers
             }
             else
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
             }
         }
 
         public void DeleteExcelFile(string filePath)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(filePath);
             try 
             { 
                 System.IO.File.Delete(filePath); 
@@ -264,37 +248,53 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
-        # region private methods
-
-        private async Task<string> WaitforNewfile(string[] orglist, string pattern = "*.xlsx")
+        public string Download(Func<IExcelHelper, bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
         {
-            LoggingService.WriteLogOnMethodEntry(orglist, pattern);
-            // note: FileWatcher is not detecting file...
-            for (int safetycount = 0; safetycount < 1000; safetycount++)
+            LoggingService.WriteLogOnMethodEntry(clickOnDownloadFunc, downloadTimeout, filter, changeType);
+            downloadTimeout = downloadTimeout < 0 ? _runtimeSettings.DefaultDownloadTimeout : downloadTimeout;
+            FileSystemWatcher fsWatcher = new FileSystemWatcher();
+            fsWatcher.Path = TestController.DownloadPath;
+            fsWatcher.Filter = filter;
+            fsWatcher.IncludeSubdirectories = false;
+            fsWatcher.NotifyFilter = NotifyFilters.Attributes |
+                                     NotifyFilters.CreationTime |
+                                     NotifyFilters.DirectoryName |
+                                     NotifyFilters.FileName |
+                                     NotifyFilters.LastAccess |
+                                     NotifyFilters.LastWrite |
+                                     NotifyFilters.Security |
+                                     NotifyFilters.Size;
+            fsWatcher.EnableRaisingEvents = true;
+            if (clickOnDownloadFunc(this) == false)
             {
-                var newlist = ListDownloadsFolder(pattern);
-                var difflist = newlist.Except(orglist);
-                if (difflist.Count() > 0)
-                {
-                    return difflist.First();
-                }
-                await Task.Delay(new TimeSpan(0, 0, 1));
+                TestCheck.AssertFailTest("download pdf prefunction error " + clickOnDownloadFunc);
             }
-            throw new Exception("Safety Count RetryOut");
+            var changedResult = fsWatcher.WaitForChanged(changeType, downloadTimeout * 1000);
+            if (changedResult.TimedOut)
+            {
+                var altFullpath = GetLatestFile(fsWatcher.Path, filter,downloadTimeout);
+                LoggingService.WriteLog(LoggingLevel.WARNING, "FileSystemWatcher listen timeout. alternate={0}", altFullpath);
+                return altFullpath;
+            }
+            var fullPath = System.IO.Path.Combine(fsWatcher.Path, changedResult.Name);
+            return fullPath;
         }
 
-        private string[] ListDownloadsFolder(string pattern = "*.xlsx")
+        #region private methods
+
+        private string GetLatestFile(string cpath, string filter, int downloadTimeout)
         {
-            LoggingService.WriteLogOnMethodEntry(pattern);
-            try
-            {
-                string[] files = System.IO.Directory.GetFiles(TestController.DownloadPath, pattern, System.IO.SearchOption.AllDirectories);
-                return files;
-            }
-            catch
-            {
-                return new string[0];
-            }
+            LoggingService.WriteLogOnMethodEntry(cpath, filter, downloadTimeout);
+            var ext = "." + filter.Replace("*.", "");
+            var minTime = DateTime.Now.AddSeconds(-(downloadTimeout * 1.5)); // 1.5=safety factor.
+            var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);
+            var fileLatest = files
+                .Select(f => new System.IO.FileInfo(System.IO.Path.Combine(cpath, f)))
+                .Where(fi => fi.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                .Where(fi => fi.LastAccessTime > minTime)
+                .OrderByDescending(fi => fi.CreationTime)
+                .FirstOrDefault();
+            return fileLatest.FullName;
         }
 
         private string HandleNullCase(Object variable)

@@ -88,8 +88,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             {
                 _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, _driver, swapNewDeviceSerialNumber);
             }
-            _mpsInstallerContractStepActions.CloudInstallationRefresh(_installerDeviceInstallationPage);
-            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
+            else
+            {
+                _mpsInstallerContractStepActions.RetryRefresh(_installerDeviceInstallationPage, _driver);
+            }
+            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, _contextData.SwapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
         }
 
    }

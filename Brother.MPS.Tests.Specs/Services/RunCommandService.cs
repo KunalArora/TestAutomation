@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retry">Retry if command fails or is already running</param>
         /// <param name="retryInterval">The time to wait, in seconds, between retries</param>
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
-        private void ExecuteRunCommand(string url, int timeOut = 30, bool retry = false, int retryInterval = 2, int retryFor = 60)
+        private void ExecuteRunCommand(string url, int timeOut = 60, bool retry = false, int retryInterval = 2, int retryFor = 60)
         {
             LoggingService.WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
             var additionalHeaders = new Dictionary<string, string> {{_authTokenName, AuthToken()}};
@@ -53,11 +53,10 @@ namespace Brother.Tests.Specs.Services
                 var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
                 if (RunCommandSuccess(response))
                 {
-                    break;
+                    return;
                 }
 
             } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
-            
         }
 
         private string AuthToken()

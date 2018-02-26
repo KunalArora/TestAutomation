@@ -46,11 +46,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSubmitForApproval(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            ClearAndType(ProposalFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
             SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();
             ActionsModule.StartConvertToContractProcess(driver); // = Submit for Approval
         }
 
+        public void SetListFilter(string filterString)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterString);
+            SeleniumHelper.SetListFilter(ProposalFilter, filterString, ProposalListProposalNameRowElement);
+        }
     }
 }

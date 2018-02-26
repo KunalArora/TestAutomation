@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 3")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145626", "100", "0", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145606", "100", "0", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void BusinessScenario3(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
         {
@@ -124,7 +124,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145620",
+                        "A3P145600",
                         "23",
                         "100",
                         "Empty",
@@ -146,7 +146,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145621",
+                        "A3P145601",
                         "0",
                         "0",
                         "Normal",
@@ -168,7 +168,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "250",
-                        "A3P145622",
+                        "A3P145602",
                         "0",
                         "0",
                         "Normal",
@@ -190,7 +190,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "200",
-                        "A3P145623",
+                        "A3P145603",
                         "0",
                         "0",
                         "Normal",
@@ -312,9 +312,9 @@ testRunner.And("a Brother installer has navigated to the Web Swap Installation p
 testRunner.And(string.Format("Enter the serial number for new device \"{0}\" with new Mono \"{1}\" and color \"{2}\" " +
                         "print count and complete Installation", swapNewDeviceSerialNumber, swapNewDeviceMonoPrintCount, swapNewDeviceColorPrintCount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 48
-testRunner.Then(string.Format("a Cloud MPS Local Office Approver will be able to see the status of the swap devi" +
-                        "ce \"{0}\" is set Being Swapped with updated print counts on the Manage Devices pa" +
-                        "ge for the above proposal", swapNewDeviceSerialNumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("a Cloud MPS Local Office Approver will be able to see the status of the swap devi" +
+                    "ce is set Being Swapped with updated print counts on the Manage Devices page for" +
+                    " the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

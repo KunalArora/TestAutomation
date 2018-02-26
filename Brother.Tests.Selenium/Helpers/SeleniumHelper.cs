@@ -31,9 +31,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             LoggingService.WriteLogOnMethodEntry(selector, timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
-
-            return target;
+            try {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                return target;
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException("selector=" + selector, e);
+            }
         }
 
         public IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout)
@@ -41,8 +46,15 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             LoggingService.WriteLogOnMethodEntry(context, selector, timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             IWebElement target = null;
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
-            return target;
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                return target;
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("context={0}, selector={1}",context,selector), e);
+            }
         }
 
         public IWebElement FindElementByDataAttributeValue(string dataAttributeName,
@@ -53,9 +65,16 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             IWebElement target = null;
             var selector = string.Format(DATA_ATTRIBUTE_SELECTOR_PATTERN, dataAttributeName, dataAttributeValue);
 
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                return target;
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("dataAttributeName={0}, dataAttributeValue={1}", dataAttributeName, dataAttributeValue), e);
+            }
 
-            return target;
         }
 
         public IWebElement FindElementByDataAttributeValue(ISearchContext context, string dataAttributeName,
@@ -66,9 +85,16 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             IWebElement target = null;
             var selector = string.Format(DATA_ATTRIBUTE_SELECTOR_PATTERN, dataAttributeName, dataAttributeValue);
 
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } } );
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { target = context.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                return target;
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("context={0}, dataAttributeName={1}, dataAttributeValue={2}", context, dataAttributeName, dataAttributeValue), e);
+            }
 
-            return target;            
         }
         
         public void SelectFromDropdownByText(IWebElement element, string text)
@@ -81,15 +107,30 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(selector, timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.CssSelector(selector)));
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.CssSelector(selector)));
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException("selector="+ selector, e);
+            }
+
         }
 
         public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(conditions, timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            TResult res = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(conditions);
-            return res;
+            try
+            {
+                TResult res = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(conditions);
+                return res;
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException("conditions="+ conditions, e);
+            }
         }
 
         public List<IWebElement> FindRowElementsWithinTable(ISearchContext context)
@@ -131,12 +172,27 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             alert.Accept();
         }
 
-        public void ClearAndType(IWebElement element, string value)
+        public void ClearAndType(IWebElement element, string value, bool IsVerify = false, int timeOut = -1)
         {
-            LoggingService.WriteLogOnMethodEntry(element, value);
-            element.Clear();
-            element.SendKeys(value);
+            LoggingService.WriteLogOnMethodEntry(element,value,IsVerify,timeOut);
+            try
+            {
+                timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
+                if(IsVerify)
+                {
+                    new WebDriverWait(_webDriver, TimeSpan.FromSeconds(RuntimeSettings.DefaultFindElementTimeout)).Until(d => element.Displayed);
+                }
+                element.Clear();
+                element.SendKeys(value);
+                if (IsVerify == false) return;
+                new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timeOut)).Until(d => element.GetAttribute("value").Equals(value));
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("element.Displayed={0}, value=[{1}], GetAttribute(value)=[{2}]", element.Displayed, value, element.GetAttribute("value")), e);
+            }
         }
+
 
         public ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton)
         {
@@ -149,20 +205,28 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            var url= string.Copy(_webDriver.Url);
-            WaitUntil(d =>
+            try
             {
-                try
+                var url = string.Copy(_webDriver.Url);
+                WaitUntil(d =>
                 {
-                    if (IsUntilUrlChanges && (_webDriver.Url != url)) return true;
-                    element.Click();
-                    return IsUntilUrlChanges == false;
-                }
-                catch
-                {
-                    return false;
-                }
-            }, timeout);
+                    try
+                    {
+                        if (IsUntilUrlChanges && (_webDriver.Url != url)) return true;
+                        element.Click();
+                        return IsUntilUrlChanges == false;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }, timeout);
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("element={0}, IsUntilUrlChanges={1}",element,IsUntilUrlChanges), e);
+            }
+
         }
 
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)
@@ -262,5 +326,83 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                 }
             }, timeout);
         }
+
+        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout, dataAttributeName, waitSelector);
+            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
+            timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            try
+            {
+                var resultElement = WaitUntil(d =>
+                {
+                    if (waitSelector!=null)
+                    {
+                        FindElementByCssSelector(waitSelector, timeout);
+                    }
+                    ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
+                    var count = rowElementListForExistCheck.Count;
+                    switch( count)
+                    {
+                        case 0:
+                            // nothing to reload
+                            LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
+                            _webDriver.Navigate().Refresh();
+                            return null;
+                        case 1:
+                            return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
+                        default:
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
+                            return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
+
+                    }
+                }, timeout);
+                return resultElement;
+            }
+            catch( TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ",filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
+            }
+        }
+
+        public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
+            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
+            //timeout = timeout < 0 ? defaultMaxTimeout : timeout;
+            timeout = 60;
+            try
+            {
+                var resultElement = WaitUntil(d =>
+                {
+                    if (waitSelector != null)
+                    {
+                        FindElementByCssSelector(waitSelector, timeout);
+                    }
+                    ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
+                    var count = rowElementListForExistCheck.Count;
+                    switch (count)
+                    {
+                        case 0:
+                            // nothing to reload
+                            LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
+                            _webDriver.Navigate().Refresh();
+                            return false;
+                        case 1:
+                            return true;
+                        default:
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
+                            return true;
+
+                    }
+                }, timeout);
+                
+            }
+            catch (TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ", filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
+            }
+        }
+
     }
 }

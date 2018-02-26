@@ -10,5 +10,6 @@
         int DefaultRemoteWebDriverTimeout { get; set; }
         int DefaultDownloadTimeout { get; set; }
         int DefaultAPIResponseTimeout { get; set; }
+        int DefaultSerialNumberOffset { get; set; }
     }
 }

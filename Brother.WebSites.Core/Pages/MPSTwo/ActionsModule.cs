@@ -539,12 +539,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element.SendKeys(value);
         }
 
-        public static void SetFilter(string filterString, IWebElement ContractFilter, IList<IWebElement> ContractListContractNameRowElement, int findElementTimeout, IWebDriver driver)
-        {
-            ClearAndType(ContractFilter, filterString);
-            SeleniumHelper.WaitUpTo(findElementTimeout * 1000, () => ContractListContractNameRowElement.Count == 1, "");
-        }
-
-
     }
 }

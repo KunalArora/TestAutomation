@@ -76,9 +76,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 try
                 {
-                    ClearAndType(ConfirmationAdditionalInformation, message, true);
+                    ClearAndType(ConfirmationAdditionalInformation, message, false);
                     ConfirmationAdditionalInformation.SendKeys(Keys.Tab);
-
                     return true;
                 }
                 catch { return false; }

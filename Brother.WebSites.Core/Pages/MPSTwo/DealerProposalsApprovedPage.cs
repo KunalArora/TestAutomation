@@ -88,15 +88,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
         public IList<IWebElement> ProposalListProposalNameRowElement;
 
-        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string actionsButton = @".js-mps-filter-ignore > .dropdown-toggle";
+        private const string actionSummaryButton = ".js-mps-view-summary";
 
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            ClearAndType(FilterSearchFieldElement, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
-            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement);
+            var actionElement = SeleniumHelper.FindElementByCssSelector(actionsButton);
+            SeleniumHelper.ClickSafety(actionElement);
+            var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(actionSummaryButton);
+            SeleniumHelper.ClickSafety(actionSummaryElement);
         }
     }
 

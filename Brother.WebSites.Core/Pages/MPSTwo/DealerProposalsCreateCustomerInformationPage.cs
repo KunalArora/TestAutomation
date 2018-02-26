@@ -113,9 +113,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(customerEmail);
             var ContainerElement = SeleniumHelper.FindElementByCssSelector(CustomerContainer);
-            ClearAndType(ExistingCustomerFilterElement, customerEmail);
+            SeleniumHelper.SetListFilter(ExistingCustomerFilterElement, customerEmail, CustomerRadioButtonElement);
             var CustomerRadioButton = SeleniumHelper.FindElementByCssSelector(ContainerElement, NthChildRadioButtion);
-            SeleniumHelper.WaitUntil(d => CustomerRadioButtonElement.Count == 1);
             SeleniumHelper.ClickSafety(CustomerRadioButton);
 
         }

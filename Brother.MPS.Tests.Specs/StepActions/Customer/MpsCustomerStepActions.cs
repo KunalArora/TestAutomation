@@ -110,8 +110,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
                     continue;
                 }
                 string filterText = string.Format("{0} {1}", product.SerialNumber, product.Model);
-                customerServiceRequestActivePage.ClearAndType(customerServiceRequestActivePage.FilterSearchFieldElement, filterText);
-                customerServiceRequestActivePage.SeleniumHelper.WaitUntil(d => customerServiceRequestActivePage.List_Row.Count == 1);
+                customerServiceRequestActivePage.SeleniumHelper.SetListFilter(customerServiceRequestActivePage.FilterSearchFieldElement, filterText, customerServiceRequestActivePage.List_Row);
             }
         }
 

@@ -149,20 +149,37 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _contextData.WebSwapInstallUrl = url;
         }
 
-        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage);
         }
 
-        [When(@"a Cloud MPS Local Office Approver verify the Overusage")]
-        public void WhenACloudMPSLocalOfficeApproverVerifyTheOverusage()
+        [When(@"a Cloud MPS Local Office Approver apply and verify the Overusage")]
+        public void WhenACloudMPSLocalOfficeApproverApplyAndVerifyTheOverusage()
         {
+            int contractShiftTimeOffsetValue;
+            var billingType = _contextData.BillingType;
+
+            // TODO: Create a function in the IContractShiftService class to do this process
+            switch (billingType)
+            {
+                case "Half Yearly in Arrears":
+                    contractShiftTimeOffsetValue = 6;
+                    break;
+                case "Quarterly in Arrears":
+                    contractShiftTimeOffsetValue = 3;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var localOfficeApproverReportsDashboardPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDashboardPage(localOfficeApproverDashBoardPage);
             var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDataQueryPage(localOfficeApproverReportsDashboardPage);
             var localOfficeApproverReportsProposalsSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
+            localOfficeApproverReportsProposalsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ApplyOverusage(localOfficeApproverReportsProposalsSummaryPage, contractShiftTimeOffsetValue);
             var pdfFile = _mpsLocalOfficeApproverContractStepActions.DownloadPdf(localOfficeApproverReportsProposalsSummaryPage);
             try
             {
@@ -173,6 +190,5 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
                 _mpsLocalOfficeApproverContractStepActions.DeletePdfFIle(pdfFile);
             }
         }
-
     }
 }

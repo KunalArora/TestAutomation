@@ -475,7 +475,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsCreateDescriptionPage ClickOnActionsEdit(DealerProposalsInprogressPage dealerProposalsInprogressPage, string filterString)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsInprogressPage, filterString);
-            ActionsModule.SetFilter(filterString, dealerProposalsInprogressPage.ProposalFilter, dealerProposalsInprogressPage.ProposalListProposalNameRowElement, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsInprogressPage.SetListFilter(filterString);
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.StartTheProposalEditProcess(_dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
@@ -484,7 +484,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsInprogressPage ClickOnActionsCopy(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, string filterString, out string proposalNameForSearch)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, filterString);
-            ActionsModule.SetFilter(filterString, dealerProposalsDeclinedPage.InputFilterByElement, dealerProposalsDeclinedPage.NameRowElementList, RuntimeSettings.DefaultFindElementTimeout, _dealerWebDriver);
+            dealerProposalsDeclinedPage.SetListFilter(filterString);
             proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.CopyAProposal(_dealerWebDriver);
@@ -518,16 +518,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public string DownloadPdf(DealerProposalsSummaryPage dealerProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsSummaryPage);
-            var fileList = _pdfHelper.ListDownloadsFolder();
-            ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
-            var task = _pdfHelper.WaitforNewfile(fileList);
-            if (task.Wait(new TimeSpan(0, 0, RuntimeSettings.DefaultDownloadTimeout)))
+            return _pdfHelper.Download(ph =>
             {
-                return task.Result;
-            }else
-            {
-                throw new Exception("download pdf timeout");
-            }
+                ClickSafety(dealerProposalsSummaryPage.DownloadProposalPdfElement, dealerProposalsSummaryPage);
+                return true;
+            });
         }
 
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)

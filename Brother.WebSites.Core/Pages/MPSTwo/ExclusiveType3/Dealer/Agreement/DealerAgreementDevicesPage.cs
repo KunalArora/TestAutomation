@@ -279,6 +279,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 else
                 {
                     isUpdated = false;
+                    // Close Modal
+                    SeleniumHelper.ClickSafety(
+                        SeleniumHelper.FindElementByCssSelector(
+                        PrintCountsModalCloseButtonSelector));
+                    break;
                 }
 
                 // Close Modal

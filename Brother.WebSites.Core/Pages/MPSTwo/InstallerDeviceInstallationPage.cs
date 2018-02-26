@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support;
+﻿using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
@@ -134,6 +133,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwapNewMonoElement;
         [FindsBy(How = How.CssSelector, Using = "#content_0_SwapNewDeviceInputColour")]
         public IWebElement SwapNewColourElement;
+        [FindsBy(How = How.CssSelector, Using = "#WhereIsMySerialNumberModal > div > div > div.modal-header > button")]
+        public IWebElement WhereIsMySerialNumberModalCloseButtonElement;
 
 
         private const string InstallationDeviceInstallListSelector = ".js-mps-device-install-list-container";
@@ -142,6 +143,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationModelSelector = "[id*=content_0_DeviceInstallList_List_CellModel_]";
         private const string InstallationSerialNumberValidSelector = ".has-success .glyphicon.glyphicon-ok";
         private const string InstallationConnectButtonSelector = "[id*=content_0_DeviceInstallList_List_ButtonConnectDevice_]";
+        private const string InstallationResetButtonSelector = "[id*=content_0_DeviceInstallList_List_ButtonResetDevice_]";
         private const string InstallationIpAddressInput1 = "[id*=content_0_DeviceInstallList_List_InputIpPart1_]";
         private const string InstallationIpAddressInput2 = "[id*=content_0_DeviceInstallList_List_InputIpPart2_]";
         private const string InstallationIpAddressInput3 = "[id*=content_0_DeviceInstallList_List_InputIpPart3_]";
@@ -164,21 +166,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
             if (ContractReferencePageAlertElement == null)
-                throw new Exception("Installer page is not displayed");
+                TestCheck.AssertFailTest("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
             MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
         }
 
-        public void ClosePopUp()
+        public void EnterSerialNumber(string modelName, string serialNumber, IWebDriver installerDriver)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            ClosePopUpModal();
-        }
-
-        public void EnterSerialNumber(string modelName, string serialNumber, string windowHandle, IWebDriver installerDriver)
-        {
-            LoggingService.WriteLogOnMethodEntry(modelName,serialNumber,windowHandle,installerDriver);
+            LoggingService.WriteLogOnMethodEntry(modelName, serialNumber, installerDriver);
             var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
             var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
 
@@ -193,9 +189,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     ClearAndType(serialNumberElement, serialNumber);
                     serialNumberElement.SendKeys(Keys.Tab);
                     SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberValidSelector);
+                    TryClosePopup();
                     PopulateIpAddress(row);
                     ClickOnConnect(row, installerDriver);
-                    RetryResetClickingHelper(serialNumber, windowHandle);
                     break;
                 }
             }
@@ -204,53 +200,67 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnConnect(IWebElement row, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(row, driver);
+            TryClosePopup();
             var clickButtonElement = SeleniumHelper.FindElementByCssSelector(row, InstallationConnectButtonSelector);
             clickButtonElement.Click();
 
         }
 
-        public void RetryResetClickingHelper(string serialNumber, string windowHandle)
+        public void TryClosePopup()
         {
-            LoggingService.WriteLogOnMethodEntry(serialNumber, windowHandle);
+            LoggingService.WriteLogOnMethodEntry();
+            try {
+                if (!(WhereIsMySerialNumberModalCloseButtonElement.Displayed == false))
+                {
+                    SeleniumHelper.ClickSafety(WhereIsMySerialNumberModalCloseButtonElement);
+                }
+                SeleniumHelper.WaitUntil(d => WhereIsMySerialNumberModalCloseButtonElement.Displayed == false);
+            } catch { };
+        }
+
+        public bool RetryResetClickingHelper(string modalName, string serialNumber, string windowHandle, IWebDriver installerDriver, int serialEnterRetry)
+        {
+            LoggingService.WriteLogOnMethodEntry(modalName, serialNumber, windowHandle, installerDriver, serialEnterRetry );
             var ResetButtonSelector = "[id*=content_0_DeviceInstallList_List_CellConnectionStatusIcon_]";
 
             var isConnected = false;
-            var retries = 0;
-            var retryCount = 10;
 
-            while ((!isConnected) && (retries != retryCount))
+            try
             {
-                try
+                var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
+                var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
+
+                var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
+                foreach (var row in rows)
                 {
-                    var refreshElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
-                    refreshElement.Click();
-
-                    var deviceListElement = SeleniumHelper.FindElementByCssSelector(InstallationDeviceInstallListSelector);
-                    var tableElement = SeleniumHelper.FindElementByCssSelector(deviceListElement, InstallationTableSelector);
-
-                    var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
-                    foreach (var row in rows)
+                    var modelElement = SeleniumHelper.FindElementByCssSelector(row, InstallationModelSelector);
+                    var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
+                    if (serialNumberElement.GetAttribute("value") == serialNumber)
                     {
-                        var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
-                        if (serialNumberElement.GetAttribute("value") == serialNumber)
+                        var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector);
+                        isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
+                        if(isConnected)
                         {
-                            var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector);
-                            isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
-                            if(isConnected)
-                            {
-                                break;
-                            }
+                            SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
+                            return isConnected;
                         }
-
+                    }
+                    else
+                    {
+                        if (serialEnterRetry == 1 && modelElement.Text.Equals(modalName))
+                        {
+                            EnterSerialNumber(modalName, serialNumber, installerDriver);
+                        }
+                        else if (serialEnterRetry > 1 && modelElement.Text.Equals(modalName))
+                        {
+                            TestCheck.AssertFailTest("Serial number does not persist on the UI even after retrying it 2 times.");
+                        }
                     }
                     SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
-                    retries++;
-                }
-                catch (WebDriverException)
-                {
-                    retries++;
                 }
             }
+            catch { }
+            return isConnected;
         }
 
         public void EnterSwapPrintCount(string swapOldDeviceSerialNumber, int swapOldDeviceMonoPrintCount, int swapOldDeviceColorPrintCount, string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintCount, int swapNewDeviceColorPrintCount)
@@ -321,7 +331,33 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             int retryCount = RuntimeSettings.DefaultRetryCount;
-            RetryRefreshClickingHelper(RefreshButtonSelector, CompleteButtonSelector, retryCount);
+
+        }
+
+        public void ClickOnRefreshButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var refreshButtonElement = SeleniumHelper.FindElementByCssSelector(RefreshButtonSelector);
+                refreshButtonElement.Click();
+            }
+            catch { }
+        }
+
+        public bool CompleteButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var completeButton = SeleniumHelper.FindElementByCssSelector(CompleteButtonSelector);
+                SeleniumHelper.ClickSafety(completeButton);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void RetryRefreshClickingHelper(string element, string elementToVerify, int retryCount)
@@ -330,6 +366,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var isConnected = false;
             var retries = 0;
 
+            var startTime = DateTime.Now;
             while((!isConnected) && (retries!=retryCount))
             {
                 try
@@ -343,6 +380,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     retries++;
                 }
+            }
+            if ( !isConnected)
+            {
+                var elapsedTimeMs = (DateTime.Now - startTime).TotalMilliseconds;
+                TestCheck.AssertFailTest("RetryRefreshClickingHelper. Please check BOC simulator or MPS too slow. isConnected=" + isConnected + " time(ms)="+elapsedTimeMs);
             }
         }
 
@@ -359,7 +401,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ContractReferencePageAlertElement == null)
-                throw new Exception("Installer page is not displayed");
+                TestCheck.AssertFailTest("Installer page is not displayed");
             AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
 
             MpsJobRunnerPage.RunResetSerialNumberJob(SerialNumberUsed());
@@ -405,7 +447,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyTimeZoneIsDisplayed(string method)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(method);
             SpecFlow.SetContext("InstallationMethod", method);
             if (method != "Web") return;
             var option = SelectOption(TimeZoneOptionsElements);
@@ -633,7 +675,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void CreateNewSerialNumber(string serialNumber)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
             var serial = "U63783" + serialNumber;
 
             SpecFlow.SetContext("JoinedSerialNumber", serial);
@@ -1182,7 +1224,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapOldMonoElement == null)
-                throw new Exception("Old Mono field is not null");
+                TestCheck.AssertFailTest("Old Mono field is not null");
 
             TestCheck.AssertIsEqual(true, SwapOldMonoElement.Displayed, "Old Mono field is not displayed");
         }
@@ -1191,7 +1233,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapOldColourElement == null)
-                throw new Exception("Old Colour field is not null");
+                TestCheck.AssertFailTest("Old Colour field is not null");
 
             TestCheck.AssertIsEqual(true, SwapOldColourElement.Displayed, "Old Colour field is not displayed");
         }
@@ -1200,7 +1242,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapNewMonoElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             TestCheck.AssertIsEqual(true, SwapNewMonoElement.GetAttribute("value").Equals("0"), "new Mono field is not displayed");
         }
@@ -1209,7 +1251,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapNewColourElement == null)
-                throw new Exception("new Colour field is not null");
+                TestCheck.AssertFailTest("new Colour field is not null");
 
             TestCheck.AssertIsEqual(true, SwapNewColourElement.GetAttribute("value").Equals("0"), "new Colour field is not displayed");
         }
@@ -1219,7 +1261,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(mono);
             if (SwapNewMonoElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             ClearAndType(SwapNewMonoElement, mono);
         }
@@ -1228,7 +1270,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(colour);
             if (SwapNewColourElement == null)
-                throw new Exception("new Mono field is not null");
+                TestCheck.AssertFailTest("new Mono field is not null");
 
             ClearAndType(SwapNewColourElement, colour);
         }
@@ -1292,7 +1334,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
             
         }
@@ -1327,7 +1369,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
         }
 
@@ -1340,7 +1382,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
         }
 
@@ -1378,7 +1420,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception exception)
             {
-                throw new Exception(String.Format("Connect or Refresh button is not displayed because {0}", exception));
+                TestCheck.AssertFailTest(String.Format("Connect or Refresh button is not displayed because {0}", exception));
             }
 
         }
@@ -1429,7 +1471,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception)
             {
-                throw new Exception("Complete Installation Button is not displayed");
+                TestCheck.AssertFailTest("Complete Installation Button is not displayed");
             }
         }
 

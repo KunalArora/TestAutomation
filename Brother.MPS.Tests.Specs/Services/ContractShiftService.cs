@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
 using Brother.Tests.Common.Logging;
+using System;
+using System.Collections.Generic;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Domain;
 
@@ -14,6 +14,7 @@ namespace Brother.Tests.Specs.Services
         private string _commandBaseUrl = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
         private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
+        private ILoggingService LoggingService { get; set; }
 
         public ContractShiftService(IUrlResolver urlResolver, IWebRequestService webRequestService, ILoggingService loggingService)
         {
@@ -21,6 +22,7 @@ namespace Brother.Tests.Specs.Services
             _webRequestService = webRequestService;
             _loggingService = loggingService;
             _commandBaseUrl = string.Format("{0}/sitecore/admin/integration/mps2/contracttimeshift.aspx?contractid={{0}}&timeoffset={{1}}&timeoffsetunit={{2}}&generateprintcounts={{3}}&generateinvoices={{4}}&printvolume={{5}}", _urlResolver.CmsUrl);
+            LoggingService = loggingService;
         }
 
 
@@ -29,8 +31,9 @@ namespace Brother.Tests.Specs.Services
         /// </summary>
         /// <param name="url">Full url to contractshiftcommand including parameters</param>
         /// <param name="timeOut">Timeout, in seconds, for a single call to contractshiftcommand</param>
-        private void ExecuteContractShiftCommand(string url, int timeOut = 30)
+        private void ExecuteContractShiftCommand(string url, int timeOut = 60)
         {
+            LoggingService.WriteLogOnMethodEntry(url, timeOut);
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
             var startTime = DateTime.UtcNow;
 
@@ -52,6 +55,7 @@ namespace Brother.Tests.Specs.Services
 
         public void ContractTimeShiftCommand(int contractId, int timeoffset, string timeoffsetunit, bool generateprintcounts, bool generateinvoices, string printvolume)
         {
+            LoggingService.WriteLogOnMethodEntry(contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
             string commandUrl = string.Format(_commandBaseUrl, contractId, timeoffset, timeoffsetunit, generateprintcounts, generateinvoices, printvolume);
 
             ExecuteContractShiftCommand(commandUrl);
