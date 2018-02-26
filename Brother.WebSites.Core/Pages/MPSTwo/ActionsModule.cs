@@ -31,7 +31,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ContractSearchField = @"#content_1_ContractListFilter_InputFilterBy";
         private const string BelgianLanguages = @".mps-lang > span > a";
 
-        private const string CancelContract = @".js-mps-contract-cancellation";
+        // @".js-mps-contract-cancellation" or @".js-mps-contract-cancellation-running"
+        private const string CancelContract = "[class^=\"js-mps-contract-cancellation\"]";
 
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
@@ -64,9 +65,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(MaintainOfferButton));
         }
 
-        public static void NavigateToCacncelContractActionButton(IWebDriver driver)
+        public static void NavigateToCacncelContractActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
         {
-            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, driver.FindElement(By.CssSelector(CancelContract)));
+            var element = seleniumHelper.FindElementByCssSelector(CancelContract);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, element);
         }
 
         private static IWebElement DownloadContractPDFElement(ISearchContext driver)

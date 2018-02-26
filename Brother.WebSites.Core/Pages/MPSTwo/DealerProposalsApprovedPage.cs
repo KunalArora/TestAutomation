@@ -94,7 +94,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
             var actionElement = SeleniumHelper.FindElementByCssSelector(actionsButton);
             SeleniumHelper.ClickSafety(actionElement);
             var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(actionSummaryButton);

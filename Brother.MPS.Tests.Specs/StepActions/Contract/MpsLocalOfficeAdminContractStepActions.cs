@@ -69,7 +69,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
 
             ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
-            ActionsModule.NavigateToCacncelContractActionButton(_webDriver);
+            ActionsModule.NavigateToCacncelContractActionButton(_webDriver, localOfficeApproverReportsProposalSummaryPage.SeleniumHelper);
             return PageService.GetPageObject<LocalOfficeAdminContractsEditEndDatePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
