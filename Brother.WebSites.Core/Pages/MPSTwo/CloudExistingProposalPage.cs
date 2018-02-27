@@ -648,9 +648,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
             SeleniumHelper.SetListFilter(ProposalFilter, proposalName, ProposalListProposalNameRowElement);
-            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
+            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector,isWaitforEnabled:true);
             actionButtonElement.Click();
-            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector);
+            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector, isWaitforEnabled: true);
             proposalEditButtonElement.Click();
         }
 

@@ -220,6 +220,7 @@
     <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDealerPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminContractsEditEndDatePage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />
     <Compile Include="Pages\MPSTwo\InstallerDeviceInstallationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminReportsProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminSystemSettingsGeneralSettingsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalContractsApprovedProposalsPage.cs" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Brother.Tests.Specs.Helpers
@@ -32,5 +34,12 @@ namespace Brother.Tests.Specs.Helpers
         /// </summary>
         /// <param name="filename"></param>
         void DeletePdf(string filename);
+        /// <summary>
+        /// validate invoice
+        /// </summary>
+        /// <param name="pdfFile"></param>
+        /// <param name="PrintersProperties"></param>
+        /// <param name="Culture"></param>
+        void AssertAreEqualOverusageValues(string pdfFile, IEnumerable<PrinterProperties> PrintersProperties, string Culture);
     }
 }

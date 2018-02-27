@@ -402,35 +402,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void AssertAreEqualOverusageValues(string pdfFile)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
-            string monoOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, _contextData.Culture);
-            string colourOverusageText = _translationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, _contextData.Culture);
-            var products = _contextData.PrintersProperties;
-
-            if(_pdfHelper.PdfExists(pdfFile) == false )
-            {
-                TestCheck.AssertFailTest("pdf file does not exist=" + pdfFile);
-            }
-            foreach (var product in products)
-            {
-                var searchTextArray = new List<string>();
-                if (product.VolumeMono!= 0 && product.monoOverusage > 0)
-                {
-                    string expected = product.monoOverusage.ToString("N0", new CultureInfo(_contextData.Culture)); 
-                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + monoOverusageText + " " + expected);
-                }
-                if (product.VolumeColour!=0 && product.colorOverusage > 0)
-                {
-                    string expected = product.colorOverusage.ToString("N0", new CultureInfo(_contextData.Culture));
-                    searchTextArray.Add(product.Model + "\n" + product.SerialNumber + "\n" + colourOverusageText + " " + expected);
-                }
-                searchTextArray.ForEach(expected =>
-                {
-                    if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
-                    {
-                        TestCheck.AssertFailTest(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
-                    }
-                });
-            }
+            _pdfHelper.AssertAreEqualOverusageValues(pdfFile, _contextData.PrintersProperties, _contextData.Culture);
         }
 
         public void DeletePdfFIle(string pdfFile)

@@ -7,8 +7,25 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public interface ISeleniumHelper
     {
-        IWebElement FindElementByCssSelector(string selector, int timeout = -1);
-        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1);
+        /// <summary>
+        /// find element by css selector
+        /// </summary>
+        /// <param name="selector">css selector</param>
+        /// <param name="timeout">in sec. -1=use default value</param>
+        /// <param name="isWaitforDisplayed">T= wait for element.displayed == true</param>
+        /// <param name="isWaitforEnabled">T= wait for element.enabled == true</param>
+        /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
+        IWebElement FindElementByCssSelector(string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
+        /// <summary>
+        /// find element by css selector
+        /// </summary>
+        /// <param name="context">search root element</param>
+        /// <param name="selector">css selector</param>
+        /// <param name="timeout">in sec. -1=use default value</param>
+        /// <param name="isWaitforDisplayed">T= wait for element.displayed == true</param>
+        /// <param name="isWaitforEnabled">T= wait for element.enabled == true</param>
+        /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
+        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
         /// <summary>
         /// Attempts to find an element which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue

@@ -60,3 +60,4 @@ aspnet_client
 
 # Solution specific
 Dependencies/iTextSharp/itextsharp-dll-core/iTextSharp.xml
+Brother.MPS.Tests.Specs/App.config.local

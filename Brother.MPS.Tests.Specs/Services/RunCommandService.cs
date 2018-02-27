@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -35,28 +36,34 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retry">Retry if command fails or is already running</param>
         /// <param name="retryInterval">The time to wait, in seconds, between retries</param>
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
-        private void ExecuteRunCommand(string url, int timeOut = 60, bool retry = false, int retryInterval = 2, int retryFor = 60)
+        private void ExecuteRunCommand(string url, int timeOut = 300, bool retry = false, int retryInterval = 2, int retryFor = 300)
         {
             LoggingService.WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
-            var additionalHeaders = new Dictionary<string, string> {{_authTokenName, AuthToken()}};
-            var startTime = DateTime.UtcNow;
+            var warningSec = retryFor / 5;
+            LoggingService.WriteLogWhenWarningTimeoutExceeds(ls =>
+           {
+               var additionalHeaders = new Dictionary<string, string> { { _authTokenName, AuthToken() } };
+               var startTime = DateTime.UtcNow;
 
-            if (!CommandIsValidForEnvironment(url))
-            {
-                var message = string.Format("Command url {0} is not valid for the current environment", url);
-                LoggingService.WriteLog(LoggingLevel.FAILURE, message);
-                throw new Exception(message);
-            }
+               if (!CommandIsValidForEnvironment(url))
+               {
+                   var message = string.Format("Command url {0} is not valid for the current environment", url);
+                   LoggingService.WriteLog(LoggingLevel.FAILURE, message);
+                   throw new Exception(message);
+               }
 
-            do
-            {
-                var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
-                if (RunCommandSuccess(response))
-                {
-                    return;
-                }
+               do
+               {
+                   var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
+                   if (RunCommandSuccess(response))
+                   {
+                       return true;
+                   }
 
-            } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
+               } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
+               Assert.Fail("ExecuteRunCommand timeout timeOut={0}, retryFor={1}, url={2}", timeOut, retryFor,url);
+               return false; // dummy
+           }, warningSec, "too slow url=" + url);
         }
 
         private string AuthToken()
@@ -210,6 +217,15 @@ namespace Brother.Tests.Specs.Services
         public void RunStartContractCommand()
         {
             string commandName = RunCommands.MpsSystemJobStartContractCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
+
+        public void RunContractClosingMonitorCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = "MPS:NEW:ContractClosingMonitorCommand";
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);

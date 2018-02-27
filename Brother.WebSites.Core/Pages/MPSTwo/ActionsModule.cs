@@ -30,8 +30,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string CustomerSearchFieldElement = @"#content_1_PersonListFilter_InputFilterBy";
         private const string ContractSearchField = @"#content_1_ContractListFilter_InputFilterBy";
         private const string BelgianLanguages = @".mps-lang > span > a";
-       
-        
+
+        // @".js-mps-contract-cancellation" or @".js-mps-contract-cancellation-running"
+        private const string CancelContract = "[class^=\"js-mps-contract-cancellation\"]";
+
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
         {
@@ -61,6 +63,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private static IWebElement MaintainOfferElement(ISearchContext driver)
         {
             return driver.FindElement(By.CssSelector(MaintainOfferButton));
+        }
+
+        public static void NavigateToCancelContractActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
+        {
+            var element = seleniumHelper.FindElementByCssSelector(CancelContract);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, element);
         }
 
         private static IWebElement DownloadContractPDFElement(ISearchContext driver)
@@ -253,6 +261,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             action.Click();
 
         }
+        public static void DownloadContractInvoicePdfAction(IWebDriver driver, int index)
+        {
+            var action = driver.FindElement(By.Id("content_0_BillingDatesList_BillingDates_Actions_"+index+"_ActionLink_0"));
+            action.Click();
+        }
 
         public static IWebElement SearchFieldFucntionality(IWebDriver driver)
         {
@@ -437,6 +450,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void ClickOnTheActionsDropdown(int index, IWebDriver driver)
         {
             var actionsElement = ActionsDropdownElement(driver);
+            if( index < 0)
+            {
+                index = actionsElement.Count + index;
+            }
             actionsElement.ElementAt(index).Click();
         }
 

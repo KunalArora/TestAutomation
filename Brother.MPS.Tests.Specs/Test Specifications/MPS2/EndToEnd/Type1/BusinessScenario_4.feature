@@ -38,6 +38,10 @@ And I will be able to see on the Manage Devices page that all devices for the ab
 And I update the print count, raise consumable order and service request for above devices
 And I will be able to see on the Manage Devices page that above devices have updated Print Counts
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
+Given a Cloud MPS Local Office Admin navigates to the contract end screen 
+When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
+Then a Local Office Admin assert the final bill is generated/present
+
 
 @BUK
 Scenarios: 
