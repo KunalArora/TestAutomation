@@ -7,6 +7,7 @@ using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -106,15 +107,12 @@ namespace Brother.Tests.Specs.Helpers
 
         public void AssertAreEqualOverusageValues(string pdfFile, IEnumerable<PrinterProperties> PrintersProperties, string Culture)
         {
-            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            LoggingService.WriteLogOnMethodEntry(pdfFile, PrintersProperties, Culture);
             string monoOverusageText = TranslationService.GetOverusageText(TranslationKeys.OverusageText.MonoText, Culture);
             string colourOverusageText = TranslationService.GetOverusageText(TranslationKeys.OverusageText.ColourText, Culture);
             var products = PrintersProperties;
 
-            if (PdfExists(pdfFile) == false)
-            {
-                throw new Exception("pdf file does not exist=" + pdfFile);
-            }
+            Assert.True(PdfExists(pdfFile), "pdf file does not exist={0}", pdfFile);
             foreach (var product in products)
             {
                 var searchTextArray = new List<string>();
@@ -130,10 +128,7 @@ namespace Brother.Tests.Specs.Helpers
                 }
                 searchTextArray.ForEach(expected =>
                 {
-                    if (PdfContainsText(pdfFile, expected) == false)
-                    {
-                        throw new Exception(string.Format("String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
-                    }
+                    Assert.True(PdfContainsText(pdfFile, expected), "String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected);
                 });
             }
         }

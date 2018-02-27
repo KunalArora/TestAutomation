@@ -332,27 +332,32 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             timeout = timeout < 0 ? defaultMaxTimeout : timeout;
             try
             {
+                bool isTyped = false;
+                IWebElement waitSelectorElement = null;
                 var resultElement = WaitUntil(d =>
                 {
-                    if (waitSelector!=null)
+                    if( isTyped == false)
                     {
-                        FindElementByCssSelector(waitSelector, timeout);
+                        waitSelectorElement = (waitSelector != null) ? FindElementByCssSelector(waitSelector, timeout) : null;
+                        ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
+                        isTyped = true;
                     }
-                    ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
                     var count = rowElementListForExistCheck.Count;
-                    switch( count)
+                    switch (count)
                     {
                         case 0:
                             // nothing to reload
                             LoggingService.WriteLog(LoggingLevel.DEBUG, "SetListFilter reload id={0}, filterElement(value)={1}", filterId, filterElement.GetAttribute("value"));
                             _webDriver.Navigate().Refresh();
+                            WaitUntil(d2 => IgnoreThrow(() => ((waitSelectorElement == null || waitSelectorElement.Displayed) && filterElement.Displayed), true), timeout);
+                            waitSelectorElement = null;
+                            isTyped = false;
                             return null;
                         case 1:
                             return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
                         default:
-                            LoggingService.WriteLog(LoggingLevel.WARNING, "not unique id={0} count={1}", filterId, count);
-                            return dataAttributeName != null ? FindElementByDataAttributeValue(dataAttributeName, filterId.ToString(), 1) : rowElementListForExistCheck.First();
-
+                            // now filtering by browser...
+                            return null;
                     }
                 }, timeout);
                 return resultElement;
@@ -360,6 +365,18 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             catch( TimeoutException e)
             {
                 throw new TimeoutException(string.Format("not found item id={0}, filterElement.Displayed={1}, rowElementListForExistCheck.Count={2} ",filterId, filterElement.Displayed, rowElementListForExistCheck.Count), e);
+            }
+        }
+
+        private T IgnoreThrow<T>( Func<T> function , T valueIfThrows)
+        {
+            try
+            {
+                return function();
+            }
+            catch
+            {
+                return valueIfThrows;
             }
         }
 

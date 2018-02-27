@@ -60,6 +60,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         public LocalOfficeAdminReportsProposalSummaryPage NavigateToContractSummaryPage(DataQueryPage dataQueryPage, int proposalId)
         {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, proposalId);
+
             dataQueryPage.FilterAndClickAgreement(proposalId);
             return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout,_webDriver);
         }
@@ -69,7 +71,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
 
             ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
-            ActionsModule.NavigateToCacncelContractActionButton(_webDriver, localOfficeApproverReportsProposalSummaryPage.SeleniumHelper);
+            ActionsModule.NavigateToCancelContractActionButton(_webDriver, localOfficeApproverReportsProposalSummaryPage.SeleniumHelper);
             return PageService.GetPageObject<LocalOfficeAdminContractsEditEndDatePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
@@ -99,7 +101,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             // Seek Out of Date
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 2, "d", false, false, "Any");
-            BocNotifyInclementMono();
+            BocNotifyIncrementMono();
 
             // Generate Final Invoice
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 0, "d", false, true, "Any");
@@ -139,6 +141,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         }
         public void AssertAreEqualOverusageValues(string pdfFinalInvoice)
         {
+            LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice);
             // validate pdf
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
         }
@@ -185,7 +188,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         }
 
-        private void BocNotifyInclementMono()
+        private void BocNotifyIncrementMono()
         {
             LoggingService.WriteLogOnMethodEntry();
             var products = _contextData.PrintersProperties;

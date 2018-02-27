@@ -63,8 +63,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
 
         }
 
-        [Given(@"a Local Office Admin navigate the contract end screen")]
-        public void GivenALocalOfficeAdminNavigateTheContractEndScreen()
+        [StepDefinition(@"a Cloud MPS Local Office Admin navigates to the contract end screen")]
+        public void GivenACloudMPSLocalOfficeAdminNavigatesToTheContractEndScreen()
         {
             var localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
@@ -72,22 +72,21 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _localOfficeAdminReportsProposalSummaryPage = _stepActions.NavigateToContractSummaryPage(dataQueryPage, _contextData.ProposalId);
         }
 
-        [When(@"a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract")]
-        public void WhenALocalOfficeAdminSetTheCancellationDateAndSetTheReasonOfCancellationAndCancelTheContract()
+        [StepDefinition(@"a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract")]
+        public void WhenACloudMPSLocalOfficeAdminSetsTheCancellationDateAndReasonAndCancelsTheContract()
         {
             var localOfficeAdminContractsEditEndDatePage = _stepActions.ClickOnCancelContract(_localOfficeAdminReportsProposalSummaryPage);
             _localOfficeAdminReportsProposalSummaryPage = _stepActions.EnterContractCancellationDetailsAndSave(localOfficeAdminContractsEditEndDatePage, _contextData.BillingType);
-
         }
 
-        [Then(@"a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file")]
-        public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresentAndAssertSomeValueAmountTextOnPDFFile()
+        [StepDefinition(@"a Cloud MPS Local Office Admin can validate the final bill")]
+        public void ThenACloudMPSLocalOfficeAdminCanValidateTheFinalBill()
         {
             var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload();
             _stepActions.AssertAreEqualOverusageValues(pdfFinalInvoice);
         }
 
-        [Then(@"a Local Office Admin assert the final bill is generated/present")]
+        [StepDefinition(@"a Local Office Admin assert the final bill is generated/present")]
         public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresent()
         {
             var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload();

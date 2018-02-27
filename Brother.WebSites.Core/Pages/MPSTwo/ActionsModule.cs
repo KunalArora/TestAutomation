@@ -65,7 +65,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return driver.FindElement(By.CssSelector(MaintainOfferButton));
         }
 
-        public static void NavigateToCacncelContractActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
+        public static void NavigateToCancelContractActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
         {
             var element = seleniumHelper.FindElementByCssSelector(CancelContract);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, element);

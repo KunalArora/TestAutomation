@@ -292,10 +292,10 @@ testRunner.And("I will be able to see on the Manage Devices page that above devi
 testRunner.Then("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 41
-testRunner.Given("a Local Office Admin navigate the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 42
-testRunner.When("a Local Office Admin set the cancellation date and set the reason of cancellation" +
-                    " and cancel the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
+                    "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
 testRunner.Then("a Local Office Admin assert the final bill is generated/present", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

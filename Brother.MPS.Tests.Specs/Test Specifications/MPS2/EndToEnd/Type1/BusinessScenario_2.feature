@@ -39,9 +39,9 @@ And I update the print count and verify it on the Manage devices page
 And a Cloud MPS Local Office Approver apply and verify the Overusage
 And I will raise consumable order and service request for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
-Given a Local Office Admin navigate the contract end screen 
-When a Local Office Admin set the cancellation date and set the reason of cancellation and cancel the contract 
-Then a Local Office Admin assert the final bill is generated/present and assert some value/amount/text on PDF file 
+Given a Cloud MPS Local Office Admin navigates to the contract end screen 
+When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
+Then a Cloud MPS Local Office Admin can validate the final bill
 
 @BUK
 Scenarios: 
