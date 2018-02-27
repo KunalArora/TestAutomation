@@ -1601,10 +1601,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="App.config.local">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="BasicTests\TableExample.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TableExample.feature.cs</LastGenOutput>
