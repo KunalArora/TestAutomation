@@ -17,6 +17,6 @@ namespace Brother.Tests.Specs.Services
         void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount);
         string CreateNewDeviceId();
         void RaiseConsumableOrder(string deviceId, string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus);
-
+        void DeleteDevice(string deviceId);
     }
 }

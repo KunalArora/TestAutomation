@@ -35,7 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string TotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
         private const string PreloaderSelector = ".js-mps-preloader";
-
+        private const string AddToAgreementButtonSelector = ".js-mps-product-configuration-submit";
 
         // Web Elements
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
@@ -57,8 +57,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             SeleniumHelper.ClickSafety(addButton);
 
-            // Note: Repeatedly click Add button if it doesn't succeed
-            while (!SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
+            // Note: Repeatedly click Add button if it doesn't succeed (Either the preloader or the add to agreement button, i.e, product configuration box doesn't load)
+            while (!(SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed || 
+                SeleniumHelper.FindElementByCssSelector(printerContainer, AddToAgreementButtonSelector).Displayed))
             {
                 SeleniumHelper.ClickSafety(addButton);
             }
@@ -77,7 +78,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             string quantityInputSelector = "#Quantity";
             string installationPackInputSelector = "#InstallationPackId";
             string servicePackInputSelector = "#ServicePackId";
-            string addToAgreementButtonSelector = ".js-mps-product-configuration-submit";
 
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
@@ -91,7 +91,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var servicePackInput = SeleniumHelper.FindElementByCssSelector(
                 printerContainer, servicePackInputSelector);
             var addToAgreementButton = SeleniumHelper.FindElementByCssSelector(
-                printerContainer, addToAgreementButtonSelector);
+                printerContainer, AddToAgreementButtonSelector);
          
             quantityInput.Clear();
             quantityInput.SendKeys(quantity.ToString());

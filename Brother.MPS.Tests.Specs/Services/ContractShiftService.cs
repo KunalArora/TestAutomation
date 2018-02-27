@@ -33,7 +33,7 @@ namespace Brother.Tests.Specs.Services
         /// </summary>
         /// <param name="url">Full url to contractshiftcommand including parameters</param>
         /// <param name="timeOut">Timeout, in seconds, for a single call to contractshiftcommand</param>
-        private void ExecuteContractShiftCommand(string url, int timeOut = 60)
+        private void ExecuteContractShiftCommand(string url, int timeOut = 300) // Increase the timeout to 300 sec temprarily to be able to do parallel testing
         {
             LoggingService.WriteLogOnMethodEntry(url, timeOut);
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
