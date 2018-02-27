@@ -43,9 +43,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
             SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector);
-            actionsButtonElement.Click();
+            SeleniumHelper.ClickSafety(actionsButtonElement);
             var copyWithCustomerElement = SeleniumHelper.FindElementByCssSelector(copyWithCustomerSelector);
-            copyWithCustomerElement.Click();
+            SeleniumHelper.ClickSafety(copyWithCustomerElement, IsUntilUrlChanges: true);
         }
 
 
