@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Logging;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ namespace Brother.Tests.Specs.Services
     {
         private const string DEVICE_SIMULATOR_BASE_URL = "http://localhost:8080/bvd/device/{0}";
         private const string CREATE_NEW_DEVICE_PATTERN = "create?model={0}&serial={1}&id={2}";
+        private const string DELETE_DEVICE_PATTERN = "delete?id={0}";
         private const string REGISTER_NEW_DEVICE_PATTERN = "register?id={0}&pin={1}";
         private const string CHANGE_DEVICE_STATUS_PATTERN = "status/change?id={0}&online={1}&subscribe={2}";
         private const string SET_SUPPLY_PATTERN = "supply/set";
@@ -19,15 +21,17 @@ namespace Brother.Tests.Specs.Services
 
         private readonly IWebRequestService _webRequestService;
         private readonly IRuntimeSettings _runtimeSettings;
+        private IContextData _contextData;
         private readonly int _warningSec;
 
         private ILoggingService LoggingService { get; set; }
 
-        public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings, ILoggingService loggingService )
+        public DeviceSimulatorService(IWebRequestService webRequestService, IRuntimeSettings runtimeSettings, ILoggingService loggingService, IContextData contextData )
         {
             _webRequestService = webRequestService;
             _runtimeSettings = runtimeSettings;
             LoggingService = loggingService;
+            _contextData = contextData;
             _warningSec = runtimeSettings.DefaultDeviceSimulatorTimeout / 6;
         }
 
@@ -45,6 +49,8 @@ namespace Brother.Tests.Specs.Services
             string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
 
             var response = LoggingService.WriteLogWhenWarningTimeoutExceeds( l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec ) ;
+
+            _contextData.RegisteredDeviceIds.Add(deviceId);
 
             return deviceId;
         }
@@ -172,5 +178,19 @@ namespace Brother.Tests.Specs.Services
             return deviceId;
         }
 
+        /// <summary>
+        /// Deletes an existing virtual device via the Device Simulator API
+        /// Does not remove from BOC
+        /// </summary>
+        /// <param name="deviceId"></param>
+        public void DeleteDevice(string deviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(deviceId);
+            string actionPath = string.Format(DELETE_DEVICE_PATTERN, deviceId);
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, actionPath);
+
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds(l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);
+
+        }
     }
 }

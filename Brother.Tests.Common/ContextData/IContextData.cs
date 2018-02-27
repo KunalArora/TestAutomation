@@ -47,6 +47,7 @@ namespace Brother.Tests.Common.ContextData
         string WebSwapInstallUrl { get; set; }
         string SwapType { get; set; }
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
+        IList<string> RegisteredDeviceIds { get; set; }
  
         // Exclusively Type 3
         string AgreementType { get; set; }

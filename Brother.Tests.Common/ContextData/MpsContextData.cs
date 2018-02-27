@@ -38,6 +38,7 @@ namespace Brother.Tests.Common.ContextData
         {
             WindowHandles = new Dictionary<UserType, string>();
             CustomerPassword = "password";
+            RegisteredDeviceIds = new List<string>();
         }
 
         public void SetBusinessType(string businessTypeId)
@@ -70,6 +71,7 @@ namespace Brother.Tests.Common.ContextData
         public string WebSwapInstallUrl { get; set; }
         public IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         public string SwapType { get; set; }
+        public IList<string> RegisteredDeviceIds { get; set; }
 
         // Exclusively Type 3
         public string AgreementType { get; set; }
