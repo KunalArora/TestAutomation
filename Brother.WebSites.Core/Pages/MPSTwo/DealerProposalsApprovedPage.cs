@@ -39,15 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.WaitUntil(d => {
-                ClearAndType(ContractFilter, proposalId.ToString(),true);
-                if (ContractListContractNameRowElement.Count == 0)
-                {
-                    driver.Navigate().Refresh();
-                    return false;
-                }
-                return ContractListContractNameRowElement.Count == 1;
-            });
+            SeleniumHelper.SetListFilter(ContractFilter, proposalId, ContractListContractNameRowElement);
             SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
