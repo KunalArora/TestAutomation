@@ -1,7 +1,10 @@
-﻿using Brother.Tests.Specs.Resolvers;
+﻿using Brother.Tests.Common.Domain.Models;
+using Brother.Tests.Specs.Domain;
+using Brother.Tests.Specs.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -23,12 +26,14 @@ namespace Brother.Tests.Specs.Services
 
         }
 
-        private void ExecuteWebTool(string url)
+        private WebPageResponse ExecuteWebTool(string url)
         {
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+
+            return response;
         }
 
         public void RecycleSerialNumber(string serialNumber)
@@ -81,6 +86,16 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteWebTool(url);
 
+        }
+
+        public SwapRequestDetail GetSwapRequestDetail(int installedPrinterId)
+        {
+            string actionPath = string.Format("automation/getswaprequestdetail.aspx?installedprinterid={0}", installedPrinterId.ToString());
+            string url = string.Format(_baseUrl, actionPath);
+
+            var response = ExecuteWebTool(url);
+
+            return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
 
     }

@@ -82,6 +82,7 @@
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
     <Compile Include="Domain\Enums\RuntimeEnvironment.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
+    <Compile Include="Domain\Models\SwapRequestDetail.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
