@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalBindings\AfterScenario.cs" />
     <Compile Include="AdditionalBindings\InjectionSetup.cs" />
     <Compile Include="BasicTests\CaseRunner.cs" />
     <Compile Include="BasicTests\TableExample.feature.cs">
@@ -274,6 +275,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_4.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginAsDealer.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1742,6 +1748,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginAsDealer.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
