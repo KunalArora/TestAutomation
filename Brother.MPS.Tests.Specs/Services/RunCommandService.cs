@@ -36,7 +36,7 @@ namespace Brother.Tests.Specs.Services
         /// <param name="retry">Retry if command fails or is already running</param>
         /// <param name="retryInterval">The time to wait, in seconds, between retries</param>
         /// <param name="retryFor">The overall time, in seconds, that the command should be retried for</param>
-        private void ExecuteRunCommand(string url, int timeOut = 300, bool retry = false, int retryInterval = 2, int retryFor = 300)
+        private void ExecuteRunCommand(string url, int timeOut = 300, bool retry = true, int retryInterval = 10, int retryFor = 300)
         {
             LoggingService.WriteLogOnMethodEntry(url, timeOut, retry, retryInterval, retryFor);
             var warningSec = retryFor / 5;
@@ -44,6 +44,7 @@ namespace Brother.Tests.Specs.Services
            {
                var additionalHeaders = new Dictionary<string, string> { { _authTokenName, AuthToken() } };
                var startTime = DateTime.UtcNow;
+               var endTime = startTime.AddSeconds(retryFor);
 
                if (!CommandIsValidForEnvironment(url))
                {
@@ -59,8 +60,11 @@ namespace Brother.Tests.Specs.Services
                    {
                        return true;
                    }
-
-               } while (retry && (DateTime.UtcNow < startTime.AddSeconds(retryFor)));
+                   if(retryInterval > 0)
+                   {
+                       System.Threading.Tasks.Task.Delay(retryInterval * 1000);
+                   }
+               } while (retry && (DateTime.UtcNow < endTime));
                Assert.Fail("ExecuteRunCommand timeout timeOut={0}, retryFor={1}, url={2}", timeOut, retryFor,url);
                return false; // dummy
            }, warningSec, "too slow url=" + url);
@@ -93,7 +97,8 @@ namespace Brother.Tests.Specs.Services
             if (webPageResponse.ResponseBody.Contains("Failure"))
             {
                 Console.WriteLine("Call to runcommand failed");
-                return false;
+                Assert.Fail("Call to runcommand failed");
+                return false; // dummy 
             }
 
             if (webPageResponse.ResponseBody.Contains("Already running"))
@@ -109,7 +114,8 @@ namespace Brother.Tests.Specs.Services
             }
 
             Console.WriteLine("Unable to determine command status");
-            return false;
+            Assert.Fail("Unable to determine command status");
+            return false; // dummy
         }
 
         private bool CommandIsValidForEnvironment(string commandUrl)
