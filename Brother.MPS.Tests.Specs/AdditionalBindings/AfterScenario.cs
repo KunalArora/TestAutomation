@@ -65,9 +65,13 @@ namespace Brother.Tests.Specs.AdditionalBindings
                         loggingService.WriteLog(LoggingLevel.DEBUG, "Javacript console output for driver instance {0}", driverName);
 
                         var logs = driver.Manage().Logs.GetLog(LOG_NAME);
-                        foreach (var logEntry in logs)
+                        if (logs != null)
                         {
-                            loggingService.WriteLog(LoggingLevel.DEBUG, string.Format("{0} {1} {2}", logEntry.Timestamp, logEntry.Level, logEntry.Message));
+                            foreach (var logEntry in logs)
+                            {
+                                loggingService.WriteLog(LoggingLevel.DEBUG,
+                                    string.Format("{0} {1} {2}", logEntry.Timestamp, logEntry.Level, logEntry.Message));
+                            }
                         }
                     }
                 }
