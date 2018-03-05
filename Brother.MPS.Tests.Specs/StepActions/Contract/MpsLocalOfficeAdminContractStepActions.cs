@@ -161,8 +161,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     product.MonoPrintCount, product.VolumeMono,
                     product.ColorPrintCount, product.VolumeColour
                     );
-                updatedMono =  product.MonoPrintCount  + (product.MonoPrintCount  != 0 ? product.VolumeMono   : 0);
-                updatedColor = product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour : 0);
+                updatedMono =  product.MonoPrintCount  + (product.MonoPrintCount  != 0 ? product.VolumeMono*2   : 0);
+                updatedColor = product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour*2 : 0);
                 LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, updatedMono={1}, updatedColor={2}", product.Model, updatedMono, updatedColor);
 
                 string deviceId = product.DeviceId;
@@ -170,7 +170,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
 
                 // divorce coefficient= 1/30..1/1. The contract end day is yesterday (at caluclation).
-                var divorce = Math.Min(((double)DateTime.Today.AddDays(-1).Day) / 30.0, 1.0);
+                var divorce = Math.Min(((double)DateTime.Today.AddDays(-1).Day) / 30.0, 1.0); // finally contract end day is yesterday.
+                if (DateTime.Today.Day == 2) divorce += 1.0; // 1month+1day
                 var divorceVolumeMono = (int)Math.Round(product.VolumeMono * divorce);
                 var divorceVolumeColour = (int)Math.Round(product.VolumeColour * divorce);
                 LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, divorce={1}, VolumeMono={2}, VolumeColour={3}", product.Model, divorce, divorceVolumeMono, divorceVolumeColour);
@@ -186,6 +187,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
 
         }
+
 
         private void BocNotifyIncrementMono()
         {
