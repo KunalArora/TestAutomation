@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers
 {
@@ -36,6 +37,12 @@ namespace Brother.Tests.Specs.Helpers
         public bool PdfContainsText(string pdfFileName, string searchText)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFileName, searchText);
+            return RetryUntil(() => doPdfContainsText(pdfFileName, searchText), "PdfContainsText exception occured");
+        }
+
+        private bool doPdfContainsText(string pdfFileName, string searchText)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFileName, searchText);
             using (var reader = new PdfReader(pdfFileName))
             {
                 var strategy = new SimpleTextExtractionStrategy();
@@ -51,6 +58,30 @@ namespace Brother.Tests.Specs.Helpers
             }
             return false;
         }
+
+        private T RetryUntil<T>(Func<T> p, string warningMessage="exception occured retry")
+        {
+            Exception ioe = null;
+            int cntmax = RuntimeSettings.DefaultRetryCount;
+            for (int cnt = 1; cnt <= cntmax; cnt++)
+            {
+                try
+                {
+                    return p();
+                }
+                catch (Exception e)
+                {
+                    ioe = e;
+                    if (cnt != cntmax)
+                    {
+                        LoggingService.WriteLog(LoggingLevel.WARNING, (object)string.Format("{0} ({1}/{2})", warningMessage, cnt, cntmax), e);
+                        Task.Delay(1000);
+                    }
+                }
+            }
+            throw ioe;
+        }
+
 
         public bool PdfExists(string fileName)
         {
@@ -94,14 +125,19 @@ namespace Brother.Tests.Specs.Helpers
         {
             LoggingService.WriteLogOnMethodEntry(cpath, filter, downloadTimeout);
             var ext = "."+filter.Replace("*.", "");
-            var minTime = DateTime.Now.AddSeconds(-(downloadTimeout*1.5)); // 1.5=safety factor.
+            var dateTimeNow = DateTime.Now;
+            var minTime = dateTimeNow.AddSeconds(-(downloadTimeout*1.5)); // 1.5=safety factor.
             var files = System.IO.Directory.GetFiles(TestController.DownloadPath, filter, System.IO.SearchOption.AllDirectories);
-            var fileLatest = files
-                .Select(f => new System.IO.FileInfo(System.IO.Path.Combine(cpath, f)))
+            var fileList = files
+                .Select(f => new System.IO.FileInfo(System.IO.Path.Combine(cpath, f)));
+            var fileLatest = fileList
                 .Where(fi => fi.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase))
                 .Where(fi => fi.LastAccessTime > minTime)
                 .OrderByDescending(fi => fi.CreationTime)
                 .FirstOrDefault();
+            Assert.NotNull(fileLatest, "file not found DateTime.Now={0}, files=[{1}]", 
+                dateTimeNow, 
+                fileList.Select(fi=>string.Format("{0} {1},",fi.Name,fi.LastAccessTime)));
             return fileLatest.FullName;
         }
 
