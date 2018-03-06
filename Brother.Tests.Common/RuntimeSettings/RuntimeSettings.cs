@@ -12,6 +12,7 @@
         private int _defaultAPIResponseTimeout = 30;
         private int _defaultSerialNumberOffset = 0;
         private int _defaultInvoiceGenerationTimeout = 20;
+        private int _defaultElementNotPresentTimeout = 3;
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -25,6 +26,9 @@
         /// <param name="defaultRemoteWebDriverTimeout">Default 30s</param>
         /// <param name="defaultDownloadTimeout">Default 30s</param>
         /// <param name="defaultAPIResponseTimeout">Default 30s</param>
+        /// <param name="defaultSerialNumberOffset">Default 0</param>
+        /// <param name="defaultInvoiceGenerationTimeout">Default 20s</param>
+        /// <param name="defaultElementNotPresentTimeout">Default 3s</param>
         public RuntimeSettings(
             int? defaultPageLoadTimeout,
             int? defaultPageObjectTimeout,
@@ -35,7 +39,8 @@
             int? defaultDownloadTimeout,
             int? defaultAPIResponseTimeout,
             int? defaultSerialNumberOffset,
-            int? defaultInvoiceGenerationTimeout
+            int? defaultInvoiceGenerationTimeout,
+            int? defaultElementNotPresentTimeout
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -48,6 +53,7 @@
             DefaultAPIResponseTimeout = defaultAPIResponseTimeout ?? _defaultAPIResponseTimeout;
             DefaultSerialNumberOffset = defaultSerialNumberOffset ?? _defaultSerialNumberOffset;
             DefaultInvoiceGenerationTimeout = defaultInvoiceGenerationTimeout ?? _defaultInvoiceGenerationTimeout;
+            DefaultElementNotPresentTimeout = defaultElementNotPresentTimeout ?? _defaultElementNotPresentTimeout;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -60,5 +66,6 @@
         public int DefaultAPIResponseTimeout { get; set; }
         public int DefaultSerialNumberOffset { get; set; }
         public int DefaultInvoiceGenerationTimeout { get; set; }
+        public int DefaultElementNotPresentTimeout { get; set; }
     }
 }

@@ -419,5 +419,22 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
+        public bool IsElementNotPresent(string selector, int timeout)
+        {
+            LoggingService.WriteLogOnMethodEntry(selector, timeout);
+            bool notPresent;
+            timeout = timeout < 0 ? RuntimeSettings.DefaultElementNotPresentTimeout : timeout;
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                notPresent = false;
+            }
+            catch
+            {
+                notPresent = true;
+            }
+
+            return notPresent;
+        }
     }
 }
