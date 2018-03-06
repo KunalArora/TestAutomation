@@ -13,10 +13,8 @@ using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using System.Globalization;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
@@ -96,34 +94,6 @@ namespace Brother.Tests.Specs.AdditionalBindings
                 SpecificDealerUsername = _commandLineSettings.DealerUsername ?? SpecificDealerUsername(),
                 SpecificDealerPassword = _commandLineSettings.DealerPassword ?? SpecificDealerPassword()
             };
-        }
-
-        [AfterScenario]
-        public void TearDown()
-        {
-            var webDriverFactory = _container.Resolve<IWebDriverFactory>();
-            var logging = _container.Resolve<ILoggingService>();
-
-            if (webDriverFactory != null)
-            {
-                webDriverFactory.CloseAllWebDrivers();
-            }
-
-            if (ScenarioContext.Current.TestError != null)
-            {
-                logging.WriteLog(LoggingLevel.FAILURE, ScenarioContext.Current.TestError.Message);
-            }
-            else
-            {
-                //Remove devices added to simulator in this session
-                var contextData = _container.Resolve<IContextData>();
-                var deviceSimulatorService = _container.Resolve<IDeviceSimulatorService>();
-
-                foreach (var deviceId in contextData.RegisteredDeviceIds)
-                {
-                    deviceSimulatorService.DeleteDevice(deviceId);
-                }
-            }
         }
 
         private string DefaultEnvironment()
