@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string printerTotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
         private const string PreloaderSelector = ".js-mps-preloader";
-
+        private const string AddToProposalButtonSelector = ".js-mps-product-configuration-submit";
 
         public override string DefaultTitle
         {
@@ -1898,9 +1898,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector);
 
             SeleniumHelper.ClickSafety(addButton);
-
-            // Note: Repeatedly click Add button if it doesn't succeed
-            while(!SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
+            
+            // Note: Repeatedly click Add button if it doesn't succeed (Either the preloader or the add to proposal button, i.e, product configuration box doesn't load)
+            while (!(SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed || 
+                SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector).Displayed))
             {
                 SeleniumHelper.ClickSafety(addButton);
             }
