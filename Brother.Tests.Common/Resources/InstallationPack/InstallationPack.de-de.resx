@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="BROTHER_INSTALLATION" xml:space="preserve">
+    <value>Brother-Install</value>
+    <comment>TODO</comment>
   </data>
-  <data name="LEASING_AND_SERVICE" xml:space="preserve">
-    <value>Leasing &amp; Service</value>
+  <data name="DEALER_INSTALLATION_TYPE1" xml:space="preserve">
+    <value>Händler-Install</value>
   </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="DEALER_INSTALLATION_TYPE3" xml:space="preserve">
+    <value>Type 3 IP (en)</value>
+    <comment>TODO</comment>
+  </data>
+  <data name="NO_INSTALLATION" xml:space="preserve">
+    <value>No installation pack</value>
+    <comment>TODO</comment>
   </data>
 </root>

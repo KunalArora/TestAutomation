@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="MINIMUM_VOLUME" xml:space="preserve">
+    <value>Mindestvolumen</value>
   </data>
-  <data name="LEASING_AND_SERVICE" xml:space="preserve">
-    <value>Leasing &amp; Service</value>
-  </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="PAY_AS_YOU_GO" xml:space="preserve">
+    <value>Pay As You Go</value>
   </data>
 </root>

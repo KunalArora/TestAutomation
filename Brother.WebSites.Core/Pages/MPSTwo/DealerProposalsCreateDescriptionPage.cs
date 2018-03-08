@@ -217,6 +217,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SpecFlow.SetContext("CreateContractType", contract);
         }
 
+        public void SelectContractTypeByString(string contractTypeNativeString)
+        {
+            SelectFromDropdown(ContractTypeSelector, contractTypeNativeString);
+        }
+
+
         public void SelectingContractUsageType(string contract)
         {
             LoggingService.WriteLogOnMethodEntry(contract);
@@ -294,5 +300,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var proposalName = ProposalNameField.GetAttribute("value");
             return proposalName;
         }
+
     }
 }

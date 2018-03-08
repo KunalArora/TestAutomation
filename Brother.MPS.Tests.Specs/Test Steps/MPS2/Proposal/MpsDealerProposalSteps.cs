@@ -10,6 +10,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -30,6 +31,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
         private readonly ILoggingService _loggingService;
+        private readonly ICalculationService _calculationService;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -62,6 +64,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
+            ICalculationService calculationService,
             IProposalHelper proposalHelper)
         {
             _context = context;
@@ -76,6 +79,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsSignInStepActions = mpsSignInStepActions;
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
             _loggingService = loggingService;
+            _calculationService = calculationService;
         }
 
         [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
@@ -94,6 +98,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
+            _contextData.Culture = _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
         }
@@ -125,7 +130,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             string proposalName = _proposalHelper.GenerateProposalName();
             _contextData.ProposalName = proposalName;
-            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            if( _contextData.Country.DomainSuffix == "de")
+            {
+                _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateTermAndTypePage>(_dealerProposalsCreateDescriptionPage, proposalName, "", _contextData.ContractType);
+            }
+            else
+            {
+                _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateCustomerInformationPage>(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            }
         }
 
         [When(@"I create a new customer for the proposal")]
@@ -159,24 +171,33 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
         public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
         {
+            WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(usageType, contractTerm, billingType, servicePackType, "");
+        }
+
+        [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"", Service Pack type of ""(.*)"" and Leasing Billing Cycle of ""(.*)""")]
+        public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType, string leasingBillingCycle)
+        {
             string usage_type = _translationService.GetUsageTypeText(usageType, _contextData.Culture);
             string contract_term = _translationService.GetContractTermText(contractTerm, _contextData.Culture);
             string billing_type = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
             string service_pack = _translationService.GetServicePackTypeText(servicePackType, _contextData.Culture);
+            string leasing_billing_cycle = "Monatlich"; // TODO OIKE 変換せよ、保存せよ  or  Vierteljährlich
             _contextData.UsageType = usage_type;
             _contextData.ContractTerm = contract_term;
             _contextData.BillingType = billing_type;
             _contextData.ServicePackType = service_pack;
-          
-            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usage_type, contract_term, billing_type, service_pack);
+
+            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usage_type, contract_term, billing_type, service_pack, leasing_billing_cycle);
         }
 
         [When(@"I add these printers:")]
         public void WhenIAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
+            var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach ( var product in products)
             {
+                product.Price = _calculationService.ConvertInvaliantNumericToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -212,6 +233,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
             var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage);
+            if( _contextData.Country.Name.Equals("Germany") )
+            {
+                dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SelectNewCustomerAndNext(dealerProposalsConvertCustomerInformationPage);
+            }
             var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage);
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);

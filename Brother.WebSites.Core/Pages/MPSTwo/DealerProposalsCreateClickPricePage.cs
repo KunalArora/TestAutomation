@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-	public class DealerProposalsCreateClickPricePage : BasePage, IPageObject
+    public class DealerProposalsCreateClickPricePage : BasePage, IPageObject
 	{
 		public static string URL = "/mps/dealer/proposals/create/click-price";
 		private const string _validationElementSelector = ".mps-clickprice-group";
@@ -1048,11 +1048,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 				var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true");
 
 				ClearAndType(colourCoverageInput, coverageColour.ToString());
-				if (usageType.Equals(resourceUsageTypePayAsYouGo))
+				if (usageType.Equals(resourceUsageTypePayAsYouGo)) // is dowpdown type
 				{
-					ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
-				}
-				else
+                    ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
+                }
+                else
 				{
 					SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString());
 				}

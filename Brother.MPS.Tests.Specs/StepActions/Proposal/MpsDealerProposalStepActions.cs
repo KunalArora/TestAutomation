@@ -11,7 +11,9 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
+using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -69,18 +71,26 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerProposalsCreateCustomerInformationPage PopulateProposalDescriptionAndProceed(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
+        /// <summary>
+        /// PopulateProposalDescriptionAndProceed
+        /// </summary>
+        /// <typeparam name="TPage">UK:DealerProposalsCreateCustomerInformationPage, DE:DealerProposalsCreateTermAndTypePage</typeparam>
+        /// <param name="dealerProposalsCreateDescriptionPage"></param>
+        /// <param name="proposalName"></param>
+        /// <param name="leadCodeReference"></param>
+        /// <param name="contractType"></param>
+        /// <returns></returns>
+        public TPage PopulateProposalDescriptionAndProceed<TPage>(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
             string proposalName,
             string leadCodeReference,
-            string contractType)
+            string contractType) where TPage : BasePage, IPageObject, new()
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
             PopulateProposalDescription(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
 
             ClickSafety( dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
-            return PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
-
         public DealerProposalsCreateTermAndTypePage PopulateProposalCustomerInformationAndProceed(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage, CustomerInformationOption customerInformationOption)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage, customerInformationOption);
@@ -166,11 +176,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             string usageType,
             string contractLength,
             string billingType,
-            string servicePackOption)
+            string servicePackOption,
+            string leasingBillingCycle=null)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateTermAndTypePage, usageType, contractLength, billingType, servicePackOption);
             // Populate Term and Type page for Type 1
-            dealerProposalsCreateTermAndTypePage.PopulateTermAndTypeForType1(usageType, contractLength, billingType, servicePackOption);
+            dealerProposalsCreateTermAndTypePage.PopulateTermAndTypeForType1(usageType, contractLength, billingType, servicePackOption, leasingBillingCycle);
             ClickSafety(dealerProposalsCreateTermAndTypePage.NextButton, dealerProposalsCreateTermAndTypePage) ;
             return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -203,14 +214,20 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
 
             ClickSafety( dealerProposalsCreateClickPricePage.CalculateClickPriceElement, dealerProposalsCreateClickPricePage ) ;
-            
-            if(VerifyClickPriceValues(dealerProposalsCreateClickPricePage))
-            {
-                ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
-                return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-            }
-             
-            return null;
+
+            Assert.True(VerifyClickPriceValues(dealerProposalsCreateClickPricePage), "CalculateClickPriceAndProceed verify error");
+
+            ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
+            return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsConvertCustomerInformationPage SelectNewCustomerAndNext(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertCustomerInformationPage);
+            ClickSafety(dealerProposalsConvertCustomerInformationPage.CreateNewCustomerElement, dealerProposalsConvertCustomerInformationPage);
+            ClickSafety(dealerProposalsConvertCustomerInformationPage.NextButton, dealerProposalsConvertCustomerInformationPage);
+            dealerProposalsConvertCustomerInformationPage = PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            return dealerProposalsConvertCustomerInformationPage;
         }
 
         public CloudExistingProposalPage SaveTheProposalAndProceed(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
@@ -223,24 +240,37 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             // Validate calculations on Summary page           
             List<String> deviceTotalsElements = new List<String>();
-            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text.Substring(1));
-            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text.Substring(1));
+            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text.CollectDigitOnly());
+            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text.CollectDigitOnly());
 
             _calculationService.VerifySum(
                 deviceTotalsElements,
-                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.Substring(1));
-            _calculationService.VerifyGrossPrice(
-                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.Substring(1),
-                dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement.Text.Substring(1));
-            
+                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.CollectDigitOnly());
+            var SeleniumHelper = dealerProposalsCreateSummaryPage.SeleniumHelper;
+            if( SeleniumHelper.IsElementDisplayed(dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement))
+            {
+                _calculationService.VerifyGrossPrice(
+                    dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.CollectDigitOnly(),
+                    dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement.Text.CollectDigitOnly());
+            }
+            else
+            {
+                LoggingService.WriteLog(LoggingLevel.WARNING, "VerifyGrossPrice skip. Because item not found at `Contract Totals>Device Totals>Gross>Total Price'. maybe Germany?");
+            }
+
             // Validate content on Summary page 
             dealerProposalsCreateSummaryPage.VerifyProposalName(_contextData.ProposalName);
-            dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
+            // For the German environment, CustomerInformationName has not been entered yet (IsNullOrWhiteSpace=true)
+            if ( string.IsNullOrWhiteSpace(_contextData.CustomerInformationName) == false)   
+            {
+                dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
+            }
             dealerProposalsCreateSummaryPage.VerifyCorrectContractTermIsDisplayedOnSummaryPage(_contextData.ContractTerm);
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
             dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType, resourceServicePackTypeIncludedInClickPrice);
             dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso);
+            dealerProposalsCreateSummaryPage.VerifyNoAlertInfoMessage();
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -688,6 +718,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
             dealerProposalsCreateDescriptionPage.PopulateProposalName(proposalName);
+            if( string.IsNullOrWhiteSpace(contractType) == false)
+            {
+                dealerProposalsCreateDescriptionPage.SelectContractTypeByString(contractType);
+            }
         }
 
         private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,

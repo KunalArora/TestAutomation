@@ -117,13 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LEASE_AND_CLICK" xml:space="preserve">
-    <value>Lease &amp; Click</value>
+  <data name="ADD_TO_THE_LEASING_RATE" xml:space="preserve">
+    <value>zur Leasingrate addieren</value>
   </data>
-  <data name="LEASING_AND_SERVICE" xml:space="preserve">
-    <value>Leasing &amp; Service</value>
+  <data name="INCLUDED_IN_CLICK_PRICE" xml:space="preserve">
+    <value>Included in Click Price</value>
+    <comment>TODO temp</comment>
   </data>
-  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
-    <value>Purchase &amp; Click</value>
+  <data name="PAY_UPFRONT" xml:space="preserve">
+    <value>Pay upfront</value>
+    <comment>TODO temp</comment>
   </data>
 </root>

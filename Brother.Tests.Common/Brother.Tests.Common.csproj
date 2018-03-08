@@ -117,6 +117,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\ContractType\ContractType.de-de.Designer.cs">
+      <DependentUpon>ContractType.de-de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\ContractType\ContractType.en-gb.Designer.cs">
       <DependentUpon>ContractType.en-gb.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -203,6 +208,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingType\BillingType.de-de.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.en-gb.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.resx">
       <LastGenOutput>BillingType.Designer.cs</LastGenOutput>
@@ -212,9 +218,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsumableOrderStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.de-de.resx" />
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.resx">
       <LastGenOutput>ContractTerm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractType\ContractType.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractType.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractType\ContractType.en-gb.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -230,6 +243,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DeviceConnectionStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.de-de.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.en-gb.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -250,6 +264,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PaymentType\PaymentType.de-de.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
@@ -263,6 +278,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProposalPDF.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
@@ -276,6 +292,7 @@
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">
       <LastGenOutput>SwapType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
       <Generator>ResXFileCodeGenerator</Generator>

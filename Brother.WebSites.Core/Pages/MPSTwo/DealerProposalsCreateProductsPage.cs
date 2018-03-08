@@ -1936,8 +1936,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(deliveryPriceInput, "1");
             }
  
-            SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
-            
+            if(string.IsNullOrWhiteSpace(installationPack) == false)
+            {
+                SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
+            }
+
             margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector).GetAttribute("value");            
             unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector).GetAttribute("value");
 
@@ -1969,10 +1972,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var bodyRowElements = SeleniumHelper.FindRowElementsWithinTable(tableBodyContainer);
             foreach (var element in bodyRowElements)
             {
-                totalPriceValues.Add(SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text.Substring(1));
+                var textTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text;
+                totalPriceValues.Add(textTotalPrice.CollectDigitOnly());
             }
             var tableFootContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableFootSelector);
-            expectedTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text.Substring(1);
+            var textFootContainer = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text;
+            expectedTotalPrice = textFootContainer.CollectDigitOnly();
             return totalPriceValues;
         }
     }

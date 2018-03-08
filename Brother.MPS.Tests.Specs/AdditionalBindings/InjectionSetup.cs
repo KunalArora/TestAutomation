@@ -13,10 +13,8 @@ using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using System.Globalization;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
@@ -171,7 +169,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultDownloadTimeout: AppSettingToInt("RuntimeSettings.DefaultDownloadTimeout"),
                     defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout"),
                     defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
-                    defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout")
+                    defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
+                    defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout")
             );
 
             return runtimeSettings;
