@@ -147,6 +147,7 @@
     <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
+    <Compile Include="StepActions\Proposal\MpsBankProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
     <Compile Include="StepActions\StepActionBase.cs" />

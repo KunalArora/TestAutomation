@@ -26,6 +26,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _customerWebDriver;
         private IWebDriver _serviceDeskWebDriver;
         private IWebDriver _loAdminWebDriver;
+        private IWebDriver _bankWebDriver;
         private IContextData _contextData;
 
         private const string dealerDashboardUrl = "/mps/dealer/dashboard";
@@ -33,6 +34,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private const string customerDashboardUrl = "/mps/customer/dashboard";
         private const string serviceDeskDashboardUrl = "/mps/local-office/dashboard";
         private const string loAdminDashboardUrl = "/mps/local-office/dashboard";
+        private const string bankDashboardUrl = "/mps/bank/dashboard";
 
 
         public MpsSignInStepActions (
@@ -140,6 +142,24 @@ namespace Brother.Tests.Specs.StepActions.Common
             var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, customerDashboardUrl);
             return PageService.LoadUrl<CustomerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _customerWebDriver);
             
+        }
+
+        public BankDashBoardPage SignInAsBank(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _bankWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
+            if (_bankWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                var signInPage = LoadBrotherOnlineSignInPage(url, _bankWebDriver);
+                return SignInToMpsDashboardAs<BankDashBoardPage>(signInPage, email, password, _bankWebDriver);
+            }
+            else
+            {
+                var uri = new Uri(_bankWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, bankDashboardUrl);
+                return PageService.LoadUrl<BankDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _bankWebDriver);
+            }
+
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver, bool acceptCookiePolicy = true)

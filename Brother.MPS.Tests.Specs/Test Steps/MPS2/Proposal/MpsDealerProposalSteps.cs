@@ -314,7 +314,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {
-                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
+                var resourceBillingTypePurchaseAndClick = _translationService.GetBillingTypeText("PURCHASE_AND_CLICK", _contextData.Culture);
+                var resourceBillingTypeLeasingAndService = _translationService.GetBillingTypeText("LEASING_AND_SERVICE", _contextData.Culture);
+                if ( _contextData.BillingType == resourceBillingTypePurchaseAndClick)
+                {
+                    _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
+                }
+                else if(_contextData.BillingType == resourceBillingTypeLeasingAndService)
+                {
+                    // TODO OIKE ASK S6で PDF 検証するかどうか
+                }
             }
             finally
             {

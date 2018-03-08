@@ -43,6 +43,7 @@
         {
             public static string PayUpfront { get { return "PAY_UPFRONT"; } }
             public static string IncludedInClickPrice { get { return "INCLUDED_IN_CLICK_PRICE"; } }
+            public static string AddToTheLeasingRate { get { return "ADD_TO_THE_LEASING_RATE"; } }
         }
 
         public static class InstallationPack

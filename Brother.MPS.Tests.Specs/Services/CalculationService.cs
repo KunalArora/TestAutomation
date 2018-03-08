@@ -74,6 +74,8 @@ namespace Brother.Tests.Specs.Services
             // 12,345 -[de]-> 12.345
             // 12,345.670 -[de]-> 12.345,670
 
+            if (string.IsNullOrWhiteSpace(invaliant)) { return invaliant; }
+
             invaliant = invaliant.Trim();
             var ciInvaliant = CultureInfo.InvariantCulture;
             var ciCulture = new CultureInfo(ContextData.Culture);

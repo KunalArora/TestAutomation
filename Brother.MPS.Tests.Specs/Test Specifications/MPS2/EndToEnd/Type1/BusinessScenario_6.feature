@@ -30,9 +30,7 @@ And I add these printers:
 And I calculate the click price for each of the above printers
 # 7,8 8=sumitではなくSend for release 。次画面が#9になるので注意
 And I save the above proposal and submit it for approval
-# 9 ここに上記 多分不要 が入るパターンか
-# $$$
-# 
+# 9 ここに上記 多分不要 が入るパターンか→不要
 #---------------
 # bank
 #---------------
@@ -50,7 +48,7 @@ And a Cloud MPS Local Office Approver Set a Special Pricing:
 # 3
 And I sign the above proposal
 # Accept不要
-And a Cloud MPS Local Office Approver accepts the above proposal
+#And a Cloud MPS Local Office Approver accepts the above proposal
 # 4
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 # 5-9 メール送信まで

@@ -147,7 +147,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.MoveToAcceptedContracts();
         }
-        
+
+        public void MoveToAwaitingAcceptanceContractsTab(DealerContractsPage dealerContractsPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
+            dealerContractsPage.MoveToAwaitingAcceptanceContracts();
+        }
+
+
         public void FilterContractUsingProposalIdAction(DealerContractsPage dealerContractsPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);

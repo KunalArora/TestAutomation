@@ -24,6 +24,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         // Selectors
         private const string ContractFilterSelector = ".mps-filter-search-field-lg";
         private const string ContractsAcceptedActiveTabSelector = ".active a[href=\"/mps/dealer/contracts/accepted\"]";
+        private const string ContractsAwaitingAcceptanceActiveTabSelector = ".active a[href=\"/mps/dealer/contracts/awaiting-acceptance\"]";
         private const string PaginateSelector = ".dataTables_paginate";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesButtonSelector = ".js-mps-manage-devices";
@@ -346,6 +347,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             AcceptedTabElement.Click();
             SeleniumHelper.WaitUntilElementAppears(ContractsAcceptedActiveTabSelector);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
+        }
+
+        public void MoveToAwaitingAcceptanceContracts()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            AwaitingAcceptanceTabElement.Click();
+            SeleniumHelper.WaitUntilElementAppears(ContractsAwaitingAcceptanceActiveTabSelector);
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
         }
 
