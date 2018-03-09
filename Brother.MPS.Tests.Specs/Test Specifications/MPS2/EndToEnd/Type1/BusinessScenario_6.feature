@@ -56,19 +56,17 @@ And I create a "<InstallationType>" installation request for "<CommunicationMeth
 #---------------
 # Installer
 #---------------
-# url取得するだけ
 And I will be able to see the installation request created above on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Installation page and verify Contract Reference
 And Enter the serial numbers and complete installation
-#ここ以下イルカ？
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count, raise consumable order and service request for above devices
 And I will be able to see on the Manage Devices page that above devices have updated Print Counts
-Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
-Given a Cloud MPS Local Office Admin navigates to the contract end screen 
-When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
-Then a Local Office Admin assert the final bill is generated/present
+#Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
+#Given a Cloud MPS Local Office Admin navigates to the contract end screen 
+#When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
+#Then a Local Office Admin assert the final bill is generated/present
 
 
 @BUK

@@ -249,6 +249,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallationPack.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-de.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.en-gb.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.resx">
       <LastGenOutput>InstallationRequestStatus.Designer.cs</LastGenOutput>
