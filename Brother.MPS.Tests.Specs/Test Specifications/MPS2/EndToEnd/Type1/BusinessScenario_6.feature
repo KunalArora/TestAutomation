@@ -72,5 +72,5 @@ And I will be able to see on the Manage Devices page that above devices have upd
 @BUK
 Scenarios: 
 		| Country | ContractType        | UsageType     | BillingType | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | LeasingBillingCycle |
-		| Germany | LEASING_AND_SERVICE | PAY_AS_YOU_GO | HALF_YEARLY | ADD_TO_THE_LEASING_RATE | FIVE_YEARS   | New      | Cloud               | Web              | Monatlich           |
+		| Germany | LEASING_AND_SERVICE | PAY_AS_YOU_GO | HALF_YEARLY | ADD_TO_THE_LEASING_RATE | FIVE_YEARS   | New      | Cloud               | Web              | MONTHLY             |
 

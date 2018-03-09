@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Brother.Tests.Common.Resources;
 
 namespace Brother.Tests.Common.Services
 {
@@ -110,6 +109,11 @@ namespace Brother.Tests.Common.Services
         public string GetProposalPdfText(string name, string culture)
         {
             return GetText(Resources.ProposalPDF.ProposalPDF.ResourceManager, name, culture);
+        }
+
+        public string GetLeasingBillingCycle(string name, string culture)
+        {
+            return GetText(Resources.LeasingBillingCycle.LeasingBillingCycle.ResourceManager, name, culture);
         }
     }
 }

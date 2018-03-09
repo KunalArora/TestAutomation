@@ -283,11 +283,46 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             return value;
         }
+        public static SummaryValue Parse(Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper SeleniumHelper)
+        {
+            var value = new SummaryValue();
+            var tdElementListMain = SeleniumHelper.FindElementByCssSelector("#main").FindElements(By.TagName("td"));
+            foreach( var tdElement in tdElementListMain)
+            {
+                var idString = tdElement.GetAttribute("id"); // ex. content_1_SummaryTable_ProposalName
+                var idArr = idString.Split('_');
+                if (idArr.Length < 2) continue;
+                var itemName = idArr[idArr.Length - 1]; // ex. ProposalName
+                var prefix = idArr[idArr.Length - 2]; // ex. SummaryTable
+                if("SummaryTable".Equals(prefix) == false) { continue; }
+                var dictKey = string.Format("{0}.{1}", prefix, itemName);// key ex. SummaryTable.ProposalName
+                value.Add(dictKey, tdElement.Text);
+            }
+
+            var modelElementList = SeleniumHelper.FindElementsByCssSelector("div[class*=\"panel panel-default mps-qa-printer mps-qa-printer-\"]");
+            foreach (var modelElement in modelElementList)
+            {
+                var elemStrong = modelElement.FindElement(By.ClassName("panel-heading")).FindElement(By.TagName("strong"));
+                var modelName = elemStrong.Text; // ex. MFC-L8650CDW
+                var tdElementList = modelElement.FindElements(By.TagName("td"));
+                foreach (var tdElement in tdElementList)
+                {
+                    var idString = tdElement.GetAttribute("id"); // ex. content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_3_InstallationPackUnitCost_0
+                    var idArr = idString.Split('_');
+                    if (idArr.Length < 2) continue;
+                    var itemName = idArr[idArr.Length - 2]; // ex. InstallationPackUnitCost
+                    var dictKey = string.Format("{0}.{1}", modelName, itemName);// key ex. MFC-L8650CDW.InstallationPackUnitCost
+                    value.Add(dictKey, tdElement.Text);
+                }
+            }
+            return value;
+        }
 
         public string GetModel(string key)
         {
             return key.Split('.')[0];
         }
+
     }
 
 }

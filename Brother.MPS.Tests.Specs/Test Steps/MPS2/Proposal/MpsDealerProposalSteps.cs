@@ -181,11 +181,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             string contract_term = _translationService.GetContractTermText(contractTerm, _contextData.Culture);
             string billing_type = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
             string service_pack = _translationService.GetServicePackTypeText(servicePackType, _contextData.Culture);
-            string leasing_billing_cycle = "Monatlich"; // TODO OIKE 変換せよ、保存せよ  or  Vierteljährlich
+            string leasing_billing_cycle = _translationService.GetLeasingBillingCycle(leasingBillingCycle, _contextData.Culture); // TODO OIKE 変換せよ、保存せよ  or  Vierteljährlich
             _contextData.UsageType = usage_type;
             _contextData.ContractTerm = contract_term;
             _contextData.BillingType = billing_type;
             _contextData.ServicePackType = service_pack;
+            _contextData.LeasingBillingCycle = leasing_billing_cycle;
 
             _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usage_type, contract_term, billing_type, service_pack, leasing_billing_cycle);
         }

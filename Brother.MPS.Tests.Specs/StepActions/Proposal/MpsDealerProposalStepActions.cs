@@ -217,6 +217,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             Assert.True(VerifyClickPriceValues(dealerProposalsCreateClickPricePage), "CalculateClickPriceAndProceed verify error");
 
+            _contextData.SnapClickPricePageValues = ClickPricePageValue.Parse(dealerProposalsCreateClickPricePage.SeleniumHelper);
             ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
             return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -236,7 +237,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = dealerProposalsCreateSummaryPage.ReturnContractId();
             _contextData.ProposalId = proposalId;
             string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-
+            string resourceContractTypeLeasingAndService = _translationService.GetContractTypeText(TranslationKeys.ContractType.LeasingAndService, _contextData.Culture);
+            if( _contextData.ContractType == resourceContractTypeLeasingAndService)
+            {
+                AssertSummaryPageForLeasingAndServiceContract(dealerProposalsCreateSummaryPage);
+            }
 
             // Validate calculations on Summary page           
             List<String> deviceTotalsElements = new List<String>();
@@ -274,6 +279,55 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        private void AssertSummaryPageForLeasingAndServiceContract(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateSummaryPage);
+            var assertMessage = string.Format("proposalId={0}, name={1}, ", _contextData.ProposalId, _contextData.ProposalName);
+            var actual = SummaryValue.Parse(dealerProposalsCreateSummaryPage.SeleniumHelper);
+            // ProductDetails
+            // content_1_SummaryTable_ProposalName              MPS_Smoke_Hartgrove-039112914
+            // content_1_SummaryTable_ContractTerm              5 Jahre
+            // content_1_SummaryTable_UsageBillingFrequency     Halbjährlich
+            // content_1_SummaryTable_ContractType              Leasing & Service
+            // content_1_SummaryTable_UsageType                 Pay As You Go
+            // content_1_SummaryTable_LeaseRentalFrequency      Monatlich
+            Assert.AreEqual(actual["SummaryTable.ProposalName"], _contextData.ProposalName, assertMessage+ "ProposalName" );
+            Assert.AreEqual(actual["SummaryTable.ContractTerm"], _contextData.ContractTerm, assertMessage + "ContractTerm");
+            Assert.AreEqual(actual["SummaryTable.UsageBillingFrequency"], _contextData.BillingType, assertMessage + "UsageBillingFrequency");
+            Assert.AreEqual(actual["SummaryTable.ContractType"], _contextData.ContractType, assertMessage + "ContractType");
+            Assert.AreEqual(actual["SummaryTable.UsageType"], _contextData.UsageType, assertMessage + "UsageType");
+            Assert.AreEqual(actual["SummaryTable.LeaseRentalFrequency"], _contextData.LeasingBillingCycle, assertMessage + "LeasingBillingCycle");
+
+            // Modles
+            // content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0  447,70 €
+            // content_1_SummaryTable_RepeaterModels_MonoClickRate_0        0,01167 €
+            // content_1_SummaryTable_RepeaterModels_ColourClickRate_0      0,00000 € 
+            var expectedClickPrice = _contextData.SnapClickPricePageValues;
+            var expectedCreateProducts = _contextData.SnapCreateProductsPageValues;
+            foreach ( var prop in _contextData.PrintersProperties)
+            {
+                var model = prop.Model;
+                var assertMessageModel = assertMessage + "model={0}, ";
+                Assert.AreEqual(
+                    expectedCreateProducts[model + ".TotalLinePrice"].CollectDigitOnly(), 
+                    actual[model + ".DeviceTotalPriceNet"].CollectDigitOnly(), 
+                    assertMessageModel+ "DeviceTotalPriceNet");
+                Assert.AreEqual(
+                    expectedClickPrice[model + ".ClickPriceMono"].CollectDigitOnly(), 
+                    actual[model + ".MonoClickRate"].CollectDigitOnly(), 
+                    assertMessageModel+ "MonoClickRate");
+                if( string.IsNullOrWhiteSpace(prop.ColourClickPrice) == false)
+                {
+                    Assert.AreEqual(
+                        expectedClickPrice[model + ".ClickPriceColour"].CollectDigitOnly(), 
+                        actual[model + ".ColourClickRate"].CollectDigitOnly(), 
+                        assertMessageModel+ "ColourClickRate");
+                }
+
+            }
+
         }
 
         public void VerifySavedProposalInOpenProposalsList(CloudExistingProposalPage cloudExistingProposalPage)
@@ -752,6 +806,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             List<string> totalPriceValues = dealerProposalsCreateProductsPage.RetrieveAllTotalPriceValues(
                 printerContainer,
                 out expectedTotalLinePrice);
+
+            _contextData.SnapCreateProductsPageValues.Add(printerName+".TotalLinePrice" , expectedTotalLinePrice);
 
             // Validate calculations on Products page
             _calculationService.VerifyTotalPrice(printerPrice, margin, unitPrice);

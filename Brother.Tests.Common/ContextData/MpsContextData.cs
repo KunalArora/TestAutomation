@@ -34,11 +34,14 @@ namespace Brother.Tests.Common.ContextData
         public string CommunicationMethod { get; set; }
         public string InstallationType { get; set; }
 
+
         public MpsContextData()
         {
             WindowHandles = new Dictionary<UserType, string>();
             CustomerPassword = "password";
             RegisteredDeviceIds = new List<string>();
+            SnapClickPricePageValues = new Dictionary<string,string>();
+            SnapCreateProductsPageValues = new Dictionary<string, string>();
         }
 
         public void SetBusinessType(string businessTypeId)
@@ -72,6 +75,11 @@ namespace Brother.Tests.Common.ContextData
         public IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         public string SwapType { get; set; }
         public IList<string> RegisteredDeviceIds { get; set; }
+        public string LeasingBillingCycle { get; set; }
+
+        public Dictionary<string, string> SnapClickPricePageValues { get; set; }
+        public Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
+
 
         // Exclusively Type 3
         public string AgreementType { get; set; }
@@ -83,5 +91,6 @@ namespace Brother.Tests.Common.ContextData
         public int DeviceCount { get; set; }
         public string DealerName { get; set; }
         public string DealerSAPAccountNumber { get; set; }
+
     }
 }
