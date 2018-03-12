@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.UnitTests
         public ContractShiftServiceTests()
         {
             var loggingService = new MpsLoggingConsole(new LoggingServiceSettings());
-            _contractShiftService = new ContractShiftService(new DefaultUrlResolver(new MpsContextData { Environment = "UAT", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(loggingService), loggingService);
+            _contractShiftService = new ContractShiftService(new DefaultUrlResolver(new MpsContextData { Environment = "UAT", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(loggingService), loggingService, new MpsContextData());
         }
 
         [Test]

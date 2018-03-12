@@ -756,6 +756,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifySavedProposalInOpenProposalsList(int proposalId, string proposalName)
         {
+            return VerifyProposalInProposalsList(proposalId, proposalName);
+        }
+
+        protected bool VerifyProposalInProposalsList(int proposalId, string proposalName)
+        {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
 
             // Wait for footer to load & then filter out the proposal
