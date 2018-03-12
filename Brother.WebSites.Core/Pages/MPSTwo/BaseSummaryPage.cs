@@ -1,6 +1,7 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -283,10 +284,93 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             return value;
         }
-        public static SummaryValue Parse(Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper SeleniumHelper)
+
+        public static SummaryValue Parse(BankProposalsSummaryPage page)
+        {
+            const string selectorCustomerAddress = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(1) > td";
+            const string selectorCustomerBillingAddress = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(2) > td";
+            const string selectorCustomerCreditFormNumber = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(3) > td";
+            const string selectorCustomerBank = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(4) > td";
+            const string selectorCustomerLegalForm = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(5) > td";
+            const string selectorCustomerCreditCheck = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-left > div > div.panel-body.table-responsive > table > tbody > tr:nth-child(6) > td";
+            const string selectorDealerBrotherCustomerNumber = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-right > div:nth-child(1) > div.panel-body.table-responsive > table > tbody > tr:nth-child(1) > td > span";
+            const string selectorDealerAddress = "#MpsAppContent > div > div.tab-pane.active.container-fluid > div.row > div > div.col-sm-6.mps-bank-summary-right > div:nth-child(1) > div.panel-body.table-responsive > table > tbody > tr:nth-child(2) > td";
+
+            var SeleniumHelper = page.SeleniumHelper;
+            var value = Parse(SeleniumHelper, "BankSummaryTable");
+
+            // add custom parse below...
+
+            //
+            // Customer details (de:Kundendetails)
+            //
+            var prefix = "CustomerDetails";
+            // de:Kundendetails>Adresse
+            var tdCustomerAddress = SeleniumHelper.FindElementByCssSelector(selectorCustomerAddress);
+            value.Add(prefix + "Address", ParseToStrongKeyAndBrValueList(tdCustomerAddress).Value);
+            // de:Kundendetails>Rechnungsadresse
+            var tdCustomerBillingAddress = SeleniumHelper.FindElementByCssSelector(selectorCustomerBillingAddress);
+            value.Add(prefix + "BillingAddress", ParseToStrongKeyAndBrValueList(tdCustomerBillingAddress).Value);
+            // Creditreform number (de:Creditreform Nummer)
+            var tdCustomerCreditformNumber = SeleniumHelper.FindElementByCssSelector(selectorCustomerCreditFormNumber);
+            value.Add(prefix + "CreditreformNumber", tdCustomerCreditformNumber.FindElement(By.TagName("span")).Text);
+            // Bank
+            var tdCustomerBank = SeleniumHelper.FindElementByCssSelector(selectorCustomerBank);
+            var bankSpanList = tdCustomerBank.FindElements(By.TagName("span"));
+            value.Add(prefix + "BankName", bankSpanList[0].Text); // Bank
+            value.Add(prefix + "BankCode", bankSpanList[1].Text); // de:Bankleitzahl 
+            value.Add(prefix + "BankNumber", bankSpanList[2].Text); // de:Kontonummer 
+            value.Add(prefix + "IBAN", bankSpanList[3].Text); // de:IBAN  
+            value.Add(prefix + "BIC", bankSpanList[4].Text); // de:BIC  
+            // de:Rechtsform
+            var tdCustomerLegalForm = SeleniumHelper.FindElementByCssSelector(selectorCustomerLegalForm);
+            value.Add(prefix + "LegalForm", tdCustomerLegalForm.FindElement(By.TagName("span")).Text);
+            // de:Bonitätsprüfung
+            var tdCustomerCreditCheck = SeleniumHelper.FindElementByCssSelector(selectorCustomerCreditCheck);
+            value.Add(prefix + "CreditCheck", tdCustomerCreditCheck.FindElement(By.TagName("span")).Text);
+
+            //
+            // Dealer Details (de:Händler Details)
+            //
+            prefix = "DealerDetails";
+            // Brother customer number (de:Brother Kundennummer )
+            var spanDealerBrotherCustomerNumber = SeleniumHelper.FindElementByCssSelector(selectorDealerBrotherCustomerNumber);
+            value.Add(prefix + "BrotherCustomerNumber", spanDealerBrotherCustomerNumber.Text);
+            // de:Adresse
+            var tdDealerAddress = SeleniumHelper.FindElementByCssSelector(selectorDealerAddress);
+            value.Add(prefix + "Address", ParseToStrongKeyAndBrValueList(tdDealerAddress).Value);
+
+            //
+            // Contract details (de:Vertragsdetails) 
+            //
+
+            // content_1_BankSummaryTable_ContractDetailsContractNumber             noch nicht gesetzt 
+            // content_1_BankSummaryTable_LabelContractDetailsDuration              5 Jahre
+            // content_1_BankSummaryTable_ContractDetailsStartDate                  11.04.2018
+            // content_1_BankSummaryTable_ContractDetailsBillingFrequencyLeasing    Monatlich
+            // content_1_BankSummaryTable_ContractDetailsBillingFrequencyClick      Halbjährlich
+            // content_1_BankSummaryTable_ContractDetailsContractValue              2.959,66 €
+            // content_1_BankSummaryTable_ContractDetailsLeasingFactor              1,66700%
+            // content_1_BankSummaryTable_ContractDetailsBillingRate                49,33 €
+            // content_1_BankSummaryTable_ContractDetailsSumOfRates                 2.959,80 €
+            return value;
+
+        }
+
+        private static KeyValuePair<string, string> ParseToStrongKeyAndBrValueList(IWebElement tdAddress)
+        {
+            var strong = tdAddress.FindElement(By.TagName("strong"));
+            var key = strong.Text;
+            var brValue = tdAddress.Text.Substring(key.Length+2); // remove key string and first CRLF
+            return new KeyValuePair<string, string>(key, brValue.Trim());
+        }
+
+        public static SummaryValue Parse(Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper SeleniumHelper, string targetPrefix= "SummaryTable")
         {
             var value = new SummaryValue();
-            var tdElementListMain = SeleniumHelper.FindElementByCssSelector("#main").FindElements(By.TagName("td"));
+
+            var main = SeleniumHelper.FindElementByCssSelector("#main");
+            var tdElementListMain = main.FindElements(By.TagName("td"));
             foreach( var tdElement in tdElementListMain)
             {
                 var idString = tdElement.GetAttribute("id"); // ex. content_1_SummaryTable_ProposalName
@@ -294,7 +378,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (idArr.Length < 2) continue;
                 var itemName = idArr[idArr.Length - 1]; // ex. ProposalName
                 var prefix = idArr[idArr.Length - 2]; // ex. SummaryTable
-                if("SummaryTable".Equals(prefix) == false) { continue; }
+                if(targetPrefix.Equals(prefix) == false) { continue; }
                 var dictKey = string.Format("{0}.{1}", prefix, itemName);// key ex. SummaryTable.ProposalName
                 value.Add(dictKey, tdElement.Text);
             }
@@ -315,6 +399,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     value.Add(dictKey, tdElement.Text);
                 }
             }
+
+            try
+            {
+                var dateElement = main.FindElement(By.Id("content_1_InputEnvisagedStartDate_Input"));
+                value.Add("InputEnvisagedStartDate", dateElement.GetAttribute("value"));
+            }
+            catch (NoSuchElementException )
+            {
+                // ignored
+            }
+
             return value;
         }
 

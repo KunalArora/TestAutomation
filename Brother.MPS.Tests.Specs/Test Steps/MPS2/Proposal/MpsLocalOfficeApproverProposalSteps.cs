@@ -118,7 +118,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 _mpsLocalOfficeApproverProposalStepActions.PopulateSpecialPricingClickPrice(localOfficeApproverApprovalSpecialPricingPage, specialPriceList);
             }
             _contextData.SpecialPriceList = specialPriceList;
-            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverProposalStepActions.ClidkOnValidateAndApplySpecialPricing(localOfficeApproverApprovalSpecialPricingPage);
+            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverProposalStepActions.ClickOnValidateAndApplySpecialPricing(localOfficeApproverApprovalSpecialPricingPage);
+            _mpsLocalOfficeApproverProposalStepActions.AssertSpecialPriceInTheAudit(specialPriceList, _localOfficeApproverReportsProposalSummaryPage);
         }
 
         [When(@"a Cloud MPS Local Office Approver approves the above proposal")]

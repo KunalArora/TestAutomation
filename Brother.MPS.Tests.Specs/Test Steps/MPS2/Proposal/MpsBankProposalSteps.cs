@@ -56,6 +56,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Proposal
             var bankDashBoardPage = _mpsSignInStepActions.SignInAsBank(_userResolver.BankUsername, _userResolver.BankPassword,string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var bankProposalsAwaitingApprovalPage = _mpsBankProposalStepActions.NavigateToProposalsAwaitingApprovalPage(bankDashBoardPage);
             var bankProposalsSummaryPage = _mpsBankProposalStepActions.ClickViewSummary(bankProposalsAwaitingApprovalPage);
+            _mpsBankProposalStepActions.AssertAreEqualBankSummary(bankProposalsSummaryPage);
             _bankProposalsApprovedPage = _mpsBankProposalStepActions.ClickOnAccept(bankProposalsSummaryPage);
         }
 

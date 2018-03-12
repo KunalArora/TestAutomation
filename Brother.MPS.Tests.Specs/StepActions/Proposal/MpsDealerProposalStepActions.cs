@@ -387,7 +387,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
             _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
 
-
+            _contextData.SnapCustomerInformationPageValues = CustomerInformationPageValue.Parse(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -635,6 +635,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
+            _contextData.SnapDealerProposalsConvertSummaryValues = SummaryValue.Parse(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }

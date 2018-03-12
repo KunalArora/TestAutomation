@@ -7,7 +7,10 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -42,6 +45,31 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = ContextData.ProposalId;
             bankProposalsAwaitingApprovalPage.ClickOnViewSummary(proposalId, _webDriver);
             return PageService.GetPageObject<BankProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+        public void AssertAreEqualBankSummary(BankProposalsSummaryPage bankProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(bankProposalsSummaryPage);
+            var expectedCustomer = ContextData.SnapCustomerInformationPageValues;
+            var expectedSummary = ContextData.SnapDealerProposalsConvertSummaryValues;
+            var actual = SummaryValue.Parse(bankProposalsSummaryPage);
+
+            //Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], "???"); //TODO OIKE ASK noch nicht gesetzt => not yet set
+            var ci = new CultureInfo(ContextData.Culture);
+            Assert.AreEqual(ContextData.ContractTerm, actual["BankSummaryTable.ContractDetailsDuration"]);
+            Assert.AreEqual(DateTime.Parse(expectedSummary["InputEnvisagedStartDate"]), DateTime.Parse(actual["BankSummaryTable.ContractDetailsStartDate"],ci)); // 11.04.2018
+            Assert.AreEqual(ContextData.LeasingBillingCycle, actual["BankSummaryTable.ContractDetailsBillingFrequencyLeasing"]);
+            Assert.AreEqual(ContextData.BillingType, actual["BankSummaryTable.ContractDetailsBillingFrequencyClick"]);
+            Assert.AreEqual(expectedSummary["SummaryTable.DeviceTotalsTotalPriceNet"], actual["BankSummaryTable.ContractDetailsContractValue"]);// 2.959,66 € content_1_SummaryTable_DeviceTotalsTotalPriceNet
+
+            var adrArr = actual["CustomerDetailsAddress"].Replace("\r", "").Split('\n');
+            Assert.AreEqual(expectedCustomer["InputCustomerName"], adrArr[0], "CustomerDetailsAddress.0");
+            Assert.AreEqual(expectedCustomer["CustomerLocation.InputStreet"]+" "+ expectedCustomer["CustomerLocation.InputNumber"], adrArr[1], "CustomerDetailsAddress.1");
+            Assert.AreEqual(expectedCustomer["CustomerLocation.InputPostCode"] + " " + expectedCustomer["CustomerLocation.InputTown"], adrArr[2], "CustomerDetailsAddress.2");
+            Assert.AreEqual(expectedCustomer["InputBankName"], actual["CustomerDetailsBankName"], "CustomerDetailsBankName");
+            Assert.AreEqual(expectedCustomer["InputBankSortCode"], actual["CustomerDetailsBankCode"], "CustomerDetailsBankCode");
+            Assert.AreEqual(expectedCustomer["InputBankAccountNumber"], actual["CustomerDetailsBankNumber"], "CustomerDetailsBankNumber");
+            Assert.AreEqual(expectedCustomer["InputBankIban"], actual["CustomerDetailsIBAN"], "CustomerDetailsIBAN");
+            Assert.AreEqual(expectedCustomer["InputBankBic"], actual["CustomerDetailsBIC"], "CustomerDetailsBIC");
         }
 
         public BankProposalsApprovedPage ClickOnAccept(BankProposalsSummaryPage bankProposalsSummaryPage)

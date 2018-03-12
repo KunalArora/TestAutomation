@@ -51,6 +51,9 @@ namespace Brother.Tests.Common.ContextData
 
         Dictionary<string, string> SnapClickPricePageValues { get; set; }
         Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
+        Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
+        Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
+
 
         // Exclusively Type 3
         string AgreementType { get; set; }

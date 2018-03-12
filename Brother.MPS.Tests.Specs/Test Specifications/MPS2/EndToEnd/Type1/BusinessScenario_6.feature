@@ -36,6 +36,7 @@ And I save the above proposal and submit it for approval
 #---------------
 # loa ではなくてbank実装が必要
 #And a Cloud MPS Local Office Approver approves the above proposal
+# includes step17
 And a Cloud MPS Bank release the above proposal
 #---------------
 # dealer2

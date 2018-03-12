@@ -79,6 +79,8 @@ namespace Brother.Tests.Common.ContextData
 
         public Dictionary<string, string> SnapClickPricePageValues { get; set; }
         public Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
+        public Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
+        public Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
 
 
         // Exclusively Type 3
@@ -90,7 +92,6 @@ namespace Brother.Tests.Common.ContextData
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         public int DeviceCount { get; set; }
         public string DealerName { get; set; }
-        public string DealerSAPAccountNumber { get; set; }
-
+        public string DealerSAPAccountNumber { get; set; } 
     }
 }

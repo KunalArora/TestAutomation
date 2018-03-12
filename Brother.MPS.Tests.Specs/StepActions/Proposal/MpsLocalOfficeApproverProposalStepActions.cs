@@ -11,8 +11,13 @@ using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Proposal
@@ -85,7 +90,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverReportsDataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverReportsProposalSummaryPage ClidkOnValidateAndApplySpecialPricing(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage)
+        public LocalOfficeApproverReportsProposalSummaryPage ClickOnValidateAndApplySpecialPricing(LocalOfficeApproverApprovalSpecialPricingPage localOfficeApproverApprovalSpecialPricingPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalSpecialPricingPage);
             localOfficeApproverApprovalSpecialPricingPage.SeleniumHelper.WaitUntil(d => {
@@ -139,6 +144,82 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 localOfficeApproverApprovalSpecialPricingPage.EnterSpecialPriceClick(specialPrice);
             }
             
+        }
+
+        public void AssertSpecialPriceInTheAudit(IEnumerable<SpecialPricingProperties> expectedSpecialPriceList, LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(expectedSpecialPriceList, localOfficeApproverReportsProposalSummaryPage);
+            IList<string> logList = localOfficeApproverReportsProposalSummaryPage.GetAuditLogDetailsList();
+            //Model: DCP-8110DN Service - Unit Cost: 120,00 € / Margin: 50,00% / Unit Price: 240,00 €" }
+            //Model: DCP-8250DN Click Price - Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
+            //Model: DCP-L8450CDW Click Price - Colour: Coverage: 40,00% / Volume: 300 / Margin: 50,00% / Click Price: 0,10700 € Mono: Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
+            var regexModelService = new Regex("^Model: \\S+ Service$");
+            var regexModelClickPrice = new Regex("^Model: \\S+ Click Price$");
+            var ci = new CultureInfo(ContextData.Culture);
+            foreach (var logItem in logList)
+            {
+                var logItemArr = logItem.Split(new string[] { " - " }, StringSplitOptions.None);
+                var logCmd = logItemArr[0].Trim();
+                if (regexModelService.IsMatch(logCmd))
+                {
+                    var model = logCmd.Split(' ')[1].Trim(); // ex. DCP-8110DN
+                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(model, sp.Model));
+                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", model);
+                    var actualValue = logItemArr[1].Trim();
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost) 
+                        || actualValue.Contains("Unit Cost: "+specialPrice.ServiceUnitCost), 
+                        "Service/Unit Cost model="+model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceMargin) 
+                        || actualValue.Contains("Margin: "+specialPrice.ServiceMargin), 
+                        "Service/Margin model="+model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitPrice) 
+                        || actualValue.Contains("Unit Price: "+specialPrice.ServiceMargin), 
+                        "Service/Unit Price model="+model);
+
+                }
+                if (regexModelClickPrice.IsMatch(logCmd))
+                {
+                    var model = logCmd.Split(' ')[1].Trim(); // ex. DCP-8110DN
+                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(model, sp.Model));
+                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", model);
+                    var actualValue = logItemArr[1].Trim();
+                    var indexOfMono = actualValue.IndexOf("Mono:");
+                    var indexOfColour = actualValue.IndexOf("Colour:");
+                    var actualColorLog = (indexOfColour >= 0) ? actualValue.Substring(0, indexOfMono) : "";
+                    var actualMonoLog = (indexOfColour >= 0) ? actualValue.Substring(indexOfMono) : actualValue;
+
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickCoverage)
+                        || actualMonoLog.Contains("Coverage: "+specialPrice.MonoClickCoverage),
+                        "Click Price/Coverage(Mono) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickVolume)
+                        || actualMonoLog.Contains("Volume: "+specialPrice.MonoClickVolume),
+                        "Click Price/Volume(Mono) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickMargin)
+                        || actualMonoLog.Contains("Margin: "+specialPrice.MonoClickMargin),
+                        "Click Price/Margin(Mono) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
+                        || actualMonoLog.Contains("Click Price: "+specialPrice.MonoClick),
+                        "Click Price/Click Price(Mono) model=" + model);
+
+                    if (string.IsNullOrWhiteSpace(actualColorLog)) { continue; }
+
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickCoverage)
+                        || actualColorLog.Contains("Coverage: " + specialPrice.ColourClickCoverage),
+                        "Click Price/Coverage(Colour) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickVolume)
+                        || actualColorLog.Contains("Volume: " + specialPrice.ColourClickVolume),
+                        "Click Price/Volume(Colour) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickMargin)
+                        || actualColorLog.Contains("Margin: " + specialPrice.ColourClickMargin),
+                        "Click Price/Margin(Colour) model=" + model);
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
+                        || actualColorLog.Contains("Click Price: " + specialPrice.ColourClick),
+                        "Click Price/Click Price(Colour) model=" + model);
+
+                }
+                //Model: DCP-L8450CDW Click Price - Colour: Coverage: 40,00% / Volume: 300 / Margin: 50,00% / Click Price: 0,10700 € Mono: Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
+
+            }
         }
 
         public LocalOfficeApproverApprovalSpecialPricingPage ClickOnSpecialPricing(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
