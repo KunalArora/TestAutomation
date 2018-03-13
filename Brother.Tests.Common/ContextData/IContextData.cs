@@ -49,10 +49,11 @@ namespace Brother.Tests.Common.ContextData
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         IList<string> RegisteredDeviceIds { get; set; }
 
-        Dictionary<string, string> SnapClickPricePageValues { get; set; }
-        Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
-        Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
-        Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
+        SnapDictionary SnapValues { get;  }
+        //Dictionary<string, string> SnapClickPricePageValues { get; set; }
+        //Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
+        //Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
+        //Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
 
 
         // Exclusively Type 3

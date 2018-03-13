@@ -40,8 +40,9 @@ namespace Brother.Tests.Common.ContextData
             WindowHandles = new Dictionary<UserType, string>();
             CustomerPassword = "password";
             RegisteredDeviceIds = new List<string>();
-            SnapClickPricePageValues = new Dictionary<string,string>();
-            SnapCreateProductsPageValues = new Dictionary<string, string>();
+            //SnapClickPricePageValues = new Dictionary<string,string>();
+            //SnapCreateProductsPageValues = new Dictionary<string, string>();
+            SnapValues = new SnapDictionary();
         }
 
         public void SetBusinessType(string businessTypeId)
@@ -77,10 +78,11 @@ namespace Brother.Tests.Common.ContextData
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
 
-        public Dictionary<string, string> SnapClickPricePageValues { get; set; }
-        public Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
-        public Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
-        public Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
+        //public Dictionary<string, string> SnapClickPricePageValues { get; set; }
+        //public Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
+        //public Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
+        //public Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
+        public SnapDictionary SnapValues { get; private set; }
 
 
         // Exclusively Type 3
@@ -92,6 +94,21 @@ namespace Brother.Tests.Common.ContextData
         public List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         public int DeviceCount { get; set; }
         public string DealerName { get; set; }
-        public string DealerSAPAccountNumber { get; set; } 
+        public string DealerSAPAccountNumber { get; set; }
+
+    }
+
+    public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
+    {
+        public Dictionary<string, string> this[Type key] {
+            get {
+                if(base.ContainsKey(key.FullName) == false)
+                {
+                    base.Add(key.FullName, new Dictionary<string, string>() );
+                }
+                return  base[key.FullName]  ;
+            }
+            set { base[key.FullName] = value; }
+        }
     }
 }
