@@ -13,11 +13,11 @@ And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Bil
 And I add these printers:
 		| Model        | Price  | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
 		| DCP-8110DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-#		| HL-5450DN    | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-#		| DCP-L8450CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-#		| MFC-L8650CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-#		| DCP-8250DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 250          | A3P145604    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-#		| DCP-L2520DW  | 300.00 |                           | Yes      | 5            | 1000       | 0              | 200          | A3P145605    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| HL-5450DN    | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L8450CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| MFC-L8650CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-8250DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 250          | A3P145604    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L2520DW  | 300.00 |                           | Yes      | 5            | 1000       | 0              | 200          | A3P145605    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 #And a Cloud MPS Local Office Approver approves the above proposal
@@ -35,24 +35,13 @@ And a Brother installer has navigated to the Web Installation page and verify Co
 And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
-
 And I update the print count and verify it on the Manage devices page
 #step39,40
 And a Cloud MPS Bank Cloud MPS Bank Summary Accept 
 #step40-42
 And a Cloud MPS Bank Populated Maintain Contact
-#step43
+#step43,44
 And a Cloud MPS Bank Checking the billing to ensure details are correctly populated
-
-##And a Cloud MPS Local Office Approver apply and verify the Overusage
-
-
-##And I update the print count, raise consumable order and service request for above devices
-##And I will be able to see on the Manage Devices page that above devices have updated Print Counts
-#Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
-#Given a Cloud MPS Local Office Admin navigates to the contract end screen 
-#When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
-#Then a Local Office Admin assert the final bill is generated/present
 
 
 @BUK
