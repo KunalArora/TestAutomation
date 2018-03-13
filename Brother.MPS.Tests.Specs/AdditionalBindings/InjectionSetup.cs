@@ -142,7 +142,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout"),
                     defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
-                    defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout")
+                    defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout")
             );
 
