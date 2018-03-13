@@ -18,8 +18,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
     public class MpsBankProposalStepActions : StepActionBase
     {
         private readonly IWebDriver _webDriver;
+        private readonly IContractShiftService _contractShiftService;
 
         public MpsBankProposalStepActions(
+            IContractShiftService contractShiftService,
             IWebDriverFactory webDriverFactory, 
             IContextData contextData, 
             IPageService pageService, 
@@ -30,6 +32,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             : base(webDriverFactory, contextData, pageService, scenarioContext, urlResolver, loggingService, runtimeSettings)
         {
             _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
+            _contractShiftService = contractShiftService;
 
         }
 
@@ -53,7 +56,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var expectedSummary = ContextData.SnapDealerProposalsConvertSummaryValues;
             var actual = SummaryValue.Parse(bankProposalsSummaryPage);
 
-            //Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], "???"); //TODO OIKE ASK noch nicht gesetzt => not yet set
+            //Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], "???"); //TODO MPS-4773 ASK noch nicht gesetzt => not yet set
             var ci = new CultureInfo(ContextData.Culture);
             Assert.AreEqual(ContextData.ContractTerm, actual["BankSummaryTable.ContractDetailsDuration"]);
             Assert.AreEqual(DateTime.Parse(expectedSummary["InputEnvisagedStartDate"]), DateTime.Parse(actual["BankSummaryTable.ContractDetailsStartDate"],ci)); // 11.04.2018
@@ -77,7 +80,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(bankProposalsSummaryPage);
             ClickSafety(bankProposalsSummaryPage.ApproveButtonElement, bankProposalsSummaryPage);
             bankProposalsSummaryPage.EnterApprovalInformation(); // de:Freigabeinformationen
-            ClickSafety(bankProposalsSummaryPage.AcceptButtonElement, bankProposalsSummaryPage,true);
+            ClickSafety(bankProposalsSummaryPage.AcceptButtonElement, bankProposalsSummaryPage, true);
             return PageService.GetPageObject<BankProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
 
         }

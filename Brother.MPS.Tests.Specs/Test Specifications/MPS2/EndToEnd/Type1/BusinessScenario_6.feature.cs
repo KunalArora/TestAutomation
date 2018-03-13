@@ -74,20 +74,20 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 6")]
-        [NUnit.Framework.TestCaseAttribute("Germany", "LEASING_AND_SERVICE", "PAY_AS_YOU_GO", "HALF_YEARLY", "ADD_TO_THE_LEASING_RATE", "FIVE_YEARS", "New", "Cloud", "Web", "MONTHLY", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Germany", "LEASING_AND_SERVICE", "PAY_AS_YOU_GO", "HALF_YEARLY_IN_ARREARS", "ADD_TO_THE_LEASING_RATE", "FIVE_YEARS", "New", "Cloud", "Web", "MONTHLY", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void BusinessScenario6(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string leasingBillingCycle, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 6", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
-#line 11
+#line 8
 testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 9
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 10
 testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
+#line 12
 testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of \"{2}\", Serv" +
                         "ice Pack type of \"{3}\" and Leasing Billing Cycle of \"{4}\"", usageType, contractTerm, billingType, servicePackType, leasingBillingCycle), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -135,128 +135,18 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "false"});
-            table1.AddRow(new string[] {
-                        "HL-5450DN",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "0",
-                        "A3P145601",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "DCP-L8450CDW",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "20",
-                        "250",
-                        "A3P145602",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "MFC-L8650CDW",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "20",
-                        "200",
-                        "A3P145603",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "DCP-8250DN",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "250",
-                        "A3P145604",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "DCP-L2520DW",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "200",
-                        "A3P145605",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-#line 21
+#line 13
 testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
-#line 30
+#line 21
 testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 32
+#line 22
 testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 24
 testRunner.And("a Cloud MPS Bank release the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 25
 testRunner.And("I have navigated to the Approved Proposals page and navigate to the proposal Summ" +
                     "ary page for this proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 26
 testRunner.And("I click the download proposal button and verify if I am able to open the PDF", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -299,35 +189,37 @@ testRunner.And("I click the download proposal button and verify if I am able to 
                         "300",
                         "50.00",
                         "0.10700"});
-#line 46
+#line 27
 testRunner.And("a Cloud MPS Local Office Approver Set a Special Pricing:", ((string)(null)), table2, "And ");
-#line 50
+#line 30
 testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 54
+#line 31
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 56
+#line 32
 testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 60
+#line 33
 testRunner.And("I will be able to see the installation request created above on the Manage Device" +
                     "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 34
 testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
                     "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
+#line 35
 testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
+#line 36
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
+#line 37
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 65
-testRunner.And("I update the print count, raise consumable order and service request for above de" +
-                    "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
-testRunner.And("I will be able to see on the Manage Devices page that above devices have updated " +
-                    "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+testRunner.And("a Cloud MPS Bank Cloud MPS Bank Summary Accept", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+testRunner.And("a Cloud MPS Bank Populated Maintain Contact", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+testRunner.And("a Cloud MPS Bank Checking the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

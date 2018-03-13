@@ -181,7 +181,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             string contract_term = _translationService.GetContractTermText(contractTerm, _contextData.Culture);
             string billing_type = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
             string service_pack = _translationService.GetServicePackTypeText(servicePackType, _contextData.Culture);
-            string leasing_billing_cycle = _translationService.GetLeasingBillingCycle(leasingBillingCycle, _contextData.Culture); // TODO OIKE 変換せよ、保存せよ  or  Vierteljährlich
+            string leasing_billing_cycle = _translationService.GetLeasingBillingCycle(leasingBillingCycle, _contextData.Culture);
             _contextData.UsageType = usage_type;
             _contextData.ContractTerm = contract_term;
             _contextData.BillingType = billing_type;
@@ -323,7 +323,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 }
                 else if(_contextData.BillingType == resourceBillingTypeLeasingAndService)
                 {
-                    // TODO OIKE ASK S6で PDF 検証するかどうか
+                    // TODO MPS-4773 ASK S6 PDF Validate
                 }
             }
             finally

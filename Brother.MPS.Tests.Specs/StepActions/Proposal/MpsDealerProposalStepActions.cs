@@ -318,7 +318,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     expectedClickPrice[model + ".ClickPriceMono"].CollectDigitOnly(), 
                     actual[model + ".MonoClickRate"].CollectDigitOnly(), 
                     assertMessageModel+ "MonoClickRate");
-                if( string.IsNullOrWhiteSpace(prop.ColourClickPrice) == false)
+                if(expectedClickPrice.ContainsKey(model + ".ClickPriceColour") 
+                    && string.IsNullOrWhiteSpace(expectedClickPrice[model + ".ClickPriceColour"]) == false)
                 {
                     Assert.AreEqual(
                         expectedClickPrice[model + ".ClickPriceColour"].CollectDigitOnly(), 

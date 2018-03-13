@@ -161,18 +161,21 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             int contractShiftTimeOffsetValue;
             var billingType = _contextData.BillingType;
+            var resourceBillingTypeHalfYearlyInArrears = _translationService.GetBillingTypeText(TranslationKeys.BillingType.HalfYearlyInArrears, _contextData.Culture);
+            var resourceBillingTypeQuarterlyInArrears = _translationService.GetBillingTypeText(TranslationKeys.BillingType.QuarterlyInArrears, _contextData.Culture);
 
             // TODO: Create a function in the IContractShiftService class to do this process
-            switch (billingType)
+            if( billingType == resourceBillingTypeHalfYearlyInArrears )
             {
-                case "Half Yearly in Arrears":
-                    contractShiftTimeOffsetValue = 6;
-                    break;
-                case "Quarterly in Arrears":
-                    contractShiftTimeOffsetValue = 3;
-                    break;
-                default:
-                    throw new NotImplementedException();
+                contractShiftTimeOffsetValue = 6;
+            }
+            else if( billingType  == resourceBillingTypeQuarterlyInArrears)
+            {
+                contractShiftTimeOffsetValue = 3;
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
