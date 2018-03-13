@@ -122,7 +122,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				}
 			}
 
-            return SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
+			return SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
 		}
 
 		public InstallationCloudWebPage BulkInstallDevicesForCloudWeb()
@@ -164,11 +164,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			}
 
 			// 5. Hit Refresh until all devices are connected
-            installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
-            
-            return installationCloudWebPage;
+			installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+			
+			return installationCloudWebPage;
 		}
-        
+		
 		public void SingleDeviceInstallationForCloudUsb(AdditionalDeviceProperties device)
 		{
 			LoggingService.WriteLogOnMethodEntry(device);
@@ -291,10 +291,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			{
 				if(device.ResetDevice.ToLower().Equals("yes"))
 				{
-                    installationCloudWebPage.ClickReset(device.MpsDeviceId);
-                    _installerWebDriver.Navigate().Refresh();
-                    installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-                    installationCloudWebPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+					installationCloudWebPage.ClickReset(device.MpsDeviceId);
+					_installerWebDriver.Navigate().Refresh();
+					installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+					installationCloudWebPage.VerifyNotConnectedStatus(device.MpsDeviceId);
 
 					// Register device
 					RegisterDeviceOnBOC(device.Model, device.RegistrationPin, device.DeviceIndex, out bocDeviceId, out serialNumber);
@@ -308,51 +308,51 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				}
 			}
 
-            // Check if all devices are connected
-            RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+			// Check if all devices are connected
+			RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
 		}
 
-        public void ResetAndReinstallDevices(InstallationCloudToolPage installationCloudToolPage)
-        {
-            LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
+		public void ResetAndReinstallDevices(InstallationCloudToolPage installationCloudToolPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
 
-            string bocDeviceId, serialNumber;
+			string bocDeviceId, serialNumber;
 
-            string pin = installationCloudToolPage.GetPin();
+			string pin = installationCloudToolPage.GetPin();
 
-            // Reset & Verify status
-            foreach (var device in _contextData.AdditionalDeviceProperties)
-            {
-                if (device.ResetDevice.ToLower().Equals("yes"))
-                {
-                    installationCloudToolPage.ClickReset(device.MpsDeviceId);
+			// Reset & Verify status
+			foreach (var device in _contextData.AdditionalDeviceProperties)
+			{
+				if (device.ResetDevice.ToLower().Equals("yes"))
+				{
+					installationCloudToolPage.ClickReset(device.MpsDeviceId);
 
-                    _installerWebDriver.Navigate().Refresh();
-                    installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-                    installationCloudToolPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+					_installerWebDriver.Navigate().Refresh();
+					installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+					installationCloudToolPage.VerifyNotConnectedStatus(device.MpsDeviceId);
 
-                    device.IsRegisteredOnBoc = false;
-                }
-            }
+					device.IsRegisteredOnBoc = false;
+				}
+			}
 
-            // Register devices on BOC
-            foreach(var device in _contextData.AdditionalDeviceProperties)
-            {
-                if(!device.IsRegisteredOnBoc)
-                {
-                    // Register device
-                    RegisterDeviceOnBOC(device.Model, pin, device.DeviceIndex, out bocDeviceId, out serialNumber);
+			// Register devices on BOC
+			foreach(var device in _contextData.AdditionalDeviceProperties)
+			{
+				if(!device.IsRegisteredOnBoc)
+				{
+					// Register device
+					RegisterDeviceOnBOC(device.Model, pin, device.DeviceIndex, out bocDeviceId, out serialNumber);
 
-                    // Save details to context data
-                    device.BocDeviceId = bocDeviceId;
-                    device.SerialNumber = serialNumber;
+					// Save details to context data
+					device.BocDeviceId = bocDeviceId;
+					device.SerialNumber = serialNumber;
 
-                    installationCloudToolPage.FillDeviceDetails(device);
-                }
-            }
+					installationCloudToolPage.FillDeviceDetails(device);
+				}
+			}
 
-            SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
-        }
+			SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
+		}
 
 		#region private methods
 
@@ -434,12 +434,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				retries++;
 				if (retries > RuntimeSettings.DefaultRetryCount)
 				{
-                    TestCheck.AssertFailTest(
-                        "Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
 				}
 			}
 
-            return installationCloudToolPage;
+			return installationCloudToolPage;
 		}
 
 		private void RefreshUntilConnectedForCloudUsb(InstallationCloudUsbPage installationCloudUsbPage)
@@ -455,56 +455,56 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				retries++;
 				if (retries > RuntimeSettings.DefaultRetryCount)
 				{
-                    TestCheck.AssertFailTest(
-                        "Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
 				}
 			}
 		}
 
-        private InstallationCloudWebPage RefreshUntilConnectedForCloudWeb(InstallationCloudWebPage installationCloudWebPage)
-        {
-            LoggingService.WriteLogOnMethodEntry(installationCloudWebPage);
-            int retries = 0;
-            while (!installationCloudWebPage.AreAllDevicesConnected())
-            {
-                ClickSafety(installationCloudWebPage.RefreshButtonElement, installationCloudWebPage);
-                installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
-                RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-                retries++;
-                if (retries > RuntimeSettings.DefaultRetryCount)
-                {
-                    TestCheck.AssertFailTest(
-                        "Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
-                }
-            }
-            return installationCloudWebPage;
-        }
+		private InstallationCloudWebPage RefreshUntilConnectedForCloudWeb(InstallationCloudWebPage installationCloudWebPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudWebPage);
+			int retries = 0;
+			while (!installationCloudWebPage.AreAllDevicesConnected())
+			{
+				ClickSafety(installationCloudWebPage.RefreshButtonElement, installationCloudWebPage);
+				installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
+				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+				retries++;
+				if (retries > RuntimeSettings.DefaultRetryCount)
+				{
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+				}
+			}
+			return installationCloudWebPage;
+		}
 
-        private InstallationCloudToolPage SelectSerialNumberAndRefreshForCloudTool(InstallationCloudToolPage installationCloudToolPage)
-        {
-            LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
+		private InstallationCloudToolPage SelectSerialNumberAndRefreshForCloudTool(InstallationCloudToolPage installationCloudToolPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
 
-            // Refresh until all devices serial numbers are detected
-            int retries = 0;
-            while (!installationCloudToolPage.IsSerialNumberForAllDevicesDetected())
-            {
-                ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
-                installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-                RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-                retries++;
-                if (retries > RuntimeSettings.DefaultRetryCount)
-                {
-                    TestCheck.AssertFailTest(
-                        "Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
-                }
-            }
+			// Refresh until all devices serial numbers are detected
+			int retries = 0;
+			while (!installationCloudToolPage.IsSerialNumberForAllDevicesDetected())
+			{
+				ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
+				installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+				retries++;
+				if (retries > RuntimeSettings.DefaultRetryCount)
+				{
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+				}
+			}
 
-            // Select serial numbers of devices wherever possible
-            installationCloudToolPage = SelectSerialNumbersHelper(installationCloudToolPage);
+			// Select serial numbers of devices wherever possible
+			installationCloudToolPage = SelectSerialNumbersHelper(installationCloudToolPage);
 
-            // Refresh until all devices are connected
-            return RefreshUntilConnectedForCloudBor(installationCloudToolPage);
-        }
+			// Refresh until all devices are connected
+			return RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+		}
 		
 		private void ClickSafety(IWebElement element, IPageObject pageObject)
 		{
@@ -513,5 +513,5 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		}
 
 		#endregion
-    }
+	}
 }

@@ -155,6 +155,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// </summary>
         /// <param name="radioButtonElement"></param>
         void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout = -1);
+
         /// <summary>
         /// filter proposal/contract helper
         /// </summary>
@@ -163,6 +164,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="rowElementListForExistCheck">check until list count==1</param>
         /// <param name="timeout">in sec. -1 is default from RuntimeSettings.DefaultXXXTimeout</param>
         void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null);
+     
         /// <summary>
         /// 
         /// </summary>
@@ -174,5 +176,12 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="waitSelector">Selector to wait for before the Proposals/Contracts/Aggrements List is loaded before entering the Id in filterelement. default=null </param>
         /// <returns>target element when dataAttibuteName != null othewise N/A</returns>
         IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttibuteName=null, string waitSelector=null);
+
+        /// <summary>
+        /// Returns true if element with this selector is not present, returns false if its present
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        bool IsElementNotPresent(string selector, int timeout = -1);
     }
 }

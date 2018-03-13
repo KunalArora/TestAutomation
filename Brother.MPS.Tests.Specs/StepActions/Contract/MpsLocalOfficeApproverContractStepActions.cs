@@ -319,7 +319,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             for (int i = 0; i < 2; i++)
             {
                 // Calling contract shift API and shifting by 6 months(in case of Half yearly) and 3 months(in case of Quarterly).
-                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue, "m", false, false, "Any");
+                //TODO: Shift the contract according to proper caluculations for days
+                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*30, "d", false, false, "Any");
                 foreach (var product in products)
                 {
                     int updatedMono;
@@ -345,7 +346,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 localOfficeApproverReportsProposalsSummaryPage = VerifyUpdatedPrintCounts(localOfficeApproverReportsProposalsSummaryPage);
             }
             // Finally, run the contract shift API to generate Billing Invoices upto 3 Billing Periods 
-            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue, "m", false, true, "Any");
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*30, "d", false, true, "Any");
             
             _localOfficeApproverWebDriver.Navigate().Refresh();
             localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);

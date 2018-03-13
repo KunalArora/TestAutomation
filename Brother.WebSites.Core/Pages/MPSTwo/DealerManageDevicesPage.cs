@@ -808,7 +808,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             ScrollTo(CreateRequestElement);
-            CreateRequestElement.Click();
+            SeleniumHelper.ClickSafety(CreateRequestElement, RuntimeSettings.DefaultFindElementTimeout, true);
         }
 
         public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
@@ -826,15 +826,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
-                    ActionsButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
                     var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector);
-                    ShowInstallationRequestButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ShowInstallationRequestButtonElement);
 
                     var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body");
                     var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a");
                     var url = InstallationRequestUrlElement.GetAttribute("href");
 
-                    InstallationRequestClosePopUpElement.Click();
+                    SeleniumHelper.ClickSafety(InstallationRequestClosePopUpElement); 
                     return url;
                 }
             }
@@ -854,9 +854,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (DeviceSerialNumberElement.Text.Equals(serialNumber))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
-                    ActionsButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
                     var SwapDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(element, SwapDeviceButtonSelector);
-                    SwapDeviceButtonElement.Click();
+                    SeleniumHelper.ClickSafety(SwapDeviceButtonElement);
                     break;
                 }
             }        
@@ -868,12 +868,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector);
             var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector);
-            SwapDeviceModalConfirmElement.Click();
+            SeleniumHelper.ClickSafety(SwapDeviceModalConfirmElement);
             var SwapDeviceTypesModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
             var SwapTypeRadioButtonElement = SeleniumHelper.FindElementByDataAttributeValue(SwapDeviceTypesModalElement, SwapDeviceTypesDataAttributeSelector, swapType);
-            SwapTypeRadioButtonElement.Click();
+            SeleniumHelper.ClickSafety(SwapTypeRadioButtonElement);
             var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector);
-            SwapTypeModalNextButtonElement.Click();
+            SeleniumHelper.ClickSafety(SwapTypeModalNextButtonElement);
             if (swapType.Equals(resourceSwapTypeReplaceWithDifferentModel))
             {
                 var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
@@ -882,7 +882,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 // For now, just select the first model in the dropdown list
                 SelectElementOptionsByIndex(SwapReplacementModelDropdownElement, 1);
                 var SwapReplacementModelNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelNextButtonSelector);
-                SwapReplacementModelNextButtonElement.Click();
+                SeleniumHelper.ClickSafety(SwapReplacementModelNextButtonElement);    
             }
         }
 

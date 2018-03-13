@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -34,6 +35,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string IsConnectedSelector = ".responding";
         private const string ResetButtonSelector = ".js-mps-button-reset";
         private const string NotConnectedSelector = ".glyphicon-remove";
+        private const string DangerAlertSelector = ".alert-danger";
 
 
         // Web Elements
@@ -60,7 +62,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                     device.CostCentre = MpsUtil.CostCentre();
 
                     ClearAndType(element.FindElement(By.CssSelector(DeviceLocationSelector)), device.DeviceLocation);
+
+                    if(!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while typing device location into field for device {0}", device.MpsDeviceId));
+                    }
+
                     ClearAndType(element.FindElement(By.CssSelector(CostCentreSelector)), device.CostCentre);
+
+                    if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while typing cost centre into field for device {0}", device.MpsDeviceId));
+                    }
 
                     SeleniumHelper.ClickSafety(
                         SeleniumHelper.FindElementByCssSelector(
@@ -94,12 +107,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             {
                 if (element.GetAttribute("data-id").Equals(mpsDeviceId))
                 {
-                    SeleniumHelper.ClickSafety(
-                        SeleniumHelper.FindElementByCssSelector(
-                        element, ResetButtonSelector));
+                    var ResetButtonElement = SeleniumHelper.FindElementByCssSelector(element, ResetButtonSelector);
+                    SeleniumHelper.ClickSafety(ResetButtonElement);
 
                     SeleniumHelper.AcceptJavascriptAlert();
 
+                    // Check if the red alert pops up & if yes fail the test
+                    if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while resetting the device (alert popped up) {0} during installation", mpsDeviceId));
+                    }
+
+                    // Page gets refreshed few seconds after clicking reset button. We need to wait those few seconds.
+                    SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(ResetButtonElement));
                     break;
                 }
             }

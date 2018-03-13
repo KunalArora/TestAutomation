@@ -72,15 +72,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterAdditionalAuditInformation(string message = @"This is automation changes added to special pricing" )
         {
             LoggingService.WriteLogOnMethodEntry(message);
+
+            WaitForConfirmationAdditionalInformationReady();
+            ClearAndType(ConfirmationAdditionalInformation, message);
+            SeleniumHelper.WaitUntil(d => ApplySpecialPricing.GetAttribute("class").Contains("disabled") == false);           
+        }
+
+        private void WaitForConfirmationAdditionalInformationReady()
+        {
+            LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.WaitUntil(d =>
             {
                 try
                 {
-                    ClearAndType(ConfirmationAdditionalInformation, message, false);
-                    ConfirmationAdditionalInformation.SendKeys(Keys.Tab);
-                    return true;
+                    if (ConfirmationAdditionalInformation.Displayed == false) { return false; }
+                    if (ApplySpecialPricing.Displayed == false) { return false; }
+                    ConfirmationAdditionalInformation.SendKeys("a");// dummy string.
+                    return ApplySpecialPricing.GetAttribute("class").Contains("disabled") == false;
                 }
-                catch { return false; }
+                catch
+                {
+                    return false;
+                }
             });
         }
 

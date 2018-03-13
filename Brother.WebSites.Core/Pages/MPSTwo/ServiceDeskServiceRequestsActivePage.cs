@@ -116,6 +116,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public string VerifyAndCloseServiceRequest(string model, string serialNumber, string serviceRequestId, string serviceRequestType, string resourceServiceRequestStatusNew)
         {
+            LoggingService.WriteLogOnMethodEntry(model, serialNumber, serviceRequestId, serviceRequestType, resourceServiceRequestStatusNew);
+
+            bool foundDevice = false;
             string inputMessage = MpsUtil.ServiceRequestReplyMessage();
 
             ClearAndType(ServiceRequestFilterElement, string.Format(model + " " + serialNumber));
@@ -153,8 +156,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                     SeleniumHelper.ClickSafety(CloseServiceRequestElement);
                     SeleniumHelper.AcceptJavascriptAlert();
+
+                    foundDevice = true;
                     break;
                 }
+            }
+
+            if (!foundDevice)
+            {
+                TestCheck.AssertFailTest("Could not find the device row for device with serial number: " + serialNumber + ". Row elements position might have changed.");
             }
 
             return inputMessage;
