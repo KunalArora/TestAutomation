@@ -69,35 +69,31 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Proposal
         [When(@"a Cloud MPS Bank Cloud MPS Bank Summary Accept")]
         public void WhenACloudMPSBankCloudMPSBankSummaryAccept()
         {
-            // 39. Login as Bank and go to “Signature Expected” tab and search for the created agreement and click Summary option 
-            // 40. On the summary page Click “Accept” button  and then again click “accept “ Button
+            // Login as Bank and go to “Signature Expected” tab and search for the created agreement and click Summary option 
             var bankDashBoardPage = _mpsSignInStepActions.SignInAsBank(_userResolver.BankUsername, _userResolver.BankPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            BankContractsApprovedProposalsPage bankContractsApprovedProposalsPage = _mpsBankContractStepActions.NavigateToContractsApprovedProposalsPage(bankDashBoardPage);
-            BankContractsAwaitingAcceptancePage bankContractsAwaitingAcceptancePage = _mpsBankContractStepActions.NavigateToContractsAwaitingAcceptancePage(bankContractsApprovedProposalsPage);
-            BankContractsSummaryPage bankContractsSummaryPage = _mpsBankContractStepActions.ClickOnViewSummary(bankContractsAwaitingAcceptancePage);
+            var bankContractsApprovedProposalsPage = _mpsBankContractStepActions.NavigateToContractsApprovedProposalsPage(bankDashBoardPage);
+            var bankContractsAwaitingAcceptancePage = _mpsBankContractStepActions.NavigateToContractsAwaitingAcceptancePage(bankContractsApprovedProposalsPage);
+            // On the summary page Click “Accept” button  and then again click “accept “ Button
+            var bankContractsSummaryPage = _mpsBankContractStepActions.ClickOnViewSummary(bankContractsAwaitingAcceptancePage);
             _bankContractsAcceptedPage = _mpsBankContractStepActions.ClickOnAccept(bankContractsSummaryPage);
         }
 
         [When(@"a Cloud MPS Bank Populated Maintain Contact")]
         public void WhenACloudMPSBankPopulatedMaintainContact()
         {
-            // 41. Go to “Signed “ tab and search for the contract and Click “Action” button and select “Contract Edit” menu
-            //if(_bankContractsAcceptedPage == null) {
-            //    var bankDashBoardPage = _mpsSignInStepActions.SignInAsBank(_userResolver.BankUsername, _userResolver.BankPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            //    _bankContractsAcceptedPage = _mpsBankContractStepActions.NavigateToContractsAcceptedPage(bankDashBoardPage);
-            //}
-            // 42. On  “Maintain Contact Page”
-            BankContractsMaintenancePage bankContractsMaintenancePage = _mpsBankContractStepActions.ClickOnContractEdit(_bankContractsAcceptedPage);
-            // Step 42:  Accept the Prepopulate start date , enter reference data and click all check boxes
+            // Go to “Signed “ tab and search for the contract and Click “Action” button and select “Contract Edit” menu
+            // On  “Maintain Contact Page”
+            var bankContractsMaintenancePage = _mpsBankContractStepActions.ClickOnContractEdit(_bankContractsAcceptedPage);
+            // Accept the Prepopulate start date , enter reference data and click all check boxes
             _bankContractsAwaitingAcceptancePage = _mpsBankContractStepActions.CheckAllBoxesAndSave(bankContractsMaintenancePage);
         }
 
         [When(@"a Cloud MPS Bank Checking the billing to ensure details are correctly populated")]
         public void WhenACloudMPSBankCheckingTheBillingToEnsureDetailsAreCorrectlyPopulated()
         {
-            // 43. using Flux capacitor Move the contract back by 3 months
-            _mpsBankContractStepActions.MoveTheContract(3);
-            // Step 44:  Checking the billing to ensure details are correctly populated
+            // using Flux capacitor Move the contract back by 3 months
+            _mpsBankContractStepActions.ContractTimeShift(3);
+            // Checking the billing to ensure details are correctly populated
             _mpsBankContractStepActions.CheckTheBillingToEnsureDetailsAreCorrectlyPopulated();
             
         }

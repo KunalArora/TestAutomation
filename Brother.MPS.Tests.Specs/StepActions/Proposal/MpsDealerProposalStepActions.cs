@@ -217,7 +217,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             Assert.True(VerifyClickPriceValues(dealerProposalsCreateClickPricePage), "CalculateClickPriceAndProceed verify error");
 
-            //_contextData.SnapClickPricePageValues = ClickPricePageValue.Parse(dealerProposalsCreateClickPricePage.SeleniumHelper);
             _contextData.SnapValues[typeof(DealerProposalsCreateClickPricePage)]= ClickPricePageValue.Parse(dealerProposalsCreateClickPricePage.SeleniumHelper);
             ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
             return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -287,7 +286,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateSummaryPage);
             var assertMessage = string.Format("proposalId={0}, name={1}, ", _contextData.ProposalId, _contextData.ProposalName);
             var actual = SummaryValue.Parse(dealerProposalsCreateSummaryPage.SeleniumHelper);
-            // ProductDetails
+            // ProductDetails for example:
             // content_1_SummaryTable_ProposalName              MPS_Smoke_Hartgrove-039112914
             // content_1_SummaryTable_ContractTerm              5 Jahre
             // content_1_SummaryTable_UsageBillingFrequency     Halbjährlich
@@ -301,12 +300,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             Assert.AreEqual(actual["SummaryTable.UsageType"], _contextData.UsageType, assertMessage + "UsageType");
             Assert.AreEqual(actual["SummaryTable.LeaseRentalFrequency"], _contextData.LeasingBillingCycle, assertMessage + "LeasingBillingCycle");
 
-            // Modles
+            // Modles for example:
             // content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0  447,70 €
             // content_1_SummaryTable_RepeaterModels_MonoClickRate_0        0,01167 €
             // content_1_SummaryTable_RepeaterModels_ColourClickRate_0      0,00000 € 
-            //var expectedClickPrice = _contextData.SnapClickPricePageValues;
-            //var expectedCreateProducts = _contextData.SnapCreateProductsPageValues;
             var expectedClickPrice = _contextData.SnapValues[typeof(DealerProposalsCreateClickPricePage)];
             var expectedCreateProducts = _contextData.SnapValues[typeof(DealerProposalsCreateProductsPage)];
             
@@ -392,8 +389,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
             _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
 
-            //_contextData.SnapCustomerInformationPageValues = CustomerInformationPageValue.Parse(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
-            _contextData.SnapValues[typeof( DealerProposalsConvertCustomerInformationPage)]= CustomerInformationPageValue.Parse(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= CustomerInformationPageValue.Parse(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -641,7 +637,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
-            //_contextData.SnapDealerProposalsConvertSummaryValues = SummaryValue.Parse(dealerProposalsConvertSummaryPage.SeleniumHelper);
             _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = SummaryValue.Parse(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -815,7 +810,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 printerContainer,
                 out expectedTotalLinePrice);
 
-            //_contextData.SnapCreateProductsPageValues.Add(printerName+".TotalLinePrice" , expectedTotalLinePrice);
             _contextData.SnapValues[typeof(DealerProposalsCreateProductsPage)].Add(printerName + ".TotalLinePrice", expectedTotalLinePrice);
 
             // Validate calculations on Products page

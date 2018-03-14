@@ -1,7 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -25,14 +24,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _validationElementSelector;
             }
         }
-        // #content_1_InputSentByPost_Input
-        // #content_1_InputStartDateConfirmed_Input
-        // #content_1_InputTermsAndConditionsSigned_Input
-        // #content_1_InputPreventionOfMoneyLaunderingAct_Input
-        // #content_1_InputMachinesHandedOver_Input
-        // #content_1_InputResellerInvoicing_Input
-        // #content_1_InputBrotherInvoicing_Input
-        // #content_1_InputTakeoverReceived_Input
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputSentByPost_Input")]
         public IWebElement InputSentByPostCheckBoxElement;
@@ -57,22 +48,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnableCheckAll()
         {
             LoggingService.WriteLogOnMethodEntry();
-            CheckEnabled(InputSentByPostCheckBoxElement);
-            CheckEnabled(InputStartDateConfirmedCheckBoxElement);
-            CheckEnabled(InputTermsAndConditionsSignedCheckBoxElement);
-            CheckEnabled(InputPreventionOfMoneyLaunderingActCheckBoxElement);
-            CheckEnabled(InputMachinesHandedOverCheckBoxElement);
-            CheckEnabled(InputResellerInvoicingCheckBoxElement);
-            CheckEnabled(InputBrotherInvoicingCheckBoxElement);
-            CheckEnabled(InputTakeoverReceivedCheckBoxElement);
+            SeleniumHelper.SetCheckBox(InputSentByPostCheckBoxElement,true);
+            SeleniumHelper.SetCheckBox(InputStartDateConfirmedCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputTermsAndConditionsSignedCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputPreventionOfMoneyLaunderingActCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputMachinesHandedOverCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputResellerInvoicingCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputBrotherInvoicingCheckBoxElement, true);
+            SeleniumHelper.SetCheckBox(InputTakeoverReceivedCheckBoxElement, true);
         }
 
-        private void CheckEnabled(IWebElement element, Boolean selected=true)
-        {
-            LoggingService.WriteLogOnMethodEntry(element,selected);
-            if ( element.Selected == selected) { return; }
-            SeleniumHelper.WaitUntil(d => element.Displayed && element.Enabled);
-            element.Click();
-        }
     }
 }

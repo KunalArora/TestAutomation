@@ -1,7 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -342,8 +341,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             //
             // Contract details (de:Vertragsdetails) 
+            // custom parse unnecessary
             //
-
+            // Reference information:
             // content_1_BankSummaryTable_ContractDetailsContractNumber             noch nicht gesetzt 
             // content_1_BankSummaryTable_LabelContractDetailsDuration              5 Jahre
             // content_1_BankSummaryTable_ContractDetailsStartDate                  11.04.2018
@@ -353,6 +353,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             // content_1_BankSummaryTable_ContractDetailsLeasingFactor              1,66700%
             // content_1_BankSummaryTable_ContractDetailsBillingRate                49,33 €
             // content_1_BankSummaryTable_ContractDetailsSumOfRates                 2.959,80 €
+            //
             return value;
 
         }

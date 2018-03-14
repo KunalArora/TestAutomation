@@ -8,6 +8,7 @@ using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
@@ -58,10 +59,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<BankContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
-        public void MoveTheContract(int month)
+        public void ContractTimeShift(int backToTheMonth)
         {
-            LoggingService.WriteLogOnMethodEntry(month);
-            _contractShiftService.ContractTimeShiftCommand(ContextData.ProposalId, month * 30, "d", false, true, "Any");
+            LoggingService.WriteLogOnMethodEntry(backToTheMonth);
+            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
+            _contractShiftService.ContractTimeShiftCommand(ContextData.ProposalId, days, "d", false, true, "Any");
         }
 
         public BankContractsAwaitingAcceptancePage NavigateToContractsAwaitingAcceptancePage(BankContractsApprovedProposalsPage bankContractsApprovedProposalsPage)

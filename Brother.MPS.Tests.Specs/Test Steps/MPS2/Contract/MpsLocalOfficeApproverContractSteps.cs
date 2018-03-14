@@ -175,7 +175,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("WhenACloudMPSLocalOfficeApproverApplyAndVerifyTheOverusage() not support billingType=" + billingType);
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));

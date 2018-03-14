@@ -52,8 +52,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void AssertAreEqualBankSummary(BankProposalsSummaryPage bankProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(bankProposalsSummaryPage);
-            //var expectedCustomer = ContextData.SnapCustomerInformationPageValues;
-            //var expectedSummary = ContextData.SnapDealerProposalsConvertSummaryValues;
             var expectedCustomer = ContextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)];
             var expectedSummary = ContextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)];
             var actual = SummaryValue.Parse(bankProposalsSummaryPage);

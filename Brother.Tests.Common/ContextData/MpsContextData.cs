@@ -77,11 +77,6 @@ namespace Brother.Tests.Common.ContextData
         public string SwapType { get; set; }
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
-
-        //public Dictionary<string, string> SnapClickPricePageValues { get; set; }
-        //public Dictionary<string, string> SnapCreateProductsPageValues { get; set; }
-        //public Dictionary<string, string> SnapCustomerInformationPageValues { get; set; }
-        //public Dictionary<string, string> SnapDealerProposalsConvertSummaryValues { get; set; }
         public SnapDictionary SnapValues { get; private set; }
 
 
@@ -100,15 +95,15 @@ namespace Brother.Tests.Common.ContextData
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
     {
-        public Dictionary<string, string> this[Type key] {
+        public Dictionary<string, string> this[Type pageClazz] {
             get {
-                if(base.ContainsKey(key.FullName) == false)
+                if(base.ContainsKey(pageClazz.FullName) == false)
                 {
-                    base.Add(key.FullName, new Dictionary<string, string>() );
+                    base.Add(pageClazz.FullName, new Dictionary<string, string>() );
                 }
-                return  base[key.FullName]  ;
+                return  base[pageClazz.FullName]  ;
             }
-            set { base[key.FullName] = value; }
+            set { base[pageClazz.FullName] = value; }
         }
     }
 }

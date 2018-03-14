@@ -435,5 +435,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
             return notPresent;
         }
+
+        public void SetCheckBox(IWebElement element, bool selected)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, selected);
+            if (element.Selected == selected) { return; }
+            WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
+            element.Click();
+        }
+
     }
 }
