@@ -51,8 +51,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinishInstallationElement;
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-warning.mps-alert.js-mps-alert")]
         public IWebElement WarningAlertElement;
-        
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
+        public IWebElement EmailSendSuccessElement;
+
+
 
 
         public void IsSendCommunicationScreenDisplayed()
@@ -143,11 +145,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
-        public string EnterInstallerEmailAndProceed()
+        public string EnterInstallerEmailAndProceed(Func<string, object> assertFunc = null)
         {
             LoggingService.WriteLogOnMethodEntry();
             string emailId = EnterInstallerEmail();
             NextButtonElement.Click(); // Send Email button
+            if( assertFunc != null)
+            {
+                SeleniumHelper.WaitUntil(d=> SeleniumHelper.IsElementDisplayed(EmailSendSuccessElement));
+                assertFunc(EmailSendSuccessElement.Text);
+            }
             var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
             _nextButtonElement.Click(); // Next button
             return emailId;

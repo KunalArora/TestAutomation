@@ -62,7 +62,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             Assert.AreEqual(DateTime.Parse(expectedSummary["InputEnvisagedStartDate"]), DateTime.Parse(actual["BankSummaryTable.ContractDetailsStartDate"],ci)); // 11.04.2018
             Assert.AreEqual(ContextData.LeasingBillingCycle, actual["BankSummaryTable.ContractDetailsBillingFrequencyLeasing"]);
             Assert.AreEqual(ContextData.BillingType, actual["BankSummaryTable.ContractDetailsBillingFrequencyClick"]);
-            Assert.AreEqual(expectedSummary["SummaryTable.DeviceTotalsTotalPriceNet"], actual["BankSummaryTable.ContractDetailsContractValue"]);// 2.959,66 € content_1_SummaryTable_DeviceTotalsTotalPriceNet
+            Assert.AreEqual(expectedSummary["SummaryTable.DeviceTotalsTotalPriceNet"], actual["BankSummaryTable.ContractDetailsContractValue"]);// 2.959,66 €
+            // content_1_BankSummaryTable_ContractDetailsLeasingFactor	1,66700%
+            Assert.AreEqual(expectedSummary["SummaryTable.PaymentAmountNet"], actual["BankSummaryTable.ContractDetailsBillingRate"], "ContractDetailsBillingRate"); // 49,33 €
+            Assert.AreEqual(expectedSummary["SummaryTable.FinanceTotalNet"], actual["BankSummaryTable.ContractDetailsSumOfRates"], "ContractDetailsSumOfRates"); // 2.959,80 €
+
 
             var adrArr = actual["CustomerDetailsAddress"].Replace("\r", "").Split('\n');
             Assert.AreEqual(expectedCustomer["InputCustomerName"], adrArr[0], "CustomerDetailsAddress.0");

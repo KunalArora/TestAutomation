@@ -406,10 +406,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualOverusageValues(pdfFile, _contextData.PrintersProperties, _contextData.Culture);
         }
 
-        public void DeletePdfFIle(string pdfFile)
+        public void DeletePdfFile(string pdfFile)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
-            try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */ }
+            _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
     }
 }

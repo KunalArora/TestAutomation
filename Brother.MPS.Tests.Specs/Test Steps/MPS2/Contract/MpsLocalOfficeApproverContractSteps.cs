@@ -190,7 +190,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             }
             finally
             {
-                _mpsLocalOfficeApproverContractStepActions.DeletePdfFIle(pdfFile);
+                _mpsLocalOfficeApproverContractStepActions.DeletePdfFile(pdfFile);
             }
         }
     }

@@ -116,5 +116,10 @@
             public static string ColourText { get { return "COLOUR_TEXT"; } }
             public static string MonoText { get { return "MONO_TEXT"; } }
         }
+
+        public static class DisplayMessage
+        {
+            public static string EmailSendSuccess { get { return "EMAIL_SEND_SUCCESS"; } }
+        }
     }
 }

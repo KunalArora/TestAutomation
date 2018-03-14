@@ -97,6 +97,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
+      <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.en-gb.Designer.cs">
+      <DependentUpon>DisplayMessage.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisplayMessage.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
       <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -222,6 +237,18 @@
     <EmbeddedResource Include="Resources\AgreementType\AgreementType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

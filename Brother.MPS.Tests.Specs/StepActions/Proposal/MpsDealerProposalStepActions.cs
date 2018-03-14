@@ -414,7 +414,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void DeletePdfFileErrorIgnored(string pdfFile)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
-            try { _pdfHelper.DeletePdf(pdfFile); }catch { /* ignored */}
+            _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
 
         public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues)
