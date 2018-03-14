@@ -281,6 +281,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginAsDealer.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalDeclined.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1752,6 +1757,10 @@
     <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoginAsDealer.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProposalDeclined.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
