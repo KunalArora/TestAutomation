@@ -109,6 +109,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsumableOrderStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ContractRejectReason\ContractRejectReason.en-gb.Designer.cs">
+      <DependentUpon>ContractRejectReason.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContractRejectReason\ContractRejectReason.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractRejectReason.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ContractTerm\ContractTerm.Designer.cs">
       <DependentUpon>ContractTerm.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -213,6 +223,14 @@
     <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsumableOrderStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractRejectReason\ContractRejectReason.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractRejectReason.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractRejectReason\ContractRejectReason.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractRejectReason.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.resx">

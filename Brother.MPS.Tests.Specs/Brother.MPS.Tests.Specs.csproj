@@ -281,6 +281,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginAsDealer.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ContractRejected.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractRejected.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1757,6 +1762,10 @@
     <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoginAsDealer.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ContractRejected.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ContractRejected.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

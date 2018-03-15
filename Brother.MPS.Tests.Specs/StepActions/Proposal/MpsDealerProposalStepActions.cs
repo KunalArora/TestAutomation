@@ -619,6 +619,15 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerContractsRejectedPage NavigateToDealerContractsRejectedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            ClickSafety(dealerDashboardPage.ExistingContractLinkElement, dealerDashboardPage);
+            var dealerContractsApprovedProposalPage = PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerContractsApprovedProposalPage.RejectedTabElement, dealerContractsApprovedProposalPage);
+            return PageService.GetPageObject<DealerContractsRejectedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerContractsApprovedProposalPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsApprovedProposalPage);

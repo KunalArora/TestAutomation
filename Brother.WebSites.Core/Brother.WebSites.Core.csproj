@@ -165,6 +165,7 @@
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerAdminDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\CustomerDashBoardPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerContractsRejectedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsApprovedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsConvertClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsConvertCustomerInformationPage.cs" />

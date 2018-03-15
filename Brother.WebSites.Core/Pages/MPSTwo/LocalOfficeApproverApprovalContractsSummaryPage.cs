@@ -32,6 +32,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".js-mps-contract-summary-contract-accept")]
         public IWebElement AcceptButtonElement;
 
+        [FindsBy(How = How.Id, Using = "content_1_ButtonReject")]
+        public IWebElement RejectButtonElement;
+
+        [FindsBy(How = How.Id, Using = "content_1_ButtonOpenOfferRejectReject")]
+        public IWebElement FinalRejectButtonElement;
+
         //TODO: Refactoring
         public void OnClickAccept()
         {
@@ -39,5 +45,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(AcceptButtonElement);
             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(FinalAcceptButtonSelector), RuntimeSettings.DefaultFindElementTimeout, true); // Second accept is dynamic element, hence apply wait
         }
+
+        private const string InputRejectionReasonSelector = "#content_1_InputOpenOfferRejectReason_Input";
+
+        public void RejectContract(string contractRejectReason)
+        {
+            LoggingService.WriteLogOnMethodEntry(contractRejectReason);
+            SeleniumHelper.ClickSafety(RejectButtonElement);
+            var inputReasonElement = SeleniumHelper.FindElementByCssSelector(InputRejectionReasonSelector);
+            SeleniumHelper.SelectFromDropdownByText(inputReasonElement, contractRejectReason);
+            SeleniumHelper.ClickSafety(FinalRejectButtonElement, IsUntilUrlChanges: true);
+        }
+
     }
 }

@@ -39,7 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonReject")]
-        public IWebElement RjectButtonElement;
+        public IWebElement RejectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonAccept")]
         public IWebElement AcceptButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonOpenOfferRejectReject")]
@@ -158,13 +158,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContractReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentContractReviewedAcceptancePanel_InputApproveCreditValue_Input")]
         public IWebElement CreditValueElement;
-        
-        
 
         public void ClickRejectButton()
         {
-            ScrollTo(RjectButtonElement);
-            RjectButtonElement.Click();
+            ScrollTo(RejectButtonElement);
+            RejectButtonElement.Click();
         }
 
         public void ClickAcceptButton()
@@ -598,5 +596,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecFlow.GetContext("DealerProposalSummaryCustomerCompanyRegistrationElement"),
                 "CustomerCompanyRegistration is not correct");
         }
+
     }
 }
