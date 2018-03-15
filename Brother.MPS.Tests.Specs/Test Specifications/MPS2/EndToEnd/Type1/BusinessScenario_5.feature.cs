@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 5")]
-        [NUnit.Framework.TestCaseAttribute("Germany", "EASY_PRINT_PRO_AND_SERVICE", "MINIMUM_VOLUME", "MONTHLY", "TO_PAY_IN_ADVANCE", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Germany", "EASY_PRINT_PRO_AND_SERVICE", "MINIMUM_VOLUME", "MONTHLY", "TO_PAY_IN_ADVANCE", "THREE_YEARS", "New", "Email", "Web", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void BusinessScenario5(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {

@@ -40,6 +40,6 @@ And a Cloud MPS Bank Checking the billing to ensure details are correctly popula
 
 @BUK
 Scenarios: 
-		| Country | ContractType               | UsageType      | BillingType | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
-		| Germany | EASY_PRINT_PRO_AND_SERVICE | MINIMUM_VOLUME | MONTHLY     | TO_PAY_IN_ADVANCE | THREE_YEARS  | New      | Cloud               | Web              |
+		| Country | ContractType               | UsageType      | BillingType | ServicePackType   | ContractTerm | Customer | CommunicationMethod | InstallationType |
+		| Germany | EASY_PRINT_PRO_AND_SERVICE | MINIMUM_VOLUME | MONTHLY     | TO_PAY_IN_ADVANCE | THREE_YEARS  | New      | Email               | Web              |
 

@@ -180,24 +180,22 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public DealerSetInstallationTypePage SelectCommunicationMethodAndProceed(DealerSetCommunicationMethodPage dealerSetCommunicationMethodPage, string communicationMethod)
+        public DealerSetInstallationTypePage SelectCommunicationMethodAndProceedForCloud(DealerSetCommunicationMethodPage dealerSetCommunicationMethodPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage, communicationMethod);
-            switch(communicationMethod)
-            {
-                case "Cloud":
-                    dealerSetCommunicationMethodPage.SetCloudCommunicationMethod();
-                    break;
-                case "Email":
-                    dealerSetCommunicationMethodPage.SetEmailCommunicationMethod();
-                    break;
-                default:
-                    ScenarioContext.Current.Pending();
-                    break;
-            }
+            LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage);
+            dealerSetCommunicationMethodPage.SetCloudCommunicationMethod();
             dealerSetCommunicationMethodPage.ProceedElement.Click();
             return PageService.GetPageObject<DealerSetInstallationTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
+
+        public DealerSendInstallationEmailPage SelectCommunicationMethodAndProceedForEmail(DealerSetCommunicationMethodPage dealerSetCommunicationMethodPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage);
+            dealerSetCommunicationMethodPage.SetEmailCommunicationMethod();
+            dealerSetCommunicationMethodPage.ProceedElement.Click();
+            return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
 
         public DealerSendInstallationEmailPage SelectInstallationTypeAndProceed(DealerSetInstallationTypePage dealerSetInstallationTypePage, string installationType)
         {

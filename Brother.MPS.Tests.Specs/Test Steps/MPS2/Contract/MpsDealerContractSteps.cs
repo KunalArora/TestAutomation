@@ -94,7 +94,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             _contextData.SwapType = _translationService.GetSwapTypeText(swapType, _contextData.Culture);
             _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage);
-            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
+            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForCloud(_dealerSetCommunicationMethodPage);
             _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
         }
@@ -103,8 +103,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenICreateAInstallationRequestForCommunication(string installationType, string communicationMethod)
         {
             _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.CreateInstallationRequest(_dealerManageDevicesPage);
-            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
-            _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceed(_dealerSetInstallationTypePage, installationType);
+            switch(communicationMethod)
+            {
+                case "Cloud":
+                    _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForCloud(_dealerSetCommunicationMethodPage);
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceed(_dealerSetInstallationTypePage, installationType);
+                    break;
+                case "Email":
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForEmail(_dealerSetCommunicationMethodPage);
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmail(_dealerSendInstallationEmailPage);
         }
 
@@ -175,11 +186,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenINavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
         {
             var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
-
+            var resourceContractTypeEPP = _translationService.GetContractTypeText(TranslationKeys.ContractType.EasyPrintProAndService, _contextData.Culture);
 
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
-            if( _contextData.ContractType == resourceContractTypePurchaseAndClick)
+            if( _contextData.ContractType == resourceContractTypePurchaseAndClick || _contextData.ContractType == resourceContractTypeEPP)
             {
                 _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
             }else
