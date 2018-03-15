@@ -17,6 +17,7 @@
         string GetConsumableOrderStatusText(string name, string culture);
         string GetServiceRequestStatusText(string name, string culture);
         string GetOverusageText(string name, string culture);
+        string GetContractRejectReason(string name, string culture);
 
         // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);

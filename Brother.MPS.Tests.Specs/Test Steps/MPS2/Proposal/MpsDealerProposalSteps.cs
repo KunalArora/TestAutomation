@@ -325,5 +325,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
         }
 
+        [Then(@"I can see the above proposal in the Declined list")]
+        public void WhenICanSeeTheAboveProposalInTheDeclinedList()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(dealerDashboardPage);
+            _mpsDealerProposalStepActions.VerifyDeclinedProposalInDeclinedProposalsList(dealerProposalsDeclinedPage);
+        }
     }
 }

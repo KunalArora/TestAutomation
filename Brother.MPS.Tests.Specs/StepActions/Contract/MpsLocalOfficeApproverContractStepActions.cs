@@ -84,10 +84,19 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
+        public void RejectContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverContractsSummaryPage)
         {
-            LoggingService.WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
-            _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverContractsSummaryPage);
+            string contractRejectReasonExpired = _translationService.GetProposalDeclineReasonText(TranslationKeys.ContractRejectReason.Expired, _contextData.Culture);
+
+            localOfficeApproverContractsSummaryPage.RejectContract(contractRejectReasonExpired);
+            PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
+            localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)

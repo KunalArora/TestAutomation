@@ -76,5 +76,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry(filterString);
             SeleniumHelper.SetListFilter(InputFilterByElement, filterString, NameRowElementList);
         }
+
+        public bool VerifyDeclinedProposalInDeclinedProposalsList(int proposalId, string proposalName)
+        {
+            return VerifyProposalInProposalsList(proposalId, proposalName);
+        }
     }
 }

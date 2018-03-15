@@ -76,6 +76,11 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.OverusageText.OverusageText.ResourceManager, name, culture);
         }
 
+        public string GetContractRejectReason(string name, string culture)
+        {
+            return GetText(Resources.ContractRejectReason.ContractRejectReason.ResourceManager, name, culture);
+        }
+
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)

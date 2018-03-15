@@ -66,6 +66,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _localOfficeApproverApprovalContractsAcceptedPage = _mpsLocalOfficeApproverContractStepActions.AcceptContract(localOfficeApproverApprovalContractsSummaryPage);
         }
 
+        [When(@"a Cloud MPS Local Office Approver rejects the above proposal")]
+        public void WhenACloudMPSLocalOfficeApproverRejectsTheAboveProposal()
+        {
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverApprovalContractsAwaitingAcceptancePage = _mpsLocalOfficeApproverContractStepActions.NavigateToApprovalContractsAwaitingAcceptancePage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverApprovalContractsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ClickViewSummary(localOfficeApproverApprovalContractsAwaitingAcceptancePage);
+            _mpsLocalOfficeApproverContractStepActions.RejectContract(localOfficeApproverApprovalContractsSummaryPage);
+        }
+
         [Then(@"I navigate to Accepted Contracts page and validate its existence")]
         public void WhenINavigateToAcceptedContractsPageAndValidateItsExistence()
         {

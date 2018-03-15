@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Domain.Models;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Models;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using System;
@@ -12,15 +13,16 @@ namespace Brother.Tests.Specs.Services
     {
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
+        private readonly IContextData _contextData;
         private string _baseUrl = string.Empty;
         private string _baseUrlWithoutMps2 = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
-        private string _authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10"; //UAT only - extend to other environments
 
-        public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService)
+        public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService, IContextData contextData)
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
+            _contextData = contextData;
             _baseUrl = string.Format("{0}/sitecore/admin/integration/mps2/{{0}}", _urlResolver.CmsUrl);
             _baseUrlWithoutMps2 = string.Format("{0}/sitecore/admin/integration/{{0}}", _urlResolver.CmsUrl).Replace("https://", "http://");
 
@@ -28,7 +30,7 @@ namespace Brother.Tests.Specs.Services
 
         private WebPageResponse ExecuteWebTool(string url)
         {
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, _authToken } };
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, AuthToken() } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
@@ -98,5 +100,21 @@ namespace Brother.Tests.Specs.Services
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
 
+        private string AuthToken()
+        {
+            var authToken = string.Empty;
+
+            switch (_contextData.Environment)
+            {
+                case "DEV":
+                    authToken = @"OX6Z{mO~nQ87rE!32j6Sjo!21@+`by";
+                    break;
+                case "UAT":
+                    authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10";
+                    break;
+            }
+
+            return authToken;
+        }
     }
 }
