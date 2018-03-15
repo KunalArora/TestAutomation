@@ -149,8 +149,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void AssertSpecialPriceInTheAudit(IEnumerable<SpecialPricingProperties> expectedSpecialPriceList, LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(expectedSpecialPriceList, localOfficeApproverReportsProposalSummaryPage);
-            var regexModelService = new Regex("^Model: \\S+ Service$");
-            var regexModelClickPrice = new Regex("^Model: \\S+ Click Price$");
             // for example logItem:
             // Model: DCP-8110DN Service - Unit Cost: £120.00 / Margin: 50.00 % / Unit Price: £240.00
             // Model: DCP-8110DN Service - Unit Cost: 120,00 € / Margin: 50,00% / Unit Price: 240,00 €"
@@ -158,19 +156,30 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Model: DCP-L8450CDW Click Price - Colour: Coverage: 40,00% / Volume: 300 / Margin: 50,00% / Click Price: 0,10700 € Mono: Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
             var logList = localOfficeApproverReportsProposalSummaryPage.GetAuditLogDetailsList();
             var currencySymbol = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            var checkedServiceModelList = new List<string>();
+            var checkedClickPriceModelList = new List<string>();
             foreach (var logItem in logList)
             {
-                var logItemArr = logItem.Split(new string[] { " - " }, StringSplitOptions.None);
-                var logCmd = logItemArr[0].Trim();
-                if (regexModelService.IsMatch(logCmd))
-                {
-                    var model = logCmd.Split(' ')[1].Trim(); // ex. DCP-8110DN
-                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(model, sp.Model));
-                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", model);
-                    var actualFull = logItemArr[1].Trim();
-                    var actualValue = actualFull.Replace(currencySymbol, "").Replace("%", "");
-                    var logAppend = "model = " + model + ", actual = " + actualFull;
+                var indexOfCmdVal = logItem.IndexOf(" - ");
+                if( indexOfCmdVal <= 0) { continue; }
+                var actualModel = logItem.Split(' ').Length >=2 ? logItem.Split(' ')[1].Trim() : ""; // ex. DCP-8110DN
 
+                if(string.IsNullOrWhiteSpace(actualModel))
+                {
+                    continue;
+                }
+
+                if (logItem.Contains("Service - ")
+                    && checkedServiceModelList.Contains(actualModel) == false ) 
+                {
+                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(actualModel, sp.Model));
+                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", actualModel);
+
+                    var logValue = RemoveColourMonoLogValue( logItem.Substring(logItem.IndexOf("Service - ")).Trim());
+                    var actualValue = logValue.Replace(currencySymbol, "").Replace("%", "");
+                    var logAppend = "model = " + actualModel + ", actual = " + logValue;
+
+                    Assert.True(logValue.Contains(currencySymbol), "Service currencySymbol not found " + logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost) 
                         || actualValue.Contains("Unit Cost: "+specialPrice.ServiceUnitCost), 
                         "Service/Unit Cost "+logAppend);
@@ -180,51 +189,73 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitPrice) 
                         || actualValue.Contains("Unit Price: "+specialPrice.ServiceMargin), 
                         "Service/Unit Price "+logAppend);
+                    checkedServiceModelList.Add(actualModel);
 
                 }
-                if (regexModelClickPrice.IsMatch(logCmd))
+                if (logItem.Contains("Click Price - ") 
+                    && checkedClickPriceModelList.Contains(actualModel) == false )
                 {
-                    var model = logCmd.Split(' ')[1].Trim(); // ex. DCP-8110DN
-                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(model, sp.Model));
-                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", model);
-                    var actualFull = logItemArr[1].Trim();
-                    var actualValue = actualFull.Replace(currencySymbol, "").Replace("%", "");
+
+                    var specialPrice = expectedSpecialPriceList.FirstOrDefault(sp => Regex.IsMatch(actualModel, sp.Model));
+                    Assert.NotNull(specialPrice, "not found special price model in Garkin, find model=", actualModel);
+
+                    var logValue = logItem.Substring(indexOfCmdVal).Trim();
+                    var actualValue = logValue.Replace(currencySymbol, "").Replace("%", "");
                     var indexOfMono = actualValue.IndexOf("Mono:");
                     var indexOfColour = actualValue.IndexOf("Colour:");
-                    var actualColorLog = (indexOfColour >= 0) ? actualValue.Substring(0, indexOfMono) : "";
-                    var actualMonoLog = (indexOfColour >= 0) ? actualValue.Substring(indexOfMono) : actualValue;
-                    var logAppend = string.Format("model={0}, actual={1} ", model, actualFull);
+                    var actualColorValue = (indexOfColour >= 0) ? actualValue.Substring(0, indexOfMono) : "";
+                    var actualMonoValue = (indexOfColour >= 0) ? actualValue.Substring(indexOfMono) : actualValue;
+                    var logAppend = string.Format("model={0}, actual={1} ", actualModel, logValue);
 
+                    // symbol
+                    Assert.True(logValue.Contains(currencySymbol), "Service currencySymbol not found " + logAppend);
+                    // mono
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickCoverage)
-                        || actualMonoLog.Contains("Coverage: "+specialPrice.MonoClickCoverage),
+                        || actualMonoValue.Contains("Coverage: "+specialPrice.MonoClickCoverage),
                         "Click Price/Coverage(Mono) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickVolume)
-                        || actualMonoLog.Contains("Volume: "+specialPrice.MonoClickVolume),
+                        || actualMonoValue.Contains("Volume: "+specialPrice.MonoClickVolume),
                         "Click Price/Volume(Mono) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickMargin)
-                        || actualMonoLog.Contains("Margin: "+specialPrice.MonoClickMargin),
+                        || actualMonoValue.Contains("Margin: "+specialPrice.MonoClickMargin),
                         "Click Price/Margin(Mono) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
-                        || actualMonoLog.Contains("Click Price: "+specialPrice.MonoClick),
+                        || actualMonoValue.Contains("Click Price: "+specialPrice.MonoClick),
                         "Click Price/Click Price(Mono) "+logAppend);
 
-                    if (string.IsNullOrWhiteSpace(actualColorLog)) { continue; }
 
+                    if ( string.IsNullOrWhiteSpace(actualColorValue))
+                    {
+                        checkedClickPriceModelList.Add(actualModel);
+                        continue;
+                    }
+
+                    //colour
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickCoverage)
-                        || actualColorLog.Contains("Coverage: " + specialPrice.ColourClickCoverage),
+                        || actualColorValue.Contains("Coverage: " + specialPrice.ColourClickCoverage),
                         "Click Price/Coverage(Colour) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickVolume)
-                        || actualColorLog.Contains("Volume: " + specialPrice.ColourClickVolume),
+                        || actualColorValue.Contains("Volume: " + specialPrice.ColourClickVolume),
                         "Click Price/Volume(Colour) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickMargin)
-                        || actualColorLog.Contains("Margin: " + specialPrice.ColourClickMargin),
+                        || actualColorValue.Contains("Margin: " + specialPrice.ColourClickMargin),
                         "Click Price/Margin(Colour) "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
-                        || actualColorLog.Contains("Click Price: " + specialPrice.ColourClick),
+                        || actualColorValue.Contains("Click Price: " + specialPrice.ColourClick),
                         "Click Price/Click Price(Colour) "+logAppend);
+
+                    checkedClickPriceModelList.Add(actualModel);
 
                 }
             }
+        }
+
+        private string RemoveColourMonoLogValue(string str)
+        {
+            var indexColour = str.IndexOf("Colour: ");
+            var indexMono = str.IndexOf("Mono: ");
+            var max = Math.Max(indexColour, indexMono);
+            return max < 0 ? str : str.Substring(0, max);
         }
 
         public LocalOfficeApproverApprovalSpecialPricingPage ClickOnSpecialPricing(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)

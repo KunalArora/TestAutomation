@@ -614,7 +614,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertClickPricePage ClickNext(DealerProposalsConvertProductsPage dealerProposalsConvertProductsPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertProductsPage);
-            ClickSafety( dealerProposalsConvertProductsPage.NextButtonElement, dealerProposalsConvertProductsPage ) ;
+            ClickSafety( dealerProposalsConvertProductsPage.NextButtonElement, dealerProposalsConvertProductsPage, true ) ;
             return PageService.GetPageObject<DealerProposalsConvertClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
