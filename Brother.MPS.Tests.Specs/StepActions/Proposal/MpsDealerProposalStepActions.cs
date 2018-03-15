@@ -202,6 +202,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerProposalsCreateClickPricePage AddPrinterToProposalforEPPAndProceed(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateProductsPage);
+            var products = _contextData.PrintersProperties;
+            foreach(var product in products)
+            {
+                PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
+            }
+            ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
+            return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+        }
+
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateClickPricePage);
@@ -246,12 +259,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = dealerProposalsCreateSummaryPage.ReturnContractId();
             _contextData.ProposalId = proposalId;
             string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            string resourceContractTypeLeasingAndService = _translationService.GetContractTypeText(TranslationKeys.ContractType.LeasingAndService, _contextData.Culture);
-            if( _contextData.ContractType == resourceContractTypeLeasingAndService)
+            if(_contextData.Country.Name.Equals("Germany"))
             {
-                AssertSummaryPageForLeasingAndServiceContract(dealerProposalsCreateSummaryPage);
+                AssertSummaryPageForGermany(dealerProposalsCreateSummaryPage);
             }
-
             // Validate calculations on Summary page           
             List<String> deviceTotalsElements = new List<String>();
             deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text.CollectDigitOnly());
@@ -290,9 +301,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        private void AssertSummaryPageForLeasingAndServiceContract(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
+        private void AssertSummaryPageForGermany(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateSummaryPage);
+            string resourceContractTypeLeasingAndService = _translationService.GetContractTypeText(TranslationKeys.ContractType.LeasingAndService, _contextData.Culture);
             var assertMessage = string.Format("proposalId={0}, name={1}, ", _contextData.ProposalId, _contextData.ProposalName);
             var actual = _pageParseHelper.ParseSummaryPageValues(dealerProposalsCreateSummaryPage.SeleniumHelper);
             // ProductDetails for example:
@@ -307,8 +319,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             Assert.AreEqual(actual["SummaryTable.UsageBillingFrequency"], _contextData.BillingType, assertMessage + "UsageBillingFrequency");
             Assert.AreEqual(actual["SummaryTable.ContractType"], _contextData.ContractType, assertMessage + "ContractType");
             Assert.AreEqual(actual["SummaryTable.UsageType"], _contextData.UsageType, assertMessage + "UsageType");
-            Assert.AreEqual(actual["SummaryTable.LeaseRentalFrequency"], _contextData.LeasingBillingCycle, assertMessage + "LeasingBillingCycle");
-
+            if (_contextData.ContractType == resourceContractTypeLeasingAndService)
+            {
+                Assert.AreEqual(actual["SummaryTable.LeaseRentalFrequency"], _contextData.LeasingBillingCycle, assertMessage + "LeasingBillingCycle");
+            }
             // Modles for example:
             // content_1_SummaryTable_RepeaterModels_DeviceTotalPriceNet_0  447,70 €
             // content_1_SummaryTable_RepeaterModels_MonoClickRate_0        0,01167 €
@@ -320,10 +334,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 var model = prop.Model;
                 var assertMessageModel = assertMessage + "model={0}, ";
-                Assert.AreEqual(
-                    expectedCreateProducts[model + ".TotalLinePrice"].CollectDigitOnly(), 
-                    actual[model + ".DeviceTotalPriceNet"].CollectDigitOnly(), 
-                    assertMessageModel+ "DeviceTotalPriceNet");
+                if (_contextData.ContractType == resourceContractTypeLeasingAndService)
+                {
+                    Assert.AreEqual(
+                        expectedCreateProducts[model + ".TotalLinePrice"].CollectDigitOnly(),
+                        actual[model + ".DeviceTotalPriceNet"].CollectDigitOnly(),
+                        assertMessageModel + "DeviceTotalPriceNet");
+                }
                 Assert.AreEqual(
                     expectedClickPrice[model + ".ClickPriceMono"].CollectDigitOnly(), 
                     actual[model + ".MonoClickRate"].CollectDigitOnly(), 
@@ -845,6 +862,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Validate calculations on Products page
             _calculationService.VerifyTotalPrice(printerPrice, margin, unitPrice);
             _calculationService.VerifySum(totalPriceValues, expectedTotalLinePrice);
+
+            dealerProposalsCreateProductsPage.ClickAddProposalButton(
+                printerContainer, addProposalButton);
+        }
+
+        private void PopulatePrinterDetailsforEPP(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
+            string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateProductsPage, printerName);
+            IWebElement printerContainer;
+            var addProposalButton = dealerProposalsCreateProductsPage.PopulatePrinterDetailsforEPP(
+                printerName,
+                out printerContainer);
 
             dealerProposalsCreateProductsPage.ClickAddProposalButton(
                 printerContainer, addProposalButton);

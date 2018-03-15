@@ -226,6 +226,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage);
         }
 
+        [When(@"I add these printers for EPP:")]
+        public void WhenIAddThesePrintersForEPP(Table printers)
+        {
+            var products = printers.CreateSet<PrinterProperties>();
+            _contextData.PrintersProperties = products;
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalforEPPAndProceed(_dealerProposalsCreateProductsPage);
+        }
+
+
         [When(@"I calculate the click price for each of the above printers")]
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {

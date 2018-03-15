@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 5")]
-        [NUnit.Framework.TestCaseAttribute("Germany", "EASY_PRINT_PRO_AND_SERVICE", "MONTHLY", "TO_PAY_IN_ADVANCE", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Germany", "EASY_PRINT_PRO_AND_SERVICE", "MINIMUM_VOLUME", "MONTHLY", "TO_PAY_IN_ADVANCE", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario5(string country, string contractType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void BusinessScenario5(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 5", exampleTags);
 #line 7
@@ -88,9 +88,8 @@ testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((st
 #line 10
 testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.And(string.Format("I select Usage Type of \"<UsageType>\", Contract Term of \"{0}\", Billing Type of \"{1" +
-                        "}\", Service Pack type of \"{2}\" and Leasing Billing Cycle of \"<LeasingBillingCycl" +
-                        "e>\"", contractTerm, billingType, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of \"{2}\", Serv" +
+                        "ice Pack type of \"{3}\" and Leasing Billing Cycle of \"<LeasingBillingCycle>\"", usageType, contractTerm, billingType, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
@@ -203,7 +202,7 @@ testRunner.And(string.Format("I select Usage Type of \"<UsageType>\", Contract T
                         "Normal",
                         "false"});
 #line 13
-testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
+testRunner.And("I add these printers for EPP:", ((string)(null)), table1, "And ");
 #line 19
 testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20

@@ -7,6 +7,7 @@
             public static string LeaseAndClick { get { return "LEASE_AND_CLICK"; } }
             public static string LeasingAndService { get { return "LEASING_AND_SERVICE"; } }
             public static string PurchaseAndClick { get { return "PURCHASE_AND_CLICK"; } }
+            public static string EasyPrintProAndService { get { return "EASY_PRINT_PRO_AND_SERVICE"; } }
         }
 
         public static class AgreementType
