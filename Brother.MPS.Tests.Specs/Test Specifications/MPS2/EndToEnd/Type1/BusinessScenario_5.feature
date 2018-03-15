@@ -18,14 +18,10 @@ And I add these printers for EPP:
 		| MFC-L8650CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
-#And a Cloud MPS Local Office Approver approves the above proposal
-And a Cloud MPS Bank release the above proposal
 And I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal 
 And I click the download proposal button and verify if I am able to open the PDF
-And a Cloud MPS Local Office Approver Set a Special Pricing:
-		| Model        | InstallUnitCost | InstallMargin | InstallUnitPrice | ServiceUnitCost | ServiceMargin | ServiceUnitPrice | MonoClickServiceCost | MonoClickServicePrice | MonoClickCoverage | MonoClickVolume | MonoClickMargin | MonoClick | ColourClickServiceCost | ColourClickServicePrice | ColourClickCoverage | ColourClickVolume | ColourClickMargin | ColourClick |
-		| *            | 100             | 50            |                  | 120             | 50            |                  |                      |                       | 10                | 100             | 50.00           | 0.01300   |                        |                         | 40                  | 300               | 50.00             | 0.10700     |
 And I sign the above proposal
+And a Cloud MPS Local Office Approver accepts the above proposal
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
 And I will be able to see the installation request created above on the Manage Devices page for the above proposal
