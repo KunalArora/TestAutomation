@@ -9,7 +9,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsConvertTermAndTypePage : DealerAgreementCreateTermAndTypePage, IPageObject
     {
         private const string _url = "/mps/dealer/proposals/convert/term-type";
-        private const string _validationElementSelector = "#content_1_InputUsageType_Input";
+        private const string _validationElementSelector = "#content_1_InputContractLength_Input";
 
         public new string PageUrl
         {

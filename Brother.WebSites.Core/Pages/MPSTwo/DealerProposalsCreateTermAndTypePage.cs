@@ -10,7 +10,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsCreateTermAndTypePage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/term-type";
-        private const string _validationElementSelector = "#content_1_InputUsageType_Input";
+        private const string _validationElementSelector = "#content_1_InputContractLength_Input";
         private const string _url = "/mps/dealer/proposals/create/term-type";
 
         public string ValidationElementSelector
@@ -230,9 +230,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption, string leasingBillingCycle=null)
         {
             LoggingService.WriteLogOnMethodEntry(usageType, contractLength, billingType, servicePackOption);
-            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector);
+            //For DE- EasyPrintPro&Service as there is no usage type element displayed on the UI
+            if(SeleniumHelper.IsElementDisplayed(UsageTypeElement))
+            {
+                SeleniumHelper.SelectFromDropdownByText(UsageTypeElement, usageType);
+            }
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector);
-            SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
             SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
 
             if (string.IsNullOrWhiteSpace(leasingBillingCycle) == false)
