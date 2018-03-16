@@ -42,7 +42,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contractShiftService = contractShiftService;
             _translationService = translationService;
             _pageParseHelper = pageParseHelper;
-
         }
 
         public BankProposalsAwaitingApprovalPage NavigateToProposalsAwaitingApprovalPage(BankDashBoardPage bankDashBoardPage)
