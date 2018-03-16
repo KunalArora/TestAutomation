@@ -323,7 +323,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 }
                 else if(_contextData.ContractType == resourceContractTypeLeasingAndService)
                 {
-                    // TODO MPS-4773 ASK S6 PDF Validate
+                    // PDF validation skip in T1S6
                 }
             }
             finally
