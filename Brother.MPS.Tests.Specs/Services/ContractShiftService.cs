@@ -1,6 +1,7 @@
 using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using System;
@@ -42,19 +43,19 @@ namespace Brother.Tests.Specs.Services
             var startTime = DateTime.UtcNow;
 
             var response = _webRequestService.GetPageResponse(url, "GET", timeOut, null, null, additionalHeaders);
-            ContractShiftCommandSuccess(response);
+            CheckContractShiftCommandSuccess(response);
         }
 
-        private bool ContractShiftCommandSuccess(WebPageResponse webPageResponse)
+        private void CheckContractShiftCommandSuccess(WebPageResponse webPageResponse)
         {
             if (webPageResponse.Headers["brother-commandstatus"].Equals("SUCCESS"))
             {
                 LoggingService.WriteLog(LoggingLevel.INFO, "Contract time shift successful");
-                return true;
+                return;
             }
 
             LoggingService.WriteLog(LoggingLevel.FAILURE, "Contract time shift failed");
-            return false;
+            TestCheck.AssertFailTest("Contract Shift API has failed. API Response: " + webPageResponse);
         }
 
         public void ContractTimeShiftCommand(int contractId, int timeoffset, string timeoffsetunit, bool generateprintcounts, bool generateinvoices, string printvolume)
