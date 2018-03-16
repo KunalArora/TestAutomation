@@ -315,13 +315,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {
-                var resourceBillingTypePurchaseAndClick = _translationService.GetBillingTypeText("PURCHASE_AND_CLICK", _contextData.Culture);
-                var resourceBillingTypeLeasingAndService = _translationService.GetBillingTypeText("LEASING_AND_SERVICE", _contextData.Culture);
-                if ( _contextData.BillingType == resourceBillingTypePurchaseAndClick)
+                var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
+                var resourceContractTypeLeasingAndService = _translationService.GetContractTypeText(TranslationKeys.ContractType.LeasingAndService, _contextData.Culture);
+                if ( _contextData.ContractType == resourceContractTypePurchaseAndClick)
                 {
                     _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
                 }
-                else if(_contextData.BillingType == resourceBillingTypeLeasingAndService)
+                else if(_contextData.ContractType == resourceContractTypeLeasingAndService)
                 {
                     // TODO MPS-4773 ASK S6 PDF Validate
                 }
