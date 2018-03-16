@@ -198,5 +198,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage);
         }
 
+        [Then(@"I can see the above proposal in the Rejected list")]
+        public void WhenICanSeeTheAboveProposalInTheRejectedList()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerContractsRejectedPage = _mpsDealerProposalStepActions.NavigateToDealerContractsRejectedPage(dealerDashboardPage);
+            _mpsDealerContractStepActions.VerifyRejectedContractInRejectedContractsList(dealerContractsRejectedPage);
+        }
     }
 }

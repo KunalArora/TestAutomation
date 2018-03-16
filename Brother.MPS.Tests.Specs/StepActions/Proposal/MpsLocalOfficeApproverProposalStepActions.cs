@@ -81,6 +81,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
+        public LocalOfficeApproverApprovalProposalsApprovedPage RejectProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverAprovalProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAprovalProposalsSummaryPage);
+            localOfficeApproverAprovalProposalsSummaryPage.ClickOnAccept();
+            return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
         public LocalOfficeApproverReportsDataQueryPage NavigateToReportsDataQueryPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);

@@ -338,14 +338,26 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = _contextData.ProposalId;
             string proposalName = _contextData.ProposalName;
             bool exists = cloudExistingProposalPage.VerifySavedProposalInOpenProposalsList(proposalId, proposalName);
-            if (exists)
+            
+            if (!exists)
             {
-                return;
+                throw new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
             }
-            else
+             
+        }
+
+        public void VerifyDeclinedProposalInDeclinedProposalsList(DealerProposalsDeclinedPage dealerProposalsDeclinedPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage);
+            int proposalId = _contextData.ProposalId;
+            string proposalName = _contextData.ProposalName;
+            bool exists = dealerProposalsDeclinedPage.VerifyDeclinedProposalInDeclinedProposalsList(proposalId, proposalName);
+
+            if (!exists)
             {
-                new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
-            }             
+                throw new NullReferenceException(string.Format("Proposal = {0} not found ", proposalId));
+            }
+
         }
 
         public DealerProposalsConvertSummaryPage SubmitForTheApproval(CloudExistingProposalPage _cloudExistingProposalPage)
@@ -692,6 +704,15 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             ClickSafety( dealerDashboardPage.ExistingContractLinkElement, dealerDashboardPage );
             return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerContractsRejectedPage NavigateToDealerContractsRejectedPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            ClickSafety(dealerDashboardPage.ExistingContractLinkElement, dealerDashboardPage);
+            var dealerContractsApprovedProposalPage = PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            ClickSafety(dealerContractsApprovedProposalPage.RejectedTabElement, dealerContractsApprovedProposalPage);
+            return PageService.GetPageObject<DealerContractsRejectedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerContractsApprovedProposalPage)

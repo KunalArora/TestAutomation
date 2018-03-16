@@ -317,5 +317,19 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             dealerSetInstallationTypePage.NextElement.Click();
         }
+
+        public void VerifyRejectedContractInRejectedContractsList(DealerContractsRejectedPage dealerContractsRejectedPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsRejectedPage);
+            int proposalId = _contextData.ProposalId;
+            string proposalName = _contextData.ProposalName;
+            bool exists = dealerContractsRejectedPage.VerifyRejectedContractInRejectedContractsList(proposalId, proposalName);
+
+            if (!exists)
+            {
+                throw new NullReferenceException(string.Format("Contract = {0} not found ", proposalId));
+            }
+
+        }
     }
 }

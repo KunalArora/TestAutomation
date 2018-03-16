@@ -17,10 +17,11 @@
         string GetConsumableOrderStatusText(string name, string culture);
         string GetServiceRequestStatusText(string name, string culture);
         string GetOverusageText(string name, string culture);
+        string GetContractRejectReason(string name, string culture);
         string GetDisplayMessageText(string name, string culture);
+        string GetLeasingBillingCycle(string leasingBillingCycle, string culture);
         // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);
         string GetDeviceConnectionStatusText(string name, string culture);
-        string GetLeasingBillingCycle(string leasingBillingCycle, string culture);
     }
 }

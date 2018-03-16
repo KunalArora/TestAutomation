@@ -33,6 +33,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContractFilter;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractListContractNameRowElement;
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/contracts/rejected']")]
+        public IWebElement RejectedTabElement;
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 

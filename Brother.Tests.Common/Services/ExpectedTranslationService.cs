@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Brother.Tests.Common.Resources;
 
 namespace Brother.Tests.Common.Services
 {
@@ -73,6 +74,11 @@ namespace Brother.Tests.Common.Services
         public string GetOverusageText(string name, string culture)
         {
             return GetText(Resources.OverusageText.OverusageText.ResourceManager, name, culture);
+        }
+
+        public string GetContractRejectReason(string name, string culture)
+        {
+            return GetText(Resources.ContractRejectReason.ContractRejectReason.ResourceManager, name, culture);
         }
 
         public string GetDisplayMessageText(string name, string culture)
