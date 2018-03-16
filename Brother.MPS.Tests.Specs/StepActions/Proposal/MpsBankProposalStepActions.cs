@@ -1,7 +1,9 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -19,8 +21,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
     {
         private readonly IWebDriver _webDriver;
         private readonly IContractShiftService _contractShiftService;
+        private readonly ITranslationService _translationService;
 
         public MpsBankProposalStepActions(
+            ITranslationService translationService,
             IContractShiftService contractShiftService,
             IWebDriverFactory webDriverFactory, 
             IContextData contextData, 
@@ -33,6 +37,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
             _contractShiftService = contractShiftService;
+            _translationService = translationService;
 
         }
 
@@ -52,11 +57,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void AssertAreEqualBankSummary(BankProposalsSummaryPage bankProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(bankProposalsSummaryPage);
+            var resourceDisplayMessageContractNotYetSet = _translationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.ContractNotYetSet, ContextData.Culture);
             var expectedCustomer = ContextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)];
             var expectedSummary = ContextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)];
             var actual = SummaryValue.Parse(bankProposalsSummaryPage);
 
-            //Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], "???"); //TODO MPS-4773 ASK noch nicht gesetzt => not yet set
+            Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], resourceDisplayMessageContractNotYetSet);
             var ci = new CultureInfo(ContextData.Culture);
             Assert.AreEqual(ContextData.ContractTerm, actual["BankSummaryTable.ContractDetailsDuration"]);
             Assert.AreEqual(DateTime.Parse(expectedSummary["InputEnvisagedStartDate"]), DateTime.Parse(actual["BankSummaryTable.ContractDetailsStartDate"],ci)); // 11.04.2018

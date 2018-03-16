@@ -63,6 +63,15 @@ namespace Brother.Tests.Common.Resources.DisplayMessage {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string CONTRACT_NOT_YET_SET {
+            get {
+                return ResourceManager.GetString("CONTRACT_NOT_YET_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string EMAIL_SEND_SUCCESS {
             get {
                 return ResourceManager.GetString("EMAIL_SEND_SUCCESS", resourceCulture);

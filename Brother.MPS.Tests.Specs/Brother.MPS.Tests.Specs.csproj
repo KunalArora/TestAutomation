@@ -1617,6 +1617,7 @@
     </None>
     <None Include="App.config.local">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="BasicTests\TableExample.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
