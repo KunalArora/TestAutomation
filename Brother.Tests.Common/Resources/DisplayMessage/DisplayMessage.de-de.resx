@@ -117,8 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+<<<<<<< HEAD
   <data name="CONTRACT_NOT_YET_SET" xml:space="preserve">
     <value>noch nicht gesetzt</value>
+=======
+  <data name="EMAIL_SEND_FAILURE" xml:space="preserve">
+    <value>Die Email für den Installationsauftrag konnte nicht gesendet werden. Bitte überprüfen Sie ob das Sendeformular komplett ausgefüllt wurde und versuchen Sie es erneut.</value>
+>>>>>>> Steps till complete installation
   </data>
   <data name="EMAIL_SEND_SUCCESS" xml:space="preserve">
     <value>Die Email für den Installationsauftrag wurde erfolgreich versand</value>

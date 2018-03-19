@@ -55,7 +55,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement EmailSendSuccessElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendFailure")]
         public IWebElement EmailSendFailureElement;
+<<<<<<< HEAD
 
+=======
+>>>>>>> Steps till complete installation
 
 
 

@@ -26,7 +26,7 @@ And I navigate to the Accepted Contracts page and I locate the above contract an
 And I create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
 And I will be able to see the installation request created above on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Installation page and verify Contract Reference
-And Enter the serial numbers and complete installation
+And Enter the serial numbers and complete email installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count and verify it on the Manage devices page
