@@ -1120,8 +1120,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static ClickPricePageValue Parse(ISeleniumHelper SeleniumHelper)
         {
             var value = new ClickPricePageValue();
-            var clickPrticeGroupList = SeleniumHelper.FindElementsByCssSelector("[id*=_LineItems_ClickPriceGroup_]");
-            foreach (var clickPriceGroupElement in clickPrticeGroupList)
+            var clickPriceGroupList = SeleniumHelper.FindElementsByCssSelector("[id*=_LineItems_ClickPriceGroup_]");
+            foreach (var clickPriceGroupElement in clickPriceGroupList)
             {
                 var model = clickPriceGroupElement.GetAttribute("data-model"); // MFC-L8650CDW
                 var inputElementList = clickPriceGroupElement.FindElements(By.TagName("input"));

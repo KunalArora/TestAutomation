@@ -60,7 +60,7 @@ namespace Brother.Tests.Specs.Services
             return double.Parse(variable, new CultureInfo(ContextData.Culture));
         }
 
-        public double ConvertStringToDoubleInvaliant(string variable)
+        public double ConvertStringToDoubleInvariant(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
             return double.Parse(variable, CultureInfo.InvariantCulture);
@@ -77,11 +77,11 @@ namespace Brother.Tests.Specs.Services
             if (string.IsNullOrWhiteSpace(invariant)) { return invariant; }
 
             invariant = invariant.Trim();
-            var ciInvaliant = CultureInfo.InvariantCulture;
+            var ciInvariant = CultureInfo.InvariantCulture;
             var ciCulture = new CultureInfo(ContextData.Culture);
             var regx = new Regex("[0-9]");
             var format = regx.Replace(invariant, "0");
-            double doubleValue = double.Parse(invariant, ciInvaliant);
+            double doubleValue = double.Parse(invariant, ciInvariant);
             var cultured = doubleValue.ToString(format, ciCulture);
             return cultured;
         }
