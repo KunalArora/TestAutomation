@@ -53,6 +53,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement WarningAlertElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
         public IWebElement EmailSendSuccessElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendFailure")]
+        public IWebElement EmailSendFailureElement;
 
 
 
@@ -152,8 +154,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             NextButtonElement.Click(); // Send Email button
             if( assertFunc != null)
             {
-                SeleniumHelper.WaitUntil(d=> SeleniumHelper.IsElementDisplayed(EmailSendSuccessElement));
-                assertFunc(EmailSendSuccessElement.Text);
+                var resultText = SeleniumHelper.WaitUntil(d =>
+                {
+                    if (SeleniumHelper.IsElementDisplayed(EmailSendSuccessElement)) { return EmailSendSuccessElement.Text; }
+                    if (SeleniumHelper.IsElementDisplayed(EmailSendFailureElement)) { return EmailSendFailureElement.Text; }
+                    return null;
+                });
+                assertFunc(resultText);
             }
             var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
             _nextButtonElement.Click(); // Next button
