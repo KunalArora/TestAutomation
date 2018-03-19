@@ -198,7 +198,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach ( var product in products)
             {
-                product.Price = _calculationService.ConvertInvaliantNumericToCultureNumericString(product.Price);
+                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;

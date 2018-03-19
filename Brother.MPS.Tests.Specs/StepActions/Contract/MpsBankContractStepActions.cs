@@ -53,7 +53,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public BankContractsAwaitingAcceptancePage CheckAllBoxesAndSave(BankContractsMaintenancePage bankContractsMaintenancePage)
         {
             LoggingService.WriteLogOnMethodEntry(bankContractsMaintenancePage);
-
             bankContractsMaintenancePage.EnableCheckAll();
             ClickSafety(bankContractsMaintenancePage.ButtonSaveElement, bankContractsMaintenancePage, true);
             return PageService.GetPageObject<BankContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);

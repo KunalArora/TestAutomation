@@ -66,22 +66,22 @@ namespace Brother.Tests.Specs.Services
             return double.Parse(variable, CultureInfo.InvariantCulture);
         }
 
-        public string ConvertInvaliantNumericToCultureNumericString(string invaliant)
+        public string ConvertInvariantNumericToCultureNumericString(string invariant)
         {
-            LoggingService.WriteLogOnMethodEntry(invaliant);
+            LoggingService.WriteLogOnMethodEntry(invariant);
             // 12345  -[de]-> 12345
             // 123.45 -[de]-> 123,45
             // 12,345 -[de]-> 12.345
             // 12,345.670 -[de]-> 12.345,670
 
-            if (string.IsNullOrWhiteSpace(invaliant)) { return invaliant; }
+            if (string.IsNullOrWhiteSpace(invariant)) { return invariant; }
 
-            invaliant = invaliant.Trim();
+            invariant = invariant.Trim();
             var ciInvaliant = CultureInfo.InvariantCulture;
             var ciCulture = new CultureInfo(ContextData.Culture);
             var regx = new Regex("[0-9]");
-            var format = regx.Replace(invaliant, "0");
-            double doubleValue = double.Parse(invaliant, ciInvaliant);
+            var format = regx.Replace(invariant, "0");
+            double doubleValue = double.Parse(invariant, ciInvaliant);
             var cultured = doubleValue.ToString(format, ciCulture);
             return cultured;
         }

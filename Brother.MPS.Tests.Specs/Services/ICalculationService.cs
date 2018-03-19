@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.Services
         /// </summary>
         /// <param name="invaliant"></param>
         /// <returns></returns>
-        string ConvertInvaliantNumericToCultureNumericString(string invaliant);
+        string ConvertInvariantNumericToCultureNumericString(string invaliant);
 
         /// <summary>
         /// Round off a double variable to certain decimal places
