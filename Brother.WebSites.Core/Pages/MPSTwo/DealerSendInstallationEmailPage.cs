@@ -42,7 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallerEmailAddress_Input")]
         public IWebElement EmailFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSend")]
-        public IWebElement NextButtonElement;
+        public IWebElement SendButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".col-sm-9 .form-control-static")]
         public IList<IWebElement> PinLabelElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
@@ -106,7 +106,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SendInstallationRequest()
         {
             LoggingService.WriteLogOnMethodEntry();
-            NextButtonElement.Click();
+            SendButtonElement.Click();
             ConfirmInstallationEmailSent();
 
         }
@@ -121,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerManageDevicesPage SendSwapInstallationRequest()
         {
             LoggingService.WriteLogOnMethodEntry();
-            NextButtonElement.Click();
+            SendButtonElement.Click();
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
@@ -151,7 +151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             string emailId = EnterInstallerEmail();
-            NextButtonElement.Click(); // Send Email button
+            SendButtonElement.Click(); // Send Email button
             if( assertFunc != null)
             {
                 var resultText = SeleniumHelper.WaitUntil(d =>
@@ -162,8 +162,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 });
                 assertFunc(resultText);
             }
-            var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
-            _nextButtonElement.Click(); // Next button
+            var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
+            nextButtonElement.Click(); // Next button
             return emailId;
         }
 
