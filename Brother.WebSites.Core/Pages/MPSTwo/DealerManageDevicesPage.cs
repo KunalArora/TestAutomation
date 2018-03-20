@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -52,6 +53,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRequestEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
         private const string InstallationRequestCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
         private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
+        private const string InstallationRequestCommunicationMethodSelector = "[id*=content_1_RequestList_List_CellCommunicationMethodIcon_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
         private const string InstallationRequestSelector = ".js-mps-show-installation-request-email";
@@ -904,6 +906,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
             }
             return exists;
+        }
+
+        public bool EmailInstallationCompleteCheck(string resourceInstallationCompletedStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(resourceInstallationCompletedStatus);
+            var InstallationRequestContainerElement = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector);
+            var InstallationRequestRowElement = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerElement, InstallationRequestRowSelector);
+            var rowElements = SeleniumHelper.FindRowElementsWithinTable(InstallationRequestRowElement);
+
+            foreach(var row in rowElements)
+            {
+                var IRCommunicationMethodElement = SeleniumHelper.FindElementByCssSelector(row, InstallationRequestCommunicationMethodSelector);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(row, InstallationRequestStatusSelector);
+
+                var communicationMethodActual = IRCommunicationMethodElement.GetAttribute("class").Contains("glyphicon-envelope");
+                if(!communicationMethodActual)
+                {
+                    LoggingService.WriteLog(LoggingLevel.FAILURE, "The communication method is not set to Email on the Manage devices page even after email installation is completed.");
+                    return false;
+                }
+                var statusActual = IRStatusElement.Text;
+                if(statusActual!= resourceInstallationCompletedStatus)
+                {
+                    LoggingService.WriteLog(LoggingLevel.FAILURE, "The installation status is not turned to completed even after email installation is completed.");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

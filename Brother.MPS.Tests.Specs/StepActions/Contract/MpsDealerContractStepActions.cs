@@ -53,7 +53,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void InstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage)
+        public void CloudInstallationCompleteCheck(DealerManageDevicesPage _dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(_dealerManageDevicesPage);
             var products = _contextData.PrintersProperties;
@@ -62,6 +62,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _dealerManageDevicesPage.InstallationCompleteCheck(product.SerialNumber);
             }
             CheckForUpdatedPrintCount(_dealerManageDevicesPage);
+        }
+
+        public void EmailInstallationCompleteCheck(DealerManageDevicesPage dealerManageDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
+            var resourceInstallationCompletedStatus = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.Completed, _contextData.Culture);
+            var IRCompleteCheck = dealerManageDevicesPage.EmailInstallationCompleteCheck(resourceInstallationCompletedStatus);
+            Assert.AreEqual(IRCompleteCheck, true);
         }
 
         public void UpdateAndNotifyBOCForPrintCounts()

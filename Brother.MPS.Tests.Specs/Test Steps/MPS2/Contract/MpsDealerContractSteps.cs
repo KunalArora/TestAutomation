@@ -129,7 +129,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
         public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
-            _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage);
+            _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
         [When(@"I update the print count and verify it on the Manage devices page")]
@@ -216,5 +216,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var dealerContractsRejectedPage = _mpsDealerProposalStepActions.NavigateToDealerContractsRejectedPage(dealerDashboardPage);
             _mpsDealerContractStepActions.VerifyRejectedContractInRejectedContractsList(dealerContractsRejectedPage);
         }
+
+        [When(@"I verify that the email installation is completed successfuly")]
+        public void WhenIVerifyThatTheEmailInstallationIsCompletedSuccessfuly()
+        {
+            _mpsDealerContractStepActions.EmailInstallationCompleteCheck(_dealerManageDevicesPage);
+        }
+
     }
 }

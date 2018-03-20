@@ -814,6 +814,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public void IsProposalPresent(DealerProposalsApprovedPage dealerProposalsApprovedPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
+            int proposalId = _contextData.ProposalId;
+            dealerProposalsApprovedPage.FilterProposalAndVerify(proposalId);
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,

@@ -63,6 +63,7 @@
         public static class InstallationStatus
         {
             public static string NotStarted {  get { return "NOT_STARTED"; } }
+            public static string Completed { get { return "COMPLETED"; } }
         }
 
         public static class InstalledPrinterStatus
