@@ -10,6 +10,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -92,15 +93,31 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         }
 
 
-        [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
-        [When(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
+        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
+            if(_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
+            }
             _contextData.Culture = _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
+        }
+
+        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)"" with Culture ""(.*)""")]
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFromWithCulture(string country, string culture)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if(_contextData.Country.Cultures.Contains(culture) == false)
+            {
+                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country+" culture="+culture);
+            }
+            _contextData.Culture = culture;
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
         [When(@"I have navigated to the Create Proposal page")]
@@ -130,7 +147,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             string proposalName = _proposalHelper.GenerateProposalName();
             _contextData.ProposalName = proposalName;
-            if( _contextData.Country.DomainSuffix == "de")
+            if(_contextData.Country.LogicSettings.IsNextDealerProposalsCreateTermAndTypePage)
             {
                 _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateTermAndTypePage>(_dealerProposalsCreateDescriptionPage, proposalName, "", _contextData.ContractType);
             }
@@ -234,7 +251,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
             var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage);
-            if( _contextData.Country.Name.Equals("Germany") )
+            if(_mpsDealerProposalStepActions.IsCanSelectNewCustomer(dealerProposalsConvertCustomerInformationPage) )
             {
                 dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SelectNewCustomerAndNext(dealerProposalsConvertCustomerInformationPage);
             }

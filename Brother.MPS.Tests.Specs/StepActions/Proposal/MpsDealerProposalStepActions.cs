@@ -231,6 +231,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsConvertCustomerInformationPage;
         }
 
+        public bool IsCanSelectNewCustomer(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage)
+        {
+            return dealerProposalsConvertCustomerInformationPage.SeleniumHelper.IsElementDisplayed(dealerProposalsConvertCustomerInformationPage.CreateNewCustomerElement);
+        }
+
         public CloudExistingProposalPage SaveTheProposalAndProceed(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateSummaryPage);

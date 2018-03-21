@@ -95,15 +95,15 @@ namespace Brother.Tests.Common.ContextData
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
     {
-        public Dictionary<string, string> this[Type pageClazz] {
+        public Dictionary<string, string> this[Type pageClass] {
             get {
-                if(base.ContainsKey(pageClazz.FullName) == false)
+                if(base.ContainsKey(pageClass.FullName) == false)
                 {
-                    base.Add(pageClazz.FullName, new Dictionary<string, string>() );
+                    base.Add(pageClass.FullName, new Dictionary<string, string>() );
                 }
-                return  base[pageClazz.FullName]  ;
+                return  base[pageClass.FullName]  ;
             }
-            set { base[pageClazz.FullName] = value; }
+            set { base[pageClass.FullName] = value; }
         }
     }
 }
