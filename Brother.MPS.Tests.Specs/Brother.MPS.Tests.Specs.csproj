@@ -111,8 +111,10 @@
     <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\IAgreementHelper.cs" />
+    <Compile Include="Helpers\IPageParseHelper.cs" />
     <Compile Include="Helpers\IPdfHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />
+    <Compile Include="Helpers\PageParseHelper.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />

@@ -33,8 +33,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IMpsWebToolsService _webToolService;
         private readonly ILoggingService _loggingService;
         private readonly ITranslationService _translationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
-        public MpsDealerProposalStepActions(IWebDriverFactory webDriverFactory,
+        public MpsDealerProposalStepActions(
+            IPageParseHelper pageParseHelper,
+            IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
@@ -56,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _webToolService = webToolService;
             _loggingService = loggingService;
             _translationService = translationService;
+            _pageParseHelper = pageParseHelper;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -217,7 +221,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             Assert.True(VerifyClickPriceValues(dealerProposalsCreateClickPricePage), "CalculateClickPriceAndProceed verify error");
 
-            _contextData.SnapValues[typeof(DealerProposalsCreateClickPricePage)]= ClickPricePageValue.Parse(dealerProposalsCreateClickPricePage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerProposalsCreateClickPricePage)]= _pageParseHelper.ParseClickPricePageValues(dealerProposalsCreateClickPricePage.SeleniumHelper);
             ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
             return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -290,7 +294,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateSummaryPage);
             var assertMessage = string.Format("proposalId={0}, name={1}, ", _contextData.ProposalId, _contextData.ProposalName);
-            var actual = SummaryValue.Parse(dealerProposalsCreateSummaryPage.SeleniumHelper);
+            var actual = _pageParseHelper.ParseSummaryPageValues(dealerProposalsCreateSummaryPage.SeleniumHelper);
             // ProductDetails for example:
             // content_1_SummaryTable_ProposalName              MPS_Smoke_Hartgrove-039112914
             // content_1_SummaryTable_ContractTerm              5 Jahre
@@ -406,7 +410,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
             _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
 
-            _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= CustomerInformationPageValue.Parse(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= _pageParseHelper.ParseCustomerInformationPageValues(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -434,7 +438,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
 
-        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues)
+        public void AssertAreAffectSpecialPricing(SummaryPageValue proposalSummaryValues)
         {
             LoggingService.WriteLogOnMethodEntry(proposalSummaryValues);
             var specialPriceClickList = _contextData.SpecialPriceList;
@@ -444,7 +448,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
         }
 
-        public void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, SpecialPricingProperties specialPriceClick)
+        public void AssertAreAffectSpecialPricing(SummaryPageValue proposalSummaryValues, SpecialPricingProperties specialPriceClick)
         {
             LoggingService.WriteLogOnMethodEntry(proposalSummaryValues, specialPriceClick);
             var resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
@@ -485,7 +489,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             //AssertAreAffectSpecialPricing(proposalSummaryValues, model, "ColourClickRate", specialPriceClick.ColourClick);
 
         }
-        private void AssertAreAffectSpecialPricing(SummaryValue proposalSummaryValues, string model, string itemKey, string expected )
+        private void AssertAreAffectSpecialPricing(SummaryPageValue proposalSummaryValues, string model, string itemKey, string expected )
         {
             LoggingService.WriteLogOnMethodEntry(proposalSummaryValues, model, itemKey, expected);
             if (string.IsNullOrEmpty(expected))
@@ -509,7 +513,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             catch (InvalidOperationException ) {/* no wrongItem is good news. */ }
         }
 
-        private bool IsColourModel(SummaryValue proposalSummaryValues,string wrongModel)
+        private bool IsColourModel(SummaryPageValue proposalSummaryValues,string wrongModel)
         {
             LoggingService.WriteLogOnMethodEntry(proposalSummaryValues, wrongModel);
             var ckey = wrongModel + ".ColourVolume";
@@ -525,7 +529,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return true;
         }
 
-        public void AssertAreEqualSummaryValues(string pdfFile, SummaryValue summaryValue)
+        public void AssertAreEqualSummaryValues(string pdfFile, SummaryPageValue summaryValue)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValue);
             var resourcePdfFileAgreementPeriod = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.AgreementPeriod, _contextData.Culture);
@@ -537,13 +541,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 throw new Exception("pdf not exists file=" + pdfFile);
             }
-            var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue.SummaryTable_ContractTerm,"");
+            var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue["SummaryTable.ContractTerm"],"");
             string[] searchTextArray =
             {
                 string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
-                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue.SummaryTable_DeviceTotalsTotalPriceNet),
+                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                 //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue.SummaryTable_ConsumableTotalsTotalPriceNet)
+                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
             };
             searchTextArray.ToList().ForEach(expected =>
                {
@@ -654,7 +658,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
-            _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = SummaryValue.Parse(dealerProposalsConvertSummaryPage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = _pageParseHelper.ParseSummaryPageValues(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }

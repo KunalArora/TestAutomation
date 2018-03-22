@@ -5,6 +5,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
@@ -22,8 +23,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IWebDriver _webDriver;
         private readonly IContractShiftService _contractShiftService;
         private readonly ITranslationService _translationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         public MpsBankProposalStepActions(
+            IPageParseHelper pageParseHelper,
             ITranslationService translationService,
             IContractShiftService contractShiftService,
             IWebDriverFactory webDriverFactory, 
@@ -38,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
             _contractShiftService = contractShiftService;
             _translationService = translationService;
+            _pageParseHelper = pageParseHelper;
 
         }
 
@@ -60,7 +64,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var resourceDisplayMessageContractNotYetSet = _translationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.ContractNotYetSet, ContextData.Culture);
             var expectedCustomer = ContextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)];
             var expectedSummary = ContextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)];
-            var actual = SummaryValue.Parse(bankProposalsSummaryPage);
+            var actual = _pageParseHelper.ParseSummaryPageValues(bankProposalsSummaryPage);
 
             Assert.AreEqual(actual["BankSummaryTable.ContractDetailsContractNumber"], resourceDisplayMessageContractNotYetSet);
             var ci = new CultureInfo(ContextData.Culture);

@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -1115,34 +1114,4 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
     }
 
-    public class ClickPricePageValue : Dictionary<string, string>
-    {
-        public static ClickPricePageValue Parse(ISeleniumHelper SeleniumHelper)
-        {
-            var value = new ClickPricePageValue();
-            var clickPriceGroupList = SeleniumHelper.FindElementsByCssSelector("[id*=_LineItems_ClickPriceGroup_]");
-            foreach (var clickPriceGroupElement in clickPriceGroupList)
-            {
-                var model = clickPriceGroupElement.GetAttribute("data-model"); // MFC-L8650CDW
-                var inputElementList = clickPriceGroupElement.FindElements(By.TagName("input"));
-                foreach( var inputElement in inputElementList)
-                {
-                    var idString = inputElement.GetAttribute("id"); // ex. content_1_LineItems_InputMonoCoverage_0
-                    var idArr = idString.Split('_');
-                    if (idArr.Length < 2) continue;
-                    var itemName = idArr[idArr.Length - 2]; // ex. InputMonoCoverage
-                    var dictKey = string.Format("{0}.{1}", model, itemName);// key ex. MFC-L8650CDW.InputMonoCoverage
-                    value.Add(dictKey, inputElement.GetAttribute("value"));
-                }
-                var spanElementList = clickPriceGroupElement.FindElements(By.TagName("span"));
-                var monoPriceElement = spanElementList.FirstOrDefault(e => e.GetAttribute("data-click-price-mono") != null );
-                var colourPriceElement = spanElementList.FirstOrDefault(e => e.GetAttribute("data-click-price-colour") != null);
-                if( monoPriceElement != null && monoPriceElement.Displayed) { value.Add(string.Format("{0}.ClickPriceMono", model),monoPriceElement.Text); }
-                if(colourPriceElement != null && colourPriceElement.Displayed) { value.Add(string.Format("{0}.ClickPriceColour", model), colourPriceElement.Text); }
-            }
-
-            return value;
-        }
-
-    }
 }

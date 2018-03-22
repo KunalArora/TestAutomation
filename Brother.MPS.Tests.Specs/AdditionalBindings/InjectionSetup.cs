@@ -60,6 +60,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<ServiceInstallationBillExcelHelper, IServiceInstallationBillExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
+            _container.RegisterTypeAs<PageParseHelper, IPageParseHelper>();
         }
 
 

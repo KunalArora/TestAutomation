@@ -33,6 +33,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
         private readonly ILoggingService _loggingService;
         private readonly ICalculationService _calculationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -45,7 +46,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private CloudExistingProposalPage _cloudExistingProposalPage;
         private DealerProposalsApprovedPage _dealerProposalsApprovedPage;
         private DealerProposalsSummaryPage _dealerProposalsSummaryPage;
-        private SummaryValue _proposalSummaryValues;
+        private SummaryPageValue _proposalSummaryValues;
         private DealerCustomersManagePage _dealerCustomersManagePage;
         private DealerCustomersExistingPage _dealerCustomersExistingPage;
         private DealerProposalsAwaitingApprovalPage _dealerProposalsAwaitingApprovalPage;
@@ -54,7 +55,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         // other
         private string _pdfFile;
 
-        public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
+        public MpsDealerProposalSteps(
+            IPageParseHelper pageParseHelper,
+            MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
             ScenarioContext context,
             IWebDriver driver,
@@ -81,6 +84,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
             _loggingService = loggingService;
             _calculationService = calculationService;
+            _pageParseHelper = pageParseHelper;
         }
 
         [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
@@ -318,7 +322,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsApprovedPage(_dealerDashboardPage);
             _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage);
-            _proposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
+            _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(_dealerProposalsSummaryPage.SeleniumHelper);
         }
 
         [When(@"I click the download proposal button and verify if I am able to open the PDF")]
