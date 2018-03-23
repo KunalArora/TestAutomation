@@ -144,9 +144,15 @@
     <Compile Include="Pages\MPSOne\ListOfOrganisationsPage.cs" />
     <Compile Include="Pages\MPSOne\TechnicalServicePage.cs" />
     <Compile Include="Pages\MPSTwo\ActionsModule.cs" />
+    <Compile Include="Pages\MPSTwo\BankContractsAcceptedPage.cs" />
+    <Compile Include="Pages\MPSTwo\BankContractsApprovedProposalsPage.cs" />
+    <Compile Include="Pages\MPSTwo\BankContractsAwaitingAcceptancePage.cs" />
+    <Compile Include="Pages\MPSTwo\BankContractsMaintenancePage.cs" />
     <Compile Include="Pages\MPSTwo\BankContractsPage.cs" />
     <Compile Include="Pages\MPSTwo\BankDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\BankOffersPage.cs" />
+    <Compile Include="Pages\MPSTwo\BankProposalsApprovedPage.cs" />
+    <Compile Include="Pages\MPSTwo\BankProposalsAwaitingApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\BaseSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\CalculationEngineModule.cs" />

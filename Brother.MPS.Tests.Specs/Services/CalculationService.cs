@@ -1,19 +1,24 @@
-﻿using Brother.Tests.Common.Logging;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Brother.Tests.Specs.Services
 {
     public class CalculationService: ICalculationService
     {
         private ILoggingService LoggingService { get; set; }
+        public IContextData ContextData { get; private set; }
 
-        public CalculationService(ILoggingService loggingService)
+        public CalculationService(ILoggingService loggingService, IContextData contextData)
         {
             LoggingService = loggingService;
+            ContextData = contextData;
         }
 
         public void VerifyTotalPrice(string cost, string margin, string displayedPrice)
@@ -52,7 +57,33 @@ namespace Brother.Tests.Specs.Services
         public double ConvertStringToDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
-            return double.Parse(variable, System.Globalization.CultureInfo.InvariantCulture);
+            return double.Parse(variable, new CultureInfo(ContextData.Culture));
+        }
+
+        public double ConvertStringToDoubleInvariant(string variable)
+        {
+            LoggingService.WriteLogOnMethodEntry(variable);
+            return double.Parse(variable, CultureInfo.InvariantCulture);
+        }
+
+        public string ConvertInvariantNumericToCultureNumericString(string invariant)
+        {
+            LoggingService.WriteLogOnMethodEntry(invariant);
+            // 12345  -[de]-> 12345
+            // 123.45 -[de]-> 123,45
+            // 12,345 -[de]-> 12.345
+            // 12,345.670 -[de]-> 12.345,670
+
+            if (string.IsNullOrWhiteSpace(invariant)) { return invariant; }
+
+            invariant = invariant.Trim();
+            var ciInvariant = CultureInfo.InvariantCulture;
+            var ciCulture = new CultureInfo(ContextData.Culture);
+            var regx = new Regex("[0-9]");
+            var format = regx.Replace(invariant, "0");
+            double doubleValue = double.Parse(invariant, ciInvariant);
+            var cultured = doubleValue.ToString(format, ciCulture);
+            return cultured;
         }
 
         public double RoundOffUptoDecimalPlaces(double variable, int decimalPlaces = 2)

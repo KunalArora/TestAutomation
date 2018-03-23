@@ -238,8 +238,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     if (serialNumberElement.GetAttribute("value") == serialNumber)
                     {
                         var isConnectedElement = SeleniumHelper.FindElementByCssSelector(row, ResetButtonSelector);
-                        isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected");
-                        if(isConnected)
+                        //isConnected = isConnectedElement.GetAttribute("data-original-title").Equals("Connected"); $$$
+                        isConnected = isConnectedElement.GetAttribute("class").Contains("glyphicon-ok");
+                        if (isConnected)
                         {
                             SeleniumHelper.CloseBrowserTabsExceptMainWindow(windowHandle);
                             return isConnected;

@@ -13,6 +13,7 @@
         private int _defaultSerialNumberOffset = 0;
         private int _defaultInvoiceGenerationTimeout = 20;
         private int _defaultElementNotPresentTimeout = 3;
+        private int _defaultWaitForItemTimeout = 60;
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -29,6 +30,7 @@
         /// <param name="defaultSerialNumberOffset">Default 0</param>
         /// <param name="defaultInvoiceGenerationTimeout">Default 20s</param>
         /// <param name="defaultElementNotPresentTimeout">Default 3s</param>
+        /// <param name="DefaultWaitForItemTimeout">Default 60s</param>
         public RuntimeSettings(
             int? defaultPageLoadTimeout,
             int? defaultPageObjectTimeout,
@@ -40,7 +42,8 @@
             int? defaultAPIResponseTimeout,
             int? defaultSerialNumberOffset,
             int? defaultInvoiceGenerationTimeout,
-            int? defaultElementNotPresentTimeout
+            int? defaultElementNotPresentTimeout,
+            int? defaultWaitForItemTimeout
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -54,6 +57,7 @@
             DefaultSerialNumberOffset = defaultSerialNumberOffset ?? _defaultSerialNumberOffset;
             DefaultInvoiceGenerationTimeout = defaultInvoiceGenerationTimeout ?? _defaultInvoiceGenerationTimeout;
             DefaultElementNotPresentTimeout = defaultElementNotPresentTimeout ?? _defaultElementNotPresentTimeout;
+            DefaultWaitForItemTimeout = defaultWaitForItemTimeout ?? _defaultWaitForItemTimeout;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -67,5 +71,7 @@
         public int DefaultSerialNumberOffset { get; set; }
         public int DefaultInvoiceGenerationTimeout { get; set; }
         public int DefaultElementNotPresentTimeout { get; set; }
+        public int DefaultWaitForItemTimeout { get; set; }
+
     }
 }

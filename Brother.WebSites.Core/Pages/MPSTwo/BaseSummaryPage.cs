@@ -1,8 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -242,52 +240,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
     }
 
-    public class SummaryValue : Dictionary<string, string>
-    {
-        public string SummaryTable_ContractTerm { get { return GetValue(MethodBase.GetCurrentMethod().Name); } set { SetValue(MethodBase.GetCurrentMethod().Name, value); } }
-        public string SummaryTable_DeviceTotalsTotalPriceNet { get { return GetValue(MethodBase.GetCurrentMethod().Name); } set { SetValue(MethodBase.GetCurrentMethod().Name, value); } }
-        public string SummaryTable_ConsumableTotalsTotalPriceNet { get { return GetValue(MethodBase.GetCurrentMethod().Name); } set { SetValue(MethodBase.GetCurrentMethod().Name, value); } }
-
-        private void SetValue(string name, string value)
-        {
-            this[name.Replace("set_","")]= value;
-        }
-
-        private string GetValue(string name)
-        {
-            return this[name.Replace("get_", "")];
-        }
-
-        public static SummaryValue Parse(DealerProposalsSummaryPage page)
-        {
-            var value = new SummaryValue();
-            value.SummaryTable_ContractTerm = page.SummaryTable_ContractTerm.Text;
-            value.SummaryTable_DeviceTotalsTotalPriceNet = page.SummaryTable_DeviceTotalsTotalPriceNet.Text;
-            value.SummaryTable_ConsumableTotalsTotalPriceNet = page.SummaryTable_ConsumableTotalsTotalPriceNet.Text;
-
-            var modelElementList = page.SeleniumHelper.FindElementsByCssSelector("div[class*=\"panel panel-default mps-qa-printer mps-qa-printer-\"]");
-            foreach ( var modelElement in modelElementList)
-            {
-                var elemStrong = modelElement.FindElement(By.ClassName("panel-heading")).FindElement(By.TagName("strong"));
-                var modelName = elemStrong.Text; // ex. MFC-L8650CDW
-                var tdElementList = modelElement.FindElements(By.TagName("td"));
-                foreach( var tdElement in tdElementList)
-                {
-                    var idString = tdElement.GetAttribute("id"); // ex. content_1_SummaryTable_RepeaterModels_RepeaterInstallationPacks_3_InstallationPackUnitCost_0
-                    var idArr = idString.Split('_');
-                    if (idArr.Length < 2) continue;
-                    var itemName = idArr[idArr.Length - 2]; // ex. InstallationPackUnitCost
-                    var dictKey = string.Format("{0}.{1}", modelName, itemName);// key ex. MFC-L8650CDW.InstallationPackUnitCost
-                    value.Add(dictKey, tdElement.Text); 
-                }
-            }
-            return value;
-        }
-
-        public string GetModel(string key)
-        {
-            return key.Split('.')[0];
-        }
-    }
 
 }

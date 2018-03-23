@@ -37,6 +37,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         IWebElement FindElementByDataAttributeValue(string dataAttributeName, string dataAttributeValue, int timeout = -1);
         /// <summary>
+        /// set check box
+        /// </summary>
+        /// <param name="element">target</param>
+        /// <param name="select">T=check</param>
+        void SetCheckBox(IWebElement element, bool select);
+
+        /// <summary>
         /// Attempts to find an element in the given search context which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
         /// </summary>

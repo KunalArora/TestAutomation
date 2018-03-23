@@ -60,6 +60,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<ServiceInstallationBillExcelHelper, IServiceInstallationBillExcelHelper>();
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
+            _container.RegisterTypeAs<PageParseHelper, IPageParseHelper>();
         }
 
 
@@ -142,7 +143,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultAPIResponseTimeout: AppSettingToInt("RuntimeSettings.DefaultAPIResponseTimeout"),
                     defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
-                    defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout")
+                    defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
+                    defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout")
             );
 
             return runtimeSettings;

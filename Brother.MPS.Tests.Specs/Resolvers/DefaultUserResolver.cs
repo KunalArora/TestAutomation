@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using System;
 
 namespace Brother.Tests.Specs.Resolvers
 {
@@ -122,9 +118,20 @@ namespace Brother.Tests.Specs.Resolvers
 
         public string BIEAdminUsername { get; set; }
         public string BIEAdminPassword { get; set; }
-        public string BankUsername { get; set; }
-        public string BankPassword { get; set; }
-       
+        public string BankUsername
+        {
+            get
+            {
+                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
+            }
+        }
+        public string BankPassword {
+            get
+            {
+                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "leasingbank");
+            }
+        }
+
         public string ServiceDeskUsername 
         {
             get
