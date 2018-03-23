@@ -34,6 +34,13 @@ namespace Brother.Tests.Specs.Services
         double ConvertStringToDouble(string variable);
 
         /// <summary>
+        /// Convert invariant numeric to cultured numeric string
+        /// </summary>
+        /// <param name="invariant"></param>
+        /// <returns></returns>
+        string ConvertInvariantNumericToCultureNumericString(string invariant);
+
+        /// <summary>
         /// Round off a double variable to certain decimal places
         /// </summary>
         /// <param name="variable"></param>

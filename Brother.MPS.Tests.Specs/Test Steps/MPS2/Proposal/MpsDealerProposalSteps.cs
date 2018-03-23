@@ -10,6 +10,8 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -30,6 +32,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsDealerProposalStepActions _mpsDealerProposalStepActions;
         private readonly ILoggingService _loggingService;
+        private readonly ICalculationService _calculationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -42,7 +46,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private CloudExistingProposalPage _cloudExistingProposalPage;
         private DealerProposalsApprovedPage _dealerProposalsApprovedPage;
         private DealerProposalsSummaryPage _dealerProposalsSummaryPage;
-        private SummaryValue _proposalSummaryValues;
+        private SummaryPageValue _proposalSummaryValues;
         private DealerCustomersManagePage _dealerCustomersManagePage;
         private DealerCustomersExistingPage _dealerCustomersExistingPage;
         private DealerProposalsAwaitingApprovalPage _dealerProposalsAwaitingApprovalPage;
@@ -51,7 +55,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         // other
         private string _pdfFile;
 
-        public MpsDealerProposalSteps(MpsSignInStepActions mpsSignInStepActions,
+        public MpsDealerProposalSteps(
+            IPageParseHelper pageParseHelper,
+            MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
             ScenarioContext context,
             IWebDriver driver,
@@ -62,6 +68,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
+            ICalculationService calculationService,
             IProposalHelper proposalHelper)
         {
             _context = context;
@@ -76,6 +83,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsSignInStepActions = mpsSignInStepActions;
             _mpsDealerProposalStepActions = mpsDealerProposalStepActions;
             _loggingService = loggingService;
+            _calculationService = calculationService;
+            _pageParseHelper = pageParseHelper;
         }
 
         [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
@@ -88,14 +97,31 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         }
 
 
-        [Given(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
-        [When(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
+        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
+            if(_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
+        }
+
+        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)"" with Culture ""(.*)""")]
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFromWithCulture(string country, string culture)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if(_contextData.Country.Cultures.Contains(culture) == false)
+            {
+                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country+" culture="+culture);
+            }
+            _contextData.Culture = culture;
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
         [When(@"I have navigated to the Create Proposal page")]
@@ -125,7 +151,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             string proposalName = _proposalHelper.GenerateProposalName();
             _contextData.ProposalName = proposalName;
-            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            if(_contextData.Country.LogicSettings.IsNextDealerProposalsCreateTermAndTypePage)
+            {
+                _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateTermAndTypePage>(_dealerProposalsCreateDescriptionPage, proposalName, "", _contextData.ContractType);
+            }
+            else
+            {
+                _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateCustomerInformationPage>(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            }
         }
 
         [When(@"I create a new customer for the proposal")]
@@ -159,24 +192,34 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
         public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
         {
+            WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(usageType, contractTerm, billingType, servicePackType, "");
+        }
+
+        [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"", Service Pack type of ""(.*)"" and Leasing Billing Cycle of ""(.*)""")]
+        public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType, string leasingBillingCycle)
+        {
             string usage_type = _translationService.GetUsageTypeText(usageType, _contextData.Culture);
             string contract_term = _translationService.GetContractTermText(contractTerm, _contextData.Culture);
             string billing_type = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
             string service_pack = _translationService.GetServicePackTypeText(servicePackType, _contextData.Culture);
+            string leasing_billing_cycle = _translationService.GetLeasingBillingCycle(leasingBillingCycle, _contextData.Culture);
             _contextData.UsageType = usage_type;
             _contextData.ContractTerm = contract_term;
             _contextData.BillingType = billing_type;
             _contextData.ServicePackType = service_pack;
-          
-            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usage_type, contract_term, billing_type, service_pack);
+            _contextData.LeasingBillingCycle = leasing_billing_cycle;
+
+            _dealerProposalsCreateProductsPage = _mpsDealerProposalStepActions.PopulateProposalTermAndTypeAndProceed(_dealerProposalsCreateTermAndTypePage, usage_type, contract_term, billing_type, service_pack, leasing_billing_cycle);
         }
 
         [When(@"I add these printers:")]
         public void WhenIAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
+            var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach ( var product in products)
             {
+                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -212,6 +255,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
             var dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForApproval(_cloudExistingProposalPage);
+            if(_mpsDealerProposalStepActions.IsCanSelectNewCustomer(dealerProposalsConvertCustomerInformationPage) )
+            {
+                dealerProposalsConvertCustomerInformationPage = _mpsDealerProposalStepActions.SelectNewCustomerAndNext(dealerProposalsConvertCustomerInformationPage);
+            }
             var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.SetForApprovalInformationAndProceed(dealerProposalsConvertCustomerInformationPage);
             var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
             var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
@@ -275,7 +322,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsApprovedPage(_dealerDashboardPage);
             _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage);
-            _proposalSummaryValues = SummaryValue.Parse(_dealerProposalsSummaryPage);
+            _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(_dealerProposalsSummaryPage.SeleniumHelper);
         }
 
         [When(@"I click the download proposal button and verify if I am able to open the PDF")]
@@ -289,7 +336,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _pdfFile = _mpsDealerProposalStepActions.DownloadPdf(_dealerProposalsSummaryPage);
             try
             {
-                _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
+                var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
+                var resourceContractTypeLeasingAndService = _translationService.GetContractTypeText(TranslationKeys.ContractType.LeasingAndService, _contextData.Culture);
+                if ( _contextData.ContractType == resourceContractTypePurchaseAndClick)
+                {
+                    _mpsDealerProposalStepActions.AssertAreEqualSummaryValues(_pdfFile, _proposalSummaryValues);
+                }
+                else if(_contextData.ContractType == resourceContractTypeLeasingAndService)
+                {
+                    // PDF validation skip in T1S6
+                }
             }
             finally
             {

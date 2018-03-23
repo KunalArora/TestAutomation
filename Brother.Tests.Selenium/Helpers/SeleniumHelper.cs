@@ -383,9 +383,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void SetListFilter(IWebElement filterElement, string filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null)
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout);
-            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
-            //timeout = timeout < 0 ? defaultMaxTimeout : timeout;
-            timeout = 60;
+            var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultWaitForItemTimeout, RuntimeSettings.DefaultPageLoadTimeout);
+            timeout = timeout < 0 ? defaultMaxTimeout : timeout;
             try
             {
                 var resultElement = WaitUntil(d =>
@@ -436,5 +435,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
             return notPresent;
         }
+
+        public void SetCheckBox(IWebElement element, bool selected)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, selected);
+            if (element.Selected == selected) { return; }
+            WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
+            element.Click();
+        }
+
     }
 }

@@ -1,14 +1,14 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using System;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
@@ -174,9 +174,18 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button")]
         public void WhenINavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
         {
+            var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
+
+
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
-            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            if( _contextData.ContractType == resourceContractTypePurchaseAndClick)
+            {
+                _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            }else
+            {
+                _mpsDealerContractStepActions.MoveToAwaitingAcceptanceContractsTab(_dealerContractsPage);
+            }
             _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();

@@ -9,6 +9,7 @@ using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
@@ -147,7 +148,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.MoveToAcceptedContracts();
         }
-        
+
+        public void MoveToAwaitingAcceptanceContractsTab(DealerContractsPage dealerContractsPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
+            dealerContractsPage.MoveToAwaitingAcceptanceContracts();
+        }
+
+
         public void FilterContractUsingProposalIdAction(DealerContractsPage dealerContractsPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
@@ -222,7 +230,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
             }
 
-            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed(actualMessage=> {
+                var expectedMessage = _translationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.EmailSendSuccess, _contextData.Culture);
+                if(string.IsNullOrWhiteSpace(expectedMessage)) { return true; }
+                Assert.AreEqual(expectedMessage, actualMessage);
+                return true; });
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

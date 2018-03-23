@@ -48,7 +48,8 @@ namespace Brother.Tests.Common.ContextData
         string SwapType { get; set; }
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         IList<string> RegisteredDeviceIds { get; set; }
- 
+        SnapDictionary SnapValues { get;  }
+
         // Exclusively Type 3
         string AgreementType { get; set; }
         int AgreementId { get; set; }
@@ -59,5 +60,6 @@ namespace Brother.Tests.Common.ContextData
         int DeviceCount { get; set; }
         string DealerName { get; set; }
         string DealerSAPAccountNumber { get; set; }
+        string LeasingBillingCycle { get; set; }
     }
 }

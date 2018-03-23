@@ -1,8 +1,7 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
+using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -120,6 +119,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var ShowPrintCountsElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ShowPrintCountsActionsButtonSelector);
 
             return ShowPrintCountsElement;
-        }        
+        }
+
+        public IList<string> GetAuditLogDetailsList()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var result = new List<string>();
+            var tableAudit = SeleniumHelper.FindElementByCssSelector("#TableProposalAudit");
+            var trList = tableAudit.FindElements(By.TagName("tr"));
+            foreach (var tr in trList)
+            {
+                var tdList = tr.FindElements(By.TagName("td"));
+                result.Add(tdList[2].Text);
+            }
+            return result;
+        }
     }
 }

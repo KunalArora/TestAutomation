@@ -33,7 +33,7 @@ namespace Brother.Tests.Specs.Helpers
         /// delete a specific file which is no longer required
         /// </summary>
         /// <param name="filename"></param>
-        void DeletePdf(string filename);
+        void DeletePdfErrorIgnored(string filename);
         /// <summary>
         /// validate invoice
         /// </summary>

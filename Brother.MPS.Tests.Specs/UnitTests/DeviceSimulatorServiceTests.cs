@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
-using Brother.Tests.Common.RuntimeSettings;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.UnitTests
 {
@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public DeviceSimulatorServiceTests()
         {
-            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new RuntimeSettings(null, null, null, null, null, null, null, null, null, null, null), new MpsLoggingConsole(new LoggingServiceSettings()), new MpsContextData());
+            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new RuntimeSettings(null, null, null, null, null, null, null, null, null, null, null,null), new MpsLoggingConsole(new LoggingServiceSettings()), new MpsContextData());
         }
 
         [Test]

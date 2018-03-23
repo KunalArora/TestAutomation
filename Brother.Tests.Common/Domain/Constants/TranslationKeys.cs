@@ -5,6 +5,7 @@
         public static class ContractType
         {
             public static string LeaseAndClick { get { return "LEASE_AND_CLICK"; } }
+            public static string LeasingAndService { get { return "LEASING_AND_SERVICE"; } }
             public static string PurchaseAndClick { get { return "PURCHASE_AND_CLICK"; } }
         }
 
@@ -43,6 +44,7 @@
         {
             public static string PayUpfront { get { return "PAY_UPFRONT"; } }
             public static string IncludedInClickPrice { get { return "INCLUDED_IN_CLICK_PRICE"; } }
+            public static string AddToTheLeasingRate { get { return "ADD_TO_THE_LEASING_RATE"; } }
         }
 
         public static class InstallationPack
@@ -119,6 +121,12 @@
         {
             public static string ColourText { get { return "COLOUR_TEXT"; } }
             public static string MonoText { get { return "MONO_TEXT"; } }
+        }
+
+        public static class DisplayMessage
+        {
+            public static string EmailSendSuccess { get { return "EMAIL_SEND_SUCCESS"; } }
+            public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }            
         }
     }
 }

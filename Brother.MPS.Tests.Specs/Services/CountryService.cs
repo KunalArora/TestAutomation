@@ -1,10 +1,6 @@
-﻿using System;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Common.Domain;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -39,7 +35,6 @@ namespace Brother.Tests.Specs.Services
 
         private void InitialiseCountries()
         {
-
             _countries.Add(new Country
             {
                 CountryIso = "GB",
@@ -48,7 +43,11 @@ namespace Brother.Tests.Specs.Services
                 Cultures = new List<string> { "en-GB" },
                 DomainSuffix = "co.uk",
                 PasswordCountryAbbreviation = "UK",
-                AtYourSideEnabled = true
+                AtYourSideEnabled = true,
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -57,7 +56,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Ireland",
                 BrotherCode = "BIR",
                 Cultures = new List<string> { "en-IE" },
-                DomainSuffix = "ie"
+                DomainSuffix = "ie",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -66,7 +69,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Austria",
                 BrotherCode = "BAT",
                 Cultures = new List<string> { "de-AT" },
-                DomainSuffix = "at"
+                DomainSuffix = "at",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = true,
+                }
             });
 
             _countries.Add(new Country
@@ -75,7 +82,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Belgium",
                 BrotherCode = "BBE",
                 Cultures = new List<string> { "nl-BE", "fr-BE" },
-                DomainSuffix = "fr"
+                DomainSuffix = "fr",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -84,7 +95,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Switzerland",
                 BrotherCode = "BSW",
                 Cultures = new List<string> { "fr-CH", "de-CH" },
-                DomainSuffix = "ch"
+                DomainSuffix = "ch",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -93,7 +108,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Germany",
                 BrotherCode = "BIG",
                 Cultures = new List<string> { "de-DE" },
-                DomainSuffix = "de"
+                DomainSuffix = "de",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = true,
+                }
             });
 
             _countries.Add(new Country
@@ -102,7 +121,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Denmark",
                 BrotherCode = "BND",
                 Cultures = new List<string> { "da-DK" },
-                DomainSuffix = "dk"
+                DomainSuffix = "dk",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -111,7 +134,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Spain",
                 BrotherCode = "BES",
                 Cultures = new List<string> { "es-ES" },
-                DomainSuffix = "es"
+                DomainSuffix = "es",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -120,7 +147,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Finland",
                 BrotherCode = "BNF",
                 Cultures = new List<string> { "fi-FI" },
-                DomainSuffix = "fi"
+                DomainSuffix = "fi",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -129,7 +160,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Italy",
                 BrotherCode = "BIT",
                 Cultures = new List<string> { "it-IT" },
-                DomainSuffix = "it"
+                DomainSuffix = "it",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -138,7 +173,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Netherlands",
                 BrotherCode = "BNL",
                 Cultures = new List<string> { "nl-NL" },
-                DomainSuffix = "nl"
+                DomainSuffix = "nl",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -147,7 +186,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Norway",
                 BrotherCode = "BNN",
                 Cultures = new List<string> { "nb-NO" },
-                DomainSuffix = "no"
+                DomainSuffix = "no",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -156,7 +199,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Poland",
                 BrotherCode = "BPL",
                 Cultures = new List<string> { "pl-PL" },
-                DomainSuffix = "pl"
+                DomainSuffix = "pl",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
             _countries.Add(new Country
@@ -165,7 +212,11 @@ namespace Brother.Tests.Specs.Services
                 Name = "Sweden",
                 BrotherCode = "BNS",
                 Cultures = new List<string> { "sv-SE" },
-                DomainSuffix = "se"
+                DomainSuffix = "se",
+                LogicSettings = new LogicSettings
+                {
+                    IsNextDealerProposalsCreateTermAndTypePage = false
+                }
             });
 
         }

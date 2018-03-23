@@ -13,5 +13,6 @@
         int DefaultSerialNumberOffset { get; set; }
         int DefaultInvoiceGenerationTimeout { get; set; }
         int DefaultElementNotPresentTimeout { get; set; }
+        int DefaultWaitForItemTimeout { get; set; }
     }
 }

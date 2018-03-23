@@ -28,10 +28,16 @@ namespace Brother.Tests.Specs.Helpers
         private IRuntimeSettings RuntimeSettings { get; set; }
         private ITranslationService TranslationService { get; set; }
 
-        public void DeletePdf(string fileName)
+        public void DeletePdfErrorIgnored(string fileName)
         {
             LoggingService.WriteLogOnMethodEntry(fileName);
-            System.IO.File.Delete(fileName);
+            try {
+                File.Delete(fileName);
+            }
+            catch (Exception e)
+            {
+                LoggingService.WriteLog(LoggingLevel.WARNING, (object)("can't delete file=" + fileName), e);
+            }
         }
 
         public bool PdfContainsText(string pdfFileName, string searchText)
