@@ -97,13 +97,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
                 _installerDeviceInstallationPage.SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
             }
+            _installerDeviceInstallationPage.CompleteEmailButton();
+            _installerDeviceInstallationPage.ConfirmInstallationComplete();
             var browserTabs = installerDriver.WindowHandles.ToList();
-            if(browserTabs.Count > 1)
+            if (browserTabs.Count > 1)
             {
                 _installerDeviceInstallationPage.SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
             }
-            _installerDeviceInstallationPage.CompleteEmailButton();
-            _installerDeviceInstallationPage.ConfirmInstallationComplete();
         }
 
         public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver, string swapNewDeviceSerialNumber)
