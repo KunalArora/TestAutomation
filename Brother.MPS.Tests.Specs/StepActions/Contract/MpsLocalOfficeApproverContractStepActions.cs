@@ -331,7 +331,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 // Calling contract shift API and shifting by 6 months(in case of Half yearly) and 3 months(in case of Quarterly).
                 //TODO: Shift the contract according to proper caluculations for days
-                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*30, "d", false, false, "Any");
+                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, MonthToDays(contractShiftTimeOffsetValue), "d", false, false, "Any");
                 foreach (var product in products)
                 {
                     int updatedMono;
@@ -357,7 +357,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 localOfficeApproverReportsProposalsSummaryPage = VerifyUpdatedPrintCounts(localOfficeApproverReportsProposalsSummaryPage);
             }
             // Finally, run the contract shift API to generate Billing Invoices upto 3 Billing Periods 
-            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*30, "d", false, true, "Any");
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, MonthToDays(contractShiftTimeOffsetValue), "d", false, true, "Any");
             
             _localOfficeApproverWebDriver.Navigate().Refresh();
             localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -421,6 +421,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
+        }
+
+        private int MonthToDays(int backToMonth)
+        {
+            LoggingService.WriteLogOnMethodEntry(backToMonth);
+            int days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToMonth)).TotalDays;
+            return days;
         }
     }
 }
