@@ -33,6 +33,12 @@ namespace Brother.Tests.Specs.Services
         /// </summary>
         void RunStartContractCommand();
 
+        /// <summary>
+        /// Job to send device into swapping stage & generate BOC pin
+        /// </summary>
+        void RunSendSwapRequestCommand();
+
+
         #endregion
     }
 }

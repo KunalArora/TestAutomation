@@ -16,5 +16,7 @@ namespace Brother.Tests.Common.Domain.Constants
         public const string MpsSystemJobCreateConsumableOrderCommand = "MPS:SystemJobCreateConsumableOrderCommand";
         public const string MpsSystemJobSetupInstalledPrintersCommand = "MPS:SystemJobSetupInstalledPrintersCommand";
         public const string MpsSystemJobStartContractCommand = "MPS:SystemJobStartContractCommand";
+        public const string MpsContractClosingMonitorCommand = "MPS:NEW:ContractClosingMonitorCommand";
+        public const string MpsSystemJobSendSwapRequestCommand = "MPS:SystemJobSendSwapRequestCommand";
     }
 }

@@ -106,5 +106,26 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
                     "Reset & Reinstall steps for communication method {0} & installation type {1} not implemented yet", _contextData.CommunicationMethod, _contextData.InstallationType));
             }
         }
+
+        [Then(@"a Cloud MPS Installer is able to swap device using ""(.*)"" communication and ""(.*)"" installation")]
+        public void ThenACloudMPSInstallerIsAbleToSwapDeviceUsingCommunicationAndInstallation(string swapCommunicationMethod, string swapInstallationType)
+        {
+            if (swapCommunicationMethod.ToLower().Equals("cloud") && swapInstallationType.ToLower().Equals("bor"))
+            {
+                foreach(var device in _contextData.AdditionalDeviceProperties)
+                {
+                    if(device.IsSwap)
+                    {
+                        _mpsInstallerAgreement.SwapDeviceForCloudBor(device);
+                    }
+                }
+            }
+            else
+            {
+                Assert.Fail(
+                    string.Format(
+                    "Swap Device Installation steps for communication method {0} & installation type {1} not implemented yet", swapCommunicationMethod, swapInstallationType));
+            }
+        }
     }
 }

@@ -101,6 +101,11 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                         }
                         else
                         {
+                            if(device.IsSwappedInDevice) // Swapped In device information will not be present in the service/installation bill
+                            {
+                                continue;
+                            }
+
                             while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
                                 FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
                                 FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))

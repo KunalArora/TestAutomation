@@ -551,6 +551,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.ServicePack = product.ServicePack;
                         device.InstallationPack = product.InstallationPack;
                         device.ResetDevice = product.ResetDevice;
+                        device.IsSwap = product.IsSwap;
                     }
                 }
             }
@@ -582,6 +583,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                 // Verify the serial number of all devices used during installation (pick up from context data)
                 dealerAgreementDevicesPage.VerifySerialNumberOfDevice(device.MpsDeviceId, device.SerialNumber);
+
+                // Save Address string of the devices into context data
+                dealerAgreementDevicesPage.SaveAddressString(device);
             }
 
             // Verify updated devices' data in excel sheet
@@ -949,6 +953,97 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementBillingPage;
         }
 
+        public DealerAgreementDevicesPage SendSwapDeviceInstallationRequest(DealerAgreementDevicesPage dealerAgreementDevicesPage, string swapDeviceType)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, swapDeviceType);
+
+            string resourceInstalledPrinterBeingReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
+
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+
+            // Refresh once to reflect any changes if present
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            List<AdditionalDeviceProperties> newDevices = new List<AdditionalDeviceProperties>();
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.IsSwap)
+                {
+                    dealerAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
+                    var newModel = dealerAgreementDevicesPage.SendSwapRequest(
+                        device, swapDeviceType, _contextData.Culture);
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                    // Verify "Being Replaced" status for this device
+                    var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
+
+                    // Save info for new device to context data
+                    device.SwappedDeviceID = newDeviceId;
+                    newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true}); // Handle only monochrome (swapped in) devices for now
+                }
+            }
+
+            _contextData.AdditionalDeviceProperties.AddRange(newDevices);
+            
+            return dealerAgreementDevicesPage;
+        }
+
+        public DealerAgreementDevicesPage VerifyStatusOfSwappedInAndSwappedOutDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+
+            // Refresh so that device statuses are updated after swap installation
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            string resourceInstalledPrinterReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.Replaced, _contextData.Culture);
+            string resourceDeviceConnectionStatusSwapped = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Swapped, _contextData.Culture);
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
+
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                if(device.IsSwap) //Swapped out device (old device)
+                {
+                    dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterReplacedStatus);
+                    dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusSwapped);
+                }
+                else // Swapped in device (new device) plus remaining devices
+                {
+                    dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterStatusInstalled);
+                    dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusResponding);
+
+                    if(device.IsSwappedInDevice)
+                    {
+                        foreach(var oldDevice in _contextData.AdditionalDeviceProperties)
+                        {
+                            if(device.MpsDeviceId.Equals(oldDevice.SwappedDeviceID))
+                            {
+                                dealerAgreementDevicesPage.VerifySwappedInDeviceAddressString(oldDevice, device);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return dealerAgreementDevicesPage;
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
@@ -1098,6 +1193,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // 4. Delete Excel
             _devicesExcelHelper.DeleteExcelFile(excelFilePath);
         }
-        #endregion       
+        #endregion  
     }
 }

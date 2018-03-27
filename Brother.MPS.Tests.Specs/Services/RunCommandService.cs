@@ -205,6 +205,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunCreateConsumableOrderCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = RunCommands.MpsSystemJobCreateConsumableOrderCommand;
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -222,6 +223,7 @@ namespace Brother.Tests.Specs.Services
 
         public void RunStartContractCommand()
         {
+            LoggingService.WriteLogOnMethodEntry();
             string commandName = RunCommands.MpsSystemJobStartContractCommand;
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
@@ -231,11 +233,19 @@ namespace Brother.Tests.Specs.Services
         public void RunContractClosingMonitorCommand()
         {
             LoggingService.WriteLogOnMethodEntry();
-            string commandName = "MPS:NEW:ContractClosingMonitorCommand";
+            string commandName = RunCommands.MpsContractClosingMonitorCommand;
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);
         }
 
+        public void RunSendSwapRequestCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = RunCommands.MpsSystemJobSendSwapRequestCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
     }
 }

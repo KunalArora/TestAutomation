@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.ContextData;
+﻿﻿using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -153,6 +154,25 @@ namespace Brother.Tests.Specs.Services
             {
                 return monthDiff;
             }
+        }
+
+        public string CalculateProRataForSwappedOutDevice(int minimumVolume, string startPeriodDate, string endDeviceDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(minimumVolume, startPeriodDate, endDeviceDate);
+
+            // Logic to calculate pro rata for swapped out device used in Type 3
+            DateTime sd = MpsUtil.StringToDateTimeFormat(startPeriodDate);
+            DateTime ed = MpsUtil.StringToDateTimeFormat(endDeviceDate);
+            var surplusDays = (ed - sd).TotalDays + 1;   
+            return RoundOffUptoDecimalPlaces((minimumVolume * surplusDays / 30), 0).ToString();
+        }
+
+        public string CalculateProRataForSwappedInDevice(int minimumVolume, AdditionalDeviceProperties swappedOutDevice, AdditionalDeviceProperties swappedIndevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(minimumVolume, swappedOutDevice, swappedIndevice);
+
+            string swappedOutDeviceProRata = CalculateProRataForSwappedOutDevice(swappedOutDevice.VolumeMono, swappedOutDevice.StartDeviceDate, swappedOutDevice.EndDeviceDate);
+            return (minimumVolume - Int32.Parse(swappedOutDeviceProRata)).ToString();
         }
     }
 }

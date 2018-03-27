@@ -61,5 +61,6 @@ namespace Brother.Tests.Common.ContextData
         string DealerName { get; set; }
         string DealerSAPAccountNumber { get; set; }
         string LeasingBillingCycle { get; set; }
+        int UsableDeviceIndex { get; set; } // DeviceIndex which can be used in serial number generation
     }
 }

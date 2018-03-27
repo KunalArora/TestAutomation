@@ -73,6 +73,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
+            _contextData.UsableDeviceIndex = 1;
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
@@ -300,6 +301,19 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheServiceInstallationBillingInvoice()
         {
             _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyServiceInstallationInvoice(_dealerAgreementBillingPage);
+        }
+
+        [When(@"I create and send a ""(.*)"" swap device installation request")]
+        public void WhenICreateAndSendASwapDeviceInstallationRequest(string swapDeviceType)
+        {
+            _contextData.SwapType = swapDeviceType;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.SendSwapDeviceInstallationRequest(_dealerAgreementDevicesPage, swapDeviceType);
+        }
+
+        [Then(@"I can verify that the new devices are installed and responding")]
+        public void ThenICanVerifyThatTheNewDevicesAreInstalledAndResponding()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyStatusOfSwappedInAndSwappedOutDevices(_dealerAgreementDevicesPage);
         }
     }
 }

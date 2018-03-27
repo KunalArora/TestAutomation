@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -71,5 +72,23 @@ namespace Brother.Tests.Specs.Services
         /// <param name="endDate"></param>
         /// <returns></returns>
         string CalculateProportionalVolume(int minimumVolume, string startDate, string endDate);
+
+        /// <summary>
+        /// Calculate proportional volume (pro rata) for the swapped out device
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="startPeriodDate"></param>
+        /// <param name="endDeviceDate"></param>
+        /// <returns></returns>
+        string CalculateProRataForSwappedOutDevice(int minimumVolume, string startPeriodDate, string endDeviceDate);
+
+        /// <summary>
+        /// Calculate proportional volume (pro rata) for the swapped in device
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="swappedOutDevice"></param>
+        /// <param name="swappedInDevice"></param>
+        /// <returns></returns>
+        string CalculateProRataForSwappedInDevice(int minimumVolume, AdditionalDeviceProperties swappedOutDevice, AdditionalDeviceProperties swappedIndevice);
     }
 }

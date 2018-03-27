@@ -788,6 +788,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             new SelectElement(element).SelectByIndex(value);
         }
 
+        public static string SelectFromDropDownByIndexAndReturnValue(IWebElement element, int value)
+        {
+            var dropDownElement = new SelectElement(element);
+            dropDownElement.SelectByIndex(value);
+
+            return dropDownElement.SelectedOption.Text;
+        }
+
 
         public static IList<IWebElement> SelectOption(IWebElement element)
         {

@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
@@ -13,6 +14,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
@@ -399,6 +401,92 @@ namespace Brother.Tests.Specs.StepActions.Common
             }
 
             return localOfficeAgreementBillingPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage SendSwapDeviceInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string swapDeviceType, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, swapDeviceType, webDriver);
+
+            string resourceInstalledPrinterBeingReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
+
+            // Refresh once to reflect any changes if present
+            webDriver.Navigate().Refresh();
+            localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            List<AdditionalDeviceProperties> newDevices = new List<AdditionalDeviceProperties>();
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.IsSwap)
+                {
+                    localOfficeAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
+                    var newModel = localOfficeAgreementDevicesPage.SendSwapRequest(
+                        device, swapDeviceType, _contextData.Culture);
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    // Verify "Being Replaced" status for this device
+                    var newDeviceId = localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
+
+                    // Save info for new device to context data
+                    device.SwappedDeviceID = newDeviceId;
+                    newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true }); // Handle only monochrome (swapped in) devices for now
+                }
+            }
+
+            _contextData.AdditionalDeviceProperties.AddRange(newDevices);
+
+            return localOfficeAgreementDevicesPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage VerifyStatusOfSwappedInAndSwappedOutDevices(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+
+            // Refresh so that device statuses are updated after swap installation
+            webDriver.Navigate().Refresh();
+            localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            string resourceInstalledPrinterReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.Replaced, _contextData.Culture);
+            string resourceDeviceConnectionStatusSwapped = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Swapped, _contextData.Culture);
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.IsSwap) //Swapped out device (old device)
+                {
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterReplacedStatus);
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusSwapped);
+                }
+                else // Swapped in device (new device) plus remaining devices
+                {
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterStatusInstalled);
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusResponding);
+
+                    // Verify swapped in device address string
+                    if (device.IsSwappedInDevice)
+                    {
+                        foreach (var oldDevice in _contextData.AdditionalDeviceProperties)
+                        {
+                            if (device.MpsDeviceId.Equals(oldDevice.SwappedDeviceID))
+                            {
+                                localOfficeAgreementDevicesPage.VerifySwappedInDeviceAddressString(oldDevice, device);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return localOfficeAgreementDevicesPage;
         }
 
         public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)

@@ -30,6 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Selectors
         private const string ConsumableTableContainerSelector = ".js-mps-searchable";
+        private const string PreloaderSelector = ".js-mps-preloader";
 
         // Web Elements
 
@@ -57,6 +58,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             LoggingService.WriteLogOnMethodEntry(serialNumber, resourceConsumableOrderStatusInProgress);
 
             bool foundDevice = false;
+
+            SeleniumHelper.WaitUntil(d => !SeleniumHelper.FindElementByCssSelector(PreloaderSelector).Displayed);
 
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(
                 SeleniumHelper.FindElementByCssSelector(ConsumableTableContainerSelector));

@@ -90,7 +90,7 @@ namespace Brother.Tests.Common.ContextData
         public int DeviceCount { get; set; }
         public string DealerName { get; set; }
         public string DealerSAPAccountNumber { get; set; }
-
+        public int UsableDeviceIndex { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>

@@ -89,5 +89,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 serviceDeskServiceRequestsActivePage = PageService.GetPageObject<ServiceDeskServiceRequestsActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
             }
         }
+
+        public LocalOfficeAgreementDevicesPage SendSwapDeviceInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string swapDeviceType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, swapDeviceType);
+            return SendSwapDeviceInstallationRequest(localOfficeAgreementDevicesPage, swapDeviceType, _serviceDeskWebDriver);
+        }
+
+        public LocalOfficeAgreementDevicesPage VerifyStatusOfSwappedInAndSwappedOutDevices(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            return VerifyStatusOfSwappedInAndSwappedOutDevices(localOfficeAgreementDevicesPage, _serviceDeskWebDriver);
+        }
     }
 }

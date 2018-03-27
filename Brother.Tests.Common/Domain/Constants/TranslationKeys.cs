@@ -70,7 +70,8 @@
             public static string AwaitingCommissioning { get { return "AWAITING_COMMISSIONING"; } }
             public static string AddressRequiredType3 { get { return "ADDRESS_REQUIRED_TYPE3"; } }
             public static string ReadyForInstallType3 { get { return "READY_FOR_INSTALL_TYPE3"; } }
-            public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }   
+            public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }
+            public static string Replaced { get { return "REPLACED"; } }
         }
 
         public static class ProposalDeclineReason
@@ -104,6 +105,7 @@
         {
             public static string NotConnected { get { return "NOT_CONNECTED"; } }
             public static string Responding { get { return "RESPONDING"; } }
+            public static string Swapped { get { return "SWAPPED"; } }
         }
 
         public static class ConsumableOrderStatus
