@@ -8,6 +8,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -340,6 +341,33 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 throw new NullReferenceException(string.Format("Contract = {0} not found ", proposalId));
             }
 
+        }
+
+        public DealerReportsDashboardPage NavigateToReportsDashboardPage(DealerDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            ClickSafety(localOfficeApproverDashBoardPage.DealerReportLinkElement, localOfficeApproverDashBoardPage);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DataQueryPage NavigateToReportsDataQueryPage(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            ClickSafety(dealerReportsDashboardPage.DataQueryElement, dealerReportsDashboardPage);
+            return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsProposalsSummaryPage NavigateToContractsSummaryPage(DataQueryPage dealerReportsDataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDataQueryPage);
+            dealerReportsDataQueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
     }
 }

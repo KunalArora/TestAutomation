@@ -34,6 +34,7 @@ And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count and verify it on the Manage devices page
+And I navigate to the contract summary page in the reports section 
 #step39,40
 And a Cloud MPS Bank Cloud MPS Bank Summary Accept 
 #step40-42

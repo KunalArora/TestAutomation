@@ -140,6 +140,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts();
         }
 
+        [When(@"I navigate to the contract summary page in the reports section")]
+        public void WhenINavigateToTheContractSummaryPageInTheReportsSection()
+        {
+            var dealerDashBoardPage = _mpsSignInStepActions.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerReportsDashboardPage = _mpsDealerContractStepActions.NavigateToReportsDashboardPage(dealerDashBoardPage);
+            var dealerReportsDataQueryPage = _mpsDealerContractStepActions.NavigateToReportsDataQueryPage(dealerReportsDashboardPage);
+            var dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
+
+        }
 
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()

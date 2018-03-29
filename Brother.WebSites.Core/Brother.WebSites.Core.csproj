@@ -181,6 +181,8 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsDeclinedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsInprogressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerReportsDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerReportsProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendSwapInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
