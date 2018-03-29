@@ -7,6 +7,7 @@
             public static string LeaseAndClick { get { return "LEASE_AND_CLICK"; } }
             public static string LeasingAndService { get { return "LEASING_AND_SERVICE"; } }
             public static string PurchaseAndClick { get { return "PURCHASE_AND_CLICK"; } }
+            public static string EasyPrintProAndService { get { return "EASY_PRINT_PRO_AND_SERVICE"; } }
         }
 
         public static class AgreementType
@@ -62,6 +63,7 @@
         public static class InstallationStatus
         {
             public static string NotStarted {  get { return "NOT_STARTED"; } }
+            public static string Completed { get { return "COMPLETED"; } }
         }
 
         public static class InstalledPrinterStatus
@@ -129,6 +131,7 @@
         {
             public static string EmailSendSuccess { get { return "EMAIL_SEND_SUCCESS"; } }
             public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }            
+            public static string EmailSendFailure { get { return "EMAIL_SEND_FAILURE"; } }
         }
     }
 }

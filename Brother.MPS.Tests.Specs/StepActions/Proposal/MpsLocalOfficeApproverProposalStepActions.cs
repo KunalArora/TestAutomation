@@ -282,7 +282,9 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public LocalOfficeApproverApprovalContractsAcceptedPage AcceptContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverApprovalContractsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
-            localOfficeApproverApprovalContractsSummaryPage.OnClickAccept();
+            string resourceContractTypeEPP = _translationService.GetContractTypeText(TranslationKeys.ContractType.EasyPrintProAndService, _contextData.Culture);
+            string contextDataContractType = _contextData.ContractType;
+            localOfficeApproverApprovalContractsSummaryPage.OnClickAccept(contextDataContractType, resourceContractTypeEPP);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 

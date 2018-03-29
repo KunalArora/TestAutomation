@@ -94,6 +94,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(actionSummaryButton);
             SeleniumHelper.ClickSafety(actionSummaryElement);
         }
+
+        public void FilterProposalAndVerify(int proposalId)
+        {
+            LoggingService.WriteLogOnMethodEntry(proposalId);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
+        }
     }
 
 

@@ -151,6 +151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationPinCodeSelector = ".js-mps-pin-code";
         private const string RefreshButtonSelector = "#content_0_ButtonRefresh";
         private const string CompleteButtonSelector = "#content_0_ButtonCompleteCloudInstallation";
+        private const string CompleteEmailButtonSelector = "#content_0_ButtonCompleteEmailInstallation";
         private const string InstallationSuccessfullyFinishedSelector = "#content_0_InstallationSuccessfullyFinished";
 
         private const string SwapContainerSelector = "#content_0_SwapPlaceHolder.js-mps-swap-container";
@@ -346,13 +347,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             catch { }
         }
 
-        public bool CompleteButton()
+        public bool CompleteCloudButton()
         {
             LoggingService.WriteLogOnMethodEntry();
             try
             {
                 var completeButton = SeleniumHelper.FindElementByCssSelector(CompleteButtonSelector);
                 SeleniumHelper.ClickSafety(completeButton);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool CompleteEmailButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            try
+            {
+                var completeEmailButton = SeleniumHelper.FindElementByCssSelector(CompleteEmailButtonSelector);
+                SeleniumHelper.ClickSafety(completeEmailButton);
                 return true;
             }
             catch

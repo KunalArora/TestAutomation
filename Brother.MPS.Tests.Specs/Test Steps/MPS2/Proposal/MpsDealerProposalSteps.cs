@@ -226,6 +226,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage);
         }
 
+        [When(@"I add these printers for EPP:")]
+        public void WhenIAddThesePrintersForEPP(Table printers)
+        {
+            var products = printers.CreateSet<PrinterProperties>();
+            _contextData.PrintersProperties = products;
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalforEPPAndProceed(_dealerProposalsCreateProductsPage);
+        }
+
+
         [When(@"I calculate the click price for each of the above printers")]
         public void WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters()
         {
@@ -324,6 +333,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsApprovedPage);
             _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(_dealerProposalsSummaryPage.SeleniumHelper);
         }
+
+        [When(@"I have navigated to the Approved Proposals page and verify the proposal is displayed")]
+        public void WhenIHaveNavigatedToTheApprovedProposalsPageAndVerifyTheProposalIsDisplayed()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerProposalsApprovedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsApprovedPage(_dealerDashboardPage);
+            _mpsDealerProposalStepActions.IsProposalPresent(_dealerProposalsApprovedPage);
+        }
+
 
         [When(@"I click the download proposal button and verify if I am able to open the PDF")]
         public void WhenIClickTheDownloadProposalButtonAndVerifyIfIAmAbleToOpenThePDF()

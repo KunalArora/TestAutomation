@@ -121,6 +121,9 @@
     <value>Cancelled</value>
     <comment>TODO</comment>
   </data>
+  <data name="COMPLETED" xml:space="preserve">
+    <value>Beendet</value>
+  </data>
   <data name="IN_PROCESS" xml:space="preserve">
     <value>In-process</value>
     <comment>TODO</comment>

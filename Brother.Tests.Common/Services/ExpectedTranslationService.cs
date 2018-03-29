@@ -85,7 +85,6 @@ namespace Brother.Tests.Common.Services
         {
             return GetText(Resources.DisplayMessage.DisplayMessage.ResourceManager, name, culture);
         }
-
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)

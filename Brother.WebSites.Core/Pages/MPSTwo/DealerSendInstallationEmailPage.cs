@@ -56,9 +56,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendFailure")]
         public IWebElement EmailSendFailureElement;
 
-
-
-
         public void IsSendCommunicationScreenDisplayed()
         {
             LoggingService.WriteLogOnMethodEntry();

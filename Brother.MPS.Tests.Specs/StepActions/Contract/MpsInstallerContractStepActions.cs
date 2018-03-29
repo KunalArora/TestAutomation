@@ -12,6 +12,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -68,7 +69,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
                 RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, product.SerialNumber, installerDriver);
             }
-            if (!_installerDeviceInstallationPage.CompleteButton())
+            if (!_installerDeviceInstallationPage.CompleteCloudButton())
             {
                 int completeRetries = 0;
                 _installerWebDriver.Navigate().Refresh();
@@ -81,6 +82,28 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
             }
             _installerDeviceInstallationPage.ConfirmInstallationComplete();
+        }
+
+        public void PopulateSerialNumberAndCompleteEmailInstallation(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(_installerDeviceInstallationPage, installerDriver);
+            var installerWindowHandle = _contextData.WindowHandles[UserType.Installer];
+            var products = _contextData.PrintersProperties;
+
+            foreach (var product in products)
+            {
+                string serialNumber = SerialNumberCalculationHelper(product.SerialNumber);
+                product.SerialNumber = serialNumber;
+                _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
+                _installerDeviceInstallationPage.SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
+            }
+            _installerDeviceInstallationPage.CompleteEmailButton();
+            _installerDeviceInstallationPage.ConfirmInstallationComplete();
+            var browserTabs = installerDriver.WindowHandles.ToList();
+            if (browserTabs.Count > 1)
+            {
+                _installerDeviceInstallationPage.SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
+            }
         }
 
         public void PopulateSwapSerialNumber(InstallerDeviceInstallationPage _installerDeviceInstallationPage, IWebDriver installerDriver, string swapNewDeviceSerialNumber)

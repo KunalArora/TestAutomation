@@ -1958,6 +1958,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return addToProposalButton;
         }
 
+        public IWebElement PopulatePrinterDetailsforEPP(string printerName, out IWebElement printerContainer)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            // Filter the product
+            ClearAndType(FilterProductElement, printerName);
+
+            printerContainer = SelectPrinter(printerName);
+            ScrollTo(printerContainer);
+            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector);
+
+            return addToProposalButton;
+        }
+
         public void ClickAddProposalButton(IWebElement printerContainer, IWebElement addToProposalButton)
         {
             LoggingService.WriteLogOnMethodEntry(printerContainer, addToProposalButton);

@@ -128,4 +128,7 @@
     <value>Pay upfront</value>
     <comment>TODO temp</comment>
   </data>
+  <data name="TO_PAY_IN_ADVANCE" xml:space="preserve">
+    <value>im Voraus bezahlen</value>
+  </data>
 </root>

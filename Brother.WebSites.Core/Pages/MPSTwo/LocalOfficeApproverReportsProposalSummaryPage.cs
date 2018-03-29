@@ -33,7 +33,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintersContainerElement;
 
         private const string billingDatesSelector =  ".mps-billing-dates-container";
-        private const string billingDatesRowSelector = "#content_0_BillingDatesList_BillingDates_CellActions_2";
+        private const string billingDatesRow2Selector = "#content_0_BillingDatesList_BillingDates_CellActions_2";
+        private const string billingDatesRow1Selector = "#content_0_BillingDatesList_BillingDates_CellActions_1";
         private const string actionButtonSelector = ".btn-xs.dropdown-toggle";
         private const string billSelector = ".js-mps-download-invoice-pdf";
 
@@ -55,11 +56,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             var billingDatesContainer = SeleniumHelper.FindElementByCssSelector(billingDatesSelector);
             ScrollTo(billingDatesContainer);
-            var billingDatesRow2Container = SeleniumHelper.FindElementByCssSelector(billingDatesContainer, billingDatesRowSelector);
-            var actionButtonContainer = SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, actionButtonSelector);
-            actionButtonContainer.Click();
-            var billContainer = SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, billSelector);
-            billContainer.Click();
+            var billingDatesRow2Container = SeleniumHelper.FindElementByCssSelector(billingDatesContainer, billingDatesRow2Selector, 10);
+            var billingDatesRow1Container = SeleniumHelper.FindElementByCssSelector(billingDatesContainer, billingDatesRow1Selector, 10);
+            try
+            {
+                var billingDatesRow2ActionElement = SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, actionButtonSelector, 1);
+                SeleniumHelper.ClickSafety(billingDatesRow2ActionElement);
+                SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(billingDatesRow2Container, billSelector));
+            }
+            catch
+            {
+                var billingDatesRow1ActionElement = SeleniumHelper.FindElementByCssSelector(billingDatesRow1Container, actionButtonSelector, 10);
+                SeleniumHelper.ClickSafety(billingDatesRow1ActionElement);
+                SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(billingDatesRow1Container, billSelector));
+            }
         }
 
         public bool VerifyPrintCountsOfDevice( string serialNumber, int totalPrintCount)
@@ -84,10 +94,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     try
                     {
                         var PrintCountsElement = SeleniumHelper.FindElementByCssSelector(PrintCountsModalSelector, 10);
-                        var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsElement, PrintCountsModalTableBodySelector);
+                        var PrintCountsTableElement = SeleniumHelper.FindElementByCssSelector(PrintCountsElement, PrintCountsModalTableBodySelector, 10);
                         var PrintCountsRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintCountsTableElement);
 
-                        var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], TotalPrintCountSelector);
+                        var displayedTotalPrintCount = SeleniumHelper.FindElementByCssSelector(PrintCountsRowElements[0], TotalPrintCountSelector, 10);
 
                         if (!(displayedTotalPrintCount.Text.Equals(totalPrintCount.ToString())))
                         {
@@ -97,7 +107,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                         // Close Modal
                         SeleniumHelper.ClickSafety(
                             SeleniumHelper.FindElementByCssSelector(
-                            PrintCountsElement, PrintCountsModalCloseButtonSelector));
+                            PrintCountsElement, PrintCountsModalCloseButtonSelector, 3), 3);
                     }
                     catch
                     {

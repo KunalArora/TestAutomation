@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverApprovalContractsSummaryPage : BaseSummaryPage, IPageObject
+    public class LocalOfficeApproverApprovalContractsSummaryPage : LocalOfficeApproverContractsSummaryPage , IPageObject
     {
         public static string _url = "/mps/local-office/approval/contracts/summary";
         private const string _validationElementSelector = ".js-mps-contract-summary-contract-accept";
@@ -38,11 +38,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonOpenOfferRejectReject")]
         public IWebElement FinalRejectButtonElement;
 
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ComponentContractReviewedAcceptancePanel_InputApproveCreditCheckNotNeeded_Input")]
+        public IWebElement CreditCheckElement;
+
         //TODO: Refactoring
-        public void OnClickAccept()
+        public void OnClickAccept(string contextDataContractType, string resourceContractTypeEPP)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(contextDataContractType, resourceContractTypeEPP);
             SeleniumHelper.ClickSafety(AcceptButtonElement);
+            if (contextDataContractType == resourceContractTypeEPP)
+            {
+                EnterCustomerReference();
+                EnterContractReference();
+                SeleniumHelper.ClickSafety(CreditCheckElement);
+            }
             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(FinalAcceptButtonSelector), RuntimeSettings.DefaultFindElementTimeout, true); // Second accept is dynamic element, hence apply wait
         }
 

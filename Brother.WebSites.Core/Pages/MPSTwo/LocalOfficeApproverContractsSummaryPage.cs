@@ -207,14 +207,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         
 
-        private void EnterCustomerReference()
+        public void EnterCustomerReference()
         {
             var customerReference = "CusRef" + DateTime.Now.ToString("MMdHHmmss");
             
             ClearAndType(CustomerReferenceElement, customerReference);
         }
 
-        private void EnterContractReference()
+        public void EnterContractReference()
         {
             var customerReference = "ContractRef" + DateTime.Now.ToString("MMdHHmmss");
 
