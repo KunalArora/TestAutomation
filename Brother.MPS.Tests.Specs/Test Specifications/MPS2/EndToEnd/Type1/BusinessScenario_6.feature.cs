@@ -114,50 +114,6 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "PaperFeedingKit3",
                         "IsSwap"});
             table1.AddRow(new string[] {
-                        "DCP-8110DN",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "0",
-                        "A3P145600",
-                        "23",
-                        "100",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "HL-5450DN",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "0",
-                        "A3P145601",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "300.00",
                         "",
@@ -167,76 +123,10 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "20",
                         "250",
                         "A3P145602",
-                        "0",
-                        "0",
+                        "23",
+                        "100",
                         "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "MFC-L8650CDW",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "20",
-                        "200",
-                        "A3P145603",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "DCP-8250DN",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "250",
-                        "A3P145604",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false"});
-            table1.AddRow(new string[] {
-                        "DCP-L2520DW",
-                        "300.00",
-                        "",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "0",
-                        "200",
-                        "A3P145605",
-                        "0",
-                        "0",
-                        "Normal",
-                        "Normal",
+                        "Empty",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -323,14 +213,16 @@ testRunner.And("I navigate to the Accepted Contracts page and I locate the above
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I update the print count and create consumable order for the devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
 testRunner.And("I navigate to the contract summary page in the reports section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 38
+testRunner.And("I verify updated print count and consumable order status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
 testRunner.And("a Cloud MPS Bank Cloud MPS Bank Summary Accept", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
+#line 42
 testRunner.And("a Cloud MPS Bank Populated Maintain Contact", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
+#line 44
 testRunner.And("a Cloud MPS Bank Checking the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

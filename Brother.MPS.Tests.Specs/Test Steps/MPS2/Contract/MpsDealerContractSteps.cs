@@ -36,6 +36,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSetInstallationTypePage _dealerSetInstallationTypePage;
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
         private DealerSendSwapInstallationEmailPage _dealerSwapInstallationEmailPage;
+        private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -132,6 +133,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
+        [When(@"I update the print count and create consumable order for the devices")]
+        public void WhenIUpdateThePrintCountAndCreateConsumableOrderForTheDevices()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+        }
+
         [When(@"I update the print count and verify it on the Manage devices page")]
         public void WhenIUpdateThePrintCountAndVerifyItOnTheManageDevicesPage()
         {
@@ -146,9 +155,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var dealerDashBoardPage = _mpsSignInStepActions.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dealerReportsDashboardPage = _mpsDealerContractStepActions.NavigateToReportsDashboardPage(dealerDashBoardPage);
             var dealerReportsDataQueryPage = _mpsDealerContractStepActions.NavigateToReportsDataQueryPage(dealerReportsDashboardPage);
-            var dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
-
+             _dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
         }
+
+        [When(@"I verify updated print count and consumable order status")]
+        public void WhenIVerifyUpdatedPrintCountAndConsumableOrderStatus()
+        {
+            _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
+            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
+        }
+
 
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()

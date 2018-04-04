@@ -364,6 +364,61 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public void VerifyUpdatedPrintCounts(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+
+            int retries = 0;
+            
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                if(product.MonoPrintCount!=0 || product.ColorPrintCount!=0)
+                {
+                    while (!dealerReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount))
+                    {
+                        _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+
+                        _dealerWebDriver.Navigate().Refresh();
+                        dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            TestCheck.AssertFailTest(
+                                string.Format("Number of retries exceeded the default limit during verification of print counts for proposal {0}", _contextData.ProposalId));
+                        }
+                        continue;
+                    }
+                }
+            }
+            _runCommandService.RunStartContractCommand();
+        }
+
+        public void VerifyConsumableOrder(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+
+            int retries = 0;
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                while(!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product.SerialNumber))
+                {
+                    RunCommandServicesRequests();
+                    _dealerWebDriver.Navigate().Refresh();
+                    dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
+                    }
+                    continue;
+
+                }
+            }
+        }
+
         private void ClickSafety(IWebElement element, IPageObject pageObject)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
