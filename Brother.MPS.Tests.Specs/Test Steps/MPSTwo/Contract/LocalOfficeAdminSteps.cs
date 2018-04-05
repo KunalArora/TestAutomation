@@ -10,6 +10,7 @@ using Brother.Tests.Specs.StepActions.Contract;
 using Brother.WebSites.Core.Pages.Base;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
@@ -82,14 +83,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [StepDefinition(@"a Cloud MPS Local Office Admin can validate the final bill")]
         public void ThenACloudMPSLocalOfficeAdminCanValidateTheFinalBill()
         {
-            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload();
-            _stepActions.AssertAreEqualOverusageValues(pdfFinalInvoice);
+            DateTime startDate;
+            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
+            _stepActions.AssertAreEqualOverusageValues(pdfFinalInvoice,startDate);
         }
 
         [StepDefinition(@"a Local Office Admin assert the final bill is generated/present")]
         public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresent()
         {
-            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload();
+            DateTime startDate;
+            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
         }
 
     }
