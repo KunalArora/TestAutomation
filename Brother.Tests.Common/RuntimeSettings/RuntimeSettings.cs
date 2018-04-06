@@ -14,6 +14,9 @@
         private int _defaultInvoiceGenerationTimeout = 20;
         private int _defaultElementNotPresentTimeout = 3;
         private int _defaultWaitForItemTimeout = 60;
+        private string _defaultType3DealerUsername = null;
+        private string _defaultType3DealerPassword = null;
+
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -31,6 +34,10 @@
         /// <param name="defaultInvoiceGenerationTimeout">Default 20s</param>
         /// <param name="defaultElementNotPresentTimeout">Default 3s</param>
         /// <param name="DefaultWaitForItemTimeout">Default 60s</param>
+        /// <param name="DefaultType3DealerUsername">Default null</param>
+        /// <param name="DefaultType3DealerPassword">Default null</param>
+
+
         public RuntimeSettings(
             int? defaultPageLoadTimeout,
             int? defaultPageObjectTimeout,
@@ -43,7 +50,9 @@
             int? defaultSerialNumberOffset,
             int? defaultInvoiceGenerationTimeout,
             int? defaultElementNotPresentTimeout,
-            int? defaultWaitForItemTimeout
+            int? defaultWaitForItemTimeout,
+            string defaultType3DealerUsername,
+            string defaultType3DealerPassword
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -58,6 +67,8 @@
             DefaultInvoiceGenerationTimeout = defaultInvoiceGenerationTimeout ?? _defaultInvoiceGenerationTimeout;
             DefaultElementNotPresentTimeout = defaultElementNotPresentTimeout ?? _defaultElementNotPresentTimeout;
             DefaultWaitForItemTimeout = defaultWaitForItemTimeout ?? _defaultWaitForItemTimeout;
+            DefaultType3DealerUsername = defaultType3DealerUsername ?? _defaultType3DealerUsername;
+            DefaultType3DealerPassword = defaultType3DealerPassword ?? _defaultType3DealerPassword;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -72,6 +83,7 @@
         public int DefaultInvoiceGenerationTimeout { get; set; }
         public int DefaultElementNotPresentTimeout { get; set; }
         public int DefaultWaitForItemTimeout { get; set; }
-
+        public string DefaultType3DealerUsername { get; set; }
+        public string DefaultType3DealerPassword { get; set; }
     }
 }

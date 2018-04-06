@@ -15,6 +15,7 @@ using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using Brother.Tests.Common.RuntimeSettings;
 
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
@@ -31,6 +32,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly IAgreementHelper _agreementHelper;
+        private readonly IRuntimeSettings _runtimeSettings;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly MpsDealerAgreementStepActions _mpsDealerAgreement;
 
@@ -54,7 +56,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
-            IAgreementHelper agreementHelper)
+            IAgreementHelper agreementHelper,
+            IRuntimeSettings runtimeSettings)
         {
             _context = context;
             _contextData = contextData;
@@ -65,6 +68,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _agreementHelper = agreementHelper;
             _mpsSignIn = mpsSignIn;
             _mpsDealerAgreement = mpsDealerAgreement;
+            _runtimeSettings = runtimeSettings;
         }
 
 
@@ -75,7 +79,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.Country = _countryService.GetByName(country);
             _contextData.UsableDeviceIndex = 1;
 
-            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            string dealerUserName = _runtimeSettings.DefaultType3DealerUsername != null ? _runtimeSettings.DefaultType3DealerUsername : _userResolver.DealerUsername;
+            string dealerPassword = _runtimeSettings.DefaultType3DealerPassword != null ? _runtimeSettings.DefaultType3DealerPassword : _userResolver.DealerPassword;
+
+            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(dealerUserName, dealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
         }
 

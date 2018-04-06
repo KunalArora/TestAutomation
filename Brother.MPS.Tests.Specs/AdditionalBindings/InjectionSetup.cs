@@ -144,7 +144,10 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultSerialNumberOffset: AppSettingToInt("RuntimeSettings.DefaultSerialNumberOffset"),
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
                     defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
-                    defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout")
+                    defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
+                    defaultType3DealerUsername: AppSettingToString("RuntimeSettings.DefaultType3DealerUsername"),
+                    defaultType3DealerPassword: AppSettingToString("RuntimeSettings.DefaultType3DealerPassword")
+
             );
 
             return runtimeSettings;
@@ -164,6 +167,11 @@ namespace Brother.Tests.Specs.AdditionalBindings
             }
 
             return null;
+        }
+
+        private string AppSettingToString(string appSettingName)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get(appSettingName);
         }
 
         private void SetLegacyHelperProperties(string outputPath, string env)
