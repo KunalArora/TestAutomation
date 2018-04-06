@@ -83,18 +83,18 @@ namespace Brother.Tests.Specs.StepActions.Contract
             localOfficeAdminContractsEditEndDatePage.EnterCancellationDateAndReason(endDay, "details set end is " + endDay.ToString());
 
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonSaveElement, localOfficeAdminContractsEditEndDatePage);
-            ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonApplyContractCancellationElement, localOfficeAdminContractsEditEndDatePage);
+            ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonApplyContractCancellationElement, localOfficeAdminContractsEditEndDatePage,true);
             return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
 
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges=false)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout);
+            pageObject.SeleniumHelper.ClickSafety(element, RuntimeSettings.DefaultFindElementTimeout,IsUntilUrlChanges);
         }
 
-        public string ApplyOverUsageAndContractShiftAndDownload()
+        public string ApplyOverUsageAndContractShiftAndDownload( out DateTime startDateString)
         {
             LoggingService.WriteLogOnMethodEntry();
             ApplyOverusage();
@@ -108,6 +108,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunContractClosingMonitorCommand();
             _webDriver.Navigate().Refresh();
             // download Final Invoice
+            IWebElement startDateElement=null;
             var pdfName = _pdfHelper.Download(ph =>
             {
                 var endDate = MpsUtil.DateTimeString(DateTime.Today.AddDays(-1));
@@ -120,6 +121,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     var endDateElement = tr.FindElement(By.CssSelector("[id*=_BillingDatesList_BillingDates_CellEndDate_]"));
                     if (endDate == endDateElement.Text.Trim())
                     {
+                        startDateElement = tr.FindElement(By.CssSelector("[id*=_BillingDatesList_BillingDates_CellStartDate_]")); // 01/03/2018 = Mar.1
                         var step = "";
                         try
                         {
@@ -137,13 +139,54 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
                 throw new Exception("pdf download target view bill button not found.");
             });
+            Assert.NotNull(startDateElement.Text);
+            startDateString = MpsUtil.StringToDateTimeFormat(startDateElement.Text);
             return pdfName;
         }
-        public void AssertAreEqualOverusageValues(string pdfFinalInvoice)
+
+        private const int FINAL_PV_COEFFICIENT = 2;
+        public void AssertAreEqualOverusageValues(string pdfFinalInvoice,DateTime startDate)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice);
+
+            var products = _contextData.PrintersProperties;
+            var endDate = DateTime.Today.AddDays(-1); // yesterday
+            var mvCoefficient = CalculateFilnalInvoiceMinimumVolume(startDate, endDate);
+            LoggingService.WriteLog(LoggingLevel.DEBUG, "period start={0}, end={1}, mvCoefficient={2}", startDate, endDate, mvCoefficient);
+
+            foreach (var product in products)
+            {
+                string deviceId = product.DeviceId;
+
+                // calclate periodic MinimumVolume and PrintVolume.
+                var mvMono = (int)Math.Round(product.VolumeMono * mvCoefficient);
+                var mvColour = (int)Math.Round(product.VolumeColour * mvCoefficient);
+                var pvMono = (product.MonoPrintCount != 0 ? (product.VolumeMono * FINAL_PV_COEFFICIENT) + 1/*cause BocNotifyIncrementMono*/ : 0);
+                var pvColour = (product.ColorPrintCount != 0 ? product.VolumeColour * FINAL_PV_COEFFICIENT : 0);
+                product.monoOverusage = Math.Max(pvMono - mvMono, 0);
+                product.colorOverusage = Math.Max(pvColour - mvColour, 0);
+                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, mvMono={2}, mvColour={3}, product.monoOverusage={4}, product.colorOverusage={5}", product.Model, mvCoefficient, mvMono, mvColour, product.monoOverusage, product.colorOverusage);
+            }
             // validate pdf
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
+        }
+
+        private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)
+        {
+            // if billing cycle below
+            // 01/03/2018    03/04/2018
+            // 
+            // *Final invoice*
+            // currentDate.Subtract(previousDate.AddMonths(months)).Days
+            // where CurrentDate is the enddate and PreviousDate is the day before the startdate
+            // 
+            // 28/2 + 1 month = 28/3, 4/3 - 28/3 = 6 days
+            //
+            var previousDate = startDate.AddDays(-1);
+            var months = endDate.Month - startDate.Month + (previousDate.Day <= endDate.Day ? 1 : 0);
+            var days = Math.Min(endDate.Subtract(previousDate.AddMonths(months)).Days, 30);
+            double mv = months + days / 30.0;
+            return mv;
         }
 
         private void ApplyOverusage()
@@ -161,25 +204,14 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     product.MonoPrintCount, product.VolumeMono,
                     product.ColorPrintCount, product.VolumeColour
                     );
-                updatedMono =  product.MonoPrintCount  + (product.MonoPrintCount  != 0 ? product.VolumeMono*2   : 0);
-                updatedColor = product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour*2 : 0);
+                updatedMono =  product.MonoPrintCount  + (product.MonoPrintCount  != 0 ? product.VolumeMono* FINAL_PV_COEFFICIENT : 0);
+                updatedColor = product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour* FINAL_PV_COEFFICIENT : 0);
                 LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, updatedMono={1}, updatedColor={2}", product.Model, updatedMono, updatedColor);
 
                 string deviceId = product.DeviceId;
                 _deviceSimulatorService.SetPrintCounts(deviceId, updatedMono, updatedColor);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
 
-                // divorce coefficient= 1/30..1/1. The contract end day is yesterday (at caluclation).
-                var divorce = Math.Min(((double)DateTime.Today.AddDays(-1).Day) / 30.0, 1.0); // finally contract end day is yesterday.
-                if (DateTime.Today.Day == 2) divorce += 1.0; // 1month+1day
-                var divorceVolumeMono = (int)Math.Round(product.VolumeMono * divorce);
-                var divorceVolumeColour = (int)Math.Round(product.VolumeColour * divorce);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, divorce={1}, VolumeMono={2}, VolumeColour={3}", product.Model, divorce, divorceVolumeMono, divorceVolumeColour);
-
-                product.monoOverusage = Math.Max( updatedMono - product.MonoPrintCount -  divorceVolumeMono, 0);
-                product.colorOverusage = Math.Max( updatedColor - product.ColorPrintCount - divorceVolumeColour, 0);
-                LoggingService.WriteLog(LoggingLevel.DEBUG, "product.Model={0}, product.monoOverusage={1}, product.colorOverusage={2}", product.Model, product.monoOverusage, product.colorOverusage);
-                // Update the product's print counts with the latest print count values
                 product.MonoPrintCount = updatedMono;
                 product.ColorPrintCount = updatedColor;
             }
