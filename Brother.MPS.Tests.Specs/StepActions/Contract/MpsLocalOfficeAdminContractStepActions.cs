@@ -183,7 +183,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             // 28/2 + 1 month = 28/3, 4/3 - 28/3 = 6 days
             //
             var previousDate = startDate.AddDays(-1);
-            var months = endDate.Month - startDate.Month + (previousDate.Day < endDate.Day ? 1 : 0);
+            var months = endDate.Month - startDate.Month + (previousDate.Day <= endDate.Day ? 1 : 0);
             var days = Math.Min(endDate.Subtract(previousDate.AddMonths(months)).Days, 30);
             double mv = months + days / 30.0;
             return mv;
