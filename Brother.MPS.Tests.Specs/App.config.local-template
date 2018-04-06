@@ -2,5 +2,7 @@
 <appSettings>
 <!-- sample
   <add key="RuntimeSettings.DefaultSerialNumberOffset" value="40"/>
+  <add key="RuntimeSettings.DefaultType3DealerUsername" value="dealerXXXX@brother.co.uk" />
+  <add key="RuntimeSettings.DefaultType3DealerPassword" value="xxxx" />
 -->
 </appSettings>

@@ -14,5 +14,7 @@
         int DefaultInvoiceGenerationTimeout { get; set; }
         int DefaultElementNotPresentTimeout { get; set; }
         int DefaultWaitForItemTimeout { get; set; }
+        string DefaultType3DealerUsername { get; set; }
+        string DefaultType3DealerPassword { get; set; }
     }
 }
