@@ -33,9 +33,10 @@ And a Brother installer has navigated to the Web Installation page and verify Co
 And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
-And I update the print count and create consumable order for the devices
+And I update the print count 
 And I navigate to the contract summary page in the reports section 
 And I verify updated print count and consumable order status
+And I update the Consumable Order and verify it.
 #step39,40
 And a Cloud MPS Bank Cloud MPS Bank Summary Accept 
 #step40-42

@@ -133,12 +133,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
-        [When(@"I update the print count and create consumable order for the devices")]
-        public void WhenIUpdateThePrintCountAndCreateConsumableOrderForTheDevices()
+        [When(@"I update the print count")]
+        public void WhenIUpdateThePrintCount()
         {
             _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+        }
+
+        [When(@"I update the Consumable Order and verify it\.")]
+        public void WhenIUpdateTheConsumableOrderAndVerifyIt_()
+        {
             _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
             _mpsDealerContractStepActions.RunCommandServicesRequests();
+            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
         }
 
         [When(@"I update the print count and verify it on the Manage devices page")]
@@ -161,8 +168,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I verify updated print count and consumable order status")]
         public void WhenIVerifyUpdatedPrintCountAndConsumableOrderStatus()
         {
+            int backToTheMonth = 1;
             _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
-            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
+            _mpsDealerContractStepActions.MoveContract(backToTheMonth);
         }
 
 

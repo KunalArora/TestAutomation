@@ -213,16 +213,18 @@ testRunner.And("I navigate to the Accepted Contracts page and I locate the above
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-testRunner.And("I update the print count and create consumable order for the devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I update the print count", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
 testRunner.And("I navigate to the contract summary page in the reports section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
 testRunner.And("I verify updated print count and consumable order status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 39
+testRunner.And("I update the Consumable Order and verify it.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
 testRunner.And("a Cloud MPS Bank Cloud MPS Bank Summary Accept", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 43
 testRunner.And("a Cloud MPS Bank Populated Maintain Contact", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 45
 testRunner.And("a Cloud MPS Bank Checking the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

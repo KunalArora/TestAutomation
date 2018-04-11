@@ -391,7 +391,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     }
                 }
             }
-            _runCommandService.RunStartContractCommand();
         }
 
         public void VerifyConsumableOrder(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
@@ -417,6 +416,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
                 }
             }
+        }
+
+        public void MoveContract(int backToTheMonth)
+        {
+            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, true, "Any");
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
