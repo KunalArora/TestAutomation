@@ -15,8 +15,7 @@ And I add these printers:
 		| DCP-8110DN   | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            |
 And I calculate the click price for each of the above printers
 And I save the proposal 
-And a Cloud MPS Local Office Approver declines the above proposal
-Then I can see the above proposal in the Declined list
+And a Cloud MPS Local Office Admin navigates to the contract end screen
 
 @BUK
 Scenarios: 

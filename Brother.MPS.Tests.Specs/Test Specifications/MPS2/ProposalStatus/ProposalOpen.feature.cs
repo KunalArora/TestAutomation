@@ -121,9 +121,7 @@ testRunner.And("I calculate the click price for each of the above printers", ((s
 #line 17
 testRunner.And("I save the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
-testRunner.And("a Cloud MPS Local Office Approver declines the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
-testRunner.Then("I can see the above proposal in the Declined list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
