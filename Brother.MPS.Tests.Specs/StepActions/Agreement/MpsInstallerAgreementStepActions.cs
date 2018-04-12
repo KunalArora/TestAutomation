@@ -14,11 +14,12 @@ using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using OpenQA.Selenium;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Agreement
 {
-	public class MpsInstallerAgreementStepActions: StepActionBase
+    public class MpsInstallerAgreementStepActions: StepActionBase
 	{
 		private const string EXPECTED_SOFTWARE_DOWNLOAD_LINK = "/mps/web-installation/download-tools";
 
@@ -115,12 +116,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			string pin = installationCloudToolPage.GetPin();
 
 			string bocDeviceId, serialNumber;
-			foreach(var device in _contextData.AdditionalDeviceProperties)
+            var printersProperties = _contextData.PrintersProperties;
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
 			{
 				// Already Registered on BOC?
 				if (!device.IsRegisteredOnBoc)
 				{
-					RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
+                    // $$ 
+                    var prop = printersProperties.First(pp => pp.Model == device.Model);
+                    var model = string.IsNullOrWhiteSpace(prop.BocModel) ? device.Model : prop.BocModel;
+                    RegisterDeviceOnBOC(model, pin, out bocDeviceId, out serialNumber);
 					device.IsRegisteredOnBoc = true;
 
 					// Save device details to Context Data

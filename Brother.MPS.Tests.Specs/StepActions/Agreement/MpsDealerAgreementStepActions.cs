@@ -247,6 +247,29 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             return dealerAgreementDevicesPage;
         }
+        
+        public DealerAgreementDevicesPage EditDeviceDataBulk(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, optionalFields);
+            string validationExpression;
+            // select all
+            dealerAgreementDevicesPage.ClickCheckboxSelectAll(true);
+            dealerAgreementDevicesPage.ClickOnBulkActionsEditDeviceData();
+            dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
+
+            //var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
+            //for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
+            //{
+            //    dealerAgreementDevicesPage.ClickOnEditDeviceData(rowIndex);
+            //    dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
+
+            //    // Validate address field of edited device
+            //    dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(rowIndex, validationExpression);
+
+            //}
+
+            return dealerAgreementDevicesPage;
+        }
 
         public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceInstalledPrinterStatus)
         {

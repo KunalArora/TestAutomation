@@ -1,21 +1,17 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
-using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Specs.Factories;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Brother.Tests.Common.RuntimeSettings;
 
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
@@ -200,6 +196,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void WhenIEditDeviceDataOneByOneForAllDevicesFillOptionalFields(string optionalFields)
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataOneByOne(
+                _dealerAgreementDevicesPage, optionalFields);
+        }
+
+        [When(@"I edit device data bulk for all devices \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataBulkForAllDevicesFillOptionalFields(string optionalFields)
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(
                 _dealerAgreementDevicesPage, optionalFields);
         }
 
