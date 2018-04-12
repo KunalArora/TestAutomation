@@ -29,7 +29,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly ILoggingService _loggingService;
-        private readonly MpsLocalOfficeAdminContractStepActions _stepActions;
+        private readonly MpsLocalOfficeAdminContractStepActions _mpsLocalOfficeAdminContractStepActions;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdminAgreementStepActions;
         private LocalOfficeAdminReportsProposalSummaryPage _localOfficeAdminReportsProposalSummaryPage;
 
@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _proposalHelper = proposalHelper;
             _mpsSignInStepActions = mpsSignInStepActions;
             _loggingService = loggingService;
-            _stepActions = mpsLocalOfficeAdminContractStepActions;
+            _mpsLocalOfficeAdminContractStepActions = mpsLocalOfficeAdminContractStepActions;
             _mpsLocalOfficeAdminAgreementStepActions = mpsLocalOfficeAdminAgreementStepActions;
 
         }
@@ -70,30 +70,36 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             var localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dataQueryPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
-            _localOfficeAdminReportsProposalSummaryPage = _stepActions.NavigateToContractSummaryPage(dataQueryPage, _contextData.ProposalId);
+            _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.NavigateToContractSummaryPage(dataQueryPage, _contextData.ProposalId);
         }
 
         [StepDefinition(@"a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract")]
         public void WhenACloudMPSLocalOfficeAdminSetsTheCancellationDateAndReasonAndCancelsTheContract()
         {
-            var localOfficeAdminContractsEditEndDatePage = _stepActions.ClickOnCancelContract(_localOfficeAdminReportsProposalSummaryPage);
-            _localOfficeAdminReportsProposalSummaryPage = _stepActions.EnterContractCancellationDetailsAndSave(localOfficeAdminContractsEditEndDatePage, _contextData.BillingType);
+            var localOfficeAdminContractsEditEndDatePage = _mpsLocalOfficeAdminContractStepActions.ClickOnCancelContract(_localOfficeAdminReportsProposalSummaryPage);
+            _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.EnterContractCancellationDetailsAndSave(localOfficeAdminContractsEditEndDatePage, _contextData.BillingType);
         }
 
         [StepDefinition(@"a Cloud MPS Local Office Admin can validate the final bill")]
         public void ThenACloudMPSLocalOfficeAdminCanValidateTheFinalBill()
         {
             DateTime startDate;
-            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
-            _stepActions.AssertAreEqualOverusageValues(pdfFinalInvoice,startDate);
+            var pdfFinalInvoice = _mpsLocalOfficeAdminContractStepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
+            _mpsLocalOfficeAdminContractStepActions.AssertAreEqualOverusageValues(pdfFinalInvoice, startDate);
         }
 
         [StepDefinition(@"a Local Office Admin assert the final bill is generated/present")]
         public void ThenALocalOfficeAdminAssertTheFinalBillIsGeneratedPresent()
         {
             DateTime startDate;
-            var pdfFinalInvoice = _stepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
+            var pdfFinalInvoice = _mpsLocalOfficeAdminContractStepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
         }
 
+        [Then(@"a Cloud MPS Local office Admin edit the proposal notes and click save")]
+        public void ThenACloudMPSLocalOfficeAdminEditTheProposalNotesAndClickSave()
+        {
+            _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.EditProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
+            _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
+        }
     }
 }

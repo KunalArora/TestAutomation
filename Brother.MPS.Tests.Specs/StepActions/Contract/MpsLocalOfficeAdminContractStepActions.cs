@@ -88,6 +88,26 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         }
 
+        public LocalOfficeAdminReportsProposalSummaryPage EditProposalNotes(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminReportsProposalSummaryPage);
+
+            localOfficeAdminReportsProposalSummaryPage.EditProposalNotes();
+            ClickSafety(localOfficeAdminReportsProposalSummaryPage.SaveButtonElement, localOfficeAdminReportsProposalSummaryPage);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+
+        public void VerifyProposalNotes(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminReportsProposalSummaryPage);
+
+            var isNotes = localOfficeAdminReportsProposalSummaryPage.VerifyProposalNotes();
+            if (isNotes == false)
+            {
+                throw new Exception("Proposal note is not updated successfully");
+            }
+        }
+
         private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges=false)
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);

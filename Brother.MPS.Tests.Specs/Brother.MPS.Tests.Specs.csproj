@@ -305,6 +305,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProposalDeclined.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalOpen.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalOpen.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1573,7 +1578,7 @@
     <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\CalculationEngine\CalculationEngineSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Contract\LocalOfficeAdminSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DataQuery\DataQuerySteps.cs" />
@@ -1794,6 +1799,10 @@
     <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProposalDeclined.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ProposalOpen.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProposalOpen.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
