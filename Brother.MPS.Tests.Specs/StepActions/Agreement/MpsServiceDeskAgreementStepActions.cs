@@ -5,6 +5,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -29,8 +30,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ILoggingService loggingService,
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
-            IRunCommandService runCommandService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService)
+            IRunCommandService runCommandService,
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
             _contextData = contextData;
@@ -64,9 +67,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return SendSingleInstallationRequests(localOfficeAgreementDevicesPage, _serviceDeskWebDriver);           
         }
 
-        public void VerifyServiceRequestAndCloseIt(ServiceDeskDashBoardPage serviceDeskDashBoardPage)
+        public void VerifyServiceRequestAndCloseIt(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
         {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+
             string resourceServiceRequestStatusNew = _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.New, _contextData.Culture);
+
+            ClickSafety(localOfficeAgreementDevicesPage.LocalOfficeDashboardButtonLink, localOfficeAgreementDevicesPage);
+            var serviceDeskDashBoardPage = PageService.GetPageObject<ServiceDeskDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
 
             ClickSafety(serviceDeskDashBoardPage.ServiceDeskLink, serviceDeskDashBoardPage);
             var serviceDeskServiceDeskDashBoardPage = PageService.GetPageObject<ServiceDeskServiceDeskDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
@@ -80,6 +88,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _serviceDeskWebDriver.Navigate().Refresh();
                 serviceDeskServiceRequestsActivePage = PageService.GetPageObject<ServiceDeskServiceRequestsActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _serviceDeskWebDriver);
             }
+        }
+
+        public LocalOfficeAgreementDevicesPage SendSwapDeviceInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string swapDeviceType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, swapDeviceType);
+            return SendSwapDeviceInstallationRequest(localOfficeAgreementDevicesPage, swapDeviceType, _serviceDeskWebDriver);
+        }
+
+        public LocalOfficeAgreementDevicesPage VerifyStatusOfSwappedInAndSwappedOutDevices(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
+            return VerifyStatusOfSwappedInAndSwappedOutDevices(localOfficeAgreementDevicesPage, _serviceDeskWebDriver);
         }
     }
 }

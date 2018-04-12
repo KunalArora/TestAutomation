@@ -97,7 +97,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string printerTotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
         private const string PreloaderSelector = ".js-mps-preloader";
-
+        private const string AddToProposalButtonSelector = ".js-mps-product-configuration-submit";
 
         public override string DefaultTitle
         {
@@ -1898,9 +1898,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var addButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector);
 
             SeleniumHelper.ClickSafety(addButton);
-
-            // Note: Click Add button once again if it doesn't succeed first time
-            if (SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed)
+            
+            // Note: Repeatedly click Add button if it doesn't succeed (Either the preloader or the add to proposal button, i.e, product configuration box doesn't load)
+            while (!(SeleniumHelper.FindElementByCssSelector(printerContainer, PreloaderSelector).Displayed || 
+                SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector).Displayed))
             {
                 SeleniumHelper.ClickSafety(addButton);
             }
@@ -1936,8 +1937,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(deliveryPriceInput, "1");
             }
  
-            SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
-            
+            if(string.IsNullOrWhiteSpace(installationPack) == false)
+            {
+                SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
+            }
+
             margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector).GetAttribute("value");            
             unitPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, printerUnitPriceSelector).GetAttribute("value");
 
@@ -1951,6 +1955,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             
+            return addToProposalButton;
+        }
+
+        public IWebElement PopulatePrinterDetailsforEPP(string printerName, out IWebElement printerContainer)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            // Filter the product
+            ClearAndType(FilterProductElement, printerName);
+
+            printerContainer = SelectPrinter(printerName);
+            ScrollTo(printerContainer);
+            var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector);
+
             return addToProposalButton;
         }
 
@@ -1969,10 +1986,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var bodyRowElements = SeleniumHelper.FindRowElementsWithinTable(tableBodyContainer);
             foreach (var element in bodyRowElements)
             {
-                totalPriceValues.Add(SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text.Substring(1));
+                var textTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text;
+                totalPriceValues.Add(textTotalPrice.CollectDigitOnly());
             }
             var tableFootContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableFootSelector);
-            expectedTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text.Substring(1);
+            var textFootContainer = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text;
+            expectedTotalPrice = textFootContainer.CollectDigitOnly();
             return totalPriceValues;
         }
     }

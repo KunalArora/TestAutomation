@@ -19,6 +19,7 @@ namespace Brother.Tests.Specs.Services
         void RunCheckForSilentEmailDevicesCommand();
         void RunCheckForSilentCloudDevicesCommand();
         void RunCreateConsumableOrderCommand();
+        void RunContractClosingMonitorCommand();
 
         #region Exclusively Type 3 
 
@@ -31,6 +32,12 @@ namespace Brother.Tests.Specs.Services
         /// Job to force start a contract (/agreement) & put it into "Running" status
         /// </summary>
         void RunStartContractCommand();
+
+        /// <summary>
+        /// Job to send device into swapping stage & generate BOC pin
+        /// </summary>
+        void RunSendSwapRequestCommand();
+
 
         #endregion
     }

@@ -3,6 +3,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -47,6 +48,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         //[FindsBy(How = How.CssSelector, Using = "#content_1_InputSendToLeasingBank_Label")]
         //private IWebElement ThirdPartyApproval;
+        private const string PaginateSelector = ".dataTables_paginate";
 
 
         private string CreatedProposal()
@@ -73,6 +75,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
+        public void ClickOnViewSummary(int proposalId, IWebDriver driver)
+        {
+            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
+            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId.ToString(), ProposalListProposalNameRowElement);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
+            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }
 
     }

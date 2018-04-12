@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>f0779580</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>1de5a61e</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalBindings\AfterScenario.cs" />
     <Compile Include="AdditionalBindings\InjectionSetup.cs" />
     <Compile Include="BasicTests\CaseRunner.cs" />
     <Compile Include="BasicTests\TableExample.feature.cs">
@@ -93,6 +94,7 @@
       <DependentUpon>TableExample.feature</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CommandLineSettings.cs" />
+    <Compile Include="Configuration\LoggingServiceSettings.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequest.cs" />
     <Compile Include="Domain\DeviceSimulator\SetSupplyRequestItem.cs" />
     <Compile Include="Domain\WebPageResponse.cs" />
@@ -101,13 +103,19 @@
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
-    <Compile Include="Helpers\ExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\IAgreementHelper.cs" />
-    <Compile Include="Helpers\IExcelHelper.cs" />
+    <Compile Include="Helpers\IPageParseHelper.cs" />
     <Compile Include="Helpers\IPdfHelper.cs" />
     <Compile Include="Helpers\IProposalHelper.cs" />
+    <Compile Include="Helpers\PageParseHelper.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
-    <Compile Include="MpsSpecflowBindings.cs" />
     <Compile Include="Resolvers\DefaultUrlResolver.cs" />
     <Compile Include="Resolvers\DefaultUserResolver.cs" />
     <Compile Include="Resolvers\IUrlResolver.cs" />
@@ -136,11 +144,14 @@
     <Compile Include="StepActions\Common\MpsApiCallStepActions.cs" />
     <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsBankContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsInstallerContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsDealerContractStepActions.cs" />
+    <Compile Include="StepActions\Contract\MpsLocalOfficeAdminContractStepActions.cs" />
     <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
+    <Compile Include="StepActions\Proposal\MpsBankProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
     <Compile Include="StepActions\StepActionBase.cs" />
@@ -203,6 +214,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_3.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_5.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessScenario_5.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_6.feature.cs">
+      <DependentUpon>BusinessScenario_6.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature.cs">
       <AutoGen>True</AutoGen>
@@ -268,6 +289,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_4.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginAsDealer.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ContractRejected.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractRejected.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalDeclined.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1379,6 +1415,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSProductionRegressionTestServer3.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature.cs">
+      <DependentUpon>ProductionSmokeDealerCanCreateAgreement.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\PaymentProvider\PurchasesWithNewCard.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1518,6 +1559,7 @@
     <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Proposal\MpsBankProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
     <Compile Include="Test Steps\MPSOne\ConsumableSteps.cs" />
@@ -1531,6 +1573,7 @@
     <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\CalculationEngine\CalculationEngineSteps.cs" />
+    <Compile Include="Test Steps\MPSTwo\Contract\LocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DataQuery\DataQuerySteps.cs" />
@@ -1578,12 +1621,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestTmpTest.feature</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\CountryServiceTests.cs" />
+    <Compile Include="UnitTests\ContractShiftServiceTests.cs" />
     <Compile Include="UnitTests\DeviceSimulatorServiceTests.cs" />
     <Compile Include="UnitTests\MpsWebToolsServiceTests.cs" />
     <Compile Include="UnitTests\RunCommandServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.config.local">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
@@ -1674,6 +1723,14 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_3.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_5.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_6.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_6.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
@@ -1725,6 +1782,18 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginAsDealer.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ContractRejected.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ContractRejected.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProposalDeclined.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2646,6 +2715,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionRegressionTestServer3.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProductionSmokeDealerCanCreateAgreement.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\OmniJoinPartnerPortal\CustomerActions\CustomerActions.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CustomerActions.feature.cs</LastGenOutput>
@@ -2718,13 +2791,16 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.35\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.35\build\Selenium.Chrome.WebDriver.targets'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>copy $(ProjectDir)Drivers\*.* $(ProjectDir)$(OutDir)</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
-  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>if not exist $(ProjectDir)App.config.local copy $(ProjectDir)App.config.local-template $(ProjectDir)App.config.local</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.35\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.35\build\Selenium.Chrome.WebDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

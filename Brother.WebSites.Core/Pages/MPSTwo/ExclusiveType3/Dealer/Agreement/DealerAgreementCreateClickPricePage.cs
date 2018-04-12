@@ -30,6 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string DataAttributeColourCoverage = "colour-coverage";
         private const string DataAttributeColourVolume = "colour-volume";
 
+
         //WebElement properties
         [FindsBy(How = How.Id, Using = "content_1_ButtonNext")]
         public IWebElement NextButton;
@@ -43,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return clickPriceContainer;
         }
 
-        public void PopulatePrinterCoverageAndVolume(string printerName,
+        public bool PopulatePrinterCoverageAndVolume(string printerName,
             int coverageMono,
             int volumeMono,
             int coverageColour,
@@ -52,7 +53,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             string resourceUsageTypePayAsYouGo)
         {
             LoggingService.WriteLogOnMethodEntry(printerName, coverageMono, volumeMono, coverageColour, volumeColour, usageType, resourceUsageTypePayAsYouGo);
-            
+
+            bool isMono;
+
             var printerContainer = SelectClickPriceGroup(printerName);
             string isMonoOnly = printerContainer.GetAttribute(IsMonoOnly);
 
@@ -73,6 +76,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             
             if ((isMonoOnly.ToLower()).Equals("false"))
             {
+                isMono = false;
+
                 var colourCoverageInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourCoverage, "true");
                 var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true");
 
@@ -83,12 +88,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 {
                     ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
                 }
-                else 
+                else
                 {
                     SeleniumHelper.SelectFromDropdownByText(colourVolumeDropdownInput, volumeColour.ToString()); 
                 }
             }
+            else
+            {
+                isMono = true;
+            }
+
+            return isMono;
         }
     }
 }
-

@@ -120,6 +120,9 @@
   <data name="LEASE_AND_CLICK" xml:space="preserve">
     <value>Lease &amp; Click</value>
   </data>
+  <data name="LEASING_AND_SERVICE" xml:space="preserve">
+    <value>Leasing &amp; Service</value>
+  </data>
   <data name="PURCHASE_AND_CLICK" xml:space="preserve">
     <value>Purchase &amp; Click</value>
   </data>

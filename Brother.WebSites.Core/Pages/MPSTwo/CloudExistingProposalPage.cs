@@ -647,11 +647,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            ClearAndType(ProposalFilter, proposalName);
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
-            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalName, ProposalListProposalNameRowElement);
+            var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector,isWaitforEnabled:true);
             actionButtonElement.Click();
-            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector);
+            var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector, isWaitforEnabled: true);
             proposalEditButtonElement.Click();
         }
 
@@ -757,14 +756,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifySavedProposalInOpenProposalsList(int proposalId, string proposalName)
         {
+            return VerifyProposalInProposalsList(proposalId, proposalName);
+        }
+
+        protected bool VerifyProposalInProposalsList(int proposalId, string proposalName, IWebElement filterElement = null, IList<IWebElement> nameRowElement = null)
+        {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
+
+            filterElement = filterElement ?? ProposalFilter;
+            nameRowElement = nameRowElement ?? ProposalListProposalNameRowElement;
 
             // Wait for footer to load & then filter out the proposal
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector);
-            ClearAndType(ProposalFilter, proposalId.ToString());
+            ClearAndType(filterElement, proposalId.ToString());
             try
             {
-                SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName));
+                SeleniumHelper.WaitUntil(d => nameRowElement.First(element => element.Text == proposalName));
                 return true;
             }
             catch

@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
     public class DealerAgreementServiceRequestsPage: BasePage, IPageObject
     {
-        private const string _validationElementSelector = ".active a[href*=\"/service-requests\"]";
+        private const string _validationElementSelector = "#content_1_ServiceRequests_Row_0";
         private const string _url = "/mps/dealer/agreement/{agreementId}/service-requests"; // TODO: Replace agreementId with dynamic parameter
 
         public string ValidationElementSelector
@@ -31,6 +31,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ServiceRequestRowSelector = "[id*=content_1_ServiceRequests_Row_]";
         private const string ServiceRequestIdSelector = "data-service-request-id";
         private const string ServiceRequestRowDateClosedSelector = "[id*=content_1_ServiceRequests_DateClosedRow_]";
+        private const string ServiceRequestContainerSelector = ".js-mps-searchable";
 
         // Tab link selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
@@ -42,9 +43,37 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_ServiceRequests_Row_]")]
         public IList<IWebElement> ServiceRequestRowElementList;
 
+        public bool DoesServiceRequestExist(string serialNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(serialNumber);
+
+            bool exists = false;
+            try
+            {
+                var ServiceRequestContainerElement = SeleniumHelper.FindElementByCssSelector(ServiceRequestContainerSelector);
+                var serviceRequestRowElements = SeleniumHelper.FindRowElementsWithinTable(ServiceRequestContainerElement);
+                foreach (var serviceRequestRowElement in serviceRequestRowElements)
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                    string displayedSerialNumber = serviceRequestRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                    if (displayedSerialNumber.Equals(serialNumber))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                return exists;
+            }
+            catch
+            {
+                return exists;
+            }
+        }
+
         public string VerifyServiceRequestInformation(string model, string serialNumber, string serviceRequestStatus, string serviceRequestType, bool verifyDateClosed = false)
         {
-            SeleniumHelper.FindElementByCssSelector(ServiceRequestRowSelector);
+            SeleniumHelper.FindElementByCssSelector(".mps-dataTables-footer");
             ClearAndType(ServiceRequestFilterElement, string.Format(model + " " + serialNumber));
 
             IWebElement serviceRequestRowElement = null;
@@ -67,7 +96,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                         SeleniumHelper.FindElementByCssSelector(
                         serviceRequestRowElement, ServiceRequestRowDateClosedSelector).Text,
                         "-", 
-                        string.Format("Data closed of the service request for device = {0} and serial number = {1} could not be verified", model, serialNumber));
+                        string.Format("Date closed of the service request for device = {0} and serial number = {1} could not be verified", model, serialNumber));
                 }
             }
             catch

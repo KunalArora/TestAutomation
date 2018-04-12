@@ -41,13 +41,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnCopyWithCustomerActionItem(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            
-            ClearAndType(ProposalFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector);
-            actionsButtonElement.Click();
+            SeleniumHelper.ClickSafety(actionsButtonElement);
             var copyWithCustomerElement = SeleniumHelper.FindElementByCssSelector(copyWithCustomerSelector);
-            copyWithCustomerElement.Click();
+            SeleniumHelper.ClickSafety(copyWithCustomerElement, IsUntilUrlChanges: true);
         }
 
 
@@ -73,5 +71,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(true, noOfProposalId == (numberOfDistinct), "");
         }
 
+        public void SetListFilter(string filterString)
+        {
+            LoggingService.WriteLogOnMethodEntry(filterString);
+            SeleniumHelper.SetListFilter(InputFilterByElement, filterString, NameRowElementList);
+        }
+
+        public bool VerifyDeclinedProposalInDeclinedProposalsList(int proposalId, string proposalName)
+        {
+            return VerifyProposalInProposalsList(proposalId, proposalName);
+        }
     }
 }

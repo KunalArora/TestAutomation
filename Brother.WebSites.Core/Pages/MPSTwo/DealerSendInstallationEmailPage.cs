@@ -42,17 +42,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputInstallerEmailAddress_Input")]
         public IWebElement EmailFieldElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSend")]
-        public IWebElement NextButtonElement;
+        public IWebElement SendButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".col-sm-9 .form-control-static")]
         public IList<IWebElement> PinLabelElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
         public IWebElement SentConfirmationElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonNext")]
         public IWebElement FinishInstallationElement;
-        
-        
-        
-
+        [FindsBy(How = How.CssSelector, Using = ".alert.alert-warning.mps-alert.js-mps-alert")]
+        public IWebElement WarningAlertElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendSuccess")]
+        public IWebElement EmailSendSuccessElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_EmailSendFailure")]
+        public IWebElement EmailSendFailureElement;
 
         public void IsSendCommunicationScreenDisplayed()
         {
@@ -101,7 +103,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SendInstallationRequest()
         {
             LoggingService.WriteLogOnMethodEntry();
-            NextButtonElement.Click();
+            SendButtonElement.Click();
             ConfirmInstallationEmailSent();
 
         }
@@ -116,7 +118,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public DealerManageDevicesPage SendSwapInstallationRequest()
         {
             LoggingService.WriteLogOnMethodEntry();
-            NextButtonElement.Click();
+            SendButtonElement.Click();
             return GetTabInstance<DealerManageDevicesPage>();
         }
 
@@ -142,13 +144,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
-        public string EnterInstallerEmailAndProceed()
+        public string EnterInstallerEmailAndProceed(Func<string, object> assertFunc = null)
         {
             LoggingService.WriteLogOnMethodEntry();
             string emailId = EnterInstallerEmail();
-            NextButtonElement.Click(); // Send Email button
-            var _nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
-            _nextButtonElement.Click(); // Next button
+            SendButtonElement.Click(); // Send Email button
+            if( assertFunc != null)
+            {
+                var resultText = SeleniumHelper.WaitUntil(d =>
+                {
+                    if (SeleniumHelper.IsElementDisplayed(EmailSendSuccessElement)) { return EmailSendSuccessElement.Text; }
+                    if (SeleniumHelper.IsElementDisplayed(EmailSendFailureElement)) { return EmailSendFailureElement.Text; }
+                    return null;
+                });
+                assertFunc(resultText);
+            }
+            var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
+            nextButtonElement.Click(); // Next button
             return emailId;
         }
 

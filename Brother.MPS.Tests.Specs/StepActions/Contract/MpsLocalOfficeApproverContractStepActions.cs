@@ -5,26 +5,33 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
     [Binding]
-    class MpsLocalOfficeApproverContractStepActions : StepActionBase
+    class MpsLocalOfficeApproverContractStepActions : MpsLocalOfficeStepActions 
     {
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
         private readonly IWebDriver _localOfficeApproverWebDriver;
         private readonly ITranslationService _translationService;
+        private readonly IPdfHelper _pdfHelper;
+        private readonly IContractShiftService _contractShiftService;
 
         public MpsLocalOfficeApproverContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -35,14 +42,20 @@ namespace Brother.Tests.Specs.StepActions.Contract
             DeviceSimulatorService deviceSimulatorService,
             ITranslationService translationService,
             ILoggingService loggingService,
-            RunCommandService runCommandService)
-                    : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
+            IPdfHelper pdfHelper,
+            RunCommandService runCommandService,
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
+            IContractShiftService contractShiftService)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
             _localOfficeApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _translationService = translationService;
+            _pdfHelper = pdfHelper;
+            _contractShiftService = contractShiftService;
         }
 
         public LocalOfficeApproverContractsAwaitingAcceptancePage NavigateToApprovalContractsAwaitingAcceptancePage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -67,14 +80,25 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverApprovalContractsAcceptedPage AcceptContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverApprovalContractsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsSummaryPage);
-            localOfficeApproverApprovalContractsSummaryPage.OnClickAccept();
+            string resourceContractTypeEPP = _translationService.GetContractTypeText(TranslationKeys.ContractType.EasyPrintProAndService, _contextData.Culture);
+            string contextDataContractType = _contextData.ContractType;
+            localOfficeApproverApprovalContractsSummaryPage.OnClickAccept(contextDataContractType, resourceContractTypeEPP);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsAcceptedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
+        public void RejectContract(LocalOfficeApproverApprovalContractsSummaryPage localOfficeApproverContractsSummaryPage)
         {
-            LoggingService.WriteLogOnMethodEntry(_localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
-            _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverContractsSummaryPage);
+            string contractRejectReasonExpired = _translationService.GetProposalDeclineReasonText(TranslationKeys.ContractRejectReason.Expired, _contextData.Culture);
+
+            localOfficeApproverContractsSummaryPage.RejectContract(contractRejectReasonExpired);
+            PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public void VerifyAcceptContract(LocalOfficeApproverApprovalContractsAcceptedPage localOfficeApproverApprovalContractsAcceptedPage, int proposalId, string proposalName)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalContractsAcceptedPage, proposalId, proposalName);
+            localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
@@ -93,9 +117,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverManageDevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManageDevicesContractsPage localOfficeApproverManagedevicesContractsPage, int proposalId)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage, proposalId);
-            ActionsModule.SetFilter(proposalId.ToString(), localOfficeApproverManagedevicesContractsPage.InputFilterBy, localOfficeApproverManagedevicesContractsPage.ContractOrProposalNameElementList, RuntimeSettings.DefaultFindElementTimeout, _localOfficeApproverWebDriver);
-            ActionsModule.ClickOnTheActionsDropdown(0, _localOfficeApproverWebDriver);
-            ActionsModule.NavigateToManageDevicesActionButton(_localOfficeApproverWebDriver);
+            localOfficeApproverManagedevicesContractsPage.SetListFilter(proposalId);
+            localOfficeApproverManagedevicesContractsPage.NavigateToManageDevicesPage();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -137,6 +160,27 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmail(LocalOfficeApproverManageDevicesSendInstallationEmailPage localOfficeApproverManagedevicesSendInstallationEmailPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendInstallationEmailPage);
+
+            int retries = 0;
+
+            while (localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.WarningAlertElement))
+            {
+                _localOfficeApproverWebDriver.Navigate().Refresh();
+                localOfficeApproverManagedevicesSendInstallationEmailPage = PageService.GetPageObject<LocalOfficeApproverManageDevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+                if (retries > RuntimeSettings.DefaultRetryCount / 2)
+                {
+                    LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC Pin Generation/Sap Customer Validation is taking time for proposal {0}", _contextData.ProposalId));
+                }
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Number of retries exceeded the default limit during verification of boc pin codes generation/Sap customer validation for proposal {0}. BOC server may be slow in responding.", _contextData.ProposalId));
+                }
+            }
+
             _contextData.InstallerEmail = localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
@@ -166,7 +210,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
             CheckForUpdatedPrintCount(localOfficeApproverManagedevicesManagePage);
         }
-
+   
         public LocalOfficeApproverManageDevicesManagePage RetrieveDealerManageDevicesPage()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -182,7 +226,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach (var product in products)
             {
                 var totalPageCount = product.TotalPageCount;
-                localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, product.SerialNumber);
+
+                while (!(localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, product.SerialNumber)))
+                {
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _localOfficeApproverWebDriver.Navigate().Refresh();
+                    localOfficeApproverManagedevicesManagePage = PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+                    continue;
+                }
+                _localOfficeApproverWebDriver.Navigate().Refresh();
+                localOfficeApproverManagedevicesManagePage = PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
             }
         }
 
@@ -207,11 +260,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage, string swapNewDeviceSerialNumber)
+        public void CheckForSwapDeviceUpdatedPrintCount(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesManagePage);
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, swapNewDeviceSerialNumber);
+            localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber);
         }
 
         public void VerifySwappedDeviceStatus(LocalOfficeApproverManageDevicesManagePage localOfficeApproverManagedevicesManagePage)
@@ -249,5 +302,125 @@ namespace Brother.Tests.Specs.StepActions.Contract
             dealerSetInstallationTypePage.NextElement.Click();
         }
 
+        public LocalOfficeApproverReportsDashboardPage NavigateToReportsDashboardPage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            ClickSafety(localOfficeApproverDashBoardPage.LocalApprovalReportingElement, localOfficeApproverDashBoardPage);
+            return PageService.GetPageObject<LocalOfficeApproverReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public DataQueryPage NavigateToReportsDataQueryPage(LocalOfficeApproverReportsDashboardPage localOfficeApproverReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsDashboardPage);
+            ClickSafety(localOfficeApproverReportsDashboardPage.DataQueryElement, localOfficeApproverReportsDashboardPage);
+            return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
+
+        public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage localOfficeApproverReportsDataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsDataQueryPage);
+            return NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage, _localOfficeApproverWebDriver);
+        }
+
+        public LocalOfficeApproverReportsProposalSummaryPage ApplyOverusage(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalsSummaryPage, int contractShiftTimeOffsetValue)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage, contractShiftTimeOffsetValue);
+            var products = _contextData.PrintersProperties;
+            // Shift the contract 2 times to update print counts and generate Invoices for upto 3 Billing periods.
+            for (int i = 0; i < 2; i++)
+            {
+                // Calling contract shift API and shifting by 6 months(in case of Half yearly) and 3 months(in case of Quarterly).
+                //TODO: Shift the contract according to proper caluculations for days
+                _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*31, "d", false, false, "Any");
+                foreach (var product in products)
+                {
+                    int updatedMono;
+                    int updatedColor;
+                    // Calculate the mono and colour print count for the next billing period depending on MonoPrintCount and Volume Mono. 
+                    // Making sure that the updated print count is more than Minimum Volume for the billing period.
+                    updatedMono = contractShiftTimeOffsetValue * product.MonoPrintCount + (product.MonoPrintCount != 0 ? product.VolumeMono : 0);
+                    updatedColor = contractShiftTimeOffsetValue * product.ColorPrintCount + (product.ColorPrintCount != 0 ? product.VolumeColour : 0);
+
+                    string deviceId = product.DeviceId;
+                    _deviceSimulatorService.SetPrintCounts(deviceId, updatedMono, updatedColor);
+                    _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                    // Calculate the Overusage for mono and colour for each printer to verify it in the Invoice PDF.
+                    // Subtract the previous Billing period's print count and Minimum volume for the current billing period from the latest/updated print counts. 
+                    product.monoOverusage = updatedMono - product.MonoPrintCount - contractShiftTimeOffsetValue * product.VolumeMono;
+                    product.colorOverusage = updatedColor - product.ColorPrintCount - contractShiftTimeOffsetValue * product.VolumeColour;
+                    // Update the product's print counts with the latest print count values
+                    product.MonoPrintCount = updatedMono;
+                    product.ColorPrintCount = updatedColor;
+                    product.TotalPageCount = updatedMono + updatedColor;
+                }
+                //Verify the updated print counts on the portal and retry running meter read command if not updated.
+                localOfficeApproverReportsProposalsSummaryPage = VerifyUpdatedPrintCounts(localOfficeApproverReportsProposalsSummaryPage);
+            }
+            // Finally, run the contract shift API to generate Billing Invoices upto 3 Billing Periods 
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, contractShiftTimeOffsetValue*31, "d", false, true, "Any");
+            
+            _localOfficeApproverWebDriver.Navigate().Refresh();
+            localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            return localOfficeApproverReportsProposalsSummaryPage;
+        }
+
+        private LocalOfficeApproverReportsProposalSummaryPage VerifyUpdatedPrintCounts(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
+
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+
+            _localOfficeApproverWebDriver.Navigate().Refresh();
+            localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            int retries = 0;
+
+            foreach (var product in _contextData.PrintersProperties)
+            {
+                while (!localOfficeApproverReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.TotalPageCount))
+                {
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+
+                    _localOfficeApproverWebDriver.Navigate().Refresh();
+                    localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            string.Format("Number of retries exceeded the default limit during verification of print counts for agreement {0}", _contextData.ProposalId));
+                    }
+                    continue;
+                }
+            }
+
+            _localOfficeApproverWebDriver.Navigate().Refresh();
+            localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            return localOfficeApproverReportsProposalsSummaryPage;
+        } 
+        
+        public string DownloadPdf(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
+            return _pdfHelper.Download(ph =>
+           {
+               localOfficeApproverReportsProposalsSummaryPage.ClickOnBillAction();
+               return true;
+           });
+        }
+                
+        public void AssertAreEqualOverusageValues(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            _pdfHelper.AssertAreEqualOverusageValues(pdfFile, _contextData.PrintersProperties, _contextData.Culture);
+        }
+
+        public void DeletePdfFile(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            _pdfHelper.DeletePdfErrorIgnored(pdfFile);
+        }
     }
 }

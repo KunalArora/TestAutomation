@@ -14,6 +14,8 @@ namespace Brother.Tests.Common.ContextData
         string BaseUrl { get; set; }
         string EnvironmentName { get; set; }
         string Environment { get; set; }
+        string SpecificDealerUsername { get; set; }
+        string SpecificDealerPassword { get; set; }
         BusinessType BusinessType { get; set; }
 
         string ProposalName { get; set; }
@@ -31,9 +33,12 @@ namespace Brother.Tests.Common.ContextData
         string InstallerEmail { get; set; }
         string CustomerPassword { get; set; }
         string SwapOldDeviceSerialNumber { get; set; }
+        string SwapNewDeviceSerialNumber { get; set; }
         int SwapNewDeviceMonoPrintCount { get; set; }
         int SwapNewDeviceColourPrintCount { get; set; }
-        
+
+        string CommunicationMethod { get; set; }
+        string InstallationType { get; set; }
         void SetBusinessType(string businessTypeId);
         string WebInstallUrl { get; set; }
         Dictionary<UserType, string> WindowHandles { get; set; }
@@ -42,7 +47,9 @@ namespace Brother.Tests.Common.ContextData
         string WebSwapInstallUrl { get; set; }
         string SwapType { get; set; }
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
- 
+        IList<string> RegisteredDeviceIds { get; set; }
+        SnapDictionary SnapValues { get;  }
+
         // Exclusively Type 3
         string AgreementType { get; set; }
         int AgreementId { get; set; }
@@ -51,5 +58,9 @@ namespace Brother.Tests.Common.ContextData
         string DealerReference { get; set; }
         List<AdditionalDeviceProperties> AdditionalDeviceProperties { get; set; }
         int DeviceCount { get; set; }
+        string DealerName { get; set; }
+        string DealerSAPAccountNumber { get; set; }
+        string LeasingBillingCycle { get; set; }
+        int UsableDeviceIndex { get; set; } // DeviceIndex which can be used in serial number generation
     }
 }

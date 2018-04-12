@@ -38,8 +38,16 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string AdvancedInstallationLink { get; set; }
 
         // Extra properties not in Excel
+        public string AddressString { get; set; } // Address string displayed on the devices page
+        public string MonoClickPrice { get; set; }
+        public string ColourClickPrice { get; set; }
+        public int VolumeMono { get; set; }
+        public int VolumeColour { get; set; }
+        public bool IsMonochrome { get; set; }
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
+        public string ResetDevice { get; set; }
+        public bool IsSwap { get; set; }
         public int DeviceIndex { get; set; }
         public bool IsRegisteredOnBoc { get; set; }
         public int MonoPrintCount { get; set; }
@@ -75,5 +83,15 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ServiceRequestId { get; set; }
         public string ServiceRequestType { get; set; }
         public string ServiceRequestReplyMessage { get; set; }
+        public string InstallationPack { get; set; }
+        public string ServicePack { get; set; }
+        public string InstallationPackPrice { get; set; }
+        public string ServicePackPrice { get; set; }
+        public string SwappedDeviceID { get; set; }
+        public bool IsSwappedInDevice { get; set; }
+        public string StartDeviceDate { get; set; }
+        public string EndDeviceDate { get; set; }
+        public int TotalPagesPrintedMono { get; set; }
+        public int TotalPagesPrintedColour { get; set; }
     }
 }

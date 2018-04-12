@@ -15,6 +15,7 @@ using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using Brother.Tests.Common.RuntimeSettings;
 
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
@@ -31,6 +32,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly IAgreementHelper _agreementHelper;
+        private readonly IRuntimeSettings _runtimeSettings;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly MpsDealerAgreementStepActions _mpsDealerAgreement;
 
@@ -43,6 +45,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementCreateSummaryPage _dealerAgreementCreateSummaryPage;
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
+        private DealerAgreementBillingPage _dealerAgreementBillingPage;
 
         public MpsDealerAgreementSteps(
             MpsSignInStepActions mpsSignIn,
@@ -53,7 +56,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
-            IAgreementHelper agreementHelper)
+            IAgreementHelper agreementHelper,
+            IRuntimeSettings runtimeSettings)
         {
             _context = context;
             _contextData = contextData;
@@ -64,6 +68,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _agreementHelper = agreementHelper;
             _mpsSignIn = mpsSignIn;
             _mpsDealerAgreement = mpsDealerAgreement;
+            _runtimeSettings = runtimeSettings;
         }
 
 
@@ -72,8 +77,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
+            _contextData.UsableDeviceIndex = 1;
 
-            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            string dealerUserName = _runtimeSettings.DefaultType3DealerUsername != null ? _runtimeSettings.DefaultType3DealerUsername : _userResolver.DealerUsername;
+            string dealerPassword = _runtimeSettings.DefaultType3DealerPassword != null ? _runtimeSettings.DefaultType3DealerPassword : _userResolver.DealerPassword;
+
+            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(dealerUserName, dealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
         }
 
@@ -150,6 +159,32 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheCreationOfAgreementInTheAgreementList()
         {
             _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
+        [When(@"I can verify the creation of agreement in the agreement list")]
+        public void WhenICanVerifyTheCreationOfAgreementInTheAgreementList()
+        {
+            _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can delete the agreement")]
+        public void ThenICanDeleteTheAgreement()
+        {
+            _mpsDealerAgreement.DeleteAgreement(_dealerAgreementsListPage);
+        }
+
+        [Then(@"I can verify that the agreement is removed from the agreement list")]
+        public void ThenICanVerifyThatTheAgreementIsRemovedFromTheAgreementList()
+        {
+            //TODO: A more conclusive test for the removal of an agreement is to check the
+            //database directly - but requires the db connector. See ticket MPS-4955
+            _mpsDealerAgreement.VerifyAgreementIsRemoved(_dealerAgreementsListPage);
+        }
+
+        [When(@"I navigate to the agreement list")]
+        public void WhenINavigateToTheAgreementList()
+        {
+            _mpsDealerAgreement.NavigateToAgreementsListPage();
         }
 
         [When(@"I navigate to edit device data page")]
@@ -261,6 +296,31 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheDeviceDetailsUsingShowDeviceDetailsOption()
         {
             _mpsDealerAgreement.VerifyDeviceDetails(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the click rate billing invoice")]
+        public void ThenICanVerifyTheClickRateBillingInvoice()
+        {
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyClickRateInvoice(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the service/installation billing invoice")]
+        public void ThenICanVerifyTheServiceInstallationBillingInvoice()
+        {
+            _dealerAgreementBillingPage = _mpsDealerAgreement.VerifyServiceInstallationInvoice(_dealerAgreementBillingPage);
+        }
+
+        [When(@"I create and send a ""(.*)"" swap device installation request")]
+        public void WhenICreateAndSendASwapDeviceInstallationRequest(string swapDeviceType)
+        {
+            _contextData.SwapType = swapDeviceType;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.SendSwapDeviceInstallationRequest(_dealerAgreementDevicesPage, swapDeviceType);
+        }
+
+        [Then(@"I can verify that the new devices are installed and responding")]
+        public void ThenICanVerifyThatTheNewDevicesAreInstalledAndResponding()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyStatusOfSwappedInAndSwappedOutDevices(_dealerAgreementDevicesPage);
         }
     }
 }

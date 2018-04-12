@@ -1,4 +1,6 @@
-﻿namespace Brother.Tests.Specs.Services
+﻿using Brother.Tests.Common.Domain.Models;
+
+namespace Brother.Tests.Specs.Services
 {
     public interface IMpsWebToolsService
     {
@@ -9,6 +11,7 @@
         void RemoveConsumableOrderByInstalledPrinter(string serialNumber);
         void SetConsumableOrderStatus(int orderId, int statusId);
         void RegisterCustomer(string idIsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB");
+        SwapRequestDetail GetSwapRequestDetail(int installedPrinterId);
         void RemoveProductionSmokeTests();
     }
 }

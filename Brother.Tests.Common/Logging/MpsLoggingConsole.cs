@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Brother.Tests.Common.Logging
 {
@@ -11,17 +12,17 @@ namespace Brother.Tests.Common.Logging
         private readonly string _scenarioName;
         private readonly IOutputLoggingStream _loggingStream;
 
-        public MpsLoggingConsole(ILoggingServiceSettings commandLineSettings ) 
+        public MpsLoggingConsole(ILoggingServiceSettings loggingServiceSettings ) 
         {
             try
             {
-                _loggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), commandLineSettings.LoggingLevel.ToUpper());
+                _loggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), loggingServiceSettings.LoggingLevel.ToUpper());
             }
             catch
             {
                 _loggingLevel = LoggingLevel.WARNING;
             }
-            _scenarioName = string.IsNullOrWhiteSpace(commandLineSettings.ScenarioName) ? "(UNKNOWN)" : commandLineSettings.ScenarioName;
+            _scenarioName = string.IsNullOrWhiteSpace(loggingServiceSettings.ScenarioName) ? "(UNKNOWN)" : loggingServiceSettings.ScenarioName;
             _loggingStream = new MpsOutputLoggingStream();
         }
         public void WriteLog(LoggingLevel level, object message)
@@ -89,6 +90,24 @@ namespace Brother.Tests.Common.Logging
         {
             var nowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             return string.Format("{0} {1} {2} - ", nowTime, _scenarioName, level);
+        }
+
+        public T WriteLogWhenWarningTimeoutExceeds<T>(Func<ILoggingService, T> p, int timeOut, string warningMessageWhenTimeExceed = "too much time", [CallerLineNumber]int lineNumber = 0)
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            var result = p(this);
+            sw.Stop();
+            var elapsedSec = sw.ElapsedMilliseconds / 1000;
+            if (elapsedSec >= timeOut)
+            {
+                var callerFrame = new StackFrame(1);
+                var method = callerFrame.GetMethod();
+                var methodName = method.Name;
+                var className = method.ReflectedType.Name;
+                WriteLog(LoggingLevel.WARNING, "{0}#{1}({2}) exectime={3}s {4}",className,methodName,lineNumber, elapsedSec, warningMessageWhenTimeExceed);
+            }
+            return result;
         }
     }
 

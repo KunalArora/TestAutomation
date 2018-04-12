@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 2")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "HALF_YEARLY", "INCLUDED_IN_CLICK_PRICE", "FOUR_YEARS", "Existing", "Cloud", "Web", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "HALF_YEARLY_IN_ARREARS", "INCLUDED_IN_CLICK_PRICE", "FOUR_YEARS", "Existing", "Cloud", "Web", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void BusinessScenario2(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {
@@ -117,8 +117,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "FuserUnit",
                         "PaperFeedingKit1",
                         "PaperFeedingKit2",
-                        "PaperFeedingKit3",
-                        "IsSwap"});
+                        "PaperFeedingKit3"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1000.00",
@@ -128,8 +127,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145620",
-                        "0",
+                        "A3P145600",
+                        "10",
                         "0",
                         "Empty",
                         "Normal",
@@ -139,8 +138,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Empty",
                         "Normal",
                         "Normal",
-                        "Normal",
-                        "true"});
+                        "Normal"});
             table1.AddRow(new string[] {
                         "HL-5450DN",
                         "1000.00",
@@ -150,9 +148,9 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P145621",
+                        "A3P145601",
+                        "10",
                         "0",
-                        "0",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -161,8 +159,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
-                        "Normal",
-                        "false"});
+                        "Normal"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1000.00",
@@ -172,7 +169,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "250",
-                        "A3P145622",
+                        "A3P145602",
                         "1000",
                         "250",
                         "Normal",
@@ -183,8 +180,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
-                        "Normal",
-                        "false"});
+                        "Normal"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1000.00",
@@ -194,9 +190,9 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "20",
                         "200",
-                        "A3P145623",
-                        "0",
-                        "0",
+                        "A3P145603",
+                        "10",
+                        "10",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -205,8 +201,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
-                        "Normal",
-                        "false"});
+                        "Normal"});
 #line 15
 testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
 #line 21
@@ -251,16 +246,21 @@ testRunner.And("I navigate to the Accepted Contracts page and I locate the above
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-testRunner.And("I update the print count, raise consumable order and service request for above de" +
-                    "vices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
-testRunner.And("I apply overusage to the contract depending on usagetype and billingtype", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver apply and verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-testRunner.And("I will be able to see on the Manage Devices page that above devices have updated " +
-                    "Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I will raise consumable order and service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
 testRunner.Then("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+testRunner.Given("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 43
+testRunner.When("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
+                    "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 44
+testRunner.Then("a Cloud MPS Local Office Admin can validate the final bill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

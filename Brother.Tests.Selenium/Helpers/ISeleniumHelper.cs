@@ -7,8 +7,25 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 {
     public interface ISeleniumHelper
     {
-        IWebElement FindElementByCssSelector(string selector, int timeout = -1);
-        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1);
+        /// <summary>
+        /// find element by css selector
+        /// </summary>
+        /// <param name="selector">css selector</param>
+        /// <param name="timeout">in sec. -1=use default value</param>
+        /// <param name="isWaitforDisplayed">T= wait for element.displayed == true</param>
+        /// <param name="isWaitforEnabled">T= wait for element.enabled == true</param>
+        /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
+        IWebElement FindElementByCssSelector(string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
+        /// <summary>
+        /// find element by css selector
+        /// </summary>
+        /// <param name="context">search root element</param>
+        /// <param name="selector">css selector</param>
+        /// <param name="timeout">in sec. -1=use default value</param>
+        /// <param name="isWaitforDisplayed">T= wait for element.displayed == true</param>
+        /// <param name="isWaitforEnabled">T= wait for element.enabled == true</param>
+        /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
+        IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
         /// <summary>
         /// Attempts to find an element which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
@@ -19,6 +36,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="timeout"></param>
         /// <returns></returns>
         IWebElement FindElementByDataAttributeValue(string dataAttributeName, string dataAttributeValue, int timeout = -1);
+        /// <summary>
+        /// set check box
+        /// </summary>
+        /// <param name="element">target</param>
+        /// <param name="select">T=check</param>
+        void SetCheckBox(IWebElement element, bool select);
+
         /// <summary>
         /// Attempts to find an element in the given search context which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
@@ -133,5 +157,38 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         bool IsElementDisplayed(ISearchContext context, string selector);
 
+        /// <summary>
+        /// Clicks the radio button & ensures that it has been clicked properly
+        /// </summary>
+        /// <param name="radioButtonElement"></param>
+        void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout = -1);
+
+        /// <summary>
+        /// filter proposal/contract helper
+        /// </summary>
+        /// <param name="filterElement">input field</param>
+        /// <param name="filterString">id set to filter element</param>
+        /// <param name="rowElementListForExistCheck">check until list count==1</param>
+        /// <param name="timeout">in sec. -1 is default from RuntimeSettings.DefaultXXXTimeout</param>
+        void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null);
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterElement">The filter element where Proposal/Contract/Aggrement Id is inserted</param>
+        /// <param name="filterId">Proposal/Contract/Aggrement Id</param>
+        /// <param name="rowElementListForExistCheck">Row Elements of the Proposals List</param>
+        /// <param name="timeout">Find Element Timeout</param>
+        /// <param name="dataAttibuteName">proposal-id or contract-id. default=null </param>
+        /// <param name="waitSelector">Selector to wait for before the Proposals/Contracts/Aggrements List is loaded before entering the Id in filterelement. default=null </param>
+        /// <returns>target element when dataAttibuteName != null othewise N/A</returns>
+        IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttibuteName=null, string waitSelector=null);
+
+        /// <summary>
+        /// Returns true if element with this selector is not present, returns false if its present
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        bool IsElementNotPresent(string selector, int timeout = -1);
     }
 }

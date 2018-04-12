@@ -33,15 +33,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContractFilter;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractListContractNameRowElement;
+        [FindsBy(How = How.CssSelector, Using = "[href='/mps/dealer/contracts/rejected']")]
+        public IWebElement RejectedTabElement;
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
         public void ClickOnViewOffer(int proposalId, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            ClearAndType(ContractFilter, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ContractListContractNameRowElement.Count == 1 );
-            SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last()) ;
+            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
+            SeleniumHelper.SetListFilter(ContractFilter, proposalId, ContractListContractNameRowElement);
+            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
 
@@ -81,15 +82,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleProposalList_List_ProposalNameRow_]")]
         public IList<IWebElement> ProposalListProposalNameRowElement;
 
-        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
+        private const string actionsButton = @".js-mps-filter-ignore > .dropdown-toggle";
+        private const string actionSummaryButton = ".js-mps-view-summary";
 
         public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            ClearAndType(FilterSearchFieldElement, proposalId.ToString());
-            SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.Count == 1);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
-            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
+            var actionElement = SeleniumHelper.FindElementByCssSelector(actionsButton);
+            SeleniumHelper.ClickSafety(actionElement);
+            var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(actionSummaryButton);
+            SeleniumHelper.ClickSafety(actionSummaryElement);
+        }
+
+        public void FilterProposalAndVerify(int proposalId)
+        {
+            LoggingService.WriteLogOnMethodEntry(proposalId);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
         }
     }
 

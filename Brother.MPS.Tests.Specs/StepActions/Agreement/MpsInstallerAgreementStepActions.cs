@@ -1,8 +1,10 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.Models;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -25,6 +27,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		private readonly MpsSignInStepActions _mpsSignIn;
 		private readonly IDeviceSimulatorService _deviceSimulatorService;
 		private readonly IAgreementHelper _agreementHelper;
+		private readonly IMpsWebToolsService _mpsWebToolsService;
+		private readonly IRunCommandService _runCommandService;
 
 		public MpsInstallerAgreementStepActions(IWebDriverFactory webDriverFactory,
 			IContextData contextData,
@@ -35,7 +39,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			MpsSignInStepActions mpsSignIn,
 			IDeviceSimulatorService deviceSimulatorService,
 			ILoggingService loggingService,
-			IAgreementHelper agreementHelper)
+			IAgreementHelper agreementHelper,
+			IMpsWebToolsService mpsWebToolsService,
+			IRunCommandService runCommandService)
 			: base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
 		{
 			_installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
@@ -43,6 +49,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			_mpsSignIn = mpsSignIn;
 			_deviceSimulatorService = deviceSimulatorService;
 			_agreementHelper = agreementHelper;
+			_mpsWebToolsService = mpsWebToolsService;
+			_runCommandService = runCommandService;
 		}
 
 		public void InstallDevicesOneByOneForCloudBor()
@@ -57,7 +65,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				if (!device.IsRegisteredOnBoc)
 				{
 					RegisterDeviceOnBOC(
-						device.Model, device.RegistrationPin, device.DeviceIndex, out deviceId, out serialNumber);
+						device.Model, device.RegistrationPin, out deviceId, out serialNumber);
 					device.IsRegisteredOnBoc = true;
 
 					// Save details to contextData
@@ -82,17 +90,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
 
 				// 5. Refresh until device is connected
-				RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+				installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
 			}
 		}
 
-		public void BulkInstallDevicesForCloudBor()
+		public InstallationCloudToolPage BulkInstallDevicesForCloudBor()
 		{
 			LoggingService.WriteLogOnMethodEntry();
-			// 1. Navigate to Select method page & verify device details
+			// Navigate to Select method page & verify device details
 			var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
 			
-			// 2. Select installation method as BOR & Navigate to installation page
+			// Select installation method as BOR & Navigate to installation page
 			ClickSafety(
 					installationSelectMethodPage.BORInstallationButton(),
 					installationSelectMethodPage);
@@ -102,7 +110,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			// Verify that Software download link is correct
 			installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
 
-			// 3. Register devices on BOC
+			// Register devices on BOC
 			ClickSafety(installationCloudToolPage.GetPinButtonElement, installationCloudToolPage);
 			string pin = installationCloudToolPage.GetPin();
 
@@ -112,7 +120,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				// Already Registered on BOC?
 				if (!device.IsRegisteredOnBoc)
 				{
-					RegisterDeviceOnBOC(device.Model, pin, device.DeviceIndex, out bocDeviceId, out serialNumber);
+					RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
 					device.IsRegisteredOnBoc = true;
 
 					// Save device details to Context Data
@@ -121,29 +129,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				}
 			}
 
-			// 4. Refresh until all devices serial numbers are detected
-			int retries = 0;
-			while (!installationCloudToolPage.IsSerialNumberForAllDevicesDetected())
-			{
-				ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
-				installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-				retries++;
-				if (retries > RuntimeSettings.DefaultRetryCount)
-				{
-					throw new Exception(
-						string.Format("Number of retries exceeded the default limit during device installation for agreement {0}", _contextData.AgreementId));
-				}
-			}
-			
-			// 5. Select serial numbers of devices wherever possible
-			installationCloudToolPage = SelectSerialNumbersHelper(installationCloudToolPage);
-
-			// 6. Refresh until all devices are connected
-			RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+			return SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
 		}
 
-		public void BulkInstallDevicesForCloudWeb()
+		public InstallationCloudWebPage BulkInstallDevicesForCloudWeb()
 		{
 			LoggingService.WriteLogOnMethodEntry();
 			string bocDeviceId, serialNumber;
@@ -154,7 +143,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				// Already Registered on BOC?
 				if (!device.IsRegisteredOnBoc)
 				{
-					RegisterDeviceOnBOC(device.Model, device.RegistrationPin, device.DeviceIndex, out bocDeviceId, out serialNumber);
+					RegisterDeviceOnBOC(device.Model, device.RegistrationPin, out bocDeviceId, out serialNumber);
 					device.IsRegisteredOnBoc = true;
 
 					// Save details to context data
@@ -182,21 +171,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			}
 
 			// 5. Hit Refresh until all devices are connected
-			int retries = 0;
-			while (!installationCloudWebPage.AreAllDevicesConnected())
-			{
-				ClickSafety(installationCloudWebPage.RefreshButtonElement, installationCloudWebPage);
-				installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
-				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-				retries++;
-				if (retries > RuntimeSettings.DefaultRetryCount)
-				{
-					throw new Exception(
-						string.Format("Number of retries exceeded the default limit during device installation for agreement {0}", _contextData.AgreementId));
-				}
-			}
+			installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+			
+			return installationCloudWebPage;
 		}
-
+		
 		public void SingleDeviceInstallationForCloudUsb(AdditionalDeviceProperties device)
 		{
 			LoggingService.WriteLogOnMethodEntry(device);
@@ -221,7 +200,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			if (!device.IsRegisteredOnBoc)
 			{
 				RegisterDeviceOnBOC(
-					device.Model, installationCloudUsbPage.InstallationPinElement.Text, device.DeviceIndex, out bocDeviceId, out serialNumber);
+					device.Model, installationCloudUsbPage.InstallationPinElement.Text, out bocDeviceId, out serialNumber);
 				device.IsRegisteredOnBoc = true;
 
 				// Save details to context data
@@ -263,7 +242,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				// Already Registered on BOC?
 				if(!device.IsRegisteredOnBoc)
 				{
-					RegisterDeviceOnBOC(device.Model, pin, device.DeviceIndex, out bocDeviceId, out serialNumber);
+					RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
 
 					device.IsRegisteredOnBoc = true;
 					// Save device details to Context Data
@@ -311,13 +290,145 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			RefreshUntilConnectedForCloudUsb(installationCloudUsbPage);
 		}
 
+		public void ResetAndReinstallDevices(InstallationCloudWebPage installationCloudWebPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudWebPage);
+			string bocDeviceId, serialNumber;
+			foreach(var device in _contextData.AdditionalDeviceProperties)
+			{
+				if(device.ResetDevice.ToLower().Equals("yes"))
+				{
+					installationCloudWebPage.ClickReset(device.MpsDeviceId);
+					_installerWebDriver.Navigate().Refresh();
+					installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+					installationCloudWebPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+
+					// Register device
+					RegisterDeviceOnBOC(device.Model, device.RegistrationPin, out bocDeviceId, out serialNumber);
+
+					// Save details to context data
+					device.BocDeviceId = bocDeviceId;
+					device.SerialNumber = serialNumber;
+
+					installationCloudWebPage.FillDeviceDetailsAndClickConnect(
+					device, _contextData.WindowHandles[UserType.Installer]);
+				}
+			}
+
+			// Check if all devices are connected
+			RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+		}
+
+		public void ResetAndReinstallDevices(InstallationCloudToolPage installationCloudToolPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
+
+			string bocDeviceId, serialNumber;
+
+			string pin = installationCloudToolPage.GetPin();
+
+			// Reset & Verify status
+			foreach (var device in _contextData.AdditionalDeviceProperties)
+			{
+				if (device.ResetDevice.ToLower().Equals("yes"))
+				{
+					installationCloudToolPage.ClickReset(device.MpsDeviceId);
+
+					_installerWebDriver.Navigate().Refresh();
+					installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+					installationCloudToolPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+
+					device.IsRegisteredOnBoc = false;
+				}
+			}
+
+			// Register devices on BOC
+			foreach(var device in _contextData.AdditionalDeviceProperties)
+			{
+				if(!device.IsRegisteredOnBoc)
+				{
+					// Register device
+					RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
+
+					// Save details to context data
+					device.BocDeviceId = bocDeviceId;
+					device.SerialNumber = serialNumber;
+
+					installationCloudToolPage.FillDeviceDetails(device);
+				}
+			}
+
+			SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
+		}
+
+		public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
+		{
+			LoggingService.WriteLogOnMethodEntry(oldDevice);
+			
+			_runCommandService.RunSendSwapRequestCommand();
+			SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
+			
+			foreach(var newDevice in _contextData.AdditionalDeviceProperties)
+			{
+				if(oldDevice.SwappedDeviceID.Equals(newDevice.MpsDeviceId))
+				{
+
+					string bocDeviceId, serialNumber;
+					if (swapInformation.InstallationPin != null)
+					{
+						RegisterDeviceOnBOC(
+						newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
+
+						// Save details to contextData
+						newDevice.BocDeviceId = bocDeviceId;
+						newDevice.SerialNumber = serialNumber;
+
+						// Save other information of old device (swapped out) to new device (swapped in)
+						CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
+					}
+					else
+					{
+						TestCheck.AssertFailTest(string.Format("No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
+					}
+
+					if (swapInformation.InstallationUrl != null)
+					{
+						var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(
+							swapInformation.InstallationUrl);
+
+						// Select installation method as "BOR"
+						ClickSafety(
+							installationSelectMethodPage.BORInstallationButton(),
+							installationSelectMethodPage);
+						var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+							RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+
+						// Verify that Software download link is correct
+						installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
+
+						// Refresh until device is connected
+						installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+
+						// Verify old device & new device information, input print counts & complete installation
+						installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
+					}
+					else
+					{
+						TestCheck.AssertFailTest(string.Format("No installation URL generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
+					}
+
+					return;
+			  }					 
+			}				
+		}
+
 		#region private methods
 
-		private void RegisterDeviceOnBOC(string deviceModel, string installationPin, int deviceIndex, out string deviceId, out string serialNumber)
+		private void RegisterDeviceOnBOC(string deviceModel, string installationPin, out string deviceId, out string serialNumber)
 		{
-			LoggingService.WriteLogOnMethodEntry(deviceModel, installationPin, deviceIndex);
+			LoggingService.WriteLogOnMethodEntry(deviceModel, installationPin);
 			// 1. Create new device
-			serialNumber = _agreementHelper.GenerateSerialNumber(deviceIndex);
+			serialNumber = _agreementHelper.GenerateSerialNumber(_contextData.UsableDeviceIndex++);
 			deviceId = _deviceSimulatorService.CreateNewDevice(deviceModel, serialNumber);
 
 			// 2. Enter Pin & register
@@ -378,7 +489,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			return installationCloudToolPage;
 		}
 
-		private void RefreshUntilConnectedForCloudBor(InstallationCloudToolPage installationCloudToolPage)
+		private InstallationCloudToolPage RefreshUntilConnectedForCloudBor(InstallationCloudToolPage installationCloudToolPage)
 		{
 			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
 
@@ -391,10 +502,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				retries++;
 				if (retries > RuntimeSettings.DefaultRetryCount)
 				{
-					throw new Exception(
-						string.Format("Number of retries exceeded the default limit during device installation for agreement {0}", _contextData.AgreementId));
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
 				}
 			}
+
+			return installationCloudToolPage;
 		}
 
 		private void RefreshUntilConnectedForCloudUsb(InstallationCloudUsbPage installationCloudUsbPage)
@@ -410,10 +523,84 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				retries++;
 				if (retries > RuntimeSettings.DefaultRetryCount)
 				{
-					throw new Exception(
-						string.Format("Number of retries exceeded the default limit during device installation for agreement {0}", _contextData.AgreementId));
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
 				}
 			}
+		}
+
+		private InstallationCloudWebPage RefreshUntilConnectedForCloudWeb(InstallationCloudWebPage installationCloudWebPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudWebPage);
+			int retries = 0;
+			while (!installationCloudWebPage.AreAllDevicesConnected())
+			{
+				ClickSafety(installationCloudWebPage.RefreshButtonElement, installationCloudWebPage);
+				installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(
+				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+				retries++;
+				if (retries > RuntimeSettings.DefaultRetryCount)
+				{
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+				}
+			}
+			return installationCloudWebPage;
+		}
+
+		private InstallationCloudToolPage SelectSerialNumberAndRefreshForCloudTool(InstallationCloudToolPage installationCloudToolPage)
+		{
+			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
+
+			// Refresh until all devices serial numbers are detected
+			int retries = 0;
+			while (!installationCloudToolPage.IsSerialNumberForAllDevicesDetected())
+			{
+				ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
+				installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+				retries++;
+				if (retries > RuntimeSettings.DefaultRetryCount)
+				{
+					TestCheck.AssertFailTest(
+						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
+				}
+			}
+
+			// Select serial numbers of devices wherever possible
+			installationCloudToolPage = SelectSerialNumbersHelper(installationCloudToolPage);
+
+			// Refresh until all devices are connected
+			return RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+		}
+
+		private void CopyOldDeviceInformationToNewDevice(AdditionalDeviceProperties oldDevice, AdditionalDeviceProperties newDevice)
+		{
+			newDevice.AgreementId = oldDevice.AgreementId;
+			newDevice.CustomerName = oldDevice.CustomerName;
+			newDevice.ContactFirstName = oldDevice.ContactFirstName;
+			newDevice.ContactLastName = oldDevice.ContactLastName;
+			newDevice.Telephone = oldDevice.Telephone;
+			newDevice.Email = oldDevice.Email;
+			newDevice.AddressNumber = oldDevice.AddressNumber;
+			newDevice.AddressStreet = oldDevice.AddressStreet;
+			newDevice.AddressArea = oldDevice.AddressArea;
+			newDevice.AddressTown = oldDevice.AddressTown;
+			newDevice.AddressPostCode = oldDevice.AddressPostCode;
+			newDevice.DeviceLocation = oldDevice.DeviceLocation;
+			newDevice.CostCentre = oldDevice.CostCentre;
+			newDevice.Reference1 = oldDevice.Reference1;
+			newDevice.Reference2 = oldDevice.Reference2;
+			newDevice.Reference3 = oldDevice.Reference3;
+			newDevice.InstallationNotes = oldDevice.InstallationNotes;
+			newDevice.MonoClickPrice = oldDevice.MonoClickPrice;
+			newDevice.ColourClickPrice = oldDevice.ColourClickPrice;
+			newDevice.VolumeMono = oldDevice.VolumeMono;
+			newDevice.VolumeColour = oldDevice.VolumeColour;
+			newDevice.ServicePack = oldDevice.ServicePack;
+			newDevice.InstallationPack = oldDevice.InstallationPack;
+			newDevice.ServicePackPrice = oldDevice.ServicePackPrice;
+			newDevice.InstallationPackPrice = oldDevice.InstallationPackPrice;
 		}
 		
 		private void ClickSafety(IWebElement element, IPageObject pageObject)

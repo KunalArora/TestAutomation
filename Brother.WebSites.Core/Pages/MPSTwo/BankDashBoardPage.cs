@@ -1,20 +1,36 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.MPS;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class BankDashBoardPage : BasePage
+    public class BankDashBoardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/bank/dashboard";
+        private const string _validationElementSelector = "div.mps-dashboard";
+        private const string _url = "/mps/bank/dashboard";
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
+        }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
         }
 
         [FindsBy(How = How.CssSelector, Using = "a[href='/mps/bank/leasing-factors'] .media-body")]

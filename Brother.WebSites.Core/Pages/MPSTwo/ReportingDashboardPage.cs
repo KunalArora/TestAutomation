@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -27,8 +28,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 return _url;
             }
         }
-
-
         
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"reports\"]")]
         public IWebElement ReportTabElement;
@@ -44,7 +43,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintVolumeReportElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/service-request-report\"] .media-heading")]
         public IWebElement ServiceRequestReportElement;
-
 
         public void IsReportingPageDisplayed()
         {
@@ -141,6 +139,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsReportDownloaded();
             PurgeDirectoryForAnyExtension(DownloadDirectory, "xlsx");
         }
-
     }
 }

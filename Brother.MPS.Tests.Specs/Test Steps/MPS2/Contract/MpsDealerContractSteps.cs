@@ -1,8 +1,8 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -88,14 +88,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
                 }
             }
         }
-
-
+        
         [When(@"I create a ""(.*)"" swap installation request with ""(.*)"" installation type for ""(.*)"" communication")]
         public void WhenICreateASwapInstallationRequestWithInstallationTypeForCommunication(string swapType, string installationType, string communicationMethod)
         {
             _contextData.SwapType = _translationService.GetSwapTypeText(swapType, _contextData.Culture);
             _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.ConfirmSwapAndSelectSwapType(_dealerManageDevicesPage);
-            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
+            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForCloud(_dealerSetCommunicationMethodPage);
             _dealerSwapInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceedForSwap(_dealerSetInstallationTypePage, installationType);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmailForSwap(_dealerSwapInstallationEmailPage);
         }
@@ -104,8 +103,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenICreateAInstallationRequestForCommunication(string installationType, string communicationMethod)
         {
             _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.CreateInstallationRequest(_dealerManageDevicesPage);
-            _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceed(_dealerSetCommunicationMethodPage, communicationMethod);
-            _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceed(_dealerSetInstallationTypePage, installationType);
+            switch(communicationMethod)
+            {
+                case "Cloud":
+                    _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForCloud(_dealerSetCommunicationMethodPage);
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceed(_dealerSetInstallationTypePage, installationType);
+                    break;
+                case "Email":
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForEmail(_dealerSetCommunicationMethodPage);
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmail(_dealerSendInstallationEmailPage);
         }
 
@@ -119,8 +129,17 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
         public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
-            _mpsDealerContractStepActions.InstallationCompleteCheck(_dealerManageDevicesPage);
+            _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
+
+        [When(@"I update the print count and verify it on the Manage devices page")]
+        public void WhenIUpdateThePrintCountAndVerifyItOnTheManageDevicesPage()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+            ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts();
+        }
+
 
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
@@ -131,6 +150,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
+        [When(@"I will raise consumable order and service request for above devices")]
+        public void WhenIWillRaiseConsumableOrderAndServiceRequestForAboveDevices()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForServiceRequest();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+        }
 
         [When(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
@@ -146,8 +172,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
             _contextData.WebSwapInstallUrl = url;
         }
-
-
+        
         [When(@"I sign the above proposal")]
         public void WhenISignTheAboveProposal()
         {
@@ -160,19 +185,42 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button")]
         public void WhenINavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
         {
+            var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
+            var resourceContractTypeEPP = _translationService.GetContractTypeText(TranslationKeys.ContractType.EasyPrintProAndService, _contextData.Culture);
+
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
-            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            if( _contextData.ContractType == resourceContractTypePurchaseAndClick || _contextData.ContractType == resourceContractTypeEPP)
+            {
+                _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            }else
+            {
+                _mpsDealerContractStepActions.MoveToAwaitingAcceptanceContractsTab(_dealerContractsPage);
+            }
             _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
-        [Then(@"I will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage, swapNewDeviceSerialNumber);
+            _mpsDealerContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_dealerManageDevicesPage);
+        }
+
+        [Then(@"I can see the above proposal in the Rejected list")]
+        public void WhenICanSeeTheAboveProposalInTheRejectedList()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerContractsRejectedPage = _mpsDealerProposalStepActions.NavigateToDealerContractsRejectedPage(dealerDashboardPage);
+            _mpsDealerContractStepActions.VerifyRejectedContractInRejectedContractsList(dealerContractsRejectedPage);
+        }
+
+        [When(@"I verify that the email installation is completed successfuly")]
+        public void WhenIVerifyThatTheEmailInstallationIsCompletedSuccessfuly()
+        {
+            _mpsDealerContractStepActions.EmailInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
     }

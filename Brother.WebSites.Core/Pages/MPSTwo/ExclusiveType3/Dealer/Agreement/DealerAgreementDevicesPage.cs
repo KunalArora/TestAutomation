@@ -1,9 +1,12 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 
@@ -29,6 +32,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Selectors
         private const string DeviceModelNameSelector = "[id*=content_1_Devices_ModelCell_]";
+        private const string PreloaderSelector = ".js-mps-preloader";
         
         // Action button selectors
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
@@ -39,6 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string RaiseConsumableOrderActionsButtonSelector = ".js-mps-raise-consumable-order";
         private const string RaiseServiceRequestActionsButtonSelector = ".js-mps-raise-service-request";
         private const string ShowDeviceDetailsActionsButtonSelector = ".js-mps-view-device-location";
+        private const string SwapDeviceActionsButtonSelector = ".js-mps-swap-device";
 
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusDataAttributeSelector = "data-original-title";
@@ -60,6 +65,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Tab link selectors
         private const string MpsTabsSelector = ".mps-tabs-main";
         private const string MpsTabsAgreementSelector = " a[href=\"/mps/dealer/agreement/";
+
+        // Swap Request Modal Selectos
+        private const string SwapRequestModalDeviceDetailsSelector = ".js-mps-send-swap-request-modal-body > div:nth-child(2) > div.panel-body > table > tbody > tr";
+        private const string SwapTypeDataAttributeSelector = "swap-type-enum-id";
+        private const string SelectModelDropdownSelector = ".js-mps-replacement-model-list";
+        private const string SwapDifferentConfirmationSelector = ".js-mps-swap-different-confirmation";
+        private const string SwapSameConfirmationSelector = ".js-mps-swap-same-confirmation";
+        private const string SwapPcbConfirmationSelector = ".js-mps-swap-pcb-confirmation";
+        private const string SendSwapRequestButtonSelector = ".js-mps-send-swap-request-modal-select";
 
 
         // Web Elements
@@ -214,8 +228,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             SeleniumHelper.ClickSafety(SendInstallationRequestModalElement);
 
             // Verify success & close modal alert
-            var modalSuccessElement = SeleniumHelper.FindElementByCssSelector(ModalAlertSuccessSelector);
-            SeleniumHelper.ClickSafety(modalSuccessElement.FindElement(By.ClassName("close")));
+            try
+            {
+                var modalSuccessElement = SeleniumHelper.FindElementByCssSelector(ModalAlertSuccessSelector);
+                SeleniumHelper.ClickSafety(modalSuccessElement.FindElement(By.ClassName("close")));
+            }
+            catch(Exception e)
+            {
+                TestCheck.AssertFailTest("Error occurred while sending the installation request (error alert popped up). Error details:" + e);
+            }
         }
 
         // Click on Send Installation Request in Actions for this particular device row index
@@ -279,6 +300,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 else
                 {
                     isUpdated = false;
+                    // Close Modal
+                    SeleniumHelper.ClickSafety(
+                        SeleniumHelper.FindElementByCssSelector(
+                        PrintCountsModalCloseButtonSelector));
+                    break;
                 }
 
                 // Close Modal
@@ -341,6 +367,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
         }
 
+        public IWebElement SummaryTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/summary\"]", agreementId.ToString()));
+        }
+
+        public IWebElement DetailsTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/details\"]", agreementId.ToString()));
+        }
+
         public IWebElement ConsumablesTabElement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
@@ -353,6 +393,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             LoggingService.WriteLogOnMethodEntry(agreementId);
             return SeleniumHelper.FindElementByCssSelector(
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()));
+        }
+
+        public IWebElement BillingTabElement(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+            return SeleniumHelper.FindElementByCssSelector(
+                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/billing\"]", agreementId.ToString()));
         }
 
         // Click Show Consumable Orders in Actions given the MPS device Id
@@ -542,6 +589,204 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             SeleniumHelper.ClickSafety(DeviceDetailsModalCloseButtonElement);
         }
 
+        public void ClickSwapDeviceInActions(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            if (mpsDeviceId == null)
+            {
+                throw new Exception("Cannot click Swap Device actions for a device with Device Id null");
+            }
+
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
+
+                    var SwapDeviceElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, SwapDeviceActionsButtonSelector);
+                    ScrollTo(SwapDeviceElement);
+                    SeleniumHelper.ClickSafety(SwapDeviceElement);
+
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
+        }
+
+        public string SendSwapRequest(AdditionalDeviceProperties device, string swapDeviceType, string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, swapDeviceType, culture);
+
+            ExpectedTranslationService translationService = new ExpectedTranslationService();
+
+            string resourceSwapDeviceType = translationService.GetSwapTypeText(swapDeviceType, culture);
+
+            if(!SeleniumHelper.IsElementNotPresent(PreloaderSelector))
+            {
+                SeleniumHelper.WaitUntil(d => !SeleniumHelper.FindElementByCssSelector(PreloaderSelector).Displayed);
+            }
+
+            SeleniumHelper.FindElementByCssSelector(SwapRequestModalDeviceDetailsSelector);
+            var DeviceDetails = SeleniumHelper.FindElementsByCssSelector(SwapRequestModalDeviceDetailsSelector)[0];
+
+            string addressString = null;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(device.MpsDeviceId))
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
+                    addressString = deviceRowElement.FindElements(By.TagName("td")).ToList()[4].Text;
+                    break;
+                }
+            }
+
+            // Verify Device Details
+
+            TestCheck.AssertTextContains(
+                    device.Model, DeviceDetails.Text, string.Format(
+                    "Device Model of the device could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+            TestCheck.AssertTextContains(
+                    device.SerialNumber, DeviceDetails.Text, string.Format(
+                    "Serial Number of the device could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+            TestCheck.AssertTextContains(
+                    addressString, DeviceDetails.Text, string.Format(
+                    "Location of the device could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+
+
+            var swapTypeElement = SeleniumHelper.FindElementByDataAttributeValue(SwapTypeDataAttributeSelector, resourceSwapDeviceType);
+            SeleniumHelper.ClickSafety(swapTypeElement);
+
+            string newModel = null;
+
+            if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, culture)))
+            {
+                var SelectDifferentModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SelectModelDropdownSelector);
+                var selectedModel = SelectFromDropDownByIndexAndReturnValue(SelectDifferentModelDropdownElement, 2); // Choose the 2nd model on the dropdown list as replacement model
+                newModel = selectedModel;
+                var ConfirmationText = SeleniumHelper.FindElementByCssSelector(SwapDifferentConfirmationSelector).Text;
+                TestCheck.AssertTextContains(selectedModel, ConfirmationText, string.Format(
+                    "Confirmation Text of the the device (Replace with Different Model) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+
+            }
+            else if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithSameModel, culture)))
+            {
+                newModel = device.Model;
+                var ConfirmationText = SeleniumHelper.FindElementByCssSelector(SwapSameConfirmationSelector).Text;
+                TestCheck.AssertTextContains(device.Model, ConfirmationText, string.Format(
+                    "Confirmation Text of the the device (Replace with Same Model) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+            }
+            else if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceThePcb, culture)))
+            {
+                newModel = device.Model;
+                var ConfirmationText = SeleniumHelper.FindElementByCssSelector(SwapPcbConfirmationSelector).Text;
+                TestCheck.AssertTextContains("PCB", ConfirmationText, string.Format(
+                    "Confirmation Text of the the device (Replace PCB) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
+            }
+
+
+            // Input Email ID
+            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
+
+            var sendSwapButton = SeleniumHelper.FindElementByCssSelector(SendSwapRequestButtonSelector);
+            SeleniumHelper.WaitUntil(d => sendSwapButton.Enabled);
+            SeleniumHelper.ClickSafety(sendSwapButton);
+            SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(sendSwapButton));
+
+            return newModel;
+        }
+
+        // Verify the status of the device & return the device ID
+        public string VerifyStatusOfDevice(AdditionalDeviceProperties device, string expectedInstalledPrinterStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, expectedInstalledPrinterStatus);
+            if (device.SerialNumber == null)
+            {
+                throw new Exception("Cannot verify device address for a device with Serial Number null");
+            }
+
+            // Note: Check by serial number as deviceId changes for the device being replaced
+            string displayedSerialNumber;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                displayedSerialNumber = deviceRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                if (displayedSerialNumber.Equals(device.SerialNumber))
+                {
+                    var StatusToolTipElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, StatusToolTipSelector);
+                    string displayedStatus = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
+
+                    TestCheck.AssertTextContains(
+                        expectedInstalledPrinterStatus, displayedStatus, "Status could not be verified for the device with serial number: " + device.SerialNumber);
+
+                    var ModelElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector);
+                    var filterString = ModelElement.GetAttribute("data-filter");
+                    var deviceId = filterString.Substring(0, filterString.IndexOf(" "));
+                    return deviceId;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with serial number = {0}", device.SerialNumber));
+            return null;
+        }
+
+        public void SaveAddressString(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            string displayedDeviceId, displayedAddress;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(device.MpsDeviceId))
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
+                    displayedAddress = deviceRowElement.FindElements(By.TagName("td")).ToList()[4].Text;
+
+                    // Save
+                    device.AddressString = displayedAddress;
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
+        }
+
+        public void VerifySwappedInDeviceAddressString(AdditionalDeviceProperties swappedOutDevice, AdditionalDeviceProperties swappedInDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(swappedOutDevice, swappedInDevice);
+            string swappedInDeviceDisplayedSerialNumber, swappedInDeviceAddress;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                swappedInDeviceDisplayedSerialNumber = deviceRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                if (swappedInDeviceDisplayedSerialNumber.Equals(swappedInDevice.SerialNumber))
+                {
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Address Element has been fixed
+                    swappedInDeviceAddress = deviceRowElement.FindElements(By.TagName("td")).ToList()[4].Text;
+
+                    // Verify
+                    TestCheck.AssertIsEqual(swappedOutDevice.AddressString, swappedInDeviceAddress, "Address of the Swapped In device did not match that of the Swapped Out device");
+                    swappedInDevice.AddressString = swappedInDeviceAddress;
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", swappedInDevice.MpsDeviceId));
+        }
 
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values
         private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement)

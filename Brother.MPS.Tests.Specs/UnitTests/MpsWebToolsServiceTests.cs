@@ -18,6 +18,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public MpsWebToolsServiceTests()
         {
+            _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "DEV", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new MpsContextData());
             _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "UAT", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new MpsLoggingConsole(new LoggingServiceSettings()));
         }
 
@@ -31,6 +32,12 @@ namespace Brother.Tests.Specs.UnitTests
         public void CanRemoveConsumableOrderById()
         {
             _mpsWebToolsService.RemoveConsumableOrderById(52508);
+        }
+
+        [Test]
+        public void CanGetSwapRequestDetail()
+        {
+            var swapRequestDetail = _mpsWebToolsService.GetSwapRequestDetail(4634);
         }
     }
 }

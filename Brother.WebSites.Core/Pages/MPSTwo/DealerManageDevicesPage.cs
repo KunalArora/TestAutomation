@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -52,6 +53,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRequestEmailSelector = "[id*=content_1_RequestList_List_CellInstallerEmail_]";
         private const string InstallationRequestCompanySiteSelector = "[id*=content_1_RequestList_List_CellLocation_]";
         private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
+        private const string InstallationRequestCommunicationMethodSelector = "[id*=content_1_RequestList_List_CellCommunicationMethodIcon_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
         private const string InstallationRequestSelector = ".js-mps-show-installation-request-email";
@@ -183,15 +185,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
         private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
         private const string InstallationTotalPagesSelector = "[id*=content_1_DeviceList_List_CellTotalPages_]";
-        private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
-
-
+        //private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
+        private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view.js-mps-toggle-device-view";
         
+
+        //private const string InstallationCommunicationTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationTypeIcon_]"; $$$
+        private const string InstallationCommunicationTypeSelector = "[id*=_DeviceList_List_CellCommunicationType_]";
+
+
+
         public void IsInstallationRequestCancelled()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (InstallationRequestStatusElement == null)
-                throw new Exception("Installation Request element is not displayed");
+                TestCheck.AssertFailTest("Installation Request element is not displayed");
             //TestCheck.AssertTextContains(GetCancelledInstallationStatus(), InstallationRequestStatusElement.Text);
             TestCheck.AssertIsEqual(false, String.IsNullOrWhiteSpace(InstallationRequestStatusElement.Text), "Installation has not been cancelled");
         }
@@ -200,7 +207,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ManageDevicesTabElement == null)
-                throw new Exception("Manage Device Screen is not displayed");
+                TestCheck.AssertFailTest("Manage Device Screen is not displayed");
             ManageDevicesTabElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -282,7 +289,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (CompanyConfirmationElement == null)
-                throw new Exception("Managed Device screen is not displayed");
+                TestCheck.AssertFailTest("Managed Device screen is not displayed");
 
             var genCompany = GetGeneratedCompany();
 
@@ -296,7 +303,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (InstallationRequestActionButtonElement == null)
-                throw new Exception("Installation Action is not displayed");
+                TestCheck.AssertFailTest("Installation Action is not displayed");
             InstallationRequestActionButtonElement.Click();
         }
 
@@ -304,7 +311,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (InstallationRequestActionButtonsElement == null)
-                throw new Exception("No action button displayed");
+                TestCheck.AssertFailTest("No action button displayed");
 
             InstallationRequestActionButtonsElement.Last().Click();
         }
@@ -333,7 +340,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (Method() == "Email")
             {
                 if (EmailGreenIconElement == null)
-                    throw new Exception("Email Green Icon is returned as null");
+                    TestCheck.AssertFailTest("Email Green Icon is returned as null");
 
                 TestCheck.AssertIsEqual(true, EmailGreenIconElement.Displayed, "Email Green Icon is not displayed");
             }
@@ -372,7 +379,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReInstallCommencementButtonElement == null)
-                throw new Exception("Reinstall confirmation pop up not displayed");
+                TestCheck.AssertFailTest("Reinstall confirmation pop up not displayed");
             WebDriver.Wait(DurationType.Second, 5);
             ReInstallCommencementButtonElement.Click();
 
@@ -383,7 +390,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapCommencementConfirmationElement == null)
-                throw new Exception("Swap confirmation pop up not displayed");
+                TestCheck.AssertFailTest("Swap confirmation pop up not displayed");
             SwapCommencementConfirmationElement.Click();
             WebDriver.Wait(DurationType.Second, 10);
         }
@@ -392,7 +399,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReplaceWithSameModelElement == null)
-                throw new Exception("Swap confirmation pop up not displayed");
+                TestCheck.AssertFailTest("Swap confirmation pop up not displayed");
 
             WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
             
@@ -409,7 +416,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReplacePcbElement == null)
-                throw new Exception("Swap confirmation pop up not displayed");
+                TestCheck.AssertFailTest("Swap confirmation pop up not displayed");
 
 
             WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
@@ -425,7 +432,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReplaceWithDifferentModelElement == null)
-                throw new Exception("Swap different device pop up not displayed");
+                TestCheck.AssertFailTest("Swap different device pop up not displayed");
 
             WaitForElementToExistByCssSelector(".js-mps-swap-type-item[data-swap-type-enum-id=\"ReplaceWithSameModel\"]");
             ReplaceWithDifferentModelElement.Click();
@@ -448,7 +455,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(device);
             if (SwapModelDeviceSelectorElement == null)
-                throw new Exception("Swap model device pop up not displayed");
+                TestCheck.AssertFailTest("Swap model device pop up not displayed");
             SelectFromDropdown(SwapModelDeviceSelectorElement, device);
 
             WebDriver.Wait(DurationType.Millisecond, 5);
@@ -463,7 +470,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SwapRequestSuccessConfirmationElement == null)
-                throw new Exception("Swap request success confirmation is not displayed");
+                TestCheck.AssertFailTest("Swap request success confirmation is not displayed");
             AssertElementPresent(SwapRequestSuccessConfirmationElement, "Swap request installation not sent");
         }
 
@@ -471,7 +478,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReinstallRequestSuccessConfirmationElement == null)
-                throw new Exception("Reinstall request success confirmation is not displayed");
+                TestCheck.AssertFailTest("Reinstall request success confirmation is not displayed");
             AssertElementPresent(ReinstallRequestSuccessConfirmationElement, "Reinstall request installation not sent");
         }
 
@@ -490,7 +497,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (CancelInstallationRequestElement == null)
-                throw new Exception("Cancel installation button not displayed");
+                TestCheck.AssertFailTest("Cancel installation button not displayed");
             ClickAcceptOnJsAlert();
             CancelInstallationRequestElement.Click();
             ClickAcceptOnConfirmation();
@@ -516,7 +523,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ShowInstallationRequestEmailElement == null)
-                throw new Exception("Show Installation Request element is not displayed");
+                TestCheck.AssertFailTest("Show Installation Request element is not displayed");
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
         }
@@ -525,7 +532,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ShowInstallationRequestEmailElement == null)
-                throw new Exception("Show Installation Request element is not displayed");
+                TestCheck.AssertFailTest("Show Installation Request element is not displayed");
             ClickOnActionButtonOnDisplay();
             ShowInstallationRequestEmailElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
@@ -539,7 +546,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClickAcceptOnJsAlert();
 
             if (ShowInstallationRequestEmailElement == null)
-                throw new Exception("Show Installation Request element is not displayed");
+                TestCheck.AssertFailTest("Show Installation Request element is not displayed");
             ClickOnActionButtonOnDisplay();
             CancelInstallationRequestElement.Click();
             WebDriver.Wait(DurationType.Second, 2);
@@ -644,7 +651,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (CustomerAndContactTabElement == null)
-                throw new Exception("Customer and Contact Tab is not displayed");
+                TestCheck.AssertFailTest("Customer and Contact Tab is not displayed");
             CustomerAndContactTabElement.Click();
 
             return GetInstance<DealerCustomersExistingPage>();
@@ -688,7 +695,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber)
+        public bool CheckForUpdatedPrintCount(IWebDriver driver, int totalPageCount, string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(driver,totalPageCount,serialNumber);
             int retryCount = RuntimeSettings.DefaultRetryCount;
@@ -709,30 +716,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     foreach (var row in rows)
                     {
                         var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
-                        if(serialNumberElement.Text.Equals(serialNumber))
+                        var InstallationCommunicationTypeElement = SeleniumHelper.FindElementByCssSelector(row, InstallationCommunicationTypeSelector);
+                        //var communicationType = InstallationCommunicationTypeElement.GetAttribute("data-original-title").Contains("Responding"); $$$
+                        var communicationType = InstallationCommunicationTypeElement.GetAttribute("class").Contains("responding");
+                        if (serialNumberElement.Text.Equals(serialNumber) && communicationType)
                         {
                             var totalPagesElement = SeleniumHelper.FindElementByCssSelector(row, InstallationTotalPagesSelector);
                             if (totalPagesElement.Text.Equals(totalPageCount.ToString()))
                             {
                                 elementStatus = true;
-                                break;
+                                return elementStatus;
                             }
-                            else
+                            else if (totalPagesElement.Text.Equals("8128"))
                             {
-                                driver.Navigate().Refresh();
-                                retries++;
+                                return false;
                             }
-
                         }
                     }
 
                 }
-                catch(WebDriverException)
+                catch(WebDriverException e)
                 {
-                    driver.Navigate().Refresh();
-                    retries++;
+                    if(retries > retryCount)
+                    {
+                        TestCheck.AssertFailTest("Updated print count for device cannnot be verified e="+e);
+                    }
                 }
             } while ((!elementStatus) && (retries <= retryCount));
+            return elementStatus;
         }
 
         public void IsInstallationCompleted()
@@ -799,7 +810,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             ScrollTo(CreateRequestElement);
-            CreateRequestElement.Click();
+            SeleniumHelper.ClickSafety(CreateRequestElement, RuntimeSettings.DefaultFindElementTimeout, true);
         }
 
         public string RetrieveInstallationRequestUrl(string installerEmail, string companyLocation, string resourceInstallationStatusNotStarted)
@@ -817,15 +828,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
-                    ActionsButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
                     var ShowInstallationRequestButtonElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestSelector);
-                    ShowInstallationRequestButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ShowInstallationRequestButtonElement);
 
                     var ModalElement = SeleniumHelper.FindElementByCssSelector("div.modal-body.js-modal-body");
                     var InstallationRequestUrlElement = SeleniumHelper.FindElementByCssSelector(ModalElement, "a");
                     var url = InstallationRequestUrlElement.GetAttribute("href");
 
-                    InstallationRequestClosePopUpElement.Click();
+                    SeleniumHelper.ClickSafety(InstallationRequestClosePopUpElement); 
                     return url;
                 }
             }
@@ -845,9 +856,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (DeviceSerialNumberElement.Text.Equals(serialNumber))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
-                    ActionsButtonElement.Click();
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
                     var SwapDeviceButtonElement = SeleniumHelper.FindElementByCssSelector(element, SwapDeviceButtonSelector);
-                    SwapDeviceButtonElement.Click();
+                    SeleniumHelper.ClickSafety(SwapDeviceButtonElement);
                     break;
                 }
             }        
@@ -859,12 +870,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var SwapDeviceModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalSelector);
             var SwapDeviceModalConfirmElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceModalElement, SwapDeviceConfirmSelector);
-            SwapDeviceModalConfirmElement.Click();
+            SeleniumHelper.ClickSafety(SwapDeviceModalConfirmElement);
             var SwapDeviceTypesModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
             var SwapTypeRadioButtonElement = SeleniumHelper.FindElementByDataAttributeValue(SwapDeviceTypesModalElement, SwapDeviceTypesDataAttributeSelector, swapType);
-            SwapTypeRadioButtonElement.Click();
+            SeleniumHelper.ClickSafety(SwapTypeRadioButtonElement);
             var SwapTypeModalNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesModalElement, SwapDeviceTypesModalNextButtonSelector);
-            SwapTypeModalNextButtonElement.Click();
+            SeleniumHelper.ClickSafety(SwapTypeModalNextButtonElement);
             if (swapType.Equals(resourceSwapTypeReplaceWithDifferentModel))
             {
                 var SwapReplacementModelModalElement = SeleniumHelper.FindElementByCssSelector(SwapDeviceTypesSelector);
@@ -873,7 +884,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 // For now, just select the first model in the dropdown list
                 SelectElementOptionsByIndex(SwapReplacementModelDropdownElement, 1);
                 var SwapReplacementModelNextButtonElement = SeleniumHelper.FindElementByCssSelector(SwapReplacementModelModalElement, SwapDeviceReplacementModelNextButtonSelector);
-                SwapReplacementModelNextButtonElement.Click();
+                SeleniumHelper.ClickSafety(SwapReplacementModelNextButtonElement);    
             }
         }
 
@@ -895,6 +906,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 }
             }
             return exists;
+        }
+
+        public bool EmailInstallationCompleteCheck(string resourceInstallationCompletedStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(resourceInstallationCompletedStatus);
+            var InstallationRequestContainerElement = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector);
+            var InstallationRequestRowElement = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerElement, InstallationRequestRowSelector);
+            var rowElements = SeleniumHelper.FindRowElementsWithinTable(InstallationRequestRowElement);
+
+            foreach(var row in rowElements)
+            {
+                var IRCommunicationMethodElement = SeleniumHelper.FindElementByCssSelector(row, InstallationRequestCommunicationMethodSelector);
+                var IRStatusElement = SeleniumHelper.FindElementByCssSelector(row, InstallationRequestStatusSelector);
+
+                var communicationMethodActual = IRCommunicationMethodElement.GetAttribute("class").Contains("glyphicon-envelope");
+                if(!communicationMethodActual)
+                {
+                    LoggingService.WriteLog(LoggingLevel.FAILURE, "The communication method is not set to Email on the Manage devices page even after email installation is completed.");
+                    return false;
+                }
+                var statusActual = IRStatusElement.Text;
+                if(statusActual!= resourceInstallationCompletedStatus)
+                {
+                    LoggingService.WriteLog(LoggingLevel.FAILURE, "The installation status is not turned to completed even after email installation is completed.");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

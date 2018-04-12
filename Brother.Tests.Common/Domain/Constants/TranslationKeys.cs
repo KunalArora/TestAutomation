@@ -5,7 +5,9 @@
         public static class ContractType
         {
             public static string LeaseAndClick { get { return "LEASE_AND_CLICK"; } }
+            public static string LeasingAndService { get { return "LEASING_AND_SERVICE"; } }
             public static string PurchaseAndClick { get { return "PURCHASE_AND_CLICK"; } }
+            public static string EasyPrintProAndService { get { return "EASY_PRINT_PRO_AND_SERVICE"; } }
         }
 
         public static class AgreementType
@@ -30,7 +32,7 @@
 
         public static class BillingType
         {
-            public static string HalfYearly { get { return "HALF_YEARLY"; } }
+            public static string HalfYearlyInArrears { get { return "HALF_YEARLY_IN_ARREARS"; } }
             public static string Monthly { get { return "MONTHLY"; } }
             public static string MonthlyInAdvance { get { return "MONTHLY_IN_ADVANCE"; } }
             public static string PolandSixMonthly { get { return "POLAND_SIX_MONTHLY"; } }
@@ -43,6 +45,7 @@
         {
             public static string PayUpfront { get { return "PAY_UPFRONT"; } }
             public static string IncludedInClickPrice { get { return "INCLUDED_IN_CLICK_PRICE"; } }
+            public static string AddToTheLeasingRate { get { return "ADD_TO_THE_LEASING_RATE"; } }
         }
 
         public static class InstallationPack
@@ -60,6 +63,7 @@
         public static class InstallationStatus
         {
             public static string NotStarted {  get { return "NOT_STARTED"; } }
+            public static string Completed { get { return "COMPLETED"; } }
         }
 
         public static class InstalledPrinterStatus
@@ -68,10 +72,17 @@
             public static string AwaitingCommissioning { get { return "AWAITING_COMMISSIONING"; } }
             public static string AddressRequiredType3 { get { return "ADDRESS_REQUIRED_TYPE3"; } }
             public static string ReadyForInstallType3 { get { return "READY_FOR_INSTALL_TYPE3"; } }
-            public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }   
+            public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }
+            public static string Replaced { get { return "REPLACED"; } }
         }
 
         public static class ProposalDeclineReason
+        {
+            public static string Expired { get { return "EXPIRED"; } }
+            public static string Other { get { return "OTHER"; } }
+        }
+
+        public static class ContractRejectReason
         {
             public static string Expired { get { return "EXPIRED"; } }
             public static string Other { get { return "OTHER"; } }
@@ -96,6 +107,7 @@
         {
             public static string NotConnected { get { return "NOT_CONNECTED"; } }
             public static string Responding { get { return "RESPONDING"; } }
+            public static string Swapped { get { return "SWAPPED"; } }
         }
 
         public static class ConsumableOrderStatus
@@ -107,6 +119,19 @@
         {
             public static string New { get { return "NEW"; } }
             public static string Closed { get { return "CLOSED"; } }
+        }
+
+        public static class OverusageText
+        {
+            public static string ColourText { get { return "COLOUR_TEXT"; } }
+            public static string MonoText { get { return "MONO_TEXT"; } }
+        }
+
+        public static class DisplayMessage
+        {
+            public static string EmailSendSuccess { get { return "EMAIL_SEND_SUCCESS"; } }
+            public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }            
+            public static string EmailSendFailure { get { return "EMAIL_SEND_FAILURE"; } }
         }
     }
 }

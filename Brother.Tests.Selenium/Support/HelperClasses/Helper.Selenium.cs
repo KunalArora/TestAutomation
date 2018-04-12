@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using Brother.Tests.Selenium.Lib.Support.SpecFlow;
+﻿using Brother.Tests.Selenium.Lib.Support.SpecFlow;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using NUnit.Framework;
@@ -14,6 +7,13 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
@@ -167,11 +167,27 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         /// </summary>
         /// <param name="element">Element to clear</param>
         /// <param name="value">Value to enter</param>
+        /// <param name="IsVerify">T=wait for sending</param>
+        /// <param name="timeOut">0..*=verify timeout in sec. default=1sec*len(value)</param>
         /// <returns>Void</returns>
-        public void ClearAndType(IWebElement element, string value)
+        public void ClearAndType(IWebElement element, string value, bool IsVerify = false, int timeOut = -1 )
         {
-            element.Clear(); 
-            element.SendKeys(value);
+            try
+            {
+                timeOut = timeOut < 0 ? value.Length : timeOut; // default T/O:  1s/charactor
+                if (IsVerify)
+                {
+                    new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => { try { return element.Displayed; } catch { return false; } });
+                }
+                element.Clear();
+                element.SendKeys(value);
+                if (IsVerify == false) return;
+                new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOut)).Until(d => element.GetAttribute("value").Equals(value));
+            }
+            catch ( TimeoutException e)
+            {
+                throw new TimeoutException(string.Format("element.Displayed={0}, value=[{1}], GetAttribute(value)=[{2}]", element.Displayed, value, element.GetAttribute("value")), e);
+            }
         }
 
         public void TypeSpace(IWebElement element)
@@ -770,6 +786,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void SelectFromDropDownByIndex(IWebElement element, int value)
         {
             new SelectElement(element).SelectByIndex(value);
+        }
+
+        public static string SelectFromDropDownByIndexAndReturnValue(IWebElement element, int value)
+        {
+            var dropDownElement = new SelectElement(element);
+            dropDownElement.SelectByIndex(value);
+
+            return dropDownElement.SelectedOption.Text;
         }
 
 

@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using System;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -36,6 +37,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement ActionsButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-manage-devices")]
         public IWebElement ManageDevicesButtonElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-delete")]
+        public IWebElement DeleteAgreementButtonElement;
 
         public bool VerifyCreatedAgreement(int agreementId, string agreementName)
         {
@@ -55,7 +58,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        // Click Manage devices button for first device showing
+        public bool VerifyAgreementNotPresent(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+
+            ClearAndType(AgreementFilter, agreementId.ToString());
+            var noMatchingRecords = SeleniumHelper.FindElementByCssSelector(".dataTables_empty");
+            return noMatchingRecords.Displayed;
+        }
+
+        // Click Manage devices button for first agreement showing
         // TODO: Generalize it by taking agreementId as parameter in the future
         public void ClickOnManageDevicesButton()
         {
@@ -63,6 +75,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             SeleniumHelper.ClickSafety(ActionsButtonElement);
             SeleniumHelper.ClickSafety(ManageDevicesButtonElement);
+        }
+
+        // Click Manage devices button for first agreement showing
+        public void ClickOnDeleteAgreementButton(int agreementId)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementId);
+
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+            var agreementIdAttribute = DeleteAgreementButtonElement.GetAttribute("data-agreement-id");
+            if (agreementId.ToString() != agreementIdAttribute)
+            {
+                throw new Exception(string.Format("Selected agreement in list has id {0}; expected {1}", agreementIdAttribute, agreementId.ToString()));
+            }
+            SeleniumHelper.ClickSafety(DeleteAgreementButtonElement);
+
+            SeleniumHelper.AcceptJavascriptAlert();
+
+            var deleteSuccessAlert = SeleniumHelper.FindElementByCssSelector(".alert-success");
         }
     }
 }

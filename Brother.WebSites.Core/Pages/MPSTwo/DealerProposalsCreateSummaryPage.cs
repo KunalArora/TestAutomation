@@ -334,7 +334,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SummaryMonoClickRateElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_RepeaterModels_ColourClickRate_0")]
         public IWebElement SummaryColourClickRateElement;
-        
+
+        // alert message
+        [FindsBy(How = How.Id, Using = "content_1_ValidationErrors_ErrorContainer")]
+        public IWebElement ValidationErrorElement;
+
 
         public void DownloadDealersProposalDocument()
         {
@@ -1811,19 +1815,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso)
         {
             LoggingService.WriteLogOnMethodEntry(countryIso);
-            // TODO: Check correct position of currency symbols for all countries
-            // Check for UK only for now
 
             string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+            var message = "Currency symbol position did not get validated";
 
-            if ((new IWebElement[] { SummaryGrandDeviceTotalPriceElement, 
-                SummaryContractGrandTotalPriceGrossElement, 
-                GrandTotalPriceNetElement, 
-                GrandTotalPriceGrossElement 
-            }).Any(v => v.Text[0].ToString() != currencySymbol))
+            // TODO refactor later
+            TestCheck.AssertIsEqual(true,SummaryGrandDeviceTotalPriceElement.Text.Contains(currencySymbol), message);
+            if(SeleniumHelper.IsElementDisplayed(SummaryContractGrandTotalPriceGrossElement))
             {
-                throw new Exception("Currency symbol position did not get validated");
+                TestCheck.AssertIsEqual(true, SummaryContractGrandTotalPriceGrossElement.Text.Contains(currencySymbol), message);
+            }
+            else
+            {
+                LoggingService.WriteLog(Tests.Common.Logging.LoggingLevel.WARNING, "SummaryContractGrandTotalPriceGrossElement validate skip because not found. maybe german");
+            }
+            TestCheck.AssertIsEqual(true, GrandTotalPriceNetElement.Text.Contains(currencySymbol), message);
+            if(SeleniumHelper.IsElementDisplayed(GrandTotalPriceGrossElement))
+            {
+                TestCheck.AssertIsEqual(true, GrandTotalPriceGrossElement.Text.Contains(currencySymbol), message);
+            }
+            else
+            {
+                LoggingService.WriteLog(Tests.Common.Logging.LoggingLevel.WARNING, "GrandTotalPriceGrossElement validate skip because not found. maybe german");
             }
         }
+
+        public void VerifyNoAlertInfoMessage()
+        {
+            if(SeleniumHelper.IsElementDisplayed(ValidationErrorElement))
+            {
+                TestCheck.AssertFailTest("Validation error message found message=[" + ValidationErrorElement.Text + "]");
+            }
+        }
+
+
     }
 }

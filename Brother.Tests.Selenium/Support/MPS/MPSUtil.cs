@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
@@ -60,6 +60,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return createdProposal;
         }
 
+        public static string DateTimeString(DateTime dateTime)
+        {
+            return dateTime.ToString("dd/MM/yyyy");
+        }
+
         public static string SubdealerEmail()
         {
             var createdProposal = HelperClasses.SpecFlow.GetContext("GeneratedSubdealerEmailAddress");
@@ -102,7 +107,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
-       
+        public static DateTime StringToDateTimeFormat(string date)
+        {
+            return DateTime.ParseExact(date, "dd/MM/yyyy", null);
+        }
 
         public static string CustomerReference()
         {

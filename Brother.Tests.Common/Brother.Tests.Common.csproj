@@ -14,6 +14,8 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,15 +78,18 @@
   <ItemGroup>
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Domain\Constants\RunCommands.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
     <Compile Include="Domain\Enums\CustomerInformationOption.cs" />
+    <Compile Include="Domain\Enums\RuntimeEnvironment.cs" />
     <Compile Include="Domain\Enums\UserType.cs" />
+    <Compile Include="Domain\Models\SwapRequestDetail.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\SpecialPricingProperties.cs" />
-    <Compile Include="Logging\ICommandLineSettings.cs" />
+    <Compile Include="CommandLineSettings\ICommandLineSettings.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\ILoggingServiceSettings.cs" />
     <Compile Include="Logging\MpsLoggingConsole.cs" />
@@ -93,6 +98,36 @@
       <DependentUpon>AgreementType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
+      <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.en-gb.Designer.cs">
+      <DependentUpon>DisplayMessage.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisplayMessage\DisplayMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisplayMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
+      <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.en-gb.Designer.cs">
+      <DependentUpon>LeasingBillingCycle.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingBillingCycle.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\BillingType\BillingType.Designer.cs">
       <DependentUpon>BillingType.resx</DependentUpon>
@@ -104,6 +139,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsumableOrderStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ContractRejectReason\ContractRejectReason.en-gb.Designer.cs">
+      <DependentUpon>ContractRejectReason.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContractRejectReason\ContractRejectReason.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContractRejectReason.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ContractTerm\ContractTerm.Designer.cs">
       <DependentUpon>ContractTerm.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -111,6 +156,11 @@
     </Compile>
     <Compile Include="Resources\ContractType\ContractType.Designer.cs">
       <DependentUpon>ContractType.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContractType\ContractType.de-de.Designer.cs">
+      <DependentUpon>ContractType.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -143,6 +193,11 @@
       <DependentUpon>InstalledPrinterStatus.en-gb.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\OverusageText\OverusageText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverusageText.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\PaymentType\PaymentType.Designer.cs">
       <DependentUpon>PaymentType.resx</DependentUpon>
@@ -195,6 +250,31 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LeasingBillingCycle.de-de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LeasingBillingCycle.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LeasingBillingCycle.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingType\BillingType.de-de.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.en-gb.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.resx">
       <LastGenOutput>BillingType.Designer.cs</LastGenOutput>
@@ -204,9 +284,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConsumableOrderStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ContractRejectReason\ContractRejectReason.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractRejectReason.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractRejectReason\ContractRejectReason.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractRejectReason.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.de-de.resx" />
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.en-gb.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.resx">
       <LastGenOutput>ContractTerm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractType\ContractType.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContractType.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractType\ContractType.en-gb.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -222,11 +317,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DeviceConnectionStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.de-de.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.en-gb.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallationPack.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-de.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.en-gb.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.resx">
       <LastGenOutput>InstallationRequestStatus.Designer.cs</LastGenOutput>
@@ -237,6 +334,12 @@
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.resx">
       <LastGenOutput>InstalledPrinterStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PaymentType\PaymentType.de-de.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
@@ -250,6 +353,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProposalPDF.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
@@ -263,6 +367,7 @@
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">
       <LastGenOutput>SwapType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -277,8 +382,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.28.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

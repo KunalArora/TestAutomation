@@ -71,7 +71,20 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.ServiceRequestStatus.ServiceRequestStatus.ResourceManager, name, culture);
         }
 
+        public string GetOverusageText(string name, string culture)
+        {
+            return GetText(Resources.OverusageText.OverusageText.ResourceManager, name, culture);
+        }
 
+        public string GetContractRejectReason(string name, string culture)
+        {
+            return GetText(Resources.ContractRejectReason.ContractRejectReason.ResourceManager, name, culture);
+        }
+
+        public string GetDisplayMessageText(string name, string culture)
+        {
+            return GetText(Resources.DisplayMessage.DisplayMessage.ResourceManager, name, culture);
+        }
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)
@@ -106,6 +119,11 @@ namespace Brother.Tests.Common.Services
         public string GetProposalPdfText(string name, string culture)
         {
             return GetText(Resources.ProposalPDF.ProposalPDF.ResourceManager, name, culture);
+        }
+
+        public string GetLeasingBillingCycle(string name, string culture)
+        {
+            return GetText(Resources.LeasingBillingCycle.LeasingBillingCycle.ResourceManager, name, culture);
         }
     }
 }

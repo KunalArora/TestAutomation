@@ -30,5 +30,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_SimpleContractList_List_ContractName_]")]
         public IList<IWebElement> ContractOrProposalNameElementList;
 
+        private const string ActionsButtonSelector = ".btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string ManageDevicesSelector = ".js-mps-manage-devices";
+        public void SetListFilter(int contractId)
+        {
+            LoggingService.WriteLogOnMethodEntry(contractId);
+            SeleniumHelper.SetListFilter(InputFilterBy, contractId, ContractOrProposalNameElementList);
+        }
+
+        public void NavigateToManageDevicesPage()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var ActionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionButtonElement);
+            var ManageDevicesElement = SeleniumHelper.FindElementByCssSelector(ManageDevicesSelector);
+            SeleniumHelper.ClickSafety(ManageDevicesElement);
+        }
     }
 }

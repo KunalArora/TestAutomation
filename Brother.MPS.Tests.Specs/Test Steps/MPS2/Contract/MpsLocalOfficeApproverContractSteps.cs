@@ -1,8 +1,8 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
@@ -27,7 +27,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
         private LocalOfficeApproverManageDevicesManagePage _localOfficeApproverManagedevicesManagePage;
-        
+       
 
         public MpsLocalOfficeApproverContractSteps(
             MpsSignInStepActions mpsSignInStepActions,
@@ -64,6 +64,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var localOfficeApproverApprovalContractsAwaitingAcceptancePage = _mpsLocalOfficeApproverContractStepActions.NavigateToApprovalContractsAwaitingAcceptancePage(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalContractsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ClickViewSummary(localOfficeApproverApprovalContractsAwaitingAcceptancePage);
             _localOfficeApproverApprovalContractsAcceptedPage = _mpsLocalOfficeApproverContractStepActions.AcceptContract(localOfficeApproverApprovalContractsSummaryPage);
+        }
+
+        [When(@"a Cloud MPS Local Office Approver rejects the above proposal")]
+        public void WhenACloudMPSLocalOfficeApproverRejectsTheAboveProposal()
+        {
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverApprovalContractsAwaitingAcceptancePage = _mpsLocalOfficeApproverContractStepActions.NavigateToApprovalContractsAwaitingAcceptancePage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverApprovalContractsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ClickViewSummary(localOfficeApproverApprovalContractsAwaitingAcceptancePage);
+            _mpsLocalOfficeApproverContractStepActions.RejectContract(localOfficeApproverApprovalContractsSummaryPage);
         }
 
         [Then(@"I navigate to Accepted Contracts page and validate its existence")]
@@ -149,13 +158,49 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _contextData.WebSwapInstallUrl = url;
         }
 
-        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device ""(.*)"" is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
-        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal(string swapNewDeviceSerialNumber)
+        [Then(@"a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
+        public void ThenACloudMPSLocalOfficeApproverWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()
         {
             _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.RetrieveDealerManageDevicesPage();
-            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage, swapNewDeviceSerialNumber);
+            _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage);
         }
 
+        [When(@"a Cloud MPS Local Office Approver apply and verify the Overusage")]
+        public void WhenACloudMPSLocalOfficeApproverApplyAndVerifyTheOverusage()
+        {
+            int contractShiftTimeOffsetValue;
+            var billingType = _contextData.BillingType;
+            var resourceBillingTypeHalfYearlyInArrears = _translationService.GetBillingTypeText(TranslationKeys.BillingType.HalfYearlyInArrears, _contextData.Culture);
+            var resourceBillingTypeQuarterlyInArrears = _translationService.GetBillingTypeText(TranslationKeys.BillingType.QuarterlyInArrears, _contextData.Culture);
 
+            // TODO: Create a function in the IContractShiftService class to do this process
+            if( billingType == resourceBillingTypeHalfYearlyInArrears )
+            {
+                contractShiftTimeOffsetValue = 6;
+            }
+            else if( billingType  == resourceBillingTypeQuarterlyInArrears)
+            {
+                contractShiftTimeOffsetValue = 3;
+            }
+            else
+            {
+                throw new NotImplementedException("WhenACloudMPSLocalOfficeApproverApplyAndVerifyTheOverusage() not support billingType=" + billingType);
+            }
+
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverReportsDashboardPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDashboardPage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDataQueryPage(localOfficeApproverReportsDashboardPage);
+            var localOfficeApproverReportsProposalsSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
+            localOfficeApproverReportsProposalsSummaryPage = _mpsLocalOfficeApproverContractStepActions.ApplyOverusage(localOfficeApproverReportsProposalsSummaryPage, contractShiftTimeOffsetValue);
+            var pdfFile = _mpsLocalOfficeApproverContractStepActions.DownloadPdf(localOfficeApproverReportsProposalsSummaryPage);
+            try
+            {
+                _mpsLocalOfficeApproverContractStepActions.AssertAreEqualOverusageValues(pdfFile);
+            }
+            finally
+            {
+                _mpsLocalOfficeApproverContractStepActions.DeletePdfFile(pdfFile);
+            }
+        }
     }
 }

@@ -1,26 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using Brother.Tests.Selenium.Lib.Helpers;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverContractsSummaryPage : BasePage
+    public class LocalOfficeApproverContractsSummaryPage : BasePage, IPageObject
     {
         public static string Url = "/mps/local-office/contracts/summary";
         private const string AcceptancePanel = @".js-mps-acceptance-panel";
 
+        private const string _validationElementSelector = ".js-mps-report-list-container";
+        private const string _url = "/mps/local-office/contracts/summary";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return Url;
+            }
+        }
+        
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonReject")]
-        public IWebElement RjectButtonElement;
+        public IWebElement RejectButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonAccept")]
         public IWebElement AcceptButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonOpenOfferRejectReject")]
@@ -139,13 +158,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContractReferenceElement;
         [FindsBy(How = How.Id, Using = "content_1_ComponentContractReviewedAcceptancePanel_InputApproveCreditValue_Input")]
         public IWebElement CreditValueElement;
-        
-        
 
         public void ClickRejectButton()
         {
-            ScrollTo(RjectButtonElement);
-            RjectButtonElement.Click();
+            ScrollTo(RejectButtonElement);
+            RejectButtonElement.Click();
         }
 
         public void ClickAcceptButton()
@@ -190,14 +207,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         
 
-        private void EnterCustomerReference()
+        public void EnterCustomerReference()
         {
             var customerReference = "CusRef" + DateTime.Now.ToString("MMdHHmmss");
             
             ClearAndType(CustomerReferenceElement, customerReference);
         }
 
-        private void EnterContractReference()
+        public void EnterContractReference()
         {
             var customerReference = "ContractRef" + DateTime.Now.ToString("MMdHHmmss");
 
@@ -579,5 +596,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SpecFlow.GetContext("DealerProposalSummaryCustomerCompanyRegistrationElement"),
                 "CustomerCompanyRegistration is not correct");
         }
+
     }
 }

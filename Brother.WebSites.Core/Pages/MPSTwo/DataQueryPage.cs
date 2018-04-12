@@ -80,7 +80,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PayAsYouGoElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-proposal-link")]
         public IList<IWebElement> ProposalLinkElements;
-
+        [FindsBy(How = How.CssSelector, Using = "div.row.mps-proposal.js-mps-proposal.mps-list-row:not(.hidden)")]
+        public IList<IWebElement> VisibleItemDivElements;
 
         private void ClearSearchCriteria()
         {
@@ -439,11 +440,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void FilterAndClickAgreement(int agreementId)
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
-            // Wait for footer to load & then filter out the agreement
-            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
-            ClearAndType(DataQuerySearchField, agreementId.ToString());
-            var agreementRowLinkElement = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString());
-            SeleniumHelper.ClickSafety(agreementRowLinkElement);
+            // note: from MpsLocalOfficeStepActions#NavigateToContractsSummaryPage(...)
+            var agreementRowLinkElement = SeleniumHelper.SetListFilter(DataQuerySearchField, agreementId, VisibleItemDivElements, dataAttibuteName:"proposal-id", waitSelector: MpsListNotesSelector); 
+            SeleniumHelper.ClickSafety(agreementRowLinkElement, IsUntilUrlChanges:true);
         }
     }
 }

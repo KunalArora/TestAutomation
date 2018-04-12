@@ -77,5 +77,14 @@ namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
                 return ResourceManager.GetString("RESPONDING", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swapped.
+        /// </summary>
+        internal static string SWAPPED {
+            get {
+                return ResourceManager.GetString("SWAPPED", resourceCulture);
+            }
+        }
     }
 }

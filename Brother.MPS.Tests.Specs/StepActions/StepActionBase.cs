@@ -35,7 +35,10 @@ namespace Brother.Tests.Specs.StepActions
             RuntimeSettings = runtimeSettings;
         }
 
+        public string RemoveCurrencySymbol(string value) // TODO: Extend this function to handle currencies for other countries
+        {
+            LoggingService.WriteLogOnMethodEntry(value);
+            return value.Substring(1); // Removes 1st character from string
+        }
     }
-
-
 }

@@ -30,6 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
         // Selectors
         private const string ConsumableTableContainerSelector = ".js-mps-searchable";
+        private const string PreloaderSelector = ".js-mps-preloader";
 
         // Web Elements
 
@@ -54,22 +55,40 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public void VerifyConsumableOrderInformation(
             string serialNumber, string resourceConsumableOrderStatusInProgress)
         {
+            LoggingService.WriteLogOnMethodEntry(serialNumber, resourceConsumableOrderStatusInProgress);
+
+            bool foundDevice = false;
+
+            SeleniumHelper.WaitUntil(d => !SeleniumHelper.FindElementByCssSelector(PreloaderSelector).Displayed);
+
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(
                 SeleniumHelper.FindElementByCssSelector(ConsumableTableContainerSelector));
             foreach (var deviceRowElement in deviceRowElements)
             {
                 // TODO: Replace this with the conventional element finding method after ID/Class of the Serial number Element has been fixed
-                var SerialNumberElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[2];
+                var SerialNumberElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[1];
                 if (SerialNumberElement.Text.Equals(serialNumber))
                 {
-                    // TODO: Replace this with the conventional element finding method after ID/Class of the Order Status Element has been fixed
-                    var OrderStatusElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[8];
+                    // TODO: Replace this with the conventional element finding method after ID/Class of these elements have been fixed
+                    var OrderIdElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[2];
+                    var SKUElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[5];
+                    var OrderStatusElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[6];
+
+                    TestCheck.AssertIsNotEqual(
+                        OrderIdElement.Text, SKUElement.Text, string.Format("Order Id and SKU have the same value for the device with serial number = {0}", serialNumber));                   
                     
                     TestCheck.AssertIsEqual(
                         OrderStatusElement.Text, resourceConsumableOrderStatusInProgress, string.Format("Status of the consumable order could not be verified for the device with serial number = {0}", serialNumber));
-                }
 
-                break;
+                    foundDevice = true;
+
+                    break;
+                }
+            }
+            
+            if(!foundDevice)
+            {
+                TestCheck.AssertFailTest("Could not find the device row for device with serial number: " + serialNumber + ". Row elements position might have changed.");
             }
         }
     }

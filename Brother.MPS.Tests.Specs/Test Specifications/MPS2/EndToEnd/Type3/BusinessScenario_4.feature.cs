@@ -74,9 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 4")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "PAY_AS_YOU_GO", "THREE_YEARS", "PAY_UPFRONT", "True", "Cloud", "Usb", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "PAY_AS_YOU_GO", "THREE_YEARS", "PAY_UPFRONT", "True", "Cloud", "Usb", "91", "REPLACE_WITH_SAME_MODEL", "Cloud", "Bor", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario4(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void BusinessScenario4(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string swapDeviceType, string swapCommunicationMethod, string swapInstallationType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 4", exampleTags);
 #line 7
@@ -100,7 +100,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeColour",
                         "SendInstallationRequest",
                         "MonoPrintCount",
-                        "ColorPrintCount"});
+                        "ColorPrintCount",
+                        "IsSwap"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1",
@@ -112,7 +113,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "0",
                         "Yes",
                         "2250",
-                        "0"});
+                        "0",
+                        "true"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1",
@@ -124,7 +126,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "2250",
                         "No",
                         "1000",
-                        "1250"});
+                        "1250",
+                        "false"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1",
@@ -136,7 +139,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "2250",
                         "Yes",
                         "1200",
-                        "1350"});
+                        "1350",
+                        "false"});
             table1.AddRow(new string[] {
                         "DCP-8250DN",
                         "2",
@@ -148,7 +152,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "0",
                         "Yes",
                         "2300",
-                        "0"});
+                        "0",
+                        "false"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 17
@@ -179,6 +184,22 @@ testRunner.Then("I can verify that all devices are installed and responding", ((
 testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
 testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+testRunner.When(string.Format("a Cloud MPS Service Desk creates and sends a \"{0}\" swap device installation reque" +
+                        "st", swapDeviceType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+testRunner.Then(string.Format("a Cloud MPS Installer is able to swap device using \"{0}\" communication and \"{1}\" " +
+                        "installation", swapCommunicationMethod, swapInstallationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
+testRunner.And("a Cloud MPS Service Desk can verify that the new devices are installed and respon" +
+                    "ding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+testRunner.Then("a Cloud MPS Local Office Admin can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 34
+testRunner.And("a Cloud MPS Local Office Admin can verify the service/installation billing invoic" +
+                    "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

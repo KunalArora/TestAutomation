@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -34,6 +35,13 @@ namespace Brother.Tests.Specs.Services
         double ConvertStringToDouble(string variable);
 
         /// <summary>
+        /// Convert invariant numeric to cultured numeric string
+        /// </summary>
+        /// <param name="invariant"></param>
+        /// <returns></returns>
+        string ConvertInvariantNumericToCultureNumericString(string invariant);
+
+        /// <summary>
         /// Round off a double variable to certain decimal places
         /// </summary>
         /// <param name="variable"></param>
@@ -55,5 +63,32 @@ namespace Brother.Tests.Specs.Services
         /// <param name="countryIso"></param>
         /// <param name="values"></param>
         void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso, List<string> values);
+
+        /// <summary>
+        /// Calculate proportional minimum volume for the given time period
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        string CalculateProportionalVolume(int minimumVolume, string startDate, string endDate);
+
+        /// <summary>
+        /// Calculate proportional volume (pro rata) for the swapped out device
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="startPeriodDate"></param>
+        /// <param name="endDeviceDate"></param>
+        /// <returns></returns>
+        string CalculateProRataForSwappedOutDevice(int minimumVolume, string startPeriodDate, string endDeviceDate);
+
+        /// <summary>
+        /// Calculate proportional volume (pro rata) for the swapped in device
+        /// </summary>
+        /// <param name="minimumVolume"></param>
+        /// <param name="swappedOutDevice"></param>
+        /// <param name="swappedInDevice"></param>
+        /// <returns></returns>
+        string CalculateProRataForSwappedInDevice(int minimumVolume, AdditionalDeviceProperties swappedOutDevice, AdditionalDeviceProperties swappedIndevice);
     }
 }

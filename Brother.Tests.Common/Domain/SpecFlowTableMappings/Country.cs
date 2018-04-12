@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
 {
@@ -15,6 +11,8 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string BrotherCode { get; set; }
         public List<string> Cultures { get; set; }
         public string DomainSuffix { get; set; }
+        public bool AtYourSideEnabled { get; set; }
+        public LogicSettings LogicSettings { get; set; }
 
         public string PasswordCountryAbbreviation
         {
@@ -27,5 +25,10 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                 _passwordCountryAbbreviation = value;
             }
         }
+    }
+
+    public class LogicSettings
+    {
+        public bool IsNextDealerProposalsCreateTermAndTypePage { get; set; }
     }
 }

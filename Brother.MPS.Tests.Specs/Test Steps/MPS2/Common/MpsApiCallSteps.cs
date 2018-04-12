@@ -24,5 +24,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Common
         {
             _mpsApiCall.UpdateAndNotifyBOCForConsumableOrder();
         }
+
+        [When(@"the agreement start date gets shifted ""(.*)"" days behind")]
+        public void WhenTheAgreementStartDateGetsShiftedDaysBehind(int agreementShiftDays)
+        {
+            _mpsApiCall.ShiftAgreementStartDateBy(agreementShiftDays);
+        }
     }
 }

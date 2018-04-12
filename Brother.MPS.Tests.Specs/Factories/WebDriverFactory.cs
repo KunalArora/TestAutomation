@@ -45,6 +45,9 @@ namespace Brother.Tests.Specs.Factories
             if (chromeOptions == null) {
                 chromeOptions = CreateDefaultChromeOptions();
             }
+
+            chromeOptions.SetLoggingPreference("browser", LogLevel.All);
+
             var capabilities = chromeOptions.ToCapabilities();
             var webDriverInstance = new RemoteWebDriver(_chromeDriverService.ServiceUrl, capabilities, TimeSpan.FromSeconds(200));
 
@@ -74,7 +77,7 @@ namespace Brother.Tests.Specs.Factories
 
         private string WebDriverKey(string userType)
         {
-            return string.Format("__driverInstance_ " + userType);
+            return string.Format("__driverInstance_" + userType);
         }
     }
 }

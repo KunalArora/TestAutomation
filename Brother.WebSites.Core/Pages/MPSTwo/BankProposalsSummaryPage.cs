@@ -1,6 +1,4 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -8,16 +6,34 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class BankProposalsSummaryPage : BasePage
+    public class BankProposalsSummaryPage : BasePage, IPageObject
     {
         public static string Url = "/mps/bank/proposals/summary";
+        private const string _url = "/mps/bank/proposals/summary";
+        private const string _validationElementSelector = "#content_1_ButtonApprove";
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
 
-        [FindsBy(How = How.Id, Using = "content_1_ButtonApprove")]
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        [FindsBy(How = How.Id, Using = "content_1_ButtonApprove")] // de: Freigeben (Share)
         public IWebElement ApproveButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_ButtonDecline")]
         public IWebElement DeclineButtonElement;

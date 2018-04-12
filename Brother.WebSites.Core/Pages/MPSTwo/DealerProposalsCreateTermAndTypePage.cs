@@ -10,7 +10,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     public class DealerProposalsCreateTermAndTypePage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/proposals/create/term-type";
-        private const string _validationElementSelector = "#content_1_InputUsageType_Input";
+        private const string _validationElementSelector = "#content_1_InputContractLength_Input";
         private const string _url = "/mps/dealer/proposals/create/term-type";
 
         public string ValidationElementSelector
@@ -39,6 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string contractLengthSelector = "#content_1_InputContractLength_Input";
         private const string billingTypeSelector = "#content_1_InputClickRateBillingCycle_Input";
         private const string servicePackOptionSelector = "#content_1_InputServicePaymentOption_Input";
+        private const string leasingBillingCycleSelector = "#content_1_InputLeasingRateBillingCycle_Input"; // Leasing-Abrechnungszyklus (de)
 
         private const string priceHardwareTickBox = @"#content_1_InputPriceHardware_Input";
 
@@ -226,14 +227,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateProductsPage>(Driver);
         }
 
-        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption)
+        public void PopulateTermAndTypeForType1(string usageType, string contractLength, string billingType, string servicePackOption, string leasingBillingCycle=null)
         {
-            LoggingService.WriteLogOnMethodEntry(usageType,contractLength,billingType,servicePackOption);
-            var usageTypeElement = SeleniumHelper.FindElementByCssSelector(usageTypeSelector);
+            LoggingService.WriteLogOnMethodEntry(usageType, contractLength, billingType, servicePackOption);
+            //For DE- EasyPrintPro&Service as there is no usage type element displayed on the UI
+            if(SeleniumHelper.IsElementDisplayed(UsageTypeElement))
+            {
+                SeleniumHelper.SelectFromDropdownByText(UsageTypeElement, usageType);
+            }
             var contractLengthElement = SeleniumHelper.FindElementByCssSelector(contractLengthSelector);
-            SeleniumHelper.SelectFromDropdownByText(usageTypeElement, usageType);
             SeleniumHelper.SelectFromDropdownByText(ContractLengthElement, contractLength);
- 
+
+            if (string.IsNullOrWhiteSpace(leasingBillingCycle) == false)
+            {
+                // for de
+                var leasingBillingCycleElement = SeleniumHelper.FindElementByCssSelector(leasingBillingCycleSelector);
+                SeleniumHelper.SelectFromDropdownByText(leasingBillingCycleElement, leasingBillingCycle);
+            }
+
             var billingTypeElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector);
             var servicePackOptionElement = SeleniumHelper.FindElementByCssSelector(servicePackOptionSelector);
             SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);

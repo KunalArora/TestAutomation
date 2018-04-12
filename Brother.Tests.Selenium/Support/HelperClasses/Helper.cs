@@ -42,7 +42,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static string CurrentDomain
         {
-            get { return _currentDomain; } 
+            get { return _currentDomain; }
             set { _currentDomain = value; }
         }
 
@@ -64,11 +64,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         private const string DefaultSeleniumFolder = "C:\\TestAutomation\\SnapShots";
         private const int MaxFileNameSize = 245;
-        public static string CreditCardType  { get; set; }
+        public static string CreditCardType { get; set; }
 
         public static string Password
         {
-            get { return _pwd; } 
+            get { return _pwd; }
             set { _pwd = value; }
         }
 
@@ -91,7 +91,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _locale = value; }
         }
 
-       public static string Abbrev
+        public static string Abbrev
         {
             get { return _abbreviate.ToLower(); }
             set { _abbreviate = value; }
@@ -136,7 +136,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {"Latvia", "lv"},
         };
 
-      
+
 
         private static readonly Dictionary<string, string> _BrotherAbbrev = new Dictionary<string, string>
         {
@@ -166,7 +166,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         };
 
-        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string>{ "United Kingdom" };
+        private static readonly List<string> _CountriesUsingAtYourSideLogin = new List<string> { "United Kingdom" };
 
         public static string CountryLookup(string locale)
         {
@@ -189,7 +189,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             else
             {
-                return false; 
+                return false;
             }
         }
 
@@ -207,7 +207,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(String.Format("Inputted country inputted is {0}", country));
                 TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Locale));
-                
+
             }
             MsgOutput("Setting Country to ", Locale);
         }
@@ -225,7 +225,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 MsgOutput(String.Format("Inputted country inputted is {0}", country));
                 TestCheck.AssertFailTest(string.Format("Invalid Locale {0} - unable to proceed", Abbrev));
-                
+
             }
             MsgOutput("Setting Country Abbreviation to ", Abbrev);
         }
@@ -258,7 +258,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return environmentVariable != null && environmentVariable.Equals(runTimeEnv);
         }
 
-        
+
         public static bool CheckScenarioEnv(string env)
         {
             return ScenarioContext.Current.ScenarioInfo.Tags.Contains(env);
@@ -283,10 +283,10 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 
         public static bool IsMpsSwitchOn()
         {
-            var isMpsOn =  GetSpecialEnvironmentVariable("MpsTagRunner");
+            var isMpsOn = GetSpecialEnvironmentVariable("MpsTagRunner");
             return isMpsOn != null && isMpsOn.Equals("ONLY");
         }
-        
+
         public static bool CheckFeatureEnv(string env)
         {
             return FeatureContext.Current.FeatureInfo.Tags.Contains(env);
@@ -313,21 +313,21 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             return url.ToLower().Replace("http", "https");
         }
 
-       public static void MsgOutput(string message)
+        public static void MsgOutput(string message)
         {
-            #if DEBUG
+#if DEBUG
             Trace.WriteLine(String.Format("@@TESTMSG @ {0} - {1}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message));
-            #else
-                Console.WriteLine("@@TESTMSG @ {0} - {1}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
+#else
+            Console.WriteLine("@@TESTMSG @ {0} - {1}", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
 #endif
         }
 
         public static void MsgOutput(string msgPrefix, string message)
         {
-            #if DEBUG
+#if DEBUG
             Trace.WriteLine(String.Format("{0} @ {1} --> {2} -", msgPrefix, DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message));
-            #else
-                Console.WriteLine("{0} @ {1} --> {2} -", msgPrefix, DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
+#else
+            Console.WriteLine("{0} @ {1} --> {2} -", msgPrefix, DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss.FFF"), message);
 #endif
         }
 
@@ -335,7 +335,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         {
             return GetProductInfoItem(valid ? "ValidVisaCCDetails" : "InvalidVisaCCDetails", infoItem);
         }
-        
+
         public static string GetMasterCardCcInfo(string infoItem, bool valid)
         {
             return GetProductInfoItem(valid ? "ValidMasterCardCCDetails" : "InvalidMasterCardCCDetails", infoItem);
@@ -461,7 +461,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             }
             catch (ArgumentNullException argumentNullException)
             {
-               TestCheck.AssertFailTest(string.Format("Error setting Environment Variable for Device Seed [{0}]", argumentNullException.Message));
+                TestCheck.AssertFailTest(string.Format("Error setting Environment Variable for Device Seed [{0}]", argumentNullException.Message));
             }
             TestCheck.AssertIsEqual(serialNumber, Environment.GetEnvironmentVariable(GetRunTimeEnv().Equals(RunTimeUat) ? "AutoTest_DeviceSeed_QAS" : "AutoTest_DeviceSeed_DV2", EnvironmentVariableTarget.Machine), "Update Device Serial Number seed");
         }
@@ -575,7 +575,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         private static string SnapShotDirectory()
         {
             // command line specified path trumps all
-            if (OutputPath != string.Empty)
+            if (!string.IsNullOrWhiteSpace(OutputPath))
             {
                 return OutputPath;
             }
@@ -584,7 +584,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var snapshotLocation = DefaultSeleniumFolder;
 
             var isOnBuildMachine = Environment.MachineName;
-            
+
             var driveLetter = "C";
             if (isOnBuildMachine.ToUpper().Equals("PRDAT169V") || isOnBuildMachine.ToUpper().Equals("PRDAT204V"))
             {
@@ -632,16 +632,16 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var snapShots = dirInfo.GetFiles("*.pdf", SearchOption.TopDirectoryOnly);
             foreach (var snapShot in snapShots)
             {
-               try
-                    {
-                        snapShot.Delete();
-                        snapShotCount++;
-                    }
-                    catch (IOException fileDeleteException)
-                    {
-                        MsgOutput(string.Format("Unable to delete download {0} due to {1}", snapShot.Name, fileDeleteException.Message));
-                    }
+                try
+                {
+                    snapShot.Delete();
+                    snapShotCount++;
                 }
+                catch (IOException fileDeleteException)
+                {
+                    MsgOutput(string.Format("Unable to delete download {0} due to {1}", snapShot.Name, fileDeleteException.Message));
+                }
+            }
             MsgOutput(string.Format("Successfully Deleted {0} contract(s)", snapShotCount));
         }
 
@@ -687,7 +687,7 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             {
                 fileExist = true;
             }
-            
+
             return fileExist;
 
         }
@@ -695,26 +695,45 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
         public static void TakeSnapshot(string additionalInformation)
         {
             var snapshotLocation = SnapShotDirectory();
+            const string DRIVER_INSTANCE_PREFIX = "__driverInstance_";
 
             if (!Directory.Exists(snapshotLocation))
             {
                 Directory.CreateDirectory(snapshotLocation);
             }
             
-            snapshotLocation += "\\" + GenerateSnapshotFileName();
+            TakeDriverSnapshot(TestController.CurrentDriver, null, snapshotLocation, additionalInformation);
+
+            foreach (var item in ScenarioContext.Current)
+            {
+                if (item.Key.StartsWith(DRIVER_INSTANCE_PREFIX))
+                {
+                    var driver = (IWebDriver) item.Value;
+                    var driverName = item.Key.Replace(DRIVER_INSTANCE_PREFIX, "");
+
+                    TakeDriverSnapshot(driver, driverName, snapshotLocation, additionalInformation);
+                    SaveDriverPageSource(driver, driverName, snapshotLocation);
+                }
+            }
+
+        }
+
+        public static void TakeDriverSnapshot(IWebDriver driver, string driverName, string snapshotDirectory, string additionalInformation)
+        {
+            var driverSnapshotLocation = snapshotDirectory + "\\" + GenerateSnapshotFileName(driverName);
 
             try
             {
-                CurrentSnapShot = snapshotLocation;
+                CurrentSnapShot = driverSnapshotLocation;
                 MsgOutput(string.Format("Taking Snapshot ->[{0}]<-", additionalInformation));
-                ((ITakesScreenshot)TestController.CurrentDriver).GetScreenshot().SaveAsFile(snapshotLocation, ImageFormat.Jpeg);
-                MsgOutput("Snapshot Location", snapshotLocation);
-                TestController.ExtentLogScreenshotLocation(snapshotLocation);
+                ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(driverSnapshotLocation, ImageFormat.Jpeg);
+                MsgOutput("Snapshot Location", driverSnapshotLocation);
+                TestController.ExtentLogScreenshotLocation(driverSnapshotLocation);
             }
             catch (PathTooLongException pathTooLong)
             {
-                TestCheck.AssertFailTest(string.Format("Snapshot length was too long - [{0}]", pathTooLong));
-            }
+                TestCheck.AssertFailTest(string.Format("Snapshot path length was too long - [{0}]", pathTooLong));
+            }            
         }
 
         public static void SavePageSource()
@@ -731,17 +750,31 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             File.WriteAllText(outputPath, TestController.CurrentDriver.PageSource);
         }
 
-        public static string GenerateSnapshotFileName()
+        public static void SaveDriverPageSource(IWebDriver driver, string driverName, string snapshotDirectory)
         {
-            return GenerateFileNameFromCurrentTest("jpg");
+            var driverSnapshotLocation = snapshotDirectory + "\\" + GenerateHtmlFileName(driverName);
+
+            try
+            {
+                File.WriteAllText(driverSnapshotLocation, driver.PageSource);
+            }
+            catch (PathTooLongException pathTooLong)
+            {
+                TestCheck.AssertFailTest(string.Format("Page source path length was too long - [{0}]", pathTooLong));
+            }
         }
 
-        public static string GenerateHtmlFileName()
+        public static string GenerateSnapshotFileName(string driverName = null)
         {
-            return GenerateFileNameFromCurrentTest("htm");
+            return GenerateFileNameFromCurrentTest("jpg", driverName);
         }
 
-        public static string GenerateFileNameFromCurrentTest(string extension)
+        public static string GenerateHtmlFileName(string driverName = null)
+        {
+            return GenerateFileNameFromCurrentTest("htm", driverName);
+        }
+
+        public static string GenerateFileNameFromCurrentTest(string extension, string driverName)
         {
             var testClassFull = TestContext.CurrentContext.Test.ClassName;
             Type objectType = (from asm in AppDomain.CurrentDomain.GetAssemblies()
@@ -754,7 +787,11 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             var testClass = testClassFull.Replace(objectType.Namespace + ".", "");
             var timestamp = string.Format("{0:yyyyMMdd-HHmmss}", DateTime.Now);
 
-            return string.Format("{0}.{1}_{2}.{3}", testClass, testMethod, timestamp, extension);
+            var fileName = string.Format("{0}.{1}_{2}.{3}", testClass, testMethod, timestamp, extension);
+
+            fileName = driverName != null ? string.Format("{0}-{1}", driverName, fileName) : fileName;
+
+            return fileName;
         }
     }
 }

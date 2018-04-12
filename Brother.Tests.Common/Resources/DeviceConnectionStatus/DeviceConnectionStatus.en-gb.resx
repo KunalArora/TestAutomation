@@ -123,4 +123,7 @@
   <data name="RESPONDING" xml:space="preserve">
     <value>Responding</value>
   </data>
+  <data name="SWAPPED" xml:space="preserve">
+    <value>Swapped</value>
+  </data>
 </root>

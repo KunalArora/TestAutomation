@@ -1,9 +1,12 @@
 ﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
@@ -11,6 +14,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
@@ -20,6 +24,8 @@ namespace Brother.Tests.Specs.StepActions.Common
         private readonly IContextData _contextData;
         private readonly ITranslationService _translationService;
         private readonly IRunCommandService _runCommandService;
+        private readonly IClickBillExcelHelper _clickBillExcelHelper;
+        private readonly IServiceInstallationBillExcelHelper _serviceInstallationBillExcelHelper;
 
         public MpsLocalOfficeStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -29,12 +35,23 @@ namespace Brother.Tests.Specs.StepActions.Common
             ILoggingService loggingService,
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
-            IRunCommandService runCommandService)
+            IRunCommandService runCommandService,
+            IClickBillExcelHelper clickBillExcelHelper,
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _translationService = translationService;
             _runCommandService = runCommandService;
+            _clickBillExcelHelper = clickBillExcelHelper;
+            _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
+        }
+
+        public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
+            dataQueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
       
         public LocalOfficeAgreementDevicesPage NavigateToAgreementDevicesPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
@@ -43,7 +60,12 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
             var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
-            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage);
+
+            // Save dealer details for future validation
+            _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
+            _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
+
+            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
@@ -210,7 +232,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 }
             }
 
-            ClickSafety(localOfficeAgreementConsumablesPage.BackButtonElement, localOfficeAgreementConsumablesPage);
+            ClickSafety(localOfficeAgreementConsumablesPage.BackButtonElement, localOfficeAgreementConsumablesPage, true);
             localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
             // Verify consumable order information one by one
@@ -223,7 +245,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
                     localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
 
-                    ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage);
+                    ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage, true);
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
                 }
             }
@@ -231,10 +253,246 @@ namespace Brother.Tests.Specs.StepActions.Common
             return localOfficeAgreementDevicesPage;
         }
 
-        public void ClickSafety(IWebElement element, IPageObject pageObject)
+        public LocalOfficeAgreementBillingPage VerifyClickRateInvoice(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            ClickSafety(localOfficeAgreementDevicesPage.BillingTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
+            var localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            int rowIndex = 0;
+            int retries = 0;
+
+
+            // Refresh the billing page if the click rate total for first billing period is not already populated
+            while (!localOfficeAgreementBillingPage.IsClickRateTotalPopulated(rowIndex))
+            {
+                webDriver.Navigate().Refresh();
+                localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        "Number of retries exceeded the default limit during verification of click rate billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
+                }
+            }
+
+            retries = 0;
+
+            // Verify Click rate invoice
+            while(true) // As don't know how many invoices will be generated (it depends on the time the agreement is shifted backwards)
+            {
+                if (localOfficeAgreementBillingPage.IsClickRateTotalPopulated(rowIndex))
+                {
+                    // 1. Download click rate invoice excel
+                    string excelFilePath = _clickBillExcelHelper.Download(() =>
+                        {
+                            localOfficeAgreementBillingPage.ClickDownloadClickRateBill(rowIndex);
+                            return true;
+                        });
+
+                    // Get expected values
+                    string startDate = localOfficeAgreementBillingPage.GetBillingStartDate(rowIndex);
+                    string endDate = localOfficeAgreementBillingPage.GetBillingEndDate(rowIndex);
+                    string expectedClickRateTotal = localOfficeAgreementBillingPage.GetBillingClickRateTotal(rowIndex);
+                    bool isFirstBillingPeriod = false;
+
+                    if (rowIndex == 0)
+                    {
+                        isFirstBillingPeriod = true;
+                    }
+
+                    // 2. Verify click rate invoice excel
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
+
+                    // 3. Delete excel file
+                    _clickBillExcelHelper.DeleteExcelFile(excelFilePath);
+
+                    // Refresh page to load any unloaded invoices onto billing page
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    rowIndex++;
+                    retries = 0; // Reset retries count
+                }
+                else
+                {
+                    // Refresh page to load any unloaded invoices onto billing page
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                    if (retries >= 2)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return localOfficeAgreementBillingPage;
+        }
+
+        public LocalOfficeAgreementBillingPage VerifyServiceInstallationInvoice(LocalOfficeAgreementBillingPage localOfficeAgreementBillingPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementBillingPage);
+
+            // Verify that no invoice is generated if installation packs/service packs (for all devices) are not selected
+
+            bool shouldGenerateInvoice = false;
+            foreach (var product in _contextData.PrintersProperties)
+            {
+                if (product.ServicePack.ToLower().Equals("yes") || product.InstallationPack.ToLower().Equals("yes"))
+                {
+                    shouldGenerateInvoice = true;
+                }
+            }
+
+            int retries = 0;
+            if (!shouldGenerateInvoice)
+            {
+                // Verify that no invoice is generated and make sure by retrying a few times
+                while (retries < 2)
+                {
+                    TestCheck.AssertIsEqual(
+                        false, localOfficeAgreementBillingPage.IsServiceInstallationTotalPopulated(0), string.Format("Service/Installation invoice is generated even when no service pack/installation pack was selected for any device for agreement {0}", _contextData.AgreementId));
+
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                }
+            }
+            else
+            {
+                // Verify the invoice details
+
+                // Refresh the billing page if the service/installation total for first billing period is not already populated
+                while (!localOfficeAgreementBillingPage.IsServiceInstallationTotalPopulated(0))
+                {
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementBillingPage = PageService.GetPageObject<LocalOfficeAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+                    retries++;
+                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        TestCheck.AssertFailTest(
+                            "Number of retries exceeded the default limit during verification of service installation billing (invoice not generated) for agreement {0}" + _contextData.AgreementId);
+                    }
+                }
+
+                int rowIndex = 0;
+
+
+                // 1. Download service installation invoice excel
+                string excelFilePath = _serviceInstallationBillExcelHelper.Download(() =>
+                    {
+                        localOfficeAgreementBillingPage.ClickDownloadServiceInstallationBill(rowIndex);
+                        return true;
+                    }
+                    );
+
+                // Get expected values
+                string startDate = localOfficeAgreementBillingPage.GetBillingStartDate(rowIndex);
+                string endDate = localOfficeAgreementBillingPage.GetBillingEndDate(rowIndex);
+                string expectedServiceInstallationTotal = localOfficeAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
+
+                // 2. Verify service installation invoice excel
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedServiceInstallationTotal));
+
+                // 3. Delete excel file
+                _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
+            }
+
+            return localOfficeAgreementBillingPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage SendSwapDeviceInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, string swapDeviceType, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, swapDeviceType, webDriver);
+
+            string resourceInstalledPrinterBeingReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
+
+            // Refresh once to reflect any changes if present
+            webDriver.Navigate().Refresh();
+            localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            List<AdditionalDeviceProperties> newDevices = new List<AdditionalDeviceProperties>();
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.IsSwap)
+                {
+                    localOfficeAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
+                    var newModel = localOfficeAgreementDevicesPage.SendSwapRequest(
+                        device, swapDeviceType, _contextData.Culture);
+                    webDriver.Navigate().Refresh();
+                    localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    // Verify "Being Replaced" status for this device
+                    var newDeviceId = localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
+
+                    // Save info for new device to context data
+                    device.SwappedDeviceID = newDeviceId;
+                    newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true }); // Handle only monochrome (swapped in) devices for now
+                }
+            }
+
+            _contextData.AdditionalDeviceProperties.AddRange(newDevices);
+
+            return localOfficeAgreementDevicesPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage VerifyStatusOfSwappedInAndSwappedOutDevices(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+
+            // Refresh so that device statuses are updated after swap installation
+            webDriver.Navigate().Refresh();
+            localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            string resourceInstalledPrinterReplacedStatus = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.Replaced, _contextData.Culture);
+            string resourceDeviceConnectionStatusSwapped = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Swapped, _contextData.Culture);
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.IsSwap) //Swapped out device (old device)
+                {
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterReplacedStatus);
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusSwapped);
+                }
+                else // Swapped in device (new device) plus remaining devices
+                {
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterStatusInstalled);
+                    localOfficeAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusResponding);
+
+                    // Verify swapped in device address string
+                    if (device.IsSwappedInDevice)
+                    {
+                        foreach (var oldDevice in _contextData.AdditionalDeviceProperties)
+                        {
+                            if (device.MpsDeviceId.Equals(oldDevice.SwappedDeviceID))
+                            {
+                                localOfficeAgreementDevicesPage.VerifySwappedInDeviceAddressString(oldDevice, device);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return localOfficeAgreementDevicesPage;
+        }
+
+        public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
     }
 }

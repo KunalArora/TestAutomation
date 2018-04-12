@@ -1,21 +1,39 @@
-﻿using System;
-using Brother.Tests.Selenium.Lib.Support;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class BankContractsSummaryPage : BasePage
+    public class BankContractsSummaryPage : BasePage, IPageObject
     {
+        private const string _url = "/mps/bank/contracts/summary";
+        private const string _validationElementSelector = "#content_1_ButtonBack";
+
         public static string Url = "/mps/bank/contracts/summary";
         private const string AcceptancePanel = @".js-mps-acceptance-panel";
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
+        }
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
         }
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonReject")]

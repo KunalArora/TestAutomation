@@ -77,6 +77,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteInstallation(_installerDeviceInstallationPage, _driver);
         }
 
+        [When(@"Enter the serial numbers and complete email installation")]
+        public void WhenEnterTheSerialNumbersAndCompleteEmailInstallation()
+        {
+            _mpsInstallerContractStepActions.PopulateSerialNumberAndCompleteEmailInstallation(_installerDeviceInstallationPage, _driver);
+        }
 
         [When(@"Enter the serial number for new device ""(.*)"" with new Mono ""(.*)"" and color ""(.*)"" print count and complete Installation")]
         public void WhenEnterTheSerialNumberForNewDeviceWithNewMonoAndColorPrintCountAndCompleteInstallation(string swapNewDeviceSerialNumber, int swapNewDeviceMonoPrintcount, int swapNewDeviceColourPrintcount )
@@ -88,8 +93,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             {
                 _mpsInstallerContractStepActions.PopulateSwapSerialNumber(_installerDeviceInstallationPage, _driver, swapNewDeviceSerialNumber);
             }
-            _mpsInstallerContractStepActions.CloudInstallationRefresh(_installerDeviceInstallationPage);
-            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, swapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
+            else
+            {
+                _mpsInstallerContractStepActions.RetryRefresh(_installerDeviceInstallationPage, _driver);
+            }
+            _mpsInstallerContractStepActions.EnterSwapPrintCountAndCompleteInstallation(_installerDeviceInstallationPage, _contextData.SwapNewDeviceSerialNumber, swapNewDeviceMonoPrintcount, swapNewDeviceColourPrintcount);
         }
 
    }

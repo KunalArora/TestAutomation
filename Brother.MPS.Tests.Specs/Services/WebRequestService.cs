@@ -47,8 +47,8 @@ namespace Brother.Tests.Specs.Services
             }
             catch (UriFormatException uriFormatException)
             {
-                Console.WriteLine("Invalid url ({0}) specified", url);
-                Console.WriteLine("Exception detail : {0}", uriFormatException.Message);
+                LoggingService.WriteLog(LoggingLevel.FAILURE, "Invalid url ({0}) specified", url);
+                LoggingService.WriteLog(LoggingLevel.FAILURE, "Exception detail : {0}", uriFormatException.Message);
                 throw;
             }
 
@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.Services
                 }
             }
 
-            var pageResponse =  PageResponse(webRequest);
+            var pageResponse = PageResponse(webRequest);
             LoggingService.WriteLog(LoggingLevel.DEBUG, "<< {0}", pageResponse);
             return pageResponse;
         }
@@ -102,9 +102,9 @@ namespace Brother.Tests.Specs.Services
                 webPageResponse.StatusDescription = response.StatusDescription;
                 webPageResponse.Headers = response.Headers;
 
-                Console.WriteLine("Retrieving response from url {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Response status {0}", webPageResponse.StatusDescription);
-                Console.WriteLine("Response code received was [{0}]", webPageResponse.StatusCode.ToString());
+                LoggingService.WriteLog(LoggingLevel.INFO, "Retrieving response from url {0}", request.RequestUri.AbsoluteUri);
+                LoggingService.WriteLog(LoggingLevel.INFO, "Response status {0}", webPageResponse.StatusDescription);
+                LoggingService.WriteLog(LoggingLevel.INFO, "Response code received was [{0}]", webPageResponse.StatusCode.ToString());
 
                 if (webPageResponse.Headers != null && webPageResponse.Headers.Count > 0)
                 {
@@ -113,7 +113,7 @@ namespace Brother.Tests.Specs.Services
                         string key = header.ToString();
                         if (key.StartsWith("Brother-"))
                         {
-                            Console.WriteLine(string.Format("Custom Header {0}: {1}", key, webPageResponse.Headers[key]));
+                            LoggingService.WriteLog(LoggingLevel.INFO, "Custom Header {0}: {1}", key, webPageResponse.Headers[key]);
                         }
                     }
                 }
@@ -134,8 +134,8 @@ namespace Brother.Tests.Specs.Services
                     {
                         case HttpStatusCode.NotFound:
                         case HttpStatusCode.BadRequest:
-                            Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                            Console.WriteLine("Exception detail : {0}", webException.Message);
+                            LoggingService.WriteLog(LoggingLevel.FAILURE, "Response not received from {0}", request.RequestUri.AbsoluteUri);
+                            LoggingService.WriteLog(LoggingLevel.FAILURE, "Exception detail : {0}", webException.Message);
                             break;
                     }
                     webPageResponse.StatusCode = resp.StatusCode;
@@ -145,11 +145,16 @@ namespace Brother.Tests.Specs.Services
                 {
                     webPageResponse.StatusCode = HttpStatusCode.NotFound;
                 }
-                Console.WriteLine("Response not received from {0}", request.RequestUri.AbsoluteUri);
-                Console.WriteLine("Exception detail : {0}", webException.Message);
+                else if (webException.Status == WebExceptionStatus.Timeout)
+                {
+                    LoggingService.WriteLog(LoggingLevel.FAILURE, "Timeout after {0} seconds from {1}", (request.Timeout / 1000), request.RequestUri);
+                }
+                LoggingService.WriteLog(LoggingLevel.FAILURE, "Response not received from {0}", request.RequestUri.AbsoluteUri);
+                LoggingService.WriteLog(LoggingLevel.FAILURE, "Exception detail : {0}", webException.Message);
+                throw (webException);
             }
 
-            Console.WriteLine("Response Code returned was [{0}]", webPageResponse.StatusCode);
+            LoggingService.WriteLog(LoggingLevel.INFO, "Response Code returned was [{0}]", webPageResponse.StatusCode);
             return webPageResponse;
         }
 

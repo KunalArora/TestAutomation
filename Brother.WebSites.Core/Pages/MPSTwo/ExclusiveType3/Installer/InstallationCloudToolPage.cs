@@ -1,8 +1,13 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -22,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         }
 
 
-
+        // Selectors
         private const string InstallationPinSelector = ".js-mps-boc-pin";
         private const string IsConnectedSelector = ".responding";
         private const string DeviceModelNameSelector = "[id*=content_0_DeviceListForTool_List_CellModel_]";
@@ -32,7 +37,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string SelectSerialTableSelector = ".js-mps-serials-select-table > tbody";
         private const string SerialNumberTableRowElementSelector = ".js-mps-boc-device";
         private const string SelectDeviceRadioButtonSelector = ".js-mps-select-boc-device";
+        private const string ResetButtonSelector = ".js-mps-button-reset";
+        private const string NotConnectedSelector = ".glyphicon-remove";
+        private const string DeviceLocationSelector = ".js-mps-input-device-location";
+        private const string CostCentreSelector = ".js-mps-input-device-costcentre";
+        private const string DangerAlertSelector = ".alert-danger";
         
+        // Swap Complete installation selectors
+        private const string OldModelSelector = "#content_0_CompleteSwap_ModelOld";
+        private const string NewModelSelector = "#content_0_CompleteSwap_ModelNew";
+        private const string OldSerialNumberSelector = "#content_0_CompleteSwap_SerialNumberOld";
+        private const string NewSerialNumberSelector = "#content_0_CompleteSwap_SerialNumberNew";
+        private const string OldPrintCountMonoSelector = "#content_0_CompleteSwap_InputPrintCountMonoOld";
+        private const string NewPrintCountMonoSelector = "#content_0_CompleteSwap_InputPrintCountMonoNew";
+        private const string NewPrintCountColourSelector = "#content_0_CompleteSwap_InputPrintCountColourNew";
+        private const string CompleteInstallationButtonSelector = "#content_0_ButtonCompleteInstallation";
+        private const string CompleteSwapSuccessSelector = "#content_0_CompleteSwap_ComponentSuccess";
+
 
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-boc-pin")]
@@ -70,7 +91,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public string GetPin()
         {
             LoggingService.WriteLogOnMethodEntry();
-            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "");
+            
+            int start_time, elapsed_time;
+            start_time = DateTime.Now.Second;
+
+            SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "", RuntimeSettings.DefaultAPIResponseTimeout); // BOC Pin API is being called here, hence larger timeout value
+            
+            elapsed_time = DateTime.Now.Second - start_time;
+            if (elapsed_time > 10) 
+            {
+                LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC pin generator API has a slow response. Time taken = {0}", elapsed_time));
+            }
+
             return InstallationPinElement.Text;
         }
 
@@ -134,8 +166,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             {
                 if (element.GetAttribute("data-serial-number").Equals(serialNumber))
                 {
-                    SeleniumHelper.ClickSafety(element.FindElement(By.CssSelector(SelectDeviceRadioButtonSelector)));
-                    break;
+                    var radioButton = SeleniumHelper.FindElementByCssSelector(element, SelectDeviceRadioButtonSelector);
+                    SeleniumHelper.ClickRadioButtonSafely(radioButton);
                 }
             }
 
@@ -147,6 +179,121 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             {
                 SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement);
             }
+        }
+
+        public void ClickReset(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    var ResetButtonElement = SeleniumHelper.FindElementByCssSelector(element, ResetButtonSelector);
+                    SeleniumHelper.ClickSafety(ResetButtonElement);
+
+                    SeleniumHelper.AcceptJavascriptAlert();
+
+                    // Check if the red alert pops up & if yes fail the test
+                    if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while resetting the device (alert popped up) {0} during installation", mpsDeviceId));
+                    }
+
+                    // Page gets refreshed few seconds after clicking reset button. We need to wait those few seconds.
+                    SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(ResetButtonElement));
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0} while clicking the reset button", mpsDeviceId));
+        }
+
+        public void VerifyNotConnectedStatus(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(mpsDeviceId))
+                {
+                    try
+                    {
+                        SeleniumHelper.WaitUntil(d => SeleniumHelper.IsElementDisplayed(element, NotConnectedSelector));
+                        return;
+                    }
+                    catch
+                    {
+                        TestCheck.AssertFailTest(string.Format("Not connected status of the device {0} could not be verified after reset of device", mpsDeviceId));
+                    }
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0} while verifying the Not Connected device status after resetting", mpsDeviceId));
+        }
+
+        public void FillDeviceDetails(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(device.MpsDeviceId))
+                {
+                    device.DeviceLocation = MpsUtil.DeviceLocation();
+                    device.CostCentre = MpsUtil.CostCentre();
+
+                    ClearAndType(SeleniumHelper.FindElementByCssSelector(element, DeviceLocationSelector), device.DeviceLocation);
+
+                    if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while typing device location into field for device {0}", device.MpsDeviceId));
+                    }
+                    
+                    ClearAndType(SeleniumHelper.FindElementByCssSelector(element, CostCentreSelector), device.CostCentre);
+
+                    if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
+                    {
+                        TestCheck.AssertFailTest(string.Format("Error occurred while typing cost centre into field for device {0}", device.MpsDeviceId));
+                    }
+
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
+        }
+
+        public void CompleteSwapInstallation(AdditionalDeviceProperties oldDevice, AdditionalDeviceProperties newDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(oldDevice, newDevice);
+
+            TestCheck.AssertIsEqual(
+                oldDevice.Model, SeleniumHelper.FindElementByCssSelector(OldModelSelector).Text, "Model Name for the old device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                newDevice.Model, SeleniumHelper.FindElementByCssSelector(NewModelSelector).Text, "Model Name for the new device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                oldDevice.SerialNumber, SeleniumHelper.FindElementByCssSelector(OldSerialNumberSelector).Text, "Serial Number for the old device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                newDevice.SerialNumber, SeleniumHelper.FindElementByCssSelector(NewSerialNumberSelector).Text, "Serial Number for the new device could not be verified during swap installation");
+
+            int monoPrintCount = 100; //Fill any value
+            ClearAndType(SeleniumHelper.FindElementByCssSelector(NewPrintCountMonoSelector), monoPrintCount.ToString());
+            newDevice.MonoPrintCount = monoPrintCount;
+
+            if(!SeleniumHelper.IsElementNotPresent(NewPrintCountColourSelector))
+            {
+                int colourPrintCount = 100; //Fill any value
+                ClearAndType(SeleniumHelper.FindElementByCssSelector(NewPrintCountColourSelector), colourPrintCount.ToString());
+                newDevice.ColorPrintCount = colourPrintCount;
+            }
+
+            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(CompleteInstallationButtonSelector));
+
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(CompleteSwapSuccessSelector).Displayed);
         }
     }
 }
