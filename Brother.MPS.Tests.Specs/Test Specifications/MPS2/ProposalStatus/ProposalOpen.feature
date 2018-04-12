@@ -16,6 +16,7 @@ And I add these printers:
 And I calculate the click price for each of the above printers
 And I save the proposal 
 And a Cloud MPS Local Office Admin navigates to the contract end screen
+Then a Cloud MPS Local office Admin edit the proposal notes and click save
 
 @BUK
 Scenarios: 

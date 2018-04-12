@@ -122,6 +122,8 @@ testRunner.And("I calculate the click price for each of the above printers", ((s
 testRunner.And("I save the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
 testRunner.And("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+testRunner.Then("a Cloud MPS Local office Admin edit the proposal notes and click save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
