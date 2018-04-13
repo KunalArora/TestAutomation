@@ -143,7 +143,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.PrintersProperties = products;
             _dealerAgreementCreateClickPricePage = _mpsDealerAgreement.AddThesePrintersToAgreementAndProceed(_dealerAgreementCreateProductsPage);
             _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
-        }                   
+        }
+
+        [When(@"Validate Service Installation On the Agreement Summary page")]
+        public void WhenValidateServiceInstallationOnTheAgreementSummaryPage()
+        {
+            _mpsDealerAgreement.AssertAreEqualServiceInstallation(_dealerAgreementCreateSummaryPage);
+        }
+
 
         [When(@"I complete the setup of agreement")]
         public void WhenICompleteTheSetupOfAgreement()
@@ -189,7 +196,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             string resourceInstalledPrinterStatusAddressRequired = _translationService.GetInstalledPrinterStatusText(
                 TranslationKeys.InstalledPrinterStatus.AddressRequiredType3, _contextData.Culture);
             _dealerAgreementDevicesPage = _mpsDealerAgreement.NavigateToManageDevicesPage(
-                _dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);            
+                _dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);
         }
 
         [When(@"I edit device data one by one for all devices \(Fill Optional fields: ""(.*)""\)")]

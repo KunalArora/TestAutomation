@@ -15,6 +15,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly ICalculationService _calculationService;
         private readonly IRunCommandService _runCommandService;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
+        private readonly IPageParseHelper _pageParseHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -50,6 +52,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ICalculationService calculationService,
             ILoggingService loggingService,
             IRunCommandService runCommandService,
+            IPageParseHelper pageParseHelper,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
@@ -63,6 +66,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _mpsLocalOfficeAdmin = mpsLocalOfficeAdmin;
             _clickBillExcelHelper = clickBillExcelHelper;
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
+            _pageParseHelper = pageParseHelper;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -154,6 +158,26 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
 
             return PageService.GetPageObject<DealerAgreementCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void AssertAreEqualServiceInstallation(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);
+            var pageValues = _pageParseHelper.ParseSummaryPageValues(dealerAgreementCreateSummaryPage.SeleniumHelper);
+            var printersProperties = _contextData.PrintersProperties;
+            foreach( var prop in printersProperties)
+            {
+                var model = prop.Model;
+                var keySp = model + ".ServicePackSku";
+                var exceptServicePack = "Yes".Equals(prop.ServicePack.ToLower(), StringComparison.OrdinalIgnoreCase); ;
+                var actualServicePack = pageValues.ContainsKey(keySp) && string.IsNullOrWhiteSpace(pageValues[keySp]) == false ;
+                Assert.AreEqual(exceptServicePack, actualServicePack, "wrong ServicePack status model=" + model);
+
+                var keyIp = model + ".InstallationPackSku";
+                var exceptInstallationPack = "Yes".Equals(prop.InstallationPack.ToLower(), StringComparison.OrdinalIgnoreCase);
+                var actualInstallationPack = pageValues.ContainsKey(keyIp) && string.IsNullOrWhiteSpace(pageValues[keyIp]) == false ;
+                Assert.AreEqual(exceptInstallationPack, actualInstallationPack, "wrong InstllationPack status model=" + model);
+            }
         }
 
         public DealerAgreementsListPage ValidateSummaryPageAndCompleteSetup(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
