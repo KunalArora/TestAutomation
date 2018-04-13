@@ -32,7 +32,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
             _contractShiftService = contractShiftService;
-
         }
 
 

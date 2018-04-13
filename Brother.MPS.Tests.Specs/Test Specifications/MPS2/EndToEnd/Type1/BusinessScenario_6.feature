@@ -26,18 +26,19 @@ And a Cloud MPS Local Office Approver Set a Special Pricing:
 		| Model        | InstallUnitCost | InstallMargin | InstallUnitPrice | ServiceUnitCost | ServiceMargin | ServiceUnitPrice | MonoClickServiceCost | MonoClickServicePrice | MonoClickCoverage | MonoClickVolume | MonoClickMargin | MonoClick | ColourClickServiceCost | ColourClickServicePrice | ColourClickCoverage | ColourClickVolume | ColourClickMargin | ColourClick |
 		| *            | 100             | 50            |                  | 120             | 50            |                  |                      |                       | 10                | 100             | 50.00           | 0.01300   |                        |                         | 40                  | 300               | 50.00             | 0.10700     |
 And I sign the above proposal
-And a Cloud MPS Bank Cloud MPS Bank Summary Accept
-And a Cloud MPS Bank Populated Maintain Contact
-And I navigate to Accepted Contracts Page and click Manage devices button
+And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
 And I will be able to see the installation request created above on the Manage Devices page for the above proposal
 And a Brother installer has navigated to the Web Installation page and verify Contract Reference
 And Enter the serial numbers and complete installation
-And I navigate to Accepted Contracts Page and click Manage devices button
+And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
+And a Cloud MPS Bank Cloud MPS Bank Summary Accept
+And a Cloud MPS Bank Populated Maintain Contact
+And I move the contract and change the status to running
 And I update the print count 
 And I navigate to the contract summary page in the reports section 
-And I verify updated print count and consumable order status
+And I verify updated print count
 And I update the Consumable Order and verify it.
 #step43,44
 And a Cloud MPS Bank Checking the billing to ensure details are correctly populated

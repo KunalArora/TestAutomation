@@ -418,10 +418,17 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
-        public void MoveContract(int backToTheMonth)
+        public void MoveContract()
         {
-            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
+            LoggingService.WriteLogOnMethodEntry();
+//            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, true, "Any");
+        }
+
+        public void ChangeContractToRunning()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            _runCommandService.RunStartContractCommand();
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)

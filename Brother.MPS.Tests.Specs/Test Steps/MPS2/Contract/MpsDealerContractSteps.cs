@@ -165,12 +165,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
              _dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
         }
 
-        [When(@"I verify updated print count and consumable order status")]
-        public void WhenIVerifyUpdatedPrintCountAndConsumableOrderStatus()
+        [When(@"I verify updated print count")]
+        public void WhenIVerifyUpdatedPrintCount()
         {
-            int backToTheMonth = 1;
             _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
-            _mpsDealerContractStepActions.MoveContract(backToTheMonth);
         }
 
 
@@ -267,6 +265,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
-
+        [When(@"I move the contract and change the status to running")]
+        public void WhenIMoveTheContractAndChangeTheStatusToRunning()
+        {
+            _mpsDealerContractStepActions.MoveContract();
+            _mpsDealerContractStepActions.ChangeContractToRunning();
+        }
     }
 }
