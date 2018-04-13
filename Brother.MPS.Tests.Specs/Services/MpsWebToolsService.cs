@@ -32,21 +32,17 @@ namespace Brother.Tests.Specs.Services
 
         }
 
-        private WebPageResponse ExecuteWebTool(string url)
         private void ExecuteWebTool(string url, string authToken = null)
         {
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, AuthToken() } };
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? _authToken } };
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
-
-            return response;
         }
 
         private WebPageResponse GetWebToolResponse(string url, string authToken = null)
         {
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? _authToken } };
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
@@ -111,7 +107,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("automation/getswaprequestdetail.aspx?installedprinterid={0}", installedPrinterId.ToString());
             string url = string.Format(_baseUrl, actionPath);
 
-            var response = ExecuteWebTool(url);
+            var response = GetWebToolResponse(url);
 
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
@@ -132,6 +128,7 @@ namespace Brother.Tests.Specs.Services
 
             return authToken;
         }
+
         public void RemoveProductionSmokeTests()
         {
             string actionPath = "automation/deletesmokeproposals.aspx";
