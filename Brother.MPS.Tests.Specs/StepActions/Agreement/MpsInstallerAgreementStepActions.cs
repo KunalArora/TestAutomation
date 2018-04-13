@@ -82,7 +82,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
 				// 4. Select installation method as "BOR"
 				ClickSafety(
-					installationSelectMethodPage.BORInstallationButton(), 
+					installationSelectMethodPage.BORInstallationButton(),
 					installationSelectMethodPage);
 				var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
 					RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
@@ -100,7 +100,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			LoggingService.WriteLogOnMethodEntry();
 			// Navigate to Select method page & verify device details
 			var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
-			
+
 			// Select installation method as BOR & Navigate to installation page
 			ClickSafety(
 					installationSelectMethodPage.BORInstallationButton(),
@@ -123,7 +123,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				// Already Registered on BOC?
 				if (!device.IsRegisteredOnBoc)
 				{
-                    // $$ 
                     var prop = printersProperties.First(pp => pp.Model == device.Model);
                     var model = string.IsNullOrWhiteSpace(prop.BocModel) ? device.Model : prop.BocModel;
                     RegisterDeviceOnBOC(model, pin, out bocDeviceId, out serialNumber);
@@ -171,17 +170,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
 			// 4. Fill device information & hit connect
 			foreach(var device in _contextData.AdditionalDeviceProperties)
-			{              
+			{
 				installationCloudWebPage.FillDeviceDetailsAndClickConnect(
 					device, _contextData.WindowHandles[UserType.Installer]);
 			}
 
 			// 5. Hit Refresh until all devices are connected
 			installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
-			
+
 			return installationCloudWebPage;
 		}
-		
+
 		public void SingleDeviceInstallationForCloudUsb(AdditionalDeviceProperties device)
 		{
 			LoggingService.WriteLogOnMethodEntry(device);
@@ -216,7 +215,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
 			// Verify that Software download link is correct
 			installationCloudUsbPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
-			
+
 			// 5. Refresh until device is connected
 			RefreshUntilConnectedForCloudUsb(installationCloudUsbPage);
 		}
@@ -281,7 +280,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				foreach (var element in deviceRowElements)
 				{
 					bool isSuccess = installationCloudUsbPage.SelectSerialNumber(
-						element, device.MpsDeviceId, device.SerialNumber);
+						element, device.MpsDeviceId, device.SerialNumber,false);
 					if (isSuccess)
 					{
 						ClickSafety(installationCloudUsbPage.RefreshButtonElement, installationCloudUsbPage);
@@ -370,10 +369,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
 		{
 			LoggingService.WriteLogOnMethodEntry(oldDevice);
-			
+
 			_runCommandService.RunSendSwapRequestCommand();
 			SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
-			
+
 			foreach(var newDevice in _contextData.AdditionalDeviceProperties)
 			{
 				if(oldDevice.SwappedDeviceID.Equals(newDevice.MpsDeviceId))
@@ -424,8 +423,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 					}
 
 					return;
-			  }					 
-			}				
+			  }
+			}
 		}
 
 		#region private methods
@@ -473,22 +472,29 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		private InstallationCloudToolPage SelectSerialNumbersHelper(InstallationCloudToolPage installationCloudToolPage)
 		{
 			LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
-			foreach (var device in _contextData.AdditionalDeviceProperties)
+            var props = _contextData.PrintersProperties;
+            foreach (var device in _contextData.AdditionalDeviceProperties)
 			{
 				var deviceRowElements = installationCloudToolPage.SeleniumHelper.FindRowElementsWithinTable(
 					installationCloudToolPage.DeviceTableContainerElement);
+                var prop = props.First(p => p.Model == device.Model);
 
-				foreach (var element in deviceRowElements)
+                foreach (var element in deviceRowElements)
 				{
-					bool isSuccess = installationCloudToolPage.SelectSerialNumber(
-						element, device.MpsDeviceId, device.SerialNumber);
-					if (isSuccess)
-					{
-						ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
-						installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-							RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-						break;
-					}
+                    var isUnmatchDevice = string.IsNullOrWhiteSpace(prop.BocModel) == false;
+                    bool isSuccess = installationCloudToolPage.SelectSerialNumber(
+						element, device.MpsDeviceId, device.SerialNumber, isUnmatchDevice);
+                    if (isSuccess)
+                    {
+                        if( installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement))
+                        {
+                            break;
+                        }
+                        ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
+                        installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+                            RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+                        break;
+                    }
 				}
 			}
 
@@ -608,7 +614,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			newDevice.ServicePackPrice = oldDevice.ServicePackPrice;
 			newDevice.InstallationPackPrice = oldDevice.InstallationPackPrice;
 		}
-		
+
 		private void ClickSafety(IWebElement element, IPageObject pageObject)
 		{
 			LoggingService.WriteLogOnMethodEntry(element, pageObject);

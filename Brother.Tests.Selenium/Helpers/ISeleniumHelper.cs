@@ -54,7 +54,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="timeout"></param>
         /// <returns></returns>
         IWebElement FindElementByDataAttributeValue(ISearchContext context, string dataAttributeName, string dataAttributeValue, int timeout = -1);
-        
+
         /// <summary>
         /// Wait until an element appears
         /// </summary>
@@ -63,7 +63,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         void WaitUntilElementAppears(string selector, int timeout = -1);
         List<IWebElement> FindElementsByCssSelector(ISearchContext context, string selector);
         List<IWebElement> FindElementsByCssSelector(string selector);
-        
+
         /// <summary>
         /// Select dropdown item using text
         /// </summary>
@@ -79,7 +79,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="timeout"></param>
         /// <returns></returns>
         TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout = -1);
- 
+
         /// <summary>
         /// Return all row elements within a table element
         /// </summary>
@@ -102,34 +102,40 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="defaultFindElementTimeout"></param>
         /// <param name="IsUntilUrlChanges"></param>
         void ClickSafety(IWebElement element, int IsWaitForAnotherPageDefaultFindElementTimeout = -1, bool IsUntilUrlChanges = false);
-        
+
         /// <summary>
-        /// Accept Javascript alert 
+        /// Accept Javascript alert
         /// </summary>
         /// <param name="timeout"></param>
         void AcceptJavascriptAlert(int timeout = -1);
 
         /// <summary>
-        /// 
+        /// Find Alert Dialog
+        /// </summary>
+        /// <param name="timeout"></param>
+        IAlert FindAlertDialog(int timeout = -1);
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="actionsButton"></param>
         /// <returns></returns>
         ReadOnlyCollection<IWebElement> ActionsDropdownElement(string actionsButton);
-        
+
         /// <summary>
         /// Return true if an element is ReadOnly else false
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
         bool IsReadOnly(IWebElement element);
-        
+
         /// <summary>
         /// Return true if all the elements exist else false
         /// </summary>
         /// <param name="elements"></param>
         /// <returns></returns>
         bool IsExistAllElements(params IWebElement[] elements);
-        
+
         /// <summary>
         /// Close browser tabs except the main window
         /// </summary>
@@ -171,9 +177,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="rowElementListForExistCheck">check until list count==1</param>
         /// <param name="timeout">in sec. -1 is default from RuntimeSettings.DefaultXXXTimeout</param>
         void SetListFilter(IWebElement filterElement, string filterString, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string waitSelector = null);
-     
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="filterElement">The filter element where Proposal/Contract/Aggrement Id is inserted</param>
         /// <param name="filterId">Proposal/Contract/Aggrement Id</param>

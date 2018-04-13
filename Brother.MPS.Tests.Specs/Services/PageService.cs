@@ -27,7 +27,7 @@ namespace Brother.Tests.Specs.Services
 
         private ILoggingService LoggingService { get; set; }
 
-        public PageService(IWebDriver driver, 
+        public PageService(IWebDriver driver,
             ScenarioContext context,
             ILoggingService loggingService,
             IUrlResolver urlResolver,
@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
-            
+
             return pageObject;
         }
 
