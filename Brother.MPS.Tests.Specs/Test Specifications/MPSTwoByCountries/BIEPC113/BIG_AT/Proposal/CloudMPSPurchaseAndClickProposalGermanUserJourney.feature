@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS @BIEPC113
+﻿@TEST @UAT @MPS @BIEPC113 @CRITICAL
 Feature: CloudMPSGermanPurchaseAndClickProposalUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 

@@ -61,6 +61,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
             _container.RegisterTypeAs<PageParseHelper, IPageParseHelper>();
+
+            //necessary in order for 'old' (non-DI) framework to get hold of an ILoggingService instance
+            Helper.LoggingService = _container.Resolve<ILoggingService>();
         }
 
 
@@ -101,6 +104,15 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultRuntimeEnvironment");
             return defaultRuntimeEnvironment ?? "UAT";
+
+            if (_container.Resolve<IContextData>().Environment.ToUpper() == "PROD")
+            {
+                //A bit heavy handed but ensures that any production scenario removes smoke tests
+                var logging = _container.Resolve<ILoggingService>();
+                var mpsWebToolsService = _container.Resolve<IMpsWebToolsService>();
+                logging.WriteLog(LoggingLevel.INFO, "Clearing production smoke tests");
+                mpsWebToolsService.RemoveProductionSmokeTests();
+            }
         }
 
         private string DefaultBaseUrl()

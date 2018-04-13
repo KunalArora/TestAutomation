@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("MEDIUM")]
     public partial class CloudMPSSpanishPurchaseAndClickProposalUserJourneyFeature
     {
         
@@ -41,7 +42,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
                         "TEST",
                         "UAT",
                         "MPS",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "MEDIUM"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
