@@ -256,5 +256,17 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.EmailInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
+        [When(@"I navigate to Accepted Contracts Page and click Manage devices button")]
+        public void WhenINavigateToAcceptedContractsPageAndClickManageDevicesButton()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
+            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
+            _runCommandService.RunCreateCustomerAndPersonCommand();
+        }
+
+
     }
 }
