@@ -270,6 +270,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             _mpsDealerContractStepActions.MoveContract();
             _mpsDealerContractStepActions.ChangeContractToRunning();
+            _mpsDealerContractStepActions.MoveContract();
         }
     }
 }
