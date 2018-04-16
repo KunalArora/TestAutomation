@@ -7,7 +7,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string Price { get; set; }
         public int Quantity { get; set; }
         public string InstallationPack { get; set; }
+        public string InstallationPackPrice { get; set; }
         public string ServicePack { get; set; }
+        public string ServicePackPrice { get; set; } 
         public string Delivery { get; set; }
         public bool IsMonochrome { get; set; }
         public int CoverageMono { get; set; }

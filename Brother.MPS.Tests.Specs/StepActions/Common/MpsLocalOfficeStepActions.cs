@@ -69,6 +69,22 @@ namespace Brother.Tests.Specs.StepActions.Common
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
+        public LocalOfficeAgreementSummaryPage RefinePreInstallAgreementAndNavigateToSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
+
+            dataQueryPage.FilterPreInstallStatusAgreements();
+
+            dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
+            var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            // Save dealer details for future validation
+            _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
+            _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
+
+            return localOfficeAgreementSummaryPage;
+        }
+
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);

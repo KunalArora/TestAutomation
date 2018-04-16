@@ -190,5 +190,12 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="selector"></param>
         /// <returns></returns>
         bool IsElementNotPresent(string selector, int timeout = -1);
+
+        /// <summary>
+        /// Returns true if element with this selector is present, returns false if its not present
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        bool IsElementPresent(string selector, int timeout = -1);
     }
 }

@@ -31,6 +31,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string MpsListNotesSelector = ".mps-list-notes";
         private const string MpsListItemSelector = ".js-mps-list-item";
         private const string AgreementLinkSelector = "span.js-mps-agreement-link";
+        private const string PreInstallStatusCheckBoxSelector = ".mps-qa-status-agreement-17";
 
 
 
@@ -443,6 +444,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             // note: from MpsLocalOfficeStepActions#NavigateToContractsSummaryPage(...)
             var agreementRowLinkElement = SeleniumHelper.SetListFilter(DataQuerySearchField, agreementId, VisibleItemDivElements, dataAttibuteName:"proposal-id", waitSelector: MpsListNotesSelector); 
             SeleniumHelper.ClickSafety(agreementRowLinkElement, IsUntilUrlChanges:true);
+        }
+
+        public void FilterPreInstallStatusAgreements()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var preInstallStatusCheckBox = SeleniumHelper.FindElementByCssSelector(PreInstallStatusCheckBoxSelector);
+            if(!preInstallStatusCheckBox.Selected)
+            {
+                SeleniumHelper.ClickSafety(preInstallStatusCheckBox);
+            }
+
+            SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
         }
     }
 }

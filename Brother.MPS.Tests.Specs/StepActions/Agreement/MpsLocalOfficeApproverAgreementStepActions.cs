@@ -18,6 +18,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
     public class MpsLocalOfficeApproverAgreementStepActions : MpsLocalOfficeStepActions
     {
         private readonly IWebDriver _loApproverWebDriver;
+        private readonly IContextData _contextData;
 
         public MpsLocalOfficeApproverAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -33,6 +34,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
+            _contextData = contextData;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -60,6 +62,50 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage);
             return SendSingleInstallationRequests(localOfficeAgreementDevicesPage, _loApproverWebDriver);
+        }
+
+        public LocalOfficeAgreementSummaryPage RefinePreInstallAgreementAndNavigateToSummaryPage(DataQueryPage dataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
+            return RefinePreInstallAgreementAndNavigateToSummaryPage(dataQueryPage, _loApproverWebDriver);
+        }
+
+        public LocalOfficeAgreementDetailsPage ApplySpecialPricing(LocalOfficeAgreementSummaryPage localOfficeApproverAgreementSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementSummaryPage);
+
+            bool isInstallationTab, isServiceTab;
+
+            localOfficeApproverAgreementSummaryPage.ClickSpecialPricing();
+            var localOfficeApproverAgreementManageSpecialPricing = PageService.GetPageObject<LocalOfficeAgreementManageSpecialPricing>(
+                RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
+
+            localOfficeApproverAgreementManageSpecialPricing.VerifyDisplayOfAppropriateTabs(
+                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, out isInstallationTab, out isServiceTab);
+
+            if(isInstallationTab)
+            {
+                localOfficeApproverAgreementManageSpecialPricing.EditInstallationPricesAndProceed(_contextData.PrintersProperties);
+            }
+
+            if(isServiceTab)
+            {
+                localOfficeApproverAgreementManageSpecialPricing.EditServicePricesAndProceed(_contextData.PrintersProperties);
+            }
+
+            localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
+                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
+
+            localOfficeApproverAgreementManageSpecialPricing.ConfirmSpecialPricingAndApply();
+
+            return PageService.GetPageObject<LocalOfficeAgreementDetailsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
+        }
+
+        public void VerifySpecialPricing(LocalOfficeAgreementDetailsPage localOfficeApproverAgreementDetailsPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDetailsPage);
+
+            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
 
         // Page objects
         private LocalOfficeAgreementDevicesPage _localOfficeApproverAgreementDevicesPage;
+        private LocalOfficeAgreementDetailsPage _localOfficeApproverAgreementDetailsPage;
 
         public MpsLocalOfficeApproverAgreementSteps(MpsSignInStepActions mpsSignIn,
             MpsLocalOfficeApproverAgreementStepActions mpsLoApproverAgreement,
@@ -36,6 +37,23 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             var dataQueryPage = _mpsLoApproverAgreement.NavigateToReportsDataQuery(localOfficeApproverDashboardPage);
             var localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
             _localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.SendBulkInstallationRequest(localOfficeApproverAgreementDevicesPage);
+        }
+
+        [When(@"a Cloud MPS LO Approver applies special pricing")]
+        public void WhenACloudMPSLOApproverAppliesSpecialPricing()
+        {
+            var localOfficeApproverDashboardPage = _mpsSignIn.SignInAsLocalOfficeApprover(
+                _userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dataQueryPage = _mpsLoApproverAgreement.NavigateToReportsDataQuery(localOfficeApproverDashboardPage);
+            var localOfficeApproverAgreementSummaryPage = _mpsLoApproverAgreement.RefinePreInstallAgreementAndNavigateToSummaryPage(dataQueryPage);
+            _localOfficeApproverAgreementDetailsPage = _mpsLoApproverAgreement.ApplySpecialPricing(localOfficeApproverAgreementSummaryPage);
+            
+        }
+
+        [Then(@"a Cloud MPS LO Approver can verify that special pricing is correctly applied")]
+        public void ThenACloudMPSLOApproverCanVerifyThatSpecialPricingIsCorrectlyApplied()
+        {
+            _mpsLoApproverAgreement.VerifySpecialPricing(_localOfficeApproverAgreementDetailsPage);
         }
     }
 }
