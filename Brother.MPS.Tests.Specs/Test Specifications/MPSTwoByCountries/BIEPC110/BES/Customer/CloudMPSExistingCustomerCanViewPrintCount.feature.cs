@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("CRITICAL")]
     public partial class CloudMPSCreateAContractWithExistingSpanishCustomerFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
                         "MPS",
                         "UAT",
                         "TEST",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "CRITICAL"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

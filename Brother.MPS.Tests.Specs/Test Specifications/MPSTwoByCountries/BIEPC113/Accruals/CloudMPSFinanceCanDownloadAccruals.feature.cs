@@ -19,7 +19,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Accr
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSFinanceCanDownloadAccruals")]
-    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -38,7 +37,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC113.Accr
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSFinanceCanDownloadAccruals", "\tIn order to know how much have been accrued\r\n\tAs a Finance Role\r\n\tI want the abi" +
                     "lity to download Accruals spreadsheet", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "UAT",
                         "MPS",
                         "TEST",

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Brother.Tests.Common.Logging;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -96,11 +97,15 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             set { _abbreviate = value; }
         }
 
-        #region Properties set by MPS command line parameters
-        public static string OutputPath = string.Empty;
-        public static string EnvironmentUnderTest = string.Empty;
-        #endregion
-        // Countries lookup
+       #region Properties set by MPS assembly
+
+       public static string OutputPath = string.Empty;
+       public static string EnvironmentUnderTest = string.Empty;
+       public static ILoggingService LoggingService;
+
+       #endregion
+
+       // Countries lookup
         private static readonly Dictionary<string, string> _countries = new Dictionary<string, string>
         {
             {"Belgium", "be"},

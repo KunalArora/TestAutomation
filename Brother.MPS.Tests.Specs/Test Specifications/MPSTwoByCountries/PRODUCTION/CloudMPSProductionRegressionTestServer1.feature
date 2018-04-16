@@ -1,5 +1,5 @@
-﻿@MPS @PROD @SERVER12
-Feature: CloudMPSProductionRegressionTestServer1And2
+﻿@MPS @PROD @SERVER1
+Feature: CloudMPSProductionRegressionTestServer1
 	In order to progress an approved proposal to contract
 	As a dealer
 	I want to be able to sign an approve proposal
@@ -24,7 +24,6 @@ Scenario Outline: Dealer Can Sign A Purchase And Click Contract in Prod
 	Scenarios: 
 	| Role             | Country        | Role2                           | Web                             | ServerName | Method | Type |
 	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p1.online.brother.co.uk | Web_1      | Cloud  | Web  |
-	| Cloud MPS Dealer | United Kingdom | Cloud MPS Local Office Approver | https://p2.online.brother.co.uk | Web_2      | Cloud  | Web  |
 	
 	
 	

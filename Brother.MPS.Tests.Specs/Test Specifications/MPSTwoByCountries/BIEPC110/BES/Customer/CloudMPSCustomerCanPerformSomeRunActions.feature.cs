@@ -19,11 +19,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("SpanishCustomerCanPerformSomeRunActions")]
-    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("BIEPC110")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class SpanishCustomerCanPerformSomeRunActionsFeature
     {
         
@@ -38,11 +38,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPSTwoByCountries.BIEPC110.BES.
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpanishCustomerCanPerformSomeRunActions", "\tIn order for customer to perform some run portion actions\r\n\tAs a customer\r\n\tI wa" +
                     "nt to be to sign in using my newly generated credentials", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore",
                         "TEST",
                         "UAT",
                         "MPS",
-                        "BIEPC110"});
+                        "BIEPC110",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

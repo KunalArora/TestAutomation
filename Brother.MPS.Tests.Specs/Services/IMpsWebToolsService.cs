@@ -12,5 +12,6 @@ namespace Brother.Tests.Specs.Services
         void SetConsumableOrderStatus(int orderId, int statusId);
         void RegisterCustomer(string idIsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB");
         SwapRequestDetail GetSwapRequestDetail(int installedPrinterId);
+        void RemoveProductionSmokeTests();
     }
 }

@@ -1,4 +1,4 @@
-﻿@MPS @TEST @UAT @BIEPC113
+﻿@MPS @TEST @UAT @BIEPC113 @MEDIUM
 Feature: CloudMPSApproverFromGermanyDecisionFeature
 	In order to approve/decline Proposal/Contract
 	As a Approver

@@ -18,6 +18,8 @@ namespace Brother.WebSites.Core.Pages.Base
 {
     public abstract partial class BasePage
     {
+        private ILoggingService _loggingService;
+
         public static string BrotherOnlineBaseUrl
         {
             get { return SetBrotherOnlineBaseUrl(); }
@@ -49,8 +51,20 @@ namespace Brother.WebSites.Core.Pages.Base
         }
 
         #region IPageObject instance
-        
-        public ILoggingService LoggingService { get; set; }
+
+        public ILoggingService LoggingService
+        {
+            get
+            {
+                if (_loggingService == null)
+                {
+                    _loggingService = Helper.LoggingService;
+                }
+                return _loggingService;
+            }
+            set { _loggingService = value; }
+        }
+
         public IRuntimeSettings RuntimeSettings { get; set; }
         public ISeleniumHelper SeleniumHelper { get; set; }
         #endregion

@@ -1,6 +1,8 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Models;
 using Brother.Tests.Specs.Domain;
+using Brother.Tests.Common.Logging;
+using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using System;
 using System.Collections.Generic;
@@ -14,23 +16,33 @@ namespace Brother.Tests.Specs.Services
         private readonly IUrlResolver _urlResolver;
         private readonly IWebRequestService _webRequestService;
         private readonly IContextData _contextData;
+        private readonly ILoggingService _loggingService;
         private string _baseUrl = string.Empty;
         private string _baseUrlWithoutMps2 = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
 
-        public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService, IContextData contextData)
+        public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService, IContextData contextData, ILoggingService loggingService)
         {
             _urlResolver = urlResolver;
             _webRequestService = webRequestService;
             _contextData = contextData;
+            _loggingService = loggingService;
             _baseUrl = string.Format("{0}/sitecore/admin/integration/mps2/{{0}}", _urlResolver.CmsUrl);
             _baseUrlWithoutMps2 = string.Format("{0}/sitecore/admin/integration/{{0}}", _urlResolver.CmsUrl).Replace("https://", "http://");
 
         }
 
-        private WebPageResponse ExecuteWebTool(string url)
+        private void ExecuteWebTool(string url, string authToken = null)
         {
-            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, AuthToken() } };
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
+            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
+
+            Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+        }
+
+        private WebPageResponse GetWebToolResponse(string url, string authToken = null)
+        {
+            var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
@@ -69,7 +81,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("removeconsumableorderbyinstalledprinter.aspx?serial={0}", serialNumber);
             string url = string.Format(_baseUrl, actionPath);
 
-            ExecuteWebTool(url);            
+            ExecuteWebTool(url);
         }
 
         public void SetConsumableOrderStatus(int orderId, int statusId)
@@ -95,7 +107,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("automation/getswaprequestdetail.aspx?installedprinterid={0}", installedPrinterId.ToString());
             string url = string.Format(_baseUrl, actionPath);
 
-            var response = ExecuteWebTool(url);
+            var response = GetWebToolResponse(url);
 
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
@@ -115,6 +127,23 @@ namespace Brother.Tests.Specs.Services
             }
 
             return authToken;
+        }
+
+        public void RemoveProductionSmokeTests()
+        {
+            string actionPath = "automation/deletesmokeproposals.aspx";
+            string url = string.Format(_baseUrl, actionPath);
+
+            var response = GetWebToolResponse(url, @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$"); //production auth header       
+
+            if (response.Headers["Brother-CommandStatus"].ToUpper() == "NO_SMOKE_PROPOSALS_FOUND")
+            {
+                _loggingService.WriteLog(LoggingLevel.INFO, "No smoke proposals found to remove");
+            }
+            else
+            {
+                _loggingService.WriteLog(LoggingLevel.INFO, response.ResponseBody);
+            }
         }
     }
 }
