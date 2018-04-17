@@ -32,10 +32,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string ActionsButtonSelector = ".btn.btn-primary.btn-xs.dropdown-toggle";
         private const string ManageDevicesSelector = ".js-mps-manage-devices";
-        public void SetListFilter(int contractId)
+        public void SetListFilter(int contractId, string proposalName)
         {
-            LoggingService.WriteLogOnMethodEntry(contractId);
-            SeleniumHelper.SetListFilter(InputFilterBy, contractId, ContractOrProposalNameElementList);
+            LoggingService.WriteLogOnMethodEntry(contractId, proposalName);
+            SeleniumHelper.SetListFilter(InputFilterBy, contractId, proposalName, ContractOrProposalNameElementList);
         }
 
         public void NavigateToManageDevicesPage()

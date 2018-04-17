@@ -402,7 +402,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = _contextData.ProposalId;
             string proposalName = _contextData.ProposalName;
 
-            _cloudExistingProposalPage.ClickOnEditActionButton(proposalId, proposalName, _dealerWebDriver);
+            _cloudExistingProposalPage.ClickOnEditActionButton(proposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -627,8 +627,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsApprovedPage dealerProposalsApprovedPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
-            int proposalId = _contextData.ProposalId;
-            dealerProposalsApprovedPage.ClickOnSummaryPage(proposalId, _dealerWebDriver);
+            dealerProposalsApprovedPage.ClickOnSummaryPage(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -683,7 +682,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertCustomerInformationPage SubmitForApproval(DealerProposalsInprogressPage dealerProposalsInprogressPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsInprogressPage);
-            dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, _dealerWebDriver);
+            dealerProposalsInprogressPage.ClickOnSubmitForApproval(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -744,8 +743,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerContractsApprovedProposalPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsApprovedProposalPage);
-            int proposalId = _contextData.ProposalId;
-            dealerContractsApprovedProposalPage.ClickOnViewOffer(proposalId, _dealerWebDriver);
+            dealerContractsApprovedProposalPage.ClickOnViewOffer(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -771,10 +769,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerCustomersManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public CloudExistingProposalPage ClickOnCopyWithCustomerTab(DealerProposalsDeclinedPage dealerProposalsDeclinedPage, int proposalId)
+        public CloudExistingProposalPage ClickOnCopyWithCustomerTab(DealerProposalsDeclinedPage dealerProposalsDeclinedPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, proposalId);
-            dealerProposalsDeclinedPage.ClickOnCopyWithCustomerActionItem(proposalId, _dealerWebDriver);
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage);
+            dealerProposalsDeclinedPage.ClickOnCopyWithCustomerActionItem(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -817,8 +815,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void IsProposalPresent(DealerProposalsApprovedPage dealerProposalsApprovedPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
-            int proposalId = _contextData.ProposalId;
-            dealerProposalsApprovedPage.FilterProposalAndVerify(proposalId);
+            dealerProposalsApprovedPage.FilterProposalAndVerify(_contextData.ProposalId, _contextData.ProposalName);
         }
 
         #region private methods

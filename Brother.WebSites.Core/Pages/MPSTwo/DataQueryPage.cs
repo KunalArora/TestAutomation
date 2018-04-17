@@ -3,6 +3,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -442,8 +443,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
             // note: from MpsLocalOfficeStepActions#NavigateToContractsSummaryPage(...)
-            var agreementRowLinkElement = SeleniumHelper.SetListFilter(DataQuerySearchField, agreementId, VisibleItemDivElements, dataAttibuteName:"proposal-id", waitSelector: MpsListNotesSelector); 
-            SeleniumHelper.ClickSafety(agreementRowLinkElement, IsUntilUrlChanges:true);
+
+            var mpsListNotesElement = SeleniumHelper.FindElementByCssSelector(MpsListNotesSelector);
+
+            var contractIdInputElement = SeleniumHelper.FindElementByCssSelector(".mps-qa-contractid");
+            ClearAndType(contractIdInputElement, agreementId.ToString(), true);
+
+            var goElement = SeleniumHelper.FindElementByCssSelector(".js-mps-proposal-report-single-load");
+            SeleniumHelper.ClickSafety(goElement);
+
+            SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(mpsListNotesElement));
+            SeleniumHelper.WaitUntil(d => (SeleniumHelper.FindElementsByCssSelector(".js-mps-list-item").Count == 1));
+            var rowElementLink = SeleniumHelper.FindElementByDataAttributeValue("proposal-id", agreementId.ToString());
+            SeleniumHelper.ClickSafety(rowElementLink, IsUntilUrlChanges: true);
         }
 
         public void FilterPreInstallStatusAgreements()

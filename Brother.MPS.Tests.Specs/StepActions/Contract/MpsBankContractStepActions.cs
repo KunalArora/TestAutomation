@@ -46,7 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public BankContractsMaintenancePage ClickOnContractEdit(BankContractsAcceptedPage bankContractsAcceptedPage)
         {
             LoggingService.WriteLogOnMethodEntry(bankContractsAcceptedPage);
-            bankContractsAcceptedPage.ClickOnContractEdit(ContextData.ProposalId, _webDriver);
+            bankContractsAcceptedPage.ClickOnContractEdit(ContextData.ProposalId, ContextData.ProposalName, _webDriver);
             return PageService.GetPageObject<BankContractsMaintenancePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public BankContractsSummaryPage ClickOnViewSummary(BankContractsAwaitingAcceptancePage bankContractsAwaitingAcceptancePage)
         {
             LoggingService.WriteLogOnMethodEntry(bankContractsAwaitingAcceptancePage);
-            bankContractsAwaitingAcceptancePage.ClickOnViewSummary(ContextData.ProposalId, _webDriver);
+            bankContractsAwaitingAcceptancePage.ClickOnViewSummary(ContextData.ProposalId, ContextData.ProposalName, _webDriver);
             return PageService.GetPageObject<BankContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 

@@ -40,7 +40,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void VerifyContractFilter(int proposalId, string proposalName)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
-            SeleniumHelper.SetListFilter(ContractFilter, proposalId, ContractListContractNameRowElement);
+            SeleniumHelper.SetListFilter(ContractFilter, proposalId, proposalName, ContractListContractNameRowElement);
             if (proposalName == null) return;
 
             var actual = ContractListContractNameRowElement.First().Text;

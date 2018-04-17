@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             // Wait for footer to load & then filter out the agreement
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector);
-            ClearAndType(AgreementFilter, agreementId.ToString());
+            ClearAndType(AgreementFilter, agreementId.ToString() + " " + agreementName);
             try
             {
                 SeleniumHelper.WaitUntil(d => AgreementListNameRowElement.First(element => element.Text == agreementName));

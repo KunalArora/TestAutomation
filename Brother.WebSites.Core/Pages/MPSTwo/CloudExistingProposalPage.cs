@@ -233,14 +233,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsNewProposalTemplateCreated(true);
         }
 
-        public void VerifyNewProposal(string proposalName)
-        {
-            LoggingService.WriteLogOnMethodEntry(proposalName);
-            ClearAndType(ProposalFilter, proposalName);
-            IsNewProposalTemplateCreated(true);
-        }
-
-
         public void IsNewProposalTemplateCreated(bool option)
         {
             LoggingService.WriteLogOnMethodEntry(option);
@@ -636,7 +628,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ClickOnSubmitForApproval(int proposalId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            ClearAndType(ProposalFilter, proposalId.ToString());
+            ClearAndType(ProposalFilter, proposalId.ToString() + " " + proposalName);
             SeleniumHelper.WaitUntil(d => ProposalListProposalNameRowElement.First(element => element.Text == proposalName));
             var actionsElement = ActionsDropdownElement(actionsButton);
             actionsElement.Last().Click();
@@ -644,10 +636,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             submitForApprovalElement.Click();
         }
 
-        public void ClickOnEditActionButton(int proposalId, string proposalName, IWebDriver driver)
+        public void ClickOnEditActionButton(string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalName, ProposalListProposalNameRowElement);
+            LoggingService.WriteLogOnMethodEntry(proposalName, driver);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalName, ProposalListProposalNameRowElement); // Search using proposal Name only as this is the case of copy proposal (hence proposal ID yet to be found out)
             var actionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionsButtonSelector,isWaitforEnabled:true);
             actionButtonElement.Click();
             var proposalEditButtonElement = SeleniumHelper.FindElementByCssSelector(editActionButtonSelector, isWaitforEnabled: true);
@@ -768,7 +760,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             // Wait for footer to load & then filter out the proposal
             SeleniumHelper.FindElementByCssSelector(DataTablesFooterSelector);
-            ClearAndType(filterElement, proposalId.ToString());
+            ClearAndType(filterElement, proposalId.ToString() + " " + proposalName);
             try
             {
                 SeleniumHelper.WaitUntil(d => nameRowElement.First(element => element.Text == proposalName));

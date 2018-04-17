@@ -38,10 +38,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string copyWithCustomerSelector = @".js-mps-copy-with-customer";
 
-        public void ClickOnCopyWithCustomerActionItem(int proposalId, IWebDriver driver)
+        public void ClickOnCopyWithCustomerActionItem(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement);
             var actionsButtonElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector);
             SeleniumHelper.ClickSafety(actionsButtonElement);
             var copyWithCustomerElement = SeleniumHelper.FindElementByCssSelector(copyWithCustomerSelector);
