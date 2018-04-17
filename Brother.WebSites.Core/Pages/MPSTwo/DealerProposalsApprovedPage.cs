@@ -38,10 +38,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
-        public void ClickOnViewOffer(int proposalId, IWebDriver driver)
+        public void ClickOnViewOffer(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.SetListFilter(ContractFilter, proposalId, ContractListContractNameRowElement);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(ContractFilter, proposalId, proposalName, ContractListContractNameRowElement);
             SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver); // ViewOffer ASIS 
         }
@@ -85,20 +85,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string actionsButton = @".js-mps-filter-ignore > .dropdown-toggle";
         private const string actionSummaryButton = ".js-mps-view-summary";
 
-        public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
+        public void ClickOnSummaryPage(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, proposalName, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
             var actionElement = SeleniumHelper.FindElementByCssSelector(actionsButton);
             SeleniumHelper.ClickSafety(actionElement);
             var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(actionSummaryButton);
             SeleniumHelper.ClickSafety(actionSummaryElement);
         }
 
-        public void FilterProposalAndVerify(int proposalId)
+        public void FilterProposalAndVerify(int proposalId, string proposalName)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId);
-            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
+            SeleniumHelper.SetListFilter(FilterSearchFieldElement, proposalId, proposalName, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
         }
     }
 

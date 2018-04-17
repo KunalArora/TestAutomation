@@ -331,7 +331,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }, timeout);
         }
 
-        public IWebElement SetListFilter(IWebElement filterElement, int filterId, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
+        public IWebElement SetListFilter(IWebElement filterElement, int filterId, string filterName, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout, dataAttributeName, waitSelector);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
@@ -345,7 +345,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                     if( isTyped == false)
                     {
                         waitSelectorElement = (waitSelector != null) ? FindElementByCssSelector(waitSelector, timeout) : null;
-                        ClearAndType(filterElement, filterId.ToString(), IsVerify: true);
+                        ClearAndType(filterElement, filterId.ToString() + " " + filterName, IsVerify: true);
                         isTyped = true;
                     }
                     var count = rowElementListForExistCheck.Count;
@@ -441,6 +441,25 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
             return notPresent;
         }
+
+        public bool IsElementPresent(string selector, int timeout = -1)
+        {
+            LoggingService.WriteLogOnMethodEntry(selector, timeout);
+            bool present;
+            timeout = timeout < 0 ? RuntimeSettings.DefaultElementNotPresentTimeout : timeout; //Use DefaultElementNotPresentTimeout here as well as same logic
+            try
+            {
+                var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { d.FindElement(By.CssSelector(selector)); return true; } catch { return false; } });
+                present = true;
+            }
+            catch
+            {
+                present = false;
+            }
+
+            return present;
+        }
+
 
         public void SetCheckBox(IWebElement element, bool selected)
         {

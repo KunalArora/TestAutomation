@@ -53,8 +53,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public BankProposalsSummaryPage ClickViewSummary(BankProposalsAwaitingApprovalPage bankProposalsAwaitingApprovalPage)
         {
             LoggingService.WriteLogOnMethodEntry(bankProposalsAwaitingApprovalPage);
-            int proposalId = ContextData.ProposalId;
-            bankProposalsAwaitingApprovalPage.ClickOnViewSummary(proposalId, _webDriver);
+            bankProposalsAwaitingApprovalPage.ClickOnViewSummary(ContextData.ProposalId, ContextData.ProposalName, _webDriver);
             return PageService.GetPageObject<BankProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
         public void AssertAreEqualBankSummary(BankProposalsSummaryPage bankProposalsSummaryPage)

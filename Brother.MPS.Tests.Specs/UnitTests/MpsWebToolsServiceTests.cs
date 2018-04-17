@@ -18,7 +18,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public MpsWebToolsServiceTests()
         {
-            _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "DEV", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new MpsContextData());
+            _mpsWebToolsService = new MpsWebToolsService(new DefaultUrlResolver(new MpsContextData { Environment = "DEV", Country = new Country { DomainSuffix = "co.uk" } }), new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new MpsContextData(), new MpsLoggingConsole(new LoggingServiceSettings()));
         }
 
         [Test]

@@ -371,10 +371,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementsPresent(ProposalListContainerElement.ToArray(), "Proposal List");
         }
 
-        public void ClickOnSummaryPage(int proposalId, IWebDriver driver)
+        public void ClickOnSummaryPage(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId,driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement);
             SeleniumHelper.ClickSafety( SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }

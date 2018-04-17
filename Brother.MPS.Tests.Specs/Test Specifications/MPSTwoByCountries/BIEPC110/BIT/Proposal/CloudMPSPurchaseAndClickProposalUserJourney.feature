@@ -1,4 +1,4 @@
-﻿@TEST @UAT @MPS @BIEPC110
+﻿@TEST @UAT @MPS @BIEPC110 @MEDIUM
 Feature: CloudMPSItalianPurchaseAndClickProposalUserJourney
 	In order to create different variety of purchase and click proposal
 	As a dealer 

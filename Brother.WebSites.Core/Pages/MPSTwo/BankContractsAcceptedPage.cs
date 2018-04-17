@@ -38,11 +38,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string PaginateSelector = ".dataTables_paginate";
 
 
-        public void ClickOnContractEdit(int contractId, IWebDriver driver)
+        public void ClickOnContractEdit(int contractId, string proposalName, IWebDriver driver)
         {
             LoggingService.WriteLogOnMethodEntry(contractId, driver);
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
-            SeleniumHelper.SetListFilter(ContractFilter, contractId.ToString(), ContractListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(ContractFilter, contractId, proposalName, ContractListProposalNameRowElement);
             SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             SeleniumHelper.ClickSafety(ActionsContractEdit, IsUntilUrlChanges: true);
             // goto /mps/bank/contracts/maintenance          

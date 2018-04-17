@@ -167,8 +167,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void FilterContractUsingProposalIdAction(DealerContractsPage dealerContractsPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
-            int proposalId = _contextData.ProposalId;
-            dealerContractsPage.FilterContractUsingProposalId(proposalId);
+            dealerContractsPage.FilterContractUsingProposalId(_contextData.ProposalId, _contextData.ProposalName);
         }
 
         public DealerManageDevicesPage ClickOnManageDevicesAndProceed(DealerContractsPage dealerContractsPage)

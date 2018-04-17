@@ -218,8 +218,10 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationSelectMethodPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementBillingPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementConsumablesPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDetailsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDeviceConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDevicesPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementManageSpecialPricing.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\FinanceAccrualsPage.cs" />
     <Compile Include="Pages\MPSTwo\FinanceDashboardPage.cs" />

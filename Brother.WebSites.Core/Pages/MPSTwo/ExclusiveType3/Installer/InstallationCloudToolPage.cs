@@ -306,7 +306,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public void AssertSelerialNumberIsDisplayed(IWebElement element, string mpsDeviceId, string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
-            // var dataId = element.GetAttribute("data-id");
             var snElement = SeleniumHelper.WaitUntil(d =>
             {
                 var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);

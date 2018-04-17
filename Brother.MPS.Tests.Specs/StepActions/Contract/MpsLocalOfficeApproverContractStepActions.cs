@@ -44,10 +44,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             ILoggingService loggingService,
             IPdfHelper pdfHelper,
             RunCommandService runCommandService,
+            IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
             IContractShiftService contractShiftService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
@@ -72,8 +73,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverApprovalContractsSummaryPage ClickViewSummary(LocalOfficeApproverContractsAwaitingAcceptancePage localofficeApproverApprovalContractsAwaitingAcceptancePage)
         {
             LoggingService.WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage);
-            int proposalId = _contextData.ProposalId;
-            localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(proposalId, _localOfficeApproverWebDriver);
+            localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(ContextData.ProposalId, ContextData.ProposalName, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -114,10 +114,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverManageDevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManageDevicesContractsPage localOfficeApproverManagedevicesContractsPage, int proposalId)
+        public LocalOfficeApproverManageDevicesManagePage ClickOnActionsManageDevices(LocalOfficeApproverManageDevicesContractsPage localOfficeApproverManagedevicesContractsPage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage, proposalId);
-            localOfficeApproverManagedevicesContractsPage.SetListFilter(proposalId);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesContractsPage);
+            localOfficeApproverManagedevicesContractsPage.SetListFilter(_contextData.ProposalId, _contextData.ProposalName);
             localOfficeApproverManagedevicesContractsPage.NavigateToManageDevicesPage();
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }

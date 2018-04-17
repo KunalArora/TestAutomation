@@ -153,6 +153,5 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage);
             _localOfficeApproverApprovalProposalsDeclinedPage = _mpsLocalOfficeApproverProposalStepActions.DeclineProposal(localOfficeApproverApprovalProposalsSummaryPage);
         }
-
     }
 }

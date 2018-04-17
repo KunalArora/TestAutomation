@@ -69,8 +69,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public LocalOfficeApproverApprovalProposalsSummaryPage NavigateToViewSummary(LocalOfficeApproverProposalsPage localOfficeApproverProposalsPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverProposalsPage);
-            int proposalId = _contextData.ProposalId;
-            localOfficeApproverProposalsPage.ClickOnSummaryPage(proposalId, _localOfficeApproverWebDriver);
+            localOfficeApproverProposalsPage.ClickOnSummaryPage(_contextData.ProposalId, _contextData.ProposalName, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -272,10 +271,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalSpecialPricingPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverApprovalContractsSummaryPage ClickViewSummary(LocalOfficeApproverContractsAwaitingAcceptancePage localofficeApproverApprovalContractsAwaitingAcceptancePage, int proposalId)
+        public LocalOfficeApproverApprovalContractsSummaryPage ClickViewSummary(LocalOfficeApproverContractsAwaitingAcceptancePage localofficeApproverApprovalContractsAwaitingAcceptancePage)
         {
-            LoggingService.WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage, proposalId);
-            localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(proposalId, _localOfficeApproverWebDriver);
+            LoggingService.WriteLogOnMethodEntry(localofficeApproverApprovalContractsAwaitingAcceptancePage);
+            localofficeApproverApprovalContractsAwaitingAcceptancePage.ClickOnViewSummary(_contextData.ProposalId, _contextData.ProposalName, _localOfficeApproverWebDriver);
             return PageService.GetPageObject<LocalOfficeApproverApprovalContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 

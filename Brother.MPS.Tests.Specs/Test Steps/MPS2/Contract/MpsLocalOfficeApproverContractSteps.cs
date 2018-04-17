@@ -86,7 +86,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         {
             var _localOfficeApproverDashBoardPage = _mpsLocalOfficeApproverProposalStepActions.SignInAsLocalOfficeApproverAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var _localOfficeApproverManagedevicesContractsPage = _mpsLocalOfficeApproverContractStepActions.NavigateToDeviceManagementPage(_localOfficeApproverDashBoardPage);
-            _localOfficeApproverManagedevicesManagePage =  _mpsLocalOfficeApproverContractStepActions.ClickOnActionsManageDevices(_localOfficeApproverManagedevicesContractsPage, _contextData.ProposalId);
+            _localOfficeApproverManagedevicesManagePage =  _mpsLocalOfficeApproverContractStepActions.ClickOnActionsManageDevices(_localOfficeApproverManagedevicesContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 

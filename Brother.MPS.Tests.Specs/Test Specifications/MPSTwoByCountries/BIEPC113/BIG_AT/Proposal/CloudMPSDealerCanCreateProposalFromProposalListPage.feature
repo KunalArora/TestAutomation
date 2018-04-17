@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @BIEPC113
+﻿@MPS @UAT @TEST @BIEPC113 @MEDIUM
 Feature: CloudMPSGermanDealerCanCreateProposalFromProposalListPage
 	In order to create a proposal from proposal list page
 	As a dealer

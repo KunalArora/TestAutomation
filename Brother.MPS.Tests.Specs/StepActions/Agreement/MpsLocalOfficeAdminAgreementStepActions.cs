@@ -4,6 +4,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -33,9 +34,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IUserResolver userResolver,
             ILoggingService loggingService,
             IRunCommandService runCommandService,
+            IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _mpsSignIn = mpsSignIn;

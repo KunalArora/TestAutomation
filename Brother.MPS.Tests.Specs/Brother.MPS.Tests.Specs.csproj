@@ -310,6 +310,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProposalDeclined.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalOpen.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalOpen.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1410,15 +1415,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSProductionCanLogin.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSProductionRegressionTestServer1And2.feature</DependentUpon>
+      <DependentUpon>CloudMPSProductionRegressionTestServer1.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature.cs">
+    <Compile Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CloudMPSProductionRegressionTestServer3And4.feature</DependentUpon>
+      <DependentUpon>CloudMPSProductionRegressionTestServer3.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature.cs">
       <DependentUpon>ProductionSmokeDealerCanCreateAgreement.feature</DependentUpon>
@@ -1578,7 +1583,7 @@
     <Compile Include="Test Steps\MPSTwo\Approver\BankSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Approver\LocalOfficeApproverSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\CalculationEngine\CalculationEngineSteps.cs" />
-    <Compile Include="Test Steps\MPSTwo\Contract\LocalOfficeAdminSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeAdminSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Contract\SigningContractsSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\Customer\DealerCanOperateCustomersSteps.cs" />
     <Compile Include="Test Steps\MPSTwo\DataQuery\DataQuerySteps.cs" />
@@ -1803,6 +1808,10 @@
     <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProposalDeclined.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ProposalOpen.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProposalOpen.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2716,13 +2725,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSProductionCanLogin.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1And2.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProductionRegressionTestServer1And2.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSProductionRegressionTestServer1.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3And4.feature">
+    <None Include="Test Specifications\MPSTwoByCountries\PRODUCTION\CloudMPSProductionRegressionTestServer3.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CloudMPSProductionRegressionTestServer3And4.feature.cs</LastGenOutput>
+      <LastGenOutput>CloudMPSProductionRegressionTestServer3.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\ProductionSmokeTests\Type3\ProductionSmokeDealerCanCreateAgreement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

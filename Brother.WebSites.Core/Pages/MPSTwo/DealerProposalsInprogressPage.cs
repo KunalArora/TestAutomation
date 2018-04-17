@@ -43,10 +43,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
-        public void ClickOnSubmitForApproval(int proposalId, IWebDriver driver)
+        public void ClickOnSubmitForApproval(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, ProposalListProposalNameRowElement);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement);
             SeleniumHelper.ActionsDropdownElement(actionsButton).Last().Click();
             ActionsModule.StartConvertToContractProcess(driver); // = Submit for Approval
         }
