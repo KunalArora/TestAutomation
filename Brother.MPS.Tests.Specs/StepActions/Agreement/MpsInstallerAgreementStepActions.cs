@@ -12,6 +12,7 @@ using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		private readonly IMpsWebToolsService _mpsWebToolsService;
 		private readonly IRunCommandService _runCommandService;
 
-		public MpsInstallerAgreementStepActions(IWebDriverFactory webDriverFactory,
+        public MpsInstallerAgreementStepActions(IWebDriverFactory webDriverFactory,
 			IContextData contextData,
 			IPageService pageService,
 			ScenarioContext context,
@@ -52,7 +53,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			_agreementHelper = agreementHelper;
 			_mpsWebToolsService = mpsWebToolsService;
 			_runCommandService = runCommandService;
-		}
+
+        }
 
 		public void InstallDevicesOneByOneForCloudBor()
 		{
@@ -95,7 +97,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			}
 		}
 
-		public InstallationCloudToolPage BulkInstallDevicesForCloudBor()
+        public void VerifySingleQuantityModelSerialNumberAreAutoAssigned()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            foreach ( var devicePropaty in _contextData.AdditionalDeviceProperties)
+            {
+                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == devicePropaty.Model);
+                var expectSerialNumberSelected = printersProperty.Quantity > 1 || string.IsNullOrWhiteSpace(printersProperty.BocModel) == false;
+                Assert.AreEqual(expectSerialNumberSelected, devicePropaty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} S/N={1}", printersProperty.Model, devicePropaty.SerialNumber);
+            }
+        }
+
+        public InstallationCloudToolPage BulkInstallDevicesForCloudBor()
 		{
 			LoggingService.WriteLogOnMethodEntry();
 			// Navigate to Select method page & verify device details
@@ -486,9 +499,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 						element, device.MpsDeviceId, device.SerialNumber, isUnmatchDevice);
                     if (isSuccess)
                     {
-                        if( installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement))
+                        installationCloudToolPage.AssertSelerialNumberIsDisplayed(element, device.MpsDeviceId, device.SerialNumber);
+                        device.IsResultSerialNumberSelected = true;
+                        if ( installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement) == false )
                         {
-                            break;
+                            break; // no refresh button. refresh skip.
                         }
                         ClickSafety(installationCloudToolPage.RefreshButtonElement, installationCloudToolPage);
                         installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(

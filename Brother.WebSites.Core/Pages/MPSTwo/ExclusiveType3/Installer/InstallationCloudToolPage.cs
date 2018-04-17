@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -41,6 +42,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string DeviceLocationSelector = ".js-mps-input-device-location";
         private const string CostCentreSelector = ".js-mps-input-device-costcentre";
         private const string DangerAlertSelector = ".alert-danger";
+        private const string SerialNumberSelector = "span[id*=content_0_DeviceListForTool_List_SerialNumber_]";
 
         // Swap Complete installation selectors
         private const string OldModelSelector = "#content_0_CompleteSwap_ModelOld";
@@ -299,6 +301,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(CompleteInstallationButtonSelector));
 
             SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(CompleteSwapSuccessSelector).Displayed);
+        }
+
+        public void AssertSelerialNumberIsDisplayed(IWebElement element, string mpsDeviceId, string serialNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
+            // var dataId = element.GetAttribute("data-id");
+            var snElement = SeleniumHelper.WaitUntil(d =>
+            {
+                var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+                var trElement = deviceRowElements.FirstOrDefault(el => el.GetAttribute("data-id") == mpsDeviceId);
+                if( trElement == null) { return null; }
+                if(SeleniumHelper.IsElementDisplayed(trElement, SelectSerialLinkSelector)) { return null; }
+                var td =  trElement.FindElement(By.CssSelector(SerialNumberSelector));
+                return string.IsNullOrWhiteSpace(td.Text) ? null : td;
+            });
+            TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned S/N not equals mpdDeviceId=" + mpsDeviceId);
         }
     }
 }
