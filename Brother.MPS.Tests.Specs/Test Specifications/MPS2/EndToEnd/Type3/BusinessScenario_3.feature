@@ -28,6 +28,8 @@ And I can verify the device details using show device details option
 When a Cloud MPS LO Approver can create and send a device reinstallation request
 And a Cloud MPS Installer is able to reinstall devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that the reinstalled devices are responding
+#And I can verify the device details using show device details option
+And I can verify the device details 
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
