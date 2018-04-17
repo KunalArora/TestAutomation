@@ -322,5 +322,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyStatusOfSwappedInAndSwappedOutDevices(_dealerAgreementDevicesPage);
         }
+
+        [Then(@"I can verify that the reinstalled devices are responding")]
+        public void ThenICanVerifyThatTheReinstalledDevicesAreResponding()
+        {
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
+                _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
+        }
     }
 }

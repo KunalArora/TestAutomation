@@ -101,7 +101,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "SendInstallationRequest",
                         "MonoPrintCount",
                         "ColorPrintCount",
-                        "ResetDevice"});
+                        "ResetDevice",
+                        "ReInstallDevice"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "2",
@@ -114,7 +115,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "4000",
                         "0",
-                        "Yes"});
+                        "Yes",
+                        "No"});
             table1.AddRow(new string[] {
                         "DCP-8250DN",
                         "1",
@@ -127,7 +129,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "4000",
                         "0",
-                        "No"});
+                        "No",
+                        "Yes"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 15
@@ -158,14 +161,21 @@ testRunner.Then("I can verify that all devices are installed and responding", ((
 #line 27
 testRunner.And("I can verify the device details using show device details option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("a Cloud MPS LO Approver can create and send a device reinstallation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
-testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And(string.Format("a Cloud MPS Installer is able to reinstall devices using \"{0}\" communication and " +
+                        "\"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
-testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("I can verify that the reinstalled devices are responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
-testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 32
+testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
+testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
 testRunner.And("I can verify the service/installation billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

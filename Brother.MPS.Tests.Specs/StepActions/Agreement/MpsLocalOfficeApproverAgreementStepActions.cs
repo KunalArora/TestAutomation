@@ -4,6 +4,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -29,9 +30,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService,
+            IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _contextData = contextData;
@@ -106,6 +108,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDetailsPage);
 
             localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
+        }
+
+        public LocalOfficeAgreementDevicesPage SendReinstallDeviceRequest(LocalOfficeAgreementDevicesPage localOfficeApproverAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDevicesPage);
+
+            return SendReinstallDeviceRequest(localOfficeApproverAgreementDevicesPage, _loApproverWebDriver);
         }
     }
 }

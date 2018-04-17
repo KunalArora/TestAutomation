@@ -47,6 +47,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
         public string ResetDevice { get; set; }
+        public string ReInstallDevice { get; set; }
         public bool IsSwap { get; set; }
         public int DeviceIndex { get; set; }
         public bool IsRegisteredOnBoc { get; set; }

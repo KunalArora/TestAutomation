@@ -3,6 +3,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using NUnit.Framework;
 using OfficeOpenXml;
 using System;
 using System.IO;
@@ -60,21 +61,17 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
-            {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
 
-                    if (ws.Dimension.Columns != TOTAL_NUMBER_OF_COLUMNS)
-                    {
-                        TestCheck.AssertFailTest(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
-                    }
-                }
-            }
-            else
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                if (ws.Dimension.Columns != TOTAL_NUMBER_OF_COLUMNS)
+                {
+                    TestCheck.AssertFailTest(string.Format("Number of columns in excel sheet = {0} could not be validated", excelFilePath));
+                }
             }
         }
 
@@ -83,95 +80,87 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath, row, mandatoryFieldValues, optionalFieldValues);
             var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
-            {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
-                    
-                    // Fill Mandatory fields
-                    ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value = mandatoryFieldValues.CompanyName;                  
-                    ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value = mandatoryFieldValues.FirstName;
-                    ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value = mandatoryFieldValues.LastName;
-                    ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value = mandatoryFieldValues.PropertyNumber;                
-                    ws.Cells[row, PROPERTY_STREET_COL_NUM].Value = mandatoryFieldValues.PropertyStreet;  
-                    ws.Cells[row, PROPERTY_TOWN_COL_NUM].Value = mandatoryFieldValues.PropertyTown;               
-                    ws.Cells[row, PROPERTY_POSTCODE_COL_NUM].Value = mandatoryFieldValues.PostCode;
-                  
-                    if (optionalFieldValues != null)
-                    {
-                        // Fill Non Mandatory fields
-                        ws.Cells[row, TELEPHONE_COL_NUM].Value = optionalFieldValues.Telephone;
-                        ws.Cells[row, EMAIL_COL_NUM].Value = optionalFieldValues.Email;
-                        ws.Cells[row, PROPERTY_AREA_COL_NUM].Value = optionalFieldValues.PropertyArea;
-                        ws.Cells[row, DEVICE_LOCATION_COL_NUM].Value = optionalFieldValues.DeviceLocation;
-                        ws.Cells[row, COST_CENTRE_COL_NUM].Value = optionalFieldValues.CostCentre;
-                        ws.Cells[row, REFERENCE_1_COL_NUM].Value = optionalFieldValues.Reference_1;
-                        ws.Cells[row, REFERENCE_2_COL_NUM].Value = optionalFieldValues.Reference_2;
-                        ws.Cells[row, REFERENCE_3_COL_NUM].Value = optionalFieldValues.Reference_3;
-                        ws.Cells[row, INSTALLATION_NOTES_COL_NUM].Value = optionalFieldValues.InstallationNotes;
-                    }
 
-                    pack.Save();
-                    return ws.Cells[row, MPS_DEVICE_ID_COL_NUM].Value.ToString(); // Return Device ID
-                }
-            }
-            else
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+ 
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                throw new Exception(string.Format("Excel sheet = {0} does not exist", excelFilePath));
-            }
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+                    
+                // Fill Mandatory fields
+                ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value = mandatoryFieldValues.CompanyName;                  
+                ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value = mandatoryFieldValues.FirstName;
+                ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value = mandatoryFieldValues.LastName;
+                ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value = mandatoryFieldValues.PropertyNumber;                
+                ws.Cells[row, PROPERTY_STREET_COL_NUM].Value = mandatoryFieldValues.PropertyStreet;  
+                ws.Cells[row, PROPERTY_TOWN_COL_NUM].Value = mandatoryFieldValues.PropertyTown;               
+                ws.Cells[row, PROPERTY_POSTCODE_COL_NUM].Value = mandatoryFieldValues.PostCode;
+                  
+                if (optionalFieldValues != null)
+                {
+                    // Fill Non Mandatory fields
+                    ws.Cells[row, TELEPHONE_COL_NUM].Value = optionalFieldValues.Telephone;
+                    ws.Cells[row, EMAIL_COL_NUM].Value = optionalFieldValues.Email;
+                    ws.Cells[row, PROPERTY_AREA_COL_NUM].Value = optionalFieldValues.PropertyArea;
+                    ws.Cells[row, DEVICE_LOCATION_COL_NUM].Value = optionalFieldValues.DeviceLocation;
+                    ws.Cells[row, COST_CENTRE_COL_NUM].Value = optionalFieldValues.CostCentre;
+                    ws.Cells[row, REFERENCE_1_COL_NUM].Value = optionalFieldValues.Reference_1;
+                    ws.Cells[row, REFERENCE_2_COL_NUM].Value = optionalFieldValues.Reference_2;
+                    ws.Cells[row, REFERENCE_3_COL_NUM].Value = optionalFieldValues.Reference_3;
+                    ws.Cells[row, INSTALLATION_NOTES_COL_NUM].Value = optionalFieldValues.InstallationNotes;
+                }
+
+                pack.Save();
+                return ws.Cells[row, MPS_DEVICE_ID_COL_NUM].Value.ToString(); // Return Device ID
+            }        
         }
 
         public AdditionalDeviceProperties GetDeviceDetails(string excelFilePath, int row)
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath, row);
             var fileInfo = new FileInfo(excelFilePath);
+
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
             AdditionalDeviceProperties deviceProperties = new AdditionalDeviceProperties();
-            if (fileInfo.Exists)
+           
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
 
 
-                    deviceProperties.DeviceIndex = row - 1;
+                deviceProperties.DeviceIndex = row - 1;
 
-                    // Device Installation details
-                    deviceProperties.AgreementId = HandleNullCase(ws.Cells[row, AGREEMENT_ID_COL_NUM].Value);
-                    deviceProperties.MpsDeviceId = HandleNullCase(ws.Cells[row, MPS_DEVICE_ID_COL_NUM].Value);
-                    deviceProperties.BocDeviceId = HandleNullCase(ws.Cells[row, BOC_DEVICE_ID_COL_NUM].Value);
-                    deviceProperties.Model = HandleNullCase(ws.Cells[row, MODEL_COL_NUM].Value);
-                    deviceProperties.ConnectionStatus = HandleNullCase(ws.Cells[row, CONNECTION_STATUS_COL_NUM].Value);
-                    deviceProperties.InstallationLink = HandleNullCase(ws.Cells[row, INSTALLATION_LINK_COL_NUM].Value);
-                    deviceProperties.DeviceStatus = HandleNullCase(ws.Cells[row, DEVICE_STATUS_COL_NUM].Value);
-                    deviceProperties.RegistrationPin = HandleNullCase(ws.Cells[row, REGISTRATION_PIN_COL_NUM].Value);
-                    deviceProperties.AdvancedInstallationLink = HandleNullCase(ws.Cells[row, ADVANCED_INSTALLATION_LINK_COL_NUM].Value);
+                // Device Installation details
+                deviceProperties.AgreementId = HandleNullCase(ws.Cells[row, AGREEMENT_ID_COL_NUM].Value);
+                deviceProperties.MpsDeviceId = HandleNullCase(ws.Cells[row, MPS_DEVICE_ID_COL_NUM].Value);
+                deviceProperties.BocDeviceId = HandleNullCase(ws.Cells[row, BOC_DEVICE_ID_COL_NUM].Value);
+                deviceProperties.Model = HandleNullCase(ws.Cells[row, MODEL_COL_NUM].Value);
+                deviceProperties.ConnectionStatus = HandleNullCase(ws.Cells[row, CONNECTION_STATUS_COL_NUM].Value);
+                deviceProperties.InstallationLink = HandleNullCase(ws.Cells[row, INSTALLATION_LINK_COL_NUM].Value);
+                deviceProperties.DeviceStatus = HandleNullCase(ws.Cells[row, DEVICE_STATUS_COL_NUM].Value);
+                deviceProperties.RegistrationPin = HandleNullCase(ws.Cells[row, REGISTRATION_PIN_COL_NUM].Value);
+                deviceProperties.AdvancedInstallationLink = HandleNullCase(ws.Cells[row, ADVANCED_INSTALLATION_LINK_COL_NUM].Value);
 
-                    // Customer details mandatory fields
-                    deviceProperties.CustomerName = HandleNullCase(ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value);
-                    deviceProperties.ContactLastName = HandleNullCase(ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value);
-                    deviceProperties.ContactFirstName = HandleNullCase(ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value);
-                    deviceProperties.AddressNumber = HandleNullCase(ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value);
-                    deviceProperties.AddressStreet = HandleNullCase(ws.Cells[row, PROPERTY_STREET_COL_NUM].Value);
-                    deviceProperties.AddressTown = HandleNullCase(ws.Cells[row, PROPERTY_TOWN_COL_NUM].Value);
-                    deviceProperties.AddressPostCode = HandleNullCase(ws.Cells[row, PROPERTY_POSTCODE_COL_NUM].Value);
+                // Customer details mandatory fields
+                deviceProperties.CustomerName = HandleNullCase(ws.Cells[row, CUSTOMER_NAME_COL_NUM].Value);
+                deviceProperties.ContactLastName = HandleNullCase(ws.Cells[row, CONTACT_LAST_NAME_COL_NUM].Value);
+                deviceProperties.ContactFirstName = HandleNullCase(ws.Cells[row, CONTACT_FIRST_NAME_COL_NUM].Value);
+                deviceProperties.AddressNumber = HandleNullCase(ws.Cells[row, PROPERTY_NUMBER_COL_NUM].Value);
+                deviceProperties.AddressStreet = HandleNullCase(ws.Cells[row, PROPERTY_STREET_COL_NUM].Value);
+                deviceProperties.AddressTown = HandleNullCase(ws.Cells[row, PROPERTY_TOWN_COL_NUM].Value);
+                deviceProperties.AddressPostCode = HandleNullCase(ws.Cells[row, PROPERTY_POSTCODE_COL_NUM].Value);
 
 
-                    // Customer details Non Mandatory fields
-                    deviceProperties.Telephone = HandleNullCase(ws.Cells[row, TELEPHONE_COL_NUM].Value);
-                    deviceProperties.Email = HandleNullCase(ws.Cells[row, EMAIL_COL_NUM].Value);
-                    deviceProperties.AddressArea = HandleNullCase(ws.Cells[row, PROPERTY_AREA_COL_NUM].Value);
-                    deviceProperties.DeviceLocation = HandleNullCase(ws.Cells[row, DEVICE_LOCATION_COL_NUM].Value);
-                    deviceProperties.CostCentre = HandleNullCase(ws.Cells[row, COST_CENTRE_COL_NUM].Value);
-                    deviceProperties.Reference1 = HandleNullCase(ws.Cells[row, REFERENCE_1_COL_NUM].Value);
-                    deviceProperties.Reference2 = HandleNullCase(ws.Cells[row, REFERENCE_2_COL_NUM].Value);
-                    deviceProperties.Reference3 =  HandleNullCase(ws.Cells[row, REFERENCE_3_COL_NUM].Value);
-                    deviceProperties.InstallationNotes = HandleNullCase(ws.Cells[row, INSTALLATION_NOTES_COL_NUM].Value);
-                }
-            }
-            else
-            {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                // Customer details Non Mandatory fields
+                deviceProperties.Telephone = HandleNullCase(ws.Cells[row, TELEPHONE_COL_NUM].Value);
+                deviceProperties.Email = HandleNullCase(ws.Cells[row, EMAIL_COL_NUM].Value);
+                deviceProperties.AddressArea = HandleNullCase(ws.Cells[row, PROPERTY_AREA_COL_NUM].Value);
+                deviceProperties.DeviceLocation = HandleNullCase(ws.Cells[row, DEVICE_LOCATION_COL_NUM].Value);
+                deviceProperties.CostCentre = HandleNullCase(ws.Cells[row, COST_CENTRE_COL_NUM].Value);
+                deviceProperties.Reference1 = HandleNullCase(ws.Cells[row, REFERENCE_1_COL_NUM].Value);
+                deviceProperties.Reference2 = HandleNullCase(ws.Cells[row, REFERENCE_2_COL_NUM].Value);
+                deviceProperties.Reference3 =  HandleNullCase(ws.Cells[row, REFERENCE_3_COL_NUM].Value);
+                deviceProperties.InstallationNotes = HandleNullCase(ws.Cells[row, INSTALLATION_NOTES_COL_NUM].Value);
             }
 
             return deviceProperties;
@@ -182,25 +171,52 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath, deviceRowIndex, resourceDeviceStatus, resourceConnectionStatus);
             var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
+
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                     
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                TestCheck.AssertIsEqual(resourceDeviceStatus, ws.Cells[deviceRowIndex, DEVICE_STATUS_COL_NUM].Value.ToString(), string.Format(
+                        "Installed device connection status could not be validated in Excel sheet = {0} for device id = {1}",
+                        excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
+
+                TestCheck.AssertIsEqual(resourceConnectionStatus, ws.Cells[deviceRowIndex, CONNECTION_STATUS_COL_NUM].Value.ToString(), string.Format(
+                        "Installed device status could not be validated in Excel sheet = {0} for device id = {1}",
+                        excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
+            }          
+        }
+
+        public void ExportAndSaveInstallationDetails(string excelFilePath, AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath, device);
+            var fileInfo = new FileInfo(excelFilePath);
+
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
+            {
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                int rowIndex = 2;
+
+                while (!(HandleNullCase(ws.Cells[rowIndex, MPS_DEVICE_ID_COL_NUM].Value) == device.MpsDeviceId))
                 {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
-
-                    TestCheck.AssertIsEqual(resourceDeviceStatus, ws.Cells[deviceRowIndex, DEVICE_STATUS_COL_NUM].Value.ToString(), string.Format(
-                            "Installed device connection status could not be validated in Excel sheet = {0} for device id = {1}",
-                            excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
-
-                    TestCheck.AssertIsEqual(resourceConnectionStatus, ws.Cells[deviceRowIndex, CONNECTION_STATUS_COL_NUM].Value.ToString(), string.Format(
-                            "Installed device status could not be validated in Excel sheet = {0} for device id = {1}",
-                            excelFilePath, ws.Cells[deviceRowIndex, MPS_DEVICE_ID_COL_NUM].Value.ToString()));
+                    rowIndex++;
+                    if (rowIndex > GetNumberOfRows(excelFilePath))
+                    {
+                        TestCheck.AssertFailTest(
+                            string.Format(
+                            "Information for device with device id {0} not present in the devices excel file {3}", device.MpsDeviceId, excelFilePath));
+                    }
                 }
-            }
-            else
-            {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
-            }
+
+                // Save Device Installation details       
+                device.InstallationLink = HandleNullCase(ws.Cells[rowIndex, INSTALLATION_LINK_COL_NUM].Value);
+                device.RegistrationPin = HandleNullCase(ws.Cells[rowIndex, REGISTRATION_PIN_COL_NUM].Value);
+                device.AdvancedInstallationLink = HandleNullCase(ws.Cells[rowIndex, ADVANCED_INSTALLATION_LINK_COL_NUM].Value);
+            }     
         }
     }
 }

@@ -44,10 +44,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
             ILoggingService loggingService,
             IPdfHelper pdfHelper,
             RunCommandService runCommandService,
+            IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
             IContractShiftService contractShiftService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;

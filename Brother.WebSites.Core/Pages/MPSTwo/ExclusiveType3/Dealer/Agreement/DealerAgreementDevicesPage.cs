@@ -33,6 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         // Selectors
         private const string DeviceModelNameSelector = "[id*=content_1_Devices_ModelCell_]";
         private const string PreloaderSelector = ".js-mps-preloader";
+        private const string SuccessAlertSelector = ".alert.alert-success.mps-alert.js-mps-alert";
         
         // Action button selectors
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
@@ -44,8 +45,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string RaiseServiceRequestActionsButtonSelector = ".js-mps-raise-service-request";
         private const string ShowDeviceDetailsActionsButtonSelector = ".js-mps-view-device-location";
         private const string SwapDeviceActionsButtonSelector = ".js-mps-swap-device";
+        private const string ReInstallDeviceActionsButtonSelector = ".js-mps-re-install-device";
 
         private const string StatusToolTipSelector = ".js-mps-tooltip";
+        private const string StatusIconSelector = "[id*=content_1_Devices_StatusIconCell_]";
         private const string StatusDataAttributeSelector = "data-original-title";
         private const string DeviceCheckboxSelector = ".js-mps-row-action";
         private const string InputEmailSelector = "#InputEmail";
@@ -66,7 +69,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string MpsTabsSelector = ".mps-tabs-main";
         private const string MpsTabsAgreementSelector = " a[href=\"/mps/dealer/agreement/";
 
-        // Swap Request Modal Selectos
+        // Swap Request Modal Selectors
         private const string SwapRequestModalDeviceDetailsSelector = ".js-mps-send-swap-request-modal-body > div:nth-child(2) > div.panel-body > table > tbody > tr";
         private const string SwapTypeDataAttributeSelector = "swap-type-enum-id";
         private const string SelectModelDropdownSelector = ".js-mps-replacement-model-list";
@@ -75,6 +78,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string SwapPcbConfirmationSelector = ".js-mps-swap-pcb-confirmation";
         private const string SendSwapRequestButtonSelector = ".js-mps-send-swap-request-modal-select";
 
+        // ReInstall Device Modal Selectors
+        private const string SendReInstallationRequestSelector = ".js-mps-send-re-installation-request-modal-select";
+        private const string ReInstallDeviceModalBodySelector = ".js-mps-send-re-installation-request-modal-body";
+        private const string ReInstallDeviceModalDeviceDetailsSelector = ".panel > .panel-body > .table > tbody";
+
+        // Status Icon Selectors
+        public readonly string CloudStatusIconSelector = ".glyphicon-cloud";
+        public readonly string EmailStatusIconSelector = ".glyphicon-email";
+        public readonly string ReInstallStatusIconSelector = ".glyphicon-ok-circle";
+        public readonly string SwapBeingReplaceStatusIconSelector = ".glyphicon-transfer";
+        public readonly string SwapReplacedStatusIconSelector = ".glyphicon-ban-circle";
+        
 
         // Web Elements
         // Alerts
@@ -788,6 +803,166 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", swappedInDevice.MpsDeviceId));
         }
 
+        public void ClickReInstallDeviceAction(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            if (device.MpsDeviceId == null)
+            {
+                throw new Exception("Cannot click ReInstall Device action for a device with Device Id null");
+            }
+
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(device.MpsDeviceId))
+                {
+                    var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ActionsButtonSelector);
+                    SeleniumHelper.ClickSafety(ActionsButtonElement);
+
+                    var ReInstallDeviceElement = SeleniumHelper.FindElementByCssSelector(
+                        deviceRowElement, ReInstallDeviceActionsButtonSelector);
+                    ScrollTo(ReInstallDeviceElement);
+                    SeleniumHelper.ClickSafety(ReInstallDeviceElement);
+
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
+        }
+
+        public void SendReInstallationRequest(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+
+            var ModalBodyElement = SeleniumHelper.FindElementByCssSelector(ReInstallDeviceModalBodySelector);
+            var DeviceDetails = SeleniumHelper.FindElementByCssSelector(ModalBodyElement, ReInstallDeviceModalDeviceDetailsSelector).Text;
+
+            // Verify device details
+            TestCheck.AssertTextContains(
+                    device.Model, DeviceDetails, string.Format("Device Model name = {0} of the device could not be verified on ReInstall device Modal", device.Model));
+
+            TestCheck.AssertTextContains(
+                    device.SerialNumber, DeviceDetails, string.Format("Device Serial Number = {0} of the device could not be verified on ReInstall device Modal", device.SerialNumber));
+
+            TestCheck.AssertTextContains(
+                    device.AddressString, DeviceDetails, string.Format("Device Location = {0} of the device could not be verified on ReInstall device Modal", device.AddressString));
+
+            // Input Email ID
+            SeleniumHelper.FindElementByCssSelector(ModalBodyElement, InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
+
+            // Click Send Installation Request button on modal
+            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(SendReInstallationRequestSelector));
+
+            // Verify success & close success alert
+            try
+            {
+                var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
+                SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")));
+            }
+            catch (Exception e)
+            {
+                TestCheck.AssertFailTest("Error occurred while sending the Re-Installation request (error alert popped up). Error details:" + e);
+            }
+        }
+
+
+        public void VerifyDeviceStatusAfterReInstallRequestSent(AdditionalDeviceProperties device, string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+
+            ExpectedTranslationService _translationService = new ExpectedTranslationService();
+
+            if (device.MpsDeviceId == null)
+            {
+                throw new Exception("Cannot verify device status for a device with Device Id null after Reinstall request has been raised");
+            }
+
+            string displayedDeviceId, displayedSerialNumber;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(device.MpsDeviceId))
+                {
+                    // Verify that serial number is cleared
+                    // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                    displayedSerialNumber = deviceRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                    TestCheck.AssertIsEqual("-", displayedSerialNumber, "Serial Number of the ready for re-installation device could not be verified");
+
+                    var StatusToolTipElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, StatusToolTipSelector);
+                    string displayedStatus = StatusToolTipElement.GetAttribute(StatusDataAttributeSelector);
+
+                    VerifyStatusIcon(deviceRowElement, ReInstallStatusIconSelector);
+
+                    TestCheck.AssertTextContains(
+                        _translationService.GetInstalledPrinterStatusText(TranslationKeys.InstalledPrinterStatus.ReadyForReInstallType3, culture), displayedStatus, "Status of the device could not be verified");
+
+                    TestCheck.AssertTextContains(
+                        _translationService.GetDeviceConnectionStatusText(TranslationKeys.DeviceConnectionStatus.NotConnected, culture).ToLower(), displayedStatus.ToLower().Replace(" ", string.Empty), "Status of the device could not be verified");
+
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
+        }
+
+        public void VerifyStatusIconOfAllDevices(string iconSelector)
+        {
+            LoggingService.WriteLogOnMethodEntry(iconSelector);
+
+            var elements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var element in elements)
+            {
+                VerifyStatusIcon(element, iconSelector);
+            }
+        }
+
+        public void VerifyStatusIconUsingDeviceId(string mpsDeviceId, string expectedIconSelector)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId, expectedIconSelector);
+
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                var CheckboxElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceCheckboxSelector);
+                string displayedDeviceId = CheckboxElement.GetAttribute("value");
+                if (displayedDeviceId.Equals(mpsDeviceId))
+                {
+                    VerifyStatusIcon(deviceRowElement, expectedIconSelector);
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
+        }
+
+
+        public void VerifyStatusIconUsingSerialNumber(string serialNumber, string expectedIconSelector)
+        {
+            LoggingService.WriteLogOnMethodEntry(serialNumber, expectedIconSelector);
+
+            string displayedSerialNumber;
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            foreach (var deviceRowElement in deviceRowElements)
+            {
+                // TODO: Replace this with the conventional element finding method after ID/Class of the Serial Number Element has been fixed
+                displayedSerialNumber = deviceRowElement.FindElements(By.TagName("td")).ToList()[2].Text;
+                if (displayedSerialNumber.Equals(serialNumber))
+                {
+                    VerifyStatusIcon(deviceRowElement, expectedIconSelector);
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with serial number = {0}", serialNumber));
+        }
+
         // Click Show Print Counts in Actions and return the print counts table row element which contains the print count values
         private IWebElement ClickShowPrintCounts(IWebElement deviceRowElement)
         {
@@ -813,6 +988,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
 
             return PrintCountsRowElements[0];
+        }
+
+        private void VerifyStatusIcon(IWebElement deviceElement, string expectedIconSelector)
+        {
+            LoggingService.WriteLogOnMethodEntry(deviceElement, expectedIconSelector);
+
+            try
+            {
+                var StatusIconElement = SeleniumHelper.FindElementByCssSelector(deviceElement, StatusIconSelector);
+                var icon = SeleniumHelper.FindElementByCssSelector(StatusIconElement, expectedIconSelector);
+            }
+            catch(Exception e)
+            {
+                TestCheck.AssertFailTest(
+                    string.Format(
+                    "Status Icon of the device could not be verified. Expected icon selector = {0} could not be found. Error details = {1}", expectedIconSelector, e));
+            }
         }
     }
 }

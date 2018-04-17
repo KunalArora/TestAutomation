@@ -55,5 +55,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         {
             _mpsLoApproverAgreement.VerifySpecialPricing(_localOfficeApproverAgreementDetailsPage);
         }
+
+        [When(@"a Cloud MPS LO Approver can create and send a device reinstallation request")]
+        public void WhenACloudMPSLOApproverCanCreateAndSendADeviceReinstallationRequest()
+        {
+            var localOfficeApproverDashboardPage = _mpsSignIn.SignInAsLocalOfficeApprover(
+                _userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dataQueryPage = _mpsLoApproverAgreement.NavigateToReportsDataQuery(localOfficeApproverDashboardPage);
+            _localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
+            _localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.SendReinstallDeviceRequest(_localOfficeApproverAgreementDevicesPage);
+        }
     }
 }

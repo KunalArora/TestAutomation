@@ -56,41 +56,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		public void InstallDevicesOneByOneForCloudBor()
 		{
 			LoggingService.WriteLogOnMethodEntry();
-			string deviceId, serialNumber;
 
 			foreach(var device in _contextData.AdditionalDeviceProperties)
 			{
-				// 1. Register the device on BOC using the Registration PIN
-				// Already Registered on BOC?
-				if (!device.IsRegisteredOnBoc)
-				{
-					RegisterDeviceOnBOC(
-						device.Model, device.RegistrationPin, out deviceId, out serialNumber);
-					device.IsRegisteredOnBoc = true;
-
-					// Save details to contextData
-					device.BocDeviceId = deviceId;
-					device.SerialNumber = serialNumber;
-				}
-
-				// 2. Navigate to installation URL
-				var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(device.InstallationLink);
-
-				// 3. Verify device details on InstallationSelectMethodPage
-				installationSelectMethodPage.VerifyDeviceDetails(device.AgreementId, 1, device.Model); // Note: 1 is the number of devices (always 1 in case of one by one installation)
-
-				// 4. Select installation method as "BOR"
-				ClickSafety(
-					installationSelectMethodPage.BORInstallationButton(), 
-					installationSelectMethodPage);
-				var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-					RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-
-				// Verify that Software download link is correct
-				installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
-
-				// 5. Refresh until device is connected
-				installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+				SingleDeviceInstallationForCloudBor(device);
 			}
 		}
 
@@ -422,6 +391,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			}				
 		}
 
+		public void ReInstallDevicesForCloudBor()
+		{
+			LoggingService.WriteLogOnMethodEntry();
+
+			foreach (var device in _contextData.AdditionalDeviceProperties)
+			{
+				if (device.ReInstallDevice.ToLower().Equals("yes"))
+				{
+					SingleDeviceInstallationForCloudBor(device);
+				}			
+			}
+		}
+
 		#region private methods
 
 		private void RegisterDeviceOnBOC(string deviceModel, string installationPin, out string deviceId, out string serialNumber)
@@ -603,6 +585,45 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			newDevice.InstallationPackPrice = oldDevice.InstallationPackPrice;
 		}
 		
+		private void SingleDeviceInstallationForCloudBor(AdditionalDeviceProperties device)
+		{
+			LoggingService.WriteLogOnMethodEntry(device);
+
+			string deviceId, serialNumber;
+
+			// Register the device on BOC using the Registration PIN
+			// Already Registered on BOC?
+			if (!device.IsRegisteredOnBoc)
+			{
+				RegisterDeviceOnBOC(
+					device.Model, device.RegistrationPin, out deviceId, out serialNumber);
+				device.IsRegisteredOnBoc = true;
+
+				// Save details to contextData
+				device.BocDeviceId = deviceId;
+				device.SerialNumber = serialNumber;
+			}
+
+			// Navigate to installation URL
+			var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(device.InstallationLink);
+
+			// Verify device details on InstallationSelectMethodPage
+			installationSelectMethodPage.VerifyDeviceDetails(device.AgreementId, 1, device.Model); // Note: 1 is the number of devices (always 1 in case of one by one installation)
+
+			// Select installation method as "BOR"
+			ClickSafety(
+				installationSelectMethodPage.BORInstallationButton(),
+				installationSelectMethodPage);
+			var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+				RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+
+			// Verify that Software download link is correct
+			installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
+
+			// Refresh until device is connected
+			installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+		}
+
 		private void ClickSafety(IWebElement element, IPageObject pageObject)
 		{
 			LoggingService.WriteLogOnMethodEntry(element, pageObject);

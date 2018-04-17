@@ -6,6 +6,7 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Services;
+using NUnit.Framework;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -101,39 +102,35 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             LoggingService.WriteLogOnMethodEntry(excelFilePath, startDate, endDate, expectedClickRateTotal);
 
             var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
+
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                int rowIndex = 2;
+
+                while(!(HandleNullCase(ws.Cells[rowIndex, Summary_AgreementNumber_Col_No].Value).Replace(",", "") == _contextData.AgreementId.ToString() &&
+                    FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodFrom_Col_No].Value)) == startDate &&
+                    FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodTo_Col_No].Value)) == endDate))
                 {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
-
-                    int rowIndex = 2;
-
-                    while(!(HandleNullCase(ws.Cells[rowIndex, Summary_AgreementNumber_Col_No].Value).Replace(",", "") == _contextData.AgreementId.ToString() &&
-                        FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodFrom_Col_No].Value)) == startDate &&
-                        FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodTo_Col_No].Value)) == endDate))
+                    rowIndex++;
+                    if(rowIndex > GetNumberOfRows(excelFilePath))
                     {
-                        rowIndex++;
-                        if(rowIndex > GetNumberOfRows(excelFilePath))
-                        {
-                            TestCheck.AssertFailTest(
-                                string.Format(
-                                "Information for agreement {0} with billing dates {1} - {2} not present in the Summary tab sheet of excel file {3}", _contextData.AgreementId, startDate, endDate, excelFilePath));
-                        }
+                        TestCheck.AssertFailTest(
+                            string.Format(
+                            "Information for agreement {0} with billing dates {1} - {2} not present in the Summary tab sheet of excel file {3}", _contextData.AgreementId, startDate, endDate, excelFilePath));
                     }
-
-                    TestCheck.AssertIsEqual(
-                        Convert.ToDouble(expectedClickRateTotal), Convert.ToDouble(ws.Cells[rowIndex, Summary_Total_Col_No].Value), string.Format(
-                        "Click Rate total for agreement {0} and billing dates {1} - {2} in excel file {3} could not be verified", _contextData.AgreementId, startDate, endDate, excelFilePath));
-
-                    // Verify other agreement details
-                    VerifyAgreementDetailsInSummaryWorksheet(ws, rowIndex, startDate, endDate, excelFilePath);
                 }
-            }
-            else
-            {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
-            }            
+
+                TestCheck.AssertIsEqual(
+                    Convert.ToDouble(expectedClickRateTotal), Convert.ToDouble(ws.Cells[rowIndex, Summary_Total_Col_No].Value), string.Format(
+                    "Click Rate total for agreement {0} and billing dates {1} - {2} in excel file {3} could not be verified", _contextData.AgreementId, startDate, endDate, excelFilePath));
+
+                // Verify other agreement details
+                VerifyAgreementDetailsInSummaryWorksheet(ws, rowIndex, startDate, endDate, excelFilePath);
+            }         
         }
 
         public void VerifyClickChargesWorksheet(string excelFilePath, string startDate, string endDate, bool isFirstBillingPeriod)
@@ -141,10 +138,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             LoggingService.WriteLogOnMethodEntry(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
             var fileInfo = new FileInfo(excelFilePath);
-            if (!fileInfo.Exists)
-            {
-              TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
-            }
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
 
             using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {

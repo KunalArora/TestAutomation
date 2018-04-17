@@ -52,5 +52,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public int monoOverusage { get; set; }
         public int colorOverusage { get; set; }
         public string ResetDevice { get; set; }
+        public string ReInstallDevice { get; set; }
     }
 }
