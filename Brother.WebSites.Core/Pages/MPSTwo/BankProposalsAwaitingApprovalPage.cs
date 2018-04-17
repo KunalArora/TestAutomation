@@ -36,11 +36,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string PaginateSelector = ".dataTables_paginate";
 
 
-        public void ClickOnViewSummary(int proposalId, IWebDriver driver)
+        public void ClickOnViewSummary(int proposalId, string proposalName, IWebDriver driver)
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
             SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId.ToString(), ProposalListProposalNameRowElement);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement);
             SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
             ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
         }

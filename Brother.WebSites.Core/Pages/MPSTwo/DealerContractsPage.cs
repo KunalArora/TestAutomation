@@ -335,11 +335,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 "Is new proposal template created?");
         }
 
-        public void FilterContractUsingProposalId(int proposalId)
+        public void FilterContractUsingProposalId(int proposalId, string proposalName)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId);
             var FilterContractInput = SeleniumHelper.FindElementByCssSelector(ContractFilterSelector);
-            ClearAndType(FilterContractInput, proposalId.ToString());
+            ClearAndType(FilterContractInput, proposalId.ToString() + " " + proposalName, true);
         }
 
         public void MoveToAcceptedContracts()

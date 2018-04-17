@@ -6,6 +6,7 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -24,6 +25,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private readonly IContextData _contextData;
         private readonly ITranslationService _translationService;
         private readonly IRunCommandService _runCommandService;
+        private readonly IDevicesExcelHelper _devicesExcelHelper;
         private readonly IClickBillExcelHelper _clickBillExcelHelper;
         private readonly IServiceInstallationBillExcelHelper _serviceInstallationBillExcelHelper;
 
@@ -36,6 +38,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             IRuntimeSettings runtimeSettings,
             ITranslationService translationService,
             IRunCommandService runCommandService,
+            IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
@@ -43,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             _contextData = contextData;
             _translationService = translationService;
             _runCommandService = runCommandService;
+            _devicesExcelHelper = devicesExcelHelper;
             _clickBillExcelHelper = clickBillExcelHelper;
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
         }
@@ -67,6 +71,22 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+        }
+
+        public LocalOfficeAgreementSummaryPage RefinePreInstallAgreementAndNavigateToSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage, webDriver);
+
+            dataQueryPage.FilterPreInstallStatusAgreements();
+
+            dataQueryPage.FilterAndClickAgreement(_contextData.AgreementId);
+            var localOfficeAgreementSummaryPage = PageService.GetPageObject<LocalOfficeAgreementSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+            // Save dealer details for future validation
+            _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
+            _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
+
+            return localOfficeAgreementSummaryPage;
         }
 
         public LocalOfficeAgreementDevicesPage SendBulkInstallationRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage, IWebDriver webDriver)
@@ -486,6 +506,53 @@ namespace Brother.Tests.Specs.StepActions.Common
                 }
             }
 
+            return localOfficeAgreementDevicesPage;
+        }
+
+        public LocalOfficeAgreementDevicesPage SendReinstallDeviceRequest(LocalOfficeAgreementDevicesPage localOfficeAgreementDevicesPage,  IWebDriver webDriver)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
+            
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                if(device.ReInstallDevice.ToLower().Equals("yes"))
+                {
+                    device.IsRegisteredOnBoc = false;
+
+                    localOfficeAgreementDevicesPage.ClickReInstallDeviceAction(device);
+
+                    localOfficeAgreementDevicesPage.SendReInstallationRequest(device); // Modal
+
+                    localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, webDriver);
+
+                    localOfficeAgreementDevicesPage.VerifyDeviceStatusAfterReInstallRequestSent(device, _contextData.Culture);
+
+                }
+            }
+
+            // Save new installation details to context data
+
+            // Get Downloaded file path
+            string excelFilePath = _devicesExcelHelper.Download(() =>
+            {
+                // Click Export All button
+                ClickSafety(localOfficeAgreementDevicesPage.ExportAllElement, localOfficeAgreementDevicesPage);
+                return true;
+            });
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (device.ReInstallDevice.ToLower().Equals("yes"))
+                {
+                    // Save new installation details
+                    _devicesExcelHelper.ExportAndSaveInstallationDetails(excelFilePath, device);
+                }
+            }
+
+            // Delete Excel
+            _devicesExcelHelper.DeleteExcelFile(excelFilePath);
+            
             return localOfficeAgreementDevicesPage;
         }
 

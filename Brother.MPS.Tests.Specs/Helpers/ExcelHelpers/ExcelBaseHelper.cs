@@ -2,6 +2,7 @@
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using NUnit.Framework;
 using OfficeOpenXml;
 using System;
 using System.Globalization;
@@ -57,19 +58,15 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath, worksheetIndex);
             var fileInfo = new FileInfo(excelFilePath);
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+            
             int rowCount = 0;
-            if (fileInfo.Exists)
+            
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets[worksheetIndex];
+                ExcelWorksheet ws = pack.Workbook.Worksheets[worksheetIndex];
 
-                    rowCount = ws.Dimension.Rows;
-                }
-            }
-            else
-            {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+                rowCount = ws.Dimension.Rows;
             }
 
             return rowCount;

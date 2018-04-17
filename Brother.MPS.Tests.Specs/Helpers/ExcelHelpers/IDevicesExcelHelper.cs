@@ -61,6 +61,13 @@ namespace Brother.Tests.Specs.Helpers
            string excelFilePath, int deviceRow, string resourceInstalledPrinterStatus, string resourceDeviceConnectionStatus);
 
         /// <summary>
+        /// Export the device details & save them to context data
+        /// </summary>
+        /// <param name="excelFilePath"></param>
+        /// <param name="device"></param>
+        void ExportAndSaveInstallationDetails(string excelFilePath, AdditionalDeviceProperties device);
+
+        /// <summary>
         /// Delete Excel file
         /// </summary>
         /// <param name="filePath"></param>

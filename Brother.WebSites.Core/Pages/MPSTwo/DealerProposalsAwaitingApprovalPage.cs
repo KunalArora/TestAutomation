@@ -76,15 +76,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
         }
-
-        public void ClickOnViewSummary(int proposalId, IWebDriver driver)
-        {
-            LoggingService.WriteLogOnMethodEntry(proposalId, driver);
-            SeleniumHelper.WaitUntilElementAppears(PaginateSelector);
-            SeleniumHelper.SetListFilter(ProposalFilter, proposalId.ToString(), ProposalListProposalNameRowElement);
-            SeleniumHelper.ClickSafety(SeleniumHelper.ActionsDropdownElement(actionsButton).Last());
-            ActionsModule.NavigateToSummaryPageUsingActionButton(driver);
-        }
-
     }
 }

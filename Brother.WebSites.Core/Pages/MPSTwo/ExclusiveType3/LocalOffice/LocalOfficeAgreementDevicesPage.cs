@@ -150,6 +150,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                 string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/billing\"]", agreementId.ToString()));
         }
         #endregion
-
     }
 }

@@ -4,6 +4,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Services;
+using NUnit.Framework;
 using OfficeOpenXml;
 using System;
 using System.IO;
@@ -66,87 +67,83 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             LoggingService.WriteLogOnMethodEntry(excelFilePath, startDate, endDate, expectedServiceInstallationTotal);
 
             var fileInfo = new FileInfo(excelFilePath);
-            if (fileInfo.Exists)
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+          
+            
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
             {
-                using (ExcelPackage pack = new ExcelPackage(fileInfo))
+                ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+
+                double calculatedServiceInstallationTotal = 0;
+
+                foreach (var device in _contextData.AdditionalDeviceProperties)
                 {
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.First();
+                    int rowIndex = 2;
 
-                    double calculatedServiceInstallationTotal = 0;
-
-                    foreach (var device in _contextData.AdditionalDeviceProperties)
+                    if (device.InstallationPack.ToLower().Equals("no") && device.ServicePack.ToLower().Equals("no"))
                     {
-                        int rowIndex = 2;
-
-                        if (device.InstallationPack.ToLower().Equals("no") && device.ServicePack.ToLower().Equals("no"))
+                        // Device information should not present in the excel sheet
+                        while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
+                            FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
+                            FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
                         {
-                            // Device information should not present in the excel sheet
-                            while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
-                                FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
-                                FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
+                            rowIndex++;
+                            if (rowIndex > GetNumberOfRows(excelFilePath, 1))
                             {
-                                rowIndex++;
-                                if (rowIndex > GetNumberOfRows(excelFilePath, 1))
-                                {
-                                    break;
-                                }
+                                break;
                             }
+                        }
 
-                            if (rowIndex <= GetNumberOfRows(excelFilePath, 1))
+                        if (rowIndex <= GetNumberOfRows(excelFilePath, 1))
+                        {
+                            TestCheck.AssertFailTest(
+                                string.Format(
+                                "Information for device with serial number {0} with billing dates {1} - {2} should not be present in the Detail tab sheet of excel file {3}, as service pack or installation pack have not been selected for this device", device.SerialNumber, startDate, endDate, excelFilePath));
+                        }
+                    }
+                    else
+                    {
+                        if(device.IsSwappedInDevice) // Swapped In device information will not be present in the service/installation bill
+                        {
+                            continue;
+                        }
+
+                        while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
+                            FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
+                            FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
+                        {
+                            rowIndex++;
+                            if (rowIndex > GetNumberOfRows(excelFilePath, 1))
                             {
                                 TestCheck.AssertFailTest(
                                     string.Format(
-                                    "Information for device with serial number {0} with billing dates {1} - {2} should not be present in the Detail tab sheet of excel file {3}, as service pack or installation pack have not been selected for this device", device.SerialNumber, startDate, endDate, excelFilePath));
+                                    "Information for device with serial number {0} with billing dates {1} - {2} not present in the Detail tab sheet of excel file {3}", device.SerialNumber, startDate, endDate, excelFilePath));
                             }
                         }
-                        else
-                        {
-                            if(device.IsSwappedInDevice) // Swapped In device information will not be present in the service/installation bill
-                            {
-                                continue;
-                            }
 
-                            while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
-                                FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
-                                FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
-                            {
-                                rowIndex++;
-                                if (rowIndex > GetNumberOfRows(excelFilePath, 1))
-                                {
-                                    TestCheck.AssertFailTest(
-                                        string.Format(
-                                        "Information for device with serial number {0} with billing dates {1} - {2} not present in the Detail tab sheet of excel file {3}", device.SerialNumber, startDate, endDate, excelFilePath));
-                                }
-                            }
+                        VerifyAgreementDetailsInDetailWorksheet(ws, rowIndex, device, startDate, endDate, excelFilePath);
 
-                            VerifyAgreementDetailsInDetailWorksheet(ws, rowIndex, device, startDate, endDate, excelFilePath);
+                        TestCheck.AssertIsEqual(
+                            double.Parse(device.InstallationPackPrice), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_InstallationCharge_Col_No].Value)), 2), string.Format(
+                            "Installation Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
-                            TestCheck.AssertIsEqual(
-                                double.Parse(device.InstallationPackPrice), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_InstallationCharge_Col_No].Value)), 2), string.Format(
-                                "Installation Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
+                        TestCheck.AssertIsEqual(
+                            double.Parse(device.ServicePackPrice), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_ServicePackCharge_Col_No].Value)), 2), string.Format(
+                            "Service Pack Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
-                            TestCheck.AssertIsEqual(
-                                double.Parse(device.ServicePackPrice), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_ServicePackCharge_Col_No].Value)), 2), string.Format(
-                                "Service Pack Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
+                        var displayedServiceInstallationTotal = _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_ServiceInstallationTotal_Col_No].Value)), 2);
 
-                            var displayedServiceInstallationTotal = _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, Detail_ServiceInstallationTotal_Col_No].Value)), 2);
+                        TestCheck.AssertIsEqual(
+                            double.Parse(device.ServicePackPrice) + double.Parse(device.InstallationPackPrice), displayedServiceInstallationTotal, string.Format(
+                            "Service Pack Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
-                            TestCheck.AssertIsEqual(
-                                double.Parse(device.ServicePackPrice) + double.Parse(device.InstallationPackPrice), displayedServiceInstallationTotal, string.Format(
-                                "Service Pack Charge for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
-
-                            calculatedServiceInstallationTotal += displayedServiceInstallationTotal;
-                        }
+                        calculatedServiceInstallationTotal += displayedServiceInstallationTotal;
                     }
-
-                    TestCheck.AssertIsEqual(
-                        double.Parse(expectedServiceInstallationTotal), calculatedServiceInstallationTotal, string.Format(
-                        "Net Total of Service Pack/Installation Charge for agreement {0} and billing dates {1} - {2} in excel file {3} could not be verified", _contextData.AgreementId, startDate, endDate, excelFilePath));                 
                 }
-            }
-            else
-            {
-                TestCheck.AssertFailTest(string.Format("Excel sheet = {0} does not exist", excelFilePath));
+
+                TestCheck.AssertIsEqual(
+                    double.Parse(expectedServiceInstallationTotal), calculatedServiceInstallationTotal, string.Format(
+                    "Net Total of Service Pack/Installation Charge for agreement {0} and billing dates {1} - {2} in excel file {3} could not be verified", _contextData.AgreementId, startDate, endDate, excelFilePath));                 
             }
         }
 

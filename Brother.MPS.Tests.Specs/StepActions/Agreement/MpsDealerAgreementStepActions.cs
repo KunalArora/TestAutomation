@@ -251,6 +251,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifyStatusOfDevices(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceInstalledPrinterStatus)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceInstalledPrinterStatus);
+
             // Verify that all devices are in "resourceInstalledPrinterStatus" status
             dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(resourceInstalledPrinterStatus);
         }
@@ -552,6 +553,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.InstallationPack = product.InstallationPack;
                         device.ResetDevice = product.ResetDevice;
                         device.IsSwap = product.IsSwap;
+                        device.ReInstallDevice = product.ReInstallDevice;
                     }
                 }
             }
@@ -568,6 +570,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _dealerWebDriver.Navigate().Refresh();
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Verify status icon
+            if(_contextData.CommunicationMethod.ToLower().Equals("cloud"))
+            {
+                dealerAgreementDevicesPage.VerifyStatusIconOfAllDevices(dealerAgreementDevicesPage.CloudStatusIconSelector);
+            }
+            else if (_contextData.CommunicationMethod.ToLower().Equals("email"))
+            {
+                dealerAgreementDevicesPage.VerifyStatusIconOfAllDevices(dealerAgreementDevicesPage.EmailStatusIconSelector);
+            }
 
             // Verify that devices are installed
             VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled);
@@ -983,6 +995,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                     // Verify "Being Replaced" status for this device
                     var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
+                    dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);
 
                     // Save info for new device to context data
                     device.SwappedDeviceID = newDeviceId;
@@ -1019,11 +1032,21 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 if(device.IsSwap) //Swapped out device (old device)
                 {
+                    dealerAgreementDevicesPage.VerifyStatusIconUsingSerialNumber(device.SerialNumber, dealerAgreementDevicesPage.SwapReplacedStatusIconSelector);
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterReplacedStatus);
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusSwapped);
                 }
                 else // Swapped in device (new device) plus remaining devices
                 {
+                    if (_contextData.CommunicationMethod.ToLower().Equals("cloud"))
+                    {
+                        dealerAgreementDevicesPage.VerifyStatusIconUsingSerialNumber(device.SerialNumber, dealerAgreementDevicesPage.CloudStatusIconSelector);
+                    }
+                    else if (_contextData.CommunicationMethod.ToLower().Equals("email"))
+                    {
+                        dealerAgreementDevicesPage.VerifyStatusIconUsingSerialNumber(device.SerialNumber, dealerAgreementDevicesPage.EmailStatusIconSelector);
+                    }
+                    
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterStatusInstalled);
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusResponding);
 

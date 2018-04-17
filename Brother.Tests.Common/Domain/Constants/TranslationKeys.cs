@@ -74,6 +74,7 @@
             public static string ReadyForInstallType3 { get { return "READY_FOR_INSTALL_TYPE3"; } }
             public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }
             public static string Replaced { get { return "REPLACED"; } }
+            public static string ReadyForReInstallType3 { get { return "READY_FOR_RE_INSTALL_TYPE3"; } }
         }
 
         public static class ProposalDeclineReason
