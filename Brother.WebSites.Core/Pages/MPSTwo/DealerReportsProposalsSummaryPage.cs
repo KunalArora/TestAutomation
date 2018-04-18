@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -97,9 +98,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return isUpdated;           
         }
 
-        public bool VerifyConsumableOrderOfDevice(string serialNumber)
+        public bool VerifyConsumableOrderOfDevice(PrinterProperties product, string orderedConsumable, string orderStatus)
         {
-            LoggingService.WriteLogOnMethodEntry(serialNumber);
+            LoggingService.WriteLogOnMethodEntry(product, orderedConsumable);
 
             bool isUpdated = true;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintersContainerElement);
@@ -111,20 +112,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     TestCheck.AssertFailTest("The Serial Number is not displayed on the Summary page probably due to System Bug");
                 }
-                if (displayedSerialNumber.Equals(serialNumber))
+                if (displayedSerialNumber.Equals(product.SerialNumber))
                 {
                     var ShowConsumableOrderElement = ShowConsumableOrderActionElement(row);
                     SeleniumHelper.ClickSafety(ShowConsumableOrderElement, 10);
-
                     try
                     {
                         var ConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderModalSelector, 10);
                         var ConsumableOrderTableElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderElement, ConsumableOrderModalTableBodySelector, 10);
                         var ConsumableOrderRowElements = SeleniumHelper.FindRowElementsWithinTable(ConsumableOrderTableElement);
 
-                        var displayedMonoPrintCount = SeleniumHelper.FindElementByCssSelector(ConsumableOrderRowElements[0], MonoPrintCountSelector, 10);
-                        var displayedColorPrintCount = SeleniumHelper.FindElementByCssSelector(ConsumableOrderRowElements[0], ColorPrintCountSelector, 10);
 
+                        TestCheck.AssertTextContains(product.ConsumableCreatedDate, ConsumableOrderRowElements[1].Text, string.Format("Consumable Date = {0} cannot be verified", product.ConsumableCreatedDate));
+                        TestCheck.AssertTextContains(orderedConsumable, ConsumableOrderRowElements[1].Text, string.Format("Ordered cosumable name = {0} cannot be verified", orderedConsumable));
+                        TestCheck.AssertTextContains(orderStatus, ConsumableOrderRowElements[1].Text, string.Format("Order Status is not in processing state for consumable = {0}", product.Model));
 
                         // Close Modal
                         SeleniumHelper.ClickSafety(
@@ -162,6 +163,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return ShowConsumableOrderElement;
         }
-
     }
 }

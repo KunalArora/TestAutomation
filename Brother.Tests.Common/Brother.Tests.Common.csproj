@@ -204,6 +204,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\OrderedConsumable\OrderedConsumable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderedConsumable.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\OrderStatus\OrderStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\OverusageText\OverusageText.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -351,6 +361,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.resx">
       <LastGenOutput>InstalledPrinterStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OrderedConsumable\OrderedConsumable.de-de.resx" />
+    <EmbeddedResource Include="Resources\OrderedConsumable\OrderedConsumable.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OrderedConsumable\OrderedConsumable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrderedConsumable.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OrderStatus\OrderStatus.de-de.resx" />
+    <EmbeddedResource Include="Resources\OrderStatus\OrderStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OrderStatus\OrderStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrderStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">

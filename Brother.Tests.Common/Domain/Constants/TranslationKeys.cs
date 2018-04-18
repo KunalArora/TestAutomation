@@ -142,5 +142,18 @@
             public static string EmailSendFailure { get { return "EMAIL_SEND_FAILURE"; } }
             public static string AreYouSureUnmatch { get { return "ARE_YOU_SURE_UNMATCH"; } }
         }
+
+        public static class OrderedConsumable
+        {
+            public static string BlackToner { get { return "BLACK_TONER"; } }
+            public static string CyanToner { get { return "CYAN_TONER"; } }
+            public static string MagentaToner { get { return "MAGENTA_TONER"; } }
+            public static string YellowToner { get { return "YELLOW_TONER"; } }
+        }
+
+        public static class OrderStatus
+        {
+            public static string InProcessing { get { return "IN_PROCESSING"; } }
+        }
     }
 }

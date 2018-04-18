@@ -98,6 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 string deviceId = product.DeviceId;
                 _deviceSimulatorService.RaiseConsumableOrder(deviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                product.ConsumableCreatedDate = DateTime.Now.ToString("dd/MM/yyyy");
             }
         }
 
@@ -400,7 +401,25 @@ namespace Brother.Tests.Specs.StepActions.Contract
             int retries = 0;
             foreach(var product in _contextData.PrintersProperties)
             {
-                while(!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product.SerialNumber))
+                string orderedConsumable = "";
+                string orderStatus = "";
+
+                //Translation for Ordered Consumable text
+                if(product.TonerInkBlackStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture); 
+                } else if(product.TonerInkCyanStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
+                } else if (product.TonerInkMagentaStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.MagentaToner, _contextData.Culture);
+                } else if (product.TonerInkYellowStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
+                }
+
+                //Translation for Order Status Text
+                orderStatus = _translationService.GetOrderStatusText(TranslationKeys.OrderStatus.InProcessing, _contextData.Culture);
+
+                //Verification process
+                while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, orderStatus))
                 {
                     RunCommandServicesRequests();
                     _dealerWebDriver.Navigate().Refresh();
@@ -418,11 +437,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
-        public void MoveContract()
+        public void ShiftContract(bool generateInvoice)
         {
-            LoggingService.WriteLogOnMethodEntry();
-//            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
-            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, true, "Any");
+            LoggingService.WriteLogOnMethodEntry(generateInvoice);
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, generateInvoice, "Any");
         }
 
         public void ChangeContractToRunning()

@@ -35,11 +35,9 @@ And I navigate to the Accepted Contracts page and I locate the above contract an
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And a Cloud MPS Bank Cloud MPS Bank Summary Accept
 And a Cloud MPS Bank Populated Maintain Contact
-And I move the contract and change the status to running
-And I update the print count 
-And I navigate to the contract summary page in the reports section 
-And I verify updated print count
-And I update the Consumable Order and verify it.
+And I set the Contract in the running state
+And I update the print count and verify it on the dataquery page
+And I update the consumable order and verify it on the dataquery page
 #step43,44
 And a Cloud MPS Bank Checking the billing to ensure details are correctly populated
 

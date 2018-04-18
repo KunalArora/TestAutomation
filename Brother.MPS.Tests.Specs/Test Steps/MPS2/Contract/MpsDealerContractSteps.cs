@@ -133,21 +133,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
-        [When(@"I update the print count")]
-        public void WhenIUpdateThePrintCount()
-        {
-            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
-        }
-
-        [When(@"I update the Consumable Order and verify it\.")]
-        public void WhenIUpdateTheConsumableOrderAndVerifyIt_()
-        {
-            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
-            _mpsDealerContractStepActions.RunCommandServicesRequests();
-            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
-        }
-
         [When(@"I update the print count and verify it on the Manage devices page")]
         public void WhenIUpdateThePrintCountAndVerifyItOnTheManageDevicesPage()
         {
@@ -164,13 +149,6 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var dealerReportsDataQueryPage = _mpsDealerContractStepActions.NavigateToReportsDataQueryPage(dealerReportsDashboardPage);
              _dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
         }
-
-        [When(@"I verify updated print count")]
-        public void WhenIVerifyUpdatedPrintCount()
-        {
-            _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
-        }
-
 
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
@@ -265,12 +243,31 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
-        [When(@"I move the contract and change the status to running")]
-        public void WhenIMoveTheContractAndChangeTheStatusToRunning()
+        [When(@"I set the Contract in the running state")]
+        public void WhenISetTheContractInTheRunningState()
         {
-            _mpsDealerContractStepActions.MoveContract();
+            bool generateInvoice = false;
+            _mpsDealerContractStepActions.ShiftContract(generateInvoice);
             _mpsDealerContractStepActions.ChangeContractToRunning();
-            _mpsDealerContractStepActions.MoveContract();
+            generateInvoice = true;
+            _mpsDealerContractStepActions.ShiftContract(generateInvoice);
+        }
+
+        [When(@"I update the print count and verify it on the dataquery page")]
+        public void WhenIUpdateThePrintCountAndVerifyItOnTheDataqueryPage()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            WhenINavigateToTheContractSummaryPageInTheReportsSection();
+            _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
+        }
+
+        [When(@"I update the consumable order and verify it on the dataquery page")]
+        public void WhenIUpdateTheConsumableOrderAndVerifyItOnTheDataqueryPage()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
         }
     }
 }
