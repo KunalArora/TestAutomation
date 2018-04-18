@@ -844,15 +844,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifyDeviceDetailsOnDashboard(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            var deviceURL = _dealerWebDriver.Url;
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/dashboard", device.MpsDeviceId);
                 var uri = new Uri(_dealerWebDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, deviceDashboardUrl);
-                var dealerDeviceDashboardPage = PageService.LoadUrl<DealerDeviceDashboardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _dealerWebDriver);
+                var dealerDeviceDashboardPage = PageService.LoadUrl<DealerDeviceDashboardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, ".js-mps-device-data-container", true, _dealerWebDriver);
 
                 dealerDeviceDashboardPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
             }
+            PageService.LoadUrl<DealerAgreementDevicesPage>(deviceURL, RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", true, _dealerWebDriver);
         }
 
         public DealerAgreementBillingPage VerifyClickRateInvoice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
