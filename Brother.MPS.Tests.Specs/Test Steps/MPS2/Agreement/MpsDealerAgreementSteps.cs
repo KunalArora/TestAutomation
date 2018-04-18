@@ -145,8 +145,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
         }
 
-        [When(@"Validate Service Installation On the Agreement Summary page")]
-        public void WhenValidateServiceInstallationOnTheAgreementSummaryPage()
+        [When(@"I can validate service and installation pack status on the agreement summary page")]
+        public void WhenICanValidateServiceAndInstallationPackStatusOnTheAgreementSummaryPage()
         {
             _mpsDealerAgreement.AssertAreEqualServiceInstallation(_dealerAgreementCreateSummaryPage);
         }
@@ -209,15 +209,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I edit device data bulk for all devices \(Fill Optional fields: ""(.*)""\)")]
         public void WhenIEditDeviceDataBulkForAllDevicesFillOptionalFields(string optionalFields)
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(
-                _dealerAgreementDevicesPage, optionalFields);
+            string validationExpression;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(_dealerAgreementDevicesPage, optionalFields, out validationExpression);
         }
 
         [When(@"I edit device data using bulk edit option \(Fill Optional fields: ""(.*)""\)")]
         public void WhenIEditDeviceDataUsingBulkEditOptionFillOptionalFields(string optionalFields)
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataUsingBulkEditOption(
-                _dealerAgreementDevicesPage, optionalFields);
+            string validationExpression;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(_dealerAgreementDevicesPage, optionalFields, out validationExpression);
+            _mpsDealerAgreement.VerifyAddressOfEditedDevice(_dealerAgreementDevicesPage, validationExpression);
         }
 
         [When(@"I edit device data using excel edit option \(Fill Optional fields: ""(.*)""\)")]

@@ -10,11 +10,11 @@ When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreemen
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
 		| Model         | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | ResetDevice | IsSwap | BocModel     |
-		| DCP-8110DN    | 1        | Yes              | Yes         | 5            | 4000       | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | Yes         | true   |              |
-		| DCP-L8450CDW  | 1        | Yes              | No          | 5            | 1000       | 20             | 1000         | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | Yes         | true   |              |
+		| DCP-8110DN    | 1        | Yes              | Yes         | 5            | 4000       | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
+		| DCP-L8450CDW  | 1        | Yes              | No          | 5            | 1000       | 20             | 1000         | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
 		| MFC-L9550CDWT | 1        | Yes              | Yes         | 5            | 500        | 20             | 250          | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  | MFC-L8850CDW |
 		| DCP-8250DN    | 1        | Yes              | No          | 5            | 2000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
-And Validate Service Installation On the Agreement Summary page
+And I can validate service and installation pack status on the agreement summary page
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -23,7 +23,7 @@ And I can verify that devices are ready for installation
 Then I can create and send a bulk installation request
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
-And a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned
+Then a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned
 
 @BUK
 Scenarios:

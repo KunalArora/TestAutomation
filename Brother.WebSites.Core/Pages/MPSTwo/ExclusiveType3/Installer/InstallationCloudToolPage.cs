@@ -303,7 +303,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(CompleteSwapSuccessSelector).Displayed);
         }
 
-        public void AssertSelerialNumberIsDisplayed(IWebElement element, string mpsDeviceId, string serialNumber)
+        public void AssertSerialNumberIsDisplayed(IWebElement element, string mpsDeviceId, string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
             var snElement = SeleniumHelper.WaitUntil(d =>
@@ -315,7 +315,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                 var td =  trElement.FindElement(By.CssSelector(SerialNumberSelector));
                 return string.IsNullOrWhiteSpace(td.Text) ? null : td;
             });
-            TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned S/N not equals mpdDeviceId=" + mpsDeviceId);
+            TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
         }
     }
 }

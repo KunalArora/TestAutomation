@@ -68,7 +68,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             }
         }
 
-        [When(@"a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned")]
+        [StepDefinition(@"a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned")]
         public void WhenACloudMPSInstallerVerifySingleQuantityModelSerialNumberAreAutoAssigned()
         {
             _mpsInstallerAgreement.VerifySingleQuantityModelSerialNumberAreAutoAssigned();

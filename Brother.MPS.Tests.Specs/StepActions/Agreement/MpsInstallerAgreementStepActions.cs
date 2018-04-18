@@ -20,7 +20,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Agreement
 {
-	public class MpsInstallerAgreementStepActions: StepActionBase
+    public class MpsInstallerAgreementStepActions: StepActionBase
 	{
 		private const string EXPECTED_SOFTWARE_DOWNLOAD_LINK = "/mps/web-installation/download-tools";
 
@@ -68,11 +68,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifySingleQuantityModelSerialNumberAreAutoAssigned()
         {
             LoggingService.WriteLogOnMethodEntry();
-            foreach ( var devicePropaty in _contextData.AdditionalDeviceProperties)
+            foreach ( var deviceProparty in _contextData.AdditionalDeviceProperties)
             {
-                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == devicePropaty.Model);
+                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == deviceProparty.Model);
                 var expectSerialNumberSelected = printersProperty.Quantity > 1 || string.IsNullOrWhiteSpace(printersProperty.BocModel) == false;
-                Assert.AreEqual(expectSerialNumberSelected, devicePropaty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} S/N={1}", printersProperty.Model, devicePropaty.SerialNumber);
+                Assert.AreEqual(expectSerialNumberSelected, deviceProparty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} SerialNumber={1}", printersProperty.Model, deviceProparty.SerialNumber);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			LoggingService.WriteLogOnMethodEntry();
 			// Navigate to Select method page & verify device details
 			var installationSelectMethodPage = NavigateToSelectMethodPageForBulk();
-			
+
 			// Select installation method as BOR & Navigate to installation page
 			ClickSafety(
 					installationSelectMethodPage.BORInstallationButton(),
@@ -350,10 +350,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 		public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
 		{
 			LoggingService.WriteLogOnMethodEntry(oldDevice);
-			
+
 			_runCommandService.RunSendSwapRequestCommand();
 			SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
-			
+
 			foreach(var newDevice in _contextData.AdditionalDeviceProperties)
 			{
 				if(oldDevice.SwappedDeviceID.Equals(newDevice.MpsDeviceId))
@@ -417,7 +417,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				if (device.ReInstallDevice.ToLower().Equals("yes"))
 				{
 					SingleDeviceInstallationForCloudBor(device);
-				}			
+				}
 			}
 		}
 
@@ -480,7 +480,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 						element, device.MpsDeviceId, device.SerialNumber, isUnmatchDevice);
                     if (isSuccess)
                     {
-                        installationCloudToolPage.AssertSelerialNumberIsDisplayed(element, device.MpsDeviceId, device.SerialNumber);
+                        installationCloudToolPage.AssertSerialNumberIsDisplayed(element, device.MpsDeviceId, device.SerialNumber);
                         device.IsResultSerialNumberSelected = true;
                         if ( installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement) == false )
                         {

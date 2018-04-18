@@ -169,14 +169,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 var model = prop.Model;
                 var keySp = model + ".ServicePackSku";
-                var exceptServicePack = "Yes".Equals(prop.ServicePack.ToLower(), StringComparison.OrdinalIgnoreCase); ;
+                var exceptServicePack = "Yes".Equals(prop.ServicePack, StringComparison.OrdinalIgnoreCase); ;
                 var actualServicePack = pageValues.ContainsKey(keySp) && string.IsNullOrWhiteSpace(pageValues[keySp]) == false ;
-                Assert.AreEqual(exceptServicePack, actualServicePack, "wrong ServicePack status model=" + model);
+                Assert.AreEqual(exceptServicePack, actualServicePack, "Wrong Service Pack status for device with model = " + model);
 
                 var keyIp = model + ".InstallationPackSku";
-                var exceptInstallationPack = "Yes".Equals(prop.InstallationPack.ToLower(), StringComparison.OrdinalIgnoreCase);
+                var exceptInstallationPack = "Yes".Equals(prop.InstallationPack, StringComparison.OrdinalIgnoreCase);
                 var actualInstallationPack = pageValues.ContainsKey(keyIp) && string.IsNullOrWhiteSpace(pageValues[keyIp]) == false ;
-                Assert.AreEqual(exceptInstallationPack, actualInstallationPack, "wrong InstllationPack status model=" + model);
+                Assert.AreEqual(exceptInstallationPack, actualInstallationPack, "Wrong Installation Pack status for device with model = " + model);
             }
         }
 
@@ -272,10 +272,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataBulk(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
+        public DealerAgreementDevicesPage EditDeviceDataBulk(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields, out string validationExpression)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, optionalFields);
-            string validationExpression;
             dealerAgreementDevicesPage.ClickCheckboxSelectAll(true);
             dealerAgreementDevicesPage.ClickOnBulkActionsEditDeviceData();
             dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
@@ -291,21 +290,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             dealerAgreementDevicesPage.VerifyTheStatusOfAllDevices(resourceInstalledPrinterStatus);
         }
 
-        public DealerAgreementDevicesPage EditDeviceDataUsingBulkEditOption(DealerAgreementDevicesPage dealerAgreementDevicesPage, string optionalFields)
+        public void VerifyAddressOfEditedDevice(DealerAgreementDevicesPage dealerAgreementDevicesPage, string validationExpression)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, optionalFields);
-            string validationExpression;
-
-            // Click Checkbox all element
-            ClickSafety(dealerAgreementDevicesPage.CheckboxSelectAllElement, dealerAgreementDevicesPage);
-
-            // Click Edit device data (bulk) element
-            ClickSafety(dealerAgreementDevicesPage.EditDeviceDataBulkElement, dealerAgreementDevicesPage);
-
-            dealerAgreementDevicesPage = EditDeviceDataHelper(optionalFields, out validationExpression);
             dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(0, validationExpression); // Verify address of 1st row edited device
             dealerAgreementDevicesPage.VerifyAddressOfEditedDevice(1, validationExpression); // Verify address of 2nd row edited device
-            return dealerAgreementDevicesPage;
         }
 
         public DealerAgreementDevicesPage EditDeviceDataHelper(string optionalFields, out string validationExpression)
@@ -1081,7 +1069,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     {
                         dealerAgreementDevicesPage.VerifyStatusIconUsingSerialNumber(device.SerialNumber, dealerAgreementDevicesPage.EmailStatusIconSelector);
                     }
-                    
+
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterStatusInstalled);
                     dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceDeviceConnectionStatusResponding);
 

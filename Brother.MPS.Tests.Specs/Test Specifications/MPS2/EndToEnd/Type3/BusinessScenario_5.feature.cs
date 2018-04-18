@@ -124,8 +124,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Normal",
                         "Normal",
                         "Normal",
-                        "Yes",
-                        "true",
+                        "No",
+                        "false",
                         ""});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
@@ -143,8 +143,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Normal",
                         "Normal",
                         "Normal",
-                        "Yes",
-                        "true",
+                        "No",
+                        "false",
                         ""});
             table1.AddRow(new string[] {
                         "MFC-L9550CDWT",
@@ -187,7 +187,8 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 17
-testRunner.And("Validate Service Installation On the Agreement Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I can validate service and installation pack status on the agreement summary page" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
 testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
@@ -206,8 +207,8 @@ testRunner.When("I export the device data into excel and retrieve installation i
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
-testRunner.And("a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigne" +
-                    "d", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigne" +
+                    "d", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
