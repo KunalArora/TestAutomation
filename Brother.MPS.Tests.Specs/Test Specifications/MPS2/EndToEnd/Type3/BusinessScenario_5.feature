@@ -8,12 +8,13 @@ Scenario Outline: Business Scenario 5
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
+#TODO check is need below(when Senario 5 finalize): ResetDevice
 And I add these printers and verify click price:
 		| Model         | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | ResetDevice | IsSwap | BocModel     |
 		| DCP-8110DN    | 1        | Yes              | Yes         | 5            | 4000       | 0              | 0            | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
-		| DCP-L8450CDW  | 1        | Yes              | No          | 5            | 1000       | 20             | 1000         | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
-		| MFC-L9550CDWT | 1        | Yes              | Yes         | 5            | 500        | 20             | 250          | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  | MFC-L8850CDW |
-		| DCP-8250DN    | 1        | Yes              | No          | 5            | 2000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
+		| DCP-L8450CDW  | 1        | No               | No          | 5            | 1000       | 20             | 1000         | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
+		| MFC-L9550CDWT | 1        | Yes              | No          | 5            | 500        | 20             | 250          | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  | MFC-L8850CDW |
+		| DCP-8250DN    | 1        | No               | Yes         | 5            | 2000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
 And I can validate service and installation pack status on the agreement summary page
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
