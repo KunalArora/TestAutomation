@@ -66,14 +66,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
                     string.Format(
                     "Bulk device Installation steps for communication method {0} & installation type {1} not implemented yet", communicationMethod, installationType));
             }
-        }
-
-        [StepDefinition(@"a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned")]
-        public void WhenACloudMPSInstallerVerifySingleQuantityModelSerialNumberAreAutoAssigned()
-        {
             _mpsInstallerAgreement.VerifySingleQuantityModelSerialNumberAreAutoAssigned();
         }
-
 
         [When(@"a Cloud MPS Installer is able to do both single device and bulk installation using ""(.*)"" communication and ""(.*)"" installation")]
         public void WhenACloudMPSInstallerIsAbleToDoBothSingleDeviceAndBulkInstallationUsingCommunicationAndInstallation(string communicationMethod, string installationType)

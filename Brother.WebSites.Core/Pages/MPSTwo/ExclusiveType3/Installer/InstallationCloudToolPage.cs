@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -182,8 +183,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             if (isUnmatchDevice)
             {
                 var alert = SeleniumHelper.FindAlertDialog();
-                // TODO localization
-                TestCheck.AssertIsEqual("Are you sure you want to use an unmatched model?", alert.Text, "invalid alert message");
+                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, Culture);
+                TestCheck.AssertIsEqual(expectedMessage, alert.Text, "invalid alert message");
                 alert.Accept();
             }
         }
@@ -315,6 +316,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                 var td =  trElement.FindElement(By.CssSelector(SerialNumberSelector));
                 return string.IsNullOrWhiteSpace(td.Text) ? null : td;
             });
+            // $$$
             TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
         }
     }

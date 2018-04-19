@@ -131,8 +131,9 @@
         public static class DisplayMessage
         {
             public static string EmailSendSuccess { get { return "EMAIL_SEND_SUCCESS"; } }
-            public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }            
+            public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }
             public static string EmailSendFailure { get { return "EMAIL_SEND_FAILURE"; } }
+            public static string AreYouSureUnmatch { get { return "AREYOUSURE_UNMATCH"; } }
         }
     }
 }

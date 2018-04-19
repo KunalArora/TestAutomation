@@ -68,11 +68,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifySingleQuantityModelSerialNumberAreAutoAssigned()
         {
             LoggingService.WriteLogOnMethodEntry();
-            foreach ( var deviceProparty in _contextData.AdditionalDeviceProperties)
+            foreach ( var deviceProperty in _contextData.AdditionalDeviceProperties)
             {
-                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == deviceProparty.Model);
+                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == deviceProperty.Model);
                 var expectSerialNumberSelected = printersProperty.Quantity > 1 || string.IsNullOrWhiteSpace(printersProperty.BocModel) == false;
-                Assert.AreEqual(expectSerialNumberSelected, deviceProparty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} SerialNumber={1}", printersProperty.Model, deviceProparty.SerialNumber);
+                Assert.AreEqual(expectSerialNumberSelected, deviceProperty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} SerialNumber={1}", printersProperty.Model, deviceProperty.SerialNumber);
             }
         }
 

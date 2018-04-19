@@ -23,9 +23,8 @@ And I can verify that devices are ready for installation
 Then I can create and send a bulk installation request
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
-Then a Cloud MPS Installer Verify Single Quantity Model Serial Number are auto assigned
 
 @BUK
 Scenarios:
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | SwapDeviceType               | SwapCommunicationMethod | SwapInstallationType |
-		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            | Cloud               | Bor              | 91                 | REPLACE_WITH_DIFFERENT_MODEL | Cloud                   | Bor                  |
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType |
+		| United Kingdom | CPP_AGREEMENT | True             | MINIMUM_VOLUME | THREE_YEARS  | PAY_UPFRONT | False            | Cloud               | Bor              |
