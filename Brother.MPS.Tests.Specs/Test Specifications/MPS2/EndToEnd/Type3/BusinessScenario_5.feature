@@ -15,7 +15,6 @@ And I add these printers and verify click price:
 		| DCP-L8450CDW  | 1        | No               | No          | 5            | 1000       | 20             | 1000         | Yes                     | 500            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
 		| MFC-L9550CDWT | 1        | Yes              | No          | 5            | 500        | 20             | 250          | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  | MFC-L8850CDW |
 		| DCP-8250DN    | 1        | No               | Yes         | 5            | 2000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | No          | false  |              |
-And I can validate service and installation pack status on the agreement summary page
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page

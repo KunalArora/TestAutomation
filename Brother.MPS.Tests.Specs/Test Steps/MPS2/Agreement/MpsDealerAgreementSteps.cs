@@ -145,16 +145,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
         }
 
-        [When(@"I can validate service and installation pack status on the agreement summary page")]
-        public void WhenICanValidateServiceAndInstallationPackStatusOnTheAgreementSummaryPage()
-        {
-            _mpsDealerAgreement.AssertAreEqualServiceInstallation(_dealerAgreementCreateSummaryPage);
-        }
-
-
         [When(@"I complete the setup of agreement")]
         public void WhenICompleteTheSetupOfAgreement()
         {
+            _mpsDealerAgreement.AssertAreEqualServiceInstallation(_dealerAgreementCreateSummaryPage);
             _dealerAgreementsListPage = _mpsDealerAgreement.ValidateSummaryPageAndCompleteSetup(_dealerAgreementCreateSummaryPage);
         }
 
