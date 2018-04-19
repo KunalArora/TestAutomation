@@ -87,16 +87,5 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Proposal
             // Accept the Prepopulate start date , enter reference data and click all check boxes
             _bankContractsAwaitingAcceptancePage = _mpsBankContractStepActions.CheckAllBoxesAndSave(bankContractsMaintenancePage);
         }
-
-        [When(@"a Cloud MPS Bank Checking the billing to ensure details are correctly populated")]
-        public void WhenACloudMPSBankCheckingTheBillingToEnsureDetailsAreCorrectlyPopulated()
-        {
-            // using Flux capacitor Move the contract back by 3 months
-            _mpsBankContractStepActions.ContractTimeShift(3);
-            // Checking the billing to ensure details are correctly populated
-            _mpsBankContractStepActions.CheckTheBillingToEnsureDetailsAreCorrectlyPopulated();
-            
-        }
-
     }
 }

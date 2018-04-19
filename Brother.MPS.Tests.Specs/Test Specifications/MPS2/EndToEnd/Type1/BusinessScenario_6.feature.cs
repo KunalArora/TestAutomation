@@ -223,7 +223,7 @@ testRunner.And("I update the print count and verify it on the dataquery page", (
 #line 40
 testRunner.And("I update the consumable order and verify it on the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
-testRunner.And("a Cloud MPS Bank Checking the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I check the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

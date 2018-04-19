@@ -49,6 +49,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ConsumableOrderModalTableBodySelector = ".js-mps-consumable-orders-list > .modal-body > .table > tbody";
         private const string ConsumableOrderModalCloseButtonSelector = ".js-mps-consumable-orders-list > .modal-header > .close";
 
+        private const string BillingDatesContainerSelector = ".mps-billing-dates-container > tbody";
+        private const string FirstRowActionButtonSelector = "#content_0_BillingDatesList_BillingDates_CellActions_0 > .js-mps-filter-ignore > .btn.btn-primary";
+        private const string CreditNotePdfSelector = ".js-mps-download-credit-note-pdf";
+        private const string InvoicePdfSelector = ".js-mps-download-invoice-pdf";
 
         public bool VerifyPrintCountsOfDevice(string serialNumber, int monoPrintCount, int colorPrintCount)
         {
@@ -162,6 +166,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var ShowConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, ShowConsumableOrderActionsButtonSelector);
 
             return ShowConsumableOrderElement;
+        }
+
+        public void DownloadCreditNotePdf()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            var BillingDatesContainerElement = SeleniumHelper.FindElementByCssSelector(BillingDatesContainerSelector);
+            var BillingDatesRowsElement = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
+
+            var FirstRowActionButtonElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[0], FirstRowActionButtonSelector);
+            SeleniumHelper.ClickSafety(FirstRowActionButtonElement);
+
+            var CrediNotePdfElement = SeleniumHelper.FindElementByCssSelector(CreditNotePdfSelector);
+            SeleniumHelper.ClickSafety(CrediNotePdfElement);
+        }
+
+        public void DownloadInvoicePdf() 
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            var BillingDatesContainerElement = SeleniumHelper.FindElementByCssSelector(BillingDatesContainerSelector);
+            var BillingDatesRowsElement = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
+
+            var FirstRowActionButtonElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[0], FirstRowActionButtonSelector);
+            SeleniumHelper.ClickSafety(FirstRowActionButtonElement);
+
+            var InvoicePdfElement = SeleniumHelper.FindElementByCssSelector(InvoicePdfSelector);
+            SeleniumHelper.ClickSafety(InvoicePdfElement);
         }
     }
 }

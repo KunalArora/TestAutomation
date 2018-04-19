@@ -39,7 +39,7 @@ And I set the Contract in the running state
 And I update the print count and verify it on the dataquery page
 And I update the consumable order and verify it on the dataquery page
 #step43,44
-And a Cloud MPS Bank Checking the billing to ensure details are correctly populated
+And I check the billing to ensure details are correctly populated
 
 
 @BUK

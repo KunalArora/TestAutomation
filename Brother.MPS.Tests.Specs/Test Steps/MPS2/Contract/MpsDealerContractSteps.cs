@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -27,6 +28,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;
         private readonly RunCommandService _runCommandService;
         private readonly ITranslationService _translationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -37,6 +39,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
         private DealerSendSwapInstallationEmailPage _dealerSwapInstallationEmailPage;
         private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
+        private SummaryPageValue _proposalSummaryValues;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -49,7 +52,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             IUserResolver userResolver,
             IUrlResolver urlResolver,
             ITranslationService translationService,
-            RunCommandService runCommandService)
+            RunCommandService runCommandService,
+            IPageParseHelper pageParseHelper)
         {
             _context = context;
             _driver = driver;
@@ -63,6 +67,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions = mpsDealerContractStepActions;
             _runCommandService = runCommandService;
             _translationService = translationService;
+            _pageParseHelper = pageParseHelper;
         }
 
         
@@ -269,5 +274,35 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
             _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
         }
+
+        [When(@"I check the billing to ensure details are correctly populated")]
+        public void WhenICheckTheBillingToEnsureDetailsAreCorrectlyPopulated()
+        {
+            // using Flux capacitor Move the contract back by 6 months
+            var dealerReportsProposalSummary = _mpsDealerContractStepActions.ShiftContractAndRefreshPage(6);
+            
+            // Checking the billing to ensure details are correctly populated
+            _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(dealerReportsProposalSummary.SeleniumHelper);
+            var _creditNotePdfFile = _mpsDealerContractStepActions.DownloadCreditNotePdf(dealerReportsProposalSummary);
+            try
+            {
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForCreditNotePdf(_creditNotePdfFile, _proposalSummaryValues);
+            }
+            finally
+            {
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(_creditNotePdfFile);
+            }
+
+            var _invoicePdfFile = _mpsDealerContractStepActions.DownloadInvoicePdf(dealerReportsProposalSummary);
+            try
+            {
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForInvoicePdf(_invoicePdfFile, _proposalSummaryValues, _contextData.PrintersProperties);
+            }
+            finally
+            {
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(_invoicePdfFile);
+            }
+        }
+
     }
 }

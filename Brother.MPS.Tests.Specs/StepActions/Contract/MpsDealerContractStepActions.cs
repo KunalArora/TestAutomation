@@ -6,6 +6,7 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
@@ -14,6 +15,9 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using System.Linq;
+using System.Collections.Generic;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -26,6 +30,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly ITranslationService _translationService;
         private readonly IContractShiftService _contractShiftService;
         private readonly IUserResolver _userResolver;
+        private readonly IPdfHelper _pdfHelper;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -38,7 +43,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             ILoggingService loggingService,
             RunCommandService runCommandService,
             IContractShiftService contractShiftService,
-            IUserResolver userResolver)            
+            IUserResolver userResolver,    
+            IPdfHelper pdfHelper)            
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
@@ -48,6 +54,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _translationService = translationService;
             _contractShiftService = contractShiftService;
             _userResolver = userResolver;
+            _pdfHelper = pdfHelper;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -447,6 +454,97 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry();
             _runCommandService.RunStartContractCommand();
+        }
+
+        public DealerReportsProposalsSummaryPage ShiftContractAndRefreshPage(int backToTheMonth)
+        {
+            LoggingService.WriteLogOnMethodEntry(backToTheMonth);
+            _contractShiftService.ContractTimeShiftCommand(ContextData.ProposalId, backToTheMonth, "m", false, true, "Any");
+            _dealerWebDriver.Navigate().Refresh();
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+        }
+
+        public string DownloadCreditNotePdf(DealerReportsProposalsSummaryPage dealerReportsProposalSummary)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
+            return _pdfHelper.Download(ph =>
+            {
+                dealerReportsProposalSummary.DownloadCreditNotePdf();
+                return true;
+            });          
+
+        }
+
+        public string DownloadInvoicePdf(DealerReportsProposalsSummaryPage dealerReportsProposalSummary)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
+            return _pdfHelper.Download(ph =>
+            {
+                dealerReportsProposalSummary.DownloadInvoicePdf();
+                return true;
+            }); 
+        }
+
+        public void AssertEqualSummaryValuesForCreditNotePdf(string pdfFile, SummaryPageValue summaryValues)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+            if (_pdfHelper.PdfExists(pdfFile) == false)
+            {
+                throw new Exception("pdf not exists file=" + pdfFile);
+            }
+            string[] searchTextArray = 
+            {
+                string.Format("{0}", _contextData.ProposalId.ToString()),
+                string.Format("{0}", summaryValues["SummaryTable.DealershipName"]),
+                string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]),
+                string.Format("{0}", "Seitenpreis Farbdruck"),
+                string.Format("{0}", "Seitenpreis Schwarzweißdruck")
+            };
+
+            searchTextArray.ToList().ForEach(expected =>
+               {
+                   if( _pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                   {
+                       throw new Exception(string.Format("string not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected)) ;
+                   }
+               });
+        }
+
+        public void AssertEqualSummaryValuesForInvoicePdf(string pdfFile, SummaryPageValue summaryValues, IEnumerable<PrinterProperties> products)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+            if (_pdfHelper.PdfExists(pdfFile) == false)
+            {
+                throw new Exception("pdf not exists file=" + pdfFile);
+            }
+            var searchTextArray = new List<string>();
+            searchTextArray.Add(string.Format("{0}", _contextData.ProposalId.ToString()));
+            searchTextArray.Add(string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]));
+            searchTextArray.Add(string.Format("{0}", "Seitenpreis Farbdruck"));
+            searchTextArray.Add(string.Format("{0}", "Seitenpreis Schwarzweißdruck"));
+
+            foreach(var product in products)
+            {
+                searchTextArray.Add(product.Model);
+                searchTextArray.Add(product.SerialNumber);
+                searchTextArray.Add(summaryValues[product.Model + "." + "ColourClickRate"]);
+                searchTextArray.Add(summaryValues[product.Model + "." + "MonoClickRate"]);
+            }
+
+            searchTextArray.ToList().ForEach(expected =>
+            {
+                if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                {
+                    throw new Exception(string.Format("string not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
+                }
+            });
+        }
+
+        public void DeletePdfFileErrorIgnored(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
 
         private void ClickSafety(IWebElement element, IPageObject pageObject)
