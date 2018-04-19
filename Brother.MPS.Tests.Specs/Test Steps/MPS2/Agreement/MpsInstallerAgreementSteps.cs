@@ -120,6 +120,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
                     }
                 }
             }
+            else if (swapCommunicationMethod.ToLower().Equals("cloud") && swapInstallationType.ToLower().Equals("web"))
+            {
+                foreach (var device in _contextData.AdditionalDeviceProperties)
+                {
+                    if (device.IsSwap)
+                    {
+                        _mpsInstallerAgreement.SwapDeviceForCloudWeb(device);
+                    }
+                }
+            }
             else
             {
                 Assert.Fail(

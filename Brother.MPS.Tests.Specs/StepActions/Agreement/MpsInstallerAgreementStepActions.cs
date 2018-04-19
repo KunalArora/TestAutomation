@@ -346,65 +346,102 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 			SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
 		}
 
-		public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
-		{
-			LoggingService.WriteLogOnMethodEntry(oldDevice);
+        public void SwapDeviceForCloudWeb(AdditionalDeviceProperties oldDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(oldDevice);
 
-			_runCommandService.RunSendSwapRequestCommand();
-			SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
+            _runCommandService.RunSendSwapRequestCommand();
+            SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
 
-			foreach(var newDevice in _contextData.AdditionalDeviceProperties)
-			{
-				if(oldDevice.SwappedDeviceID.Equals(newDevice.MpsDeviceId))
-				{
+            var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
 
-					string bocDeviceId, serialNumber;
-					if (swapInformation.InstallationPin != null)
-					{
-						RegisterDeviceOnBOC(
-						newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
+            Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
 
-						// Save details to contextData
-						newDevice.BocDeviceId = bocDeviceId;
-						newDevice.SerialNumber = serialNumber;
+            string bocDeviceId, serialNumber;
+            RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
 
-						// Save other information of old device (swapped out) to new device (swapped in)
-						CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
-					}
-					else
-					{
-						TestCheck.AssertFailTest(string.Format("No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
-					}
+            // Save details to contextData
+            newDevice.BocDeviceId = bocDeviceId;
+            newDevice.SerialNumber = serialNumber;
 
-					if (swapInformation.InstallationUrl != null)
-					{
-						var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(
-							swapInformation.InstallationUrl);
+            // Save other information of old device (swapped out) to new device (swapped in)
+            CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
 
-						// Select installation method as "BOR"
-						ClickSafety(
-							installationSelectMethodPage.BORInstallationButton(),
-							installationSelectMethodPage);
-						var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-							RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+            var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(swapInformation.InstallationUrl);
 
-						// Verify that Software download link is correct
-						installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
+            //// Select installation method as "BOR"
+            //ClickSafety(installationSelectMethodPage.BORInstallationButton(), installationSelectMethodPage);
+            //var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+            //    RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
 
-						// Refresh until device is connected
-						installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+            //// Verify that Software download link is correct
+            //installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
 
-						// Verify old device & new device information, input print counts & complete installation
-						installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
-					}
-					else
-					{
-						TestCheck.AssertFailTest(string.Format("No installation URL generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
-					}
+            //// Refresh until device is connected
+            //installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
 
-					return;
-			  }
-			}
+            //// Verify old device & new device information, input print counts & complete installation
+            //installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
+
+            // 3. Select installation method as Web & Navigate to installation page
+            ClickSafety(installationSelectMethodPage.WebInstallationButton(),installationSelectMethodPage);
+            var installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+
+
+            // 4. Fill device information & hit connect
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                installationCloudWebPage.FillDeviceDetailsAndClickConnect(device, _contextData.WindowHandles[UserType.Installer]);
+            }
+
+            // 5. Hit Refresh until all devices are connected
+            installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+
+            // Verify old device & new device information, input print counts & complete installation
+            installationCloudWebPage.CompleteSwapInstallation(oldDevice, newDevice);
+
+        }
+
+
+        public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(oldDevice);
+
+            _runCommandService.RunSendSwapRequestCommand();
+            SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
+
+            var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
+
+            Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+
+            string bocDeviceId, serialNumber;
+            RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
+
+            // Save details to contextData
+            newDevice.BocDeviceId = bocDeviceId;
+            newDevice.SerialNumber = serialNumber;
+
+            // Save other information of old device (swapped out) to new device (swapped in)
+            CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
+
+            var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(swapInformation.InstallationUrl);
+
+            // Select installation method as "BOR"
+            ClickSafety(installationSelectMethodPage.BORInstallationButton(), installationSelectMethodPage);
+            var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+
+            // Verify that Software download link is correct
+            installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
+
+            // Refresh until device is connected
+            installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+
+            // Verify old device & new device information, input print counts & complete installation
+            installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
+
 		}
 
 		public void ReInstallDevicesForCloudBor()

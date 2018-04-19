@@ -1022,7 +1022,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                     // Save info for new device to context data
                     device.SwappedDeviceID = newDeviceId;
-                    newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true}); // Handle only monochrome (swapped in) devices for now
+
+                    // TODO OIKE ASK AMAN
+                    //newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true}); // Handle only monochrome (swapped in) devices for now
+                    var swapProp = new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true };
+                    dealerAgreementDevicesPage.SaveAddressString(swapProp);
+                    newDevices.Add(swapProp); // Handle only monochrome (swapped in) devices for now
                 }
             }
 

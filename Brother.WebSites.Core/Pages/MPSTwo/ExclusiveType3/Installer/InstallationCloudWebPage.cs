@@ -37,6 +37,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string NotConnectedSelector = ".glyphicon-remove";
         private const string DangerAlertSelector = ".alert-danger";
 
+        // Swap Complete installation selectors
+        private const string OldModelSelector = "#content_0_CompleteSwap_ModelOld";
+        private const string NewModelSelector = "#content_0_CompleteSwap_ModelNew";
+        private const string OldSerialNumberSelector = "#content_0_CompleteSwap_SerialNumberOld";
+        private const string NewSerialNumberSelector = "#content_0_CompleteSwap_SerialNumberNew";
+        private const string OldPrintCountMonoSelector = "#content_0_CompleteSwap_InputPrintCountMonoOld";
+        private const string NewPrintCountMonoSelector = "#content_0_CompleteSwap_InputPrintCountMonoNew";
+        private const string NewPrintCountColourSelector = "#content_0_CompleteSwap_InputPrintCountColourNew";
+        private const string CompleteInstallationButtonSelector = "#content_0_ButtonCompleteInstallation";
+        private const string CompleteSwapSuccessSelector = "#content_0_CompleteSwap_ComponentSuccess";
+
 
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-button-refresh")]
@@ -144,6 +155,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                     }
                 }
             }
+        }
+
+        public void CompleteSwapInstallation(AdditionalDeviceProperties oldDevice, AdditionalDeviceProperties newDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(oldDevice, newDevice);
+
+            TestCheck.AssertIsEqual(
+                oldDevice.Model, SeleniumHelper.FindElementByCssSelector(OldModelSelector).Text, "Model Name for the old device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                newDevice.Model, SeleniumHelper.FindElementByCssSelector(NewModelSelector).Text, "Model Name for the new device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                oldDevice.SerialNumber, SeleniumHelper.FindElementByCssSelector(OldSerialNumberSelector).Text, "Serial Number for the old device could not be verified during swap installation");
+
+            TestCheck.AssertIsEqual(
+                newDevice.SerialNumber, SeleniumHelper.FindElementByCssSelector(NewSerialNumberSelector).Text, "Serial Number for the new device could not be verified during swap installation");
+
+            int monoPrintCount = 100; //Fill any value
+            ClearAndType(SeleniumHelper.FindElementByCssSelector(NewPrintCountMonoSelector), monoPrintCount.ToString());
+            newDevice.MonoPrintCount = monoPrintCount;
+
+            if (!SeleniumHelper.IsElementNotPresent(NewPrintCountColourSelector))
+            {
+                int colourPrintCount = 100; //Fill any value
+                ClearAndType(SeleniumHelper.FindElementByCssSelector(NewPrintCountColourSelector), colourPrintCount.ToString());
+                newDevice.ColorPrintCount = colourPrintCount;
+            }
+
+            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(CompleteInstallationButtonSelector));
+
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(CompleteSwapSuccessSelector).Displayed);
         }
 
         public void VerifyDeviceDetailsAreNotCleared(AdditionalDeviceProperties device)
