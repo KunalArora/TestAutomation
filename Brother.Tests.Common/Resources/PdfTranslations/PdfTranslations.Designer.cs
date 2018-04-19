@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brother.Tests.Common.Resources.ProposalPDF {
+namespace Brother.Tests.Common.Resources.PdfTranslations {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Brother.Tests.Common.Resources.ProposalPDF {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ProposalPDF {
+    internal class PdfTranslations {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ProposalPDF() {
+        internal PdfTranslations() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Brother.Tests.Common.Resources.ProposalPDF {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.ProposalPDF.ProposalPDF", typeof(ProposalPDF).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.PdfTranslations.PdfTranslations", typeof(PdfTranslations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

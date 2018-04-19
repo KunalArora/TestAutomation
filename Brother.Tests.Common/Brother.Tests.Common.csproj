@@ -224,13 +224,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\PdfTranslations\PdfTranslations.de-de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PdfTranslations.de-de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ProposalDeclineReason\ProposalDeclineReason.Designer.cs">
       <DependentUpon>ProposalDeclineReason.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\ProposalPDF\ProposalPDF.Designer.cs">
-      <DependentUpon>ProposalPDF.resx</DependentUpon>
+    <Compile Include="Resources\PdfTranslations\PdfTranslations.Designer.cs">
+      <DependentUpon>PdfTranslations.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -384,14 +389,18 @@
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.de-de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
       <LastGenOutput>ProposalDeclineReason.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.en-gb.resx" />
-    <EmbeddedResource Include="Resources\ProposalPDF\ProposalPDF.resx">
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.en-gb.resx" />
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProposalPDF.Designer.cs</LastGenOutput>
+      <LastGenOutput>PdfTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />

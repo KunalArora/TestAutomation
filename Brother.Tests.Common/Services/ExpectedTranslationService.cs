@@ -125,9 +125,9 @@ namespace Brother.Tests.Common.Services
             return result;
         }
 
-        public string GetProposalPdfText(string name, string culture)
+        public string GetPdfTranslationsText(string name, string culture)
         {
-            return GetText(Resources.ProposalPDF.ProposalPDF.ResourceManager, name, culture);
+            return GetText(Resources.PdfTranslations.PdfTranslations.ResourceManager, name, culture);
         }
 
         public string GetLeasingBillingCycle(string name, string culture)

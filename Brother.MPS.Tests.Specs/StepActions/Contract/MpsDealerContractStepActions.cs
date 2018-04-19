@@ -410,10 +410,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 string orderedConsumable = "";
                 string orderStatus = "";
-
+    
                 //Translation for Ordered Consumable text
                 if(product.TonerInkBlackStatus.ToLower() == "empty") {
-                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture); 
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture);
                 } else if(product.TonerInkCyanStatus.ToLower() == "empty") {
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
                 } else if (product.TonerInkMagentaStatus.ToLower() == "empty") {
@@ -425,21 +425,23 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 //Translation for Order Status Text
                 orderStatus = _translationService.GetOrderStatusText(TranslationKeys.OrderStatus.InProcessing, _contextData.Culture);
 
-                //Verification process
-                while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, orderStatus))
+                if(orderedConsumable != "")
                 {
-                    RunCommandServicesRequests();
-                    _dealerWebDriver.Navigate().Refresh();
-                    dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-
-                    retries++;
-                    if (retries > RuntimeSettings.DefaultRetryCount)
+                    //Verification process
+                    while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, orderStatus))
                     {
-                        TestCheck.AssertFailTest(
-                            string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
-                    }
-                    continue;
+                        RunCommandServicesRequests();
+                        _dealerWebDriver.Navigate().Refresh();
+                        dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            TestCheck.AssertFailTest(
+                                string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
+                        }
+                        continue;
+                    }
                 }
             }
         }
@@ -489,6 +491,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void AssertEqualSummaryValuesForCreditNotePdf(string pdfFile, SummaryPageValue summaryValues)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+
+            var PagePriceBlackWhitePrintTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceBlackWhitePrint, _contextData.Culture);
+            var PagePriceColorTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceColorPrint, _contextData.Culture);
+
             if (_pdfHelper.PdfExists(pdfFile) == false)
             {
                 throw new Exception("pdf not exists file=" + pdfFile);
@@ -498,8 +504,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 string.Format("{0}", _contextData.ProposalId.ToString()),
                 string.Format("{0}", summaryValues["SummaryTable.DealershipName"]),
                 string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]),
-                string.Format("{0}", "Seitenpreis Farbdruck"),
-                string.Format("{0}", "Seitenpreis Schwarzweißdruck")
+                string.Format("{0}", summaryValues["BillingDates.1.CellStartDate"]),
+                string.Format("{0}", summaryValues["BillingDates.1.CellEndDate"]),
+                string.Format("{0}", PagePriceBlackWhitePrintTranslation),
+                string.Format("{0}", PagePriceColorTranslation)
             };
 
             searchTextArray.ToList().ForEach(expected =>
@@ -514,6 +522,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void AssertEqualSummaryValuesForInvoicePdf(string pdfFile, SummaryPageValue summaryValues, IEnumerable<PrinterProperties> products)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+            
+            var PagePriceBlackWhitePrintTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceBlackWhitePrint, _contextData.Culture);
+            var PagePriceColorTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceColorPrint, _contextData.Culture);
+
             if (_pdfHelper.PdfExists(pdfFile) == false)
             {
                 throw new Exception("pdf not exists file=" + pdfFile);
@@ -521,15 +533,20 @@ namespace Brother.Tests.Specs.StepActions.Contract
             var searchTextArray = new List<string>();
             searchTextArray.Add(string.Format("{0}", _contextData.ProposalId.ToString()));
             searchTextArray.Add(string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]));
-            searchTextArray.Add(string.Format("{0}", "Seitenpreis Farbdruck"));
-            searchTextArray.Add(string.Format("{0}", "Seitenpreis Schwarzweißdruck"));
+            searchTextArray.Add(string.Format("{0}", PagePriceBlackWhitePrintTranslation));
+            searchTextArray.Add(string.Format("{0}", PagePriceColorTranslation));
+            searchTextArray.Add(string.Format("{0}", summaryValues["BillingDates.1.CellStartDate"]));
+            searchTextArray.Add(string.Format("{0}", summaryValues["BillingDates.1.CellEndDate"]));
 
             foreach(var product in products)
             {
-                searchTextArray.Add(product.Model);
-                searchTextArray.Add(product.SerialNumber);
-                searchTextArray.Add(summaryValues[product.Model + "." + "ColourClickRate"]);
-                searchTextArray.Add(summaryValues[product.Model + "." + "MonoClickRate"]);
+                if(product.MonoPrintCount!=0 || product.ColorPrintCount!=0)
+                {
+                    searchTextArray.Add(product.Model);
+                    searchTextArray.Add(product.SerialNumber);
+                    searchTextArray.Add(summaryValues[product.Model + "." + "ColourClickRate"]);
+                    searchTextArray.Add(summaryValues[product.Model + "." + "MonoClickRate"]);
+                }
             }
 
             searchTextArray.ToList().ForEach(expected =>

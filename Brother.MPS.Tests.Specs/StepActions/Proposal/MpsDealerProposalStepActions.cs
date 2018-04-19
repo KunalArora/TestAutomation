@@ -549,9 +549,9 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public void AssertAreEqualSummaryValues(string pdfFile, SummaryPageValue summaryValue)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValue);
-            var resourcePdfFileAgreementPeriod = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.AgreementPeriod, _contextData.Culture);
-            var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.TotalInstalledPurchasePrice, _contextData.Culture);
-            var resourcePdfFileMinimumClickCharge = _translationService.GetProposalPdfText(TranslationKeys.ProposalPdf.MinimumClickCharge, _contextData.Culture);
+            var resourcePdfFileAgreementPeriod = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.AgreementPeriod, _contextData.Culture);
+            var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.TotalInstalledPurchasePrice, _contextData.Culture);
+            var resourcePdfFileMinimumClickCharge = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumClickCharge, _contextData.Culture);
             Country country = _contextData.Country;
 
             if (_pdfHelper.PdfExists(pdfFile) == false)

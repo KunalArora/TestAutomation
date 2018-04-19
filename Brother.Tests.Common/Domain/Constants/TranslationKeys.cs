@@ -96,12 +96,13 @@
             public static string ReplaceWithSameModel { get { return "REPLACE_WITH_SAME_MODEL"; } }
         }
 
-        public static class ProposalPdf
+        public static class PdfTranslations
         {
             public static string AgreementPeriod { get { return "AGREEMENT_PERIOD"; } }
             public static string TotalInstalledPurchasePrice { get { return "TOTAL_INSTALLED_PURCHASE_PRICE"; } }
             public static string MinimumClickCharge { get { return "MINIMUM_CLICK_CHARGE"; } }
-
+            public static string PagePriceBlackWhitePrint { get {return "PAGE_PRICE_BLACK_WHITE_PRINT"; }}
+            public static string PagePriceColorPrint { get { return "PAGE_PRICE_COLOR_PRINT"; } }
         }
 
         public static class DeviceConnectionStatus

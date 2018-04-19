@@ -13,7 +13,7 @@
         string GetInstallationStatusText(string name, string culture);
         string GetInstalledPrinterStatusText(string name, string culture);
         string GetProposalDeclineReasonText(string name, string culture);
-        string GetProposalPdfText(string name, string culture);
+        string GetPdfTranslationsText(string name, string culture);
         string GetConsumableOrderStatusText(string name, string culture);
         string GetServiceRequestStatusText(string name, string culture);
         string GetOverusageText(string name, string culture);
