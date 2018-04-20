@@ -145,5 +145,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                 }
             }
         }
+
+        public void VerifyDeviceDetailsAreNotCleared(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            foreach (var element in deviceRowElements)
+            {
+                if (element.GetAttribute("data-id").Equals(device.MpsDeviceId))
+                {
+                    TestCheck.AssertIsNotNullOrEmpty(SeleniumHelper.FindElementByCssSelector(element, DeviceLocationSelector).Text,
+                        string.Format("Error occured as Device Location was cleared after resetting device with deviceId: {0}", device.MpsDeviceId));
+
+                    TestCheck.AssertIsNotNullOrEmpty(SeleniumHelper.FindElementByCssSelector(element, CostCentreSelector).Text,
+                        string.Format("Error occured as Cost Centre was cleared after resetting device with deviceId: {0}", device.MpsDeviceId));
+
+                    return;
+                }
+            }
+
+            TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
+        }
     }
 }
