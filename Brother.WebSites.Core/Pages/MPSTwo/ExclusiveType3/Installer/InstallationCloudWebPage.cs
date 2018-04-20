@@ -36,6 +36,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string ResetButtonSelector = ".js-mps-button-reset";
         private const string NotConnectedSelector = ".glyphicon-remove";
         private const string DangerAlertSelector = ".alert-danger";
+        private const string SerialNumberSelector = "[id*=content_0_List_SerialNumber_]";
 
         // Swap Complete installation selectors
         private const string OldModelSelector = "#content_0_CompleteSwap_ModelOld";
@@ -103,6 +104,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             foreach (var element in deviceRowElements)
             {
                 if (!SeleniumHelper.IsElementDisplayed(element, IsConnectedSelector))
+                {
+                    return false;
+                }
+                // Verify the serial number is assigned and displayed against the device
+                var snElement = SeleniumHelper.FindElementByCssSelector(element, SerialNumberSelector);
+                if( string.IsNullOrWhiteSpace(snElement.Text))
                 {
                     return false;
                 }

@@ -285,7 +285,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				if(device.ResetDevice.ToLower().Equals("yes"))
 				{
 					installationCloudWebPage.ClickReset(device.MpsDeviceId);
-					
+
 					installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
 					installationCloudWebPage.VerifyNotConnectedStatus(device.MpsDeviceId);
 					installationCloudWebPage.VerifyDeviceDetailsAreNotCleared(device);
@@ -356,7 +356,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
 
             Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
-            Assert.NotNull(swapInformation.InstallationUrl, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation url generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
 
             string bocDeviceId, serialNumber;
             RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
@@ -370,19 +370,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(swapInformation.InstallationUrl);
 
-            //// Select installation method as "BOR"
-            //ClickSafety(installationSelectMethodPage.BORInstallationButton(), installationSelectMethodPage);
-            //var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-            //    RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
-
-            //// Verify that Software download link is correct
-            //installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
-
-            //// Refresh until device is connected
-            //installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
-
-            //// Verify old device & new device information, input print counts & complete installation
-            //installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
+            installationSelectMethodPage.VerifyContainModelsInAlertMessage(
+                _contextData.PrintersProperties.Where(prop => prop.IsSwap).Select(prop => prop.Model));
 
             // 3. Select installation method as Web & Navigate to installation page
             ClickSafety(installationSelectMethodPage.WebInstallationButton(),installationSelectMethodPage);
@@ -589,6 +578,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 						"Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
 				}
 			}
+            // after device is show as connect ; Verify the Refresh button is not displayed
+            Assert.False(installationCloudWebPage.RefreshButtonElement.Displayed, "AreAllDevicesConnected()=true but yet visible refresh button");
 			return installationCloudWebPage;
 		}
 
