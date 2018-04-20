@@ -285,9 +285,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				if(device.ResetDevice.ToLower().Equals("yes"))
 				{
 					installationCloudWebPage.ClickReset(device.MpsDeviceId);
-					_installerWebDriver.Navigate().Refresh();
+					
 					installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
 					installationCloudWebPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+					installationCloudWebPage.VerifyDeviceDetailsAreNotCleared(device);
 
 					// Register device
 					RegisterDeviceOnBOC(device.Model, device.RegistrationPin, out bocDeviceId, out serialNumber);
@@ -320,9 +321,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 				{
 					installationCloudToolPage.ClickReset(device.MpsDeviceId);
 
-					_installerWebDriver.Navigate().Refresh();
 					installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
 					installationCloudToolPage.VerifyNotConnectedStatus(device.MpsDeviceId);
+					installationCloudToolPage.VerifyDeviceDetailsAreNotCleared(device);
 
 					device.IsRegisteredOnBoc = false;
 				}
@@ -339,8 +340,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 					// Save details to context data
 					device.BocDeviceId = bocDeviceId;
 					device.SerialNumber = serialNumber;
-
-					installationCloudToolPage.FillDeviceDetails(device);
 				}
 			}
 
