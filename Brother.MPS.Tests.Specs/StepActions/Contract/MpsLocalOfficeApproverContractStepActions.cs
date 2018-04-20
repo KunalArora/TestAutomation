@@ -233,7 +233,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
                 while (!(localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, product.SerialNumber)))
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     _localOfficeApproverWebDriver.Navigate().Refresh();
                     localOfficeApproverManagedevicesManagePage = PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
                     continue;
@@ -374,7 +374,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
 
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
             _localOfficeApproverWebDriver.Navigate().Refresh();
             localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -385,7 +385,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 while (!localOfficeApproverReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.TotalPageCount))
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
                     _localOfficeApproverWebDriver.Navigate().Refresh();
                     localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);

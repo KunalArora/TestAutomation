@@ -161,10 +161,11 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry();
         }
 
-        public void RunMeterReadCloudSyncCommand(int proposalId) // Pass AgreementId in case of Type 3
+        //countryIso values for BUK=GB and BIG=DE
+        public void RunMeterReadCloudSyncCommand(int proposalId, string countryIso) // Pass AgreementId in case of Type 3
         {
             LoggingService.WriteLogOnMethodEntry(proposalId);
-            string commandName = string.Format("{0}&ProposalId={1}&CountryIso=DE", RunCommands.MpsNewMeterReadCloudSyncCommand, proposalId);
+            string commandName = string.Format("{0}&ProposalId={1}&CountryIso={2}", RunCommands.MpsNewMeterReadCloudSyncCommand, proposalId, countryIso);
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);

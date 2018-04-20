@@ -124,7 +124,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void RunCommandServicesRequests()
         {
             LoggingService.WriteLogOnMethodEntry();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();
         }
@@ -145,7 +145,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 var totalPageCount = product.TotalPageCount; 
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     _dealerWebDriver.Navigate().Refresh();
                     dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                     continue;
@@ -384,7 +384,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 {
                     while (!dealerReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount))
                     {
-                        _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                        _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
                         _dealerWebDriver.Navigate().Refresh();
                         dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

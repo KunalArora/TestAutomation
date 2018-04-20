@@ -262,7 +262,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenIUpdateThePrintCountAndVerifyItOnTheDataqueryPage()
         {
             _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
             WhenINavigateToTheContractSummaryPageInTheReportsSection();
             _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
         }
