@@ -63,9 +63,9 @@ namespace Brother.Tests.Common.Resources.DisplayMessage {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to use an unmatched model?.
         /// </summary>
-        internal static string AREYOUSURE_UNMATCH {
+        internal static string ARE_YOU_SURE_UNMATCH {
             get {
-                return ResourceManager.GetString("AREYOUSURE_UNMATCH", resourceCulture);
+                return ResourceManager.GetString("ARE_YOU_SURE_UNMATCH", resourceCulture);
             }
         }
         
