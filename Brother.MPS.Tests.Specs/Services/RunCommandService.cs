@@ -164,7 +164,7 @@ namespace Brother.Tests.Specs.Services
         //countryIso values for BUK=GB and BIG=DE
         public void RunMeterReadCloudSyncCommand(int proposalId, string countryIso) // Pass AgreementId in case of Type 3
         {
-            LoggingService.WriteLogOnMethodEntry(proposalId);
+            LoggingService.WriteLogOnMethodEntry(proposalId, countryIso);
             string commandName = string.Format("{0}&ProposalId={1}&CountryIso={2}", RunCommands.MpsNewMeterReadCloudSyncCommand, proposalId, countryIso);
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
