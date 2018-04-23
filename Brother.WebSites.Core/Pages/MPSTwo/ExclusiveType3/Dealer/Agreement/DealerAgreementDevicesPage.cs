@@ -1023,14 +1023,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(isCloseWhenSuccess);
             // Verify success & close success alert
+            var step = 0;
             try
             {
+                step = 1;
                 var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
+                step = 2;
                 if (isCloseWhenSuccess) { SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close"))); };
             }
             catch (Exception e)
             {
-                TestCheck.AssertFailTest("Success Dialog not found. Error details:" + e);
+                TestCheck.AssertFailTest("Success Dialog not found. step="+step+" Error details:" + e);
             }
         }
     }

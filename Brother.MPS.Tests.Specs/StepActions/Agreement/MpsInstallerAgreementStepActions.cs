@@ -68,11 +68,27 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifySingleQuantityModelSerialNumberAreAutoAssigned()
         {
             LoggingService.WriteLogOnMethodEntry();
-            foreach (var deviceProperty in _contextData.AdditionalDeviceProperties)
+            foreach( var printersProperty in _contextData.PrintersProperties)
             {
-                var printersProperty = _contextData.PrintersProperties.First(pp => pp.Model == deviceProperty.Model);
-                var expectSerialNumberSelected = printersProperty.Quantity > 1 || string.IsNullOrWhiteSpace(printersProperty.BocModel) == false;
-                Assert.AreEqual(expectSerialNumberSelected, deviceProperty.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} SerialNumber={1}", printersProperty.Model, deviceProperty.SerialNumber);
+                if (string.IsNullOrWhiteSpace(printersProperty.BocModel) == false)
+                {
+                    // Unmatch install: all devices are manual assigned.
+                    _contextData.AdditionalDeviceProperties
+                        .Where(ap => ap.Model == printersProperty.Model)
+                        .All(dp =>
+                        {
+                            Assert.True(dp.IsResultSerialNumberSelected, "Serial Number Not Auto Assigned model={0} SerialNumber={1}", printersProperty.Model, dp.SerialNumber);
+                            return true;
+                        });
+                }
+                else if(printersProperty.Quantity > 1)
+                {
+                    var sumOfSerialNumberSelected = _contextData.AdditionalDeviceProperties
+                        .Where(ap => ap.Model == printersProperty.Model)
+                        .Sum(ap => ap.IsResultSerialNumberSelected ? 1 : 0);
+                    // Same model install: auto assigned except last device.
+                    Assert.AreEqual(printersProperty.Quantity - 1, sumOfSerialNumberSelected, "Serial Number Not Auto Assigned model={0}", printersProperty.Model);
+                }
             }
         }
 

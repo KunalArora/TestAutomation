@@ -331,13 +331,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             var snElement = SeleniumHelper.WaitUntil(d =>
             {
                 var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
-                var trElement = deviceRowElements.FirstOrDefault(el => el.GetAttribute("data-id") == mpsDeviceId);
+                var trElement = deviceRowElements.FirstOrDefault(el => SeleniumHelper.IsElementDisplayed(el) && el.GetAttribute("data-id") == mpsDeviceId);
                 if( trElement == null) { return null; }
                 if(SeleniumHelper.IsElementDisplayed(trElement, SelectSerialLinkSelector)) { return null; }
                 var td =  trElement.FindElement(By.CssSelector(SerialNumberSelector));
                 return string.IsNullOrWhiteSpace(td.Text) ? null : td;
             });
-            // $$$
+
             TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
         }
     }
