@@ -1,5 +1,7 @@
-﻿using Brother.Tests.Common.Logging;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Extensions;
@@ -24,11 +26,15 @@ namespace Brother.Tests.Specs.Services
         private readonly IUrlResolver _urlResolver;
         private readonly ISeleniumHelper _seleniumHelper;
         private readonly IRuntimeSettings _runtimeSettings;
+        private readonly ITranslationService _translationService;
+        private readonly IContextData _contextData;
 
         private ILoggingService LoggingService { get; set; }
 
-        public PageService(IWebDriver driver, 
+        public PageService(IWebDriver driver,
             ScenarioContext context,
+            IContextData contextData,
+            ITranslationService translationService,
             ILoggingService loggingService,
             IUrlResolver urlResolver,
             ISeleniumHelper seleniumHelper,
@@ -40,6 +46,8 @@ namespace Brother.Tests.Specs.Services
             _seleniumHelper = seleniumHelper;
             LoggingService = loggingService;
             _runtimeSettings = runtimeSettings;
+            _translationService = translationService;
+            _contextData = contextData;
         }
 
         #region Page loads
@@ -65,7 +73,14 @@ namespace Brother.Tests.Specs.Services
                 driver = _driver;
             }
 
-            var pageObject = new TPage { Driver = driver, SeleniumHelper = new SeleniumHelper(driver, LoggingService, _runtimeSettings), RuntimeSettings = _runtimeSettings, LoggingService = this.LoggingService };
+            var pageObject = new TPage {
+                Driver = driver,
+                SeleniumHelper = new SeleniumHelper(driver, LoggingService, _runtimeSettings),
+                RuntimeSettings = _runtimeSettings,
+                LoggingService = this.LoggingService ,
+                TranslationService = _translationService,
+                Culture = _contextData.Culture
+            };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 
             if (timeout != null)
@@ -74,7 +89,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             PageFactory.InitElements(driver, pageObject);
-            
+
             return pageObject;
         }
 

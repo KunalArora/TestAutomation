@@ -53,7 +53,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public bool IsRegisteredOnBoc { get; set; }
         public int MonoPrintCount { get; set; }
         public int ColorPrintCount { get; set; }
-        public int TotalPrintCount 
+        public int TotalPrintCount
         {
             get
             {
@@ -94,5 +94,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string EndDeviceDate { get; set; }
         public int TotalPagesPrintedMono { get; set; }
         public int TotalPagesPrintedColour { get; set; }
+        public bool IsResultSerialNumberSelected { get; set; }
     }
 }

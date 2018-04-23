@@ -269,6 +269,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             SeleniumHelper.ClickSafety(SendInstallationRequestButtonElement);
         }
 
+        public void ClickCheckboxSelectAll(bool select)
+        {
+            LoggingService.WriteLogOnMethodEntry(select);
+            SeleniumHelper.SetCheckBox(CheckboxSelectAllElement, select);
+        }
+
+        public void ClickOnBulkActionsEditDeviceData()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(EditDeviceDataBulkElement,IsUntilUrlChanges:true);
+        }
+
         public void VerifySerialNumberOfDevice(string mpsDeviceId, string expectedSerialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(mpsDeviceId,expectedSerialNumber);

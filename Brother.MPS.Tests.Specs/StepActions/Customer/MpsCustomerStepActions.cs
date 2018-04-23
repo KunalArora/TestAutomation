@@ -71,7 +71,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
                 var pageItem = itemList.FirstOrDefault(d => d.CellSerialNo == product.SerialNumber);
                 if (pageItem == null)
                 {
-                    throw new System.Exception("VerifyPrintersProperties: Item value record Not found S/N=" + product.SerialNumber);
+                    throw new System.Exception("VerifyPrintersProperties: Item value record Not found SerialNumber=" + product.SerialNumber);
                 }
                 AssertNormalOrHasCount(product.TonerInkBlackStatus, pageItem.Cell_BW, "TonerInkBlackStatus", product);
                 AssertNormalOrHasCount(product.TonerInkCyanStatus, pageItem.Cell_C, "TonerInkCyanStatus", product);
@@ -91,7 +91,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
             int count = 0;
             if (int.TryParse(pageCellValue, out count) == false || count < 1 )
             {
-                throw new Exception(string.Format("AssertNormalOrHasCount: {0} has wrong S/N={1} Model={2} PageActual=[{3}]",
+                throw new Exception(string.Format("AssertNormalOrHasCount: {0} has wrong SerialNumber={1} Model={2} PageActual=[{3}]",
                     messageTonerName, propForMessage.SerialNumber, propForMessage.Model, pageCellValue ));
             }
         }

@@ -1,6 +1,6 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
-using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -42,7 +43,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         private const string DeviceLocationSelector = ".js-mps-input-device-location";
         private const string CostCentreSelector = ".js-mps-input-device-costcentre";
         private const string DangerAlertSelector = ".alert-danger";
-        
+        private const string SerialNumberSelector = "span[id*=content_0_DeviceListForTool_List_SerialNumber_]";
+
         // Swap Complete installation selectors
         private const string OldModelSelector = "#content_0_CompleteSwap_ModelOld";
         private const string NewModelSelector = "#content_0_CompleteSwap_ModelNew";
@@ -62,7 +64,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public IWebElement DeviceTableContainerElement;
         [FindsBy(How = How.CssSelector, Using = ".responding")]
         public IWebElement IsConnectedElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-button-refresh")]
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-button-refresh:not(.hidden)")]
         public IWebElement RefreshButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-button-get-pin")]
         public IWebElement GetPinButtonElement;
@@ -71,7 +73,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         [FindsBy(How = How.CssSelector, Using = "#serialModal > .modal-dialog > .modal-content > .modal-header > button.close")]
         public IWebElement CloseSetSerialNumberModalButtonElement;
         [FindsBy(How = How.Id, Using = "content_0_Software_LinkDownloadSoftware")]
-        public IWebElement LinkDownloadSoftwareElement;       
+        public IWebElement LinkDownloadSoftwareElement;
 
 
         public bool IsDeviceConnected(string mpsDeviceId)
@@ -91,14 +93,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public string GetPin()
         {
             LoggingService.WriteLogOnMethodEntry();
-            
+
             int start_time, elapsed_time;
             start_time = DateTime.Now.Second;
 
             SeleniumHelper.WaitUntil(d => InstallationPinElement.Text != "", RuntimeSettings.DefaultAPIResponseTimeout); // BOC Pin API is being called here, hence larger timeout value
-            
+
             elapsed_time = DateTime.Now.Second - start_time;
-            if (elapsed_time > 10) 
+            if (elapsed_time > 10)
             {
                 LoggingService.WriteLog(LoggingLevel.WARNING, string.Format("BOC pin generator API has a slow response. Time taken = {0}", elapsed_time));
             }
@@ -120,20 +122,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             return true;
         }
 
-        public bool SelectSerialNumber(IWebElement element, string mpsDeviceId, string serialNumber)
+        public bool SelectSerialNumber(IWebElement element, string mpsDeviceId, string serialNumber, bool isUnmatchDevice)
         {
             LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
             var dataId = element.GetAttribute("data-id");
             if ((dataId == mpsDeviceId) && SeleniumHelper.IsElementDisplayed(
                 element, SelectSerialLinkSelector))
             {
-                SeleniumHelper.ClickSafety(
-                    element.FindElement(By.CssSelector(SelectSerialLinkSelector)));
-                SelectSerialNumberHelper(
-                    serialNumber);
+                SeleniumHelper.ClickSafety(element.FindElement(By.CssSelector(SelectSerialLinkSelector)));
+                SelectSerialNumberHelper(serialNumber, isUnmatchDevice);
                 return true;
             }
-            return false;           
+            return false;
         }
 
         public bool AreAllDevicesConnected()
@@ -156,12 +156,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             TestCheck.AssertTextContains(expectedSoftwareDownloadLink, LinkDownloadSoftwareElement.GetAttribute("href"), "Software Download link verification failed");
         }
 
-        private void SelectSerialNumberHelper(string serialNumber)
+        private void SelectSerialNumberHelper(string serialNumber, bool isUnmatchDevice)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
-            var serialNumberTableElement = SeleniumHelper.FindElementByCssSelector(SelectSerialTableSelector);
+            var divPanel = SeleniumHelper.FindElementByCssSelector(".js-mps-panel:not(.hidden)");
+            var serialNumberTableElement = divPanel.FindElement(By.CssSelector(SelectSerialTableSelector));
             var rowElements = SeleniumHelper.FindElementsByCssSelector(serialNumberTableElement, SerialNumberTableRowElementSelector);
-            
+
             foreach(var element in rowElements)
             {
                 if (element.GetAttribute("data-serial-number").Equals(serialNumber))
@@ -178,6 +179,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             else
             {
                 SeleniumHelper.ClickSafety(CloseSetSerialNumberModalButtonElement);
+            }
+            if (isUnmatchDevice)
+            {
+                var alert = SeleniumHelper.FindAlertDialog();
+                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, Culture);
+                TestCheck.AssertIsEqual(expectedMessage, alert.Text, "invalid alert message");
+                alert.Accept();
             }
         }
 
@@ -249,7 +257,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
                     {
                         TestCheck.AssertFailTest(string.Format("Error occurred while typing device location into field for device {0}", device.MpsDeviceId));
                     }
-                    
+
                     ClearAndType(SeleniumHelper.FindElementByCssSelector(element, CostCentreSelector), device.CostCentre);
 
                     if (!SeleniumHelper.IsElementNotPresent(DangerAlertSelector))
@@ -315,6 +323,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(CompleteInstallationButtonSelector));
 
             SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(CompleteSwapSuccessSelector).Displayed);
+        }
+
+        public void AssertSerialNumberIsDisplayed(IWebElement element, string mpsDeviceId, string serialNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, mpsDeviceId, serialNumber);
+            var snElement = SeleniumHelper.WaitUntil(d =>
+            {
+                var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+                var trElement = deviceRowElements.FirstOrDefault(el => el.GetAttribute("data-id") == mpsDeviceId);
+                if( trElement == null) { return null; }
+                if(SeleniumHelper.IsElementDisplayed(trElement, SelectSerialLinkSelector)) { return null; }
+                var td =  trElement.FindElement(By.CssSelector(SerialNumberSelector));
+                return string.IsNullOrWhiteSpace(td.Text) ? null : td;
+            });
+            // $$$
+            TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
         }
     }
 }

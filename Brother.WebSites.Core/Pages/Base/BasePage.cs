@@ -1,6 +1,7 @@
 ﻿using Brother.Online.TestSpecs._80.Test_Steps;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -23,7 +24,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public static string BrotherOnlineBaseUrl
         {
             get { return SetBrotherOnlineBaseUrl(); }
-            
+
         }
 
         public static string MainSiteBaseUrl
@@ -67,6 +68,8 @@ namespace Brother.WebSites.Core.Pages.Base
 
         public IRuntimeSettings RuntimeSettings { get; set; }
         public ISeleniumHelper SeleniumHelper { get; set; }
+        public ITranslationService TranslationService { get; set; }
+        public string Culture { get; set; }
         #endregion
         // Home pages
         #region WebConferencing Home Page
@@ -90,7 +93,7 @@ namespace Brother.WebSites.Core.Pages.Base
             driver = SetDriver(driver);
             //baseUrl = ProcessUrlLocale(baseUrl);
             //baseUrl = ProcessMainSiteLiveUrl(baseUrl);
-            //baseUrl = CheckForCdServer(baseUrl); 
+            //baseUrl = CheckForCdServer(baseUrl);
             NavigateToPage(driver, baseUrl.TrimEnd(new[] { '/' }));
             return GetInstance<MainSiteHomePage>(driver, baseUrl, "");
         }
@@ -233,7 +236,7 @@ namespace Brother.WebSites.Core.Pages.Base
             {
                 NavigateToPage(driver, BrotherOnlineBaseUrl + baseUrl.TrimEnd(new[] { '/' }));
             }
-            
+
 
             return GetInstance<SignInPage>(driver, baseUrl, "");
         }
@@ -279,11 +282,11 @@ namespace Brother.WebSites.Core.Pages.Base
             return GetInstance<UserDetailsPage>(driver, baseUrl, "");
         }
 
-        #region ThirdParty Pages 
+        #region ThirdParty Pages
         public static BrotherEmailConfirmationPage LoadEmailConfirmationPage(IWebDriver driver, string baseUrl)
         {
             driver = SetDriver(driver);
-            
+
             // Email Token Test pages use a cms part in the URL
             baseUrl = baseUrl.Replace("online.uk.", "");
             baseUrl = baseUrl.Replace("brother", "cms.brother");
