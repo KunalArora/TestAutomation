@@ -446,7 +446,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             }
         }
 
-        public void ShiftContract(bool generateInvoice)
+        public void ShiftContractByOneMonth(bool generateInvoice)
         {
             LoggingService.WriteLogOnMethodEntry(generateInvoice);
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, generateInvoice, "Any");

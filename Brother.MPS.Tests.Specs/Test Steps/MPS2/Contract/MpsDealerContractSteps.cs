@@ -252,10 +252,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenISetTheContractInTheRunningState()
         {
             bool generateInvoice = false;
-            _mpsDealerContractStepActions.ShiftContract(generateInvoice);
+            _mpsDealerContractStepActions.ShiftContractByOneMonth(generateInvoice);
             _mpsDealerContractStepActions.ChangeContractToRunning();
-            generateInvoice = true;
-            _mpsDealerContractStepActions.ShiftContract(generateInvoice);
         }
 
         [When(@"I update the print count and verify it on the dataquery page")]
@@ -283,24 +281,24 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             
             // Checking the billing to ensure details are correctly populated
             _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(dealerReportsProposalSummary.SeleniumHelper);
-            var _creditNotePdfFile = _mpsDealerContractStepActions.DownloadCreditNotePdf(dealerReportsProposalSummary);
+            var creditNotePdfFile = _mpsDealerContractStepActions.DownloadCreditNotePdf(dealerReportsProposalSummary);
             try
             {
-                _mpsDealerContractStepActions.AssertEqualSummaryValuesForCreditNotePdf(_creditNotePdfFile, _proposalSummaryValues);
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForCreditNotePdf(creditNotePdfFile, _proposalSummaryValues);
             }
             finally
             {
-                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(_creditNotePdfFile);
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(creditNotePdfFile);
             }
 
-            var _invoicePdfFile = _mpsDealerContractStepActions.DownloadInvoicePdf(dealerReportsProposalSummary);
+            var invoicePdfFile = _mpsDealerContractStepActions.DownloadInvoicePdf(dealerReportsProposalSummary);
             try
             {
-                _mpsDealerContractStepActions.AssertEqualSummaryValuesForInvoicePdf(_invoicePdfFile, _proposalSummaryValues, _contextData.PrintersProperties);
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForInvoicePdf(invoicePdfFile, _proposalSummaryValues, _contextData.PrintersProperties);
             }
             finally
             {
-                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(_invoicePdfFile);
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(invoicePdfFile);
             }
         }
 

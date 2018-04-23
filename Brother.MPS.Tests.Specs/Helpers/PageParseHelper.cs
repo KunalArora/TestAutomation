@@ -132,6 +132,9 @@ namespace Brother.Tests.Specs.Helpers
             try
             {
                 var billingDatesList = main.FindElement(By.CssSelector(".mps-billing-dates-container"));
+                var billingDatesBodyElement = billingDatesList.FindElement(By.TagName("tbody"));
+                var billingDatesBodyTrElements = billingDatesBodyElement.FindElements(By.TagName("tr"));
+                value.Add("BillingDates.Count", billingDatesBodyTrElements.Count.ToString());
                 var tdElementListBillingDates = billingDatesList.FindElements(By.TagName("td"));
                 foreach (var tdElement in tdElementListBillingDates)
                 {
