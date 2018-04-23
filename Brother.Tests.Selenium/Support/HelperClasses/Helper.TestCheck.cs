@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
 {
@@ -82,6 +78,14 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
                         "AssertTextContains Failed: [{0}] didn't match expectations. String [{1}] should have contained the text snippet [{2}]",
                         validationMessage, containingString, textSnippet));
             }
+        }
+
+        public static void AssertIsEqualDouble(double expected, double actual, int decimalPlaces, string message)
+        {
+            var threshold = double.Parse("0." + new String('0', decimalPlaces - 1) + "1");
+            var actualDiff = Math.Abs(actual - expected);
+            if( actualDiff < threshold) { return; }
+            Assert.AreEqual(expected, actual, message+ " decimalPlaces="+ decimalPlaces); // = Assert.Fail
         }
     }
 }
