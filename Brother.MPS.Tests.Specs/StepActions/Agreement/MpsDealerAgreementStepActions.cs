@@ -848,6 +848,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var deviceURL = _dealerWebDriver.Url;
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
+                //TODO, change the logic to click device details button on the action tab and access the device overview url rather than directly accessing it.
                 var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/overview", device.MpsDeviceId);
                 var uri = new Uri(_dealerWebDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, deviceDashboardUrl);
