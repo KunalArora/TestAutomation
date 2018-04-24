@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry();
 
-            foreach (var device in _contextData.AdditionalDeviceProperties)
+            foreach(var device in _contextData.AdditionalDeviceProperties)
             {
                 SingleDeviceInstallationForCloudBor(device);
             }
@@ -166,7 +166,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
 
             // 4. Fill device information & hit connect
-            foreach (var device in _contextData.AdditionalDeviceProperties)
+            foreach(var device in _contextData.AdditionalDeviceProperties)
             {
                 installationCloudWebPage.FillDeviceDetailsAndClickConnect(
                     device, _contextData.WindowHandles[UserType.Installer]);
@@ -242,7 +242,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 // Already Registered on BOC?
-                if (!device.IsRegisteredOnBoc)
+                if(!device.IsRegisteredOnBoc)
                 {
                     RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
 
@@ -296,9 +296,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(installationCloudWebPage);
             string bocDeviceId, serialNumber;
-            foreach (var device in _contextData.AdditionalDeviceProperties)
+            foreach(var device in _contextData.AdditionalDeviceProperties)
             {
-                if (device.ResetDevice.ToLower().Equals("yes"))
+                if(device.ResetDevice.ToLower().Equals("yes"))
                 {
                     installationCloudWebPage.ClickReset(device.MpsDeviceId);
 
@@ -346,9 +346,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
 
             // Register devices on BOC
-            foreach (var device in _contextData.AdditionalDeviceProperties)
+            foreach(var device in _contextData.AdditionalDeviceProperties)
             {
-                if (!device.IsRegisteredOnBoc)
+                if(!device.IsRegisteredOnBoc)
                 {
                     // Register device
                     RegisterDeviceOnBOC(device.Model, pin, out bocDeviceId, out serialNumber);
@@ -523,7 +523,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     {
                         installationCloudToolPage.AssertSerialNumberIsDisplayed(element, device.MpsDeviceId, device.SerialNumber);
                         device.IsResultSerialNumberSelected = true;
-                        if (installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement) == false)
+                        if ( installationCloudToolPage.SeleniumHelper.IsElementDisplayed(installationCloudToolPage.RefreshButtonElement) == false )
                         {
                             break; // no refresh button. refresh skip.
                         }
