@@ -24,12 +24,11 @@ When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
-And I can verify the device details using show device details option
+#And I can verify the device details using show device details option
+And I can verify the device details on device dashboard page
 When a Cloud MPS LO Approver can create and send a device reinstallation request
 And a Cloud MPS Installer is able to reinstall devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that the reinstalled devices are responding
-#And I can verify the device details using show device details option
-And I can verify the device details on device dashboard page
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
