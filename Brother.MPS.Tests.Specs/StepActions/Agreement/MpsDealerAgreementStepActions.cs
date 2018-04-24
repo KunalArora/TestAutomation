@@ -15,6 +15,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -577,6 +578,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.ResetDevice = product.ResetDevice;
                         device.IsSwap = product.IsSwap;
                         device.ReInstallDevice = product.ReInstallDevice;
+                        device.CoverageMono = product.CoverageMono;
+                        device.CoverageColour = product.CoverageColour;
                     }
                 }
             }
@@ -836,6 +839,24 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _dealerWebDriver.Navigate().Refresh();
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
+        }
+
+        public void VerifyDeviceDetailsOnDashboard(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            var deviceURL = _dealerWebDriver.Url;
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                //TODO, change the logic to click device details button on the action tab and access the device overview url rather than directly accessing it.
+                var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/overview", device.MpsDeviceId);
+                var uri = new Uri(_dealerWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, deviceDashboardUrl);
+                var dealerDeviceOverviewPage = PageService.LoadUrl<DealerDeviceOverviewPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, ".js-mps-device-data-container", true, _dealerWebDriver);
+
+                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
+            }
+            PageService.LoadUrl<DealerAgreementDevicesPage>(deviceURL, RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", true, _dealerWebDriver);
         }
 
         public DealerAgreementBillingPage VerifyClickRateInvoice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
