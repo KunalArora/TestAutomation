@@ -848,12 +848,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var deviceURL = _dealerWebDriver.Url;
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/dashboard", device.MpsDeviceId);
+                var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/overview", device.MpsDeviceId);
                 var uri = new Uri(_dealerWebDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, deviceDashboardUrl);
-                var dealerDeviceDashboardPage = PageService.LoadUrl<DealerDeviceDashboardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, ".js-mps-device-data-container", true, _dealerWebDriver);
+                var dealerDeviceOverviewPage = PageService.LoadUrl<DealerDeviceOverviewPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, ".js-mps-device-data-container", true, _dealerWebDriver);
 
-                dealerDeviceDashboardPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
+                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
             }
             PageService.LoadUrl<DealerAgreementDevicesPage>(deviceURL, RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", true, _dealerWebDriver);
         }

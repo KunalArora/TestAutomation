@@ -1,11 +1,12 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 {
-    public class DealerDeviceDashboardPage : BasePage, IPageObject
+    public class DealerDeviceOverviewPage : BasePage, IPageObject
     {
         private string _validationElementSelector = ".js-mps-device-data-container";
         private const string _url = "/mps/dealer/device/{reportingId}/dashboard"; // TODO: Replace reportingId with dynamic parameter
@@ -31,37 +32,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             LoggingService.WriteLogOnMethodEntry(device, agreementType, agreementLength, usageType);
 
             var DashboardContainerElement = SeleniumHelper.FindElementByCssSelector(ContainerSelector, RuntimeSettings.DefaultFindElementTimeout);
-            var DashboardContainerRows = SeleniumHelper.FindRowElementsWithinTable(DashboardContainerElement);
-            var StatusElement = SeleniumHelper.FindElementByCssSelector(DashboardContainerRows[0], StatusSelector);
+            var deviceDetailsRow  = SeleniumHelper.FindElementByCssSelector(DashboardContainerElement, ".row");
+            var deviceDetailsTableBodyElement = SeleniumHelper.FindElementByCssSelector(deviceDetailsRow, ".table > tbody");
+
+            var StatusElement = SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, StatusSelector);
             var DeviceStatus = StatusElement.GetAttribute("class");
 
             var DeliveryAddress = device.AddressNumber + " " + device.AddressStreet + ", " + device.AddressTown + ", " + device.AddressPostCode;
             var Contact = device.ContactFirstName + ", " + device.ContactLastName + ", " + device.Telephone + ", " + device.Email;
-            var TodaysDate = DateTime.Now.ToString("dd/MM/yyyy");
+            var TodaysDate = MpsUtil.DateTimeString(DateTime.Now);
 
             //1st row
-            TestCheck.AssertTextContains(device.Model, DashboardContainerRows[0].Text, string.Format("Device model = {0} could not be verified", device.Model));
-            TestCheck.AssertTextContains(device.SerialNumber, DashboardContainerRows[0].Text, string.Format("Device serial number = {0} could not be verified", device.SerialNumber));
+            TestCheck.AssertTextContains(device.Model, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".model-name").Text, string.Format("Device model = {0} could not be verified", device.Model));
+            TestCheck.AssertTextContains(device.SerialNumber, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".serial-number").Text, string.Format("Device serial number = {0} could not be verified", device.SerialNumber));
             TestCheck.AssertIsEqual("responding", DeviceStatus, string.Format("Device status = {0} is not equal to responding", DeviceStatus));
-            // Currently there is a bug in the Type3 as the date is not shown so commented out
-//            TestCheck.AssertTextContains(TodaysDate, DashboardContainerRows[0].Text, string.Format("Last Communication date does not match"));
+            TestCheck.AssertTextContains(TodaysDate, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".last-comm").Text, string.Format("Last Communication date does not match"));
             
             //2nd row
-            TestCheck.AssertTextContains(device.VolumeMono.ToString(), DashboardContainerRows[1].Text, string.Format("Minimum Volume = {0} could not be verified", device.VolumeMono));
-            TestCheck.AssertTextContains(device.MonoClickPrice, DashboardContainerRows[1].Text, string.Format("Click Rate = {0} could not be verified", device.MonoClickPrice));
-            TestCheck.AssertTextContains(device.CoverageMono.ToString(), DashboardContainerRows[1].Text, string.Format("Agreed coverage = {0} could not be verified", device.CoverageMono));
-            TestCheck.AssertTextContains(TodaysDate, DashboardContainerRows[1].Text, string.Format("Install date does not match"));
+            TestCheck.AssertTextContains(device.VolumeMono.ToString(), SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".volume").Text, string.Format("Minimum Volume = {0} could not be verified", device.VolumeMono));
+            TestCheck.AssertTextContains(device.MonoClickPrice, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".click-rate").Text, string.Format("Click Rate = {0} could not be verified", device.MonoClickPrice));
+            TestCheck.AssertTextContains(device.CoverageMono.ToString(), SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".coverage").Text, string.Format("Agreed coverage = {0} could not be verified", device.CoverageMono));
+            TestCheck.AssertTextContains(TodaysDate, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".Install-date").Text, string.Format("Install date does not match"));
             
             //3rd row
-            TestCheck.AssertTextContains(device.DeviceLocation, DashboardContainerRows[2].Text, string.Format("Device location = {0} could not be verified", device.DeviceLocation));
-            TestCheck.AssertTextContains(device.CostCentre, DashboardContainerRows[2].Text, string.Format("Cost centre = {0} could not be verified", device.CostCentre));
-            TestCheck.AssertTextContains(agreementLength, DashboardContainerRows[2].Text, string.Format("Duration = {0} could not be verified", agreementLength));
+            TestCheck.AssertTextContains(device.DeviceLocation, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".location").Text, string.Format("Device location = {0} could not be verified", device.DeviceLocation));
+            TestCheck.AssertTextContains(device.CostCentre, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".costcentre").Text, string.Format("Cost centre = {0} could not be verified", device.CostCentre));
+            TestCheck.AssertTextContains(agreementLength, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".duration").Text, string.Format("Duration = {0} could not be verified", agreementLength));
             
             //4th row
-            TestCheck.AssertTextContains(DeliveryAddress, DashboardContainerRows[3].Text, string.Format("Delivery address = {0} could not be verified", DeliveryAddress));
+            TestCheck.AssertTextContains(DeliveryAddress, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".address").Text, string.Format("Delivery address = {0} could not be verified", DeliveryAddress));
             
             //5th row
-            TestCheck.AssertTextContains(Contact, DashboardContainerRows[4].Text, string.Format("Contact = {0} could not be verified", Contact));
+            TestCheck.AssertTextContains(Contact, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".contact-details").Text, string.Format("Contact = {0} could not be verified", Contact));
         }
     }
 }
