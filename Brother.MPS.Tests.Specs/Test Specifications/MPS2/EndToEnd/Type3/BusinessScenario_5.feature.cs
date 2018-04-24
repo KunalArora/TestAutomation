@@ -18,24 +18,24 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("BusinessScenario_3")]
+    [NUnit.Framework.DescriptionAttribute("BusinessScenario_5")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("ENDTOEND")]
-    public partial class BusinessScenario_3Feature
+    public partial class BusinessScenario_5Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "BusinessScenario_3.feature"
+#line 1 "BusinessScenario_5.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_3", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_5", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
                     "t to create a new agreement and complete the installation of all devices", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -73,12 +73,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Scenario 3")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "MINIMUM_VOLUME", "FIVE_YEARS", "INCLUDED_IN_CLICK_PRICE", "True", "Cloud", "Bor", "40", new string[] {
+        [NUnit.Framework.DescriptionAttribute("Business Scenario 5")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "MINIMUM_VOLUME", "THREE_YEARS", "PAY_UPFRONT", "False", "Cloud", "Bor", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario3(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
+        public virtual void BusinessScenario5(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 3", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 5", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -101,82 +101,108 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "SendInstallationRequest",
                         "MonoPrintCount",
                         "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus",
                         "ResetDevice",
-                        "ReInstallDevice"});
+                        "IsSwap",
+                        "BocModel"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
-                        "2",
-                        "Yes",
-                        "Yes",
-                        "100",
-                        "4000",
-                        "0",
-                        "0",
-                        "Yes",
-                        "4000",
-                        "0",
-                        "Yes",
-                        "No"});
-            table1.AddRow(new string[] {
-                        "DCP-8250DN",
                         "1",
                         "Yes",
                         "Yes",
-                        "100",
+                        "5",
                         "4000",
                         "0",
                         "0",
                         "Yes",
-                        "4000",
+                        "500",
                         "0",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
                         "No",
-                        "Yes"});
-#line 11
+                        "false",
+                        ""});
+            table1.AddRow(new string[] {
+                        "DCP-L8450CDW",
+                        "1",
+                        "No",
+                        "No",
+                        "5",
+                        "1000",
+                        "20",
+                        "1000",
+                        "Yes",
+                        "500",
+                        "0",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "No",
+                        "false",
+                        ""});
+            table1.AddRow(new string[] {
+                        "MFC-L9550CDWT",
+                        "1",
+                        "Yes",
+                        "No",
+                        "5",
+                        "500",
+                        "20",
+                        "250",
+                        "Yes",
+                        "600",
+                        "0",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "No",
+                        "false",
+                        "MFC-L8850CDW"});
+            table1.AddRow(new string[] {
+                        "DCP-8250DN",
+                        "1",
+                        "No",
+                        "Yes",
+                        "5",
+                        "2000",
+                        "0",
+                        "0",
+                        "Yes",
+                        "600",
+                        "0",
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "No",
+                        "false",
+                        ""});
+#line 12
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
-#line 15
-testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
-testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 17
-testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
-testRunner.And(string.Format("I edit device data using excel edit option (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
-testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
-testRunner.Then("a Cloud MPS LO Approver can create and send a bulk installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
-testRunner.When("a Cloud MPS LO Approver applies special pricing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And(string.Format("I edit device data bulk for all devices (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
-testRunner.Then("a Cloud MPS LO Approver can verify that special pricing is correctly applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
-testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("I can create and send a bulk installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 24
+testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
-testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
-testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
-testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
-testRunner.When("a Cloud MPS LO Approver can create and send a device reinstallation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 30
-testRunner.And(string.Format("a Cloud MPS Installer is able to reinstall devices using \"{0}\" communication and " +
-                        "\"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
-testRunner.Then("I can verify that the reinstalled devices are responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 32
-testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
-testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 34
-testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
-testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 36
-testRunner.And("I can verify the service/installation billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

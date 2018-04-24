@@ -1,21 +1,17 @@
-﻿using Brother.Tests.Specs.Configuration;
-using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
-using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
-using Brother.Tests.Specs.Factories;
+using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Brother.Tests.Common.RuntimeSettings;
 
 
 namespace Brother.MPS.Tests.Specs.MPS2.Agreement
@@ -147,11 +143,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.PrintersProperties = products;
             _dealerAgreementCreateClickPricePage = _mpsDealerAgreement.AddThesePrintersToAgreementAndProceed(_dealerAgreementCreateProductsPage);
             _dealerAgreementCreateSummaryPage = _mpsDealerAgreement.PopulateCoverageAndVolumeAndProceed(_dealerAgreementCreateClickPricePage);
-        }                   
+        }
 
         [When(@"I complete the setup of agreement")]
         public void WhenICompleteTheSetupOfAgreement()
         {
+            _mpsDealerAgreement.AssertAreEqualServiceInstallation(_dealerAgreementCreateSummaryPage);
             _dealerAgreementsListPage = _mpsDealerAgreement.ValidateSummaryPageAndCompleteSetup(_dealerAgreementCreateSummaryPage);
         }
 
@@ -193,7 +190,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             string resourceInstalledPrinterStatusAddressRequired = _translationService.GetInstalledPrinterStatusText(
                 TranslationKeys.InstalledPrinterStatus.AddressRequiredType3, _contextData.Culture);
             _dealerAgreementDevicesPage = _mpsDealerAgreement.NavigateToManageDevicesPage(
-                _dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);            
+                _dealerAgreementsListPage, resourceInstalledPrinterStatusAddressRequired);
         }
 
         [When(@"I edit device data one by one for all devices \(Fill Optional fields: ""(.*)""\)")]
@@ -203,11 +200,19 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 _dealerAgreementDevicesPage, optionalFields);
         }
 
+        [When(@"I edit device data bulk for all devices \(Fill Optional fields: ""(.*)""\)")]
+        public void WhenIEditDeviceDataBulkForAllDevicesFillOptionalFields(string optionalFields)
+        {
+            string validationExpression;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(_dealerAgreementDevicesPage, optionalFields, out validationExpression);
+        }
+
         [When(@"I edit device data using bulk edit option \(Fill Optional fields: ""(.*)""\)")]
         public void WhenIEditDeviceDataUsingBulkEditOptionFillOptionalFields(string optionalFields)
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataUsingBulkEditOption(
-                _dealerAgreementDevicesPage, optionalFields);
+            string validationExpression;
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.EditDeviceDataBulk(_dealerAgreementDevicesPage, optionalFields, out validationExpression);
+            _mpsDealerAgreement.VerifyAddressOfEditedDevice(_dealerAgreementDevicesPage, validationExpression);
         }
 
         [When(@"I edit device data using excel edit option \(Fill Optional fields: ""(.*)""\)")]
@@ -296,6 +301,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheDeviceDetailsUsingShowDeviceDetailsOption()
         {
             _mpsDealerAgreement.VerifyDeviceDetails(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the device details on device dashboard page")]
+        public void ThenICanVerifyTheDeviceDetailsOnDeviceDashboardPage()
+        {
+            _mpsDealerAgreement.VerifyDeviceDetailsOnDashboard(_dealerAgreementDevicesPage);
         }
 
         [Then(@"I can verify the click rate billing invoice")]

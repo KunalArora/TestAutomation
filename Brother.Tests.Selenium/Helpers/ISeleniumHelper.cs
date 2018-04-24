@@ -110,7 +110,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         void AcceptJavascriptAlert(int timeout = -1);
 
         /// <summary>
-        /// 
+        /// Find Alert Dialog
+        /// </summary>
+        /// <param name="timeout"></param>
+        IAlert FindAlertDialog(int timeout = -1);
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="actionsButton"></param>
         /// <returns></returns>
