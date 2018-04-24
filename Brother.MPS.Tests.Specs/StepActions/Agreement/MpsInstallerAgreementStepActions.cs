@@ -419,7 +419,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
 
             Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
-            Assert.NotNull(swapInformation.InstallationUrl, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation url generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
 
             string bocDeviceId, serialNumber;
             RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);

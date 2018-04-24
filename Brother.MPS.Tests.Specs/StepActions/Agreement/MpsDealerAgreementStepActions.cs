@@ -1016,14 +1016,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(true);
+                    dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
                     // Verify "Being Replaced" status for this device
                     var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
                     dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);
 
                     // Save info for new device to context data
                     device.SwappedDeviceID = newDeviceId;
-
                     var swapProp = new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true };
                     dealerAgreementDevicesPage.SaveAddressString(swapProp);
                     newDevices.Add(swapProp); // Handle only monochrome (swapped in) devices for now
