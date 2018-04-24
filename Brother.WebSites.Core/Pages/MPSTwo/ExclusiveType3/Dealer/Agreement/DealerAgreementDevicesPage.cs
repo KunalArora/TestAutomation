@@ -733,7 +733,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         // Verify the status of the device & return the device ID
-        public string VerifyStatusOfDevice(AdditionalDeviceProperties device, string expectedInstalledPrinterStatus)
+        public string VerifyStatusOfDevice(AdditionalDeviceProperties device, string expectedInstalledPrinterStatus, string expectedBalloonType=null, string expectedballoonStatus=null)
         {
             LoggingService.WriteLogOnMethodEntry(device, expectedInstalledPrinterStatus);
             if (device.SerialNumber == null)
@@ -755,6 +755,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
                     TestCheck.AssertTextContains(
                         expectedInstalledPrinterStatus, displayedStatus, "Status could not be verified for the device with serial number: " + device.SerialNumber);
+                    if(expectedBalloonType != null)
+                    {
+                        TestCheck.AssertTextContains(
+                            expectedBalloonType, displayedStatus, "Balloon 'Type' could not be verified for the device with serial number: " + device.SerialNumber);
+                    }
+                    if(expectedballoonStatus != null)
+                    {
+                        TestCheck.AssertTextContains(
+                            expectedballoonStatus, displayedStatus, "Balloon 'Status' could not be verified for the device with serial number: " + device.SerialNumber);
+                    }
 
                     var ModelElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector);
                     var filterString = ModelElement.GetAttribute("data-filter");

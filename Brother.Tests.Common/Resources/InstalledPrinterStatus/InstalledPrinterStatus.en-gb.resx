@@ -138,4 +138,13 @@
   <data name="REPLACED" xml:space="preserve">
     <value>Replaced</value>
   </data>
+  <data name="STATUS_RESPONDING" xml:space="preserve">
+    <value>Responding</value>
+  </data>
+  <data name="TYPE_CLOUD" xml:space="preserve">
+    <value>Cloud</value>
+  </data>
+  <data name="TYPE_WEB" xml:space="preserve">
+    <value>Web</value>
+  </data>
 </root>
