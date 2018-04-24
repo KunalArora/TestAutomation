@@ -729,6 +729,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             SeleniumHelper.ClickSafety(sendSwapButton);
             SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(sendSwapButton));
 
+            // Verify success & close success alert
+            try
+            {
+                var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
+                SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")));
+            }
+            catch (Exception e)
+            {
+                TestCheck.AssertFailTest("Error occurred while sending the swap installation request. Error details:" + e);
+            }
+
             return newModel;
         }
 

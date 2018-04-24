@@ -1040,7 +1040,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
                     var newModel = dealerAgreementDevicesPage.SendSwapRequest(
                         device, swapDeviceType, _contextData.Culture, _userResolver.InstallerUsername);
-                    _dealerWebDriver.Navigate().Refresh();
+
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 

@@ -447,7 +447,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     localOfficeAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
                     var newModel = localOfficeAgreementDevicesPage.SendSwapRequest(
                         device, swapDeviceType, _contextData.Culture, _userResolver.InstallerUsername);
-                    webDriver.Navigate().Refresh();
+
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
