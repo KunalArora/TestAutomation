@@ -75,9 +75,6 @@
             public static string InstalledType3 { get { return "INSTALLED_TYPE3"; } }
             public static string Replaced { get { return "REPLACED"; } }
             public static string ReadyForReInstallType3 { get { return "READY_FOR_RE_INSTALL_TYPE3"; } }
-            public static string TypeCloud { get { return "TYPE_CLOUD"; } }
-            public static string TypeWeb { get { return "TYPE_WEB"; } }
-            public static string StatusResponding { get { return "STATUS_RESPONDING"; } }
         }
 
         public static class ProposalDeclineReason
@@ -112,6 +109,13 @@
             public static string NotConnected { get { return "NOT_CONNECTED"; } }
             public static string Responding { get { return "RESPONDING"; } }
             public static string Swapped { get { return "SWAPPED"; } }
+        }
+
+        // for type string on hover message
+        public static class CommunicationMethod
+        {
+            public static string Cloud { get { return "CLOUD"; } }
+            public static string Web { get { return "WEB"; } }
         }
 
         public static class ConsumableOrderStatus

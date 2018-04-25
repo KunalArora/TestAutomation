@@ -1015,10 +1015,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             string resourceInstalledPrinterBeingReplacedStatus = _translationService.GetInstalledPrinterStatusText(
                 TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
-            string resourceInstalledPrinterTypeCloud = _translationService.GetInstalledPrinterStatusText(
-                TranslationKeys.InstalledPrinterStatus.TypeCloud, _contextData.Culture); //"Cloud" 
-            string resourceInstalledPrinterStatusRespoding = _translationService.GetInstalledPrinterStatusText(
-                TranslationKeys.InstalledPrinterStatus.StatusResponding, _contextData.Culture);
+            string resourceInstalledPrinterTypeCloud = _translationService.GetCommunicationMethodText(
+                TranslationKeys.CommunicationMethod.Cloud, _contextData.Culture); //"Cloud" 
+            string resourceDeviceConnectionStatusRespoding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
 
             // Switch back to Dealer window
             _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
@@ -1043,7 +1043,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                     dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
                     // Verify "Being Replaced" status for this device
-                    var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus, resourceInstalledPrinterTypeCloud, resourceInstalledPrinterStatusRespoding);
+                    var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus, resourceInstalledPrinterTypeCloud, resourceDeviceConnectionStatusRespoding);
                     dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);
 
                     // Save info for new device to context data
