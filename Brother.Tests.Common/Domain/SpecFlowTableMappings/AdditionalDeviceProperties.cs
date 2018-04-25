@@ -43,6 +43,8 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ColourClickPrice { get; set; }
         public int VolumeMono { get; set; }
         public int VolumeColour { get; set; }
+        public int CoverageMono { get; set; }
+        public int CoverageColour { get; set; }
         public bool IsMonochrome { get; set; }
         public string SerialNumber { get; set; }
         public string CommunicationMethod { get; set; }
