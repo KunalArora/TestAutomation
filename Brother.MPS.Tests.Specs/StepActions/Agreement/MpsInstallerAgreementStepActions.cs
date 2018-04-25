@@ -20,7 +20,7 @@ using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Agreement
 {
-    public class MpsInstallerAgreementStepActions: StepActionBase
+    public class MpsInstallerAgreementStepActions : StepActionBase
     {
         private const string EXPECTED_SOFTWARE_DOWNLOAD_LINK = "/mps/web-installation/download-tools";
 
@@ -68,7 +68,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifySingleQuantityModelSerialNumberAreAutoAssigned()
         {
             LoggingService.WriteLogOnMethodEntry();
-            foreach (var printersProperty in _contextData.PrintersProperties)
+            foreach( var printersProperty in _contextData.PrintersProperties)
             {
                 if (string.IsNullOrWhiteSpace(printersProperty.BocModel) == false)
                 {
@@ -81,7 +81,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                             return true;
                         });
                 }
-                else if (printersProperty.Quantity > 1)
+                else if(printersProperty.Quantity > 1)
                 {
                     var sumOfSerialNumberSelected = _contextData.AdditionalDeviceProperties
                         .Where(ap => ap.Model == printersProperty.Model)
@@ -277,7 +277,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 foreach (var element in deviceRowElements)
                 {
                     bool isSuccess = installationCloudUsbPage.SelectSerialNumber(
-                        element, device.MpsDeviceId, device.SerialNumber,false);
+                        element, device.MpsDeviceId, device.SerialNumber, false);
                     if (isSuccess)
                     {
                         ClickSafety(installationCloudUsbPage.RefreshButtonElement, installationCloudUsbPage);
@@ -362,6 +362,53 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             SelectSerialNumberAndRefreshForCloudTool(installationCloudToolPage);
         }
 
+        public void SwapDeviceForCloudWeb(AdditionalDeviceProperties oldDevice)
+        {
+            LoggingService.WriteLogOnMethodEntry(oldDevice);
+
+            _runCommandService.RunSendSwapRequestCommand();
+            SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
+
+            var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
+
+            Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation url generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+
+            string bocDeviceId, serialNumber;
+            RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
+
+            // Save details to contextData
+            newDevice.BocDeviceId = bocDeviceId;
+            newDevice.SerialNumber = serialNumber;
+
+            // Save other information of old device (swapped out) to new device (swapped in)
+            CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
+
+            var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(swapInformation.InstallationUrl);
+
+            installationSelectMethodPage.VerifyContainModelsInAlertMessage(
+                _contextData.PrintersProperties.Where(prop => prop.IsSwap).Select(prop => prop.Model));
+
+            // 3. Select installation method as Web & Navigate to installation page
+            ClickSafety(installationSelectMethodPage.WebInstallationButton(), installationSelectMethodPage);
+            var installationCloudWebPage = PageService.GetPageObject<InstallationCloudWebPage>(RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+
+
+            // 4. Fill device information & hit connect
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                installationCloudWebPage.FillDeviceDetailsAndClickConnect(device, _contextData.WindowHandles[UserType.Installer]);
+            }
+
+            // 5. Hit Refresh until all devices are connected
+            installationCloudWebPage = RefreshUntilConnectedForCloudWeb(installationCloudWebPage);
+
+            // Verify old device & new device information, input print counts & complete installation
+            installationCloudWebPage.CompleteSwapInstallation(oldDevice, newDevice);
+
+        }
+
+
         public void SwapDeviceForCloudBor(AdditionalDeviceProperties oldDevice)
         {
             LoggingService.WriteLogOnMethodEntry(oldDevice);
@@ -369,58 +416,37 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _runCommandService.RunSendSwapRequestCommand();
             SwapRequestDetail swapInformation = _mpsWebToolsService.GetSwapRequestDetail(Int32.Parse(oldDevice.MpsDeviceId));
 
-            foreach(var newDevice in _contextData.AdditionalDeviceProperties)
-            {
-                if(oldDevice.SwappedDeviceID.Equals(newDevice.MpsDeviceId))
-                {
+            var newDevice = _contextData.AdditionalDeviceProperties.First(device => oldDevice.SwappedDeviceID.Equals(device.MpsDeviceId));
 
-                    string bocDeviceId, serialNumber;
-                    if (swapInformation.InstallationPin != null)
-                    {
-                        RegisterDeviceOnBOC(
-                        newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
+            Assert.NotNull(swapInformation.InstallationPin, "No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
+            Assert.NotNull(swapInformation.InstallationUrl, "No installation url generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId);
 
-                        // Save details to contextData
-                        newDevice.BocDeviceId = bocDeviceId;
-                        newDevice.SerialNumber = serialNumber;
+            string bocDeviceId, serialNumber;
+            RegisterDeviceOnBOC(newDevice.Model, swapInformation.InstallationPin, out bocDeviceId, out serialNumber);
 
-                        // Save other information of old device (swapped out) to new device (swapped in)
-                        CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
-                    }
-                    else
-                    {
-                        TestCheck.AssertFailTest(string.Format("No installation pin generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
-                    }
+            // Save details to contextData
+            newDevice.BocDeviceId = bocDeviceId;
+            newDevice.SerialNumber = serialNumber;
 
-                    if (swapInformation.InstallationUrl != null)
-                    {
-                        var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(
-                            swapInformation.InstallationUrl);
+            // Save other information of old device (swapped out) to new device (swapped in)
+            CopyOldDeviceInformationToNewDevice(oldDevice, newDevice);
 
-                        // Select installation method as "BOR"
-                        ClickSafety(
-                            installationSelectMethodPage.BORInstallationButton(),
-                            installationSelectMethodPage);
-                        var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
-                            RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
+            var installationSelectMethodPage = _mpsSignIn.LoadInstallationSelectMethodPageType3(swapInformation.InstallationUrl);
 
-                        // Verify that Software download link is correct
-                        installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
+            // Select installation method as "BOR"
+            ClickSafety(installationSelectMethodPage.BORInstallationButton(), installationSelectMethodPage);
+            var installationCloudToolPage = PageService.GetPageObject<InstallationCloudToolPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _installerWebDriver);
 
-                        // Refresh until device is connected
-                        installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
+            // Verify that Software download link is correct
+            installationCloudToolPage.VerifySoftwareDownloadLink(EXPECTED_SOFTWARE_DOWNLOAD_LINK);
 
-                        // Verify old device & new device information, input print counts & complete installation
-                        installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
-                    }
-                    else
-                    {
-                        TestCheck.AssertFailTest(string.Format("No installation URL generated for SWAP installation for old device: {0}, new device: {1} ", oldDevice.MpsDeviceId, newDevice.MpsDeviceId));
-                    }
+            // Refresh until device is connected
+            installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
 
-                    return;
-              }
-            }
+            // Verify old device & new device information, input print counts & complete installation
+            installationCloudToolPage.CompleteSwapInstallation(oldDevice, newDevice);
+
         }
 
         public void ReInstallDevicesForCloudBor()
@@ -568,6 +594,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         "Number of retries exceeded the default limit during device installation for agreement:" + _contextData.AgreementId);
                 }
             }
+            // after device is show as connect ; Verify the Refresh button is not displayed
+            Assert.False(installationCloudWebPage.RefreshButtonElement.Displayed, "AreAllDevicesConnected()=true but yet visible refresh button");
             return installationCloudWebPage;
         }
 

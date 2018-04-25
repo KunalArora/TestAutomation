@@ -1,8 +1,11 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
@@ -24,7 +27,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
 
         private const string InstallationMethodDataAttributeSelector = "install-option-id";
-        
+
 
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".alert.alert-info.mps-alert.js-mps-alert")]
@@ -33,7 +36,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         public IWebElement NumberOfDevicesAlertElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-more-install-options")]
         public IWebElement MoreInstallationOptionsButtonElement;
-        
 
         public void VerifyDeviceDetails(string expectedAgreementReference, int expectedNumberOfDevices, string modelName = null)
         {
@@ -49,7 +51,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             if (modelName != null) // For single device installation
             {
                 TestCheck.AssertIsEqual(
-                    displayedNumberOfDevices, string.Format("Total number of devices selected for installation: {0} (Model: {1})", expectedNumberOfDevices.ToString(), modelName), 
+                    displayedNumberOfDevices, string.Format("Total number of devices selected for installation: {0} (Model: {1})", expectedNumberOfDevices.ToString(), modelName),
                     "Number of devices/model name validation failed on Select Installation Method page");
             }
             else // For bulk installation
@@ -76,6 +78,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         {
             LoggingService.WriteLogOnMethodEntry();
             return SeleniumHelper.FindElementByDataAttributeValue(InstallationMethodDataAttributeSelector, "4");
+        }
+
+        public void VerifyContainModelsInAlertMessage(IEnumerable<string> models)
+        {
+            LoggingService.WriteLogOnMethodEntry(models);
+            // ex. "Total number of devices selected for installation: 1 (Model: DCP-8110DN)"
+            string selectDevicesInfo = NumberOfDevicesAlertElement.Text;
+            foreach( var model in models)
+            {
+                TestCheck.AssertIsEqual(true, selectDevicesInfo.Contains(model), "not found model=" + model);
+            }
+
         }
     }
 }
