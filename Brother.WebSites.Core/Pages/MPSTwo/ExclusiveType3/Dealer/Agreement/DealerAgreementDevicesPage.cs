@@ -735,17 +735,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             SeleniumHelper.WaitUntil(d => sendSwapButton.Enabled);
             SeleniumHelper.ClickSafety(sendSwapButton);
             SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(sendSwapButton));
-
-            // Verify success & close success alert
-            try
-            {
-                var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
-                SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")));
-            }
-            catch (Exception e)
-            {
-                TestCheck.AssertFailTest("Error occurred while sending the swap installation request. Error details:" + e);
-            }
+            VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
         }
 
         // Verify the status of the device & return the device ID
@@ -1062,7 +1052,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
             catch (Exception e)
             {
-                TestCheck.AssertFailTest("Success Dialog not found. step="+step+" Error details:" + e);
+                TestCheck.AssertFailTest("Success Dialog not found after swap request is sent. step="+step+" Error details:" + e);
             }
         }
     }

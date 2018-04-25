@@ -1046,7 +1046,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
                     // Verify "Being Replaced" status for this device
                     var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus, resourceInstalledPrinterTypeCloud, resourceDeviceConnectionStatusResponding);
                     dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);
