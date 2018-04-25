@@ -31,20 +31,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".js-mps-val-btn-next")]
         public IWebElement SendEmailButton;
 
-        public string EnterInstallerEmail()
+        public void EnterInstallerEmailAndProceed(string installerId)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            string emailId = "steve.walters@brother.co.uk";
-            ClearAndType(EmailFieldElement, emailId);
-            return emailId;
-        }
-
-        public string EnterInstallerEmailAndProceed()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-            string emailId = EnterInstallerEmail();
+            LoggingService.WriteLogOnMethodEntry(installerId);
+            ClearAndType(EmailFieldElement, installerId);
             SendEmailButton.Click(); // Send Email button
-            return emailId;
         }
     }
 }

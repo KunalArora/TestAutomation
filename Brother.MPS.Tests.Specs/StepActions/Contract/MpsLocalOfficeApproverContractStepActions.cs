@@ -32,6 +32,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly ITranslationService _translationService;
         private readonly IPdfHelper _pdfHelper;
         private readonly IContractShiftService _contractShiftService;
+        private readonly IUserResolver _userResolver;
 
         public MpsLocalOfficeApproverContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -47,8 +48,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
-            IContractShiftService contractShiftService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            IContractShiftService contractShiftService,
+            IUserResolver userResolver)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper, userResolver)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
@@ -57,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _translationService = translationService;
             _pdfHelper = pdfHelper;
             _contractShiftService = contractShiftService;
+            _userResolver = userResolver;
         }
 
         public LocalOfficeApproverContractsAwaitingAcceptancePage NavigateToApprovalContractsAwaitingAcceptancePage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -181,7 +184,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
             }
 
-            _contextData.InstallerEmail = localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed(_contextData.InstallerEmail);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -256,7 +260,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmailForSwap(LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail);
-            _contextData.InstallerEmail = localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed(_contextData.InstallerEmail);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 

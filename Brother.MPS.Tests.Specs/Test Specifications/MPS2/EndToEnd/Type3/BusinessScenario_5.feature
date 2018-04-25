@@ -1,5 +1,5 @@
 ﻿@MPS @UAT @TYPE3 @ENDTOEND
-Feature: BusinessScenario_5
+Feature: Type3BusinessScenario_5
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new agreement and complete the installation of all devices

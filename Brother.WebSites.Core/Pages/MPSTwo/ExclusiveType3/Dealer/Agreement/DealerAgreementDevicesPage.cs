@@ -232,13 +232,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector).Text;
         }
 
-        public void SendInstallationRequest()
+        public void SendInstallationRequest(string installerEmail)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(installerEmail);
 
             // Input Email ID
-            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
-
+            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(installerEmail);
+            
             // Click Send Installation Request button on modal
             SeleniumHelper.ClickSafety(SendInstallationRequestModalElement);
 
@@ -647,9 +647,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
         }
 
-        public string SendSwapRequest(AdditionalDeviceProperties device, string swapDeviceType, string culture)
+        public string SendSwapRequest(AdditionalDeviceProperties device, string swapDeviceType, string culture, string installerEmail)
         {
-            LoggingService.WriteLogOnMethodEntry(device, swapDeviceType, culture);
+            LoggingService.WriteLogOnMethodEntry(device, swapDeviceType, culture, installerEmail);
 
             ExpectedTranslationService translationService = new ExpectedTranslationService();
 
@@ -722,7 +722,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
 
             // Input Email ID
-            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
+            SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(installerEmail);
 
             var sendSwapButton = SeleniumHelper.FindElementByCssSelector(SendSwapRequestButtonSelector);
             SeleniumHelper.WaitUntil(d => sendSwapButton.Enabled);
@@ -856,9 +856,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", device.MpsDeviceId));
         }
 
-        public void SendReInstallationRequest(AdditionalDeviceProperties device)
+        public void SendReInstallationRequest(AdditionalDeviceProperties device, string installerEmail)
         {
-            LoggingService.WriteLogOnMethodEntry(device);
+            LoggingService.WriteLogOnMethodEntry(device, installerEmail);
 
             var ModalBodyElement = SeleniumHelper.FindElementByCssSelector(ReInstallDeviceModalBodySelector);
             var DeviceDetails = SeleniumHelper.FindElementByCssSelector(ModalBodyElement, ReInstallDeviceModalDeviceDetailsSelector).Text;
@@ -874,7 +874,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     device.AddressString, DeviceDetails, string.Format("Device Location = {0} of the device could not be verified on ReInstall device Modal", device.AddressString));
 
             // Input Email ID
-            SeleniumHelper.FindElementByCssSelector(ModalBodyElement, InputEmailSelector).SendKeys(MpsUtil.GenerateUniqueEmail());
+            SeleniumHelper.FindElementByCssSelector(ModalBodyElement, InputEmailSelector).SendKeys(installerEmail);
 
             // Click Send Installation Request button on modal
             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(SendReInstallationRequestSelector));

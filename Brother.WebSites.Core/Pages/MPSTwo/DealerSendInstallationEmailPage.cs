@@ -144,10 +144,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerManageDevicesPage>(Driver);
         }
         
-        public string EnterInstallerEmailAndProceed(Func<string, object> assertFunc = null)
+        public void EnterInstallerEmailAndProceed(string installerEmail, Func<string, object> assertFunc = null)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            string emailId = EnterInstallerEmail();
+            LoggingService.WriteLogOnMethodEntry(installerEmail, assertFunc);
+            ClearAndType(EmailFieldElement, installerEmail);
             SendButtonElement.Click(); // Send Email button
             if( assertFunc != null)
             {
@@ -161,7 +161,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             var nextButtonElement = SeleniumHelper.FindElementByCssSelector(NextButtonSelector);
             nextButtonElement.Click(); // Next button
-            return emailId;
         }
 
     }

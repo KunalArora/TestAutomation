@@ -38,6 +38,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IRunCommandService _runCommandService;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
         private readonly IPageParseHelper _pageParseHelper;
+        private readonly IUserResolver _userResolver;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -54,7 +55,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ILoggingService loggingService,
             IRunCommandService runCommandService,
             IPageParseHelper pageParseHelper,
-            MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin)
+            MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin,
+            IUserResolver userResolver)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -68,6 +70,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _clickBillExcelHelper = clickBillExcelHelper;
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
             _pageParseHelper = pageParseHelper;
+            _userResolver = userResolver;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -479,7 +482,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 default: // For Bulk installation request
                     // Click Send Installation Request button (used for bulk)
                     ClickSafety(dealerAgreementDevicesPage.SendInstallationRequestElement, dealerAgreementDevicesPage);
-                    dealerAgreementDevicesPage.SendInstallationRequest();
+                    dealerAgreementDevicesPage.SendInstallationRequest(_userResolver.InstallerUsername);
                     break;
             }
 
@@ -503,7 +506,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         dealerAgreementDevicesPage.ClickSendInstallationRequestInActions(rowIndex);
 
                         // Handle Send Installation Request modal
-                        dealerAgreementDevicesPage.SendInstallationRequest();
+                        dealerAgreementDevicesPage.SendInstallationRequest(_userResolver.InstallerUsername);
                         break;
                     }
                 }
@@ -1036,7 +1039,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 {
                     dealerAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
                     var newModel = dealerAgreementDevicesPage.SendSwapRequest(
-                        device, swapDeviceType, _contextData.Culture);
+                        device, swapDeviceType, _contextData.Culture, _userResolver.InstallerUsername);
                     _dealerWebDriver.Navigate().Refresh();
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
