@@ -90,6 +90,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public readonly string SwapBeingReplaceStatusIconSelector = ".glyphicon-transfer";
         public readonly string SwapReplacedStatusIconSelector = ".glyphicon-ban-circle";
 
+        private const string DevicesContainerValidationSelector = ".mps-dataTables-footer";
 
         // Web Elements
         // Alerts
@@ -647,7 +648,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
         }
 
-        public string SendSwapRequest(AdditionalDeviceProperties device, string swapDeviceType, string culture, string installerEmail)
+        public string VerifySwapModalAndFillDetails(AdditionalDeviceProperties device, string swapDeviceType, string culture, string installerEmail)
         {
             LoggingService.WriteLogOnMethodEntry(device, swapDeviceType, culture, installerEmail);
 
@@ -655,7 +656,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             string resourceSwapDeviceType = translationService.GetSwapTypeText(swapDeviceType, culture);
 
-            if(!SeleniumHelper.IsElementNotPresent(PreloaderSelector))
+            if (!SeleniumHelper.IsElementNotPresent(PreloaderSelector))
             {
                 SeleniumHelper.WaitUntil(d => !SeleniumHelper.FindElementByCssSelector(PreloaderSelector).Displayed);
             }
@@ -695,7 +696,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             string newModel = null;
 
-            if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, culture)))
+            if (resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithDifferentModel, culture)))
             {
                 var SelectDifferentModelDropdownElement = SeleniumHelper.FindElementByCssSelector(SelectModelDropdownSelector);
                 var selectedModel = SelectFromDropDownByIndexAndReturnValue(SelectDifferentModelDropdownElement, 2); // Choose the 2nd model on the dropdown list as replacement model
@@ -705,14 +706,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     "Confirmation Text of the the device (Replace with Different Model) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
 
             }
-            else if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithSameModel, culture)))
+            else if (resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceWithSameModel, culture)))
             {
                 newModel = device.Model;
                 var ConfirmationText = SeleniumHelper.FindElementByCssSelector(SwapSameConfirmationSelector).Text;
                 TestCheck.AssertTextContains(device.Model, ConfirmationText, string.Format(
                     "Confirmation Text of the the device (Replace with Same Model) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
             }
-            else if(resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceThePcb, culture)))
+            else if (resourceSwapDeviceType.Equals(translationService.GetSwapTypeText(TranslationKeys.SwapType.ReplaceThePcb, culture)))
             {
                 newModel = device.Model;
                 var ConfirmationText = SeleniumHelper.FindElementByCssSelector(SwapPcbConfirmationSelector).Text;
@@ -720,9 +721,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     "Confirmation Text of the the device (Replace PCB) could not be verified on Swap Request Modal for device with device ID: {0}", device.MpsDeviceId));
             }
 
-
             // Input Email ID
             SeleniumHelper.FindElementByCssSelector(InputEmailSelector).SendKeys(installerEmail);
+
+            return newModel;
+        }
+
+        public void ClickSendSwapRequestAndVerify()
+        {
+            LoggingService.WriteLogOnMethodEntry();
 
             var sendSwapButton = SeleniumHelper.FindElementByCssSelector(SendSwapRequestButtonSelector);
             SeleniumHelper.WaitUntil(d => sendSwapButton.Enabled);
@@ -739,8 +746,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             {
                 TestCheck.AssertFailTest("Error occurred while sending the swap installation request. Error details:" + e);
             }
-
-            return newModel;
         }
 
         // Verify the status of the device & return the device ID
@@ -751,6 +756,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             {
                 throw new Exception("Cannot verify device address for a device with Serial Number null");
             }
+
+            // Wait for Devices container content to be loaded
+            SeleniumHelper.FindElementByCssSelector(DevicesContainerValidationSelector);
 
             // Note: Check by serial number as deviceId changes for the device being replaced
             string displayedSerialNumber;
