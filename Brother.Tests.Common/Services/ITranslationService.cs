@@ -23,5 +23,6 @@
         // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);
         string GetDeviceConnectionStatusText(string name, string culture);
+        string GetCommunicationMethodText(string cloud, string culture);
     }
 }

@@ -111,6 +111,13 @@
             public static string Swapped { get { return "SWAPPED"; } }
         }
 
+        // for type string on hover message
+        public static class CommunicationMethod
+        {
+            public static string Cloud { get { return "CLOUD"; } }
+            public static string Web { get { return "WEB"; } }
+        }
+
         public static class ConsumableOrderStatus
         {
             public static string InProgress { get { return "IN_PROGRESS"; } }

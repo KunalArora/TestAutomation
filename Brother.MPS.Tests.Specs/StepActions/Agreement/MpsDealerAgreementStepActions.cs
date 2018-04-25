@@ -1015,6 +1015,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             string resourceInstalledPrinterBeingReplacedStatus = _translationService.GetInstalledPrinterStatusText(
                 TranslationKeys.InstalledPrinterStatus.BeingReplaced, _contextData.Culture);
+            string resourceInstalledPrinterTypeCloud = _translationService.GetCommunicationMethodText(
+                TranslationKeys.CommunicationMethod.Cloud, _contextData.Culture); //"Cloud" 
+            string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
 
             // Switch back to Dealer window
             _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
@@ -1037,13 +1041,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
+                    dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
                     // Verify "Being Replaced" status for this device
-                    var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus);
+                    var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus, resourceInstalledPrinterTypeCloud, resourceDeviceConnectionStatusResponding);
                     dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);
 
                     // Save info for new device to context data
                     device.SwappedDeviceID = newDeviceId;
-                    newDevices.Add(new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true}); // Handle only monochrome (swapped in) devices for now
+                    var swapProp = new AdditionalDeviceProperties() { Model = newModel, MpsDeviceId = newDeviceId, IsMonochrome = true, IsSwappedInDevice = true };
+                    dealerAgreementDevicesPage.SaveAddressString(swapProp);
+                    newDevices.Add(swapProp); // Handle only monochrome (swapped in) devices for now
                 }
             }
 

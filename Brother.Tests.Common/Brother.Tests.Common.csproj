@@ -99,6 +99,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\CommunicationMethod\CommunicationMethod.en-gb.Designer.cs">
+      <DependentUpon>CommunicationMethod.en-gb.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\CommunicationMethod\CommunicationMethod.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommunicationMethod.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
       <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -249,6 +259,14 @@
     <EmbeddedResource Include="Resources\AgreementType\AgreementType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CommunicationMethod\CommunicationMethod.en-gb.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommunicationMethod.en-gb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CommunicationMethod\CommunicationMethod.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommunicationMethod.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

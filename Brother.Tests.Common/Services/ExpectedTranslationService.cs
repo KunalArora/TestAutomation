@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Brother.Tests.Common.Resources;
 
 namespace Brother.Tests.Common.Services
 {
@@ -124,6 +123,11 @@ namespace Brother.Tests.Common.Services
         public string GetLeasingBillingCycle(string name, string culture)
         {
             return GetText(Resources.LeasingBillingCycle.LeasingBillingCycle.ResourceManager, name, culture);
+        }
+
+        public string GetCommunicationMethodText(string name, string culture)
+        {
+            return GetText(Resources.CommunicationMethod.CommunicationMethod.ResourceManager, name, culture);
         }
     }
 }
