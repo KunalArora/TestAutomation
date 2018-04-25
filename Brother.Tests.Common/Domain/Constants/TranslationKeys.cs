@@ -122,6 +122,7 @@
         public static class ConsumableOrderStatus
         {
             public static string InProgress { get { return "IN_PROGRESS"; } }
+            public static string InProcessing { get { return "IN_PROCESSING"; } }
         }
 
         public static class ServiceRequestStatus
@@ -150,11 +151,6 @@
             public static string CyanToner { get { return "CYAN_TONER"; } }
             public static string MagentaToner { get { return "MAGENTA_TONER"; } }
             public static string YellowToner { get { return "YELLOW_TONER"; } }
-        }
-
-        public static class OrderStatus
-        {
-            public static string InProcessing { get { return "IN_PROCESSING"; } }
         }
     }
 }

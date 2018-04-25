@@ -90,10 +90,6 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.OrderedConsumable.OrderedConsumable.ResourceManager, name, culture);
         }
         
-        public string GetOrderStatusText(string name, string culture)
-        {
-            return GetText(Resources.OrderStatus.OrderStatus.ResourceManager, name, culture);
-        }
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)

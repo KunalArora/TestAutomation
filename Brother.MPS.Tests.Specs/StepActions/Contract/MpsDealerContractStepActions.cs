@@ -395,13 +395,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
                             TestCheck.AssertFailTest(
                                 string.Format("Number of retries exceeded the default limit during verification of print counts for proposal {0}", _contextData.ProposalId));
                         }
-                        continue;
                     }
                 }
             }
         }
 
-        public void VerifyConsumableOrder(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        public void VerifyConsumableOrder(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string resourceOrderStatus)
         {
             LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
 
@@ -409,7 +408,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             foreach(var product in _contextData.PrintersProperties)
             {
                 string orderedConsumable = "";
-                string orderStatus = "";
     
                 //Translation for Ordered Consumable text
                 if(product.TonerInkBlackStatus.ToLower() == "empty") {
@@ -422,13 +420,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
                 }
 
-                //Translation for Order Status Text
-                orderStatus = _translationService.GetOrderStatusText(TranslationKeys.OrderStatus.InProcessing, _contextData.Culture);
-
                 if(orderedConsumable != "")
                 {
                     //Verification process
-                    while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, orderStatus))
+                    while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, resourceOrderStatus))
                     {
                         RunCommandServicesRequests();
                         _dealerWebDriver.Navigate().Refresh();
@@ -440,7 +435,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
                             TestCheck.AssertFailTest(
                                 string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
                         }
-                        continue;
                     }
                 }
             }
@@ -472,7 +466,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
             return _pdfHelper.Download(ph =>
             {
-                dealerReportsProposalSummary.DownloadCreditNotePdf();
+                dealerReportsProposalSummary.DownloadCreditNotePdf(1); // Pass 1 as parameter as download credit note PDF of first row of billing dates table
                 return true;
             });          
 
@@ -483,7 +477,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
             return _pdfHelper.Download(ph =>
             {
-                dealerReportsProposalSummary.DownloadInvoicePdf();
+                dealerReportsProposalSummary.DownloadInvoicePdf(1); // Pass 1 as parameter as download invoice PDF of first row of billing dates table
                 return true;
             }); 
         }

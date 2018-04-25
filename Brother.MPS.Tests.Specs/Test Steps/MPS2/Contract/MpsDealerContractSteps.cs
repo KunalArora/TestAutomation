@@ -268,9 +268,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I update the consumable order and verify it on the dataquery page")]
         public void WhenIUpdateTheConsumableOrderAndVerifyItOnTheDataqueryPage()
         {
+            string resourceConsumableOrderStatusInProcessing = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProcessing, _contextData.Culture);
+
             _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
             _mpsDealerContractStepActions.RunCommandServicesRequests();
-            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage);
+            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage, resourceConsumableOrderStatusInProcessing);
         }
 
         [When(@"I check the billing to ensure details are correctly populated")]

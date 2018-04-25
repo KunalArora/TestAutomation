@@ -50,7 +50,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string ConsumableOrderModalCloseButtonSelector = ".js-mps-consumable-orders-list > .modal-header > .close";
 
         private const string BillingDatesContainerSelector = ".mps-billing-dates-container > tbody";
-        private const string FirstRowActionButtonSelector = "#content_0_BillingDatesList_BillingDates_CellActions_0 > .js-mps-filter-ignore > .btn.btn-primary";
+        private const string BillingDatesRowActionButtonSelector = "[id*=content_0_BillingDatesList_BillingDates_CellActions_]";
         private const string CreditNotePdfSelector = ".js-mps-download-credit-note-pdf";
         private const string InvoicePdfSelector = ".js-mps-download-invoice-pdf";
 
@@ -104,7 +104,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public bool VerifyConsumableOrderOfDevice(PrinterProperties product, string orderedConsumable, string orderStatus)
         {
-            LoggingService.WriteLogOnMethodEntry(product, orderedConsumable);
+            LoggingService.WriteLogOnMethodEntry(product, orderedConsumable, orderStatus);
 
             bool isUpdated = true;
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintersContainerElement);
@@ -168,29 +168,39 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return ShowConsumableOrderElement;
         }
 
-        public void DownloadCreditNotePdf()
+        /// <summary>
+        /// Download Credit Note PDF for this row of billing dates
+        /// </summary>
+        /// <param name="row">Should be >= 1</param>
+        public void DownloadCreditNotePdf(int row)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(row);
 
             var BillingDatesContainerElement = SeleniumHelper.FindElementByCssSelector(BillingDatesContainerSelector);
             var BillingDatesRowsElement = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
 
-            var FirstRowActionButtonElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[0], FirstRowActionButtonSelector);
-            SeleniumHelper.ClickSafety(FirstRowActionButtonElement);
+            var ActionButtonContextElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[row - 1], BillingDatesRowActionButtonSelector);
+            var ActionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionButtonContextElement, ".dropdown-toggle");
+            SeleniumHelper.ClickSafety(ActionButtonElement);
 
-            var CrediNotePdfElement = SeleniumHelper.FindElementByCssSelector(CreditNotePdfSelector);
-            SeleniumHelper.ClickSafety(CrediNotePdfElement);
+            var CreditNotePdfElement = SeleniumHelper.FindElementByCssSelector(CreditNotePdfSelector);
+            SeleniumHelper.ClickSafety(CreditNotePdfElement);
         }
 
-        public void DownloadInvoicePdf() 
+        /// <summary>
+        /// Download Invoice PDF for this row of billing dates
+        /// </summary>
+        /// <param name="row">Should be >= 1</param>
+        public void DownloadInvoicePdf(int row) 
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(row);
 
             var BillingDatesContainerElement = SeleniumHelper.FindElementByCssSelector(BillingDatesContainerSelector);
             var BillingDatesRowsElement = SeleniumHelper.FindRowElementsWithinTable(BillingDatesContainerElement);
 
-            var FirstRowActionButtonElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[0], FirstRowActionButtonSelector);
-            SeleniumHelper.ClickSafety(FirstRowActionButtonElement);
+            var ActionButtonContextElement = SeleniumHelper.FindElementByCssSelector(BillingDatesRowsElement[row - 1], BillingDatesRowActionButtonSelector);
+            var ActionButtonElement = SeleniumHelper.FindElementByCssSelector(ActionButtonContextElement, ".dropdown-toggle");
+            SeleniumHelper.ClickSafety(ActionButtonElement);
 
             var InvoicePdfElement = SeleniumHelper.FindElementByCssSelector(InvoicePdfSelector);
             SeleniumHelper.ClickSafety(InvoicePdfElement);

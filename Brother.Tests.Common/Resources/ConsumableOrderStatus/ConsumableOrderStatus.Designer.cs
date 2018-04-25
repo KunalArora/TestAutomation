@@ -61,6 +61,15 @@ namespace Brother.Tests.Common.Resources.ConsumableOrderStatus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In processing.
+        /// </summary>
+        internal static string IN_PROCESSING {
+            get {
+                return ResourceManager.GetString("IN_PROCESSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In Progress.
         /// </summary>
         internal static string IN_PROGRESS {
