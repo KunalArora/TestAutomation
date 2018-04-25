@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.Resolvers
         string BankPassword { get; }
         string ServiceDeskUsername { get; }
         string ServiceDeskPassword { get; }
+        string InstallerUsername { get; }
 
         string GetDealerUsername(BusinessType businessType);
         string GetDealerPassword(BusinessType businessType);

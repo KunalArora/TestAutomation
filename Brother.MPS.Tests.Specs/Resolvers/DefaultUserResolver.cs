@@ -7,10 +7,9 @@ namespace Brother.Tests.Specs.Resolvers
     public class DefaultUserResolver : IUserResolver
     {
         private readonly IContextData _contextData;
-        private const string TYPE1_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
-        private const string TYPE1_PASSWORD_PATTERN = "{0}{1}1";
-        private const string TYPE3_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
-        private const string TYPE3_PASSWORD_PATTERN = "{0}{1}9";
+        private const string OLD_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
+        private const string USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}-Auto@brother.co.uk";
+        private const string PASSWORD_PATTERN = "{0}{1}{2}";
 
         public DefaultUserResolver(IContextData contextData)
         {
@@ -35,7 +34,6 @@ namespace Brother.Tests.Specs.Resolvers
 
         public string GetDealerUsername(BusinessType businessType)
         {
-            string pattern;
             string loginPatternNumber;
 
             if (_contextData.SpecificDealerUsername != null)
@@ -46,24 +44,22 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType) {
                 case BusinessType.Type1:
                     // Only Type1
-                    pattern = TYPE1_USERNAME_PATTERN;
                     loginPatternNumber = "1";
                     break;
                 case BusinessType.Type3:
                     // Only Type3
-                    pattern = TYPE3_USERNAME_PATTERN;
-                    loginPatternNumber = "9";
+                    loginPatternNumber = "3";
                     break;
                 default:
                     throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerUsername", businessType));
             }
 
-            return string.Format(pattern, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", loginPatternNumber);
+            return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", loginPatternNumber);
         }
 
         public string GetDealerPassword(BusinessType businessType)
         {
-            string pattern;
+            string loginPatternNumber;
 
             if (_contextData.SpecificDealerPassword != null)
             {
@@ -73,30 +69,30 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType)
             {
                 case BusinessType.Type1:
-                    pattern = TYPE1_PASSWORD_PATTERN;
+                    loginPatternNumber = "1";
                     break;
                 case BusinessType.Type3:
-                    pattern = TYPE3_PASSWORD_PATTERN;
+                    loginPatternNumber = "3";
                     break;
                 default:
                     throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerPassword", businessType));
             }
 
-            return string.Format(pattern, _contextData.Country.PasswordCountryAbbreviation, "dealer");
+            return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "dealer", loginPatternNumber);
         }
 
         public string LocalOfficeAdminUsername
         {
             get
             {
-                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOAdmin", "");
+                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOAdmin", "");
             }
         }
         public string LocalOfficeAdminPassword 
         {
             get
             {
-                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loadmin");
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loadmin", 1);
             }
         }
 
@@ -104,7 +100,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOApprover", "");
+                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOApprover", "");
             }
         }
 
@@ -112,7 +108,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loapprover");
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loapprover", 1);
             }
         }
 
@@ -122,13 +118,17 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
+                // TODO: Change this to use new user name pattern after bank bug has been fixed
+                return string.Format(OLD_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
             }
         }
-        public string BankPassword {
+        public string BankPassword
+        {
             get
             {
-                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "leasingbank");
+                // TODO: Change this to use new password after bank bug has been fixed
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "leasingbank", 1);  // Delete this line after bank bug has been fixed
+                //return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "bank", 1);       // UnComment this line after bank has been fixed
             }
         }
 
@@ -136,7 +136,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(TYPE1_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "ServiceDesk", "");
+                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "ServiceDesk", "");
             } 
         }
        
@@ -144,7 +144,15 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(TYPE1_PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "service");
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "service", 1);
+            }
+        }
+
+        public string InstallerUsername
+        {
+            get
+            {
+                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Installer", "");
             }
         }
     }

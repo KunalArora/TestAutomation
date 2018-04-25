@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly RunCommandService _runCommandService;
         private readonly ITranslationService _translationService;
         private readonly IContractShiftService _contractShiftService;
+        private readonly IUserResolver _userResolver;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             ITranslationService translationService,
             ILoggingService loggingService,
             RunCommandService runCommandService,
-            IContractShiftService contractShiftService)            
+            IContractShiftService contractShiftService,
+            IUserResolver userResolver)            
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
@@ -44,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService = runCommandService;
             _translationService = translationService;
             _contractShiftService = contractShiftService;
+            _userResolver = userResolver;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -235,7 +238,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
             }
 
-            _contextData.InstallerEmail = dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed(actualMessage=> {
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            dealerSendInstallationEmailPage.EnterInstallerEmailAndProceed(_contextData.InstallerEmail, actualMessage=> {
                 var expectedMessage = _translationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.EmailSendSuccess, _contextData.Culture);
                 if(string.IsNullOrWhiteSpace(expectedMessage)) { return true; }
                 Assert.AreEqual(expectedMessage, actualMessage);
@@ -284,7 +288,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public DealerManageDevicesPage PopulateInstallerEmailAndSendEmailForSwap(DealerSendSwapInstallationEmailPage dealerSendSwapInstallationEmailPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerSendSwapInstallationEmailPage);
-            _contextData.InstallerEmail = dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            dealerSendSwapInstallationEmailPage.EnterInstallerEmailAndProceed(_contextData.InstallerEmail);
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

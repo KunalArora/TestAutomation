@@ -34,8 +34,21 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
-            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
+            IUserResolver userResolver)
+            : base(webDriverFactory, 
+            contextData, 
+            pageService, 
+            context, 
+            urlResolver, 
+            loggingService, 
+            runtimeSettings, 
+            translationService, 
+            runCommandService, 
+            devicesExcelHelper, 
+            clickBillExcelHelper, 
+            serviceInstallationBillExcelHelper, 
+            userResolver)
         {
             _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
             _contextData = contextData;
