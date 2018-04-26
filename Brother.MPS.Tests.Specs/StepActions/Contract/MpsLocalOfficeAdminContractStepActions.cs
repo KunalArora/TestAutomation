@@ -236,7 +236,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 product.ColorPrintCount = updatedColor;
             }
             //The Print Counts are not updated on the MPS portal if implicit wait is not applied as the system processing is slow.
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
         }
 
@@ -252,7 +252,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
                 if (product.monoOverusage != 0) product.monoOverusage++;
             }
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
         }
     }

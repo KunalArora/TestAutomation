@@ -54,5 +54,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ResetDevice { get; set; }
         public string BocModel { get; set; }
         public string ReInstallDevice { get; set; }
+        public string ConsumableCreatedDate { get; set; }
     }
 }

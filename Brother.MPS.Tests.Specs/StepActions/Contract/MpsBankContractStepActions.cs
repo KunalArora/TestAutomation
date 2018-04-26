@@ -32,7 +32,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
             _contractShiftService = contractShiftService;
-
         }
 
 
@@ -56,13 +55,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             bankContractsMaintenancePage.EnableCheckAll();
             ClickSafety(bankContractsMaintenancePage.ButtonSaveElement, bankContractsMaintenancePage, true);
             return PageService.GetPageObject<BankContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
-        }
-
-        public void ContractTimeShift(int backToTheMonth)
-        {
-            LoggingService.WriteLogOnMethodEntry(backToTheMonth);
-            var days = (int)(DateTime.Now - DateTime.Now.AddMonths(-backToTheMonth)).TotalDays;
-            _contractShiftService.ContractTimeShiftCommand(ContextData.ProposalId, days, "d", false, true, "Any");
         }
 
         public BankContractsAwaitingAcceptancePage NavigateToContractsAwaitingAcceptancePage(BankContractsApprovedProposalsPage bankContractsApprovedProposalsPage)
@@ -93,12 +85,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(element, pageObject);
             pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
-        }
-
-        public void CheckTheBillingToEnsureDetailsAreCorrectlyPopulated()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-            // TODO MPS-4773 DL INVOICE AND VALIDATE
         }
     }
 }

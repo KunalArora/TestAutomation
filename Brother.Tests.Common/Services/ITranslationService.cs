@@ -13,13 +13,14 @@
         string GetInstallationStatusText(string name, string culture);
         string GetInstalledPrinterStatusText(string name, string culture);
         string GetProposalDeclineReasonText(string name, string culture);
-        string GetProposalPdfText(string name, string culture);
+        string GetPdfTranslationsText(string name, string culture);
         string GetConsumableOrderStatusText(string name, string culture);
         string GetServiceRequestStatusText(string name, string culture);
         string GetOverusageText(string name, string culture);
         string GetContractRejectReason(string name, string culture);
         string GetDisplayMessageText(string name, string culture);
         string GetLeasingBillingCycle(string leasingBillingCycle, string culture);
+        string GetOrderedConsumable(string name, string culture);
         // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);
         string GetDeviceConnectionStatusText(string name, string culture);

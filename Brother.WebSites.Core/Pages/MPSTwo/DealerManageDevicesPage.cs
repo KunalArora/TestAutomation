@@ -4,6 +4,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRequestStatusSelector = "[id*=content_1_RequestList_List_CellInstallationRequestStatus_]";
         private const string InstallationRequestCommunicationMethodSelector = "[id*=content_1_RequestList_List_CellCommunicationMethodIcon_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
+        private const string CreateRequestButtonSelector = "#content_1_ButtonCreateRequest";
         private const string CancelInstallationRequestSelector = ".js-mps-cancel-installation-request";
         private const string InstallationRequestSelector = ".js-mps-show-installation-request-email";
         private const string DeviceListContainerSelector = ".js-mps-device-list-container";
@@ -803,13 +805,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ScrollTo(CompanyLocationElement);
             SelectElementOptionsByIndex(CompanyLocationElement, 1);
             string companyLocation = SeleniumHelper.SelectDropdownElementTextByIndex(CompanyLocationElement, 1);
+            SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(CompanyLocationElement));
             return companyLocation;
         }
 
         public void ClickCreateRequest()
         {
             LoggingService.WriteLogOnMethodEntry();
-            ScrollTo(CreateRequestElement);
+            var createRequestButtonElement = SeleniumHelper.FindElementByCssSelector(CreateRequestButtonSelector);
+            ScrollTo(createRequestButtonElement);
             SeleniumHelper.ClickSafety(CreateRequestElement, RuntimeSettings.DefaultFindElementTimeout, true);
         }
 

@@ -654,7 +654,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             // Refreshes the print counts on MPS portal (after synchronizing BOC values)
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
 
             // Switch back to Dealer window
             _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
@@ -663,8 +663,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             int retries = 0;
             while(!dealerAgreementDevicesPage.IsPrintCountsUpdated())
             {
-                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
-
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+                
                 _dealerWebDriver.Navigate().Refresh();
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                     RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

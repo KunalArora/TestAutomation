@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brother.Tests.Common.Resources.ConsumableOrderStatus {
+namespace Brother.Tests.Common.Resources.PdfTranslations {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Brother.Tests.Common.Resources.ConsumableOrderStatus {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ConsumableOrderStatus {
+    internal class PdfTranslations {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ConsumableOrderStatus() {
+        internal PdfTranslations() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Brother.Tests.Common.Resources.ConsumableOrderStatus {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.ConsumableOrderStatus.ConsumableOrderStatus", typeof(ConsumableOrderStatus).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.PdfTranslations.PdfTranslations", typeof(PdfTranslations).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,29 @@ namespace Brother.Tests.Common.Resources.ConsumableOrderStatus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In processing.
+        ///   Looks up a localized string similar to Agreement period:.
         /// </summary>
-        internal static string IN_PROCESSING {
+        internal static string AGREEMENT_PERIOD {
             get {
-                return ResourceManager.GetString("IN_PROCESSING", resourceCulture);
+                return ResourceManager.GetString("AGREEMENT_PERIOD", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In Progress.
+        ///   Looks up a localized string similar to Minimum Click Charge:.
         /// </summary>
-        internal static string IN_PROGRESS {
+        internal static string MINIMUM_CLICK_CHARGE {
             get {
-                return ResourceManager.GetString("IN_PROGRESS", resourceCulture);
+                return ResourceManager.GetString("MINIMUM_CLICK_CHARGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Installed Purchase Price:.
+        /// </summary>
+        internal static string TOTAL_INSTALLED_PURCHASE_PRICE {
+            get {
+                return ResourceManager.GetString("TOTAL_INSTALLED_PURCHASE_PRICE", resourceCulture);
             }
         }
     }

@@ -11,9 +11,9 @@ And I enter the proposal description
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>", Service Pack type of "<ServicePackType>" and Leasing Billing Cycle of "<LeasingBillingCycle>"
 And I add these printers:
 		| Model        | Price  | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
-		| DCP-8110DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-8110DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| HL-5450DN    | 300.00 |                           | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-		| DCP-L8450CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L8450CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 23             | 100             | Normal              | Empty              | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| MFC-L8650CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| DCP-8250DN   | 300.00 |                           | Yes      | 5            | 1000       | 0              | 250          | A3P145604    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| DCP-L2520DW  | 300.00 |                           | Yes      | 5            | 1000       | 0              | 200          | A3P145605    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
@@ -33,13 +33,12 @@ And a Brother installer has navigated to the Web Installation page and verify Co
 And Enter the serial numbers and complete installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
-And I update the print count and verify it on the Manage devices page
-#step39,40
-And a Cloud MPS Bank Cloud MPS Bank Summary Accept 
-#step40-42
+And a Cloud MPS Bank Cloud MPS Bank Summary Accept
 And a Cloud MPS Bank Populated Maintain Contact
-#step43,44
-And a Cloud MPS Bank Checking the billing to ensure details are correctly populated
+And I set the Contract in the running state
+And I update the print count and verify it on the dataquery page
+And I update the consumable order and verify it on the dataquery page
+And I check the billing to ensure details are correctly populated
 
 
 @BUK

@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
@@ -27,6 +28,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;
         private readonly RunCommandService _runCommandService;
         private readonly ITranslationService _translationService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -36,6 +38,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private DealerSetInstallationTypePage _dealerSetInstallationTypePage;
         private DealerSendInstallationEmailPage _dealerSendInstallationEmailPage;
         private DealerSendSwapInstallationEmailPage _dealerSwapInstallationEmailPage;
+        private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
+        private SummaryPageValue _proposalSummaryValues;
 
         public MpsDealerContractSteps(MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -48,7 +52,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             IUserResolver userResolver,
             IUrlResolver urlResolver,
             ITranslationService translationService,
-            RunCommandService runCommandService)
+            RunCommandService runCommandService,
+            IPageParseHelper pageParseHelper)
         {
             _context = context;
             _driver = driver;
@@ -62,6 +67,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions = mpsDealerContractStepActions;
             _runCommandService = runCommandService;
             _translationService = translationService;
+            _pageParseHelper = pageParseHelper;
         }
 
         
@@ -140,6 +146,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts();
         }
 
+        [When(@"I navigate to the contract summary page in the reports section")]
+        public void WhenINavigateToTheContractSummaryPageInTheReportsSection()
+        {
+            var dealerDashBoardPage = _mpsSignInStepActions.SignInAsDealer(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerReportsDashboardPage = _mpsDealerContractStepActions.NavigateToReportsDashboardPage(dealerDashBoardPage);
+            var dealerReportsDataQueryPage = _mpsDealerContractStepActions.NavigateToReportsDataQueryPage(dealerReportsDashboardPage);
+             _dealerReportsProposalsSummaryPage = _mpsDealerContractStepActions.NavigateToContractsSummaryPage(dealerReportsDataQueryPage);
+        }
 
         [When(@"I update the print count, raise consumable order and service request for above devices")]
         public void WhenIUpdateThePrintCountRaiseConsumableOrderAndServiceRequestForAboveDevices()
@@ -221,6 +235,73 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void WhenIVerifyThatTheEmailInstallationIsCompletedSuccessfuly()
         {
             _mpsDealerContractStepActions.EmailInstallationCompleteCheck(_dealerManageDevicesPage);
+        }
+
+        [When(@"I navigate to Accepted Contracts Page and click Manage devices button")]
+        public void WhenINavigateToAcceptedContractsPageAndClickManageDevicesButton()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_dealerDashboardPage);
+            _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
+            _runCommandService.RunCreateCustomerAndPersonCommand();
+        }
+
+        [When(@"I set the Contract in the running state")]
+        public void WhenISetTheContractInTheRunningState()
+        {
+            bool generateInvoice = false;
+            _mpsDealerContractStepActions.ShiftContractByOneMonth(generateInvoice);
+            _mpsDealerContractStepActions.ChangeContractToRunning();
+        }
+
+        [When(@"I update the print count and verify it on the dataquery page")]
+        public void WhenIUpdateThePrintCountAndVerifyItOnTheDataqueryPage()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForPrintCounts();
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
+            WhenINavigateToTheContractSummaryPageInTheReportsSection();
+            _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
+        }
+
+        [When(@"I update the consumable order and verify it on the dataquery page")]
+        public void WhenIUpdateTheConsumableOrderAndVerifyItOnTheDataqueryPage()
+        {
+            string resourceConsumableOrderStatusInProcessing = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProcessing, _contextData.Culture);
+
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForConsumableOrder();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+            _mpsDealerContractStepActions.VerifyConsumableOrder(_dealerReportsProposalsSummaryPage, resourceConsumableOrderStatusInProcessing);
+        }
+
+        [When(@"I check the billing to ensure details are correctly populated")]
+        public void WhenICheckTheBillingToEnsureDetailsAreCorrectlyPopulated()
+        {
+            // using Flux capacitor Move the contract back by 6 months
+            var dealerReportsProposalSummary = _mpsDealerContractStepActions.ShiftContractAndRefreshPage(6);
+            
+            // Checking the billing to ensure details are correctly populated
+            _proposalSummaryValues = _pageParseHelper.ParseSummaryPageValues(dealerReportsProposalSummary.SeleniumHelper);
+            var creditNotePdfFile = _mpsDealerContractStepActions.DownloadCreditNotePdf(dealerReportsProposalSummary);
+            try
+            {
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForCreditNotePdf(creditNotePdfFile, _proposalSummaryValues);
+            }
+            finally
+            {
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(creditNotePdfFile);
+            }
+
+            var invoicePdfFile = _mpsDealerContractStepActions.DownloadInvoicePdf(dealerReportsProposalSummary);
+            try
+            {
+                _mpsDealerContractStepActions.AssertEqualSummaryValuesForInvoicePdf(invoicePdfFile, _proposalSummaryValues, _contextData.PrintersProperties);
+            }
+            finally
+            {
+                _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(invoicePdfFile);
+            }
         }
 
     }
