@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brother.Tests.Common.Resources.ProposalPDF {
+namespace Brother.Tests.Common.Resources.OrderedConsumable {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Brother.Tests.Common.Resources.ProposalPDF {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ProposalPDF {
+    internal class OrderedConsumable {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ProposalPDF() {
+        internal OrderedConsumable() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Brother.Tests.Common.Resources.ProposalPDF {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.ProposalPDF.ProposalPDF", typeof(ProposalPDF).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.OrderedConsumable.OrderedConsumable", typeof(OrderedConsumable).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,38 @@ namespace Brother.Tests.Common.Resources.ProposalPDF {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agreement period:.
+        ///   Looks up a localized string similar to Black Toner.
         /// </summary>
-        internal static string AGREEMENT_PERIOD {
+        internal static string BLACK_TONER {
             get {
-                return ResourceManager.GetString("AGREEMENT_PERIOD", resourceCulture);
+                return ResourceManager.GetString("BLACK_TONER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum Click Charge:.
+        ///   Looks up a localized string similar to Cyan Toner.
         /// </summary>
-        internal static string MINIMUM_CLICK_CHARGE {
+        internal static string CYAN_TONER {
             get {
-                return ResourceManager.GetString("MINIMUM_CLICK_CHARGE", resourceCulture);
+                return ResourceManager.GetString("CYAN_TONER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Installed Purchase Price:.
+        ///   Looks up a localized string similar to Magenta Toner.
         /// </summary>
-        internal static string TOTAL_INSTALLED_PURCHASE_PRICE {
+        internal static string MAGENTA_TONER {
             get {
-                return ResourceManager.GetString("TOTAL_INSTALLED_PURCHASE_PRICE", resourceCulture);
+                return ResourceManager.GetString("MAGENTA_TONER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow Toner.
+        /// </summary>
+        internal static string YELLOW_TONER {
+            get {
+                return ResourceManager.GetString("YELLOW_TONER", resourceCulture);
             }
         }
     }

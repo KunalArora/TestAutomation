@@ -96,12 +96,13 @@
             public static string ReplaceWithSameModel { get { return "REPLACE_WITH_SAME_MODEL"; } }
         }
 
-        public static class ProposalPdf
+        public static class PdfTranslations
         {
             public static string AgreementPeriod { get { return "AGREEMENT_PERIOD"; } }
             public static string TotalInstalledPurchasePrice { get { return "TOTAL_INSTALLED_PURCHASE_PRICE"; } }
             public static string MinimumClickCharge { get { return "MINIMUM_CLICK_CHARGE"; } }
-
+            public static string PagePriceBlackWhitePrint { get {return "PAGE_PRICE_BLACK_WHITE_PRINT"; }}
+            public static string PagePriceColorPrint { get { return "PAGE_PRICE_COLOR_PRINT"; } }
         }
 
         public static class DeviceConnectionStatus
@@ -121,6 +122,7 @@
         public static class ConsumableOrderStatus
         {
             public static string InProgress { get { return "IN_PROGRESS"; } }
+            public static string InProcessing { get { return "IN_PROCESSING"; } }
         }
 
         public static class ServiceRequestStatus
@@ -141,6 +143,14 @@
             public static string ContractNotYetSet { get { return "CONTRACT_NOT_YET_SET"; } }
             public static string EmailSendFailure { get { return "EMAIL_SEND_FAILURE"; } }
             public static string AreYouSureUnmatch { get { return "ARE_YOU_SURE_UNMATCH"; } }
+        }
+
+        public static class OrderedConsumable
+        {
+            public static string BlackToner { get { return "BLACK_TONER"; } }
+            public static string CyanToner { get { return "CYAN_TONER"; } }
+            public static string MagentaToner { get { return "MAGENTA_TONER"; } }
+            public static string YellowToner { get { return "YELLOW_TONER"; } }
         }
     }
 }

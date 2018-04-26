@@ -6,13 +6,18 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
+using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using System.Linq;
+using System.Collections.Generic;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -25,6 +30,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly ITranslationService _translationService;
         private readonly IContractShiftService _contractShiftService;
         private readonly IUserResolver _userResolver;
+        private readonly IPdfHelper _pdfHelper;
 
         public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -37,7 +43,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             ILoggingService loggingService,
             RunCommandService runCommandService,
             IContractShiftService contractShiftService,
-            IUserResolver userResolver)            
+            IUserResolver userResolver,    
+            IPdfHelper pdfHelper)            
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
@@ -47,6 +54,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _translationService = translationService;
             _contractShiftService = contractShiftService;
             _userResolver = userResolver;
+            _pdfHelper = pdfHelper;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -97,6 +105,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 string deviceId = product.DeviceId;
                 _deviceSimulatorService.RaiseConsumableOrder(deviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
                 _deviceSimulatorService.NotifyBocOfDeviceChanges(deviceId);
+                product.ConsumableCreatedDate = DateTime.Now.ToString("dd/MM/yyyy");
             }
         }
 
@@ -115,7 +124,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void RunCommandServicesRequests()
         {
             LoggingService.WriteLogOnMethodEntry();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();
         }
@@ -136,7 +145,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 var totalPageCount = product.TotalPageCount; 
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     _dealerWebDriver.Navigate().Refresh();
                     dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                     continue;
@@ -340,6 +349,219 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 throw new NullReferenceException(string.Format("Contract = {0} not found ", proposalId));
             }
 
+        }
+
+        public DealerReportsDashboardPage NavigateToReportsDashboardPage(DealerDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            ClickSafety(localOfficeApproverDashBoardPage.DealerReportLinkElement, localOfficeApproverDashBoardPage);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DataQueryPage NavigateToReportsDataQueryPage(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            ClickSafety(dealerReportsDashboardPage.DataQueryElement, dealerReportsDashboardPage);
+            return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsProposalsSummaryPage NavigateToContractsSummaryPage(DataQueryPage dealerReportsDataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDataQueryPage);
+            dealerReportsDataQueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyUpdatedPrintCounts(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+
+            int retries = 0;
+            
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                if(product.MonoPrintCount!=0 || product.ColorPrintCount!=0)
+                {
+                    while (!dealerReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.MonoPrintCount, product.ColorPrintCount))
+                    {
+                        _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
+
+                        _dealerWebDriver.Navigate().Refresh();
+                        dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            TestCheck.AssertFailTest(
+                                string.Format("Number of retries exceeded the default limit during verification of print counts for proposal {0}", _contextData.ProposalId));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void VerifyConsumableOrder(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string resourceOrderStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+
+            int retries = 0;
+            foreach(var product in _contextData.PrintersProperties)
+            {
+                string orderedConsumable = "";
+    
+                //Translation for Ordered Consumable text
+                if(product.TonerInkBlackStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture);
+                } else if(product.TonerInkCyanStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
+                } else if (product.TonerInkMagentaStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.MagentaToner, _contextData.Culture);
+                } else if (product.TonerInkYellowStatus.ToLower() == "empty") {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
+                }
+
+                if(orderedConsumable != "")
+                {
+                    //Verification process
+                    while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, resourceOrderStatus))
+                    {
+                        RunCommandServicesRequests();
+                        _dealerWebDriver.Navigate().Refresh();
+                        dealerReportsProposalsSummaryPage = PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            TestCheck.AssertFailTest(
+                                string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void ShiftContractByOneMonth(bool generateInvoice)
+        {
+            LoggingService.WriteLogOnMethodEntry(generateInvoice);
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "m", true, generateInvoice, "Any");
+        }
+
+        public void ChangeContractToRunning()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            _runCommandService.RunStartContractCommand();
+        }
+
+        public DealerReportsProposalsSummaryPage ShiftContractAndRefreshPage(int backToTheMonth)
+        {
+            LoggingService.WriteLogOnMethodEntry(backToTheMonth);
+            _contractShiftService.ContractTimeShiftCommand(ContextData.ProposalId, backToTheMonth, "m", false, true, "Any");
+            _dealerWebDriver.Navigate().Refresh();
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+        }
+
+        public string DownloadCreditNotePdf(DealerReportsProposalsSummaryPage dealerReportsProposalSummary)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
+            return _pdfHelper.Download(ph =>
+            {
+                dealerReportsProposalSummary.DownloadCreditNotePdf(1); // Pass 1 as parameter as download credit note PDF of first row of billing dates table
+                return true;
+            });          
+
+        }
+
+        public string DownloadInvoicePdf(DealerReportsProposalsSummaryPage dealerReportsProposalSummary)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalSummary);
+            return _pdfHelper.Download(ph =>
+            {
+                dealerReportsProposalSummary.DownloadInvoicePdf(1); // Pass 1 as parameter as download invoice PDF of first row of billing dates table
+                return true;
+            }); 
+        }
+
+        public void AssertEqualSummaryValuesForCreditNotePdf(string pdfFile, SummaryPageValue summaryValues)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+
+            var PagePriceBlackWhitePrintTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceBlackWhitePrint, _contextData.Culture);
+            var PagePriceColorTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceColorPrint, _contextData.Culture);
+
+            if (_pdfHelper.PdfExists(pdfFile) == false)
+            {
+                throw new Exception("pdf not exists file=" + pdfFile);
+            }
+            string[] searchTextArray = 
+            {
+                string.Format("{0}", _contextData.ProposalId.ToString()),
+                string.Format("{0}", summaryValues["SummaryTable.DealershipName"]),
+                string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]),
+                string.Format("{0}", summaryValues["BillingDates.1.CellStartDate"]),
+                string.Format("{0}", summaryValues["BillingDates.1.CellEndDate"]),
+                string.Format("{0}", PagePriceBlackWhitePrintTranslation),
+                string.Format("{0}", PagePriceColorTranslation)
+            };
+
+            searchTextArray.ToList().ForEach(expected =>
+               {
+                   if( _pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                   {
+                       throw new Exception(string.Format("string not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected)) ;
+                   }
+               });
+        }
+
+        public void AssertEqualSummaryValuesForInvoicePdf(string pdfFile, SummaryPageValue summaryValues, IEnumerable<PrinterProperties> products)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile, summaryValues);
+            
+            var PagePriceBlackWhitePrintTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceBlackWhitePrint, _contextData.Culture);
+            var PagePriceColorTranslation = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.PagePriceColorPrint, _contextData.Culture);
+
+            if (_pdfHelper.PdfExists(pdfFile) == false)
+            {
+                throw new Exception("pdf not exists file=" + pdfFile);
+            }
+            var searchTextArray = new List<string>();
+            searchTextArray.Add(string.Format("{0}", _contextData.ProposalId.ToString()));
+            searchTextArray.Add(string.Format("{0}", summaryValues["SummaryTable.CustomerDetailsName"]));
+            searchTextArray.Add(string.Format("{0}", PagePriceBlackWhitePrintTranslation));
+            searchTextArray.Add(string.Format("{0}", PagePriceColorTranslation));
+            searchTextArray.Add(string.Format("{0}", summaryValues["BillingDates.1.CellStartDate"]));
+            searchTextArray.Add(string.Format("{0}", summaryValues["BillingDates.1.CellEndDate"]));
+
+            foreach(var product in products)
+            {
+                if(product.MonoPrintCount!=0 || product.ColorPrintCount!=0)
+                {
+                    searchTextArray.Add(product.Model);
+                    searchTextArray.Add(product.SerialNumber);
+                    searchTextArray.Add(summaryValues[product.Model + "." + "ColourClickRate"]);
+                    searchTextArray.Add(summaryValues[product.Model + "." + "MonoClickRate"]);
+                }
+            }
+
+            searchTextArray.ToList().ForEach(expected =>
+            {
+                if (_pdfHelper.PdfContainsText(pdfFile, expected) == false)
+                {
+                    throw new Exception(string.Format("string not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected));
+                }
+            });
+        }
+
+        public void DeletePdfFileErrorIgnored(string pdfFile)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile);
+            _pdfHelper.DeletePdfErrorIgnored(pdfFile);
+        }
+
+        private void ClickSafety(IWebElement element, IPageObject pageObject)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
+            pageObject.SeleniumHelper.ClickSafety(element);
         }
     }
 }

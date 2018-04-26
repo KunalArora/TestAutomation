@@ -2,6 +2,7 @@
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -92,7 +93,7 @@ namespace Brother.Tests.Specs.Helpers
             return new KeyValuePair<string, string>(key, brValue.Trim());
         }
 
-        public SummaryPageValue ParseSummaryPageValues(Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper SeleniumHelper, string targetPrefix = "SummaryTable")
+        public SummaryPageValue ParseSummaryPageValues(ISeleniumHelper SeleniumHelper, string targetPrefix = "SummaryTable")
         {
             var value = new SummaryPageValue();
 
@@ -127,10 +128,36 @@ namespace Brother.Tests.Specs.Helpers
                 }
             }
 
+            //Parsing the billing dates
+            try
+            {
+                var billingDatesList = main.FindElement(By.CssSelector(".mps-billing-dates-container"));
+                var billingDatesBodyElement = billingDatesList.FindElement(By.TagName("tbody"));
+                var billingDatesBodyTrElements = billingDatesBodyElement.FindElements(By.TagName("tr"));
+                var prefix = "BillingDates";
+                value.Add(prefix + ".Count", billingDatesBodyTrElements.Count.ToString());
+                var tdElementListBillingDates = billingDatesList.FindElements(By.TagName("td"));
+                foreach (var tdElement in tdElementListBillingDates)
+                {
+                    var idString = tdElement.GetAttribute("id"); // ex. content_0_BillingDatesList_BillingDates_CellStartDate_0
+                    var idArr = idString.Split('_');
+                    if (idArr.Length < 2) continue;
+                    var rowNo = Int32.Parse(idArr[idArr.Length - 1] + 1).ToString(); // ex. 1
+                    var itemName = idArr[idArr.Length - 2]; // ex. CellStartDate
+                    var dictKey = string.Format("{0}.{1}.{2}", prefix, rowNo, itemName);// key ex. BillingDates.1.CellStartDate
+                    value.Add(dictKey, tdElement.Text);
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                //ignore
+            }
+
+            //PArsing the proposal start date
             try
             {
                 var dateElement = main.FindElement(By.Id("content_1_InputEnvisagedStartDate_Input"));
-                value.Add("InputEnvisagedStartDate", dateElement.GetAttribute("value"));
+                value.Add("InputEnvisagedStartDate", dateElement.GetAttribute("value")); 
             }
             catch (NoSuchElementException)
             {

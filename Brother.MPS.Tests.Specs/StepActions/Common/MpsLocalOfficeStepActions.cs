@@ -186,14 +186,14 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Refreshes the print counts on MPS portal (after synchronizing BOC values)
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
 
             // Refresh page until print counts are updated
             int retries = 0;
             while (!localOfficeAgreementDevicesPage.IsPrintCountsUpdated())
             {
                 // Try print counts synchronization again
-                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
                 
                 webDriver.Navigate().Refresh();
                 localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(
@@ -224,7 +224,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementDevicesPage, webDriver);
             // Run Jobs for synchronizing log data, raising consumable order & registering order in SAP
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();
 
@@ -239,7 +239,7 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             while(localOfficeAgreementConsumablesPage.IsNoConsumablesFound())
             {
-                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId);
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
                 _runCommandService.RunConsumableOrderRequestsCommand();
                 _runCommandService.RunCreateConsumableOrderCommand();
 
