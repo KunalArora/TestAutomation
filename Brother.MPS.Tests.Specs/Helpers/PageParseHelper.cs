@@ -135,6 +135,7 @@ namespace Brother.Tests.Specs.Helpers
                 var billingDatesBodyElement = billingDatesList.FindElement(By.TagName("tbody"));
                 var billingDatesBodyTrElements = billingDatesBodyElement.FindElements(By.TagName("tr"));
                 value.Add("BillingDates.Count", billingDatesBodyTrElements.Count.ToString());
+                var prefix = "BillingDates";
                 var tdElementListBillingDates = billingDatesList.FindElements(By.TagName("td"));
                 foreach (var tdElement in tdElementListBillingDates)
                 {
@@ -143,7 +144,6 @@ namespace Brother.Tests.Specs.Helpers
                     if (idArr.Length < 2) continue;
                     var rowNo = Int32.Parse(idArr[idArr.Length - 1] + 1).ToString(); // ex. 1
                     var itemName = idArr[idArr.Length - 2]; // ex. CellStartDate
-                    var prefix = idArr[idArr.Length - 3]; // ex. BillingDates
                     var dictKey = string.Format("{0}.{1}.{2}", prefix, rowNo, itemName);// key ex. BillingDates.1.CellStartDate
                     value.Add(dictKey, tdElement.Text);
                 }
