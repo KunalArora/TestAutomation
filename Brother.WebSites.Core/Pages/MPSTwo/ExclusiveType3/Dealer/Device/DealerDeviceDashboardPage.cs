@@ -38,7 +38,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             var StatusElement = SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, StatusSelector);
             var DeviceStatus = StatusElement.GetAttribute("class");
 
-            var DeliveryAddress = device.AddressNumber + " " + device.AddressStreet + ", " + device.AddressTown + ", " + device.AddressPostCode;
+            var DeliveryAddress = device.AddressNumber + " " + device.AddressStreet + ", " + device.AddressArea + ", " + device.AddressTown + ", " + device.AddressPostCode;
             var Contact = device.ContactFirstName + ", " + device.ContactLastName + ", " + device.Telephone + ", " + device.Email;
             var TodaysDate = MpsUtil.DateTimeString(DateTime.Now);
 
