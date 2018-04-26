@@ -344,5 +344,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
                 _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
         }
+
+        [Then(@"I can verify the CPP Agreement Report")]
+        public void ThenICanVerifyTheCPPAgreementReport()
+        {
+            ScenarioContext.Current.Pending();
+        }
     }
 }

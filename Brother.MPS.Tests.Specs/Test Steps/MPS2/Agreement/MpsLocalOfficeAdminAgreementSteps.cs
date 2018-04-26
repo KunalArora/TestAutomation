@@ -66,5 +66,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         {
             _localOfficeAdminAgreementBillingPage = _mpsLoAdminAgreement.VerifyServiceInstallationInvoice(_localOfficeAdminAgreementBillingPage);
         }
+
+        [Then(@"a Cloud MPS Local Office Admin can verify the CPP Agreement Report")]
+        public void ThenACloudMPSLocalOfficeAdminCanVerifyTheCPPAgreementReport()
+        {
+            ScenarioContext.Current.Pending();
+        }
     }
 }
