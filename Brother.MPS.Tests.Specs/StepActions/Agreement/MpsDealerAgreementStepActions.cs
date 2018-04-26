@@ -1122,6 +1122,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
+        public ReportingDashboardPage NavigateToReports(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            ClickSafety(dealerAgreementDevicesPage.ReportTabElement, dealerAgreementDevicesPage);
+            return PageService.GetPageObject<ReportingDashboardPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void DownloadCPPAgreementReportAndVerify(ReportingDashboardPage dealerReportsPage)
+        {
+            throw new NotImplementedException();
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,

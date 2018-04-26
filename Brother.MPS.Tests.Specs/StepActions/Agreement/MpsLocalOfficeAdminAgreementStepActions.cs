@@ -114,5 +114,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementBillingPage);
             return VerifyServiceInstallationInvoice(localOfficeAgreementBillingPage, _loAdminWebDriver);
         }
+
+        public void DownloadAndVerifyCPPAgreementReport(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
+            ClickSafety(localOfficeAdminDashboardPage.LOAdminReportElement, localOfficeAdminDashboardPage);
+            var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+
+            ClickSafety(reportingDashboardPage.CPPAgreementReportElement, reportingDashboardPage);
+        }
     }
 }

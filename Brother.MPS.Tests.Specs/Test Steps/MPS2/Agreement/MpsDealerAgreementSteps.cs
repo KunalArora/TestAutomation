@@ -348,7 +348,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify the CPP Agreement Report")]
         public void ThenICanVerifyTheCPPAgreementReport()
         {
-            ScenarioContext.Current.Pending();
+            var dealerReportsPage = _mpsDealerAgreement.NavigateToReports(_dealerAgreementDevicesPage);
+            _mpsDealerAgreement.DownloadCPPAgreementReportAndVerify(dealerReportsPage);
         }
     }
 }
