@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
+        private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
 
         public MpsLocalOfficeAdminAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -36,7 +37,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
-            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
+            ICPPAgreementExcelHelper cppAgreementHelper)
             : base(
             webDriverFactory, 
             contextData, 
@@ -56,6 +58,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _mpsSignIn = mpsSignIn;
             _urlResolver = urlResolver;
             _userResolver = userResolver;
+            _cppAgreementHelper = cppAgreementHelper;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
@@ -121,7 +124,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ClickSafety(localOfficeAdminDashboardPage.LOAdminReportElement, localOfficeAdminDashboardPage);
             var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
 
-            ClickSafety(reportingDashboardPage.CPPAgreementReportElement, reportingDashboardPage);
+            // Download excel
+            string excelFilePath = _cppAgreementHelper.Download(() =>
+            {
+                ClickSafety(reportingDashboardPage.CPPAgreementReportElement, reportingDashboardPage);
+                return true;
+            });
+
+            // Verify agreement details
+            _cppAgreementHelper.VerifyAgreementDetails(excelFilePath);
+
+            // Delete excel
+            _cppAgreementHelper.DeleteExcelFile(excelFilePath);            
         }
     }
 }

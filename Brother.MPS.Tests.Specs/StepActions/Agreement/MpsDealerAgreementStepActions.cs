@@ -39,6 +39,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
         private readonly IPageParseHelper _pageParseHelper;
         private readonly IUserResolver _userResolver;
+        private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -56,7 +57,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IPageParseHelper pageParseHelper,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin,
-            IUserResolver userResolver)
+            IUserResolver userResolver,
+            ICPPAgreementExcelHelper cppAgreementHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -71,6 +73,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
             _pageParseHelper = pageParseHelper;
             _userResolver = userResolver;
+            _cppAgreementHelper = cppAgreementHelper;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -1132,7 +1135,20 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public void DownloadCPPAgreementReportAndVerify(ReportingDashboardPage dealerReportsPage)
         {
-            throw new NotImplementedException();
+            LoggingService.WriteLogOnMethodEntry(dealerReportsPage);
+
+            // Download excel
+            string excelFilePath = _cppAgreementHelper.Download(() =>
+            {
+                ClickSafety(dealerReportsPage.CPPAgreementReportElement, dealerReportsPage);
+                return true;
+            });
+
+            // Verify agreement details
+            _cppAgreementHelper.VerifyAgreementDetails(excelFilePath);
+            
+            // Delete excel
+            _cppAgreementHelper.DeleteExcelFile(excelFilePath);
         }
 
         #region private methods
