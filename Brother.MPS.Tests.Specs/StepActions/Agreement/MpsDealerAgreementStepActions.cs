@@ -1038,13 +1038,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 if (device.IsSwap)
                 {
                     dealerAgreementDevicesPage.ClickSwapDeviceInActions(device.MpsDeviceId);
-                    var newModel = dealerAgreementDevicesPage.SendSwapRequest(
+
+                    var newModel = dealerAgreementDevicesPage.VerifySwapModalAndFillDetails(
                         device, swapDeviceType, _contextData.Culture, _userResolver.InstallerUsername);
-                    _dealerWebDriver.Navigate().Refresh();
+                    dealerAgreementDevicesPage.ClickSendSwapRequestAndVerify();
+
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDevicesPage.VerifySwapRequestHasBeenSentSuccessfully(isCloseWhenSuccess: true);
                     // Verify "Being Replaced" status for this device
                     var newDeviceId = dealerAgreementDevicesPage.VerifyStatusOfDevice(device, resourceInstalledPrinterBeingReplacedStatus, resourceInstalledPrinterTypeCloud, resourceDeviceConnectionStatusResponding);
                     dealerAgreementDevicesPage.VerifyStatusIconUsingDeviceId(newDeviceId, dealerAgreementDevicesPage.SwapBeingReplaceStatusIconSelector);

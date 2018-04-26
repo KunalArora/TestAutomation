@@ -468,6 +468,5 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
             element.Click();
         }
-
     }
 }
