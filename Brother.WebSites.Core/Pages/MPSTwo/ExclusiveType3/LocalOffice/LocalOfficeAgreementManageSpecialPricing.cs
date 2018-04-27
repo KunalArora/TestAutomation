@@ -6,6 +6,9 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
@@ -41,6 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string ConfirmationModalSelector = ".js-mps-special-pricing-confirm-modal-content";
         private const string ConfirmationModalAdditionalAuditSelector = ".js-special-pricing-modal-additional-audit";
         private const string ConfirmationModalApplySpecialPricingSelector = ".js-special-pricing-confirm";
+        private const string AuditDetailsSelector = "div > div.modal-body.mps-special-pricing-modal-body > div > div.panel.panel-default > div.panel-body > table > tbody";
 
 
 
@@ -96,7 +100,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             }
         }
 
-        public void EditInstallationPricesAndProceed(IEnumerable<PrinterProperties> printers)
+        public void EditInstallationPricesAndProceed(IEnumerable<PrinterProperties> printers, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
             LoggingService.WriteLogOnMethodEntry(printers);
 
@@ -111,10 +115,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                     var displayedModelName = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "description", "true").Text;
                     if (displayedModelName.Equals(printer.Model) && printer.InstallationPack.ToLower().Equals("yes"))
                     {
+                        var specialPrice = specialPriceList.First(l => Regex.IsMatch(displayedModelName, l.Model));
                         var unitPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "unit-price", "true");
-                        var newUnitPrice = (double.Parse(unitPrice.GetAttribute("value")) - 10).ToString();
+                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"), specialPrice.InstallUnitPrice, Culture) ;
                         ClearAndType(unitPrice, newUnitPrice);
                         printer.InstallationPackPrice = newUnitPrice; // Save to context data for later verification
+                        printer._IsApplySpecialPriceInstall = true;
                         break;
                     }
                 }
@@ -123,10 +129,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             SeleniumHelper.ClickSafety(
                 SeleniumHelper.FindElementByCssSelector(NextButtonSelector));
         }
-
-        public void EditServicePricesAndProceed(IEnumerable<PrinterProperties> printers)
+       
+        public void EditServicePricesAndProceed(IEnumerable<PrinterProperties> printers, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            LoggingService.WriteLogOnMethodEntry(printers);
+            LoggingService.WriteLogOnMethodEntry(printers, specialPriceList);
 
             var serviceTabElement = SeleniumHelper.FindElementByCssSelector(ServiceTabSelector);
 
@@ -139,10 +145,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                     var displayedModelName = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "description", "true").Text;
                     if (displayedModelName.Equals(printer.Model) && printer.ServicePack.ToLower().Equals("yes"))
                     {
+                        var specialPrice = specialPriceList.First(l => Regex.IsMatch(displayedModelName, l.Model));
                         var unitPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "unit-price", "true");
-                        string newUnitPrice = (double.Parse(unitPrice.GetAttribute("value")) - 10).ToString();
+                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"),specialPrice.ServiceUnitPrice,Culture) ;
                         ClearAndType(unitPrice, newUnitPrice);
                         printer.ServicePackPrice = newUnitPrice; // Save to context data for later verification
+                        printer._IsApplySpecialPriceService = true;
                         break;
                     }
                 }
@@ -152,9 +160,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                 SeleniumHelper.FindElementByCssSelector(NextButtonSelector));
         }
 
-        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, string culture)
+        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, string culture, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, culture);
+            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, culture, specialPriceList);
 
             var clickTabElement = SeleniumHelper.FindElementByCssSelector(ClickTabSelector);
 
@@ -169,50 +177,55 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                     var displayedModelName = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "description", "true").Text;
                     if (displayedModelName.Equals(printer.Model))
                     {
+                        var specialPrice = specialPriceList.First(l => Regex.IsMatch(displayedModelName, l.Model));
                         string newServicePrice = null;
                         if (printer.ServicePack.ToLower().Equals("yes") && servicePackType.Equals(_expectedTranslationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, culture)))
                         {
                             var servicePrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "service-unit-price", "true");
-                            newServicePrice = (double.Parse(servicePrice.GetAttribute("value")) - 10).ToString();
+                            newServicePrice = specialPrice.AdjustValue(servicePrice.GetAttribute("value"), specialPrice.ServiceUnitPrice, culture);
                             ClearAndType(servicePrice, newServicePrice);
                         }
 
                         var monoCoverage = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "mono-coverage", "true");
-                        string newMonoCoverage = (double.Parse(monoCoverage.GetAttribute("value")) - 10).ToString();
+                        string newMonoCoverage = specialPrice.AdjustValue(monoCoverage.GetAttribute("value"), specialPrice.MonoClickCoverage, culture);
                         ClearAndType(monoCoverage, newMonoCoverage);
 
                         var monoVolume = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "mono-volume", "true");
-                        string newMonoVolume = (double.Parse(monoVolume.GetAttribute("value")) - 100).ToString();
+                        string newMonoVolume = specialPrice.AdjustValue(monoVolume.GetAttribute("value"), specialPrice.MonoClickVolume, culture);
+
                         ClearAndType(monoVolume, newMonoVolume);
 
                         if (!printer.IsMonochrome)
                         {
                             var colourCoverage = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "colour-coverage", "true");
-                            string newColourCoverage = (double.Parse(colourCoverage.GetAttribute("value")) - 10).ToString();
+                            var newColourCoverage = specialPrice.AdjustValue(colourCoverage.GetAttribute("value"), specialPrice.ColourClickCoverage, culture);
                             ClearAndType(colourCoverage, newColourCoverage);
 
                             var colourVolume = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "colour-volume", "true");
-                            string newColourVolume = (double.Parse(colourVolume.GetAttribute("value")) - 100).ToString();
+                            var newColourVolume = specialPrice.AdjustValue(colourVolume.GetAttribute("value"), specialPrice.ColourClickVolume, culture);
                             ClearAndType(colourVolume, newColourVolume);
 
                             // Save to context data for later verification (colour)
                             var colourClickPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "colour-click", "true");
-                            printer.CoverageColour = Int32.Parse(newColourCoverage);
-                            printer.VolumeColour = Int32.Parse(newColourVolume);
+                            printer.CoverageColour = Int32.Parse(newColourCoverage, NumberStyles.AllowThousands);
+                            printer.VolumeColour = Int32.Parse(newColourVolume, NumberStyles.AllowThousands);
                             printer.ColourClickPrice = colourClickPrice.GetAttribute("value");
                         }
 
                         // Verify that new click price is different from the older one
                         var monoClickPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "mono-click", "true");
                         var oldMonoClickPrice = SeleniumHelper.FindElementByCssSelector(rowElement, ".m-1-10");
-                        SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != oldMonoClickPrice.Text.Substring(1)));
+                        if( isCheckAutoCalculateClickPrice)
+                        {
+                            SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != oldMonoClickPrice.Text.Substring(1)));
+                        }
 
                         // Save to context data for later verification (mono)
                         printer.ServicePackPrice = newServicePrice;
-                        printer.CoverageMono = Int32.Parse(newMonoCoverage);
-                        printer.VolumeMono = Int32.Parse(newMonoVolume);
+                        printer.CoverageMono = Int32.Parse(newMonoCoverage, NumberStyles.AllowThousands);
+                        printer.VolumeMono = Int32.Parse(newMonoVolume, NumberStyles.AllowThousands);
                         printer.MonoClickPrice = monoClickPrice.GetAttribute("value");
-
+                        printer._IsApplySpecialPriceClickPrice = true;
                         break;
                     }
                 }
@@ -227,7 +240,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             LoggingService.WriteLogOnMethodEntry();
 
             var confirmationModal = SeleniumHelper.FindElementByCssSelector(ConfirmationModalSelector);
-
             // Fill Additional Audit Information
             var additionalAudit = SeleniumHelper.FindElementByCssSelector(confirmationModal, ConfirmationModalAdditionalAuditSelector);
             ClearAndType(additionalAudit, "New prices requested for this agreement", true);
@@ -240,5 +252,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             SeleniumHelper.ClickSafety(applySpecialPricingButton);
             SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(applySpecialPricingButton));
         }
+
+        public string[] GetAuditDetails()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var confirmationModal = SeleniumHelper.FindElementByCssSelector(ConfirmationModalSelector);
+            var tbodyElement = SeleniumHelper.FindElementByCssSelector(confirmationModal, AuditDetailsSelector);
+            var text = tbodyElement.Text;
+            var array = text.Replace("\r", "").Split('\n');
+            return array;
+        }
     }
+
 }
