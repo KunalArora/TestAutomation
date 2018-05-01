@@ -107,8 +107,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 localOfficeApproverAgreementManageSpecialPricing.EditServicePricesAndProceed(_contextData.PrintersProperties, specialPriceList);
             }
 
-            var resourceServicePackType = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceServicePackType;
+            var resourceIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
+            var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceIncludedInClickPrice;
             localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
                 _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice);
 
