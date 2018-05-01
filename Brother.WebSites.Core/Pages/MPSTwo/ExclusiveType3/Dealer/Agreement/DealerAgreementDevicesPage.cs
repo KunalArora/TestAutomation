@@ -2,7 +2,6 @@
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
-using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -777,7 +776,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
                     var ModelElement = SeleniumHelper.FindElementByCssSelector(deviceRowElement, DeviceModelNameSelector);
                     var filterString = ModelElement.GetAttribute("data-filter");
-                    var deviceId = filterString.Substring(0, filterString.IndexOf(" "));
+                    // example:
+                    // 161306 (swapped-by: 161310) DCP-8110DN Status: Responding =>161310
+                    // 161306,,swapped-by:,161310,,DCP-8110DN,Status:,Responding,
+                    // 161306 DCP-8110DN Status: Responding =>161306
+                    // 161306,DCP-8110DN,Status:,Responding
+                    var filterStringArr = filterString.Split(new char[]{ ' ', '(', ')'});
+                    var deviceId = filterString.Contains("swapped-by:") ? filterStringArr[3] : filterStringArr[0];
                     return deviceId;
                 }
             }

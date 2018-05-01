@@ -116,7 +116,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
         }
 
-        public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout)
+        public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout, string customMessageWhenTimeout=null)
         {
             LoggingService.WriteLogOnMethodEntry(conditions, timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
@@ -127,7 +127,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
             catch (TimeoutException e)
             {
-                throw new TimeoutException("conditions="+ conditions, e);
+                var message = customMessageWhenTimeout != null ? customMessageWhenTimeout : "conditions=" + conditions;
+                throw new TimeoutException(message, e);
             }
         }
 
@@ -205,12 +206,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return actionsElement;
         }
 
-        public void ClickSafety(IWebElement element, int timeout, bool IsUntilUrlChanges)
+        public void ClickSafety(IWebElement element, int timeout, bool IsUntilUrlChanges, string exceptionMessageWhenTimeout=null )
         {
             LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             try
             {
+                WaitForDocumentReadyStateIsComplete(timeout);
                 var url = string.Copy(_webDriver.Url);
                 WaitUntil(d =>
                 {
@@ -228,7 +230,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
             catch (TimeoutException e)
             {
-                throw new TimeoutException(string.Format("element={0}, IsUntilUrlChanges={1}",element,IsUntilUrlChanges), e);
+                var message = exceptionMessageWhenTimeout != null ? exceptionMessageWhenTimeout : string.Format("element={0}, IsUntilUrlChanges={1}", element, IsUntilUrlChanges);
+                throw new TimeoutException(message, e);
             }
 
         }
@@ -468,5 +471,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
             element.Click();
         }
+
+        public void WaitForDocumentReadyStateIsComplete(int timeout = -1)
+        {
+            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
+            WaitUntil(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"), timeout,
+                "wait for document.readyState timeout");
+        }
+
     }
 }
