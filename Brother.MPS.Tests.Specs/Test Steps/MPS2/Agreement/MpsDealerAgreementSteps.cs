@@ -42,6 +42,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private DealerAgreementsListPage _dealerAgreementsListPage;
         private DealerAgreementDevicesPage _dealerAgreementDevicesPage;
         private DealerAgreementBillingPage _dealerAgreementBillingPage;
+        private DealerReportsDashboardPage _dealarReportsDashboardPage;
 
         public MpsDealerAgreementSteps(
             MpsSignInStepActions mpsSignIn,
@@ -75,10 +76,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.Country = _countryService.GetByName(country);
             _contextData.UsableDeviceIndex = 1;
 
-            string dealerUserName = _runtimeSettings.DefaultType3DealerUsername != null ? _runtimeSettings.DefaultType3DealerUsername : _userResolver.DealerUsername;
-            string dealerPassword = _runtimeSettings.DefaultType3DealerPassword != null ? _runtimeSettings.DefaultType3DealerPassword : _userResolver.DealerPassword;
-
-            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(dealerUserName, dealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
         }
 
@@ -152,16 +150,19 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementsListPage = _mpsDealerAgreement.ValidateSummaryPageAndCompleteSetup(_dealerAgreementCreateSummaryPage);
         }
 
-        [Then(@"I can verify the creation of agreement in the agreement list")]
+        [StepDefinition(@"I can verify the creation of agreement in the agreement list")]
         public void ThenICanVerifyTheCreationOfAgreementInTheAgreementList()
         {
             _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
         }
 
-        [When(@"I can verify the creation of agreement in the agreement list")]
-        public void WhenICanVerifyTheCreationOfAgreementInTheAgreementList()
+        [Then(@"I Check data in the CPP Agreement Device Report")]
+        public void ThenICheckDataInTheCPPAgreementDeviceReport()
         {
-            _mpsDealerAgreement.VerifyCreatedAgreement(_dealerAgreementsListPage);
+            _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealarReportsDashboardPage =  _mpsDealerAgreement.NavigateToReportsDashboardPage(_dealerDashboardPage);
+            string CPPAgreementDevicesReportXlsx=_mpsDealerAgreement.DownloadCPPAgreementDevicesReport(_dealarReportsDashboardPage);
+            _mpsDealerAgreement.VerifyCheckDataInTheCPPAgreementDeviceReport(CPPAgreementDevicesReportXlsx);
         }
 
         [Then(@"I can delete the agreement")]

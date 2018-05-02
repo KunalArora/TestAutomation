@@ -104,10 +104,13 @@
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\CppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ICppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ServiceInstallationBillExcelHelper.cs" />
     <Compile Include="Helpers\IAgreementHelper.cs" />

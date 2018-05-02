@@ -39,6 +39,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
         private readonly IPageParseHelper _pageParseHelper;
         private readonly IUserResolver _userResolver;
+        private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -56,6 +57,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IPageParseHelper pageParseHelper,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin,
+            ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
             IUserResolver userResolver)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
@@ -71,6 +73,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
             _pageParseHelper = pageParseHelper;
             _userResolver = userResolver;
+            _cppAgreementDevicesExcelHelper = cppAgreementDevicesExcelHelper;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -161,7 +164,38 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 ClickSafety(dealerAgreementCreateClickPricePage.NextButton, dealerAgreementCreateClickPricePage);
             }
 
-            return PageService.GetPageObject<DealerAgreementCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var summaryPage =  PageService.GetPageObject<DealerAgreementCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var summaryPageValues = _pageParseHelper.ParseSummaryPageValues(summaryPage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)] = summaryPageValues;
+            return summaryPage;
+        }
+
+        public DealerReportsDashboardPage NavigateToReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            ClickSafety(dealerDashboardPage.DealerReportLinkElement, dealerDashboardPage,isUntilUrlChanges: true);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public string DownloadCPPAgreementDevicesReport(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            var xlsxfile = _cppAgreementDevicesExcelHelper.Download(() => { ClickSafety(dealerReportsDashboardPage.CppAgreementDevicesReportElement, dealerReportsDashboardPage); return true; });
+            return xlsxfile;
+        }
+
+        public void VerifyCheckDataInTheCPPAgreementDeviceReport(string excelFilePath)
+        {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
+            var actualProps = _cppAgreementDevicesExcelHelper.Parse(excelFilePath);
+            var expectSummaryPageValues = _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)];
+            _cppAgreementDevicesExcelHelper.AssertAreEqualProperties(expectSummaryPageValues, actualProps, _contextData.AgreementId, _contextData.Country, "wrong params file=" + excelFilePath);
+        }
+
+
+        public void VerifyCheckDataInTheCPPAgreementDeviceReport(DealerAgreementsListPage dealerAgreementsListPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
         }
 
         public void AssertAreEqualServiceInstallation(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)

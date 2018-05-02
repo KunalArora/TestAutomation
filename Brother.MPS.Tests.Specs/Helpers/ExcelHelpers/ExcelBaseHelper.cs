@@ -5,13 +5,15 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Framework;
 using OfficeOpenXml;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 {
-    public class ExcelBaseHelper
+    public class ExcelBaseHelper :IExcelBaseHelper
     {
         private readonly ILoggingService LoggingService;
         private readonly IRuntimeSettings RuntimeSettings;
@@ -105,6 +107,38 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             DateTime dt = DateTime.FromOADate(Int32.Parse(SerialDate));
             string result = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             return result;
+        }
+
+        public Table ParseExcelFileToTable(string excelFilePath, int worksheetNumber=1)
+        {
+            var fileInfo = new FileInfo(excelFilePath);
+            Assert.True(fileInfo.Exists, string.Format("Excel sheet = {0} does not exist", excelFilePath));
+
+            using (ExcelPackage pack = new ExcelPackage(fileInfo))
+            {
+                ExcelWorksheet ws = pack.Workbook.Worksheets[worksheetNumber];
+                var start = ws.Dimension.Start;
+                var end = ws.Dimension.End;
+                // header
+                var thList = new List<string>();
+                for (int col=start.Column;col <=end.Column;col++)
+                {
+                    var text = ""+ws.Cells[start.Row, col].Text;
+                    thList.Add(text.Replace(" ",""));
+                }
+                var table = new Table(thList.ToArray());
+                // body
+                for( int row =start.Row+1;row <= end.Row; row++)
+                {
+                    var trList = new List<string>();
+                    for (int col = start.Column; col <= end.Column; col++)
+                    {
+                        trList.Add("" + ws.Cells[row, col].Text);
+                    }
+                    table.AddRow(trList.ToArray());
+                }
+                return table;
+            }
         }
 
         #region private methods
