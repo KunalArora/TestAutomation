@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
     [NUnit.Framework.CategoryAttribute("DEV")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("PROPOSALSTATUS")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class RejectContractFeature
     {
         
@@ -42,7 +43,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
                         "UAT",
                         "DEV",
                         "TYPE1",
-                        "PROPOSALSTATUS"});
+                        "PROPOSALSTATUS",
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

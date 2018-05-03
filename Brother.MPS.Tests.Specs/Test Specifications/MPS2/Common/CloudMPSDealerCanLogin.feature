@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST
+﻿@MPS @LOGIN
 Feature: CloudMPSUKDealerCanLogin
 	In order to manage my proposals
 	As a dealer
