@@ -23,7 +23,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("SMOKE")]
-    [NUnit.Framework.CategoryAttribute("ENDTOEND")]
     public partial class Type3BusinessScenario_1Feature
     {
         
@@ -41,8 +40,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
                         "MPS",
                         "UAT",
                         "TYPE3",
-                        "SMOKE",
-                        "ENDTOEND"});
+                        "SMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
