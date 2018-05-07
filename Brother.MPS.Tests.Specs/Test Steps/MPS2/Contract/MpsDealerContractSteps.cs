@@ -214,6 +214,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
+            _mpsDealerContractStepActions.Refresh(_dealerManageDevicesPage);
         }
 
         [Then(@"I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
@@ -246,6 +247,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
+            _mpsDealerContractStepActions.Refresh(_dealerManageDevicesPage);
         }
 
         [When(@"I set the Contract in the running state")]
