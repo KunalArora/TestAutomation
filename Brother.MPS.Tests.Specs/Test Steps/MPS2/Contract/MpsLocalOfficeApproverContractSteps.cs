@@ -88,6 +88,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var _localOfficeApproverManagedevicesContractsPage = _mpsLocalOfficeApproverContractStepActions.NavigateToDeviceManagementPage(_localOfficeApproverDashBoardPage);
             _localOfficeApproverManagedevicesManagePage =  _mpsLocalOfficeApproverContractStepActions.ClickOnActionsManageDevices(_localOfficeApproverManagedevicesContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
+            _mpsLocalOfficeApproverContractStepActions.Refresh(_localOfficeApproverManagedevicesManagePage);
         }
 
         [When(@"a Cloud MPS Local Office Approver create a ""(.*)"" installation request for ""(.*)"" communication")]
