@@ -293,8 +293,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             {
                 return element.Displayed;
             }
-            catch(NoSuchElementException)
+            catch
             {
+                // ex. NoSuchElementException,StaleElementReferenceException
                 return false;
             }
         }
@@ -306,8 +307,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             {
                 return context.FindElement(By.CssSelector(selector)).Displayed;
             }
-            catch (NoSuchElementException)
+            catch
             {
+                // ex. NoSuchElementException,StaleElementReferenceException
                 return false;
             }
         }
