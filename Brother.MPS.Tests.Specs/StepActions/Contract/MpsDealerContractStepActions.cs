@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
@@ -14,10 +15,9 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
-using TechTalk.SpecFlow;
-using System.Linq;
 using System.Collections.Generic;
-using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -229,7 +229,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             int retries = 0;
 
-            while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement))
+            // note: IsElementDisplayed(...SendButtonElement) => see https://brother-bie.atlassian.net/browse/MPS-5846
+            while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement) ||
+                dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.SendButtonElement) == false )
             {
                 _dealerWebDriver.Navigate().Refresh();
                 dealerSendInstallationEmailPage = PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
