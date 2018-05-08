@@ -121,7 +121,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement RaiseConsumableOrderActionsButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-device-location > .modal-header > .close")]
         public IWebElement DeviceDetailsModalCloseButtonElement;
-        [FindsBy(How = How.CssSelector, Using = "a[href*=\"reports\"]")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*=\"mps/dealer/reports\"]")]
         public IWebElement ReportTabElement;
 
 

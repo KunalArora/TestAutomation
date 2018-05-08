@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -84,6 +85,10 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void ShiftAgreementStartDateBy(int agreementShiftDays)
         {
             LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
+
+            _contextData.StartDate = MpsUtil.SubtractDaysFromDate(_contextData.StartDate, agreementShiftDays);
+            _contextData.EndDate = MpsUtil.SubtractDaysFromDate(_contextData.EndDate, agreementShiftDays);
+
             _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, true, "Any");
         }
     }

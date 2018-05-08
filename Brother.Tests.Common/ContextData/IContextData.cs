@@ -49,6 +49,9 @@ namespace Brother.Tests.Common.ContextData
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         IList<string> RegisteredDeviceIds { get; set; }
         SnapDictionary SnapValues { get;  }
+        string DateCreated { get; set; }
+        string StartDate { get; set; }
+        string EndDate { get; set; }
 
         // Exclusively Type 3
         string AgreementType { get; set; }
@@ -62,5 +65,8 @@ namespace Brother.Tests.Common.ContextData
         string DealerSAPAccountNumber { get; set; }
         string LeasingBillingCycle { get; set; }
         int UsableDeviceIndex { get; set; } // DeviceIndex which can be used in serial number generation
+        double ClickRateTotal { get; set; }
+        double ServicePackTotal { get; set; }
+        double InstallationPackTotal { get; set; }
     }
 }

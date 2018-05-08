@@ -6,7 +6,6 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Services;
 using NUnit.Framework;
 using OfficeOpenXml;
-using System;
 using System.IO;
 using System.Linq;
 

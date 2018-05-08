@@ -78,6 +78,9 @@ namespace Brother.Tests.Common.ContextData
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
         public SnapDictionary SnapValues { get; private set; }
+        public string DateCreated { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
 
 
         // Exclusively Type 3
@@ -91,6 +94,9 @@ namespace Brother.Tests.Common.ContextData
         public string DealerName { get; set; }
         public string DealerSAPAccountNumber { get; set; }
         public int UsableDeviceIndex { get; set; }
+        public double ClickRateTotal { get; set; }
+        public double ServicePackTotal { get; set; }
+        public double InstallationPackTotal { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>

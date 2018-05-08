@@ -65,7 +65,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashBoardPage);
             ClickSafety(localOfficeAdminDashBoardPage.LOAdminReportElement, localOfficeAdminDashBoardPage);
-            var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            var reportingDashboardPage = PageService.GetPageObject<LocalOfficeReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
             return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
@@ -122,7 +122,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
             ClickSafety(localOfficeAdminDashboardPage.LOAdminReportElement, localOfficeAdminDashboardPage);
-            var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            var reportingDashboardPage = PageService.GetPageObject<LocalOfficeReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
 
             // Download excel
             string excelFilePath = _cppAgreementHelper.Download(() =>

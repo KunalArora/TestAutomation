@@ -6,6 +6,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
@@ -191,6 +192,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
+            _contextData.DateCreated = MpsUtil.DateTimeString(DateTime.Now);
+
+            // Save these details for later verification
+            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal();
+            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal();
+            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal();
 
             // Validate calculations/content on summary page
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);
@@ -1125,22 +1132,22 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public ReportingDashboardPage NavigateToReports(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        public DealerReportsDashboardPage NavigateToReports(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
             ClickSafety(dealerAgreementDevicesPage.ReportTabElement, dealerAgreementDevicesPage);
-            return PageService.GetPageObject<ReportingDashboardPage>(
+            return PageService.GetPageObject<DealerReportsDashboardPage>(
                         RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void DownloadCPPAgreementReportAndVerify(ReportingDashboardPage dealerReportsPage)
+        public void DownloadCPPAgreementReportAndVerify(DealerReportsDashboardPage dealerReportsDashboardPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerReportsPage);
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
 
             // Download excel
             string excelFilePath = _cppAgreementHelper.Download(() =>
             {
-                ClickSafety(dealerReportsPage.CPPAgreementReportElement, dealerReportsPage);
+                ClickSafety(dealerReportsDashboardPage.CPPAgreementReportElement, dealerReportsDashboardPage);
                 return true;
             });
 

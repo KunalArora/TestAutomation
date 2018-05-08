@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ReportingDashboardPage : BasePage, IPageObject
+    public class LocalOfficeReportsDashboardPage : BasePage, IPageObject
     {
         private const string DownloadDirectory = @"C:\DataTest";
 

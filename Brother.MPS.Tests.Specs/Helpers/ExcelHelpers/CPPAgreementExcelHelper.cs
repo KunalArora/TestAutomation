@@ -1,9 +1,12 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using NUnit.Framework;
 using OfficeOpenXml;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -34,15 +37,18 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         private const int Report_SalesRep_Col_No = 20;
 
         private ILoggingService LoggingService { get; set; }
+        private ITranslationService _translationService { get; set; }
         private IContextData _contextData;
 
         public CPPAgreementExcelHelper(
             IRuntimeSettings runtimeSettings,
             ILoggingService loggingService,
-            IContextData contextData): base(loggingService, runtimeSettings)
+            IContextData contextData,
+            ITranslationService translationService): base(loggingService, runtimeSettings)
         {
             LoggingService = loggingService;
             _contextData = contextData;
+            _translationService = translationService;
         }
 
         public void VerifyAgreementDetails(string excelFilePath)
@@ -69,6 +75,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                             "Information for agreement {0} not present in the Report tab sheet of excel file {1}", _contextData.AgreementId, excelFilePath));
                     }
                 }
+
+                int totalDevices = _contextData.PrintersProperties.Sum(item => item.Quantity);
 
                 TestCheck.AssertIsEqual(
                     _contextData.Country.CountryIso, HandleNullCase(ws.Cells[rowIndex, Report_Country_Col_No].Value), string.Format(
@@ -98,8 +106,15 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     _contextData.LeasingFinanceReference, HandleNullCase(ws.Cells[rowIndex, Report_FinanceReference_Col_No].Value), string.Format(
                     "Leasing/Financial Reference for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
-                // Date Created
-                // Status
+                TestCheck.AssertIsEqual(
+                    _contextData.DateCreated, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_DateCreated_Col_No].Value)), string.Format(
+                    "Date Created for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                // Verify Agreement Status is Running
+                TestCheck.AssertIsEqual(
+                    _translationService.GetAgreementStatusText(TranslationKeys.AgreementStatus.Running, _contextData.Culture), HandleNullCase(ws.Cells[rowIndex, Report_Status_Col_No].Value), string.Format(
+                    "Status for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
 
                 TestCheck.AssertIsEqual(
                     _contextData.UsageType, HandleNullCase(ws.Cells[rowIndex, Report_UsageType_Col_No].Value), string.Format(
@@ -107,18 +122,36 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                 // Agreement Term in months
                 TestCheck.AssertIsEqual(
-                    _contextData.ContractTerm[0]*12, HandleNullCase(ws.Cells[rowIndex, Report_AgreementTerm_Col_No].Value), string.Format(
+                    (Int32.Parse(_contextData.ContractTerm[0].ToString())*12).ToString(), HandleNullCase(ws.Cells[rowIndex, Report_AgreementTerm_Col_No].Value), string.Format(
                     "Agreement Term for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
-                // Number of devices
                 TestCheck.AssertIsEqual(
-                    _contextData.AdditionalDeviceProperties.Count, HandleNullCase(ws.Cells[rowIndex, Report_NumberOfDevices_Col_No].Value), string.Format(
+                    totalDevices.ToString(), HandleNullCase(ws.Cells[rowIndex, Report_NumberOfDevices_Col_No].Value), string.Format(
                     "Number of devices for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
-                // Number of devices installed
                 TestCheck.AssertIsEqual(
-                    _contextData.AdditionalDeviceProperties.Count, HandleNullCase(ws.Cells[rowIndex, Report_NumberOfDevicesInstalled_Col_No].Value), string.Format(
+                    totalDevices.ToString(), HandleNullCase(ws.Cells[rowIndex, Report_NumberOfDevicesInstalled_Col_No].Value), string.Format(
                     "Number of devices installed for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                TestCheck.AssertIsEqualDouble(
+                    _contextData.InstallationPackTotal, double.Parse(HandleNullCase(ws.Cells[rowIndex, Report_InstallationTotal_Col_No].Value)), 2, string.Format(
+                    "Installation Pack Total for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                TestCheck.AssertIsEqualDouble(
+                    _contextData.ServicePackTotal, double.Parse(HandleNullCase(ws.Cells[rowIndex, Report_ServiceTotal_Col_No].Value)), 2, string.Format(
+                    "Service Pack Total for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                TestCheck.AssertIsEqualDouble(
+                   _contextData.ClickRateTotal, double.Parse(HandleNullCase(ws.Cells[rowIndex, Report_ClickTotal_Col_No].Value)), 2, string.Format(
+                   "Click Rate Total for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                TestCheck.AssertIsEqual(
+                    _contextData.StartDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_StartDate_Col_No].Value)), string.Format(
+                    "Start Date for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
+
+                TestCheck.AssertIsEqual(
+                    _contextData.EndDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_EndDate_Col_No].Value)), string.Format(
+                    "End Date for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
             }
         }
     }
