@@ -63,12 +63,12 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             {
                 ExcelWorksheet ws = pack.Workbook.Worksheets.First();
 
-                int rowIndex = 2;
+                int rowIndex = GetNumberOfRows(excelFilePath);
 
                 while (!(HandleNullCase(ws.Cells[rowIndex, Report_AgreementNumber_Col_No].Value) == _contextData.AgreementId.ToString()))
                 {
-                    rowIndex++;
-                    if (rowIndex > GetNumberOfRows(excelFilePath))
+                    rowIndex--;
+                    if (rowIndex < 2)
                     {
                         TestCheck.AssertFailTest(
                             string.Format(

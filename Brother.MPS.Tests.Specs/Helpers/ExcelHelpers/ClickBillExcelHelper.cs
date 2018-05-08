@@ -106,14 +106,14 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             {
                 ExcelWorksheet ws = pack.Workbook.Worksheets.First();
 
-                int rowIndex = 2;
+                int rowIndex = GetNumberOfRows(excelFilePath);
 
                 while(!(HandleNullCase(ws.Cells[rowIndex, Summary_AgreementNumber_Col_No].Value).Replace(",", "") == _contextData.AgreementId.ToString() &&
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodFrom_Col_No].Value)) == startDate &&
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Summary_BillPeriodTo_Col_No].Value)) == endDate))
                 {
-                    rowIndex++;
-                    if(rowIndex > GetNumberOfRows(excelFilePath))
+                    rowIndex--;
+                    if(rowIndex < 2)
                     {
                         TestCheck.AssertFailTest(
                             string.Format(
@@ -145,7 +145,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                 foreach(var device in _contextData.AdditionalDeviceProperties)
                 {
-                    int rowIndex = 2;
+                    int rowIndex = GetNumberOfRows(excelFilePath, 2);
 
                     // Note: Device won't be present in this bill if:
                     // 1. This is not the first billing period bill and this is the swapped out device
@@ -159,8 +159,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, ClickCharges_BillPeriodFrom_Col_No].Value)) == startDate &&
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, ClickCharges_BillPeriodTo_Col_No].Value)) == endDate))
                     {
-                        rowIndex++;
-                        if (rowIndex > GetNumberOfRows(excelFilePath, 2))
+                        rowIndex--;
+                        if (rowIndex < 2)
                         {
                             TestCheck.AssertFailTest(
                                 string.Format(
@@ -174,7 +174,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                 foreach(var device in _contextData.AdditionalDeviceProperties)
                 {
-                    int rowIndex = 2;
+                    int rowIndex = GetNumberOfRows(excelFilePath, 2);
 
                     // Note: Device won't be present in this bill if:
                     // 1. This is not the first billing period bill and this is the swapped out device
@@ -188,8 +188,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, ClickCharges_BillPeriodFrom_Col_No].Value)) == startDate &&
                     FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, ClickCharges_BillPeriodTo_Col_No].Value)) == endDate))
                     {
-                        rowIndex++;
-                        if (rowIndex > GetNumberOfRows(excelFilePath, 2))
+                        rowIndex--;
+                        if (rowIndex < 2)
                         {
                             TestCheck.AssertFailTest(
                                 string.Format(
