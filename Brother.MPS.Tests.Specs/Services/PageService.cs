@@ -145,5 +145,15 @@ namespace Brother.Tests.Specs.Services
             return pageObject;
         }
 
+        public TPage Refresh<TPage>(TPage pageObject, int timeout) where TPage : BasePage, IPageObject
+        {
+            LoggingService.WriteLogOnMethodEntry(pageObject, timeout);
+            pageObject.Driver.Navigate().Refresh();
+            var driver = pageObject.Driver;
+            var validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
+            var webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds((int)timeout)).Until(d => { try { d.FindElement(By.CssSelector(validationElementSelector)); return true; } catch { return false; } });
+            return pageObject;
+        }
+        
     }
 }

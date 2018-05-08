@@ -781,7 +781,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     // 161306,,swapped-by:,161310,,DCP-8110DN,Status:,Responding,
                     // 161306 DCP-8110DN Status: Responding =>161306
                     // 161306,DCP-8110DN,Status:,Responding
-                    var filterStringArr = filterString.Split(new char[]{ ' ', '(', ')'});
+                    var filterStringArr = filterString.Split(new char[] { ' ', '(', ')' });
                     var deviceId = filterString.Contains("swapped-by:") ? filterStringArr[3] : filterStringArr[0];
                     return deviceId;
                 }

@@ -17,7 +17,6 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
@@ -166,7 +165,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             int retries = 0;
 
-            while (localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.WarningAlertElement))
+            // note: IsElementDisplayed(...SendButtonElement) => see https://brother-bie.atlassian.net/browse/MPS-5846
+            while (localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.WarningAlertElement) ||
+                localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.SendButtonElement) == false )
             {
                 _localOfficeApproverWebDriver.Navigate().Refresh();
                 localOfficeApproverManagedevicesSendInstallationEmailPage = PageService.GetPageObject<LocalOfficeApproverManageDevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
