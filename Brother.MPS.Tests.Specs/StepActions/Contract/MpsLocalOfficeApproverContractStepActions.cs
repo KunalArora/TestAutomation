@@ -17,7 +17,6 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
@@ -32,6 +31,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly ITranslationService _translationService;
         private readonly IPdfHelper _pdfHelper;
         private readonly IContractShiftService _contractShiftService;
+        private readonly IUserResolver _userResolver;
 
         public MpsLocalOfficeApproverContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -47,8 +47,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
-            IContractShiftService contractShiftService)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper)
+            IContractShiftService contractShiftService,
+            IUserResolver userResolver)
+            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper, userResolver)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
@@ -57,6 +58,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _translationService = translationService;
             _pdfHelper = pdfHelper;
             _contractShiftService = contractShiftService;
+            _userResolver = userResolver;
         }
 
         public LocalOfficeApproverContractsAwaitingAcceptancePage NavigateToApprovalContractsAwaitingAcceptancePage(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -163,7 +165,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             int retries = 0;
 
-            while (localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.WarningAlertElement))
+            // note: IsElementDisplayed(...SendButtonElement) => see https://brother-bie.atlassian.net/browse/MPS-5846
+            while (localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.WarningAlertElement) ||
+                localOfficeApproverManagedevicesSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(localOfficeApproverManagedevicesSendInstallationEmailPage.SendButtonElement) == false )
             {
                 _localOfficeApproverWebDriver.Navigate().Refresh();
                 localOfficeApproverManagedevicesSendInstallationEmailPage = PageService.GetPageObject<LocalOfficeApproverManageDevicesSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -181,7 +185,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 }
             }
 
-            _contextData.InstallerEmail = localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            localOfficeApproverManagedevicesSendInstallationEmailPage.EnterInstallerEmailAndProceed(_contextData.InstallerEmail);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -229,7 +234,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
                 while (!(localOfficeApproverManagedevicesManagePage.CheckForUpdatedPrintCount(_localOfficeApproverWebDriver, totalPageCount, product.SerialNumber)))
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     _localOfficeApproverWebDriver.Navigate().Refresh();
                     localOfficeApproverManagedevicesManagePage = PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
                     continue;
@@ -256,7 +261,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeApproverManageDevicesManagePage PopulateInstallerEmailAndSendEmailForSwap(LocalOfficeApproverManageDevicesSendSwapDeviceInstallationEmail localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail);
-            _contextData.InstallerEmail = localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed();
+            _contextData.InstallerEmail = _userResolver.InstallerUsername;
+            localOfficeApproverManagedevicesSendSwapDeviceInstallationEmail.EnterInstallerEmailAndProceed(_contextData.InstallerEmail);
             return PageService.GetPageObject<LocalOfficeApproverManageDevicesManagePage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
@@ -369,7 +375,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalsSummaryPage);
 
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
             _localOfficeApproverWebDriver.Navigate().Refresh();
             localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
@@ -380,7 +386,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 while (!localOfficeApproverReportsProposalsSummaryPage.VerifyPrintCountsOfDevice(product.SerialNumber, product.TotalPageCount))
                 {
-                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId);
+                    _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
                     _localOfficeApproverWebDriver.Navigate().Refresh();
                     localOfficeApproverReportsProposalsSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);

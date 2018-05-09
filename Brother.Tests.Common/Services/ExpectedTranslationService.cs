@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Brother.Tests.Common.Resources;
 
 namespace Brother.Tests.Common.Services
 {
@@ -85,6 +84,12 @@ namespace Brother.Tests.Common.Services
         {
             return GetText(Resources.DisplayMessage.DisplayMessage.ResourceManager, name, culture);
         }
+
+        public string GetOrderedConsumable(string name, string culture)
+        {
+            return GetText(Resources.OrderedConsumable.OrderedConsumable.ResourceManager, name, culture);
+        }
+        
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)
@@ -116,14 +121,19 @@ namespace Brother.Tests.Common.Services
             return result;
         }
 
-        public string GetProposalPdfText(string name, string culture)
+        public string GetPdfTranslationsText(string name, string culture)
         {
-            return GetText(Resources.ProposalPDF.ProposalPDF.ResourceManager, name, culture);
+            return GetText(Resources.PdfTranslations.PdfTranslations.ResourceManager, name, culture);
         }
 
         public string GetLeasingBillingCycle(string name, string culture)
         {
             return GetText(Resources.LeasingBillingCycle.LeasingBillingCycle.ResourceManager, name, culture);
+        }
+
+        public string GetCommunicationMethodText(string name, string culture)
+        {
+            return GetText(Resources.CommunicationMethod.CommunicationMethod.ResourceManager, name, culture);
         }
     }
 }

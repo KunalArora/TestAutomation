@@ -1,7 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.StepActions.Agreement;
-using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -10,7 +9,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
 {
     [Binding]
     public class MpsInstallerAgreementSteps
-    {      
+    {
         private readonly IContextData _contextData;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
@@ -24,8 +23,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             IUserResolver userResolver,
             IUrlResolver urlResolver,
             MpsInstallerAgreementStepActions mpsInstallerAgreement)
-        {          
-            _contextData = contextData;           
+        {
+            _contextData = contextData;
             _userResolver = userResolver;
             _urlResolver = urlResolver;
             _mpsInstallerAgreement = mpsInstallerAgreement;
@@ -38,7 +37,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             _contextData.InstallationType = installationType;
             if (communicationMethod.ToLower().Equals("cloud") && installationType.ToLower().Equals("bor"))
             {
-                _mpsInstallerAgreement.InstallDevicesOneByOneForCloudBor(); 
+                _mpsInstallerAgreement.InstallDevicesOneByOneForCloudBor();
             }
             else
             {
@@ -67,6 +66,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
                     string.Format(
                     "Bulk device Installation steps for communication method {0} & installation type {1} not implemented yet", communicationMethod, installationType));
             }
+            _mpsInstallerAgreement.VerifySingleQuantityModelSerialNumberAreAutoAssigned();
         }
 
         [When(@"a Cloud MPS Installer is able to do both single device and bulk installation using ""(.*)"" communication and ""(.*)"" installation")]
@@ -117,6 +117,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
                     if(device.IsSwap)
                     {
                         _mpsInstallerAgreement.SwapDeviceForCloudBor(device);
+                    }
+                }
+            }
+            else if (swapCommunicationMethod.ToLower().Equals("cloud") && swapInstallationType.ToLower().Equals("web"))
+            {
+                foreach (var device in _contextData.AdditionalDeviceProperties)
+                {
+                    if (device.IsSwap)
+                    {
+                        _mpsInstallerAgreement.SwapDeviceForCloudWeb(device);
                     }
                 }
             }

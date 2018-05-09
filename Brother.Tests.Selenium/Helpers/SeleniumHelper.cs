@@ -94,13 +94,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
 
         }
-        
+
         public void SelectFromDropdownByText(IWebElement element, string text)
         {
             LoggingService.WriteLogOnMethodEntry(element, text);
             new SelectElement(element).SelectByText(text);
         }
-        
+
         public void WaitUntilElementAppears(string selector, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(selector, timeout);
@@ -164,11 +164,17 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void AcceptJavascriptAlert(int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(timeout);
+            FindAlertDialog(timeout).Accept();
+        }
+
+        public IAlert FindAlertDialog(int timeout)
+        {
+            LoggingService.WriteLogOnMethodEntry(timeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds((int)timeout));
-            IAlert alert = webDriverWait.Until(ExpectedConditions.AlertIsPresent());
-            alert.Accept();
+            return webDriverWait.Until(ExpectedConditions.AlertIsPresent());
         }
+
 
         public void ClearAndType(IWebElement element, string value, bool IsVerify = false, int timeOut = -1)
         {
@@ -230,7 +236,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         public void CloseBrowserTabsExceptMainWindow(string mainWindowHandle)
         {
             LoggingService.WriteLogOnMethodEntry(mainWindowHandle);
-            var browserTabs = _webDriver.WindowHandles.ToList(); 
+            var browserTabs = _webDriver.WindowHandles.ToList();
 
             if (browserTabs.Count <= 1) return;
 
@@ -287,8 +293,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             {
                 return element.Displayed;
             }
-            catch(NoSuchElementException)
+            catch
             {
+                // ex. NoSuchElementException,StaleElementReferenceException
                 return false;
             }
         }
@@ -300,8 +307,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             {
                 return context.FindElement(By.CssSelector(selector)).Displayed;
             }
-            catch (NoSuchElementException)
+            catch
             {
+                // ex. NoSuchElementException,StaleElementReferenceException
                 return false;
             }
         }
@@ -462,6 +470,5 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
             element.Click();
         }
-
     }
 }

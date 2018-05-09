@@ -9,11 +9,8 @@ using Brother.Tests.Specs.Services;
 using NUnit.Framework;
 using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 {
@@ -130,7 +127,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                 // Verify other agreement details
                 VerifyAgreementDetailsInSummaryWorksheet(ws, rowIndex, startDate, endDate, excelFilePath);
-            }         
+            }
         }
 
         public void VerifyClickChargesWorksheet(string excelFilePath, string startDate, string endDate, bool isFirstBillingPeriod)
@@ -164,7 +161,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     {
                         rowIndex++;
                         if (rowIndex > GetNumberOfRows(excelFilePath, 2))
-                        {   
+                        {
                             TestCheck.AssertFailTest(
                                 string.Format(
                                 "Information for device with serial number {0} with billing dates {1} - {2} not present in the Click-charges tab sheet of excel file {3}", device.SerialNumber, startDate, endDate, excelFilePath));
@@ -208,7 +205,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                     totalPagesPrintedMono = Int32.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_TotalPagesPrintedMono_Col_No].Value));
                     device.TotalPagesPrintedMono = totalPagesPrintedMono;
-                        
+
                     if (!device.IsMonochrome)
                     {
                         totalPagesPrintedColour = Int32.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_TotalPagesPrintedColour_Col_No].Value));
@@ -216,7 +213,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     }
 
                     // Minimum Volume case
-                    if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture))) 
+                    if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture)))
                     {
                         string expectedMonoMinimumVolume;
 
@@ -340,20 +337,22 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                                 "Total Pages Printed Colour for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
                         }
                     }
-                        
+
                     TestCheck.AssertIsEqual(
                         expectedMonoBillablePages.ToString(), HandleNullCase(ws.Cells[rowIndex, ClickCharges_MonoBillablePages_Col_No].Value), string.Format(
                         "Mono Billable pages for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
-                            
+
                     TestCheck.AssertIsEqual(
                         double.Parse(device.MonoClickPrice), double.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_MonoClickPrice_Col_No].Value)), string.Format(
                         "Mono Click Price for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
                     var expectedMonoAmountBilled = expectedMonoBillablePages * double.Parse(device.MonoClickPrice);
 
-                    TestCheck.AssertIsEqual(
-                        _calculationService.RoundOffUptoDecimalPlaces(expectedMonoAmountBilled, 5), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_MonoAmountBilled_Col_No].Value)), 5), string.Format(
-                        "Mono Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
+                    TestCheck.AssertIsEqualDouble(
+                        expectedMonoAmountBilled,
+                        double.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_MonoAmountBilled_Col_No].Value)),
+                        5,
+                        string.Format("Mono Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
                     var expectedTotalAmountBilled = expectedMonoAmountBilled;
 
@@ -369,21 +368,25 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                         var expectedColourAmountBilled = expectedColourBillablePages * double.Parse(device.ColourClickPrice);
 
-                        TestCheck.AssertIsEqual(
-                            _calculationService.RoundOffUptoDecimalPlaces(expectedColourAmountBilled, 5), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_ColourAmountBilled_Col_No].Value)), 5), string.Format(
-                            "Colour Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
+                        TestCheck.AssertIsEqualDouble(
+                            expectedColourAmountBilled,
+                            double.Parse(HandleNullCase(ws.Cells[rowIndex, ClickCharges_ColourAmountBilled_Col_No].Value)),
+                            5,
+                            string.Format("Colour Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
                         expectedTotalAmountBilled += expectedColourAmountBilled;
                     }
-                           
+
                     var displayedTotalAmountBilled = _calculationService.RoundOffUptoDecimalPlaces(Convert.ToDouble(ws.Cells[rowIndex, ClickCharges_TotalAmountBilled_Col_No].Value), 2);
 
-                    TestCheck.AssertIsEqual(
-                        _calculationService.RoundOffUptoDecimalPlaces(expectedTotalAmountBilled, 2).ToString(), HandleNullCase(displayedTotalAmountBilled), string.Format(
-                        "Mono Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
+                    TestCheck.AssertIsEqualDouble(
+                        expectedTotalAmountBilled,
+                        double.Parse(HandleNullCase(displayedTotalAmountBilled)),
+                        2,
+                        string.Format("Mono Amount Billed for agreement {0}, device {1} and billing dates {2} - {3} in excel file {4} could not be verified", _contextData.AgreementId, device.SerialNumber, startDate, endDate, excelFilePath));
 
                     expectedClickRateTotal += displayedTotalAmountBilled;
-                        
+
                 }
 
                 VerifySummaryWorksheet(

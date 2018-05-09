@@ -181,6 +181,8 @@
     <Compile Include="Pages\MPSTwo\DealerProposalsDeclinedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsInprogressPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerReportsDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerReportsProposalsSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendSwapInstallationEmailPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerApprovedProposalPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerClosedProposalPage.cs" />
@@ -211,6 +213,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Device\DealerDeviceDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudWebPage.cs" />

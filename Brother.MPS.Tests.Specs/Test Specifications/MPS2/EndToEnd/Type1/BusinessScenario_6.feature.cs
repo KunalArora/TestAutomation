@@ -18,12 +18,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("BusinessScenario_6")]
+    [NUnit.Framework.DescriptionAttribute("Type1BusinessScenario_6")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("ENDTOEND")]
-    public partial class BusinessScenario_6Feature
+    public partial class Type1BusinessScenario_6Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_6", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1BusinessScenario_6", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
                     "t to create a new contract and complete the installation of all devices", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -123,8 +123,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "0",
                         "0",
                         "A3P145600",
-                        "23",
-                        "100",
+                        "0",
+                        "0",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -167,10 +167,10 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "20",
                         "250",
                         "A3P145602",
-                        "0",
-                        "0",
+                        "23",
+                        "100",
                         "Normal",
-                        "Normal",
+                        "Empty",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -323,13 +323,17 @@ testRunner.And("I navigate to the Accepted Contracts page and I locate the above
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-testRunner.And("I update the print count and verify it on the Manage devices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
 testRunner.And("a Cloud MPS Bank Cloud MPS Bank Summary Accept", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 37
 testRunner.And("a Cloud MPS Bank Populated Maintain Contact", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
-testRunner.And("a Cloud MPS Bank Checking the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+testRunner.And("I set the Contract in the running state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+testRunner.And("I update the print count and verify it on the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+testRunner.And("I update the consumable order and verify it on the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+testRunner.And("I check the billing to ensure details are correctly populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

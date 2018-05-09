@@ -4,6 +4,8 @@ using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using Brother.WebSites.Core.Pages;
+using Brother.WebSites.Core.Pages.Base;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions
@@ -40,5 +42,12 @@ namespace Brother.Tests.Specs.StepActions
             LoggingService.WriteLogOnMethodEntry(value);
             return value.Substring(1); // Removes 1st character from string
         }
+
+        public TPage Refresh<TPage>(TPage page, int? timeout=null) where TPage : BasePage, IPageObject
+        {
+            LoggingService.WriteLogOnMethodEntry(page, timeout);
+            return PageService.Refresh(page, timeout ?? RuntimeSettings.DefaultPageLoadTimeout);
+        }
+
     }
 }
