@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND
+﻿@MPS @UAT @TYPE1 @SMOKE
 Feature: Type1BusinessScenario_1
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer

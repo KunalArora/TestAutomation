@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS
+﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS @HIGH
 Feature: Decline Proposal
 	In order to clearly monitor the progress of created proposals
 	As a Cloud MPS Dealer
