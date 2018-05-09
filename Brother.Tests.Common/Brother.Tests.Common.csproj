@@ -426,6 +426,7 @@
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">
       <LastGenOutput>SwapType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
