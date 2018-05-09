@@ -5,7 +5,7 @@ Feature: Type1BusinessScenario_4
 	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Business Scenario 4
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
@@ -43,10 +43,11 @@ When a Cloud MPS Local Office Admin sets the cancellation date and reason and ca
 Then a Local Office Admin assert the final bill is generated/present
 
 
-@BUK
+@BUK @BSW
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
-		| United Kingdom | PURCHASE_AND_CLICK | PAY_AS_YOU_GO  | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
+		| Country        | Culture | ContractType       | UsageType     | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
+		| United Kingdom |         | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
+		#| Switzerland    | de-CH   | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
 
 #@BFR
 #Scenarios:

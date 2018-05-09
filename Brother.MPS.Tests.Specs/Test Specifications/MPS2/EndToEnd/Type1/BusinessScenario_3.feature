@@ -5,7 +5,7 @@ Feature: Type1BusinessScenario_3
 	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Business Scenario 3
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
@@ -47,9 +47,8 @@ And a Brother installer has navigated to the Web Swap Installation page and veri
 And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
 Then a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
-@BUK
+@BUK @BSW
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType             | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145606                 | 100                         | 0                            |
-
-		
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
+		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |
+		#| Switzerland    | fr-CH   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |

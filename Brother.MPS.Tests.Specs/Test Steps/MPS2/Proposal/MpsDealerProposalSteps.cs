@@ -112,17 +112,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
         }
 
-        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)"" with Culture ""(.*)""")]
-        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFromWithCulture(string country, string culture)
+        [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerWithCultureFrom(string culture, string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
-            if(_contextData.Country.Cultures.Contains(culture) == false)
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
             {
-                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country+" culture="+culture);
+                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country + " culture=" + culture);
             }
-            _contextData.Culture = culture;
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
         [When(@"I have navigated to the Create Proposal page")]

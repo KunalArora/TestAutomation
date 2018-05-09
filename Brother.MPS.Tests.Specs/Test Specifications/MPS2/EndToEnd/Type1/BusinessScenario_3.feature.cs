@@ -74,15 +74,17 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 3")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145606", "100", "0", new string[] {
-                "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario3(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145606", "100", "0", new string[] {
+                "BUK",
+                "BSW"}, Category="BUK,BSW")]
+        public virtual void BusinessScenario3(string country, string culture, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 3", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture \"" +
+                        "{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
