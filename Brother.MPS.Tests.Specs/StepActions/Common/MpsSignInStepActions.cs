@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
                 {
                     var signInPage = LoadAtYourSideSignInPage(url, _dealerWebDriver);
-                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
                 }
                 else
                 {
