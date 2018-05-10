@@ -212,7 +212,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             try
             {
-                WaitForDocumentReadyStateIsComplete(timeout);
                 var url = string.Copy(_webDriver.Url);
                 WaitUntil(d =>
                 {
@@ -472,13 +471,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             if (element.Selected == selected) { return; }
             WaitUntil(d => element.Displayed && element.Enabled,RuntimeSettings.DefaultFindElementTimeout);
             element.Click();
-        }
-
-        public void WaitForDocumentReadyStateIsComplete(int timeout = -1)
-        {
-            timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
-            WaitUntil(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"), timeout,
-                "wait for document.readyState timeout");
         }
 
     }
