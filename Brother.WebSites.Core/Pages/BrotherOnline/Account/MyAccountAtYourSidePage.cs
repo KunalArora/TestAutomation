@@ -7,7 +7,7 @@ namespace Brother.WebSites.Core.Pages.BrotherOnline.Account
 {
     public class MyAccountAtYourSidePage : BasePage, IPageObject
     {
-        private const string _validationElementSelector = ".online--account-bar__action__link";
+        private const string _validationElementSelector = ".common--conversion-bar--cta .btn-info";
         private const string _url = "/my-account";
 
         public string ValidationElementSelector
