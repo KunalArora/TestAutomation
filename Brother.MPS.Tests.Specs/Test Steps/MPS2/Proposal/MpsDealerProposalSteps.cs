@@ -147,6 +147,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //handle this logic
             _contextData.ContractType = _translationService.GetContractTypeText(contractType, _contextData.Culture);
         }
+
+        [When(@"I select the language with culture ""(.*)""")]
+        public void WhenISelectTheLanguageWithCulture(string culture)
+        {
+            switch(culture)
+            {
+                // TODO
+
+            }
+        }
         
         [When(@"I enter the proposal description")]
         public void WhenIEnterTheProposalDescription()

@@ -10,8 +10,7 @@ namespace Brother.Tests.Specs.Resolvers
         private readonly IContextData _contextData;
         private readonly IRuntimeSettings _runtimeSettings;
         private const string OLD_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
-        //private const string USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}-Auto@brother.co.uk";
-        private const string USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
+        private const string USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}-Auto@brother.co.uk";
         private const string PASSWORD_PATTERN = "{0}{1}{2}";
 
         public DefaultUserResolver(IContextData contextData, IRuntimeSettings runtimeSettings)
@@ -50,11 +49,11 @@ namespace Brother.Tests.Specs.Resolvers
                     // Only Type1
                     if(_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("fr-CH"))
                     {
-                        loginPatternNumber = "3";
+                        loginPatternNumber = "4";
                     }
                     else if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("de-CH"))
                     {
-                        loginPatternNumber = "1";
+                        loginPatternNumber = "2";
                     }
                     else
                     {
@@ -90,11 +89,11 @@ namespace Brother.Tests.Specs.Resolvers
                 case BusinessType.Type1:
                     if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("fr-CH"))
                     {
-                        loginPatternNumber = "3";
+                        loginPatternNumber = "4";
                     }
                     else if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("de-CH"))
                     {
-                        loginPatternNumber = "1";
+                        loginPatternNumber = "2";
                     }
                     else
                     {

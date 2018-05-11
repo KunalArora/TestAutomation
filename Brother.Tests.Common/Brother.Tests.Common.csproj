@@ -289,6 +289,9 @@
       <LastGenOutput>CommunicationMethod.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.de-de.resx" />
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
@@ -408,6 +411,7 @@
       <LastGenOutput>PdfTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
