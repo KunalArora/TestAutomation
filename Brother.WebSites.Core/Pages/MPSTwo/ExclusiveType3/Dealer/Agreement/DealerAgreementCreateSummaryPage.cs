@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -121,7 +122,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                return double.Parse(InstallationPackTotalElement.Text.Substring(1));
+                return double.Parse(MpsUtil.RemoveCurrencySymbol(InstallationPackTotalElement.Text));
             }
             catch(NoSuchElementException)
             {
@@ -136,7 +137,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                return double.Parse(ServicePackTotalElement.Text.Substring(1));
+                return double.Parse(MpsUtil.RemoveCurrencySymbol(ServicePackTotalElement.Text));
             }
             catch (NoSuchElementException)
             {
@@ -152,7 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                clickRateTotal = double.Parse(ClickRateTotalElement.Text.Substring(1));
+                clickRateTotal = double.Parse(MpsUtil.RemoveCurrencySymbol(ClickRateTotalElement.Text));
             }
             catch (Exception e)
             {
