@@ -11,8 +11,27 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerAdminDealershipUsersCreationPage : BasePage
+    public class DealerAdminDealershipUsersCreationPage : BasePage, IPageObject
     {
+        private const string _validationElementSelector = "div.mps-progress-control";
+        private const string _url = "/mps/dealer/admin/dealership-users/manage";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_permissionFullDescription")]
         public IWebElement SubDealerPermissionText;
         [FindsBy(How = How.CssSelector, Using = "#content_1_StaffManage_InputTitle_Input")]
@@ -154,6 +173,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             return GetInstance<DealerAdminDealershipUsersPage>();
 
+        }
+
+        public string EnterSubDealerDetails()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            string subDealerEmail = MpsUtil.GetSubdealerUniqueEmail();
+
+            SelectTitle(3);
+            EnterSubdealerFirstName(MpsUtil.FirstName());
+            EnterSubdealerLastName(MpsUtil.SurName());
+            EnterSubdealerEmail(subDealerEmail);
+            EnterSubdealerPosition("Staff 1");
+            EnterSubdealerTelephone(MpsUtil.CompanyTelephone());
+            EnterSubdealerNote("Sub dealer creation");
+            SubdealerUserPermission("Restricted");
+
+            return subDealerEmail;
+        }
+
+        public void ClickOnCreate()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(SubDealerSaveButtonElement);
         }
 
     }

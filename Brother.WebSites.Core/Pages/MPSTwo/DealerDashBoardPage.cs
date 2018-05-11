@@ -256,5 +256,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<DealerCustomersExistingPage>(Driver);
         }
 
+        public void NavigateToDealerAdminDashboardPage()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(AdminLinkElement);
+        }
+
     }
 }

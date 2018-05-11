@@ -78,6 +78,8 @@ namespace Brother.Tests.Common.ContextData
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
         public SnapDictionary SnapValues { get; private set; }
+        public string SubDealerEmail { get; set; }
+        public string SubDealerPassword { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }

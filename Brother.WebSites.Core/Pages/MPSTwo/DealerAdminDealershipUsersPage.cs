@@ -11,8 +11,29 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerAdminDealershipUsersPage : BasePage
+    public class DealerAdminDealershipUsersPage : BasePage, IPageObject
     {
+        private const string _validationElementSelector = "#content_1_StaffListActions_ActionList_Button_0";
+        private const string _url = "/mps/dealer/admin/dealership-users/existing-users";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        private const string EmailSelector = "[id*=\"content_1_StaffList_ListContainer_StaffEmail_\"]";
+        private const string AccessPermissionSelector = "[id*=\"content_1_StaffList_ListContainer_StaffPermission_\"]";
 
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement SubDealerListTable;
@@ -94,6 +115,38 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
 
             TestCheck.AssertIsEqual(false, list.Contains(email), String.Format("{0} is not deleted on the list of created subdealers", email));
+        }
+
+        public void ClickOnAddButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(SubDealerCreateButton);
+        }
+
+        public void VerifySubDealer(string subDealerEmail)
+        {
+            LoggingService.WriteLogOnMethodEntry(subDealerEmail);
+
+            var IsPresent = false;
+            if (SeleniumHelper.IsElementDisplayed(SubDealerSuccessMessageElement) == false)
+            {
+                throw new Exception("Sub dealer success message is not displayed");
+            }
+
+            var SubDealerListTableRows = SeleniumHelper.FindRowElementsWithinTable(SubDealerListTable);
+            foreach (var row in SubDealerListTableRows)
+            {
+                var emailElement = SeleniumHelper.FindElementByCssSelector(row, EmailSelector);
+                var accessPermissionElement = SeleniumHelper.FindElementByCssSelector(row, AccessPermissionSelector);
+                if(emailElement.Text == subDealerEmail && accessPermissionElement.Text == "Restricted")
+                {
+                    IsPresent = true;
+                }
+            }
+            if(IsPresent == false)
+            {
+                throw new Exception("Sub dealer is not present in the staff list");
+            }
         }
         
     }
