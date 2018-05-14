@@ -225,6 +225,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\PdfTranslations\PdfTranslations.fr-ch.Designer.cs">
+      <DependentUpon>PdfTranslations.fr-ch.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\PdfTranslations\PdfTranslations.de-de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,6 +404,10 @@
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.fr-ch.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PdfTranslations.fr-ch.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

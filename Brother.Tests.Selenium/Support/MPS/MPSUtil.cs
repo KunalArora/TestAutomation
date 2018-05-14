@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Globalization;
 using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
@@ -1233,6 +1234,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             //    newurl = driver.Url;
             //    tryCount++;
             //}
+        }
+
+        public static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
 
         public static string DefaultMargins()

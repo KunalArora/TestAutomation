@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -630,6 +631,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var resourcePdfFileAgreementPeriod = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.AgreementPeriod, _contextData.Culture);
             var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.TotalInstalledPurchasePrice, _contextData.Culture);
             var resourcePdfFileMinimumClickCharge = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumClickCharge, _contextData.Culture);
+            var resourcePdfFileMinimumVolumePerQuarter = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumVolumePerQuarter, _contextData.Culture);
             Country country = _contextData.Country;
 
             if (_pdfHelper.PdfExists(pdfFile) == false)
@@ -637,13 +639,41 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 throw new Exception("pdf not exists file=" + pdfFile);
             }
             var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue["SummaryTable.ContractTerm"],"");
-            string[] searchTextArray =
+
+            string[] searchTextArray;
+
+            switch(_contextData.Country.CountryIso)
             {
-                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
-                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
-            };
+                case "UK":
+                    searchTextArray = new string[] 
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
+                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
+                        };
+                    break;
+                case "CH":
+                    searchTextArray = new string[]
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            string.Format("{0} {1}", resourcePdfFileMinimumVolumePerQuarter,  double.Parse(
+                            MpsUtil.GetNumbers(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"]))/double.Parse(contractTermDigitString))
+                        };
+                    break;
+                default:
+                    searchTextArray = new string[]
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
+                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
+                        };
+                    break;
+            }
+            
+
             searchTextArray.ToList().ForEach(expected =>
                {
                    if( _pdfHelper.PdfContainsText(pdfFile, expected) == false)
