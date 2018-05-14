@@ -68,14 +68,14 @@ namespace Brother.Tests.Specs.StepActions.Finance
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeFinanceAccrualsReportPage, dateTime);
             localOfficeFinanceAccrualsReportPage.EnterRunAtDate(dateTime);
-            var zipFilePath = _accrualsDetailExcelHelper.Download(() =>
+            var zipFilePath = LoggingService.WriteLogWhenWarningTimeoutExceeds(d => _accrualsDetailExcelHelper.Download(() =>
                 {
                     localOfficeFinanceAccrualsReportPage.ClickOnRunReport();
                     return true;
                 },
-                downloadTimeout: RuntimeSettings.DefaultDownloadTimeout * 4, // very long time, about 3 minute.
-                filter: "*.zip"
-                );
+               downloadTimeout: RuntimeSettings.DefaultDownloadTimeout * 10, // very long time, about 3 minute.
+               filter: "*.zip"
+               ), RuntimeSettings.DefaultDownloadTimeout * 5, "ClickOnRunReport() Too Long. ");
             LoggingService.WriteLog(LoggingLevel.DEBUG, "RunReport={0}", zipFilePath);
             return zipFilePath;
         }
