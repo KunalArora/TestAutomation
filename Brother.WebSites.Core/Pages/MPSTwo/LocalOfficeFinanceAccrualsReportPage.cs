@@ -46,7 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(ButtonRunReportElement);
         }
 
-        public void ClickOnFinalceTab()
+        public void ClickOnFinanceTab()
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety(FinanceTabElement,IsUntilUrlChanges:true);

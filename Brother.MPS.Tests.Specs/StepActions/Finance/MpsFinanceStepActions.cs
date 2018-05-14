@@ -89,7 +89,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
         public LocalOfficeFinanceDashBoardPage NavigateToDashBoardPage(LocalOfficeFinanceAccrualsReportPage localOfficeFinanceAccrualsReportPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeFinanceAccrualsReportPage);
-            localOfficeFinanceAccrualsReportPage.ClickOnFinalceTab();
+            localOfficeFinanceAccrualsReportPage.ClickOnFinanceTab();
             return PageService.GetPageObject<LocalOfficeFinanceDashBoardPage>(RuntimeSettings.DefaultPageLoadTimeout, _financeWebDriver);
         }
     }

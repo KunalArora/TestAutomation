@@ -35,8 +35,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1Accruals", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
-                    "t to create a new contract and complete the installation of all devices", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1Accruals", "\tIn order to verify the finance of Cloud MPS service\r\n\tAs a Cloud MPS Finance\r\n\tI" +
+                    " can generate the financial reports and verify the content", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TYPE1",
