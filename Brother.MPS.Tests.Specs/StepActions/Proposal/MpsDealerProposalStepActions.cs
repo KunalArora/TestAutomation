@@ -68,6 +68,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
+        public DealerDashBoardPage SignInAsSubDealerAndNavigateToDashboard(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            return _mpsSignIn.SignInAsSubDealer(email, password, url);
+        }
+
         public DealerProposalsCreateDescriptionPage NavigateToCreateProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);

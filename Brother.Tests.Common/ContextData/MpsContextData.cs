@@ -39,6 +39,7 @@ namespace Brother.Tests.Common.ContextData
         {
             WindowHandles = new Dictionary<UserType, string>();
             CustomerPassword = "password";
+            SubDealerPassword = "password";
             RegisteredDeviceIds = new List<string>();
             //SnapClickPricePageValues = new Dictionary<string,string>();
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
@@ -80,6 +81,8 @@ namespace Brother.Tests.Common.ContextData
         public SnapDictionary SnapValues { get; private set; }
         public string SubDealerEmail { get; set; }
         public string SubDealerPassword { get; set; }
+        public string SubDealerFirstName { get; set; }
+        public string SubDealerLastName { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }

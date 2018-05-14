@@ -89,6 +89,8 @@ testRunner.Given(string.Format("I have navigated to the Dealership User page in 
 testRunner.When("I create a new sub dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.Then("I can verify that the Sub dealer is successfully created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+testRunner.Given(string.Format("I have navigated to the create proposal page as a Sub dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

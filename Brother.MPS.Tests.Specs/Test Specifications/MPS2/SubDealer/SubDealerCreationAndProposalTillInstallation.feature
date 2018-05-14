@@ -8,6 +8,7 @@ Scenario Outline: SubDealerCreationAndProposalTillInstallation
 Given I have navigated to the Dealership User page in admin tab as a Cloud MPS Dealer from "<Country>"
 When I create a new sub dealer
 Then I can verify that the Sub dealer is successfully created
+Given I have navigated to the create proposal page as a Sub dealer from "<Country>"
 
 @BUK
 Scenarios: 

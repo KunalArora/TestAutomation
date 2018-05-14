@@ -175,22 +175,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         }
 
-        public string EnterSubDealerDetails()
+        public void EnterSubDealerDetails()
         {
             LoggingService.WriteLogOnMethodEntry();
-
-            string subDealerEmail = MpsUtil.GetSubdealerUniqueEmail();
 
             SelectTitle(3);
             EnterSubdealerFirstName(MpsUtil.FirstName());
             EnterSubdealerLastName(MpsUtil.SurName());
-            EnterSubdealerEmail(subDealerEmail);
+            EnterSubdealerEmail(MpsUtil.GetSubdealerUniqueEmail());
             EnterSubdealerPosition("Staff 1");
             EnterSubdealerTelephone(MpsUtil.CompanyTelephone());
             EnterSubdealerNote("Sub dealer creation");
             SubdealerUserPermission("Restricted");
-
-            return subDealerEmail;
         }
 
         public void ClickOnCreate()
@@ -199,5 +195,28 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(SubDealerSaveButtonElement);
         }
 
+        public string GetEmail()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(SubDealerEmailElement);
+        }
+
+        public string GetFirstName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(SubDealerFirstNameElement);
+        }
+
+        public string GetLastName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(SubDealerLastNameElement);
+        }
+
+        private string GetFieldValue(IWebElement element)
+        {
+            LoggingService.WriteLogOnMethodEntry(element);
+            return element.GetAttribute("value");
+        }
     }
 }

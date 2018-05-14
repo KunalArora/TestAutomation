@@ -19,6 +19,8 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         private readonly IContextData _contextData;
         private readonly IUrlResolver _urlResolver;
         private readonly IWebDriver _dealerWebDriver;
+        private readonly IMpsWebToolsService _webToolService;
+        private readonly IRunCommandService _runCommandService;
 
         public MpsDealerDealershipStepActions(
             IWebDriverFactory webDriverFactory,
@@ -27,12 +29,16 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             ScenarioContext context,
             IUrlResolver urlResolver,
             IRuntimeSettings runtimeSettings,
-            ILoggingService loggingService)
+            ILoggingService loggingService,
+            IMpsWebToolsService webToolService,
+            IRunCommandService runCommandService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _loggingService = loggingService;
+            _webToolService = webToolService;
+            _runCommandService = runCommandService;
         }
 
         public DealerAdminDashBoardPage NavigateToDealerAdminDashboardPage(DealerDashBoardPage dealerDashboardPage)
@@ -62,9 +68,13 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         public DealerAdminDealershipUsersPage EnterSubDealerDetailsAndSave(DealerAdminDealershipUsersCreationPage dealerAdminDealershipUsersCreationPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipUsersCreationPage);
-            string subDealerEmail = dealerAdminDealershipUsersCreationPage.EnterSubDealerDetails();
+            dealerAdminDealershipUsersCreationPage.EnterSubDealerDetails();
 
-            _contextData.SubDealerEmail = subDealerEmail;
+            _contextData.SubDealerEmail = dealerAdminDealershipUsersCreationPage.GetEmail();
+            _contextData.SubDealerFirstName = dealerAdminDealershipUsersCreationPage.GetFirstName();
+            _contextData.SubDealerLastName = dealerAdminDealershipUsersCreationPage.GetLastName();
+
+            _webToolService.RegisterCustomer(_contextData.SubDealerEmail, _contextData.SubDealerPassword, _contextData.SubDealerFirstName, _contextData.SubDealerLastName, _contextData.Country.CountryIso);
 
             dealerAdminDealershipUsersCreationPage.ClickOnCreate();
             return PageService.GetPageObject<DealerAdminDealershipUsersPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

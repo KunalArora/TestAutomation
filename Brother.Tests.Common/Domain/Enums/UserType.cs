@@ -10,6 +10,7 @@
         BIEAdmin,
         Installer,
         Customer,
-        LocalOfficeFinance
+        LocalOfficeFinance,
+        SubDealer
     }
 }
