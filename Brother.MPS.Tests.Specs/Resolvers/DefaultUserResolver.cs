@@ -47,11 +47,7 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType) {
                 case BusinessType.Type1:
                     // Only Type1
-                    if(_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("fr-CH"))
-                    {
-                        loginPatternNumber = "4";
-                    }
-                    else if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("de-CH"))
+                    if (_contextData.Country.CountryIso.Equals("CH"))
                     {
                         loginPatternNumber = "2";
                     }
@@ -87,11 +83,7 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType)
             {
                 case BusinessType.Type1:
-                    if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("fr-CH"))
-                    {
-                        loginPatternNumber = "4";
-                    }
-                    else if (_contextData.Country.CountryIso.Equals("CH") && _contextData.Culture.Equals("de-CH"))
+                    if (_contextData.Country.CountryIso.Equals("CH"))
                     {
                         loginPatternNumber = "2";
                     }

@@ -7,14 +7,13 @@ Feature: Type1BusinessScenario_3
 Scenario Outline: Business Scenario 3
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
-And I select the language with culture "<Culture>"
 And I enter the proposal description
 And I create a new customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
-		| MFC-J5330DW  | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
-		| MFC-J5730DW  | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| HL-L2340DW   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
+		| HL-L2360DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers

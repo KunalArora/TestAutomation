@@ -1,5 +1,6 @@
 ﻿﻿using Brother.Tests.Common.ContextData;
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -48,9 +49,9 @@ namespace Brother.Tests.Specs.Services
         {
             LoggingService.WriteLogOnMethodEntry(netTotalPrice, displayedGrossTotalPrice);
 
-            // TODO: Maintain & use VAT percentage for every country
-            // For now, hard-code it for UK (20%)
-            double expectedGrossTotalPrice = ConvertStringToDouble(netTotalPrice) * 1.2;
+            FinancialInformation _financialInfo = new FinancialInformation();
+
+            double expectedGrossTotalPrice = ConvertStringToDouble(netTotalPrice) * _financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
             TestCheck.AssertIsEqual(
                 RoundOffUptoDecimalPlaces(expectedGrossTotalPrice), ConvertStringToDouble(displayedGrossTotalPrice), "Gross total price did not get validated");
         }
@@ -58,6 +59,10 @@ namespace Brother.Tests.Specs.Services
         public double ConvertStringToDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
+            if(ContextData.Country.CountryIso.Equals("CH"))
+            {
+                variable = Regex.Replace(variable, @"\s+", string.Empty);
+            }
             return double.Parse(variable, new CultureInfo(ContextData.Culture));
         }
 

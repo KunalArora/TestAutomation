@@ -1174,6 +1174,10 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 case "GB":
                     currencySymbol = "£";
                     break;
+
+                case "CH":
+                    currencySymbol = "CHF";
+                    break;
                 
                 // TODO Add currency symbols for more countries
 

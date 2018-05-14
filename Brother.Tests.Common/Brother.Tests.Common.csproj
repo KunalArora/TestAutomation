@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Domain\Constants\FinancialInformation.cs" />
     <Compile Include="Domain\Constants\RunCommands.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
@@ -309,6 +310,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LeasingBillingCycle.de-de.Designer.cs</LastGenOutput>
@@ -392,6 +394,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PaymentType\PaymentType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.de-de.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
@@ -401,6 +404,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
       <LastGenOutput>ProposalDeclineReason.Designer.cs</LastGenOutput>

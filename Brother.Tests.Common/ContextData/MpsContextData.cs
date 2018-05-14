@@ -9,6 +9,7 @@ namespace Brother.Tests.Common.ContextData
     {
         public Country Country { get; set; }
         public string Culture { get; set; }
+        public string Language { get; set; }
         public string BaseUrl { get; set; }
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }

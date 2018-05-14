@@ -123,6 +123,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage, culture);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -146,16 +147,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             //if only one contract type is available for the country, the contract type dropdown does not appear.
             //handle this logic
             _contextData.ContractType = _translationService.GetContractTypeText(contractType, _contextData.Culture);
-        }
-
-        [When(@"I select the language with culture ""(.*)""")]
-        public void WhenISelectTheLanguageWithCulture(string culture)
-        {
-            switch(culture)
-            {
-                // TODO
-
-            }
         }
         
         [When(@"I enter the proposal description")]

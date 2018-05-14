@@ -225,11 +225,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickMargin)
                         || actualMonoValue.Contains("Margin: "+specialPrice.MonoClickMargin),
                         "Click Price/Margin(Mono) "+logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
-                        || actualMonoValue.Contains("Click Price: "+specialPrice.MonoClick),
-                        "Click Price/Click Price(Mono) "+logAppend);
-
-
+                   if(_contextData.Country.CountryIso.Equals("CH"))
+                   {
+                       Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
+                        || actualMonoValue.Contains("Click Price:  " + specialPrice.MonoClick),
+                        "Click Price/Click Price(Mono) " + logAppend + actualMonoValue);
+                   }
+                   else
+                   {
+                       Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
+                        || actualMonoValue.Contains("Click Price: " + specialPrice.MonoClick),
+                        "Click Price/Click Price(Mono) " + logAppend);
+                   }
+                    
                     if ( string.IsNullOrWhiteSpace(actualColorValue))
                     {
                         checkedClickPriceModelList.Add(actualModel);
@@ -246,9 +254,18 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickMargin)
                         || actualColorValue.Contains("Margin: " + specialPrice.ColourClickMargin),
                         "Click Price/Margin(Colour) "+logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
-                        || actualColorValue.Contains("Click Price: " + specialPrice.ColourClick),
-                        "Click Price/Click Price(Colour) "+logAppend);
+                    if (_contextData.Country.CountryIso.Equals("CH"))
+                    {
+                        Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
+                            || actualColorValue.Contains("Click Price:  " + specialPrice.ColourClick),
+                            "Click Price/Click Price(Colour) " + logAppend);
+                    }
+                    else
+                    {
+                        Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
+                            || actualColorValue.Contains("Click Price: " + specialPrice.ColourClick),
+                            "Click Price/Click Price(Colour) " + logAppend);
+                    }
 
                     checkedClickPriceModelList.Add(actualModel);
 
@@ -309,5 +326,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
+        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage, string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage, culture);
+            localOfficeApproverDashBoardPage.ClickLanguageLink(culture);
+            return PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+        }
     }
 }

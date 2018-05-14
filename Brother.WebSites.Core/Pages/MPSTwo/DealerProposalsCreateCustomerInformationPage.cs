@@ -1,4 +1,4 @@
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+ï»¿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -284,8 +284,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            switch (lang)
            {
                case "":
-               case "Français":
-                   language = "Français";
+               case "Franè»‹is":
+                   language = "Franè»‹is";
                    break;
                case "Deutsch":
                    language = "Deutsch";
@@ -309,7 +309,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 case "" :
                 case "French":
-                    language = "Français";
+                    language = "Franè»‹is";
                     break;
                 case "Dutch":
                     language = "Nederlands";
@@ -521,7 +521,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EmailElement.SendKeys(email);
        }
 
-       public void FillOrganisationContactDetail()
+       public void FillOrganisationContactDetail(string language = null)
        {
             LoggingService.WriteLogOnMethodEntry();
             if (IsPolandSystem()) return;
@@ -530,29 +530,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterContactSurName();
            EnterContactTelephone();
            EnterContactEmailAdress();
-           SelectALegalForm();
+           SelectALegalForm(language);
            EnterMobileNumber();
        }
 
-       private String SwissLegalForm()
+       private String SwissLegalForm(string language)
        {
-            LoggingService.WriteLogOnMethodEntry();
-            string lang;
-           string language;
-
-           try
-           {
-               language = SpecFlow.GetContext("BelgianLanguage");
-           }
-           catch (KeyNotFoundException keyNotFound)
-           {
-               language = "Deutsch";
-           }
-           
+           LoggingService.WriteLogOnMethodEntry();
+           string lang;
 
            switch (language)
            {
-               case "Français":
+               case "FranÃ§ais":
                    lang = "Fondation";
                    break;
                case "Deutsch":
@@ -568,7 +557,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
        }
 
 
-       public void SelectALegalForm()
+       public void SelectALegalForm(string language)
        {
             LoggingService.WriteLogOnMethodEntry();
             if (IsGermanSystem() || IsAustriaSystem())
@@ -606,12 +595,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            else if (IsSwissSystem())
            {
-               var language = SwissLegalForm();
-               SelectFromDropdown(LegalFormDropdown, language);
+               var legalForm = SwissLegalForm(language);
+               SelectFromDropdown(LegalFormDropdown, legalForm);
            }
            else if (IsBelgiumSystem())
            {
-               var language = BelgianLegalForm();
+               language = BelgianLegalForm();
                SelectFromDropdown(LegalFormDropdown, language);
            }
            //else if (IsSwedenSystem())

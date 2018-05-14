@@ -155,7 +155,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
             detailInputPage.FillOrganisationDetails();
-            detailInputPage.FillOrganisationContactDetail();
+            detailInputPage.FillOrganisationContactDetail(_contextData.Language);
             _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
             _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
             _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
@@ -923,6 +923,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
             dealerProposalsApprovedPage.FilterProposalAndVerify(_contextData.ProposalId, _contextData.ProposalName);
+        }
+
+        public DealerDashBoardPage SelectLanguageGivenCulture(DealerDashBoardPage dealerDashboardPage, string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage, culture);
+            _contextData.Language = dealerDashboardPage.ClickLanguageLink(culture);
+            return PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         #region private methods
