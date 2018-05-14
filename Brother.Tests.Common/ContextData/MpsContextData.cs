@@ -78,12 +78,11 @@ namespace Brother.Tests.Common.ContextData
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
         public SnapDictionary SnapValues { get; private set; }
-        public string DateCreated { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
-
 
         // Exclusively Type 3
+        public string AgreementDateCreated { get; set; }
+        public string AgreementStartDate { get; set; }
+        public string AgreementEndDate { get; set; }
         public string AgreementType { get; set; }
         public int AgreementId { get; set; }
         public string AgreementName { get; set; }

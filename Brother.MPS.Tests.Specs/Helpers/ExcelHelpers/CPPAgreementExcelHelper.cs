@@ -107,7 +107,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                     "Leasing/Financial Reference for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
                 TestCheck.AssertIsEqual(
-                    _contextData.DateCreated, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_DateCreated_Col_No].Value)), string.Format(
+                    _contextData.AgreementDateCreated, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_DateCreated_Col_No].Value)), string.Format(
                     "Date Created for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
                 // Verify Agreement Status is Running
@@ -146,11 +146,11 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                    "Click Rate Total for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
                 TestCheck.AssertIsEqual(
-                    _contextData.StartDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_StartDate_Col_No].Value)), string.Format(
+                    _contextData.AgreementStartDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_StartDate_Col_No].Value)), string.Format(
                     "Start Date for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
 
                 TestCheck.AssertIsEqual(
-                    _contextData.EndDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_EndDate_Col_No].Value)), string.Format(
+                    _contextData.AgreementEndDate, FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Report_EndDate_Col_No].Value)), string.Format(
                     "End Date for agreement {0} in excel file {1} could not be verified", _contextData.AgreementId, excelFilePath));
             }
         }

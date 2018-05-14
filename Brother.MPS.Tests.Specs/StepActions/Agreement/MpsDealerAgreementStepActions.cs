@@ -192,7 +192,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
-            _contextData.DateCreated = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now);
 
             // Save these details for later verification
             _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal();

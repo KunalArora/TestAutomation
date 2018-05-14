@@ -86,8 +86,8 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
 
-            _contextData.StartDate = MpsUtil.SubtractDaysFromDate(_contextData.StartDate, agreementShiftDays);
-            _contextData.EndDate = MpsUtil.SubtractDaysFromDate(_contextData.EndDate, agreementShiftDays);
+            _contextData.AgreementStartDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementStartDate, agreementShiftDays);
+            _contextData.AgreementEndDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementEndDate, agreementShiftDays);
 
             _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, true, "Any");
         }

@@ -49,11 +49,11 @@ namespace Brother.Tests.Common.ContextData
         IEnumerable<SpecialPricingProperties> SpecialPriceList { get; set; }
         IList<string> RegisteredDeviceIds { get; set; }
         SnapDictionary SnapValues { get;  }
-        string DateCreated { get; set; }
-        string StartDate { get; set; }
-        string EndDate { get; set; }
-
+        
         // Exclusively Type 3
+        string AgreementDateCreated { get; set; }
+        string AgreementStartDate { get; set; }
+        string AgreementEndDate { get; set; }
         string AgreementType { get; set; }
         int AgreementId { get; set; }
         string AgreementName { get; set; }
