@@ -159,6 +159,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I Check data in the CPP Agreement Device Report")]
         public void ThenICheckDataInTheCPPAgreementDeviceReport()
         {
+            _mpsDealerAgreement.SnapAgreementPagesValues(_dealerAgreementBillingPage);
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealarReportsDashboardPage =  _mpsDealerAgreement.NavigateToReportsDashboardPage(_dealerDashboardPage);
             string CPPAgreementDevicesReportXlsx=_mpsDealerAgreement.DownloadCPPAgreementDevicesReport(_dealarReportsDashboardPage);
