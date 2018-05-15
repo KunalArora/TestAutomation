@@ -9,6 +9,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
     public static class MpsUtil
     {
+        private const string DATESTRING_BUK = "dd/MM/yyyy";
+        
+
         /// <summary>
         /// Generates a unique Proposal Name
         /// </summary>
@@ -62,7 +65,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static string DateTimeString(DateTime dateTime)
         {
-            return dateTime.ToString("dd/MM/yyyy");
+            return dateTime.ToString(DATESTRING_BUK);
         }
 
         public static string SubdealerEmail()
@@ -94,7 +97,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var todayDate = DateTime.Now;
             var someDaysIntheFuture = todayDate.AddDays(30);
 
-            return someDaysIntheFuture.ToString("dd/MM/yyyy");
+            return someDaysIntheFuture.ToString(DATESTRING_BUK);
 
         }
 
@@ -103,13 +106,13 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             var todayDate = DateTime.Now;
             var someDaysInthePast = todayDate.AddDays(-9000);
 
-            return someDaysInthePast.ToString("dd/MM/yyyy");
+            return someDaysInthePast.ToString(DATESTRING_BUK);
 
         }
 
         public static DateTime StringToDateTimeFormat(string date)
         {
-            return DateTime.ParseExact(date, "dd/MM/yyyy", null);
+            return DateTime.ParseExact(date, DATESTRING_BUK, null);
         }
 
         public static string CustomerReference()
@@ -1337,6 +1340,26 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             };
             var note = notes[new Random().Next(3)];
             return note;
+        }
+
+        public static string ContractEndDate(string contractStartDate, int contractTermInYears)
+        {
+            DateTime startDate = DateTime.ParseExact(contractStartDate, DATESTRING_BUK, CultureInfo.InvariantCulture);
+            DateTime endDate = startDate.AddYears(contractTermInYears).AddDays(-1); // End Date = Start Date + Contract Term (in years) - 1 day
+            return endDate.ToString(DATESTRING_BUK);
+        }
+
+        public static string SubtractDaysFromDate(string date, int daysToSubtract)
+        {
+            DateTime dt = DateTime.ParseExact(date, DATESTRING_BUK, CultureInfo.InvariantCulture);
+            DateTime result = dt.AddDays(-daysToSubtract);
+            return result.ToString(DATESTRING_BUK);
+        }
+
+        public static string RemoveCurrencySymbol(string value) //TODO: Extend this function to handle cases for other countries as well..
+        {
+            // For UK
+            return value.Substring(1); // Removes 1st character from string
         }
     }
 }

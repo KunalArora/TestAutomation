@@ -49,11 +49,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<ServiceDeskServiceRequestsPage>();
         }
 
-        public ReportingDashboardPage NavigateToServiceDeskReportPage()
+        public LocalOfficeReportsDashboardPage NavigateToServiceDeskReportPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ServiceReportLink);
-            return GetInstance<ReportingDashboardPage>();
+            return GetInstance<LocalOfficeReportsDashboardPage>();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
+        private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
 
         public MpsLocalOfficeAdminAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -36,7 +37,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
-            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper)
+            IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
+            ICPPAgreementExcelHelper cppAgreementHelper)
             : base(
             webDriverFactory, 
             contextData, 
@@ -56,13 +58,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _mpsSignIn = mpsSignIn;
             _urlResolver = urlResolver;
             _userResolver = userResolver;
+            _cppAgreementHelper = cppAgreementHelper;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashBoardPage);
             ClickSafety(localOfficeAdminDashBoardPage.LOAdminReportElement, localOfficeAdminDashBoardPage);
-            var reportingDashboardPage = PageService.GetPageObject<ReportingDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            var reportingDashboardPage = PageService.GetPageObject<LocalOfficeReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
             ClickSafety(reportingDashboardPage.DataQueryElement, reportingDashboardPage);
             return PageService.GetPageObject<DataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
@@ -113,6 +116,26 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAgreementBillingPage);
             return VerifyServiceInstallationInvoice(localOfficeAgreementBillingPage, _loAdminWebDriver);
+        }
+
+        public void DownloadAndVerifyCPPAgreementReport(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
+            ClickSafety(localOfficeAdminDashboardPage.LOAdminReportElement, localOfficeAdminDashboardPage);
+            var reportingDashboardPage = PageService.GetPageObject<LocalOfficeReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+
+            // Download excel
+            string excelFilePath = _cppAgreementHelper.Download(() =>
+            {
+                ClickSafety(reportingDashboardPage.CPPAgreementReportElement, reportingDashboardPage);
+                return true;
+            });
+
+            // Verify agreement details
+            _cppAgreementHelper.VerifyAgreementDetails(excelFilePath);
+
+            // Delete excel
+            _cppAgreementHelper.DeleteExcelFile(excelFilePath);            
         }
     }
 }
