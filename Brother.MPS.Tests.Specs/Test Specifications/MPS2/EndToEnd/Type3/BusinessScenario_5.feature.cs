@@ -201,8 +201,8 @@ testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk
                         "+10",
                         "+100"});
 #line 18
-testRunner.And("a Cloud MPS LO Approver applies special pricing by difference current value(+/-) " +
-                    "or absolute value:", ((string)(null)), table2, "And ");
+testRunner.And("a Cloud MPS LO Approver applies special pricing using relative values(+/- w.r.t. " +
+                    "current values) or absolute values:", ((string)(null)), table2, "And ");
 #line 21
 testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 22
