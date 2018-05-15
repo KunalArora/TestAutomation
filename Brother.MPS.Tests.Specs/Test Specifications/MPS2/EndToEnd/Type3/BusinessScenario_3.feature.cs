@@ -145,37 +145,55 @@ testRunner.And(string.Format("I edit device data using excel edit option (Fill O
 testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
 testRunner.Then("a Cloud MPS LO Approver can create and send a bulk installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "InstallUnitPrice",
+                        "ServiceUnitPrice",
+                        "MonoClickCoverage",
+                        "MonoClickVolume",
+                        "ColourClickCoverage",
+                        "ColourClickVolume"});
+            table2.AddRow(new string[] {
+                        "*",
+                        "-10.00",
+                        "-10.00",
+                        "-10",
+                        "-100",
+                        "-10",
+                        "-100"});
 #line 21
-testRunner.When("a Cloud MPS LO Approver applies special pricing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 22
-testRunner.Then("a Cloud MPS LO Approver can verify that special pricing is correctly applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 23
-testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("a Cloud MPS LO Approver applies special pricing by difference current value(+/-) " +
+                    "or absolute value:", ((string)(null)), table2, "And ");
 #line 24
+testRunner.Then("a Cloud MPS LO Approver can verify that special pricing is correctly applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 27
 testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
-testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
-testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
-testRunner.When("a Cloud MPS LO Approver can create and send a device reinstallation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
+testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+testRunner.When("a Cloud MPS LO Approver can create and send a device reinstallation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
 testRunner.And(string.Format("a Cloud MPS Installer is able to reinstall devices using \"{0}\" communication and " +
                         "\"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
-testRunner.Then("I can verify that the reinstalled devices are responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 32
-testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
-testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I can verify that the reinstalled devices are responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
-testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the print counts of the devices are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 35
-testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I can verify the correct reflection of updated print counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 36
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
+testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 38
 testRunner.And("I can verify the service/installation billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

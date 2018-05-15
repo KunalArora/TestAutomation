@@ -77,8 +77,9 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <typeparam name="TResult"></typeparam>
         /// <param name="conditions"></param>
         /// <param name="timeout"></param>
+        /// <param name="customMessageWhenTimeout">custom timeout exception message</param>
         /// <returns></returns>
-        TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout = -1);
+        TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout = -1, string customMessageWhenTimeout = null);
  
         /// <summary>
         /// Return all row elements within a table element
@@ -99,9 +100,10 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// Click element safely
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="defaultFindElementTimeout"></param>
-        /// <param name="IsUntilUrlChanges"></param>
-        void ClickSafety(IWebElement element, int IsWaitForAnotherPageDefaultFindElementTimeout = -1, bool IsUntilUrlChanges = false);
+        /// <param name="timeout">in sec, -1=default(DefaultFindElementTimeout)</param>
+        /// <param name="IsUntilUrlChanges">T=wait until url change after clicked</param>
+        /// <param name="exceptionMessageWhenTimeout">cusom exception message if need.</param>
+        void ClickSafety(IWebElement element, int timeout = -1, bool IsUntilUrlChanges = false, string exceptionMessageWhenTimeout = null);
         
         /// <summary>
         /// Accept Javascript alert 

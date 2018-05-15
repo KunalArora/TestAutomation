@@ -1,8 +1,11 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
@@ -11,7 +14,12 @@ using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Agreement
@@ -20,6 +28,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
     {
         private readonly IWebDriver _loApproverWebDriver;
         private readonly IContextData _contextData;
+        private readonly ITranslationService _translationService;
+
 
         public MpsLocalOfficeApproverAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -38,6 +48,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _contextData = contextData;
+            _translationService = translationService;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
@@ -73,9 +84,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return RefinePreInstallAgreementAndNavigateToSummaryPage(dataQueryPage, _loApproverWebDriver);
         }
 
-        public LocalOfficeAgreementDetailsPage ApplySpecialPricing(LocalOfficeAgreementSummaryPage localOfficeApproverAgreementSummaryPage)
+        public LocalOfficeAgreementDetailsPage ApplySpecialPricing(LocalOfficeAgreementSummaryPage localOfficeApproverAgreementSummaryPage, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementSummaryPage, specialPriceList);
 
             bool isInstallationTab, isServiceTab;
 
@@ -86,22 +97,85 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             localOfficeApproverAgreementManageSpecialPricing.VerifyDisplayOfAppropriateTabs(
                 _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, out isInstallationTab, out isServiceTab);
 
-            if(isInstallationTab)
+            if (isInstallationTab)
             {
-                localOfficeApproverAgreementManageSpecialPricing.EditInstallationPricesAndProceed(_contextData.PrintersProperties);
+                localOfficeApproverAgreementManageSpecialPricing.EditInstallationPricesAndProceed(_contextData.PrintersProperties, specialPriceList);
             }
 
             if(isServiceTab)
             {
-                localOfficeApproverAgreementManageSpecialPricing.EditServicePricesAndProceed(_contextData.PrintersProperties);
+                localOfficeApproverAgreementManageSpecialPricing.EditServicePricesAndProceed(_contextData.PrintersProperties, specialPriceList);
             }
 
+            var resourceIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
+            var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceIncludedInClickPrice;
             localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
-                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
+                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice);
 
+            VerifySpecialPricing(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
             localOfficeApproverAgreementManageSpecialPricing.ConfirmSpecialPricingAndApply();
 
             return PageService.GetPageObject<LocalOfficeAgreementDetailsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
+        }
+
+        private void VerifySpecialPricing(LocalOfficeAgreementManageSpecialPricing localOfficeApproverAgreementManageSpecialPricing, IEnumerable<SpecialPricingProperties> specialPriceList)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
+
+            // AuditDetails for example:
+            // Model: DCP-8110DN Installation - Unit Cost: £120.00 / Margin: 0.00 % / Unit Price: £120.00\r\n
+            // Model: DCP-8110DN Service - Unit Cost: £50.00 / Margin: 0.00 % / Unit Price: £50.00\r\n
+            // Model: DCP-8110DN Click Price - Coverage: 15.00 % / Volume: 4,100 / Margin: 0.00 % / Click Price: £0.01068\r\n
+            // Model: DCP-L8450CDW Click Price - Colour: Coverage: 30.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.06141 Mono: Coverage: 15.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.00774\r\n
+            string[] auditDetails = localOfficeApproverAgreementManageSpecialPricing.GetAuditDetails();
+            string cs = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            foreach (var printerProperty in _contextData.PrintersProperties)
+            {
+                var specialPrice = specialPriceList.First(l => Regex.IsMatch(printerProperty.Model, l.Model)); ;
+                var message = "VerifySpecialPricing() error: {1} category = {0}, model = " + printerProperty.Model;
+                if (printerProperty._IsApplySpecialPriceInstall)
+                {
+                    var category = "Installation";
+                    var actual = auditDetails.FirstOrDefault(ad => ad.Contains(printerProperty.Model) && ad.Contains(category));
+                    Assert.NotNull(actual, message, category, "audit details not found");
+                    StringAssert.Contains(string.Format("Unit Cost: {0}{1}", cs, printerProperty.InstallationPackPrice), actual, message, category, "Contains");
+                }
+                if (printerProperty._IsApplySpecialPriceService)
+                {
+                    var category = "Service";
+                    var actual = auditDetails.FirstOrDefault(ad => ad.Contains(printerProperty.Model) && ad.Contains(category));
+                    Assert.NotNull(actual, message, category, "audit details not found");
+                    StringAssert.Contains(string.Format("Unit Cost: {0}{1}", cs, printerProperty.ServicePackPrice), actual, message, category, "Contains");
+                }
+                if (printerProperty._IsApplySpecialPriceClickPrice)
+                {
+                    var category = "Click Price";
+                    var actual = auditDetails.FirstOrDefault(ad => ad.Contains(printerProperty.Model) && ad.Contains(category));
+                    Assert.NotNull(actual, message, category, "audit details not found");
+                    var indexMono = Math.Max(actual.IndexOf("Mono:"), 0);
+                    var indexColour = actual.IndexOf("Colour:");
+                    var actualDat = indexMono > indexColour ? actual.Substring(indexMono) : actual.Substring(0, indexColour);
+                    StringAssert.Contains(string.Format("Coverage: {0:n2} %", printerProperty.CoverageMono), actualDat, message, category, "Contains CoverageMono" );
+                    StringAssert.Contains(string.Format("Volume: {0:n0}", printerProperty.VolumeMono), actualDat, message, category, "Contains VolumeMono" );
+                    StringAssert.Contains(string.Format("Click Price: {0}{1}", cs,printerProperty.MonoClickPrice), actualDat, message, category, "Contains MonoClickPrice");
+
+                }
+                if (printerProperty._IsApplySpecialPriceClickPrice && printerProperty.IsMonochrome == false)
+                {
+                    var category = "Click Price";
+                    var actual = auditDetails.FirstOrDefault(ad => ad.Contains(printerProperty.Model) && ad.Contains(category));
+                    Assert.NotNull(actual, message, category, "audit details not found");
+                    var indexMono = actual.IndexOf("Mono:");
+                    var indexColour = actual.IndexOf("Colour:");
+                    Assert.IsTrue(indexColour >= 0, message, category, "Colour not found");
+                    var actualDat = indexMono > indexColour ? actual.Substring(0, indexMono) : actual.Substring(indexColour);
+                    StringAssert.Contains(string.Format("Coverage: {0:n2} %", printerProperty.CoverageColour), actualDat, message, category, "Contains CoverageColour");
+                    StringAssert.Contains(string.Format("Volume: {0:n0}", printerProperty.VolumeColour), actualDat, message, category, "Contains VolumeColour ");
+                    StringAssert.Contains(string.Format("Click Price: {0}{1}", cs, printerProperty.ColourClickPrice), actualDat, message, category, "Contains ColourClickPrice");
+                }
+
+            }
+
         }
 
         public void VerifySpecialPricing(LocalOfficeAgreementDetailsPage localOfficeApproverAgreementDetailsPage)
