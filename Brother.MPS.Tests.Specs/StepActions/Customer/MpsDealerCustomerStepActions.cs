@@ -46,7 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
 
         public DealerCustomersExistingPage ProceedCreateAndSaveANewCustomer(DealerCustomersManagePage dealerCustomersManagePage, out string customerName, out string eMailName, Country country, string payment = "Invoice")
         {
-            LoggingService.WriteLogOnMethodEntry(dealerCustomersManagePage, country, payment); // $$
+            LoggingService.WriteLogOnMethodEntry(dealerCustomersManagePage, country, payment);
             dealerCustomersManagePage.FillCustomerDetails(payment, country.Name);
             customerName = dealerCustomersManagePage.GetCompanyName();
             eMailName = dealerCustomersManagePage.GetEmail();
