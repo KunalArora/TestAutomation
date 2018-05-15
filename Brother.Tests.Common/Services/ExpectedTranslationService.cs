@@ -97,6 +97,11 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.AgreementType.AgreementType.ResourceManager, name, culture);
         }
 
+        public string GetAgreementStatusText(string name, string culture)
+        {
+            return GetText(Resources.ExcelContent.CPPAgreementReportExcel.AgreementStatus.AgreementStatus.ResourceManager, name, culture);
+        }
+
         public string GetDeviceConnectionStatusText(string name, string culture)
         {
             return GetText(Resources.DeviceConnectionStatus.DeviceConnectionStatus.ResourceManager, name, culture);

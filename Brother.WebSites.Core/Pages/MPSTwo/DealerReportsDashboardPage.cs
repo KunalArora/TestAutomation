@@ -1,9 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerReportsDashboardPage : ReportingDashboardPage, IPageObject
+    public class DealerReportsDashboardPage : LocalOfficeReportsDashboardPage, IPageObject
     {
         private const string _validationElementSelector = "div.mps-dashboard";
         private const string _url = "/mps/dealer/reports/dashboard";
@@ -29,5 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/cpp-agreement-report\"] .media-heading")]
+        public IWebElement CPPAgreementReportElement;
     }
 }

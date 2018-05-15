@@ -31,6 +31,7 @@ When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice
 And I can verify the service/installation billing invoice
 And I Check data in the CPP Agreement Device Report
+And I can verify the CPP Agreement Report
 
 @BUK
 Scenarios: 

@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -10,6 +11,7 @@ using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
+using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -261,6 +263,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that all devices are installed and responding")]
         public void ThenICanVerifyThatAllDevicesAreInstalledAndResponding()
         {
+            _contextData.AgreementStartDate = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementEndDate = MpsUtil.ContractEndDate(_contextData.AgreementStartDate, Int32.Parse(_contextData.ContractTerm[0].ToString()));
+
             string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
                 TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
             string resourceDeviceConnectionStatusResponding = _translationService.GetDeviceConnectionStatusText(
@@ -345,6 +350,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 TranslationKeys.DeviceConnectionStatus.Responding, _contextData.Culture);
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreInstalled(
                 _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusResponding);
+        }
+
+        [Then(@"I can verify the CPP Agreement Report")]
+        public void ThenICanVerifyTheCPPAgreementReport()
+        {
+            var dealerReportsDashboardPage = _mpsDealerAgreement.NavigateToReports(_dealerAgreementDevicesPage);
+            _mpsDealerAgreement.DownloadCPPAgreementReportAndVerify(dealerReportsDashboardPage);
         }
     }
 }

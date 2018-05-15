@@ -6,6 +6,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
@@ -39,6 +40,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdmin;
         private readonly IPageParseHelper _pageParseHelper;
         private readonly IUserResolver _userResolver;
+        private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
         private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
@@ -58,7 +60,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IPageParseHelper pageParseHelper,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin,
             ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
-            IUserResolver userResolver)
+            IUserResolver userResolver,
+            ICPPAgreementExcelHelper cppAgreementHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -74,6 +77,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _pageParseHelper = pageParseHelper;
             _userResolver = userResolver;
             _cppAgreementDevicesExcelHelper = cppAgreementDevicesExcelHelper;
+            _cppAgreementHelper = cppAgreementHelper;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -263,6 +267,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
+            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now);
+
+            // Save these details for later verification
+            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal();
+            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal();
+            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal();
 
             // Validate calculations/content on summary page
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);
@@ -270,10 +280,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Save click prices in context data to use in verification later
             foreach (var product in _contextData.PrintersProperties)
             {
-                product.MonoClickPrice = RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model));
+                product.MonoClickPrice = MpsUtil.RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model));
                 if (!product.IsMonochrome)
                 {
-                    product.ColourClickPrice = RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model));
+                    product.ColourClickPrice = MpsUtil.RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model));
                 }
             }
 
@@ -715,8 +725,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                device.InstallationPackPrice = RemoveCurrencySymbol(dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model));
-                device.ServicePackPrice = RemoveCurrencySymbol(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
+                device.InstallationPackPrice = MpsUtil.RemoveCurrencySymbol(dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model));
+                device.ServicePackPrice = MpsUtil.RemoveCurrencySymbol(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
             }
 
             ClickSafety(dealerAgreementDetailsPage.DevicesTabElement, dealerAgreementDetailsPage);
@@ -986,7 +996,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedClickRateTotal));
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -1077,7 +1087,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 string expectedServiceInstallationTotal = dealerAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedServiceInstallationTotal));
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedServiceInstallationTotal));
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
@@ -1197,6 +1207,32 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
+        public DealerReportsDashboardPage NavigateToReports(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            ClickSafety(dealerAgreementDevicesPage.ReportTabElement, dealerAgreementDevicesPage);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(
+                        RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void DownloadCPPAgreementReportAndVerify(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+
+            // Download excel
+            string excelFilePath = _cppAgreementHelper.Download(() =>
+            {
+                ClickSafety(dealerReportsDashboardPage.CPPAgreementReportElement, dealerReportsDashboardPage);
+                return true;
+            });
+
+            // Verify agreement details
+            _cppAgreementHelper.VerifyAgreementDetails(excelFilePath);
+            
+            // Delete excel
+            _cppAgreementHelper.DeleteExcelFile(excelFilePath);
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,
@@ -1291,11 +1327,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var totalLinePrice = dealerAgreementCreateProductsPage.TotalLinePrice(printerContainer);
 
             _calculationService.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso, new List<string> { installationPackTotalPrice, servicePackTotalPrice, totalLinePrice });
-            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, RemoveCurrencySymbol(installationPackTotalPrice));
-            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, RemoveCurrencySymbol(servicePackTotalPrice));
+            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, MpsUtil.RemoveCurrencySymbol(installationPackTotalPrice));
+            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, MpsUtil.RemoveCurrencySymbol(servicePackTotalPrice));
             _calculationService.VerifySum(new List<string> {
-                RemoveCurrencySymbol(installationPackTotalPrice), RemoveCurrencySymbol(servicePackTotalPrice) },
-                RemoveCurrencySymbol(totalLinePrice));
+                MpsUtil.RemoveCurrencySymbol(installationPackTotalPrice), MpsUtil.RemoveCurrencySymbol(servicePackTotalPrice) },
+                MpsUtil.RemoveCurrencySymbol(totalLinePrice));
         }
 
         private void ValidateCalculationOnSummaryPage(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
@@ -1316,8 +1352,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text,
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text }
                     );
-            _calculationService.VerifyGrossPrice(RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text),
-                RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text));
+            _calculationService.VerifyGrossPrice(MpsUtil.RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text),
+                MpsUtil.RemoveCurrencySymbol(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text));
         }
 
         private void VerifyUpdatedDeviceDataInExcelSheet(

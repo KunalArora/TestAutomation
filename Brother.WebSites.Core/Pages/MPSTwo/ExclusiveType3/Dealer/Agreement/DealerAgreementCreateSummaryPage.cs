@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Selenium.Lib.Helpers;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -67,6 +68,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement AgreementGrandTotalPriceNetElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_GrandTotalPriceGross")]
         public IWebElement AgreementGrandTotalPriceGrossElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ConsumableTotalsTotalPriceNet")]
+        public IWebElement ClickRateTotalElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ServicePackTotalLinePrice")]
+        public IWebElement ServicePackTotalElement;
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_InstallationTotalLinePrice")]
+        public IWebElement InstallationPackTotalElement;
 
 
         public int AgreementId()
@@ -107,6 +114,53 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             LoggingService.WriteLogOnMethodEntry(printerName);
             var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerSelector + printerName);
             return SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text;
+        }
+
+        public double InstallationPackTotal()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            try
+            {
+                return double.Parse(MpsUtil.RemoveCurrencySymbol(InstallationPackTotalElement.Text));
+            }
+            catch(NoSuchElementException)
+            {
+                // Element not found = No Installation pack selected = Installation Pack Total equal to 0
+                return 0;
+            }
+        }
+
+        public double ServicePackTotal()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            try
+            {
+                return double.Parse(MpsUtil.RemoveCurrencySymbol(ServicePackTotalElement.Text));
+            }
+            catch (NoSuchElementException)
+            {
+                // Element not found = No Service pack selected = Service Pack Total equal to 0
+                return 0;
+            }
+        }
+
+        public double ClickRateTotal()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            double clickRateTotal = 0;
+
+            try
+            {
+                clickRateTotal = double.Parse(MpsUtil.RemoveCurrencySymbol(ClickRateTotalElement.Text));
+            }
+            catch (Exception e)
+            {
+                TestCheck.AssertFailTest("Click Rate Total could not be found on Summary Page. Error details = " + e);
+            }
+
+            return clickRateTotal;
         }
     }
 }
