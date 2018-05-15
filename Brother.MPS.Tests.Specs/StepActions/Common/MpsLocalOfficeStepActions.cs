@@ -5,6 +5,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Helpers.ExcelHelpers;
@@ -325,7 +326,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedClickRateTotal));
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -417,7 +418,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 string expectedServiceInstallationTotal = localOfficeAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, RemoveCurrencySymbol(expectedServiceInstallationTotal));
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedServiceInstallationTotal));
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);

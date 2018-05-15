@@ -79,8 +79,10 @@ namespace Brother.Tests.Common.ContextData
         public string LeasingBillingCycle { get; set; }
         public SnapDictionary SnapValues { get; private set; }
 
-
         // Exclusively Type 3
+        public string AgreementDateCreated { get; set; }
+        public string AgreementStartDate { get; set; }
+        public string AgreementEndDate { get; set; }
         public string AgreementType { get; set; }
         public int AgreementId { get; set; }
         public string AgreementName { get; set; }
@@ -91,6 +93,9 @@ namespace Brother.Tests.Common.ContextData
         public string DealerName { get; set; }
         public string DealerSAPAccountNumber { get; set; }
         public int UsableDeviceIndex { get; set; }
+        public double ClickRateTotal { get; set; }
+        public double ServicePackTotal { get; set; }
+        public double InstallationPackTotal { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>

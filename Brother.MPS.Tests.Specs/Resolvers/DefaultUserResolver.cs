@@ -155,5 +155,23 @@ namespace Brother.Tests.Specs.Resolvers
                 return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Installer", "");
             }
         }
+
+        public string FinanceUsername
+        {
+            get
+            {
+                // ex. MPS-BUK-UAT-Finance1@brother.co.uk
+                return string.Format(OLD_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Finance", 1);
+            }
+        }
+
+        public string FinancePassword
+        {
+            get
+            {
+                // ex. UKfinance1
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "finance", 1);
+            }
+        }
     }
 }

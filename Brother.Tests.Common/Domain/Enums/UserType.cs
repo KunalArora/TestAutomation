@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brother.Tests.Common.Domain.Enums
+﻿namespace Brother.Tests.Common.Domain.Enums
 {
     public enum UserType
     {
@@ -15,6 +9,7 @@ namespace Brother.Tests.Common.Domain.Enums
         Bank,
         BIEAdmin,
         Installer,
-        Customer
+        Customer,
+        LocalOfficeFinance
     }
 }

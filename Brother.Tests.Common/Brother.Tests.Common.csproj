@@ -124,6 +124,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DisplayMessage.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgreementStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
       <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -290,6 +295,11 @@
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

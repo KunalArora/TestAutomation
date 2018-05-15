@@ -78,23 +78,23 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
                 foreach (var device in _contextData.AdditionalDeviceProperties)
                 {
-                    int rowIndex = 2;
+                    int rowIndex = GetNumberOfRows(excelFilePath, 1);
 
                     if (device.InstallationPack.ToLower().Equals("no") && device.ServicePack.ToLower().Equals("no"))
                     {
-                        // Device information should not present in the excel sheet
+                        // Device information should not be present in the excel sheet
                         while (!(HandleNullCase(ws.Cells[rowIndex, Detail_SerialNumber_Col_No].Value) == device.SerialNumber &&
                             FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
                             FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
                         {
-                            rowIndex++;
-                            if (rowIndex > GetNumberOfRows(excelFilePath, 1))
+                            rowIndex--;
+                            if (rowIndex < 2)
                             {
                                 break;
                             }
                         }
 
-                        if (rowIndex <= GetNumberOfRows(excelFilePath, 1))
+                        if (rowIndex >= 2)
                         {
                             TestCheck.AssertFailTest(
                                 string.Format(
@@ -112,8 +112,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                             FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodFrom_Col_No].Value)) == startDate &&
                             FormatExcelSerialDate(HandleNullCase(ws.Cells[rowIndex, Detail_BillPeriodTo_Col_No].Value)) == endDate))
                         {
-                            rowIndex++;
-                            if (rowIndex > GetNumberOfRows(excelFilePath, 1))
+                            rowIndex--;
+                            if (rowIndex < 2)
                             {
                                 TestCheck.AssertFailTest(
                                     string.Format(

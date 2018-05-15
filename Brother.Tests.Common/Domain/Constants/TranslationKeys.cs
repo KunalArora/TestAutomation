@@ -152,5 +152,12 @@
             public static string MagentaToner { get { return "MAGENTA_TONER"; } }
             public static string YellowToner { get { return "YELLOW_TONER"; } }
         }
+
+        public static class AgreementStatus
+        {
+            public static string Draft { get { return "DRAFT"; } }
+            public static string PreInstall { get { return "PRE_INSTALL"; } }
+            public static string Running { get { return "RUNNING"; } }
+        }
     }
 }

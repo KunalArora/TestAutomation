@@ -2,6 +2,7 @@
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using NUnit.Framework;
 using OfficeOpenXml;
 using System;
@@ -102,9 +103,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         public string FormatExcelSerialDate(string SerialDate)
         {
             LoggingService.WriteLogOnMethodEntry(SerialDate);
-            DateTime dt = DateTime.FromOADate(Int32.Parse(SerialDate));
-            string result = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
-            return result;
+            DateTime dt = DateTime.FromOADate(Convert.ToInt32(Math.Floor(Convert.ToDouble(SerialDate))));
+            return MpsUtil.DateTimeString(dt);
         }
 
         #region private methods

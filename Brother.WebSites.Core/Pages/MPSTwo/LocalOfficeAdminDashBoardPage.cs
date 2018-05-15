@@ -77,13 +77,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminProgramPage>(Driver);
         }
 
-        public ReportingDashboardPage NavigateToReportPage()
+        public LocalOfficeReportsDashboardPage NavigateToReportPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (LOAdminReportElement == null)
                 throw new NullReferenceException("Report link is not LOAdmin Dashboard");
             LOAdminReportElement.Click();
-            return GetTabInstance<ReportingDashboardPage>(Driver);
+            return GetTabInstance<LocalOfficeReportsDashboardPage>(Driver);
         }
         
 

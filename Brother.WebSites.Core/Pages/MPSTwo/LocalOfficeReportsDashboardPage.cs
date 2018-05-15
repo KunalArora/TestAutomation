@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class ReportingDashboardPage : BasePage, IPageObject
+    public class LocalOfficeReportsDashboardPage : BasePage, IPageObject
     {
         private const string DownloadDirectory = @"C:\DataTest";
 
@@ -43,6 +43,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PrintVolumeReportElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/service-request-report\"] .media-heading")]
         public IWebElement ServiceRequestReportElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/cpp-agreement-report\"] .media-heading")]
+        public IWebElement CPPAgreementReportElement;
 
         public void IsReportingPageDisplayed()
         {

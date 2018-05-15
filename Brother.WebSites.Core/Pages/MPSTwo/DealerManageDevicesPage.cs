@@ -187,11 +187,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string InstallationRespondingTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationType_].mps-txt-c.responding";
         private const string InstallationSerialNumberSelector = "[id*=content_1_DeviceList_List_CellSerial_]";
         private const string InstallationTotalPagesSelector = "[id*=content_1_DeviceList_List_CellTotalPages_]";
-        //private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view";
         private const string ShowPrintCountButtonSelector = ".js-mps-device-list-general-view.js-mps-toggle-device-view";
         
 
-        //private const string InstallationCommunicationTypeSelector = "[id*=content_1_DeviceList_List_CellCommunicationTypeIcon_]"; $$$
         private const string InstallationCommunicationTypeSelector = "[id*=_DeviceList_List_CellCommunicationType_]";
 
 
@@ -201,7 +199,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             if (InstallationRequestStatusElement == null)
                 TestCheck.AssertFailTest("Installation Request element is not displayed");
-            //TestCheck.AssertTextContains(GetCancelledInstallationStatus(), InstallationRequestStatusElement.Text);
             TestCheck.AssertIsEqual(false, String.IsNullOrWhiteSpace(InstallationRequestStatusElement.Text), "Installation has not been cancelled");
         }
 
@@ -719,7 +716,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     {
                         var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
                         var InstallationCommunicationTypeElement = SeleniumHelper.FindElementByCssSelector(row, InstallationCommunicationTypeSelector);
-                        //var communicationType = InstallationCommunicationTypeElement.GetAttribute("data-original-title").Contains("Responding"); $$$
                         var communicationType = InstallationCommunicationTypeElement.GetAttribute("class").Contains("responding");
                         if (serialNumberElement.Text.Equals(serialNumber) && communicationType)
                         {
