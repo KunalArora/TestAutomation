@@ -2,6 +2,8 @@
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
@@ -26,6 +28,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 
         private const string ContainerSelector = ".tab-pane.active.container-fluid";
         private const string StatusSelector = "#content_1_DeviceDataSummary_StatusIconCell";
+
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonBack")]
+        public IWebElement ButtonBackElement;
+
 
         public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType)
         {
