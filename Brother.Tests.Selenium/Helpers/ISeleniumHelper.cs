@@ -207,10 +207,5 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns></returns>
         bool IsElementPresent(string selector, int timeout = -1);
 
-        /// <summary>
-        /// until document.ReadyState="complete"
-        /// </summary>
-        /// <param name="timeout">in sec. -1=default T/O(DefaultFindElementTimeout)</param>
-        void WaitForDocumentReadyStateIsComplete(int timeout = -1);
     }
 }

@@ -42,8 +42,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             _localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.SendBulkInstallationRequest(localOfficeApproverAgreementDevicesPage);
         }
 
-        [When(@"a Cloud MPS LO Approver applies special pricing")]
-        public void WhenACloudMPSLOApproverAppliesSpecialPricing(Table table)
+        [StepDefinition(@"a Cloud MPS LO Approver applies special pricing using relative values\(\+/- w\.r\.t\. current values\) or absolute values:")]
+        public void ThenACloudMPSLOApproverAppliesSpecialPricingUsingRelativeValues_W_R_T_CurrentValuesOrAbsoluteValues(Table table)
         {
             var specialPriceList = table.CreateSet<SpecialPricingProperties>();
             specialPriceList.FirstOrDefault(d => { d.Model = d.Model == "*" ? ".*" : d.Model; return false; });

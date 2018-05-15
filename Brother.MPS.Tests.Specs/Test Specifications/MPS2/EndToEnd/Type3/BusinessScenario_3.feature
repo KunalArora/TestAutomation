@@ -18,7 +18,7 @@ When I navigate to edit device data page
 And I edit device data using excel edit option (Fill Optional fields: "<OptionalFields_2>")
 And I can verify that devices are ready for installation
 Then a Cloud MPS LO Approver can create and send a bulk installation request
-When a Cloud MPS LO Approver applies special pricing 
+And a Cloud MPS LO Approver applies special pricing using relative values(+/- w.r.t. current values) or absolute values:
 		| Model        | InstallUnitPrice | ServiceUnitPrice | MonoClickCoverage | MonoClickVolume | ColourClickCoverage | ColourClickVolume | 
 		| *            | -10.00           | -10.00           | -10               | -100            | -10                 | -100              | 
 Then a Cloud MPS LO Approver can verify that special pricing is correctly applied
