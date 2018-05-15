@@ -102,7 +102,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
         public void EditInstallationPricesAndProceed(IEnumerable<PrinterProperties> printers, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            LoggingService.WriteLogOnMethodEntry(printers);
+            LoggingService.WriteLogOnMethodEntry(printers, specialPriceList);
 
             var installTabElement = SeleniumHelper.FindElementByCssSelector(InstallTabSelector);
 

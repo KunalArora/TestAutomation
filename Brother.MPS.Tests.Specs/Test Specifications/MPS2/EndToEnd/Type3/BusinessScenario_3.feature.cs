@@ -163,7 +163,8 @@ testRunner.Then("a Cloud MPS LO Approver can create and send a bulk installation
                         "-10",
                         "-100"});
 #line 21
-testRunner.When("a Cloud MPS LO Approver applies special pricing", ((string)(null)), table2, "When ");
+testRunner.And("a Cloud MPS LO Approver applies special pricing by difference value(+/-) or absol" +
+                    "ute value:", ((string)(null)), table2, "And ");
 #line 24
 testRunner.Then("a Cloud MPS LO Approver can verify that special pricing is correctly applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25

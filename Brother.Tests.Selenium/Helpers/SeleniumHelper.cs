@@ -118,7 +118,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
         public TResult WaitUntil<TResult>(Func<IWebDriver, TResult> conditions, int timeout, string customMessageWhenTimeout=null)
         {
-            LoggingService.WriteLogOnMethodEntry(conditions, timeout);
+            LoggingService.WriteLogOnMethodEntry(conditions, timeout, customMessageWhenTimeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             try
             {
@@ -208,7 +208,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
 
         public void ClickSafety(IWebElement element, int timeout, bool IsUntilUrlChanges, string exceptionMessageWhenTimeout=null )
         {
-            LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges);
+            LoggingService.WriteLogOnMethodEntry(element, timeout, IsUntilUrlChanges, exceptionMessageWhenTimeout);
             timeout = timeout < 0 ? RuntimeSettings.DefaultFindElementTimeout : timeout;
             try
             {

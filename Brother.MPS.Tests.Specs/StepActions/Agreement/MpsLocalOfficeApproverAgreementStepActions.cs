@@ -86,7 +86,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
         public LocalOfficeAgreementDetailsPage ApplySpecialPricing(LocalOfficeAgreementSummaryPage localOfficeApproverAgreementSummaryPage, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementSummaryPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementSummaryPage, specialPriceList);
 
             bool isInstallationTab, isServiceTab;
 
