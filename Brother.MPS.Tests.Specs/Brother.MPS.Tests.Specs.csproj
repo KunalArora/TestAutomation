@@ -224,11 +224,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\Accruals.feature.cs">
-      <DependentUpon>Accruals.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_6.feature.cs">
       <DependentUpon>BusinessScenario_6.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -303,6 +298,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Accruals.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1747,10 +1747,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\Accruals.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Accruals.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_6.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_6.feature.cs</LastGenOutput>
@@ -1810,6 +1806,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_5.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Accruals.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

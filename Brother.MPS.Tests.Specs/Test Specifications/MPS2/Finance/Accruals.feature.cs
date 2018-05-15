@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
+namespace Brother.Tests.Specs.TestSpecifications.MPS2.Finance
 {
     using TechTalk.SpecFlow;
     
@@ -22,7 +22,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
-    [NUnit.Framework.CategoryAttribute("ENDTOEND")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
     public partial class Type1AccrualsFeature
     {
         
@@ -40,7 +40,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
                         "MPS",
                         "UAT",
                         "TYPE1",
-                        "ENDTOEND"});
+                        "HIGH"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND
+﻿@MPS @UAT @TYPE1 @HIGH
 Feature: Type1Accruals
 	In order to verify the finance of Cloud MPS service
 	As a Cloud MPS Finance
