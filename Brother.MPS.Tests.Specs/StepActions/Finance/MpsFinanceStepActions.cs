@@ -47,7 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
-            _financeWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeFinance);//$$
+            _financeWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeFinance);
             _translationService = translationService;
             _contextData = contextData;
             _calculationService = calculationService;
