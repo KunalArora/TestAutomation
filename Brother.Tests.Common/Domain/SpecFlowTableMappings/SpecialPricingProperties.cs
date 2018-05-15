@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
 {
@@ -42,5 +39,32 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ColourClickVolume;
         public string ColourClickMargin;
         public string ColourClick;
+
+        public string AdjustValue(string cultureOrgValueString, string invaliantSpParamString, string culture)
+        {
+            if (string.IsNullOrWhiteSpace(cultureOrgValueString)) { return cultureOrgValueString; }
+            if (string.IsNullOrWhiteSpace(invaliantSpParamString)) { return cultureOrgValueString; }
+
+            var ciInvariant = CultureInfo.InvariantCulture;
+            var ciCulture = new CultureInfo(culture);
+
+            invaliantSpParamString = invaliantSpParamString.Trim();
+            double newValue;
+            if (invaliantSpParamString.StartsWith("+") || invaliantSpParamString.StartsWith("-"))
+            {
+                var orgValue = double.Parse(cultureOrgValueString, ciCulture);
+                var diffValue = double.Parse(invaliantSpParamString, ciInvariant);
+                newValue = orgValue + diffValue;
+            }
+            else
+            {
+                newValue = double.Parse(invaliantSpParamString, ciInvariant);
+            }
+            var len = Math.Max( invaliantSpParamString.Contains(".") ? invaliantSpParamString.Length - invaliantSpParamString.IndexOf(".") - 1 : 0, 0);
+            var format = "{0:n" + len + "}";
+            var newValueCultured = string.Format(format,newValue);
+            return newValueCultured;
+        }
+
     }
 }
