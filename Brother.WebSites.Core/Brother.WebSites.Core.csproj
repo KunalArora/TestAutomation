@@ -277,7 +277,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceAccrualsReportPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceDashBoardPage.cs" />
-    <Compile Include="Pages\MPSTwo\ReportingDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeReportsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />

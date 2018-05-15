@@ -105,10 +105,12 @@
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\AccrualsDetailExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\CPPAgreementExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IAccrualsDetailExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\ICPPAgreementExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />

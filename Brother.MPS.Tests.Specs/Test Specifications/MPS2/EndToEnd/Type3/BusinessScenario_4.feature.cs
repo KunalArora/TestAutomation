@@ -200,6 +200,8 @@ testRunner.Then("a Cloud MPS Local Office Admin can verify the click rate billin
 #line 34
 testRunner.And("a Cloud MPS Local Office Admin can verify the service/installation billing invoic" +
                     "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+testRunner.And("a Cloud MPS Local Office Admin can verify the CPP Agreement Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
