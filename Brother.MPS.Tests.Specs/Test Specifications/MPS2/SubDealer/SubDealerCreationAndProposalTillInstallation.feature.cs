@@ -153,6 +153,29 @@ testRunner.And("a Sub dealer calculate the click price for each of the above pri
 testRunner.And("a Sub dealer save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
 testRunner.And("a Cloud MPS Local Office Approver approves the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+testRunner.And("a Sub dealer sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+testRunner.And("a Sub dealer navigate to the Accepted Contracts page and I locate the above contr" +
+                    "act and click Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+testRunner.And(string.Format("a Sub dealer create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+testRunner.And("a Sub dealer will be able to see the installation request created above on the Ma" +
+                    "nage Devices page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
+                    "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+testRunner.And("a Sub dealer navigate to the Accepted Contracts page and I locate the above contr" +
+                    "act and click Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+testRunner.Then("a Sub dealer will be able to see on the Manage Devices page that all devices for " +
+                    "the above contract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

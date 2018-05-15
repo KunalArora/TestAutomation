@@ -32,6 +32,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
+        private DealerDashBoardPage _subDealerDashboardPage;
         private DealerContractsPage _dealerContractsPage;
         private DealerManageDevicesPage _dealerManageDevicesPage;
         private DealerSetCommunicationMethodPage _dealerSetCommunicationMethodPage;
@@ -125,6 +126,26 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmail(_dealerSendInstallationEmailPage);
         }
 
+        [When(@"a Sub dealer create a ""(.*)"" installation request for ""(.*)"" communication")]
+        public void WhenASubDealerCreateAInstallationRequestForCommunication(string installationType, string communicationMethod)
+        {
+            _dealerSetCommunicationMethodPage = _mpsDealerContractStepActions.CreateInstallationRequest(_dealerManageDevicesPage);
+            switch (communicationMethod)
+            {
+                case "Cloud":
+                    _dealerSetInstallationTypePage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForCloud(_dealerSetCommunicationMethodPage);
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectInstallationTypeAndProceed(_dealerSetInstallationTypePage, installationType);
+                    break;
+                case "Email":
+                    _dealerSendInstallationEmailPage = _mpsDealerContractStepActions.SelectCommunicationMethodAndProceedForEmail(_dealerSetCommunicationMethodPage);
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.PopulateInstallerEmailAndSendEmail(_dealerSendInstallationEmailPage);
+        }
+
         [When(@"I will be able to see the installation request created above on the Manage Devices page for the above proposal")]
         public void ThenIWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
@@ -132,8 +153,22 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _contextData.WebInstallUrl = url;
         }
 
+        [When(@"a Sub dealer will be able to see the installation request created above on the Manage Devices page for the above proposal")]
+        public void WhenASubDealerWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
+        {
+            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
+            _contextData.WebInstallUrl = url;
+        }
+
         [When(@"I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
         public void WhenIWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
+        {
+            _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
+        }
+
+        [Then(@"a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
+        [When(@"a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
+        public void WhenASubDealerWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
@@ -196,6 +231,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var dealerContractsAwaitingAcceptancePage = _mpsDealerProposalStepActions.SignToContract(dealerContractsSummaryPage);
         }
 
+        [When(@"a Sub dealer sign the above proposal")]
+        public void WhenASubDealerSignTheAboveProposal()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.NavigateToDashboardPage(_urlResolver.BaseUrl);
+            var dealerContractsApprovedProposalPage = _mpsDealerProposalStepActions.NavigateToDealerContractsApprovedProposalPage(dealerDashboardPage);
+            var dealerContractsSummaryPage = _mpsDealerProposalStepActions.ClickViewOffer(dealerContractsApprovedProposalPage);
+            var dealerContractsAwaitingAcceptancePage = _mpsDealerProposalStepActions.SignToContract(dealerContractsSummaryPage);
+        }
+
         [When(@"I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button")]
         public void WhenINavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
         {
@@ -215,6 +259,28 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
+
+        [When(@"a Sub dealer navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button")]
+        public void WhenASubDealerNavigateToTheAcceptedContractsPageAndILocateTheAboveContractAndClickManageDevicesButton()
+        {
+            var resourceContractTypePurchaseAndClick = _translationService.GetContractTypeText(TranslationKeys.ContractType.PurchaseAndClick, _contextData.Culture);
+            var resourceContractTypeEPP = _translationService.GetContractTypeText(TranslationKeys.ContractType.EasyPrintProAndService, _contextData.Culture);
+
+            _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerContractsPage = _mpsDealerContractStepActions.NavigateToContractsPage(_subDealerDashboardPage);
+            if (_contextData.ContractType == resourceContractTypePurchaseAndClick || _contextData.ContractType == resourceContractTypeEPP)
+            {
+                _mpsDealerContractStepActions.MoveToAcceptedContractsTab(_dealerContractsPage);
+            }
+            else
+            {
+                _mpsDealerContractStepActions.MoveToAwaitingAcceptanceContractsTab(_dealerContractsPage);
+            }
+            _mpsDealerContractStepActions.FilterContractUsingProposalIdAction(_dealerContractsPage);
+            _dealerManageDevicesPage = _mpsDealerContractStepActions.ClickOnManageDevicesAndProceed(_dealerContractsPage);
+            _runCommandService.RunCreateCustomerAndPersonCommand();
+        }
+
 
         [Then(@"I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal")]
         public void ThenIWillBeAbleToSeeTheStatusOfTheSwapDeviceIsSetBeingSwappedWithUpdatedPrintCountsOnTheManageDevicesPageForTheAboveProposal()

@@ -19,7 +19,15 @@ And a Sub dealer add these printers:
 And a Sub dealer calculate the click price for each of the above printers
 And a Sub dealer save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver approves the above proposal
-
+And a Sub dealer sign the above proposal
+And a Cloud MPS Local Office Approver accepts the above proposal
+And a Sub dealer navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
+And a Sub dealer create a "<InstallationType>" installation request for "<CommunicationMethod>" communication
+And a Sub dealer will be able to see the installation request created above on the Manage Devices page for the above proposal
+And a Brother installer has navigated to the Web Installation page and verify Contract Reference
+And Enter the serial numbers and complete installation
+And a Sub dealer navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
+Then a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 
 @BUK
 Scenarios: 
