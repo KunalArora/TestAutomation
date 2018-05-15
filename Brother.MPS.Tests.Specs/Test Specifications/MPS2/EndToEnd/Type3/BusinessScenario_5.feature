@@ -15,7 +15,7 @@ And I add these printers and verify click price:
 		| MFC-L9550CDWT | 1        | Yes              | No          | 5            | 500        | 20             | 250          | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | false  | MFC-L8850CDW |
 		| DCP-8250DN    | 1        | No               | Yes         | 5            | 2000       | 0              | 0            | Yes                     | 600            | 0               | Empty               | Normal             | Normal                | Normal               | false  |              |
 And I complete the setup of agreement
-And a Cloud MPS LO Approver applies special pricing by difference current value(+/-) or absolute value:
+And a Cloud MPS LO Approver applies special pricing using relative values(+/- w.r.t. current values) or absolute values:
 		| Model        | InstallUnitPrice | ServiceUnitPrice | MonoClickCoverage | MonoClickVolume | ColourClickCoverage | ColourClickVolume | 
 		| *            | -10.00           | -10.00           | +10               | +100            | +10                 | +100              | 
 Then I can verify the creation of agreement in the agreement list
