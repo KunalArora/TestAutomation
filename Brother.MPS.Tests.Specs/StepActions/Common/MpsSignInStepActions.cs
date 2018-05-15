@@ -41,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             { UserType.LocalOfficeAdmin,        "/mps/local-office/dashboard" },
             { UserType.Bank,                    "/mps/bank/dashboard" },
             { UserType.LocalOfficeFinance,      "/mps/local-office/finance/dashboard" },
+            { UserType.SubDealer,               "/mps/dealer/dashboard" },
         };
 
         public MpsSignInStepActions (
@@ -149,6 +150,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         public DealerDashBoardPage SignInAsSubDealer(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            var dealerDashboardUrl = DashBoardUrl[UserType.SubDealer];
             _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
             _contextData.DriverInstance = UserType.SubDealer;
             if (_subDealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
