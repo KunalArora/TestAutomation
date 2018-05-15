@@ -103,11 +103,13 @@
     <Compile Include="Factories\WebDriverFactory.cs" />
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\AccrualsDetailExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\CppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\CPPAgreementExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IAccrualsDetailExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ICppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ICPPAgreementExcelHelper.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
+    <Compile Include="StepActions\Finance\MpsFinanceStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsBankProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsDealerProposalStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsLocalOfficeApproverProposalStepActions.cs" />
@@ -299,6 +302,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Accruals.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1574,6 +1582,7 @@
     <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Finance\MpsFinanceSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsBankProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsDealerProposalSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsLocalOfficeApproverProposalSteps.cs" />
@@ -1801,6 +1810,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_5.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Accruals.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\PartialScenarios\LoginAsDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

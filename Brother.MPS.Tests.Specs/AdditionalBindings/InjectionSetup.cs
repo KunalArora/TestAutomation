@@ -61,6 +61,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
             _container.RegisterTypeAs<PageParseHelper, IPageParseHelper>();
+            _container.RegisterTypeAs<AccrualsDetailExcelHelper, IAccrualsDetailExcelHelper>();
             _container.RegisterTypeAs<CPPAgreementExcelHelper, ICPPAgreementExcelHelper>();
             _container.RegisterTypeAs<CppAgreementDevicesExcelHelper, ICppAgreementDevicesExcelHelper>();
 
