@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
     public class MpsFinanceStepActions : StepActionBase
     {
         private readonly MpsSignInStepActions _mpsSignIn;
-        private readonly IWebDriver _financeWebDriver;
+        private readonly IWebDriver _localOfficeFinanceWebDriver;
         private readonly ITranslationService _translationService;
         private readonly IContextData _contextData;
         private readonly ICalculationService _calculationService;
@@ -47,7 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
-            _financeWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeFinance);
+            _localOfficeFinanceWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeFinance);
             _translationService = translationService;
             _contextData = contextData;
             _calculationService = calculationService;
@@ -61,7 +61,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeFinanceDashBoardPage);
             localOfficeFinanceDashBoardPage.SeleniumHelper.ClickSafety(localOfficeFinanceDashBoardPage.AccrualsElement, IsUntilUrlChanges: true);
-            return PageService.GetPageObject<LocalOfficeFinanceAccrualsReportPage>(RuntimeSettings.DefaultPageLoadTimeout, _financeWebDriver);            
+            return PageService.GetPageObject<LocalOfficeFinanceAccrualsReportPage>(RuntimeSettings.DefaultPageLoadTimeout, _localOfficeFinanceWebDriver);            
         }
 
         public string ClickOnRunReport(LocalOfficeFinanceAccrualsReportPage localOfficeFinanceAccrualsReportPage, DateTime dateTime)
@@ -90,7 +90,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeFinanceAccrualsReportPage);
             localOfficeFinanceAccrualsReportPage.ClickOnFinanceTab();
-            return PageService.GetPageObject<LocalOfficeFinanceDashBoardPage>(RuntimeSettings.DefaultPageLoadTimeout, _financeWebDriver);
+            return PageService.GetPageObject<LocalOfficeFinanceDashBoardPage>(RuntimeSettings.DefaultPageLoadTimeout, _localOfficeFinanceWebDriver);
         }
     }
 }
