@@ -75,9 +75,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SubDealer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SubDealerCreationAndProposalTillInstallation")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void SubDealerCreationAndProposalTillInstallation(string country, string[] exampleTags)
+        public virtual void SubDealerCreationAndProposalTillInstallation(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SubDealerCreationAndProposalTillInstallation", exampleTags);
 #line 7
@@ -90,7 +90,69 @@ testRunner.When("I create a new sub dealer", ((string)(null)), ((TechTalk.SpecFl
 #line 10
 testRunner.Then("I can verify that the Sub dealer is successfully created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
-testRunner.Given(string.Format("I have navigated to the create proposal page as a Sub dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("a Sub dealer has navigated to the create proposal page from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+testRunner.When(string.Format("a Sub dealer create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+testRunner.And("a Sub dealer enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+testRunner.And("a Sub dealer create a new customer for the proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.And(string.Format("a Sub dealer select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of " +
+                        "\"{2}\" and Service Pack type of \"{3}\"", usageType, contractTerm, billingType, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "Price",
+                        "InstallationPack",
+                        "Delivery",
+                        "CoverageMono",
+                        "VolumeMono",
+                        "CoverageColour",
+                        "VolumeColour",
+                        "SerialNumber",
+                        "MonoPrintCount",
+                        "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus",
+                        "LaserUnit",
+                        "FuserUnit",
+                        "PaperFeedingKit1",
+                        "PaperFeedingKit2",
+                        "PaperFeedingKit3",
+                        "IsSwap"});
+            table1.AddRow(new string[] {
+                        "DCP-L8450CDW",
+                        "1000.00",
+                        "BROTHER_INSTALLATION",
+                        "Yes",
+                        "5",
+                        "1000",
+                        "20",
+                        "250",
+                        "A3P145602",
+                        "3000",
+                        "1500",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "false"});
+#line 16
+testRunner.And("a Sub dealer add these printers:", ((string)(null)), table1, "And ");
+#line 19
+testRunner.And("a Sub dealer calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+testRunner.And("a Sub dealer save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+testRunner.And("a Cloud MPS Local Office Approver approves the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

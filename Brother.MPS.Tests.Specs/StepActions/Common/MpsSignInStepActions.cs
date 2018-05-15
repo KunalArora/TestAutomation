@@ -150,12 +150,13 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
             _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
+            _contextData.DriverInstance = UserType.SubDealer;
             if (_subDealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
                 if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
                 {
                     var signInPage = LoadAtYourSideSignInPage(url, _subDealerWebDriver);
-                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _subDealerWebDriver);
                 }
                 else
                 {

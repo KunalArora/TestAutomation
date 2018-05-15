@@ -51,6 +51,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerCustomersExistingPage _dealerCustomersExistingPage;
         private DealerProposalsAwaitingApprovalPage _dealerProposalsAwaitingApprovalPage;
         private DealerProposalsDeclinedPage _dealerProposalsDeclinedPage;
+        private DealerDashBoardPage _subDealerDashboardPage;
 
         // other
         private string _pdfFile;
@@ -167,6 +168,13 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(_dealerProposalsCreateCustomerInformationPage);
         }
 
+        [When(@"a Sub dealer create a new customer for the proposal")]
+        public void WhenASubDealerCreateANewCustomerForTheProposal()
+        {
+            _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.CreateCustomerForProposal(_dealerProposalsCreateCustomerInformationPage);
+        }
+
+
         [When(@"I select an existing customer for the proposal")]
         public void WhenISelectAnExistingCustomerForTheProposal()
         {
@@ -191,6 +199,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
         [When(@"I select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
         public void WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
+        {
+            WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(usageType, contractTerm, billingType, servicePackType, "");
+        }
+
+        [When(@"a Sub dealer select Usage Type of ""(.*)"", Contract Term of ""(.*)"", Billing Type of ""(.*)"" and Service Pack type of ""(.*)""")]
+        public void WhenASubDealerSelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(string usageType, string contractTerm, string billingType, string servicePackType)
         {
             WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(usageType, contractTerm, billingType, servicePackType, "");
         }
@@ -259,6 +273,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             WhenISaveTheProposal();
             WhenISubmitItForApproval();
         }
+
+        [When(@"a Sub dealer save the above proposal and submit it for approval")]
+        public void WhenASubDealerSaveTheAboveProposalAndSubmitItForApproval()
+        {
+            WhenISaveTheProposal();
+            WhenISubmitItForApproval();
+        }
+
 
         public void WhenISubmitItForApproval()
         {
@@ -406,5 +428,62 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var dealerProposalsDeclinedPage = _mpsDealerProposalStepActions.NavigateToDealerProposalsDeclinedPage(dealerDashboardPage);
             _mpsDealerProposalStepActions.VerifyDeclinedProposalInDeclinedProposalsList(dealerProposalsDeclinedPage);
         }
+
+        [Given(@"a Sub dealer has navigated to the create proposal page from ""(.*)""")]
+        public void GivenASubDealerHasNavigatedToTheCreateProposalPageFrom(string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
+            _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_contextData.SubDealerEmail, _contextData.SubDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_subDealerDashboardPage);
+        }
+
+        [When(@"a Sub dealer create a ""(.*)"" proposal")]
+        public void WhenASubDealerCreateAProposal(string contractType)
+        {
+            _contextData.ContractType = _translationService.GetContractTypeText(contractType, _contextData.Culture);
+        }
+
+        [When(@"a Sub dealer enter the proposal description")]
+        public void WhenASubDealerEnterTheProposalDescription()
+        {
+            string proposalName = _proposalHelper.GenerateProposalName();
+            _contextData.ProposalName = proposalName;
+            if (_contextData.Country.LogicSettings.IsNextDealerProposalsCreateTermAndTypePage)
+            {
+                _dealerProposalsCreateTermAndTypePage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateTermAndTypePage>(_dealerProposalsCreateDescriptionPage, proposalName, "", _contextData.ContractType);
+            }
+            else
+            {
+                _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateCustomerInformationPage>(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            }
+        }
+
+        [When(@"a Sub dealer add these printers:")]
+        public void WhenASubDealerAddThesePrinters(Table printers)
+        {
+            var products = printers.CreateSet<PrinterProperties>();
+            var cultureInfo = new CultureInfo(_contextData.Culture);
+            foreach (var product in products)
+            {
+                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
+                product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
+            }
+            _contextData.PrintersProperties = products;
+            _dealerProposalsCreateClickPricePage = _mpsDealerProposalStepActions.AddPrinterToProposalAndProceed(_dealerProposalsCreateProductsPage);
+        }
+
+        [When(@"a Sub dealer calculate the click price for each of the above printers")]
+        public void WhenASubDealerCalculateTheClickPriceForEachOfTheAbovePrinters()
+        {
+            _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage);
+        }
+
+
     }
 }

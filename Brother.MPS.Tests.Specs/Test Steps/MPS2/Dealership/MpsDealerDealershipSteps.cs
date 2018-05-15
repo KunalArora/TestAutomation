@@ -27,7 +27,6 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         private DealerAdminDashBoardPage _dealerAdminDashboardPage;
         private DealerAdminDealershipUsersPage _dealerAdminDealershipUsersPage;
         private DealerAdminDealershipUsersCreationPage _dealerAdminDealershipUsersCreationPage;
-        private DealerDashBoardPage _subDealerDashboardPage;
 
         public MpsDealerDealershipSteps(
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -74,21 +73,5 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         {
             _mpsDealerDealershipStepActions.VerifySubDealer(_dealerAdminDealershipUsersPage);
         }
-
-        [Given(@"I have navigated to the create proposal page as a Sub dealer from ""(.*)""")]
-        public void GivenIHaveNavigatedToTheCreateProposalPageAsASubDealerFrom(string country)
-        {
-            _contextData.SetBusinessType("1");
-            _contextData.Country = _countryService.GetByName(country);
-            if (_contextData.Country.Cultures.Count != 1)
-            {
-                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
-            }
-            _contextData.Culture = _contextData.Country.Cultures[0];
-            _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_contextData.SubDealerEmail, _contextData.SubDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-        }
-
-
-
     }
 }

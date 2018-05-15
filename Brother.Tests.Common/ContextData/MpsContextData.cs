@@ -83,6 +83,7 @@ namespace Brother.Tests.Common.ContextData
         public string SubDealerPassword { get; set; }
         public string SubDealerFirstName { get; set; }
         public string SubDealerLastName { get; set; }
+        public UserType DriverInstance { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }

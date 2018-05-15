@@ -8,10 +8,21 @@ Scenario Outline: SubDealerCreationAndProposalTillInstallation
 Given I have navigated to the Dealership User page in admin tab as a Cloud MPS Dealer from "<Country>"
 When I create a new sub dealer
 Then I can verify that the Sub dealer is successfully created
-Given I have navigated to the create proposal page as a Sub dealer from "<Country>"
+Given a Sub dealer has navigated to the create proposal page from "<Country>"
+When a Sub dealer create a "<ContractType>" proposal
+And a Sub dealer enter the proposal description
+And a Sub dealer create a new customer for the proposal
+And a Sub dealer select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
+And a Sub dealer add these printers:
+		| Model        | Price   | InstallationPack     | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
+		| DCP-L8450CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 3000           | 1500            | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+And a Sub dealer calculate the click price for each of the above printers
+And a Sub dealer save the above proposal and submit it for approval
+And a Cloud MPS Local Office Approver approves the above proposal
+
 
 @BUK
 Scenarios: 
-		| Country        |
-		| United Kingdom |
+		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
+		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | 
 		
