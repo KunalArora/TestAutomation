@@ -203,12 +203,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
 
-        public ReportingDashboardPage NavigateToReportPage()
+        public LocalOfficeReportsDashboardPage NavigateToReportPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerReportLinkElement);
-            return GetTabInstance<ReportingDashboardPage>();
+            return GetTabInstance<LocalOfficeReportsDashboardPage>();
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()

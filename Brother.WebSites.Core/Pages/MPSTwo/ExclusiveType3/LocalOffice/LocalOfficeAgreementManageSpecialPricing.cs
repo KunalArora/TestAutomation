@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -205,7 +206,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                         // Verify that new click price is different from the older one
                         var monoClickPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "mono-click", "true");
                         var oldMonoClickPrice = SeleniumHelper.FindElementByCssSelector(rowElement, ".m-1-10");
-                        SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != oldMonoClickPrice.Text.Substring(1)));
+                        SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != MpsUtil.RemoveCurrencySymbol(oldMonoClickPrice.Text)));
 
                         // Save to context data for later verification (mono)
                         printer.ServicePackPrice = newServicePrice;
