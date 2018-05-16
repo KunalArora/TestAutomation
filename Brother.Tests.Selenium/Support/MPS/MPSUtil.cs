@@ -1236,11 +1236,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             //}
         }
 
-        public static string GetNumbers(string input)
-        {
-            return new string(input.Where(c => char.IsDigit(c)).ToArray());
-        }
-
         public static string DefaultMargins()
         {
             String[] margins =

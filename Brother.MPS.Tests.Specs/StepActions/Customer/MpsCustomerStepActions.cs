@@ -120,5 +120,12 @@ namespace Brother.Tests.Specs.StepActions.Customer
             ClickSafety(customerDashBoardPage.CustomerServiceRequestTabElement, customerDashBoardPage);
             return PageService.GetPageObject<CustomerServiceRequestActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }
+
+        public CustomerDashBoardPage SelectLanguageGivenCulture(CustomerDashBoardPage customerDashBoardPage, string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(customerDashBoardPage, culture);
+            _contextData.Language = customerDashBoardPage.ClickLanguageLink(culture);
+            return PageService.GetPageObject<CustomerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
+        }
     }
 }
