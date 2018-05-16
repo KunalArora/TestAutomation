@@ -45,7 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             {
                 var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerPrefixSelector + printer.Model);
 
-                var displayedMonoClickPrice = MpsUtil.RemoveCurrencySymbol(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text);
+                var displayedMonoClickPrice = MpsUtil.GetDigitsOnly(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text);
                 TestCheck.AssertIsEqual(printer.MonoClickPrice, displayedMonoClickPrice, string.Format(
                     "Mono Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
@@ -55,7 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
                 if(!printer.IsMonochrome)
                 {
-                    var displayedColourClickPrice = MpsUtil.RemoveCurrencySymbol(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text);
+                    var displayedColourClickPrice = MpsUtil.GetDigitsOnly(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text);
                     TestCheck.AssertIsEqual(printer.ColourClickPrice, displayedColourClickPrice, string.Format(
                         "Colour Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
@@ -66,14 +66,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 
                 if (printer.InstallationPack.ToLower().Equals("yes"))
                 {
-                    var displayedInstallationPrice = MpsUtil.RemoveCurrencySymbol(SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text);
+                    var displayedInstallationPrice = MpsUtil.GetDigitsOnly(SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text);
                     TestCheck.AssertIsEqual(double.Parse(printer.InstallationPackPrice), double.Parse(displayedInstallationPrice), string.Format(
                         "Installation Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
 
                 if (printer.ServicePack.ToLower().Equals("yes") && servicePackType.Equals(_expectedTranslationService.GetServicePackTypeText(TranslationKeys.ServicePackType.PayUpfront, culture)))
                 {
-                    var displayedServicePrice = MpsUtil.RemoveCurrencySymbol(SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text);
+                    var displayedServicePrice = MpsUtil.GetDigitsOnly(SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text);
                     TestCheck.AssertIsEqual(printer.ServicePackPrice, displayedServicePrice, string.Format(
                         "Service Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }

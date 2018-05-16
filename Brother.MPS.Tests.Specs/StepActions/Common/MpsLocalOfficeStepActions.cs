@@ -326,7 +326,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.GetDigitsOnly(expectedClickRateTotal));
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -418,7 +418,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 string expectedServiceInstallationTotal = localOfficeAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedServiceInstallationTotal));
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.GetDigitsOnly(expectedServiceInstallationTotal));
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);

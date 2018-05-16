@@ -122,7 +122,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(InstallationPackTotalElement.Text));
+                return double.Parse(MpsUtil.GetDigitsOnly(InstallationPackTotalElement.Text));
             }
             catch(NoSuchElementException)
             {
@@ -137,7 +137,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(ServicePackTotalElement.Text));
+                return double.Parse(MpsUtil.GetDigitsOnly(ServicePackTotalElement.Text));
             }
             catch (NoSuchElementException)
             {
@@ -153,7 +153,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 
             try
             {
-                clickRateTotal = double.Parse(MpsUtil.RemoveCurrencySymbol(ClickRateTotalElement.Text));
+                clickRateTotal = double.Parse(MpsUtil.GetDigitsOnly(ClickRateTotalElement.Text));
             }
             catch (Exception e)
             {

@@ -6,6 +6,7 @@ using System.Globalization;
 using TechTalk.SpecFlow;
 using System.Linq;
 using Brother.Tests.Common.Domain.Constants;
+using System.Text.RegularExpressions;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
@@ -1362,10 +1363,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return result.ToString(DATESTRING_BUK);
         }
 
-        public static string RemoveCurrencySymbol(string value) //TODO: Extend this function to handle cases for other countries as well..
+        public static string GetDigitsOnly(string variable)
         {
-            // For UK
-            return value.Substring(1); // Removes 1st character from string
+            return Regex.Replace(variable, "[^0-9.]", "");
         }
     }
 }
