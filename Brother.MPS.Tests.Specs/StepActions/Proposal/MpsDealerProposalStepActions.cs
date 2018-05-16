@@ -156,7 +156,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
-            detailInputPage.FillOrganisationDetails();
+            detailInputPage.FillOrganisationDetails(_contextData.Language);
             detailInputPage.FillOrganisationContactDetail(_contextData.Language);
             _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
             _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
@@ -657,11 +657,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 case CountryIso.Switzerland:
                     var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
                     var quarterInterval = (double.Parse(contractTermDigitString)/3);
+                    double minimumVolumePerQuarter = 0;
+                    if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture)))
+                    {
+                        minimumVolumePerQuarter =  _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet/quarterInterval, 2);
+                    }
                     searchTextArray = new string[]
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet/quarterInterval, 2))
+                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), minimumVolumePerQuarter)
                         };
                         break;
                 default:
@@ -795,7 +800,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
             dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
-            dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
+            dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval(_contextData.Culture);       // Approval Has Been Given To Send Information To Brother
             _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = _pageParseHelper.ParseSummaryPageValues(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             if(_contextData.DriverInstance == UserType.SubDealer)

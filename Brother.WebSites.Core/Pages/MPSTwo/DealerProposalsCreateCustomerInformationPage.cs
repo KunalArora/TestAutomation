@@ -339,7 +339,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void FillOrganisationDetails()
+        public void FillOrganisationDetails(string language = null)
        {
             LoggingService.WriteLogOnMethodEntry();
             EnterCompanyName();
@@ -358,7 +358,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 try
                 {
-                    var language = SpecFlow.GetContext("BelgianLanguage");
+                    language = SpecFlow.GetContext("BelgianLanguage");
                     SelectBelgianCustomerLanguage(language);
                 }
                 catch (KeyNotFoundException keyNotFound)
@@ -372,8 +372,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (IsSwissSystem())
             {
                 try
-                {
-                    var language = SpecFlow.GetContext("BelgianLanguage");
+                {                   
                     SelectSwissCustomerLanguage(language);
                 }
                 catch (KeyNotFoundException)

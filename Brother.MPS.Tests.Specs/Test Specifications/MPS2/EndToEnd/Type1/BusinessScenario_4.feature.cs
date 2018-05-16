@@ -78,6 +78,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         [NUnit.Framework.DescriptionAttribute("Type1BusinessScenario_4")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "PURCHASE_AND_CLICK", "PAY_AS_YOU_GO", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
                 "BUK"}, Category="BUK")]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "de-CH", "PURCHASE_AND_CLICK", "PAY_AS_YOU_GO", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", new string[] {
+                "BSW"}, Category="BSW")]
         public virtual void Type1BusinessScenario_4(string country, string culture, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1BusinessScenario_4", exampleTags);
@@ -119,7 +121,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "PaperFeedingKit3",
                         "IsSwap"});
             table1.AddRow(new string[] {
-                        "DCP-8110DN",
+                        "HL-L2340DW",
                         "1000.00",
                         "BROTHER_INSTALLATION",
                         "Yes",
@@ -141,7 +143,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "true"});
             table1.AddRow(new string[] {
-                        "HL-5450DN",
+                        "HL-L2360DN",
                         "1000.00",
                         "BROTHER_INSTALLATION",
                         "Yes",

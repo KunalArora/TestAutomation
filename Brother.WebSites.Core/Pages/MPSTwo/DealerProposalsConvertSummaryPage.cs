@@ -47,17 +47,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         }
 
-        public void GiveThirdPartyCheckApproval()
+        public void GiveThirdPartyCheckApproval(string culture)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(culture);
             IWebElement element = GetElementByCssSelector("#content_1_InputSendToLeasingBank_Label", 5);
             if (element != null)
                 ThirdPartyApproval.Click();
             element = GetElementByCssSelector("#content_1_InputSendToBrother_Input", 5);
             if (element != null)
                 SendToBrotherElement.Click();
+
+            if(culture.ToLower().Equals("de-ch"))
+            {
+                element = SeleniumHelper.FindElementByCssSelector("#content_1_InputUpdateUserBOL_Input");
+                SeleniumHelper.ClickSafety(element);
+            }
         }
-
-
     }
 }
