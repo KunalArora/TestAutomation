@@ -72,5 +72,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             //5th row
             TestCheck.AssertTextContains(Contact, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".contact-details").Text, string.Format("Contact = {0} could not be verified", Contact));
         }
+
+        public void VerifyPrintCount(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+            TestCheck.AssertTextContains(device.MonoPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.mono-total").Text, string.Format("Total Print Count(Mono) = {0} could not be verified", device.MonoPrintCount));
+            TestCheck.AssertTextContains("0", SeleniumHelper.FindElementByCssSelector("span.mono-start").Text, string.Format("Start Print Count(Mono) = {0} could not be verified", 0));
+            TestCheck.AssertTextContains(device.MonoPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.mono-month").Text, string.Format("Pages This Month(Mono) = {0} could not be verified", device.MonoPrintCount));
+
+            TestCheck.AssertTextContains(device.IsMonochrome ? "-" : device.ColorPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.colour-total").Text, string.Format("Total Print Count(Colour) = {0} could not be verified", device.ColorPrintCount));
+            TestCheck.AssertTextContains(device.IsMonochrome ? "-" : "0", SeleniumHelper.FindElementByCssSelector("span.colour-start").Text, string.Format("Start Print Count(Colour) = {0} could not be verified", 0));
+            TestCheck.AssertTextContains(device.IsMonochrome ? "-" : device.ColorPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.colour-month").Text, string.Format("Pages This Month(Colour) = {0} could not be verified", device.ColorPrintCount));
+        }
     }
 }
