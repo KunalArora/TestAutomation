@@ -284,8 +284,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            switch (lang)
            {
                case "":
-               case "Fran軋is":
-                   language = "Fran軋is";
+               case "Français":
+                   language = "Français";
                    break;
                case "Deutsch":
                    language = "Deutsch";
@@ -309,7 +309,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 case "" :
                 case "French":
-                    language = "Fran軋is";
+                    language = "Français";
                     break;
                 case "Dutch":
                     language = "Nederlands";
