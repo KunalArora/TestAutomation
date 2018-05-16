@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -29,7 +30,7 @@ namespace Brother.Tests.Specs.UnitTests
             var country = _countryService.GetByCulture(culture);
 
             //Assert
-            Assert.AreEqual(country.CountryIso, "GB");
+            Assert.AreEqual(country.CountryIso, CountryIso.UnitedKingdom);
         }
 
         [Test]
@@ -42,7 +43,7 @@ namespace Brother.Tests.Specs.UnitTests
             var country = _countryService.GetByCulture(culture);
 
             //Assert
-            Assert.AreEqual(country.CountryIso, "CH");
+            Assert.AreEqual(country.CountryIso, CountryIso.Switzerland);
         }
     }
 }

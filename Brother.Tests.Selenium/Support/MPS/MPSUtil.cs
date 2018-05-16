@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using TechTalk.SpecFlow;
 using System.Linq;
+using Brother.Tests.Common.Domain.Constants;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
@@ -1172,11 +1173,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             string currencySymbol;
             switch (countryIso)
             {
-                case "GB":
+                case CountryIso.UnitedKingdom:
                     currencySymbol = "£";
                     break;
 
-                case "CH":
+                case CountryIso.Switzerland:
                     currencySymbol = "CHF";
                     break;
                 

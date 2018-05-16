@@ -123,7 +123,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage, culture);
+            if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage, culture);
+            }
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 

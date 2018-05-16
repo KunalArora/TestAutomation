@@ -74,6 +74,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 3")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145606", "100", "0", new string[] {
+                "BUK",
+                "BSW"}, Category="BUK,BSW")]
         [NUnit.Framework.TestCaseAttribute("Switzerland", "fr-CH", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ADVANCE", "INCLUDED_IN_CLICK_PRICE", "FIVE_YEARS", "New", "Cloud", "Web", "REPLACE_THE_PCB", "A3P145606", "100", "0", new string[] {
                 "BUK",
                 "BSW"}, Category="BUK,BSW")]

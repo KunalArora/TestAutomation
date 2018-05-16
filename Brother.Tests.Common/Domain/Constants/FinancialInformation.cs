@@ -12,13 +12,13 @@ namespace Brother.Tests.Common.Domain.Constants
 
             switch (countryIso)
             {
-                case "UK":
+                case CountryIso.UnitedKingdom:
                     vatMultiplyFactor = 1.2;
                     break;
-                case "CH":
+                case CountryIso.Switzerland:
                     vatMultiplyFactor = 1.077;
                     break;
-                case "DE":
+                case CountryIso.Germany:
                     vatMultiplyFactor = 1.19;
                     break;
                 default:
