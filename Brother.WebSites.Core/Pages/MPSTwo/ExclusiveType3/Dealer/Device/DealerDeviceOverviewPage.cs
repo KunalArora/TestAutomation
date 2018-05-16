@@ -11,7 +11,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
     public class DealerDeviceOverviewPage : BasePage, IPageObject
     {
         private string _validationElementSelector = ".js-mps-device-data-container";
-        private const string _url = "/mps/dealer/device/{reportingId}/dashboard"; // TODO: Replace reportingId with dynamic parameter
+        private const string _url = "/mps/dealer/device/{reportingId}/overview";
 
         public string ValidationElementSelector
         {
