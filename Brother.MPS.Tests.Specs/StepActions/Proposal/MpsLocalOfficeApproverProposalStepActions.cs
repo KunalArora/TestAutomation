@@ -225,7 +225,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickMargin)
                         || actualMonoValue.Contains("Margin: "+specialPrice.MonoClickMargin),
                         "Click Price/Margin(Mono) "+logAppend);
-                   if(_contextData.Country.CountryIso.Equals("CH"))
+                   if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
                    {
                        Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
                         || actualMonoValue.Contains("Click Price:  " + specialPrice.MonoClick),
@@ -254,7 +254,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickMargin)
                         || actualColorValue.Contains("Margin: " + specialPrice.ColourClickMargin),
                         "Click Price/Margin(Colour) "+logAppend);
-                    if (_contextData.Country.CountryIso.Equals("CH"))
+                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
                     {
                         Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
                             || actualColorValue.Contains("Click Price:  " + specialPrice.ColourClick),

@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.Services
         public double ConvertStringToDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
-            if(ContextData.Country.CountryIso.Equals("CH"))
+            if(ContextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
                 variable = Regex.Replace(variable, @"\s+", string.Empty);
             }

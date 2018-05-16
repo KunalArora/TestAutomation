@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.RuntimeSettings;
 using System;
@@ -47,7 +48,7 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType) {
                 case BusinessType.Type1:
                     // Only Type1
-                    if (_contextData.Country.CountryIso.Equals("CH"))
+                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
                     {
                         loginPatternNumber = "2";
                     }
@@ -83,7 +84,7 @@ namespace Brother.Tests.Specs.Resolvers
             switch (businessType)
             {
                 case BusinessType.Type1:
-                    if (_contextData.Country.CountryIso.Equals("CH"))
+                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
                     {
                         loginPatternNumber = "2";
                     }
