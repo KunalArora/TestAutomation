@@ -644,7 +644,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             switch(_contextData.Country.CountryIso)
             {
-                case "UK":
+                case CountryIso.UnitedKingdom:
                     searchTextArray = new string[] 
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
@@ -653,7 +653,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
                         };
                     break;
-                case "CH":
+                case CountryIso.Switzerland:
                     searchTextArray = new string[]
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
