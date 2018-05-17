@@ -7,9 +7,28 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerAdminDashBoardPage : BasePage
+    public class DealerAdminDashBoardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/dealer/admin/dashboard";
+        private const string _validationElementSelector = "div.mps-dashboard";
+        private const string _url = "/mps/dealer/admin/dashboard";
+
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
 
         public override string DefaultTitle
         {
@@ -71,6 +90,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             IsDealershipUserLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipUserElement);
             return GetTabInstance<DealerAdminDealershipUsersPage>(Driver);
+        }
+
+        public void NavigateToDealershipUsersPage()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(DealershipUserElement);
         }
     }
 }

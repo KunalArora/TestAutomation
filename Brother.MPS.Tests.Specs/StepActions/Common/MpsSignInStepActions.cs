@@ -29,6 +29,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _loAdminWebDriver;
         private IWebDriver _bankWebDriver;
         private IWebDriver _loFinanceWebDriver;
+        private IWebDriver _subDealerWebDriver;
         private IContextData _contextData;
 
         private readonly Dictionary<UserType, string> DashBoardUrl = new Dictionary<UserType, string>()
@@ -40,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             { UserType.LocalOfficeAdmin,        "/mps/local-office/dashboard" },
             { UserType.Bank,                    "/mps/bank/dashboard" },
             { UserType.LocalOfficeFinance,      "/mps/local-office/finance/dashboard" },
+            { UserType.SubDealer,               "/mps/dealer/dashboard" },
         };
 
         public MpsSignInStepActions (
@@ -142,6 +144,33 @@ namespace Brother.Tests.Specs.StepActions.Common
                 var uri = new Uri(webDriver.Url);
                 var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, DashBoardUrl[userType]);
                 return PageService.LoadUrl<TPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, webDriver);
+            }
+        }
+
+        public DealerDashBoardPage SignInAsSubDealer(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            var dealerDashboardUrl = DashBoardUrl[UserType.SubDealer];
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
+            _contextData.DriverInstance = UserType.SubDealer;
+            if (_subDealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
+                {
+                    var signInPage = LoadAtYourSideSignInPage(url, _subDealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _subDealerWebDriver);
+                }
+                else
+                {
+                    var signInPage = LoadBrotherOnlineSignInPage(url, _subDealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _subDealerWebDriver);
+                }
+            }
+            else
+            {
+                var uri = new Uri(_subDealerWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, dealerDashboardUrl);
+                return PageService.LoadUrl<DealerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _subDealerWebDriver);
             }
         }
 
