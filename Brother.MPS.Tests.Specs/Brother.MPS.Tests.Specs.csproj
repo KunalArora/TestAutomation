@@ -328,6 +328,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SubDealerCreationAndProposalTillInstallation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1826,6 +1827,7 @@
     <None Include="Test Specifications\MPS2\SubDealer\SubDealerCreationAndProposalTillInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubDealerCreationAndProposalTillInstallation.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SilentDeviceReportVerify.feature.cs</LastGenOutput>
