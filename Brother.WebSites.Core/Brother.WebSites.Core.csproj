@@ -213,7 +213,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Device\DealerDeviceDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Device\DealerDeviceOverviewPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudWebPage.cs" />

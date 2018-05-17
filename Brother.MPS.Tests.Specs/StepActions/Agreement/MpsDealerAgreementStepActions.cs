@@ -933,18 +933,32 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
 
-            var deviceURL = _dealerWebDriver.Url;
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                //TODO, change the logic to click device details button on the action tab and access the device overview url rather than directly accessing it.
-                var deviceDashboardUrl = string.Format("/mps/dealer/device/{0}/overview", device.MpsDeviceId);
-                var uri = new Uri(_dealerWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, deviceDashboardUrl);
-                var dealerDeviceOverviewPage = PageService.LoadUrl<DealerDeviceOverviewPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, ".js-mps-device-data-container", true, _dealerWebDriver);
+                dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
+                var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
                 dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
+
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
-            PageService.LoadUrl<DealerAgreementDevicesPage>(deviceURL, RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", true, _dealerWebDriver);
+        }
+
+        public void VerifyPrintSummaryAndConsumablesOnDashboard(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
+                var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                dealerDeviceOverviewPage.VerifyPrintCount(device);
+
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
         }
 
         public DealerAgreementBillingPage VerifyClickRateInvoice(DealerAgreementDevicesPage dealerAgreementDevicesPage)

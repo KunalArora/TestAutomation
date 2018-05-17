@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -23,7 +24,7 @@ namespace Brother.Tests.Common.Logging
                 _loggingLevel = LoggingLevel.WARNING;
             }
             _scenarioName = string.IsNullOrWhiteSpace(loggingServiceSettings.ScenarioName) ? "(UNKNOWN)" : loggingServiceSettings.ScenarioName;
-            _loggingStream = new MpsOutputLoggingStream();
+            _loggingStream = OutputLoggingStreamFactory.Create(loggingServiceSettings.LoggingStreamType);
         }
         public void WriteLog(LoggingLevel level, object message)
         {
@@ -111,20 +112,66 @@ namespace Brother.Tests.Common.Logging
         }
     }
 
+    public class OutputLoggingStreamFactory
+    {
+        public static IOutputLoggingStream Create(string loggingOutputType)
+        {
+            switch ((""+loggingOutputType).ToLower())
+            {
+                case "nunit":
+                    return new NunitOutputLoggingStream();
+                case "trace":
+                    return new TraceOutputLoggingStream();
+                case "console":
+                    return new ConsoleOutputLoggingStream();
+                case "debug":
+                    return new DebugOutputLoggingStream();
+                case "auto":
+                    // no-break
+                default:
+#if DEBUG
+                    return new TraceOutputLoggingStream();
+#else
+                    return new ConsoleOutputLoggingStream();
+#endif
+            }
+        }
+    }
+
     public interface IOutputLoggingStream
     {
         void WriteLine(string message);
     }
 
-    public class MpsOutputLoggingStream : IOutputLoggingStream
+    public class ConsoleOutputLoggingStream : IOutputLoggingStream
     {
         public void WriteLine(string message)
         {
-#if DEBUG
-            Trace.WriteLine(message);
-#else
             Console.WriteLine(message);
-#endif 
+        }
+    }
+
+    public class DebugOutputLoggingStream : IOutputLoggingStream
+    {
+        public void WriteLine(string message)
+        {
+            Debug.WriteLine(message);
+        }
+    }
+
+    public class TraceOutputLoggingStream : IOutputLoggingStream
+    {
+        public void WriteLine(string message)
+        {
+            Trace.WriteLine(message);
+        }
+    }
+
+    public class NunitOutputLoggingStream : IOutputLoggingStream
+    {
+        public void WriteLine(string message)
+        {
+            TestContext.Progress.WriteLine(message);
         }
     }
 
