@@ -33,6 +33,7 @@ And a Cloud MPS Installer is able to reinstall devices using "<CommunicationMeth
 Then I can verify that the reinstalled devices are responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+And I can verify the Print Summary and Consumables on device dashboard page
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice
 And I can verify the service/installation billing invoice
