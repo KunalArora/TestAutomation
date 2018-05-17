@@ -152,10 +152,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
-                    dealerManageDevicesPage = Refresh<DealerManageDevicesPage>(dealerManageDevicesPage);
+                    dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
                     continue;
                 }
-                Refresh<DealerManageDevicesPage>(dealerManageDevicesPage);
+                Refresh(dealerManageDevicesPage);
             }
         }
 
@@ -257,7 +257,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement) ||
                 dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.SendButtonElement) == false )
             {
-                dealerSendInstallationEmailPage = Refresh<DealerSendInstallationEmailPage>(dealerSendInstallationEmailPage);
+                dealerSendInstallationEmailPage = Refresh(dealerSendInstallationEmailPage);
 
                 if (retries > RuntimeSettings.DefaultRetryCount / 2)
                 {
