@@ -152,28 +152,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
-                    if(_contextData.DriverInstance == UserType.SubDealer)
-                    {
-                        _subDealerWebDriver.Navigate().Refresh();
-                        dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
-                    }
-                    else
-                    {
-                        _dealerWebDriver.Navigate().Refresh();
-                        dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-                    }
+                    dealerManageDevicesPage = Refresh<DealerManageDevicesPage>(dealerManageDevicesPage);
                     continue;
                 }
-                if(_contextData.DriverInstance == UserType.SubDealer)
-                {
-                    _subDealerWebDriver.Navigate().Refresh();
-                    dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);               
-                }
-                else
-                {
-                    _dealerWebDriver.Navigate().Refresh();
-                    dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);               
-                }
+                Refresh<DealerManageDevicesPage>(dealerManageDevicesPage);
             }
         }
 
@@ -275,16 +257,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement) ||
                 dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.SendButtonElement) == false )
             {
-                if(_contextData.DriverInstance == UserType.SubDealer)
-                {
-                    _subDealerWebDriver.Navigate().Refresh();
-                    dealerSendInstallationEmailPage = PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
-                }
-                else
-                {
-                    _dealerWebDriver.Navigate().Refresh();
-                    dealerSendInstallationEmailPage = PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-                }
+                dealerSendInstallationEmailPage = Refresh<DealerSendInstallationEmailPage>(dealerSendInstallationEmailPage);
 
                 if (retries > RuntimeSettings.DefaultRetryCount / 2)
                 {
