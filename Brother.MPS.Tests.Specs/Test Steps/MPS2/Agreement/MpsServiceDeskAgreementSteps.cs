@@ -2,6 +2,7 @@
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
 using TechTalk.SpecFlow;
 
@@ -18,6 +19,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
 
         // Page objects
         private LocalOfficeAgreementDevicesPage _serviceDeskAgreementDevicesPage;
+        private ServiceDeskDashBoardPage _serviceDeskDashboardPage;
+        private DataQueryPage _dataQueryPage;
+        private LocalOfficeAgreementDevicesPage _localOfficeAgreementDevicesPage;
 
         public MpsServiceDeskAgreementSteps(MpsSignInStepActions mpsSignIn,
             MpsServiceDeskAgreementStepActions mpsServiceDeskAgreement,
@@ -42,18 +46,25 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             _serviceDeskAgreementDevicesPage = _mpsServiceDeskAgreement.SendSingleInstallationRequests(serviceDeskAgreementDevicesPage);
         }
 
-        [Then(@"a Cloud MPS Service Desk can verify the service request and close it")]
-        public void ThenACloudMPSServiceDeskCanVerifyTheServiceRequestAndCloseIt()
+        [Then(@"a Cloud MPS Service Desk can verify the service request")]
+        public void ThenACloudMPSServiceDeskCanVerifyTheServiceRequest()
         {
-            var serviceDeskDashboardPage = _mpsSignIn.SignInAsServiceDesk(
+            _serviceDeskDashboardPage = _mpsSignIn.SignInAsServiceDesk(
                 _userResolver.ServiceDeskUsername, _userResolver.ServiceDeskPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            
-            // Below 2 steps are implemented just to retrieve dealer details from agreement summary page for later validation
-            var dataQueryPage = _mpsServiceDeskAgreement.NavigateToReportsDataQuery(serviceDeskDashboardPage);
-            var serviceDeskAgreementDevicesPage = _mpsServiceDeskAgreement.NavigateToAgreementDevicesPage(dataQueryPage);
 
-            _mpsServiceDeskAgreement.VerifyServiceRequestAndCloseIt(serviceDeskAgreementDevicesPage);
+            // Below 2 steps are implemented just to retrieve dealer details from agreement summary page for later validation
+            _dataQueryPage = _mpsServiceDeskAgreement.NavigateToReportsDataQuery(_serviceDeskDashboardPage);
+            _localOfficeAgreementDevicesPage = _mpsServiceDeskAgreement.NavigateToAgreementDevicesPage(_dataQueryPage);
+
+            _mpsServiceDeskAgreement.VerifyServiceRequest(_localOfficeAgreementDevicesPage);
         }
+
+        [When(@"a Cloud MPS Service Desk close the service request")]
+        public void WhenACloudMPSServiceDeskCloseTheServiceRequest()
+        {
+            _mpsServiceDeskAgreement.CloseServiceRequest(_localOfficeAgreementDevicesPage);
+        }
+
 
         [When(@"a Cloud MPS Service Desk creates and sends a ""(.*)"" swap device installation request")]
         public void WhenACloudMPSServiceDeskCreatesAndSendsASwapDeviceInstallationRequest(string swapDeviceType)

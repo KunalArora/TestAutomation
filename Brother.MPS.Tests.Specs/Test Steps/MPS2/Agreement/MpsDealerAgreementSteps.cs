@@ -301,7 +301,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that service request has been closed succesfully")]
         public void ThenICanVerifyThatServiceRequestHasBeenClosedSuccesfully()
         {
-            _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
+           _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
         }
 
         [Then(@"I can verify the device details using show device details option")]

@@ -25,13 +25,15 @@ When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 #According to the scenario, have to raise service request for 3 times and close it for first 2 times so, a repetition of same steps is followed
 When I manually raise a service request for above devices
-Then a Cloud MPS Service Desk can verify the service request and close it
-And I can verify that service request has been closed succesfully
+Then a Cloud MPS Service Desk can verify the service request 
+When a Cloud MPS Service Desk close the service request
+Then I can verify that service request has been closed succesfully
 When I manually raise a service request for above devices
-Then a Cloud MPS Service Desk can verify the service request and close it
-And I can verify that service request has been closed succesfully
+Then a Cloud MPS Service Desk can verify the service request 
+When a Cloud MPS Service Desk close the service request
+Then I can verify that service request has been closed succesfully
 When I manually raise a service request for above devices
-Then a Cloud MPS Service Desk can verify the service request and close it
+Then a Cloud MPS Service Desk can verify the service request 
 
 @BUK
 Scenarios: 
