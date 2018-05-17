@@ -237,12 +237,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 "wrong params file=" + excelFilePath);
         }
 
-
-        public void VerifyCheckDataInTheCPPAgreementDeviceReport(DealerAgreementsListPage dealerAgreementsListPage)
-        {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementsListPage);
-        }
-
         public void AssertAreEqualServiceInstallation(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);

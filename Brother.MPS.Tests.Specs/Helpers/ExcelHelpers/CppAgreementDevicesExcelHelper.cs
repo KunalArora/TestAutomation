@@ -30,11 +30,11 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             _pageParseHelper = pageParseHelper;
         }
 
-        public IEnumerable<CppAgreementDeviceProperty> Parse(string excelFilePath)
+        public IEnumerable<CppAgreementDeviceProperties> Parse(string excelFilePath)
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var table = ParseExcelFileToTable(excelFilePath);
-            var properties = table.CreateSet<CppAgreementDeviceProperty>();
+            var properties = table.CreateSet<CppAgreementDeviceProperties>();
             return properties;
         }
 
@@ -43,9 +43,9 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             Dictionary<string, string> expectedDevicesPageValues,
             Dictionary<string, string> expectedServiceRequestsPageValues,
             Dictionary<string, string> expectedConsumablesPageValues,
-            IEnumerable<CppAgreementDeviceProperty> actualXlsProperties, int agreementId, Country country, string message)
+            IEnumerable<CppAgreementDeviceProperties> actualXlsProperties, int agreementId, Country country, string message)
         {
-            LoggingService.WriteLogOnMethodEntry(expectedSummaryPageValues, actualXlsProperties, agreementId, message);
+            LoggingService.WriteLogOnMethodEntry(expectedSummaryPageValues, expectedDevicesPageValues, expectedServiceRequestsPageValues, expectedConsumablesPageValues, actualXlsProperties, agreementId, country, message);
             var ci = CultureInfo.GetCultureInfo(_contextData.Culture);
             var numberStyles = NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint | NumberStyles.AllowCurrencySymbol;
             var messageFormat = message + "/ key={0}, agreementId=" + agreementId + ", SerialNo={1}";
@@ -135,7 +135,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
     }
 
-    public class CppAgreementDeviceProperty
+    public class CppAgreementDeviceProperties
     {
         public string DealerNumber { get; set; }
         public string DealerName { get; set; }
