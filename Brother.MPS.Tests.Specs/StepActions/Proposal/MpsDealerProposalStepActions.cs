@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData = contextData;
             _calculationService = calculationService;
             _subDealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.SubDealer);
-            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
+            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer, new WebDriverOptions { Culture = _contextData.Culture });
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
             _loggingService = loggingService;
