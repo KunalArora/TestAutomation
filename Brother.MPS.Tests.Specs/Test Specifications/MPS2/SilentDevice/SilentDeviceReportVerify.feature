@@ -9,9 +9,9 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | IsSwap |
-		| DCP-8110DN   | 1        | No               | No          | 25           | 2000       | 0              | 0            | Yes                     | 2250           | 0               | true   |
-		| MFC-L8650CDW | 1        | No               | No          | 25           | 2000       | 25             | 2000         | Yes                     | 1000           | 1250            | false  |
+		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | IsSwap |
+		| DCP-8110DN   | 1        | No               | No          | 25           | 2000       | 0              | 0            | Yes                     | 2250           | 0               | Empty               | Normal             | Normal                | Normal               | false  |
+		| MFC-L8650CDW | 1        | No               | No          | 25           | 2000       | 25             | 2000         | Yes                     | 1000           | 1250            | Normal              | Empty              | Normal                | Normal               | false  |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -33,7 +33,10 @@ Then a Cloud MPS Service Desk can verify the service request
 When a Cloud MPS Service Desk close the service request
 Then I can verify that service request has been closed succesfully
 When I manually raise a service request for above devices
-Then a Cloud MPS Service Desk can verify the service request 
+Then a Cloud MPS Service Desk can verify the service request
+When I manually raise a consumable order for above devices
+Then I can verify the generation of consumable orders alongwith status
+
 
 @BUK
 Scenarios: 

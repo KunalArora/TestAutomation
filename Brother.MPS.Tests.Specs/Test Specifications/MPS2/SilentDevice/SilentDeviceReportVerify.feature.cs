@@ -103,6 +103,10 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "SendInstallationRequest",
                         "MonoPrintCount",
                         "ColorPrintCount",
+                        "TonerInkBlackStatus",
+                        "TonerInkCyanStatus",
+                        "TonerInkMagentaStatus",
+                        "TonerInkYellowStatus",
                         "IsSwap"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
@@ -116,7 +120,11 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "2250",
                         "0",
-                        "true"});
+                        "Empty",
+                        "Normal",
+                        "Normal",
+                        "Normal",
+                        "false"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1",
@@ -129,6 +137,10 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "1000",
                         "1250",
+                        "Normal",
+                        "Empty",
+                        "Normal",
+                        "Normal",
                         "false"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
@@ -175,6 +187,10 @@ testRunner.Then("I can verify that service request has been closed succesfully",
 testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
 testRunner.Then("a Cloud MPS Service Desk can verify the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 37
+testRunner.When("I manually raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+testRunner.Then("I can verify the generation of consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
