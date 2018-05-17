@@ -91,7 +91,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             bool isInstallationTab, isServiceTab;
 
             localOfficeApproverAgreementSummaryPage.ClickSpecialPricing();
-            var localOfficeApproverAgreementManageSpecialPricing = PageService.GetPageObject<LocalOfficeAgreementManageSpecialPricing>(
+            var localOfficeApproverAgreementManageSpecialPricing = PageService.GetPageObject<LocalOfficeAgreementManageSpecialPricingPage>(
                 RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
 
             localOfficeApproverAgreementManageSpecialPricing.VerifyDisplayOfAppropriateTabs(
@@ -118,7 +118,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<LocalOfficeAgreementDetailsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loApproverWebDriver);
         }
 
-        private void VerifySpecialPricing(LocalOfficeAgreementManageSpecialPricing localOfficeApproverAgreementManageSpecialPricing, IEnumerable<SpecialPricingProperties> specialPriceList)
+        private void VerifySpecialPricing(LocalOfficeAgreementManageSpecialPricingPage localOfficeApproverAgreementManageSpecialPricing, IEnumerable<SpecialPricingProperties> specialPriceList)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
 

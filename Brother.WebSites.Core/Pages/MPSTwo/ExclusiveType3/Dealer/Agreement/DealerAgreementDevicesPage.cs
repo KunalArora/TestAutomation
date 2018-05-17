@@ -124,6 +124,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"mps/dealer/reports\"]")]
         public IWebElement ReportTabElement;
 
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
+        public IWebElement SummaryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/details']")]
+        public IWebElement DetailsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/devices']")]
+        public IWebElement DevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/billing']")]
+        public IWebElement BillingTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumables']")]
+        public IWebElement ConsumablesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/history']")]
+        public IWebElement HistoryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent-devices']")]
+        public IWebElement SilentDevicesTabElement;
+
 
         // Click on Edit Device Data button for this particular model
         public void ClickOnEditDeviceData(string modelName)
@@ -394,41 +412,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
 
             TestCheck.AssertFailTest(string.Format("Could not find the device with deviceId = {0}", mpsDeviceId));
-        }
-
-        public IWebElement SummaryTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/summary\"]", agreementId.ToString()));
-        }
-
-        public IWebElement DetailsTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/details\"]", agreementId.ToString()));
-        }
-
-        public IWebElement ConsumablesTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/consumables\"]", agreementId.ToString()));
-        }
-
-        public IWebElement ServiceRequestsTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/service-requests\"]", agreementId.ToString()));
-        }
-
-        public IWebElement BillingTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/billing\"]", agreementId.ToString()));
         }
 
         // Click Show Consumable Orders in Actions given the MPS device Id

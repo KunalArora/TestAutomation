@@ -1,5 +1,4 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -42,6 +41,26 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement ServiceRequestFilterElement;
         [FindsBy(How = How.CssSelector, Using = "[id*=content_1_ServiceRequests_Row_]")]
         public IList<IWebElement> ServiceRequestRowElementList;
+
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
+        public IWebElement SummaryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/details']")]
+        public IWebElement DetailsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/devices']")]
+        public IWebElement DevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/billing']")]
+        public IWebElement BillingTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumables']")]
+        public IWebElement ConsumablesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/history']")]
+        public IWebElement HistoryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent-devices']")]
+        public IWebElement SilentDevicesTabElement;
+
+
 
         public bool DoesServiceRequestExist(string serialNumber)
         {
@@ -107,10 +126,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return serviceRequestRowElement.GetAttribute(ServiceRequestIdSelector);
         }
 
-        public IWebElement DevicesTabElement(int agreementId)
-        {
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()));
-        }
     }
 }
