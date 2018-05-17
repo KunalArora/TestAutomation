@@ -123,9 +123,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(SubDealerCreateButton);
         }
 
-        public void VerifySubDealer(string subDealerEmail)
+        public void VerifySubDealer(string subDealerEmail, string resourceStaffAccessPermissionRestricted)
         {
-            LoggingService.WriteLogOnMethodEntry(subDealerEmail);
+            LoggingService.WriteLogOnMethodEntry(subDealerEmail, resourceStaffAccessPermissionRestricted);
 
             var IsPresent = false;
             if (SeleniumHelper.IsElementDisplayed(SubDealerSuccessMessageElement) == false)
@@ -138,7 +138,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 var emailElement = SeleniumHelper.FindElementByCssSelector(row, EmailSelector);
                 var accessPermissionElement = SeleniumHelper.FindElementByCssSelector(row, AccessPermissionSelector);
-                if(emailElement.Text == subDealerEmail && accessPermissionElement.Text == "Restricted")
+                if (emailElement.Text == subDealerEmail && accessPermissionElement.Text == resourceStaffAccessPermissionRestricted)
                 {
                     IsPresent = true;
                 }

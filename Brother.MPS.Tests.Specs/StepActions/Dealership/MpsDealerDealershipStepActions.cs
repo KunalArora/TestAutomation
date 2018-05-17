@@ -1,7 +1,9 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -21,6 +23,7 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         private readonly IWebDriver _dealerWebDriver;
         private readonly IMpsWebToolsService _webToolService;
         private readonly IRunCommandService _runCommandService;
+        private readonly ITranslationService _translationService;
 
         public MpsDealerDealershipStepActions(
             IWebDriverFactory webDriverFactory,
@@ -31,7 +34,8 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             IRuntimeSettings runtimeSettings,
             ILoggingService loggingService,
             IMpsWebToolsService webToolService,
-            IRunCommandService runCommandService)
+            IRunCommandService runCommandService,
+            ITranslationService translationService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
@@ -39,6 +43,7 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             _loggingService = loggingService;
             _webToolService = webToolService;
             _runCommandService = runCommandService;
+            _translationService = translationService;
         }
 
         public DealerAdminDashBoardPage NavigateToDealerAdminDashboardPage(DealerDashBoardPage dealerDashboardPage)
@@ -83,7 +88,9 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         public void VerifySubDealer(DealerAdminDealershipUsersPage dealerAdminDealershipUsersPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipUsersPage);
-            dealerAdminDealershipUsersPage.VerifySubDealer(_contextData.SubDealerEmail);
+
+            var resourceStaffAccessPermissionRestricted = _translationService.GetStaffAccessPermission(TranslationKeys.StaffAccessPermission.Restricted, _contextData.Culture);
+            dealerAdminDealershipUsersPage.VerifySubDealer(_contextData.SubDealerEmail, resourceStaffAccessPermissionRestricted);
         }
     }
 }

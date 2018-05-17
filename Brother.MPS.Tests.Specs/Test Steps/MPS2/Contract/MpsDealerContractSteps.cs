@@ -166,8 +166,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);
         }
 
-        [Then(@"a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
-        [When(@"a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
+        [When, Then (@"a Sub dealer will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts")]
         public void WhenASubDealerWillBeAbleToSeeOnTheManageDevicesPageThatAllDevicesForTheAboveContractAreConnectedWithDefaultPrintCounts()
         {
             _mpsDealerContractStepActions.CloudInstallationCompleteCheck(_dealerManageDevicesPage);

@@ -159,5 +159,12 @@
             public static string PreInstall { get { return "PRE_INSTALL"; } }
             public static string Running { get { return "RUNNING"; } }
         }
+
+        public static class StaffAccessPermission
+        {
+            public static string Restricted { get { return "RESTRICTED"; } }
+            public static string ContractManager { get { return "CONTRACT_MANAGER"; } }
+            public static string Full { get { return "FULL"; } }
+        }
     }
 }

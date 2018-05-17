@@ -89,6 +89,12 @@ namespace Brother.Tests.Common.Services
         {
             return GetText(Resources.OrderedConsumable.OrderedConsumable.ResourceManager, name, culture);
         }
+
+        public string GetStaffAccessPermission(string name, string culture)
+        {
+            return GetText(Resources.StaffAccessPermission.StaffAccessPermission.ResourceManager, name, culture);
+        }
+
         
         #region Exclusively Type 3
 
