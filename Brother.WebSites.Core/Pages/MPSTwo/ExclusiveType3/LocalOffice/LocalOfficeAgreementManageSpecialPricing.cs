@@ -259,7 +259,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             LoggingService.WriteLogOnMethodEntry();
             var confirmationModal = SeleniumHelper.FindElementByCssSelector(ConfirmationModalSelector);
             var tbodyElement = SeleniumHelper.FindElementByCssSelector(confirmationModal, AuditDetailsSelector);
-            var text = tbodyElement.Text;
+            var text = SeleniumHelper.WaitUntil(d => string.IsNullOrWhiteSpace(tbodyElement.Text) ? null : tbodyElement.Text);
             var array = text.Replace("\r", "").Split('\n');
             return array;
         }
