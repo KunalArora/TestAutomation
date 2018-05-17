@@ -6,5 +6,6 @@ namespace Brother.Tests.Specs.Configuration
     {
         public string ScenarioName { get; set; }
         public string LoggingLevel { get; set; }
+        public string LoggingStreamType { get; set; }
     }
 }

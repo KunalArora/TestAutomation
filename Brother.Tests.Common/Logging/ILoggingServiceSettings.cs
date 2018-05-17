@@ -4,5 +4,6 @@
     {
         string LoggingLevel { get; set; }
         string ScenarioName { get; set; }
+        string LoggingStreamType { get; set; }
     }
 }

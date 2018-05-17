@@ -73,6 +73,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var loggingServiceSettings = new LoggingServiceSettings
             {
+                LoggingStreamType = _commandLineSettings.LoggingStreamType ?? DefaultLoggingStreamType(),
                 ScenarioName = ScenarioContext.Current.ScenarioInfo.Title ?? "",
                 LoggingLevel = _commandLineSettings.LoggingLevel ?? DefaultLoggingLevel()
             };
@@ -138,6 +139,11 @@ namespace Brother.Tests.Specs.AdditionalBindings
             return defaultRuntimeEnvironment ?? LoggingLevel.WARNING.ToString();
         }
 
+        private string DefaultLoggingStreamType()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultLoggingStreamType");
+        }
+
         private string DefaultCulture()
         {
             var defaultCulture = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultCulture");
@@ -161,7 +167,6 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
                     defaultType3DealerUsername: AppSettingToString("RuntimeSettings.DefaultType3DealerUsername"),
                     defaultType3DealerPassword: AppSettingToString("RuntimeSettings.DefaultType3DealerPassword")
-
             );
 
             return runtimeSettings;
