@@ -23,8 +23,17 @@ And a Cloud MPS Installer is able to bulk install the devices using "<Communicat
 Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+#According to the scenario, have to raise service request for 3 times and close it for first 2 times so, a repetition of same steps is followed
+When I manually raise a service request for above devices
+Then a Cloud MPS Service Desk can verify the service request and close it
+And I can verify that service request has been closed succesfully
+When I manually raise a service request for above devices
+Then a Cloud MPS Service Desk can verify the service request and close it
+And I can verify that service request has been closed succesfully
+When I manually raise a service request for above devices
+Then a Cloud MPS Service Desk can verify the service request and close it
 
 @BUK
 Scenarios: 
-		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service				  | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | 
+		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | 
 		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | False            | Cloud               | Bor              | 91                 | 
