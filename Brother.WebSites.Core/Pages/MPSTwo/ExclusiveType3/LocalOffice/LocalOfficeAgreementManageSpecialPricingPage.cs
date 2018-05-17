@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
-    public class LocalOfficeAgreementManageSpecialPricing: BasePage, IPageObject
+    public class LocalOfficeAgreementManageSpecialPricingPage: BasePage, IPageObject
     {
         private const string _validationElementSelector = ".js-mps-val-btn-next"; // Next button
         private const string _url = "/mps/local-office/agreement/{agreementId}/manage/special-pricing"; // TODO: Replace agreementId with dynamic parameter

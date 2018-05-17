@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.RuntimeSettings;
 using System;
 
 namespace Brother.Tests.Specs.Resolvers
@@ -7,13 +8,15 @@ namespace Brother.Tests.Specs.Resolvers
     public class DefaultUserResolver : IUserResolver
     {
         private readonly IContextData _contextData;
+        private readonly IRuntimeSettings _runtimeSettings;
         private const string OLD_USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}@brother.co.uk";
         private const string USERNAME_PATTERN = "MPS-{0}-{1}-{2}{3}-Auto@brother.co.uk";
         private const string PASSWORD_PATTERN = "{0}{1}{2}";
 
-        public DefaultUserResolver(IContextData contextData)
+        public DefaultUserResolver(IContextData contextData, IRuntimeSettings runtimeSettings)
         {
             _contextData = contextData;
+            _runtimeSettings = runtimeSettings;
         }
 
         public string DealerUsername
@@ -48,6 +51,10 @@ namespace Brother.Tests.Specs.Resolvers
                     break;
                 case BusinessType.Type3:
                     // Only Type3
+                    if (_runtimeSettings.DefaultType3DealerUsername != null)
+                    {
+                        return _runtimeSettings.DefaultType3DealerUsername;
+                    }
                     loginPatternNumber = "3";
                     break;
                 default:
@@ -72,6 +79,10 @@ namespace Brother.Tests.Specs.Resolvers
                     loginPatternNumber = "1";
                     break;
                 case BusinessType.Type3:
+                    if (_runtimeSettings.DefaultType3DealerPassword != null)
+                    {
+                        return _runtimeSettings.DefaultType3DealerPassword;
+                    }
                     loginPatternNumber = "3";
                     break;
                 default:

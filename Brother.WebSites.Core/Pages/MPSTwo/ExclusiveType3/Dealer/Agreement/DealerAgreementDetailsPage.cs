@@ -1,5 +1,6 @@
 ﻿using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
@@ -31,12 +32,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string MpsTabsSelector = ".mps-tabs-main";
         private const string MpsTabsAgreementSelector = " a[href=\"/mps/dealer/agreement/";
 
-        public IWebElement DevicesTabElement(int agreementId)
-        {
-            LoggingService.WriteLogOnMethodEntry(agreementId);
-            return SeleniumHelper.FindElementByCssSelector(
-                string.Format(MpsTabsSelector + MpsTabsAgreementSelector + "{0}/devices\"]", agreementId.ToString()));
-        }
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
+        public IWebElement SummaryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/details']")]
+        public IWebElement DetailsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/devices']")]
+        public IWebElement DevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/billing']")]
+        public IWebElement BillingTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumables']")]
+        public IWebElement ConsumablesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/history']")]
+        public IWebElement HistoryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent-devices']")]
+        public IWebElement SilentDevicesTabElement;
+
 
         public IWebElement GetPrinterContainer(string deviceModel)
         {

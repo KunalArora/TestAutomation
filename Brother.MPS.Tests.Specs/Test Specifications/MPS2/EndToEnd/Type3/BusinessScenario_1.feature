@@ -32,7 +32,6 @@ And I can verify that the new devices are installed and responding
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then a Cloud MPS Local Office Admin can verify the click rate billing invoice
 And a Cloud MPS Local Office Admin can verify the service/installation billing invoice
-
 @BUK
 Scenarios: 
 		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service     | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | SwapDeviceType               | SwapCommunicationMethod | SwapInstallationType |

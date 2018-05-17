@@ -7,6 +7,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string _validationElementSelector = "div.mps-dashboard";
         private const string _url = "/mps/dealer/reports/dashboard";
 
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/cpp-agreement-devices-report\"] .media-heading")]
+        public IWebElement CppAgreementDevicesReportElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/cpp-agreement-report\"] .media-heading")]
+        public IWebElement CppAgreementReportElement;
+
         public string ValidationElementSelector
         {
             get

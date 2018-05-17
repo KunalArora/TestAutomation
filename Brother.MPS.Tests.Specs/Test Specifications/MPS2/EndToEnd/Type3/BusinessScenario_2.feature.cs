@@ -163,6 +163,8 @@ testRunner.Then("I can verify the click rate billing invoice", ((string)(null)),
 #line 32
 testRunner.And("I can verify the service/installation billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
+testRunner.And("I Check data in the CPP Agreement Device Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
 testRunner.And("I can verify the CPP Agreement Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
