@@ -274,6 +274,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             WhenISubmitItForApproval();
         }
 
+        [When(@"I save the above proposal and submit it for approval with payment type ""(.*)""")]
+        public void WhenISaveTheAboveProposalAndSubmitItForApprovalWithTheGivenPaymentType(string paymentType)
+        {
+            _contextData.PaymentType = paymentType;
+            _contextData.SkipBOLRegistration = true;
+            WhenISaveTheProposal();
+            WhenISubmitItForApproval();
+        }
+
         [When(@"a Sub dealer save the above proposal and submit it for approval")]
         public void WhenASubDealerSaveTheAboveProposalAndSubmitItForApproval()
         {

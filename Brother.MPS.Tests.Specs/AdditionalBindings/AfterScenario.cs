@@ -45,6 +45,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
             {
                 webDriverFactory.CloseAllWebDrivers();
             }
+
+            if (contextData.Environment.ToUpper() == "PROD")
+            {
+                //A bit heavy handed but ensures that any production scenario removes smoke tests
+                var mpsWebToolsService = _container.Resolve<IMpsWebToolsService>();
+                loggingService.WriteLog(LoggingLevel.INFO, "Clearing production smoke tests");
+                mpsWebToolsService.RemoveProductionSmokeTests();
+            }
         }
 
         private void LogJavascriptConsoleOutput(IWebDriverFactory webDriverFactory, ILoggingService loggingService)

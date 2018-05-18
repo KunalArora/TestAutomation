@@ -134,10 +134,19 @@ namespace Brother.Tests.Specs.StepActions.Common
             LoggingService.WriteLogOnMethodEntry(email, password, url, userType);
             webDriver = WebDriverFactory.GetWebDriverInstance(userType);
             webDriver.SwitchTo().Window(_contextData.WindowHandles[userType]);
+            var dashboardUrl = DashBoardUrl[userType];
             if (webDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
-                var signInPage = LoadBrotherOnlineSignInPage(url, webDriver);
-                return SignInToMpsDashboardAs<TPage>(signInPage, email, password, webDriver);
+                if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
+                {
+                    var signInPage = LoadAtYourSideSignInPage(url, webDriver);
+                    return SignInToMpsDashboardAs<TPage>(signInPage, email, password, string.Format("{0}{1}", UrlResolver.BaseUrl, dashboardUrl), webDriver);
+                }
+                else
+                {
+                    var signInPage = LoadBrotherOnlineSignInPage(url, webDriver);
+                    return SignInToMpsDashboardAs<TPage>(signInPage, email, password, webDriver);
+                }
             }
             else
             {
