@@ -28,10 +28,27 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string DownloadClickRateBillSelector = ".js-mps-download-click-rate-invoice";
         private const string DownloadServiceInstallationBillSelector = ".js-mps-download-service-installation-invoice";
 
-
         // Web Elements
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement BillingDatesContainerElement;
+
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
+        public IWebElement SummaryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/details']")]
+        public IWebElement DetailsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/devices']")]
+        public IWebElement DevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/billing']")]
+        public IWebElement BillingTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumables']")]
+        public IWebElement ConsumablesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/history']")]
+        public IWebElement HistoryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent-devices']")]
+        public IWebElement SilentDevicesTabElement;
 
         public void ClickDownloadClickRateBill(int rowIndex)
         {

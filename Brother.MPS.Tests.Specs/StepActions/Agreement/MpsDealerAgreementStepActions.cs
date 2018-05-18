@@ -41,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IPageParseHelper _pageParseHelper;
         private readonly IUserResolver _userResolver;
         private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
+        private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -58,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IRunCommandService runCommandService,
             IPageParseHelper pageParseHelper,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdmin,
+            ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
             IUserResolver userResolver,
             ICPPAgreementExcelHelper cppAgreementHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
@@ -74,6 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
             _pageParseHelper = pageParseHelper;
             _userResolver = userResolver;
+            _cppAgreementDevicesExcelHelper = cppAgreementDevicesExcelHelper;
             _cppAgreementHelper = cppAgreementHelper;
         }
 
@@ -165,7 +168,73 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 ClickSafety(dealerAgreementCreateClickPricePage.NextButton, dealerAgreementCreateClickPricePage);
             }
 
-            return PageService.GetPageObject<DealerAgreementCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var summaryPage =  PageService.GetPageObject<DealerAgreementCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var summaryPageValues = _pageParseHelper.ParseSummaryPageValues(summaryPage.SeleniumHelper);
+            _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)] = summaryPageValues;
+            return summaryPage;
+        }
+
+        public void SnapAgreementPagesValues(DealerAgreementBillingPage dealerAgreementBillingPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementBillingPage);
+
+            ClickSafety(dealerAgreementBillingPage.DevicesTabElement, dealerAgreementBillingPage, isUntilUrlChanges: true);
+            var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var devicesPagesValues = _pageParseHelper.ParseDealerAgreementDevicesPage(dealerAgreementDevicesPage);
+            _contextData.SnapValues[typeof(DealerAgreementDevicesPage)] = devicesPagesValues;
+
+            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement, dealerAgreementDevicesPage, isUntilUrlChanges: true);
+            var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            var serviceRequestValues = _pageParseHelper.ParseDealerAgreementServiceRequestsPage(dealerAgreementServiceRequestsPage);
+            _contextData.SnapValues[typeof(DealerAgreementServiceRequestsPage)] = serviceRequestValues;
+
+            ClickSafety(dealerAgreementServiceRequestsPage.ConsumablesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+            var dealerAgreementConsumablesPage = PageService.GetPageObject<DealerAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            // note: Processing time is uneven. min:<10s max:5min (in debugging)
+            var consumablesPageValues = LoggingService.WriteLogWhenWarningTimeoutExceeds(ls => 
+                dealerAgreementConsumablesPage.SeleniumHelper.WaitUntil(d =>
+                {
+                    // wait for visible Order Date. 
+                    var values = _pageParseHelper.ParseDealerAgreementConsumablesPage(dealerAgreementConsumablesPage);
+                    if (values["Consumables.Count"] == "0") { return values; }
+                    if (values["Consumables.0.OrderDate-data-sort"] != null) { return values; }  // sampling check.
+                    this.Refresh(dealerAgreementConsumablesPage);
+                    return null;
+                }, RuntimeSettings.DefaultWaitForItemTimeout * 10, "SnapAgreementPagesValues()>ParseDealerAgreementConsumablesPage() Order Date visible T/O. "),
+            RuntimeSettings.DefaultWaitForItemTimeout , "SnapAgreementPagesValues()>ParseDealerAgreementConsumablesPage() Order Date visible Too Slow. ");
+            _contextData.SnapValues[typeof(DealerAgreementConsumablesPage)] = consumablesPageValues;
+
+            // restore current tab
+            ClickSafety(dealerAgreementConsumablesPage.BillingTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+        }
+
+        public DealerReportsDashboardPage NavigateToReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            ClickSafety(dealerDashboardPage.DealerReportLinkElement, dealerDashboardPage,isUntilUrlChanges: true);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public string DownloadCPPAgreementDevicesReport(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            var xlsxfile = _cppAgreementDevicesExcelHelper.Download(() => { ClickSafety(dealerReportsDashboardPage.CppAgreementDevicesReportElement, dealerReportsDashboardPage); return true; });
+            return xlsxfile;
+        }
+
+        public void VerifyCheckDataInTheCPPAgreementDeviceReport(string excelFilePath)
+        {
+            LoggingService.WriteLogOnMethodEntry(excelFilePath);
+            var actualProps = _cppAgreementDevicesExcelHelper.Parse(excelFilePath);
+            var expectSummaryPageValues = _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)];
+
+            _cppAgreementDevicesExcelHelper.AssertAreEqualProperties(
+                _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)],
+                _contextData.SnapValues[typeof(DealerAgreementDevicesPage)],
+                _contextData.SnapValues[typeof(DealerAgreementServiceRequestsPage)],
+                _contextData.SnapValues[typeof(DealerAgreementConsumablesPage)],
+                actualProps, _contextData.AgreementId, _contextData.Country, 
+                "wrong params file=" + excelFilePath);
         }
 
         public void AssertAreEqualServiceInstallation(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
@@ -645,7 +714,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
 
             // Save service pack & installation prices for all devices used for later verification
-            ClickSafety(dealerAgreementDevicesPage.DetailsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
+            ClickSafety(dealerAgreementDevicesPage.DetailsTabElement, dealerAgreementDevicesPage);
             var dealerAgreementDetailsPage = PageService.GetPageObject<DealerAgreementDetailsPage>(
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             foreach (var device in _contextData.AdditionalDeviceProperties)
@@ -654,7 +723,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device.ServicePackPrice = MpsUtil.RemoveCurrencySymbol(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
             }
 
-            ClickSafety(dealerAgreementDetailsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementDetailsPage);
+            ClickSafety(dealerAgreementDetailsPage.DevicesTabElement, dealerAgreementDetailsPage);
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             return dealerAgreementDevicesPage;
@@ -801,7 +870,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device.ServiceRequestId = dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatusNew, device.ServiceRequestType);
 
                 ClickSafety(
-                    dealerAgreementServiceRequestsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+                    dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
 
                 _dealerWebDriver.Navigate().Refresh();
 
@@ -814,7 +883,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceServiceRequestStatus);
-            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
+            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement, dealerAgreementDevicesPage);
 
             var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
@@ -889,7 +958,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementBillingPage VerifyClickRateInvoice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
-            ClickSafety(dealerAgreementDevicesPage.BillingTabElement(_contextData.AgreementId), dealerAgreementDevicesPage);
+            ClickSafety(dealerAgreementDevicesPage.BillingTabElement, dealerAgreementDevicesPage);
             var dealerAgreementBillingPage = PageService.GetPageObject<DealerAgreementBillingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
             int rowIndex = 0;

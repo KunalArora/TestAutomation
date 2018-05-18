@@ -1,6 +1,4 @@
-﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Selenium.Lib.Helpers;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -38,6 +36,25 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement BackButtonElement;
         [FindsBy(How = How.Id, Using = "content_1_NoRecords")]
         public IWebElement NoConsumablesFoundAlertElement;
+
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
+        public IWebElement SummaryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/details']")]
+        public IWebElement DetailsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/devices']")]
+        public IWebElement DevicesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/billing']")]
+        public IWebElement BillingTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumables']")]
+        public IWebElement ConsumablesTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/history']")]
+        public IWebElement HistoryTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent-devices']")]
+        public IWebElement SilentDevicesTabElement;
+
 
         // Returns true if no consumables are found, otherwise false if consumables are present
         public bool IsNoConsumablesFound()
