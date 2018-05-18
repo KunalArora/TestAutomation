@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Brother.Tests.Specs.Domain.DeviceSimulator;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Specs.Domain.DeviceSimulator;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -18,5 +14,6 @@ namespace Brother.Tests.Specs.Services
         string CreateNewDeviceId();
         void RaiseConsumableOrder(string deviceId, string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus);
         void DeleteDevice(string deviceId);
+        IEnumerable<BocSupplyItem> GetSupply(string deviceId);
     }
 }

@@ -3,6 +3,7 @@ using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Domain.DeviceSimulator;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,7 @@ namespace Brother.Tests.Specs.Services
         private const string REGISTER_NEW_DEVICE_PATTERN = "register?id={0}&pin={1}";
         private const string CHANGE_DEVICE_STATUS_PATTERN = "status/change?id={0}&online={1}&subscribe={2}";
         private const string SET_SUPPLY_PATTERN = "supply/set";
+        private const string GET_SUPPLY_PATTERN = "supply/get";
         private const string NOTIFY_BOC_PATTERN = "notify?id={0}&all=true";
         private const string DEVICE_ID_PATTERN = "babeface{0}";
 
@@ -192,5 +194,54 @@ namespace Brother.Tests.Specs.Services
             var response = LoggingService.WriteLogWhenWarningTimeoutExceeds(l => _webRequestService.GetPageResponse(url, "GET", _runtimeSettings.DefaultDeviceSimulatorTimeout), _warningSec);
 
         }
+
+
+        public IEnumerable<BocSupplyItem> GetSupply( string deviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(deviceId);
+            string url = string.Format(DEVICE_SIMULATOR_BASE_URL, GET_SUPPLY_PATTERN);
+
+            var json = JsonConvert.SerializeObject(new Dictionary<string, object>()
+            {
+                {"id" ,deviceId},
+                {"items", new string[]{
+                     "heart_Life",
+                     "TonerInk_Black",
+                     "TonerInk_Cyan",
+                     "TonerInk_Magenta",
+                     "TonerInk_Yellow",
+                     "TonerInk_Life_Black",
+                     "TonerInk_Life_Cyan",
+                     "TonerInk_Life_Magenta",
+                     "TonerInk_Life_Yellow",
+                     "TonerInk_ReplaceCount_Black",
+                     "TonerInk_ReplaceCount_Cyan",
+                     "TonerInk_ReplaceCount_Magenta",
+                     "TonerInk_ReplaceCount_Yellow"}
+                }
+            });
+
+            var response = LoggingService.WriteLogWhenWarningTimeoutExceeds(l => _webRequestService.GetPageResponse(url, "POST", _runtimeSettings.DefaultDeviceSimulatorTimeout, "application/json", json), _warningSec);
+            var resJson = (BocResult<IEnumerable<BocSupplyItem>>)JsonConvert.DeserializeObject <BocResult<IEnumerable<BocSupplyItem>>>(response.ResponseBody);            
+            Assert.True( resJson.success, "GetSupply({0}) error message={1}",deviceId,resJson.message);
+            return resJson.results;
+        }
     }
+    
+    class BocResult<T>
+    {
+        public string id { get; set; }
+        public bool success { get; set; }
+        public string message { get; set; }
+        public T results { get; set; }
+
+    }
+    public class BocSupplyItem
+    {
+        public string item { get; set; }
+        public bool success { get; set; }
+        public string message { get; set; }
+        public object value { get; set; } // string or int
+    }
+
 }
