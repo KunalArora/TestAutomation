@@ -14,6 +14,8 @@ namespace Brother.Tests.Specs.Configuration
             Culture = TestContext.Parameters.Get("culture", null);
             DealerUsername = TestContext.Parameters.Get("dealer_username", null);
             DealerPassword = TestContext.Parameters.Get("dealer_password", null);
+            LocalOfficeApproverUsername = TestContext.Parameters.Get("local_office_approver_username", null);
+            LocalOfficeApproverPassword = TestContext.Parameters.Get("local_office_approver_password", null);
             LoggingStreamType = TestContext.Parameters.Get("logging_stream_type", null);
 
             if (OutputPath != null)
@@ -30,6 +32,8 @@ namespace Brother.Tests.Specs.Configuration
         public string Culture { get; set; }
         public string DealerUsername { get; set; }
         public string DealerPassword { get; set; }
+        public string LocalOfficeApproverUsername { get; set; }
+        public string LocalOfficeApproverPassword { get; set; }
         public string LoggingStreamType { get; set; }
     }
 }

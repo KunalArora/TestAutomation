@@ -15,6 +15,8 @@ namespace Brother.Tests.Common.ContextData
         public BusinessType BusinessType { get; set; }
         public string SpecificDealerUsername { get; set; }
         public string SpecificDealerPassword { get; set; }
+        public string SpecificLocalOfficeApproverUsername { get; set; }
+        public string SpecificLocalOfficeApproverPassword { get; set; }
 
         public string ProposalName { get; set; }
         public int ProposalId { get; set; }
@@ -30,6 +32,8 @@ namespace Brother.Tests.Common.ContextData
         public string SwapNewDeviceSerialNumber { get; set; }
         public int SwapNewDeviceMonoPrintCount { get; set; }
         public int SwapNewDeviceColourPrintCount { get; set; }
+        public string PaymentType { get; set; }
+        public bool SkipBOLRegistration { get; set; }
 
         public string CommunicationMethod { get; set; }
         public string InstallationType { get; set; }
@@ -44,6 +48,7 @@ namespace Brother.Tests.Common.ContextData
             //SnapClickPricePageValues = new Dictionary<string,string>();
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
             SnapValues = new SnapDictionary();
+            SkipBOLRegistration = false;
         }
 
         public void SetBusinessType(string businessTypeId)
