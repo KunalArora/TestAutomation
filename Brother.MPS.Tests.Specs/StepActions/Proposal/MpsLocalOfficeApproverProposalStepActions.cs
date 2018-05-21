@@ -186,8 +186,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     var logAppend = "model = " + actualModel + ", actual = " + logValue;
 
                     Assert.True(logValue.Contains(currencySymbol), "Service currencySymbol not found " + logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost) 
-                        || actualValue.Contains("Unit Cost: "+specialPrice.ServiceUnitCost), 
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost)
+                        || Regex.Replace(actualValue, @"\s+", "").Contains("UnitCost:" + specialPrice.ServiceUnitCost), 
                         "Service/Unit Cost "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceMargin) 
                         || actualValue.Contains("Margin: "+specialPrice.ServiceMargin), 

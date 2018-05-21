@@ -496,7 +496,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
             if (!_contextData.SkipBOLRegistration)
             {
-                _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
+                _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso, _contextData.Culture);
             }
 
             _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= _pageParseHelper.ParseCustomerInformationPageValues(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
@@ -836,7 +836,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerFirstName = dealerCustomersManagePage.GetFirstName();
             _contextData.CustomerLastName = dealerCustomersManagePage.GetLastName();
             dealerCustomersManagePage.saveButtonElement.Click();
-            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso);
+            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso, _contextData.Culture);
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             return nextPage;
         }

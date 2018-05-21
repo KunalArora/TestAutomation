@@ -335,6 +335,7 @@
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

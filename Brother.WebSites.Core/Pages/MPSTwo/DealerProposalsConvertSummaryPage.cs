@@ -57,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (element != null)
                 SendToBrotherElement.Click();
 
-            if(culture.ToLower().Equals("de-ch"))
+            if (culture.ToLower().Equals("de-ch") && SeleniumHelper.IsElementPresent("#content_1_InputUpdateUserBOL_Input"))
             {
                 element = SeleniumHelper.FindElementByCssSelector("#content_1_InputUpdateUserBOL_Input");
                 SeleniumHelper.ClickSafety(element);
