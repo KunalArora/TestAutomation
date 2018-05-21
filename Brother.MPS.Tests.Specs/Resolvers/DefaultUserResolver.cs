@@ -111,6 +111,11 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
+                if (_contextData.SpecificLocalOfficeApproverUsername != null)
+                {
+                    return _contextData.SpecificLocalOfficeApproverUsername;
+                }
+
                 return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOApprover", "");
             }
         }
@@ -119,6 +124,11 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
+                if (_contextData.SpecificLocalOfficeApproverPassword != null)
+                {
+                    return _contextData.SpecificLocalOfficeApproverPassword;
+                }
+
                 return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loapprover", 1);
             }
         }

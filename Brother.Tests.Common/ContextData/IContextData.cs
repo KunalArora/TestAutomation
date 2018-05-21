@@ -16,6 +16,8 @@ namespace Brother.Tests.Common.ContextData
         string Environment { get; set; }
         string SpecificDealerUsername { get; set; }
         string SpecificDealerPassword { get; set; }
+        string SpecificLocalOfficeApproverUsername { get; set; }
+        string SpecificLocalOfficeApproverPassword { get; set; }
         BusinessType BusinessType { get; set; }
 
         string ProposalName { get; set; }
@@ -36,6 +38,8 @@ namespace Brother.Tests.Common.ContextData
         string SwapNewDeviceSerialNumber { get; set; }
         int SwapNewDeviceMonoPrintCount { get; set; }
         int SwapNewDeviceColourPrintCount { get; set; }
+        string PaymentType { get; set; }
+        bool SkipBOLRegistration { get; set; }
 
         string CommunicationMethod { get; set; }
         string InstallationType { get; set; }

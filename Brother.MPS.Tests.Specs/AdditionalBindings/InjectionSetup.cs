@@ -100,7 +100,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
                 BusinessType = Brother.Tests.Common.Domain.Enums.BusinessType.Type1,
                 Country = countryService.GetByCulture(culture),
                 SpecificDealerUsername = _commandLineSettings.DealerUsername ?? SpecificDealerUsername(),
-                SpecificDealerPassword = _commandLineSettings.DealerPassword ?? SpecificDealerPassword()
+                SpecificDealerPassword = _commandLineSettings.DealerPassword ?? SpecificDealerPassword(),
+                SpecificLocalOfficeApproverUsername = _commandLineSettings.LocalOfficeApproverUsername ?? SpecificLocalOfficeApproverUsername(),
+                SpecificLocalOfficeApproverPassword = _commandLineSettings.LocalOfficeApproverPassword ?? SpecificLocalOfficeApproverPassword()
             };
         }
 
@@ -108,15 +110,6 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var defaultRuntimeEnvironment = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultRuntimeEnvironment");
             return defaultRuntimeEnvironment ?? "UAT";
-
-            if (_container.Resolve<IContextData>().Environment.ToUpper() == "PROD")
-            {
-                //A bit heavy handed but ensures that any production scenario removes smoke tests
-                var logging = _container.Resolve<ILoggingService>();
-                var mpsWebToolsService = _container.Resolve<IMpsWebToolsService>();
-                logging.WriteLog(LoggingLevel.INFO, "Clearing production smoke tests");
-                mpsWebToolsService.RemoveProductionSmokeTests();
-            }
         }
 
         private string DefaultBaseUrl()
@@ -132,6 +125,16 @@ namespace Brother.Tests.Specs.AdditionalBindings
         private string SpecificDealerPassword()
         {
             return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.SpecificDealerPassword");
+        }
+
+        private string SpecificLocalOfficeApproverUsername()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.SpecificLocalOfficeApproverUsername");
+        }
+
+        private string SpecificLocalOfficeApproverPassword()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.SpecificLocalOfficeApproverPassword");
         }
 
         private string DefaultLoggingLevel()

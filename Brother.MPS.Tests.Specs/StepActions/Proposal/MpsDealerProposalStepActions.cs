@@ -476,13 +476,26 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertTermAndTypePage SetForApprovalInformationAndProceed(DealerProposalsConvertCustomerInformationPage dealerProposalsConvertCustomerInformationPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertCustomerInformationPage);
-            string paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
+            string paymentType;
+
+            if (!string.IsNullOrWhiteSpace(_contextData.PaymentType))
+            {
+                paymentType = _translationService.GetPaymentTypeText(_contextData.PaymentType, _contextData.Culture);
+            }
+            else
+            {
+                paymentType = _translationService.GetPaymentTypeText(TranslationKeys.PaymentType.Invoice, _contextData.Culture);
+            }
+            
             Country country = _contextData.Country;
             dealerProposalsConvertCustomerInformationPage.FillCustomerDetails(paymentType, country.Name);
             _contextData.CustomerEmail = dealerProposalsConvertCustomerInformationPage.GetEmail();
             _contextData.CustomerFirstName = dealerProposalsConvertCustomerInformationPage.GetFirstName();
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
-            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
+            if (!_contextData.SkipBOLRegistration)
+            {
+                _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
+            }
 
             _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= _pageParseHelper.ParseCustomerInformationPageValues(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
