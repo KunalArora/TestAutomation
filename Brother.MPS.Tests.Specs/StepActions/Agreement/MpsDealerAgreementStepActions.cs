@@ -279,10 +279,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Save click prices in context data to use in verification later
             foreach (var product in _contextData.PrintersProperties)
             {
-                product.MonoClickPrice = MpsUtil.GetDigitsOnly(dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model));
+                product.MonoClickPrice = dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model).CollectDigitOnly();
                 if (!product.IsMonochrome)
                 {
-                    product.ColourClickPrice = MpsUtil.GetDigitsOnly(dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model));
+                    product.ColourClickPrice = dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model).CollectDigitOnly();
                 }
             }
 
@@ -724,8 +724,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                device.InstallationPackPrice = MpsUtil.GetDigitsOnly(dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model));
-                device.ServicePackPrice = MpsUtil.GetDigitsOnly(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
+                device.InstallationPackPrice = dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model).CollectDigitOnly();
+                device.ServicePackPrice = dealerAgreementDetailsPage.GetServicePackPrice(device.Model).CollectDigitOnly();
             }
 
             ClickSafety(dealerAgreementDetailsPage.DevicesTabElement, dealerAgreementDetailsPage);
@@ -1043,7 +1043,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.GetDigitsOnly(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, expectedClickRateTotal.CollectDigitOnly());
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -1134,7 +1134,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 string expectedServiceInstallationTotal = dealerAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.GetDigitsOnly(expectedServiceInstallationTotal));
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, expectedServiceInstallationTotal.CollectDigitOnly());
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
@@ -1374,11 +1374,11 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var totalLinePrice = dealerAgreementCreateProductsPage.TotalLinePrice(printerContainer);
 
             _calculationService.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso, new List<string> { installationPackTotalPrice, servicePackTotalPrice, totalLinePrice });
-            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, MpsUtil.GetDigitsOnly(installationPackTotalPrice));
-            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, MpsUtil.GetDigitsOnly(servicePackTotalPrice));
+            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, installationPackTotalPrice.CollectDigitOnly());
+            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, servicePackTotalPrice.CollectDigitOnly());
             _calculationService.VerifySum(new List<string> {
-                MpsUtil.GetDigitsOnly(installationPackTotalPrice), MpsUtil.GetDigitsOnly(servicePackTotalPrice) },
-                MpsUtil.GetDigitsOnly(totalLinePrice));
+                installationPackTotalPrice.CollectDigitOnly(), servicePackTotalPrice.CollectDigitOnly() },
+                totalLinePrice.CollectDigitOnly());
         }
 
         private void ValidateCalculationOnSummaryPage(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
@@ -1399,8 +1399,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text,
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text }
                     );
-            _calculationService.VerifyGrossPrice(MpsUtil.GetDigitsOnly(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text),
-                MpsUtil.GetDigitsOnly(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text));
+            _calculationService.VerifyGrossPrice(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text.CollectDigitOnly(),
+                dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text.CollectDigitOnly());
         }
 
         private void VerifyUpdatedDeviceDataInExcelSheet(

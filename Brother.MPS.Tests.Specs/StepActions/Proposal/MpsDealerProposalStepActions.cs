@@ -659,7 +659,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(
-                            MpsUtil.GetDigitsOnly(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"]))/(double.Parse(contractTermDigitString)/3), 2))
+                            summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"].CollectDigitOnly())/(double.Parse(contractTermDigitString)/3), 2))
                         };
                         break;
                 default:

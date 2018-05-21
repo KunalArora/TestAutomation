@@ -534,28 +534,60 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterMobileNumber();
        }
 
-       private String SwissLegalForm(string language)
-       {
-           LoggingService.WriteLogOnMethodEntry();
-           string lang;
+        private String SwissLegalForm(string language) // For End to End testing (New framework)
+        {
+            LoggingService.WriteLogOnMethodEntry(language);
+            string legalForm;
 
-           switch (language)
-           {
-               case "Français":
-                   lang = "Fondation";
-                   break;
-               case "Deutsch":
-                   lang = "Einzelfirma";
-                   break;
+            switch (language)
+            {
+                case "Français":
+                    legalForm = "Fondation";
+                    break;
+                case "Deutsch":
+                    legalForm = "Einzelfirma";
+                    break;
 
-               default:
-                   lang = "Einzelfirma";
-                   break;
-           }
+                default:
+                    legalForm = "Einzelfirma";
+                    break;
+            }
 
-           return lang;
-       }
+            return legalForm;
+        }
 
+        private String SwissLegalForm()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string lang;
+            string language;
+
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException keyNotFound)
+            {
+                language = "Deutsch";
+            }
+
+
+            switch (language)
+            {
+                case "Français":
+                    lang = "Fondation";
+                    break;
+                case "Deutsch":
+                    lang = "Einzelfirma";
+                    break;
+
+                default:
+                    lang = "Einzelfirma";
+                    break;
+            }
+
+            return lang;
+        }
 
        public void SelectALegalForm(string language)
        {
@@ -595,7 +627,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            else if (IsSwissSystem())
            {
-               var legalForm = SwissLegalForm(language);
+               var legalForm = (language == null) ? SwissLegalForm() : SwissLegalForm(language);
                SelectFromDropdown(LegalFormDropdown, legalForm);
            }
            else if (IsBelgiumSystem())

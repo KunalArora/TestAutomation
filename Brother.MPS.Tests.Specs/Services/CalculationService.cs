@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.Services
         public double ConvertStringToDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
-            if(ContextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            if(ContextData.Country.CountryIso.Equals(CountryIso.Switzerland)) // (Switzerland writing style) To tackle number strings like 3 456 (which means 3,456)
             {
                 variable = Regex.Replace(variable, @"\s+", string.Empty);
             }

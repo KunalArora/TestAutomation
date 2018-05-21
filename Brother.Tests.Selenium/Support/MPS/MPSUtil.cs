@@ -1362,10 +1362,5 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             DateTime result = dt.AddDays(-daysToSubtract);
             return result.ToString(DATESTRING_BUK);
         }
-
-        public static string GetDigitsOnly(string variable)
-        {
-            return Regex.Replace(variable, "[^0-9.]", "");
-        }
     }
 }

@@ -218,7 +218,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                         var oldMonoClickPrice = SeleniumHelper.FindElementByCssSelector(rowElement, ".m-1-10");
                         if( isCheckAutoCalculateClickPrice)
                         {
-                            SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != MpsUtil.GetDigitsOnly(oldMonoClickPrice.Text)));
+                            SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != oldMonoClickPrice.Text.CollectDigitOnly()));
                         }
 
                         // Save to context data for later verification (mono)
