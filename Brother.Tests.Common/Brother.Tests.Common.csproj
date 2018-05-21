@@ -124,6 +124,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DisplayMessage.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgreementStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
       <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -244,6 +249,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceRequestStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\StaffAccessPermission\StaffAccessPermission.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffAccessPermission.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SwapType\SwapType.Designer.cs">
       <DependentUpon>SwapType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -290,6 +300,11 @@
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ExcelContent\CPPAgreementReportExcel\AgreementStatus\AgreementStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -401,6 +416,11 @@
     <EmbeddedResource Include="Resources\ServiceRequestStatus\ServiceRequestStatus.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceRequestStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StaffAccessPermission\StaffAccessPermission.en-gb.resx" />
+    <EmbeddedResource Include="Resources\StaffAccessPermission\StaffAccessPermission.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StaffAccessPermission.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SwapType\SwapType.en-gb.resx" />
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Brother.Tests.Common.Domain.Enums;
+﻿using Brother.Tests.Common.Domain.Enums;
 
 namespace Brother.Tests.Specs.Resolvers
 {
@@ -22,6 +17,8 @@ namespace Brother.Tests.Specs.Resolvers
         string ServiceDeskUsername { get; }
         string ServiceDeskPassword { get; }
         string InstallerUsername { get; }
+        string FinanceUsername { get; }
+        string FinancePassword { get; }
 
         string GetDealerUsername(BusinessType businessType);
         string GetDealerPassword(BusinessType businessType);

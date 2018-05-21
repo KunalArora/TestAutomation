@@ -9,6 +9,7 @@
         string Culture { get; set; }
         string DealerUsername { get; set; }
         string DealerPassword { get; set; }
+        string LoggingStreamType { get; set; }
 
     }
 }

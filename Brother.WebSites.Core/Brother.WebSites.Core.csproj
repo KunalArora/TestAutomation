@@ -213,7 +213,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementServiceRequestsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementsListPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Agreement\DealerAgreementSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Device\DealerDeviceDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\Dealer\Device\DealerDeviceOverviewPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudToolPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudUsbPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\Installer\InstallationCloudWebPage.cs" />
@@ -224,7 +224,7 @@
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDetailsPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDeviceConsumablesPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementDevicesPage.cs" />
-    <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementManageSpecialPricing.cs" />
+    <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementManageSpecialPricingPage.cs" />
     <Compile Include="Pages\MPSTwo\ExclusiveType3\LocalOffice\LocalOfficeAgreementSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\FinanceAccrualsPage.cs" />
     <Compile Include="Pages\MPSTwo\FinanceDashboardPage.cs" />
@@ -275,7 +275,9 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDataQueryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsProposalSummaryPage.cs" />
-    <Compile Include="Pages\MPSTwo\ReportingDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeFinanceAccrualsReportPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeFinanceDashBoardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeReportsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalReportManageCustomerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverContractsSummaryPage.cs" />

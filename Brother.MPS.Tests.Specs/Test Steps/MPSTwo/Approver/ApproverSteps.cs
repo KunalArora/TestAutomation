@@ -100,7 +100,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         [Then(@"I can download ""(.*)"" from the page")]
         public void ThenICanDownloadFromThePage(string downloadType)
         {
-            CurrentPage.As<ReportingDashboardPage>().DownloadASpecifiedReport(downloadType);
+            CurrentPage.As<LocalOfficeReportsDashboardPage>().DownloadASpecifiedReport(downloadType);
         }
 
         [Then(@"Local Office Admin navigates to Data Query page")]
@@ -114,7 +114,7 @@ namespace Brother.Tests.Specs.MPSTwo.Approver
         [When(@"Approver navigate to Data Query page")]
         public void GivenApproverNavigateToDataQueryPage()
         {
-            NextPage = CurrentPage.As<ReportingDashboardPage>().NavigateToDataQueryPage();
+            NextPage = CurrentPage.As<LocalOfficeReportsDashboardPage>().NavigateToDataQueryPage();
         }
 
         [Given(@"Approver navigates to special pricing page for the proposal")]

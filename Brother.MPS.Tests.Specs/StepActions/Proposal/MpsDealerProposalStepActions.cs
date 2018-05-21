@@ -29,11 +29,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IContextData _contextData;
         private readonly ICalculationService _calculationService;
         private readonly IWebDriver _dealerWebDriver;
+        private readonly IWebDriver _subDealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
         private readonly IMpsWebToolsService _webToolService;
         private readonly ILoggingService _loggingService;
         private readonly ITranslationService _translationService;
         private readonly IPageParseHelper _pageParseHelper;
+        private DealerProposalsCreateCustomerInformationPage detailInputPage;
 
         public MpsDealerProposalStepActions(
             IPageParseHelper pageParseHelper,
@@ -55,6 +57,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData = contextData;
             _calculationService = calculationService;
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
+            _subDealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.SubDealer);
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
             _loggingService = loggingService;
@@ -68,10 +71,20 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
+        public DealerDashBoardPage SignInAsSubDealerAndNavigateToDashboard(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            return _mpsSignIn.SignInAsSubDealer(email, password, url);
+        }
+
         public DealerProposalsCreateDescriptionPage NavigateToCreateProposalPage(DealerDashBoardPage dealerDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             ClickSafety( dealerDashboardPage.CreateProposalLinkElement, dealerDashboardPage) ;
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsCreateDescriptionPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -93,8 +106,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             PopulateProposalDescription(dealerProposalsCreateDescriptionPage, proposalName, leadCodeReference, contractType);
 
             ClickSafety( dealerProposalsCreateDescriptionPage.NextButton, dealerProposalsCreateDescriptionPage);
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
+
         public DealerProposalsCreateTermAndTypePage PopulateProposalCustomerInformationAndProceed(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage, CustomerInformationOption customerInformationOption)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage, customerInformationOption);
@@ -128,7 +146,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage);
             ClickSafety( dealerProposalsCreateCustomerInformationPage.CreateNewCustomerElement, dealerProposalsCreateCustomerInformationPage )  ;
             ClickSafety( dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage ) ;
-            var detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
+            else
+            {
+                detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
             detailInputPage.FillOrganisationDetails();
             detailInputPage.FillOrganisationContactDetail();
             _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
@@ -136,6 +161,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
             _contextData.CustomerLastName = dealerProposalsCreateCustomerInformationPage.GetLastName();
             ClickSafety( detailInputPage.NextButton, detailInputPage ) ;
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -187,6 +216,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Populate Term and Type page for Type 1
             dealerProposalsCreateTermAndTypePage.PopulateTermAndTypeForType1(usageType, contractLength, billingType, servicePackOption, leasingBillingCycle);
             ClickSafety(dealerProposalsCreateTermAndTypePage.NextButton, dealerProposalsCreateTermAndTypePage) ;
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsCreateProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -199,6 +232,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.InstallationPack, product.IncludeDelivery);
             }
             ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -236,6 +273,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _contextData.SnapValues[typeof(DealerProposalsCreateClickPricePage)]= _pageParseHelper.ParseClickPricePageValues(dealerProposalsCreateClickPricePage.SeleniumHelper);
             ClickSafety( dealerProposalsCreateClickPricePage.ProceedOnClickPricePageElement, dealerProposalsCreateClickPricePage) ;
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -244,7 +285,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertCustomerInformationPage);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.CreateNewCustomerElement, dealerProposalsConvertCustomerInformationPage);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.NextButton, dealerProposalsConvertCustomerInformationPage);
-            dealerProposalsConvertCustomerInformationPage = PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                dealerProposalsConvertCustomerInformationPage = PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
+            else
+            {
+                dealerProposalsConvertCustomerInformationPage = PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
             return dealerProposalsConvertCustomerInformationPage;
         }
 
@@ -298,6 +346,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsCreateSummaryPage.VerifyNoAlertInfoMessage();
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -412,6 +464,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = _contextData.ProposalId;
             string proposalName = _contextData.ProposalName;
 
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _subDealerWebDriver);
+                return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -429,6 +486,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= _pageParseHelper.ParseCustomerInformationPageValues(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
             ClickSafety(dealerProposalsConvertCustomerInformationPage.nextButtonElement, dealerProposalsConvertCustomerInformationPage);
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -437,6 +498,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(baseUrl);
             var dashBoardPage = new DealerDashBoardPage();
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.LoadUrl<DealerDashBoardPage>(baseUrl + dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _subDealerWebDriver);
+            }
             return PageService.LoadUrl<DealerDashBoardPage>(baseUrl + dashBoardPage.PageUrl, RuntimeSettings.DefaultPageLoadTimeout, dashBoardPage.ValidationElementSelector, true, _dealerWebDriver);
         }
 
@@ -635,6 +700,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertTermAndTypePage);
             ClickSafety( dealerProposalsConvertTermAndTypePage.NextButton, dealerProposalsConvertTermAndTypePage) ;
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsConvertProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsConvertProductsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -652,6 +721,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertProductsPage);
             ClickSafety( dealerProposalsConvertProductsPage.NextButtonElement, dealerProposalsConvertProductsPage, true ) ;
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsConvertClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsConvertClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -666,6 +739,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertClickPricePage);
             ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage);
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -676,6 +753,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
             _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = _pageParseHelper.ParseSummaryPageValues(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerProposalsAwaitingApprovalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -728,6 +809,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             ClickSafety( dealerDashboardPage.ExistingContractLinkElement, dealerDashboardPage );
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerContractsApprovedProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -743,6 +828,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerContractsSummaryPage ClickViewOffer(DealerContractsApprovedProposalPage dealerContractsApprovedProposalPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsApprovedProposalPage);
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                dealerContractsApprovedProposalPage.ClickOnViewOffer(_contextData.ProposalId, _contextData.ProposalName, _subDealerWebDriver);
+                return PageService.GetPageObject<DealerContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             dealerContractsApprovedProposalPage.ClickOnViewOffer(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerContractsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
@@ -752,6 +842,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerContractsSummaryPage);
             ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage) ;
             LoggingService.WriteLog(LoggingLevel.INFO, "Dealer::Signed id={0} name={1}",_contextData.ProposalId,_contextData.ProposalName);
+            if (_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerContractsAwaitingAcceptancePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

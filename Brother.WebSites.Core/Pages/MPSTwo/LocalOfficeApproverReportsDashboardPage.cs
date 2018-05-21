@@ -1,6 +1,6 @@
 ﻿namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeApproverReportsDashboardPage : ReportingDashboardPage, IPageObject
+    public class LocalOfficeApproverReportsDashboardPage : LocalOfficeReportsDashboardPage, IPageObject
     {
         private const string _url = "/mps/local-office/reports/dashboard";
         private const string _validationElementSelector = "ul.media-list";

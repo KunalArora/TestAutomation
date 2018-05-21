@@ -89,12 +89,23 @@ namespace Brother.Tests.Common.Services
         {
             return GetText(Resources.OrderedConsumable.OrderedConsumable.ResourceManager, name, culture);
         }
+
+        public string GetStaffAccessPermission(string name, string culture)
+        {
+            return GetText(Resources.StaffAccessPermission.StaffAccessPermission.ResourceManager, name, culture);
+        }
+
         
         #region Exclusively Type 3
 
         public string GetAgreementTypeText(string name, string culture)
         {
             return GetText(Resources.AgreementType.AgreementType.ResourceManager, name, culture);
+        }
+
+        public string GetAgreementStatusText(string name, string culture)
+        {
+            return GetText(Resources.ExcelContent.CPPAgreementReportExcel.AgreementStatus.AgreementStatus.ResourceManager, name, culture);
         }
 
         public string GetDeviceConnectionStatusText(string name, string culture)

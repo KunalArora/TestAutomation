@@ -14,6 +14,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
@@ -27,15 +28,21 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _serviceDeskWebDriver;
         private IWebDriver _loAdminWebDriver;
         private IWebDriver _bankWebDriver;
+        private IWebDriver _loFinanceWebDriver;
+        private IWebDriver _subDealerWebDriver;
         private IContextData _contextData;
 
-        private const string dealerDashboardUrl = "/mps/dealer/dashboard";
-        private const string loApproverDashboardUrl = "/mps/local-office/dashboard";
-        private const string customerDashboardUrl = "/mps/customer/dashboard";
-        private const string serviceDeskDashboardUrl = "/mps/local-office/dashboard";
-        private const string loAdminDashboardUrl = "/mps/local-office/dashboard";
-        private const string bankDashboardUrl = "/mps/bank/dashboard";
-
+        private readonly Dictionary<UserType, string> DashBoardUrl = new Dictionary<UserType, string>()
+        {
+            { UserType.Dealer,                  "/mps/dealer/dashboard" },
+            { UserType.LocalOfficeApprover,     "/mps/local-office/dashboard" },
+            { UserType.Customer,                "/mps/customer/dashboard" },
+            { UserType.LocalOfficeSupportDesk,  "/mps/local-office/dashboard" },
+            { UserType.LocalOfficeAdmin,        "/mps/local-office/dashboard" },
+            { UserType.Bank,                    "/mps/bank/dashboard" },
+            { UserType.LocalOfficeFinance,      "/mps/local-office/finance/dashboard" },
+            { UserType.SubDealer,               "/mps/dealer/dashboard" },
+        };
 
         public MpsSignInStepActions (
             IWebDriver driver,
@@ -53,6 +60,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         public DealerDashBoardPage SignInAsDealer(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            var dealerDashboardUrl = DashBoardUrl[UserType.Dealer];
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             if (_dealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
@@ -78,60 +86,25 @@ namespace Brother.Tests.Specs.StepActions.Common
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
-            _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
-            _loApproverWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeApprover]);
-            if (_loApproverWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
-            {
-                var signInPage = LoadBrotherOnlineSignInPage(url, _loApproverWebDriver);
-                return SignInToMpsDashboardAs<LocalOfficeApproverDashBoardPage>(signInPage, email, password, _loApproverWebDriver);
-            }
-            else
-            {
-                var uri = new Uri(_loApproverWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loApproverDashboardUrl);
-                return PageService.LoadUrl<LocalOfficeApproverDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loApproverWebDriver);
-            }
+            return SignInAs<LocalOfficeApproverDashBoardPage>(email, password, url, UserType.LocalOfficeApprover, out _loApproverWebDriver);
         }
 
         public ServiceDeskDashBoardPage SignInAsServiceDesk(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
-            _serviceDeskWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeSupportDesk);
-            _serviceDeskWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeSupportDesk]);
-            if (_serviceDeskWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
-            {
-                var signInPage = LoadBrotherOnlineSignInPage(url, _serviceDeskWebDriver);
-                return SignInToMpsDashboardAs<ServiceDeskDashBoardPage>(signInPage, email, password, _serviceDeskWebDriver);
-            }
-            else
-            {
-                var uri = new Uri(_serviceDeskWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, serviceDeskDashboardUrl);
-                return PageService.LoadUrl<ServiceDeskDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _serviceDeskWebDriver);
-            }
+            return SignInAs<ServiceDeskDashBoardPage>(email, password, url, UserType.LocalOfficeSupportDesk, out _serviceDeskWebDriver);
         }
 
         public LocalOfficeAdminDashBoardPage SignInAsLocalOfficeAdmin(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
-            _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
-            _loAdminWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.LocalOfficeAdmin]);
-            if (_loAdminWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
-            {
-                var signInPage = LoadBrotherOnlineSignInPage(url, _loAdminWebDriver);
-                return SignInToMpsDashboardAs<LocalOfficeAdminDashBoardPage>(signInPage, email, password, _loAdminWebDriver);
-            }
-            else
-            {
-                var uri = new Uri(_loAdminWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, loAdminDashboardUrl);
-                return PageService.LoadUrl<LocalOfficeAdminDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _loAdminWebDriver);
-            }
+            return SignInAs<LocalOfficeAdminDashBoardPage>(email, password, url, UserType.LocalOfficeAdmin, out _loAdminWebDriver);
         }
 
         public CustomerDashBoardPage SignInAsCustomer(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            var customerDashboardUrl = DashBoardUrl[UserType.Customer];
             _customerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Customer);
             if (_customerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
@@ -141,25 +114,64 @@ namespace Brother.Tests.Specs.StepActions.Common
             var uri = new Uri(_customerWebDriver.Url);
             var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, customerDashboardUrl);
             return PageService.LoadUrl<CustomerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _customerWebDriver);
-            
+
         }
 
         public BankDashBoardPage SignInAsBank(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
-            _bankWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Bank);
-            if (_bankWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            return SignInAs<BankDashBoardPage>(email, password, url, UserType.Bank, out _bankWebDriver);
+        }
+
+        public LocalOfficeFinanceDashBoardPage SignInAsFinance(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            return SignInAs<LocalOfficeFinanceDashBoardPage>(email, password, url, UserType.LocalOfficeFinance, out _loFinanceWebDriver);
+        }
+
+        private TPage SignInAs<TPage>(string email, string password, string url, UserType userType, out IWebDriver webDriver) where TPage : BasePage, IPageObject, new()
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url, userType);
+            webDriver = WebDriverFactory.GetWebDriverInstance(userType);
+            webDriver.SwitchTo().Window(_contextData.WindowHandles[userType]);
+            if (webDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
             {
-                var signInPage = LoadBrotherOnlineSignInPage(url, _bankWebDriver);
-                return SignInToMpsDashboardAs<BankDashBoardPage>(signInPage, email, password, _bankWebDriver);
+                var signInPage = LoadBrotherOnlineSignInPage(url, webDriver);
+                return SignInToMpsDashboardAs<TPage>(signInPage, email, password, webDriver);
             }
             else
             {
-                var uri = new Uri(_bankWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, bankDashboardUrl);
-                return PageService.LoadUrl<BankDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _bankWebDriver);
+                var uri = new Uri(webDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, DashBoardUrl[userType]);
+                return PageService.LoadUrl<TPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, webDriver);
             }
+        }
 
+        public DealerDashBoardPage SignInAsSubDealer(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            var dealerDashboardUrl = DashBoardUrl[UserType.SubDealer];
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
+            _contextData.DriverInstance = UserType.SubDealer;
+            if (_subDealerWebDriver.Manage().Cookies.GetCookieNamed(".ASPXAUTH") == null)
+            {
+                if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
+                {
+                    var signInPage = LoadAtYourSideSignInPage(url, _subDealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}/{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _subDealerWebDriver);
+                }
+                else
+                {
+                    var signInPage = LoadBrotherOnlineSignInPage(url, _subDealerWebDriver);
+                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _subDealerWebDriver);
+                }
+            }
+            else
+            {
+                var uri = new Uri(_subDealerWebDriver.Url);
+                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, dealerDashboardUrl);
+                return PageService.LoadUrl<DealerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _subDealerWebDriver);
+            }
         }
 
         public SignInAtYourSidePage LoadAtYourSideSignInPage(string url, IWebDriver driver, bool acceptCookiePolicy = true)
@@ -238,5 +250,8 @@ namespace Brother.Tests.Specs.StepActions.Common
             installationPage = PageService.LoadUrl<InstallationManageInstallationsPage>(url, RuntimeSettings.DefaultPageLoadTimeout, installationPage.ValidationElementSelector, true, _installerWebDriver);
             return installationPage;
         }
+
+
+
     }
 }

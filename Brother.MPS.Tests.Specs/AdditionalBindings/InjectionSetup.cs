@@ -61,6 +61,9 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<MpsLoggingConsole, ILoggingService>();
             _container.RegisterTypeAs<ContractShiftService, IContractShiftService>();
             _container.RegisterTypeAs<PageParseHelper, IPageParseHelper>();
+            _container.RegisterTypeAs<AccrualsDetailExcelHelper, IAccrualsDetailExcelHelper>();
+            _container.RegisterTypeAs<CPPAgreementExcelHelper, ICPPAgreementExcelHelper>();
+            _container.RegisterTypeAs<CppAgreementDevicesExcelHelper, ICppAgreementDevicesExcelHelper>();
 
             //necessary in order for 'old' (non-DI) framework to get hold of an ILoggingService instance
             Helper.LoggingService = _container.Resolve<ILoggingService>();
@@ -71,6 +74,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
         {
             var loggingServiceSettings = new LoggingServiceSettings
             {
+                LoggingStreamType = _commandLineSettings.LoggingStreamType ?? DefaultLoggingStreamType(),
                 ScenarioName = ScenarioContext.Current.ScenarioInfo.Title ?? "",
                 LoggingLevel = _commandLineSettings.LoggingLevel ?? DefaultLoggingLevel()
             };
@@ -136,6 +140,11 @@ namespace Brother.Tests.Specs.AdditionalBindings
             return defaultRuntimeEnvironment ?? LoggingLevel.WARNING.ToString();
         }
 
+        private string DefaultLoggingStreamType()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultLoggingStreamType");
+        }
+
         private string DefaultCulture()
         {
             var defaultCulture = System.Configuration.ConfigurationManager.AppSettings.Get("CommandLineSettings.DefaultCulture");
@@ -159,7 +168,6 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
                     defaultType3DealerUsername: AppSettingToString("RuntimeSettings.DefaultType3DealerUsername"),
                     defaultType3DealerPassword: AppSettingToString("RuntimeSettings.DefaultType3DealerPassword")
-
             );
 
             return runtimeSettings;

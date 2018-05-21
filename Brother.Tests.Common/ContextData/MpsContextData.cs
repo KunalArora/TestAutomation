@@ -39,6 +39,7 @@ namespace Brother.Tests.Common.ContextData
         {
             WindowHandles = new Dictionary<UserType, string>();
             CustomerPassword = "password";
+            SubDealerPassword = "password";
             RegisteredDeviceIds = new List<string>();
             //SnapClickPricePageValues = new Dictionary<string,string>();
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
@@ -78,9 +79,16 @@ namespace Brother.Tests.Common.ContextData
         public IList<string> RegisteredDeviceIds { get; set; }
         public string LeasingBillingCycle { get; set; }
         public SnapDictionary SnapValues { get; private set; }
-
+        public string SubDealerEmail { get; set; }
+        public string SubDealerPassword { get; set; }
+        public string SubDealerFirstName { get; set; }
+        public string SubDealerLastName { get; set; }
+        public UserType DriverInstance { get; set; }
 
         // Exclusively Type 3
+        public string AgreementDateCreated { get; set; }
+        public string AgreementStartDate { get; set; }
+        public string AgreementEndDate { get; set; }
         public string AgreementType { get; set; }
         public int AgreementId { get; set; }
         public string AgreementName { get; set; }
@@ -91,6 +99,9 @@ namespace Brother.Tests.Common.ContextData
         public string DealerName { get; set; }
         public string DealerSAPAccountNumber { get; set; }
         public int UsableDeviceIndex { get; set; }
+        public double ClickRateTotal { get; set; }
+        public double ServicePackTotal { get; set; }
+        public double InstallationPackTotal { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>

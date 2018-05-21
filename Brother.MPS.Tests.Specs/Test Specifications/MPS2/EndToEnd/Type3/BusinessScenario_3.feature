@@ -18,7 +18,9 @@ When I navigate to edit device data page
 And I edit device data using excel edit option (Fill Optional fields: "<OptionalFields_2>")
 And I can verify that devices are ready for installation
 Then a Cloud MPS LO Approver can create and send a bulk installation request
-When a Cloud MPS LO Approver applies special pricing 
+And a Cloud MPS LO Approver applies special pricing using relative values(+/- w.r.t. current values) or absolute values:
+		| Model        | InstallUnitPrice | ServiceUnitPrice | MonoClickCoverage | MonoClickVolume | ColourClickCoverage | ColourClickVolume | 
+		| *            | -10.00           | -10.00           | -10               | -100            | -10                 | -100              | 
 Then a Cloud MPS LO Approver can verify that special pricing is correctly applied
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
@@ -31,6 +33,7 @@ And a Cloud MPS Installer is able to reinstall devices using "<CommunicationMeth
 Then I can verify that the reinstalled devices are responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
+And I can verify the Print Summary and Consumables on device dashboard page
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice
 And I can verify the service/installation billing invoice

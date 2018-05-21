@@ -105,7 +105,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.IsNewlyCreatedItemDisplayed(Driver);
         }
 
-        public ReportingDashboardPage NavigateToReportDashboardPage()
+        public LocalOfficeReportsDashboardPage NavigateToReportDashboardPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ReportTabElement == null)
@@ -113,7 +113,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             ReportTabElement.Click();
 
-            return GetInstance<ReportingDashboardPage>();
+            return GetInstance<LocalOfficeReportsDashboardPage>();
         }
 
         private string Reason()

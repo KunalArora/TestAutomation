@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
     public class MpsDealerContractStepActions: StepActionBase
     {
         private readonly IWebDriver _dealerWebDriver;
+        private readonly IWebDriver _subDealerWebDriver;
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
@@ -48,6 +49,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
@@ -61,6 +63,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
             dealerDashboardPage.ExistingContractLinkElement.Click();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerContractsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -146,12 +152,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
-                    _dealerWebDriver.Navigate().Refresh();
-                    dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                    dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
                     continue;
                 }
-                _dealerWebDriver.Navigate().Refresh();
-                dealerManageDevicesPage = PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);               
+                Refresh(dealerManageDevicesPage);
             }
         }
 
@@ -186,6 +190,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsPage);
             dealerContractsPage.ClickOnManageDevicesButton();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -196,6 +204,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contextData.CompanyLocation = dealerManageDevicesPage.SelectLocation();
             
             dealerManageDevicesPage.ClickCreateRequest();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerSetCommunicationMethodPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -204,6 +216,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage);
             dealerSetCommunicationMethodPage.SetCloudCommunicationMethod();
             dealerSetCommunicationMethodPage.ProceedElement.Click();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerSetInstallationTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerSetInstallationTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -212,6 +228,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dealerSetCommunicationMethodPage);
             dealerSetCommunicationMethodPage.SetEmailCommunicationMethod();
             dealerSetCommunicationMethodPage.ProceedElement.Click();
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -220,6 +240,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(dealerSetInstallationTypePage, installationType);
             SelectInstallationTypeAndClickNext(dealerSetInstallationTypePage, installationType);
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -233,8 +257,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             while (dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.WarningAlertElement) ||
                 dealerSendInstallationEmailPage.SeleniumHelper.IsElementDisplayed(dealerSendInstallationEmailPage.SendButtonElement) == false )
             {
-                _dealerWebDriver.Navigate().Refresh();
-                dealerSendInstallationEmailPage = PageService.GetPageObject<DealerSendInstallationEmailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerSendInstallationEmailPage = Refresh(dealerSendInstallationEmailPage);
 
                 if (retries > RuntimeSettings.DefaultRetryCount / 2)
                 {
@@ -255,6 +278,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 if(string.IsNullOrWhiteSpace(expectedMessage)) { return true; }
                 Assert.AreEqual(expectedMessage, actualMessage);
                 return true; });
+            if(_contextData.DriverInstance == UserType.SubDealer)
+            {
+                return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
+            }
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

@@ -1,8 +1,11 @@
-﻿using Brother.Tests.Specs.Resolvers;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice;
+using System.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
 {
@@ -39,14 +42,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
             _localOfficeApproverAgreementDevicesPage = _mpsLoApproverAgreement.SendBulkInstallationRequest(localOfficeApproverAgreementDevicesPage);
         }
 
-        [When(@"a Cloud MPS LO Approver applies special pricing")]
-        public void WhenACloudMPSLOApproverAppliesSpecialPricing()
+        [StepDefinition(@"a Cloud MPS LO Approver applies special pricing using relative values\(\+/- w\.r\.t\. current values\) or absolute values:")]
+        public void ThenACloudMPSLOApproverAppliesSpecialPricingUsingRelativeValues_W_R_T_CurrentValuesOrAbsoluteValues(Table table)
         {
+            var specialPriceList = table.CreateSet<SpecialPricingProperties>();
+            specialPriceList.FirstOrDefault(d => { d.Model = d.Model == "*" ? ".*" : d.Model; return false; });
             var localOfficeApproverDashboardPage = _mpsSignIn.SignInAsLocalOfficeApprover(
                 _userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dataQueryPage = _mpsLoApproverAgreement.NavigateToReportsDataQuery(localOfficeApproverDashboardPage);
             var localOfficeApproverAgreementSummaryPage = _mpsLoApproverAgreement.RefinePreInstallAgreementAndNavigateToSummaryPage(dataQueryPage);
-            _localOfficeApproverAgreementDetailsPage = _mpsLoApproverAgreement.ApplySpecialPricing(localOfficeApproverAgreementSummaryPage);
+            _localOfficeApproverAgreementDetailsPage = _mpsLoApproverAgreement.ApplySpecialPricing(localOfficeApproverAgreementSummaryPage, specialPriceList);
             
         }
 

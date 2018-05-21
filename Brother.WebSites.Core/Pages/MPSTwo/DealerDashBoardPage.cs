@@ -203,12 +203,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerProposalsCreateDescriptionPage>(Driver);
         }
 
-        public ReportingDashboardPage NavigateToReportPage()
+        public LocalOfficeReportsDashboardPage NavigateToReportPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             IsCreateNewProposalLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealerReportLinkElement);
-            return GetTabInstance<ReportingDashboardPage>();
+            return GetTabInstance<LocalOfficeReportsDashboardPage>();
         }
 
         public DealerAdminDashBoardPage NavigateToAdminPage()
@@ -254,6 +254,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, ExistingCustomerLinkElement);
 
             return GetInstance<DealerCustomersExistingPage>(Driver);
+        }
+
+        public void NavigateToDealerAdminDashboardPage()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(AdminLinkElement);
         }
 
     }
