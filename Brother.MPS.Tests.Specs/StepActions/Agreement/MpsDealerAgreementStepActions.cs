@@ -836,8 +836,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Verify consumable order information one by one
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                if ((resourceConsumableOrderMethod.Equals("Manual") && device.hasEmptyInkToner) ||
-                    (resourceConsumableOrderMethod.Equals("Automatic") && device.hasLowRemLifeInkToner))
+                // In order to be able to use the same function for checking either automatic or manual consumable order this logic is implemented to check the 
+                // order method is manual or automatic explicitly
+                if ((resourceConsumableOrderMethod.ToLower().Equals("manual") && device.hasEmptyInkToner) ||
+                    (resourceConsumableOrderMethod.ToLower().Equals("automatic") && device.hasLowRemLifeInkToner))
                 {
                     dealerAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
