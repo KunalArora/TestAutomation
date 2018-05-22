@@ -124,7 +124,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "1000",
                         "0",
                         "0",
-                        "A3P184878",
+                        "A3P145600",
                         "23",
                         "0",
                         "Empty",
