@@ -205,7 +205,6 @@ namespace Brother.Tests.Specs.Services
             {
                 {"id" ,deviceId},
                 {"items", new string[]{
-                     "heart_Life",
                      "TonerInk_Black",
                      "TonerInk_Cyan",
                      "TonerInk_Magenta",
