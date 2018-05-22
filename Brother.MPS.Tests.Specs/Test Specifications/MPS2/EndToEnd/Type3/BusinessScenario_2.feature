@@ -23,7 +23,7 @@ Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 When I manually raise a consumable order for above devices
-Then I can verify the generation of consumable orders alongwith status
+Then I can verify the generation of manual consumable orders alongwith status
 When I manually raise a service request for above devices
 Then a Cloud MPS Service Desk can verify the service request
 When a Cloud MPS Service Desk close the service request
