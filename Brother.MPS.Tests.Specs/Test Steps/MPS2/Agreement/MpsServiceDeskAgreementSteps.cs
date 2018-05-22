@@ -62,6 +62,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Agreement
         [When(@"a Cloud MPS Service Desk close the service request")]
         public void WhenACloudMPSServiceDeskCloseTheServiceRequest()
         {
+            _serviceDeskDashboardPage = _mpsSignIn.SignInAsServiceDesk(
+                _userResolver.ServiceDeskUsername, _userResolver.ServiceDeskPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+
+            // Below 2 steps are implemented just to retrieve dealer details from agreement summary page for later validation
+            _dataQueryPage = _mpsServiceDeskAgreement.NavigateToReportsDataQuery(_serviceDeskDashboardPage);
+            _localOfficeAgreementDevicesPage = _mpsServiceDeskAgreement.NavigateToAgreementDevicesPage(_dataQueryPage);
+
             _mpsServiceDeskAgreement.CloseServiceRequest(_localOfficeAgreementDevicesPage);
         }
 

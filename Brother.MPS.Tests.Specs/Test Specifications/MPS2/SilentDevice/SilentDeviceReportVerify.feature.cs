@@ -107,7 +107,14 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "TonerInkCyanStatus",
                         "TonerInkMagentaStatus",
                         "TonerInkYellowStatus",
-                        "IsSwap"});
+                        "TonerInkBlackRemLife",
+                        "TonerInkCyanRemLife",
+                        "TonerInkMagentaRemLife",
+                        "TonerInkYellowRemLife",
+                        "TonerInkBlackReplaceCount",
+                        "TonerInkCyanReplaceCount",
+                        "TonerInkMagentaReplaceCount",
+                        "TonerInkYellowReplaceCount"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1",
@@ -120,11 +127,18 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "2250",
                         "0",
-                        "Empty",
                         "Normal",
                         "Normal",
                         "Normal",
-                        "false"});
+                        "Normal",
+                        "2",
+                        "-",
+                        "-",
+                        "-",
+                        "2",
+                        "0",
+                        "0",
+                        "0"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1",
@@ -141,7 +155,14 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Empty",
                         "Normal",
                         "Normal",
-                        "false"});
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "0",
+                        "1",
+                        "0",
+                        "0"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 15
@@ -170,27 +191,27 @@ testRunner.Then("I can verify the correct reflection of updated print counts", (
 #line 27
 testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
-testRunner.Then("a Cloud MPS Service Desk can verify the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
-testRunner.When("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
-testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
-testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
-testRunner.Then("a Cloud MPS Service Desk can verify the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
-testRunner.When("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
 testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 35
+#line 33
 testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 36
+#line 34
 testRunner.Then("a Cloud MPS Service Desk can verify the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 37
+#line 35
 testRunner.When("I manually raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+testRunner.Then("I can verify the generation of manual consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 37
+testRunner.When("I automatically raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
-testRunner.Then("I can verify the generation of consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I can verify the generation of automatic consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

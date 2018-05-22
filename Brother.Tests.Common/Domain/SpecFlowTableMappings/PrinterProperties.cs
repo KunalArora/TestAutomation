@@ -43,6 +43,14 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanStatus { get; set; }
         public string TonerInkMagentaStatus { get; set; }
         public string TonerInkYellowStatus { get; set; }
+        public string TonerInkBlackRemLife { get; set; }
+        public string TonerInkCyanRemLife { get; set; }
+        public string TonerInkMagentaRemLife { get; set; }
+        public string TonerInkYellowRemLife { get; set; }
+        public string TonerInkBlackReplaceCount { get; set; }
+        public string TonerInkCyanReplaceCount { get; set; }
+        public string TonerInkMagentaReplaceCount { get; set; }
+        public string TonerInkYellowReplaceCount { get; set; }
         public string LaserUnit { get; set; }
         public string FuserUnit { get; set; }
         public string PaperFeedingKit1 { get; set; }

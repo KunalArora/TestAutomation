@@ -25,6 +25,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Common
             _mpsApiCall.UpdateAndNotifyBOCForConsumableOrder();
         }
 
+        [When(@"I automatically raise a consumable order for above devices")]
+        public void WhenIAutomaticallyRaiseAConsumableOrderForAboveDevices()
+        {
+            _mpsApiCall.UpdateAndNotifyBOCForConsumableOrderWithReplaceCountAndRemLife();
+            _mpsApiCall.UpdateMPSForConsumableOrder();
+        }
+
         [When(@"the agreement start date gets shifted ""(.*)"" days behind")]
         public void WhenTheAgreementStartDateGetsShiftedDaysBehind(int agreementShiftDays)
         {

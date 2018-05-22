@@ -13,6 +13,8 @@ namespace Brother.Tests.Specs.Services
         void SetPrintCounts(string deviceId, int monoPrintCount, int colourPrintCount);
         string CreateNewDeviceId();
         void RaiseConsumableOrder(string deviceId, string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus);
+        void SetRemainingLife(string deviceId, string tonerInkBlackRemLife, string tonerInkCyanRemLife, string tonerInkMagentaRemLife, string tonerInkYellowRemLife);
+        void SetReplaceCount(string deviceId, string tonerInkBlackReplaceCount, string tonerInkCyanReplaceCount, string tonerInkMagentaReplaceCount, string tonerInkYellowReplaceCount);      
         void DeleteDevice(string deviceId);
         IEnumerable<BocSupplyItem> GetSupply(string deviceId);
     }

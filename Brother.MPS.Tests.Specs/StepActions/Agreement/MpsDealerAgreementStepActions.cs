@@ -828,20 +828,21 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public DealerAgreementDevicesPage VerifyConsumableOrders(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        public DealerAgreementDevicesPage VerifyConsumableOrders(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceConsumableOrderMethod)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceConsumableOrderMethod);
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
 
             // Verify consumable order information one by one
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                if (device.hasEmptyInkToner)
+                if ((resourceConsumableOrderMethod.Equals("Manual") && device.hasEmptyInkToner) ||
+                    (resourceConsumableOrderMethod.Equals("Automatic") && device.hasLowRemLifeInkToner))
                 {
                     dealerAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
+                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethod);
 
                     ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage, true);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

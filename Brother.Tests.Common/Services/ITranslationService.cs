@@ -27,5 +27,6 @@
         string GetAgreementStatusText(string name, string culture);
         string GetDeviceConnectionStatusText(string name, string culture);
         string GetCommunicationMethodText(string cloud, string culture);
+        string GetConsumableOrderMethodText(string name, string culture);
     }
 }
