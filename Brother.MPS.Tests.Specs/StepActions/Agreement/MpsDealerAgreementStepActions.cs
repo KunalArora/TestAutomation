@@ -270,7 +270,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var numberStyles = NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
             var cultureInfo = _contextData.CultureInfo == null ? new CultureInfo(_contextData.Culture) : _contextData.CultureInfo;
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
-            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now, _contextData.Country.CountryIso);
 
             // Save these details for later verification
             _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles, cultureInfo);
@@ -947,7 +947,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
                 var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
+                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType, _contextData.Country.CountryIso);
 
                 ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

@@ -270,7 +270,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that all devices are installed and responding")]
         public void ThenICanVerifyThatAllDevicesAreInstalledAndResponding()
         {
-            _contextData.AgreementStartDate = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementStartDate = MpsUtil.DateTimeString(DateTime.Now, _contextData.Country.CountryIso);
             _contextData.AgreementEndDate = MpsUtil.ContractEndDate(_contextData.AgreementStartDate, Int32.Parse(_contextData.ContractTerm[0].ToString()));
 
             string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(

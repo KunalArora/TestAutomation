@@ -58,7 +58,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _calculationService = calculationService;
-            _subDealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.SubDealer);
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer, new WebDriverOptions { Culture = _contextData.Culture });
             _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer, new WebDriverOptions { Culture = _contextData.Culture });
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
@@ -799,7 +799,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsAwaitingApprovalPage SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
-            dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
+            dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(_contextData.Country.CountryIso); // Envisaged Start Date
             dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval(_contextData.Culture);       // Approval Has Been Given To Send Information To Brother
             _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = _pageParseHelper.ParseSummaryPageValues(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;

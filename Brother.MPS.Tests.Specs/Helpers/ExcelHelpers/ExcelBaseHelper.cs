@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Logging;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -18,11 +19,13 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
     {
         private readonly ILoggingService LoggingService;
         private readonly IRuntimeSettings RuntimeSettings;
+        private readonly IContextData ContextData;
 
-        public ExcelBaseHelper(ILoggingService loggingService, IRuntimeSettings runtimeSettings)
+        public ExcelBaseHelper(ILoggingService loggingService, IRuntimeSettings runtimeSettings, IContextData contextData)
         {
             LoggingService = loggingService;
             RuntimeSettings = runtimeSettings;
+            ContextData = contextData;
         }
 
         public string Download(Func<bool> clickOnDownloadFunc, int downloadTimeout = -1, string filter = "*.xlsx", WatcherChangeTypes changeType = WatcherChangeTypes.Renamed)
@@ -106,7 +109,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         {
             LoggingService.WriteLogOnMethodEntry(SerialDate);
             DateTime dt = DateTime.FromOADate(Convert.ToInt32(Math.Floor(Convert.ToDouble(SerialDate))));
-            return MpsUtil.DateTimeString(dt);
+            return MpsUtil.DateTimeString(dt, ContextData.Country.CountryIso);
         }
 
         public Table ParseExcelFileToTable(string excelFilePath, int worksheetNumber=1)

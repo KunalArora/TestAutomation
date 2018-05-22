@@ -67,7 +67,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
         public string ClickOnRunReport(LocalOfficeFinanceAccrualsReportPage localOfficeFinanceAccrualsReportPage, DateTime dateTime)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeFinanceAccrualsReportPage, dateTime);
-            localOfficeFinanceAccrualsReportPage.EnterRunAtDate(dateTime);
+            localOfficeFinanceAccrualsReportPage.EnterRunAtDate(dateTime, ContextData.Country.CountryIso);
             var zipFilePath = LoggingService.WriteLogWhenWarningTimeoutExceeds(d => _accrualsDetailExcelHelper.Download(() =>
                 {
                     localOfficeFinanceAccrualsReportPage.ClickOnRunReport();

@@ -32,18 +32,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
         public IWebElement SaveAsContractButton;
 
-        public void FillSubmitForApprovalField()
+        public void FillSubmitForApprovalField(string countryIso)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            EnterProposedStartDateForContract();
+            LoggingService.WriteLogOnMethodEntry(countryIso);
+            EnterProposedStartDateForContract(countryIso);
         }
 
-        public void EnterProposedStartDateForContract()
+        public void EnterProposedStartDateForContract(string countryIso)
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
-            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(countryIso));
         
         }
 
