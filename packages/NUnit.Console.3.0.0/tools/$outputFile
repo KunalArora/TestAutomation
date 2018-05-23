@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run start-time="2018-03-21 09:13:12Z">
+  <command-line><![CDATA[nunit3-console.exe  $TestAssembly --where:"cat = ENDTOEND && cat = TYPE3" --result=$outputFile]]></command-line>
+</test-run>

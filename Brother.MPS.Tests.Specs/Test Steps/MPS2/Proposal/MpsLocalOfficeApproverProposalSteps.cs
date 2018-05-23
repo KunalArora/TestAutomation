@@ -67,6 +67,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [When(@"a Cloud MPS Local Office Approver Set a Special Pricing:")]
         public void WhenACloudMPSLocalOfficeApproverSetASpecialPricing(Table table)
         {
+            var cultureInfo = _contextData.CultureInfo;
+
             var resourceInstallationPackBrotherInstallation = _translationService.GetInstallationPackText(TranslationKeys.InstallationPack.BrotherInstallation, _contextData.Culture);
             var resourceServicePackTypePayUpFront = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.PayUpfront, _contextData.Culture);
             var resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
@@ -83,24 +85,24 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 {
                     cp.Model = ".*";
                 }
-                cp.InstallUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitCost);
-                cp.InstallMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallMargin);
-                cp.InstallUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitPrice);
-                cp.ServiceUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitCost);
-                cp.ServiceMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceMargin);
-                cp.ServiceUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitPrice);
-                cp.MonoClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServiceCost);
-                cp.MonoClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServicePrice);
-                cp.MonoClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickCoverage);
-                cp.MonoClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickVolume);
-                cp.MonoClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickMargin);
-                cp.MonoClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClick);
-                cp.ColourClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServiceCost);
-                cp.ColourClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServicePrice);
-                cp.ColourClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickCoverage);
-                cp.ColourClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickVolume);
-                cp.ColourClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickMargin);
-                cp.ColourClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClick);
+                cp.InstallUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitCost, cultureInfo);
+                cp.InstallMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallMargin, cultureInfo);
+                cp.InstallUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitPrice, cultureInfo);
+                cp.ServiceUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitCost, cultureInfo);
+                cp.ServiceMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceMargin, cultureInfo);
+                cp.ServiceUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitPrice, cultureInfo);
+                cp.MonoClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServiceCost, cultureInfo);
+                cp.MonoClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServicePrice, cultureInfo);
+                cp.MonoClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickCoverage, cultureInfo);
+                cp.MonoClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickVolume, cultureInfo);
+                cp.MonoClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickMargin, cultureInfo);
+                cp.MonoClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClick, cultureInfo);
+                cp.ColourClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServiceCost, cultureInfo);
+                cp.ColourClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServicePrice, cultureInfo);
+                cp.ColourClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickCoverage, cultureInfo);
+                cp.ColourClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickVolume, cultureInfo);
+                cp.ColourClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickMargin, cultureInfo);
+                cp.ColourClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClick, cultureInfo);
             }
             if ( _contextData.PrintersProperties.Any(prop=> prop.InstallationPack == resourceInstallationPackBrotherInstallation))
             {
