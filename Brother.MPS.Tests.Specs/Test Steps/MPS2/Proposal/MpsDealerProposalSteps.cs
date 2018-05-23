@@ -246,10 +246,20 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
-            var cultureInfo = new CultureInfo(_contextData.Culture);
+
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+                    break;
+                default:
+                    break;
+            }
+
             foreach ( var product in products)
             {
-                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
+                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price, _contextData.CultureInfo);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -496,7 +506,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach (var product in products)
             {
-                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
+                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;

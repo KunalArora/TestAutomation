@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System;
 using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Services
@@ -28,18 +29,19 @@ namespace Brother.Tests.Specs.Services
         void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice);
 
         /// <summary>
-        /// Converts string value to double value
+        /// Converts culture dependent string value to invariant double value
         /// </summary>
         /// <param name="variable"></param>
         /// <returns></returns>
-        double ConvertStringToDouble(string variable);
+        double ConvertCultureNumericStringToInvariantDouble(string variable);
 
         /// <summary>
         /// Convert invariant numeric to cultured numeric string
         /// </summary>
         /// <param name="invariant"></param>
+        /// <param name="formatProvider"></param>
         /// <returns></returns>
-        string ConvertInvariantNumericToCultureNumericString(string invariant);
+        string ConvertInvariantNumericStringToCultureNumericString(string invariant, IFormatProvider formatProvider = null);
 
         /// <summary>
         /// Round off a double variable to certain decimal places
