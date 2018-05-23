@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Common.ContextData
 {
@@ -9,6 +10,7 @@ namespace Brother.Tests.Common.ContextData
     {
         public Country Country { get; set; }
         public string Culture { get; set; }
+        public CultureInfo CultureInfo { get; set; }
         public string Language { get; set; }
         public string BaseUrl { get; set; }
         public string Environment { get; set; }

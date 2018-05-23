@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -122,6 +123,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country + " culture=" + culture);
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            switch(_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+                    break;
+                default:
+                    break;
+            }
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {

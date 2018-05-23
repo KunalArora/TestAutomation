@@ -43,11 +43,15 @@ When a Cloud MPS Local Office Admin sets the cancellation date and reason and ca
 Then a Local Office Admin assert the final bill is generated/present
 
 
-@BUK @BSW
+@BUK
 Scenarios: 
 		| Country        | Culture | ContractType       | UsageType     | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
 		| United Kingdom |         | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
-		#| Switzerland    | de-CH   | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
+
+@BSW
+Scenarios: 
+		| Country        | Culture | ContractType       | UsageType     | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
+#	    | Switzerland    | de-CH   | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
 
 #@BFR
 #Scenarios:

@@ -18,6 +18,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
@@ -57,8 +58,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _calculationService = calculationService;
-            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _subDealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.SubDealer);
+            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
             _loggingService = loggingService;
@@ -654,12 +655,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         };
                     break;
                 case CountryIso.Switzerland:
+                    var consumablesTotalPriceNet = double.Parse(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Number | NumberStyles.Currency, _contextData.CultureInfo);
+                    var quarterInterval = (double.Parse(contractTermDigitString)/3);
                     searchTextArray = new string[]
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), _calculationService.RoundOffUptoDecimalPlaces(double.Parse(
-                            summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"].CollectDigitOnly())/(double.Parse(contractTermDigitString)/3), 2))
+                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet/quarterInterval, 2))
                         };
                         break;
                 default:

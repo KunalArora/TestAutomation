@@ -23,6 +23,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 
@@ -265,13 +266,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementsListPage ValidateSummaryPageAndCompleteSetup(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementCreateSummaryPage);
+
+            var numberStyles = NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
+            var cultureInfo = _contextData.CultureInfo == null ? new CultureInfo(_contextData.Culture) : _contextData.CultureInfo;
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
             _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now);
 
             // Save these details for later verification
-            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal();
-            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal();
-            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal();
+            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles, cultureInfo);
+            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal(numberStyles, cultureInfo);
+            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal(numberStyles, cultureInfo);
 
             // Validate calculations/content on summary page
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);

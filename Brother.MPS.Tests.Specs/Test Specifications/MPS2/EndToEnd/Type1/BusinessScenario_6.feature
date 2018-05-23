@@ -41,7 +41,7 @@ And I update the consumable order and verify it on the dataquery page
 And I check the billing to ensure details are correctly populated
 
 
-@BUK
+@BIG
 Scenarios: 
 		| Country | ContractType        | UsageType     | BillingType            | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | LeasingBillingCycle |
 		| Germany | LEASING_AND_SERVICE | PAY_AS_YOU_GO | HALF_YEARLY_IN_ARREARS | ADD_TO_THE_LEASING_RATE | FIVE_YEARS   | New      | Cloud               | Web              | MONTHLY             |

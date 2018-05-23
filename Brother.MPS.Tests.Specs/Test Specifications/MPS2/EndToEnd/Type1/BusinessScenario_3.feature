@@ -47,8 +47,13 @@ And a Brother installer has navigated to the Web Swap Installation page and veri
 And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
 Then a Cloud MPS Local Office Approver will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
-@BUK @BSW
+@BUK
 Scenarios: 
 		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
 		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |
+
+
+@BSW
+Scenarios: 
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
 		| Switzerland    | fr-CH   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |
