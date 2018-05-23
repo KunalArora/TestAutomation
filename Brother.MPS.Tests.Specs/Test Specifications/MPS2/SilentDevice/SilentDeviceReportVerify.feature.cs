@@ -157,7 +157,7 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Normal",
                         "-",
                         "-",
-                        "-",
+                        "2",
                         "-",
                         "0",
                         "1",

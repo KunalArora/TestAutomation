@@ -917,7 +917,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatus, device.ServiceRequestType, true);
             }
 
-            ClickSafety(dealerAgreementServiceRequestsPage.DevicesTabElement(_contextData.AgreementId), dealerAgreementServiceRequestsPage);
+            ClickSafety(dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage);
             return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
