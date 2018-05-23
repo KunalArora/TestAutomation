@@ -20,8 +20,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Common
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CloudMPSUKDealerCanLogin")]
     [NUnit.Framework.CategoryAttribute("MPS")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TEST")]
+    [NUnit.Framework.CategoryAttribute("LOGIN")]
     public partial class CloudMPSUKDealerCanLoginFeature
     {
         
@@ -37,8 +36,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Common
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CloudMPSUKDealerCanLogin", "\tIn order to manage my proposals\r\n\tAs a dealer\r\n\tI want to log in to my dashboard" +
                     "", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
-                        "UAT",
-                        "TEST"});
+                        "LOGIN"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

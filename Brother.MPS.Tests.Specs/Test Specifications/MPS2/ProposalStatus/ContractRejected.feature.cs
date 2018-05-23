@@ -22,8 +22,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("DEV")]
+    [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("PROPOSALSTATUS")]
+    [NUnit.Framework.CategoryAttribute("HIGH")]
+    [NUnit.Framework.CategoryAttribute("PRODUCTIONSMOKE")]
     public partial class RejectContractFeature
     {
         
@@ -41,8 +44,11 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
                         "MPS",
                         "UAT",
                         "DEV",
+                        "PROD",
                         "TYPE1",
-                        "PROPOSALSTATUS"});
+                        "PROPOSALSTATUS",
+                        "HIGH",
+                        "PRODUCTIONSMOKE"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,9 +82,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Reject contract")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "DIRECT_DEBIT", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void RejectContract(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string[] exampleTags)
+        public virtual void RejectContract(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string paymentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reject contract", exampleTags);
 #line 7
@@ -105,7 +111,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "CoverageColour",
                         "VolumeColour"});
             table1.AddRow(new string[] {
-                        "DCP-8110DN",
+                        "HL-L5100DN",
                         "1000.00",
                         "BROTHER_INSTALLATION",
                         "Yes",
@@ -118,7 +124,7 @@ testRunner.And("I add these printers:", ((string)(null)), table1, "And ");
 #line 16
 testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
-testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I save the above proposal and submit it for approval with payment type \"{0}\"", paymentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
 testRunner.And("a Cloud MPS Local Office Approver approves the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
