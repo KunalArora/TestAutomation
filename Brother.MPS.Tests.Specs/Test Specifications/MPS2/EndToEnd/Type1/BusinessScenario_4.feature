@@ -4,7 +4,7 @@ Feature: Type1BusinessScenario_4
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 4
+Scenario Outline: Type1BusinessScenario_4
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
