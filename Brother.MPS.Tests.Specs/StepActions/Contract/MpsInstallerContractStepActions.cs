@@ -191,15 +191,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private string SerialNumberCalculationHelper(string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
+
             string serialNumberResponse;
             string lastValue;
-            int defaultSerialOffsetLength = RuntimeSettings.DefaultSerialNumberOffset.ToString().Length;
-            string zeroLeadingString = new string('0', defaultSerialOffsetLength);
-            int lastSerialNumbervalue = Int32.Parse(serialNumber.Substring(serialNumber.Length - defaultSerialOffsetLength));
+            string zeroLeadingString = new string('0', 6);
+            int lastSerialValues = Int32.Parse(serialNumber.Substring(serialNumber.Length - 6));
 
-            lastSerialNumbervalue = lastSerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-            lastValue = lastSerialNumbervalue.ToString(zeroLeadingString);
-            serialNumberResponse = serialNumber.Remove(serialNumber.Length - defaultSerialOffsetLength, defaultSerialOffsetLength) + lastValue;
+            lastSerialValues = lastSerialValues + RuntimeSettings.DefaultSerialNumberOffset;
+            lastValue = lastSerialValues.ToString(zeroLeadingString);
+
+            serialNumberResponse = serialNumber.Remove(serialNumber.Length - 6, 6) + lastValue;
 
             return serialNumberResponse;
         }
