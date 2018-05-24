@@ -380,5 +380,17 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             var dealerReportsDashboardPage = _mpsDealerAgreement.NavigateToReports(_dealerAgreementDevicesPage);
             _mpsDealerAgreement.DownloadCPPAgreementReportAndVerify(dealerReportsDashboardPage);
         }
+
+        [Then(@"I can verify the device status being silent")]
+        public void ThenICanVerifyTheDeviceStatusBeingSilent()
+        {
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusSilent = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Silent, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreSilent(
+                _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusSilent);
+        }
+
     }
 }

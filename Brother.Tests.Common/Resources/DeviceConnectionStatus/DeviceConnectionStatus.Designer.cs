@@ -79,6 +79,15 @@ namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Silent.
+        /// </summary>
+        internal static string SILENT {
+            get {
+                return ResourceManager.GetString("SILENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Swapped.
         /// </summary>
         internal static string SWAPPED {

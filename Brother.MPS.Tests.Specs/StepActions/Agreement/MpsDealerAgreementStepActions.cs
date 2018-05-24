@@ -1334,6 +1334,37 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _cppAgreementHelper.DeleteExcelFile(excelFilePath);
         }
 
+        public DealerAgreementDevicesPage VerifyThatDevicesAreSilent(DealerAgreementDevicesPage dealerAgreementDevicesPage,
+            string resourceInstalledPrinterStatusInstalled, string resourceDeviceConnectionStatusSilent)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusSilent);
+            // Switch back to Dealer window
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+
+            // Refresh to reflect the device status changes
+            _dealerWebDriver.Navigate().Refresh();
+            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
+                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+            // Verify status icon
+            if (_contextData.CommunicationMethod.ToLower().Equals("cloud"))
+            {
+                dealerAgreementDevicesPage.VerifyStatusIconOfAllDevices(dealerAgreementDevicesPage.CloudStatusIconSelector);
+            }
+            else if (_contextData.CommunicationMethod.ToLower().Equals("email"))
+            {
+                dealerAgreementDevicesPage.VerifyStatusIconOfAllDevices(dealerAgreementDevicesPage.EmailStatusIconSelector);
+            }
+
+            // Verify that devices are installed
+            VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled);
+
+            // Verify that devices are responding
+            VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceDeviceConnectionStatusSilent);
+
+            return dealerAgreementDevicesPage;
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,

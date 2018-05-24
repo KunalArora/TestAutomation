@@ -111,6 +111,7 @@
             public static string NotConnected { get { return "NOT_CONNECTED"; } }
             public static string Responding { get { return "RESPONDING"; } }
             public static string Swapped { get { return "SWAPPED"; } }
+            public static string Silent { get { return "SILENT"; } }
         }
 
         // for type string on hover message

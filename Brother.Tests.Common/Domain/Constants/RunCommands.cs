@@ -7,6 +7,7 @@ namespace Brother.Tests.Common.Domain.Constants
         public const string MpsNewMeterReadCloudSyncCommand = "MPS:NEW:MeterReadCloudSyncCommand";
         public const string MpsConsumableOrderRequestsCommand = "MPS:ConsumableOrderRequestsCommand";
         public const string MpsCheckForSilentEmailDevicesCommand = "MPS:CheckForSilentEmailDevicesCommand";
+        public const string MpsCheckForSilentMedioDevicesCommand = "MPS:CheckForSilentMedioDevicesCommand";
         public const string MpsSystemJobCreateConsumableOrderCommand = "MPS:SystemJobCreateConsumableOrderCommand";
         public const string MpsSystemJobSetupInstalledPrintersCommand = "MPS:SystemJobSetupInstalledPrintersCommand";
         public const string MpsSystemJobStartContractCommand = "MPS:SystemJobStartContractCommand";

@@ -135,6 +135,16 @@ namespace Brother.Tests.Specs.StepActions.Common
             _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, true, "Any");
         }
 
+        public void ShiftAgreementStartDateWithoutGeneratingInvoice(int agreementShiftDays)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
+
+            _contextData.AgreementStartDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementStartDate, agreementShiftDays);
+            _contextData.AgreementEndDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementEndDate, agreementShiftDays);
+
+            _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, false, "Any");
+        }
+
         public void UpdateMPSForConsumableOrder()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -144,6 +154,13 @@ namespace Brother.Tests.Specs.StepActions.Common
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();           
+        }
+
+        public void RunSilentMedioDevicesCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _runCommandService.RunCheckForSilentCloudDevicesCommand();
         }
     }
 }

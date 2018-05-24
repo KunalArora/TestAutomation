@@ -36,8 +36,11 @@ When I manually raise a consumable order for above devices
 Then I can verify the generation of manual consumable orders alongwith status
 When I automatically raise a consumable order for above devices
 Then I can verify the generation of automatic consumable orders alongwith status
+When the agreement start date gets shifted "<AgreementShiftDays>" days behind without generating invoice
+Then I can verify the device status being silent
+
 
 @BUK
 Scenarios: 
 		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | 
-		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | False            | Cloud               | Bor              | 91                 | 
+		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | False            | Cloud               | Bor              | 5                  | 

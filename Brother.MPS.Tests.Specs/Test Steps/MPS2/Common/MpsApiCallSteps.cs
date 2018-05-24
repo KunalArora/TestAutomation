@@ -37,5 +37,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Common
         {
             _mpsApiCall.ShiftAgreementStartDateBy(agreementShiftDays);
         }
+
+        [When(@"the agreement start date gets shifted ""(.*)"" days behind without generating invoice")]
+        public void WhenTheAgreementStartDateGetsShiftedDaysBehindWithoutGeneratingInvoice(int agreementShiftDays)
+        {
+            _mpsApiCall.ShiftAgreementStartDateWithoutGeneratingInvoice(agreementShiftDays);
+            _mpsApiCall.RunSilentMedioDevicesCommand();
+        }
     }
 }
