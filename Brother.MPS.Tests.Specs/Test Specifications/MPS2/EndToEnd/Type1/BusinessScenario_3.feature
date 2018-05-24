@@ -50,6 +50,6 @@ Then a Cloud MPS Local Office Approver will be able to see the status of the swa
 @BUK
 Scenarios: 
 		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType             | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145606                 | 100                         | 0                            |
+		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145604                 | 100                         | 0                            |
 
 		
