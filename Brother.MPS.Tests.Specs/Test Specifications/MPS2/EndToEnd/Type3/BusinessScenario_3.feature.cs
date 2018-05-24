@@ -73,12 +73,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Scenario 3")]
+        [NUnit.Framework.DescriptionAttribute("Type3BusinessScenario_3")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "MINIMUM_VOLUME", "FIVE_YEARS", "INCLUDED_IN_CLICK_PRICE", "True", "Cloud", "Bor", "40", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario3(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
+        public virtual void Type3BusinessScenario_3(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 3", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type3BusinessScenario_3", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
