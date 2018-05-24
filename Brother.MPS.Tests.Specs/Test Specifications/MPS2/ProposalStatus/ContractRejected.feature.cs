@@ -27,6 +27,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
     [NUnit.Framework.CategoryAttribute("PROPOSALSTATUS")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("PRODUCTIONSMOKE")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class RejectContractFeature
     {
         
@@ -48,7 +49,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
                         "TYPE1",
                         "PROPOSALSTATUS",
                         "HIGH",
-                        "PRODUCTIONSMOKE"});
+                        "PRODUCTIONSMOKE",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

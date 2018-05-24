@@ -25,6 +25,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("PROPOSALSTATUS")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class DeclineProposalFeature
     {
         
@@ -44,7 +45,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
                         "DEV",
                         "TYPE1",
                         "PROPOSALSTATUS",
-                        "HIGH"});
+                        "HIGH",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

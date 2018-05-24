@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS @HIGH
+﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS @HIGH @CI_TestMaintenance
 Feature: Open Proposal
 	In order to clearly monitor the progress of created proposals
 	As a Cloud MPS Dealer

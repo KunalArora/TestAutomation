@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("ENDTOEND")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type3BusinessScenario_2Feature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type3
                         "MPS",
                         "UAT",
                         "TYPE3",
-                        "ENDTOEND"});
+                        "ENDTOEND",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -163,8 +165,10 @@ testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" day
 #line 32
 testRunner.Then("I can verify the click rate billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
-testRunner.And("I Check data in the CPP Agreement Device Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I can verify the service/installation billing invoice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
+testRunner.And("I Check data in the CPP Agreement Device Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
 testRunner.And("I can verify the CPP Agreement Report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

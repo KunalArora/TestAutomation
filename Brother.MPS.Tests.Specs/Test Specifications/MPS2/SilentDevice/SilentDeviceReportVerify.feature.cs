@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SilentDevice
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("FULLDATAQUERY")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class SilentDeviceReportVerifyFeature
     {
         
@@ -42,7 +43,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SilentDevice
                         "UAT",
                         "TYPE3",
                         "HIGH",
-                        "FULLDATAQUERY"});
+                        "FULLDATAQUERY",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

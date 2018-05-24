@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SubDealer
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class SubDealerCreationAndProposalTillInstallationFeature
     {
         
@@ -41,7 +42,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SubDealer
                         "MPS",
                         "UAT",
                         "HIGH",
-                        "TYPE1"});
+                        "TYPE1",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
