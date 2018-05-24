@@ -4,7 +4,7 @@ Feature: Type1BusinessScenario_3
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 3
+Scenario Outline: Type1BusinessScenario_3
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
@@ -50,10 +50,9 @@ Then a Cloud MPS Local Office Approver will be able to see the status of the swa
 @BUK
 Scenarios: 
 		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |
-
+		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145604                 | 100                         | 0                            |
 
 @BSW
 Scenarios: 
 		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| Switzerland    | fr-CH   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145606                 | 100                         | 0                            |
+		| Switzerland    | fr-CH   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145604                 | 100                         | 0                            |

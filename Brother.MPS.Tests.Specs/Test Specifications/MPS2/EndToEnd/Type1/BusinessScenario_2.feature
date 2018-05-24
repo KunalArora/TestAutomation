@@ -4,7 +4,7 @@ Feature: Type1BusinessScenario_2
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 2
+Scenario Outline: Type1BusinessScenario_2
 Given I have navigated to the Create Customer page as a Cloud MPS Dealer from "<Country>"
 When I create a new customer by clicking on Create Customer button
 And I have navigated to the Create Proposal page 
