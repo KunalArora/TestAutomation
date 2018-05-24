@@ -62,6 +62,12 @@ namespace Brother.Tests.Specs.Services
             return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
         }
 
+        public double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles)
+        {
+            LoggingService.WriteLogOnMethodEntry(variable);
+            return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
+        }
+
         public double ConvertStringToDoubleInvariant(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);

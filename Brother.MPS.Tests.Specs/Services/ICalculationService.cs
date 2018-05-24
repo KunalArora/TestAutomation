@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -34,6 +35,14 @@ namespace Brother.Tests.Specs.Services
         /// <param name="variable"></param>
         /// <returns></returns>
         double ConvertCultureNumericStringToInvariantDouble(string variable);
+
+        /// <summary>
+        /// Converts culture dependent string value to invariant double value
+        /// </summary>
+        /// <param name="variable"></param>
+        /// <param name="numberStyles"></param>
+        /// <returns></returns>
+        double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles);
 
         /// <summary>
         /// Convert invariant numeric to cultured numeric string

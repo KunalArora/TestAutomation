@@ -655,7 +655,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         };
                     break;
                 case CountryIso.Switzerland:
-                    var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"]);
+                    var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
                     var quarterInterval = (double.Parse(contractTermDigitString)/3);
                     searchTextArray = new string[]
                         {
