@@ -87,5 +87,13 @@ namespace Brother.Tests.Selenium.Lib.Support.HelperClasses
             if( actualDiff < threshold) { return; }
             Assert.AreEqual(expected, actual, message+ " decimalPlaces="+ decimalPlaces); // = Assert.Fail
         }
+
+        public static void AssertIsEqualValueInvariant(string invariantExpected, string invariantActual, string message=null, int decimalPlaces = 2)
+        {
+            double invariantExpectedDouble = Math.Round(double.Parse(invariantExpected), decimalPlaces, MidpointRounding.AwayFromZero);
+            double invariantActualDouble = Math.Round(double.Parse(invariantActual), decimalPlaces, MidpointRounding.AwayFromZero);
+
+            Assert.AreEqual(invariantExpectedDouble, invariantActualDouble, message + " decimalPlaces=" + decimalPlaces);
+        }
     }
 }

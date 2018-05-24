@@ -1,6 +1,7 @@
 ﻿using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -23,6 +24,11 @@ namespace Brother.WebSites.Core.Pages
         public static string CollectDigitOnly(this string text)
         {
             return REGEX_DIGITONLY.Replace(text, "");
+        }
+
+        public static string ConvertCultureNumericStringToInvariantNumericString(string cultureNumericString, CultureInfo cultureInfo, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number)
+        {
+            return double.Parse(Regex.Replace(cultureNumericString, @"['\s]+", string.Empty), numberStyles, cultureInfo).ToString();
         }
 
         public static IList<CustomerConsumablesDeviceItem> CreateElementValueList(this CustomerConsumablesDevicesPage page) 

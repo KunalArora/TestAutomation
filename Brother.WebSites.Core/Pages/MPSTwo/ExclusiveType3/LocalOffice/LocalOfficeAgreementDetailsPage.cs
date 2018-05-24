@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
 {
@@ -33,9 +34,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string InstallationPackPriceSelector = "[id*=InstallationPackUnitPrice]";
         private const string ServicePackPriceSelector = "[id*=ServicePackUnitPrice]";
         private const string PrinterContainerPrefixSelector = ".mps-qa-printer-";
+        
 
-
-        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, string culture)
+        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, string culture, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(printers, servicePackType, culture);
             
@@ -45,36 +46,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             {
                 var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerPrefixSelector + printer.Model);
 
-                var displayedMonoClickPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text.CollectDigitOnly();
-                TestCheck.AssertIsEqual(printer.MonoClickPrice, displayedMonoClickPrice, string.Format(
+                var displayedMonoClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text, cultureInfo);
+                TestCheck.AssertIsEqualValueInvariant(printer.MonoClickPrice, displayedMonoClickPrice, string.Format(
                     "Mono Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
-                var displayedMonoVolume = SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector).Text.Replace(",", "");
-                TestCheck.AssertIsEqual(printer.VolumeMono.ToString(), displayedMonoVolume, string.Format(
+                var displayedMonoVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector).Text, cultureInfo);
+                TestCheck.AssertIsEqualValueInvariant(printer.VolumeMono.ToString(), displayedMonoVolume, string.Format(
                     "Mono Volume for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
                 if(!printer.IsMonochrome)
                 {
-                    var displayedColourClickPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text.CollectDigitOnly();
-                    TestCheck.AssertIsEqual(printer.ColourClickPrice, displayedColourClickPrice, string.Format(
+                    var displayedColourClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text, cultureInfo);
+                    TestCheck.AssertIsEqualValueInvariant(printer.ColourClickPrice, displayedColourClickPrice, string.Format(
                         "Colour Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
-                    var displayedColourVolume = SeleniumHelper.FindElementByCssSelector(printerContainer, ColourVolumeSelector).Text.Replace(",", "");
-                    TestCheck.AssertIsEqual(printer.VolumeColour.ToString(), displayedColourVolume, string.Format(
+                    var displayedColourVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourVolumeSelector).Text, cultureInfo);
+                    TestCheck.AssertIsEqualValueInvariant(printer.VolumeColour.ToString(), displayedColourVolume, string.Format(
                         "Colour Volume for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
 
                 if (printer.InstallationPack.ToLower().Equals("yes"))
                 {
-                    var displayedInstallationPrice = SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text.CollectDigitOnly();
-                    TestCheck.AssertIsEqual(double.Parse(printer.InstallationPackPrice), double.Parse(displayedInstallationPrice), string.Format(
+                    var displayedInvariantInstallationPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text, cultureInfo);
+                    TestCheck.AssertIsEqualValueInvariant(printer.InstallationPackPrice, displayedInvariantInstallationPrice, string.Format(
                         "Installation Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
 
                 if (printer.ServicePack.ToLower().Equals("yes") && servicePackType.Equals(_expectedTranslationService.GetServicePackTypeText(TranslationKeys.ServicePackType.PayUpfront, culture)))
                 {
-                    var displayedServicePrice = SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text.CollectDigitOnly();
-                    TestCheck.AssertIsEqual(printer.ServicePackPrice, displayedServicePrice, string.Format(
+                    var displayedServicePrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text, cultureInfo);
+                    TestCheck.AssertIsEqualValueInvariant(printer.ServicePackPrice, displayedServicePrice, string.Format(
                         "Service Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
             }

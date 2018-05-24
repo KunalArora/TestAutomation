@@ -197,7 +197,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDetailsPage);
 
-            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
+            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, _contextData.CultureInfo);
         }
 
         public LocalOfficeAgreementDevicesPage SendReinstallDeviceRequest(LocalOfficeAgreementDevicesPage localOfficeApproverAgreementDevicesPage)
