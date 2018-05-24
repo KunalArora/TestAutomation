@@ -329,6 +329,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SubDealerCreationAndProposalTillInstallation.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilentDeviceReportVerify.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1822,6 +1827,10 @@
     <None Include="Test Specifications\MPS2\SubDealer\SubDealerCreationAndProposalTillInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubDealerCreationAndProposalTillInstallation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SilentDeviceReportVerify.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -286,10 +286,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementDevicesPage = _mpsDealerAgreement.RaiseConsumableOrdersManually(_dealerAgreementDevicesPage);
         }
 
-        [Then(@"I can verify the generation of consumable orders alongwith status")]
-        public void ThenICanVerifyTheGenerationOfConsumableOrdersAlongwithStatus()
+        [Then(@"I can verify the generation of manual consumable orders alongwith status")]
+        public void ThenICanVerifyTheGenerationOfManualConsumableOrdersAlongwithStatus()
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage);
+            string resourceConsumableOrderMethodManual = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Manual, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodManual);
+        }
+
+        [Then(@"I can verify the generation of automatic consumable orders alongwith status")]
+        public void ThenICanVerifyTheGenerationOfAutomaticConsumableOrdersAlongwithStatus()
+        {
+            string resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodAutomatic);
         }
 
         [When(@"I manually raise a service request for above devices")]
@@ -301,7 +309,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that service request has been closed succesfully")]
         public void ThenICanVerifyThatServiceRequestHasBeenClosedSuccesfully()
         {
-            _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
+           _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
         }
 
         [Then(@"I can verify the device details using show device details option")]
