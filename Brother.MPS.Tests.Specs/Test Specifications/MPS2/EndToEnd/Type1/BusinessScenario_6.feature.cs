@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Business Scenario 6")]
         [NUnit.Framework.TestCaseAttribute("Germany", "LEASING_AND_SERVICE", "PAY_AS_YOU_GO", "HALF_YEARLY_IN_ARREARS", "ADD_TO_THE_LEASING_RATE", "FIVE_YEARS", "New", "Cloud", "Web", "MONTHLY", new string[] {
-                "BIG"}, Category="BIG")]
+                "BUK"}, Category="BUK")]
         public virtual void BusinessScenario6(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string leasingBillingCycle, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 6", exampleTags);

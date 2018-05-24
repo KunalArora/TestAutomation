@@ -28,7 +28,7 @@ And Enter the serial numbers and complete email installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I verify that the email installation is completed successfuly 
 
-@BIG
+@BUK
 Scenarios: 
 		| Country | ContractType               | UsageType      | BillingType | ServicePackType   | ContractTerm | Customer | CommunicationMethod | InstallationType |
 		| Germany | EASY_PRINT_PRO_AND_SERVICE | MINIMUM_VOLUME | MONTHLY     | TO_PAY_IN_ADVANCE | THREE_YEARS  | New      | Email               | Web              |
