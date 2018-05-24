@@ -104,6 +104,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<LocalOfficeAdminAdministrationDashboardPage>(Driver);
         }
 
-        
+        public string ClickLanguageLink(string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(culture);
+            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/local-office/dashboard?sc_lang={0}']", culture));
+            var language = languageLinkElement.Text;
+            SeleniumHelper.ClickSafety(languageLinkElement);
+            return language;
+        }
     }
 }

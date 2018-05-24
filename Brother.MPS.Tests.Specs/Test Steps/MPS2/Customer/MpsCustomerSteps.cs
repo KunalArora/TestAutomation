@@ -54,7 +54,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
             var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                customerDashBoardPage = _mpsCustomerStepActions.SelectLanguageGivenCulture(customerDashBoardPage, _contextData.Culture);
+                customerDashBoardPage = _mpsCustomerStepActions.SelectLanguageGivenCulture(customerDashBoardPage);
             }         
             var customerConsumablesDevicesPage = _mpsCustomerStepActions.ClickOnComsumablesTab(customerDashBoardPage);
             _mpsCustomerStepActions.VerifyRaisedConsumableOrderStatus(customerConsumablesDevicesPage);

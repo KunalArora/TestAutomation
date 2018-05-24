@@ -25,7 +25,6 @@ And I click the download proposal button and verify if I am able to open the PDF
 And a Cloud MPS Local Office Approver Set a Special Pricing:
 		| Model        | InstallUnitCost | InstallMargin | InstallUnitPrice | ServiceUnitCost | ServiceMargin | ServiceUnitPrice | MonoClickServiceCost | MonoClickServicePrice | MonoClickCoverage | MonoClickVolume | MonoClickMargin | MonoClick | ColourClickServiceCost | ColourClickServicePrice | ColourClickCoverage | ColourClickVolume | ColourClickMargin | ColourClick |
 		| *            | 100             | 50            |                  | 120             | 50            |                  |                      |                       | 10                | 100             | 50.00           | 0.01300   |                        |                         | 40                  | 300               | 50.00             | 0.10700     |
-
 And I sign the above proposal
 And a Cloud MPS Local Office Approver accepts the above proposal
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button

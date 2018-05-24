@@ -30,8 +30,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IContextData _contextData;
         private readonly ICalculationService _calculationService;
-        private readonly IWebDriver _dealerWebDriver;
-        private readonly IWebDriver _subDealerWebDriver;
+        private IWebDriver _dealerWebDriver;
+        private IWebDriver _subDealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
         private readonly IMpsWebToolsService _webToolService;
         private readonly ILoggingService _loggingService;
@@ -58,8 +58,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _calculationService = calculationService;
-            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer, new WebDriverOptions { Culture = _contextData.Culture });
-            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer, new WebDriverOptions { Culture = _contextData.Culture });
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
             _loggingService = loggingService;
@@ -70,12 +68,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer, new WebDriverOptions { Culture = _contextData.Culture });
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
         public DealerDashBoardPage SignInAsSubDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer, new WebDriverOptions { Culture = _contextData.Culture });
             return _mpsSignIn.SignInAsSubDealer(email, password, url);
         }
 
@@ -962,10 +962,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsApprovedPage.FilterProposalAndVerify(_contextData.ProposalId, _contextData.ProposalName);
         }
 
-        public DealerDashBoardPage SelectLanguageGivenCulture(DealerDashBoardPage dealerDashboardPage, string culture)
+        public DealerDashBoardPage SelectLanguageGivenCulture(DealerDashBoardPage dealerDashboardPage)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage, culture);
-            _contextData.Language = dealerDashboardPage.ClickLanguageLink(culture);
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            _contextData.Language = dealerDashboardPage.ClickLanguageLink(_contextData.Culture);
             return PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 

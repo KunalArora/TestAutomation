@@ -13,7 +13,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
     public static class MpsUtil
     {
         private const string DATESTRING_BUK = "dd/MM/yyyy";
-        private const string DATESTRING_BSW = "dd/MM/yyyy";
+        private const string DATESTRING_BSW = "dd.MM.yyyy";
         
 
         /// <summary>

@@ -326,10 +326,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage, string culture)
+        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage, culture);
-            localOfficeApproverDashBoardPage.ClickLanguageLink(culture);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            localOfficeApproverDashBoardPage.ClickLanguageLink(_contextData.Culture);
             return PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
     }

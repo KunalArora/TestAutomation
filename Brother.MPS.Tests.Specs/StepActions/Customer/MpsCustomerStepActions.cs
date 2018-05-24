@@ -121,10 +121,10 @@ namespace Brother.Tests.Specs.StepActions.Customer
             return PageService.GetPageObject<CustomerServiceRequestActivePage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }
 
-        public CustomerDashBoardPage SelectLanguageGivenCulture(CustomerDashBoardPage customerDashBoardPage, string culture)
+        public CustomerDashBoardPage SelectLanguageGivenCulture(CustomerDashBoardPage customerDashBoardPage)
         {
-            LoggingService.WriteLogOnMethodEntry(customerDashBoardPage, culture);
-            _contextData.Language = customerDashBoardPage.ClickLanguageLink(culture);
+            LoggingService.WriteLogOnMethodEntry(customerDashBoardPage);
+            _contextData.Language = customerDashBoardPage.ClickLanguageLink(_contextData.Culture);
             return PageService.GetPageObject<CustomerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
         }
     }

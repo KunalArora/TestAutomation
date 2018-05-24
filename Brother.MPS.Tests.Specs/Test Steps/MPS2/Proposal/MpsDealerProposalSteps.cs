@@ -137,7 +137,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage, culture);
+                _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage);
             }
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
