@@ -234,46 +234,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_4.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateCustomerSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateInstallationRequestSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateSwapInstallationRequestSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerDownloadsProposalSummaryPDF.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallerCompleteWebInstallationRequest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallerCompleteWebSwapInstallationRequest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApprovalProposalContractSteps.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1751,38 +1711,6 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_4.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateInstallationRequestSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateSwapInstallationRequestSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerDownloadsProposalSummaryPDF.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ApprovalProposalContractSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>InstallerCompleteWebSwapInstallationRequest.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
