@@ -125,7 +125,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var resourceIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceIncludedInClickPrice;
             localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
-                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice);
+                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice, _contextData.CultureInfo);
 
             VerifySpecialPricing(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
             localOfficeApproverAgreementManageSpecialPricing.ConfirmSpecialPricingAndApply();
