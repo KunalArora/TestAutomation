@@ -283,10 +283,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Save click prices in context data to use in verification later
             foreach (var product in _contextData.PrintersProperties)
             {
-                product.MonoClickPrice = dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model).CollectDigitOnly();
+                product.MonoClickPrice = _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementCreateSummaryPage.GetMonoClickPrice(product.Model));
                 if (!product.IsMonochrome)
                 {
-                    product.ColourClickPrice = dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model).CollectDigitOnly();
+                    product.ColourClickPrice = _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementCreateSummaryPage.GetColourClickPrice(product.Model));
                 }
             }
 
@@ -728,8 +728,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                device.InstallationPackPrice = dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model).CollectDigitOnly();
-                device.ServicePackPrice = dealerAgreementDetailsPage.GetServicePackPrice(device.Model).CollectDigitOnly();
+                device.InstallationPackPrice = _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementDetailsPage.GetInstallationPackPrice(device.Model));
+                device.ServicePackPrice = _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementDetailsPage.GetServicePackPrice(device.Model));
             }
 
             ClickSafety(dealerAgreementDetailsPage.DevicesTabElement, dealerAgreementDetailsPage);
@@ -1047,7 +1047,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, expectedClickRateTotal.CollectDigitOnly());
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, _calculationService.ConvertCultureNumericStringToInvariantNumericString(expectedClickRateTotal));
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -1138,7 +1138,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 string expectedServiceInstallationTotal = dealerAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, expectedServiceInstallationTotal.CollectDigitOnly());
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, _calculationService.ConvertCultureNumericStringToInvariantNumericString(expectedServiceInstallationTotal));
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
@@ -1378,11 +1378,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var totalLinePrice = dealerAgreementCreateProductsPage.TotalLinePrice(printerContainer);
 
             _calculationService.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso, new List<string> { installationPackTotalPrice, servicePackTotalPrice, totalLinePrice });
-            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, installationPackTotalPrice.CollectDigitOnly());
-            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, servicePackTotalPrice.CollectDigitOnly());
+            _calculationService.VerifyMultiplication(installationPackQuantity, installationPackUnitPrice, _calculationService.ConvertCultureNumericStringToInvariantNumericString(installationPackTotalPrice));
+            _calculationService.VerifyMultiplication(servicePackQuantity, servicePackUnitPrice, _calculationService.ConvertCultureNumericStringToInvariantNumericString(servicePackTotalPrice));
             _calculationService.VerifySum(new List<string> {
-                installationPackTotalPrice.CollectDigitOnly(), servicePackTotalPrice.CollectDigitOnly() },
-                totalLinePrice.CollectDigitOnly());
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(installationPackTotalPrice),
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(servicePackTotalPrice)},
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(totalLinePrice));
         }
 
         private void ValidateCalculationOnSummaryPage(DealerAgreementCreateSummaryPage dealerAgreementCreateSummaryPage)
@@ -1403,8 +1404,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text,
                     dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text }
                     );
-            _calculationService.VerifyGrossPrice(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text.CollectDigitOnly(),
-                dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text.CollectDigitOnly());
+            _calculationService.VerifyGrossPrice(_calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceNetElement.Text),
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerAgreementCreateSummaryPage.AgreementGrandTotalPriceGrossElement.Text));
         }
 
         private void VerifyUpdatedDeviceDataInExcelSheet(

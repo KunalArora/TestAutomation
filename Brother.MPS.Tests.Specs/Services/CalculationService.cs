@@ -23,13 +23,13 @@ namespace Brother.Tests.Specs.Services
             ContextData = contextData;
         }
 
-        public void VerifyTotalPrice(string cost, string margin, string displayedPrice)
+        public void VerifyTotalPrice(string cultureNumericUnitCost, string cultureNumericMargin, string cultureNumericDisplayedUnitPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(cost, margin, displayedPrice);
-            double expectedPrice = (100 * ConvertCultureNumericStringToInvariantDouble(cost)) / (100 - ConvertCultureNumericStringToInvariantDouble(margin));
+            LoggingService.WriteLogOnMethodEntry(cultureNumericUnitCost, cultureNumericMargin, cultureNumericDisplayedUnitPrice);
+            double expectedPrice = (100 * ConvertCultureNumericStringToInvariantDouble(cultureNumericUnitCost)) / (100 - ConvertCultureNumericStringToInvariantDouble(cultureNumericMargin));
 
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(displayedPrice), "Total Price Calculations did not get validated");
+                RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(cultureNumericDisplayedUnitPrice), "Total Price Calculations did not get validated");
         }
 
         public void VerifySum(List<string> prices, string displayedTotalPrice)
@@ -64,7 +64,7 @@ namespace Brother.Tests.Specs.Services
 
         public double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry(variable);
+            LoggingService.WriteLogOnMethodEntry(variable, numberStyles);
             return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
         }
 
@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.Services
             return double.Parse(variable, CultureInfo.InvariantCulture);
         }
 
-        public string ConvertInvariantNumericStringToCultureNumericString(string invariant, IFormatProvider formatProvider = null)
+        public string ConvertInvariantNumericStringToCultureNumericString(string invariant)
         {
             LoggingService.WriteLogOnMethodEntry(invariant);
             // 12345  -[de]-> 12345
@@ -86,13 +86,20 @@ namespace Brother.Tests.Specs.Services
 
             invariant = invariant.Trim();
             var ciInvariant = CultureInfo.InvariantCulture;
-            var ciCulture = formatProvider == null? new CultureInfo(ContextData.Culture) : formatProvider;
+            var ciCulture = ContextData.CultureInfo;
             var regx = new Regex("[0-9]");
             var format = regx.Replace(invariant, "0");
             double doubleValue = double.Parse(invariant, ciInvariant);
             var cultured = doubleValue.ToString(format, ciCulture);
             return cultured;
         }
+
+        public string ConvertCultureNumericStringToInvariantNumericString(string cultureString, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number)
+        {
+            LoggingService.WriteLogOnMethodEntry(cultureString, numberStyles);
+            return double.Parse(Regex.Replace(cultureString, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo).ToString();
+        }
+
 
         public double RoundOffUptoDecimalPlaces(double variable, int decimalPlaces = 2)
         {

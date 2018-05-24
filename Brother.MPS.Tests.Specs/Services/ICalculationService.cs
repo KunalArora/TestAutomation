@@ -10,10 +10,10 @@ namespace Brother.Tests.Specs.Services
         /// <summary>
         /// Verify the relation between Unit Cost, Margin & Unit Price (Used in Type 1)
         /// </summary>
-        /// <param name="unitCost"></param>
-        /// <param name="margin"></param>
-        /// <param name="displayedUnitPrice"></param>
-        void VerifyTotalPrice(string unitCost, string margin, string displayedUnitPrice);
+        /// <param name="cultureNumericUnitCost"></param>
+        /// <param name="cultureNumericMargin"></param>
+        /// <param name="cultureNumericDisplayedUnitPrice"></param>
+        void VerifyTotalPrice(string cultureNumericUnitCost, string cultureNumericMargin, string cultureNumericDisplayedUnitPrice);
 
         /// <summary>
         /// Verify that the sum of the string values in "prices" parameter is calculated correctly 
@@ -48,9 +48,15 @@ namespace Brother.Tests.Specs.Services
         /// Convert invariant numeric to cultured numeric string
         /// </summary>
         /// <param name="invariant"></param>
-        /// <param name="formatProvider"></param>
         /// <returns></returns>
-        string ConvertInvariantNumericStringToCultureNumericString(string invariant, IFormatProvider formatProvider = null);
+        string ConvertInvariantNumericStringToCultureNumericString(string invariant);
+
+        /// <summary>
+        /// Convert invariant numeric to cultured numeric string
+        /// </summary>
+        /// <param name="invariant"></param>
+        /// <returns></returns>
+        string ConvertCultureNumericStringToInvariantNumericString(string cultureString, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number);
 
         /// <summary>
         /// Round off a double variable to certain decimal places

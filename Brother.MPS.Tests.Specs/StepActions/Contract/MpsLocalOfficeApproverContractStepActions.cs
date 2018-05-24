@@ -48,8 +48,23 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
             IContractShiftService contractShiftService,
-            IUserResolver userResolver)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper, userResolver)
+            IUserResolver userResolver,
+            ICalculationService calculationService)
+            : base(
+            webDriverFactory,
+            contextData,
+            pageService,
+            context,
+            urlResolver,
+            loggingService,
+            runtimeSettings,
+            translationService,
+            runCommandService,
+            devicesExcelHelper,
+            clickBillExcelHelper,
+            serviceInstallationBillExcelHelper,
+            userResolver,
+            calculationService)
         {
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;

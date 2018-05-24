@@ -109,6 +109,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
         }
@@ -259,7 +260,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
 
             foreach ( var product in products)
             {
-                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price, _contextData.CultureInfo);
+                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -474,6 +475,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
             _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_contextData.SubDealerEmail, _contextData.SubDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_subDealerDashboardPage);
         }
@@ -503,7 +505,6 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenASubDealerAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
-            var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach (var product in products)
             {
                 product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
@@ -518,7 +519,5 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage);
         }
-
-
     }
 }
