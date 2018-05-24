@@ -12,6 +12,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -77,6 +78,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
             _contextData.UsableDeviceIndex = 1;
+            if (_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);

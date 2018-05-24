@@ -1,4 +1,4 @@
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+Ôªøusing Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -284,8 +284,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            switch (lang)
            {
                case "":
-               case "FranÁais":
-                   language = "FranÁais";
+               case "Fran√ßais":
+                   language = "Fran√ßais";
                    break;
                case "Deutsch":
                    language = "Deutsch";
@@ -309,7 +309,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             {
                 case "" :
                 case "French":
-                    language = "FranÁais";
+                    language = "Fran√ßais";
                     break;
                 case "Dutch":
                     language = "Nederlands";
@@ -521,7 +521,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EmailElement.SendKeys(email);
        }
 
-       public void FillOrganisationContactDetail()
+       public void FillOrganisationContactDetail(string language = null)
        {
             LoggingService.WriteLogOnMethodEntry();
             if (IsPolandSystem()) return;
@@ -530,45 +530,66 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            EnterContactSurName();
            EnterContactTelephone();
            EnterContactEmailAdress();
-           SelectALegalForm();
+           SelectALegalForm(language);
            EnterMobileNumber();
        }
 
-       private String SwissLegalForm()
-       {
+        private String SwissLegalForm(string language) // For End to End testing (New framework)
+        {
+            LoggingService.WriteLogOnMethodEntry(language);
+            string legalForm;
+
+            switch (language)
+            {
+                case "Fran√ßais":
+                    legalForm = "Fondation";
+                    break;
+                case "Deutsch":
+                    legalForm = "Einzelfirma";
+                    break;
+
+                default:
+                    legalForm = "Einzelfirma";
+                    break;
+            }
+
+            return legalForm;
+        }
+
+        private String SwissLegalForm()
+        {
             LoggingService.WriteLogOnMethodEntry();
             string lang;
-           string language;
+            string language;
 
-           try
-           {
-               language = SpecFlow.GetContext("BelgianLanguage");
-           }
-           catch (KeyNotFoundException keyNotFound)
-           {
-               language = "Deutsch";
-           }
-           
-
-           switch (language)
-           {
-               case "FranÁais":
-                   lang = "Fondation";
-                   break;
-               case "Deutsch":
-                   lang = "Einzelfirma";
-                   break;
-
-               default:
-                   lang = "Einzelfirma";
-                   break;
-           }
-
-           return lang;
-       }
+            try
+            {
+                language = SpecFlow.GetContext("BelgianLanguage");
+            }
+            catch (KeyNotFoundException keyNotFound)
+            {
+                language = "Deutsch";
+            }
 
 
-       public void SelectALegalForm()
+            switch (language)
+            {
+                case "Fran√ßais":
+                    lang = "Fondation";
+                    break;
+                case "Deutsch":
+                    lang = "Einzelfirma";
+                    break;
+
+                default:
+                    lang = "Einzelfirma";
+                    break;
+            }
+
+            return lang;
+        }
+
+       public void SelectALegalForm(string language)
        {
             LoggingService.WriteLogOnMethodEntry();
             if (IsGermanSystem() || IsAustriaSystem())
@@ -606,12 +627,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
            }
            else if (IsSwissSystem())
            {
-               var language = SwissLegalForm();
-               SelectFromDropdown(LegalFormDropdown, language);
+               var legalForm = (language == null) ? SwissLegalForm() : SwissLegalForm(language);
+               SelectFromDropdown(LegalFormDropdown, legalForm);
            }
            else if (IsBelgiumSystem())
            {
-               var language = BelgianLegalForm();
+               language = BelgianLegalForm();
                SelectFromDropdown(LegalFormDropdown, language);
            }
            //else if (IsSwedenSystem())

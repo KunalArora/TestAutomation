@@ -25,6 +25,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProductionSmokeTests.Type3
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("PRODUCTIONSMOKE")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type3ProductionSmokeTestFeature
     {
         
@@ -44,7 +45,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProductionSmokeTests.Type3
                         "DEV",
                         "TYPE3",
                         "PROD",
-                        "PRODUCTIONSMOKE"});
+                        "PRODUCTIONSMOKE",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

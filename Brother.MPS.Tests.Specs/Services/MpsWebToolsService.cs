@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
+using Brother.Tests.Common.Domain.Constants;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -92,7 +93,7 @@ namespace Brother.Tests.Specs.Services
             ExecuteWebTool(url);
         }
 
-        public void RegisterCustomer(string idAsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = "GB")
+        public void RegisterCustomer(string idAsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = CountryIso.UnitedKingdom)
         {
             string actionPath = string.Format("registeruser.aspx?email={0}&password={1}&firstname={2}&lastname={3}&maxmind={4}",
                 WebUtility.UrlEncode(idAsMailAddress), WebUtility.UrlEncode(password), WebUtility.UrlEncode(firstName), WebUtility.UrlEncode(lastName), maxmind);

@@ -38,7 +38,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
-            ICPPAgreementExcelHelper cppAgreementHelper)
+            ICPPAgreementExcelHelper cppAgreementHelper,
+            ICalculationService calculationService)
             : base(
             webDriverFactory, 
             contextData, 
@@ -52,7 +53,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             devicesExcelHelper, 
             clickBillExcelHelper, 
             serviceInstallationBillExcelHelper, 
-            userResolver)
+            userResolver,
+            calculationService)
         {
             _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _mpsSignIn = mpsSignIn;

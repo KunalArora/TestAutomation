@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @PROD @TYPE1 @PROPOSALSTATUS @HIGH @PRODUCTIONSMOKE
+﻿@MPS @UAT @DEV @PROD @TYPE1 @PROPOSALSTATUS @HIGH @PRODUCTIONSMOKE @CI_TestMaintenance
 Feature: Reject Contract
 	In order to clearly monitor the progress of created proposals
 	As a Cloud MPS Dealer

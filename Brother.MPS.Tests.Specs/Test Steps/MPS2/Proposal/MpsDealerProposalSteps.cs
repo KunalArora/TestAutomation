@@ -3,6 +3,7 @@ using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -108,21 +109,37 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
         }
 
-        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)"" with Culture ""(.*)""")]
-        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFromWithCulture(string country, string culture)
+        [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerWithCultureFrom(string culture, string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
-            if(_contextData.Country.Cultures.Contains(culture) == false)
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
             {
-                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country+" culture="+culture);
+                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country + " culture=" + culture);
             }
-            _contextData.Culture = culture;
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            switch(_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+                    break;
+                default:
+                    break;
+            }
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage, culture);
+            }
+            _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
         [When(@"I have navigated to the Create Proposal page")]
@@ -230,10 +247,20 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenIAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
-            var cultureInfo = new CultureInfo(_contextData.Culture);
+
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+                    break;
+                default:
+                    break;
+            }
+
             foreach ( var product in products)
             {
-                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
+                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -448,6 +475,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
             _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_contextData.SubDealerEmail, _contextData.SubDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_subDealerDashboardPage);
         }
@@ -477,10 +505,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenASubDealerAddThesePrinters(Table printers)
         {
             var products = printers.CreateSet<PrinterProperties>();
-            var cultureInfo = new CultureInfo(_contextData.Culture);
             foreach (var product in products)
             {
-                product.Price = _calculationService.ConvertInvariantNumericToCultureNumericString(product.Price);
+                product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;
@@ -492,7 +519,5 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage);
         }
-
-
     }
 }

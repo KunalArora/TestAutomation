@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE3 @HIGH @FULLDATAQUERY
+﻿@MPS @UAT @TYPE3 @HIGH @FULLDATAQUERY @CI_TestMaintenance
 Feature: SilentDeviceReportVerify
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer

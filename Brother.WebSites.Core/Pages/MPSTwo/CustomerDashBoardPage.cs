@@ -35,8 +35,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".separator a[href='/mps/customer/service-requests']")]
         public IWebElement CustomerServiceRequestTabElement;
 
-
-
-
+        public string ClickLanguageLink(string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(culture);
+            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/customer/dashboard?sc_lang={0}']", culture));
+            var language = languageLinkElement.Text;
+            SeleniumHelper.ClickSafety(languageLinkElement);
+            return language;
+        }
     }
 }

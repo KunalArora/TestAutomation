@@ -1,11 +1,11 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND
+﻿@MPS @UAT @TYPE1 @ENDTOEND @CI_TestMaintenance
 Feature: Type1BusinessScenario_4
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Type1BusinessScenario_4
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
@@ -45,8 +45,13 @@ Then a Local Office Admin assert the final bill is generated/present
 
 @BUK
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
-		| United Kingdom | PURCHASE_AND_CLICK | PAY_AS_YOU_GO  | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
+		| Country        | Culture | ContractType       | UsageType     | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
+		| United Kingdom |         | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
+
+@BSW
+Scenarios: 
+		| Country        | Culture | ContractType       | UsageType     | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType |
+#	    | Switzerland    | de-CH   | PURCHASE_AND_CLICK | PAY_AS_YOU_GO | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              |
 
 #@BFR
 #Scenarios:

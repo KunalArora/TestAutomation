@@ -4,6 +4,9 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Globalization;
 using TechTalk.SpecFlow;
+using System.Linq;
+using Brother.Tests.Common.Domain.Constants;
+using System.Text.RegularExpressions;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
@@ -1171,8 +1174,12 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             string currencySymbol;
             switch (countryIso)
             {
-                case "GB":
+                case CountryIso.UnitedKingdom:
                     currencySymbol = "£";
+                    break;
+
+                case CountryIso.Switzerland:
+                    currencySymbol = "CHF";
                     break;
                 
                 // TODO Add currency symbols for more countries
@@ -1354,12 +1361,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             DateTime dt = DateTime.ParseExact(date, DATESTRING_BUK, CultureInfo.InvariantCulture);
             DateTime result = dt.AddDays(-daysToSubtract);
             return result.ToString(DATESTRING_BUK);
-        }
-
-        public static string RemoveCurrencySymbol(string value) //TODO: Extend this function to handle cases for other countries as well..
-        {
-            // For UK
-            return value.Substring(1); // Removes 1st character from string
         }
     }
 }

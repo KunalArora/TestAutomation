@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,7 +38,7 @@ namespace Brother.Tests.Specs.Services
         {
             _countries.Add(new Country
             {
-                CountryIso = "GB",
+                CountryIso = CountryIso.UnitedKingdom,
                 Name = "United Kingdom",
                 BrotherCode = "BUK",
                 Cultures = new List<string> { "en-GB" },
@@ -52,7 +53,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "IE",
+                CountryIso = CountryIso.Ireland,
                 Name = "Ireland",
                 BrotherCode = "BIR",
                 Cultures = new List<string> { "en-IE" },
@@ -65,7 +66,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "AT",
+                CountryIso = CountryIso.Austria,
                 Name = "Austria",
                 BrotherCode = "BAT",
                 Cultures = new List<string> { "de-AT" },
@@ -78,7 +79,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "BE",
+                CountryIso = CountryIso.Belgium,
                 Name = "Belgium",
                 BrotherCode = "BBE",
                 Cultures = new List<string> { "nl-BE", "fr-BE" },
@@ -91,7 +92,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "CH",
+                CountryIso = CountryIso.Switzerland,
                 Name = "Switzerland",
                 BrotherCode = "BSW",
                 Cultures = new List<string> { "fr-CH", "de-CH" },
@@ -104,7 +105,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "DE",
+                CountryIso = CountryIso.Germany,
                 Name = "Germany",
                 BrotherCode = "BIG",
                 Cultures = new List<string> { "de-DE" },
@@ -117,7 +118,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "DK",
+                CountryIso = CountryIso.Denmark,
                 Name = "Denmark",
                 BrotherCode = "BND",
                 Cultures = new List<string> { "da-DK" },
@@ -130,7 +131,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "ES",
+                CountryIso = CountryIso.Spain,
                 Name = "Spain",
                 BrotherCode = "BES",
                 Cultures = new List<string> { "es-ES" },
@@ -143,7 +144,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "FI",
+                CountryIso = CountryIso.Finland,
                 Name = "Finland",
                 BrotherCode = "BNF",
                 Cultures = new List<string> { "fi-FI" },
@@ -156,7 +157,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "IT",
+                CountryIso = CountryIso.Italy,
                 Name = "Italy",
                 BrotherCode = "BIT",
                 Cultures = new List<string> { "it-IT" },
@@ -169,7 +170,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "NL",
+                CountryIso = CountryIso.Netherlands,
                 Name = "Netherlands",
                 BrotherCode = "BNL",
                 Cultures = new List<string> { "nl-NL" },
@@ -182,7 +183,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "NO",
+                CountryIso = CountryIso.Norway,
                 Name = "Norway",
                 BrotherCode = "BNN",
                 Cultures = new List<string> { "nb-NO" },
@@ -195,7 +196,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "PL",
+                CountryIso = CountryIso.Poland,
                 Name = "Poland",
                 BrotherCode = "BPL",
                 Cultures = new List<string> { "pl-PL" },
@@ -208,7 +209,7 @@ namespace Brother.Tests.Specs.Services
 
             _countries.Add(new Country
             {
-                CountryIso = "SE",
+                CountryIso = CountryIso.Sweden,
                 Name = "Sweden",
                 BrotherCode = "BNS",
                 Cultures = new List<string> { "sv-SE" },

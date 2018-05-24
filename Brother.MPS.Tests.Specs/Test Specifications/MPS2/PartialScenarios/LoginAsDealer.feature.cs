@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.PartialScenarios
     [NUnit.Framework.DescriptionAttribute("LoginAsDealer")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("LOGIN")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class LoginAsDealerFeature
     {
         
@@ -35,7 +36,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.PartialScenarios
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LoginAsDealer", "\tIn order to view the dashboard\r\n\tAs a Cloud MPS Dealer\r\n\tI want to login to MPS", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
-                        "LOGIN"});
+                        "LOGIN",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

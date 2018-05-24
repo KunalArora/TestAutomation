@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Finance
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type1AccrualsFeature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Finance
                         "MPS",
                         "UAT",
                         "TYPE1",
-                        "HIGH"});
+                        "HIGH",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

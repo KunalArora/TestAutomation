@@ -262,5 +262,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(AdminLinkElement);
         }
 
+        public string ClickLanguageLink(string culture)
+        {
+            LoggingService.WriteLogOnMethodEntry(culture);
+            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/dealer/dashboard?sc_lang={0}']", culture));
+            var language = languageLinkElement.Text;
+            SeleniumHelper.ClickSafety(languageLinkElement);
+            return language;
+        }
     }
 }
