@@ -235,6 +235,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             // Try refreshing until consumable order information is updated on UI
             int retries = 0;
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+            string resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
 
             ClickSafety(
                 localOfficeAgreementDevicesPage.ConsumablesTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
@@ -270,7 +271,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     localOfficeAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var localOfficeAgreementDeviceConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
-                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
+                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethodAutomatic);
 
                     ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage, true);
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);

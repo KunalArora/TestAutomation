@@ -167,5 +167,11 @@
             public static string ContractManager { get { return "CONTRACT_MANAGER"; } }
             public static string Full { get { return "FULL"; } }
         }
+
+        public static class ConsumableOrderMethod
+        {
+            public static string Manual { get { return "MANUAL"; } }
+            public static string Automatic { get { return "AUTOMATIC"; } }
+        }
     }
 }

@@ -146,5 +146,11 @@ namespace Brother.Tests.Common.Services
         {
             return GetText(Resources.CommunicationMethod.CommunicationMethod.ResourceManager, name, culture);
         }
+
+        public string GetConsumableOrderMethodText(string name, string culture)
+        {
+            return GetText(Resources.ConsumableOrderMethod.ConsumableOrderMethod.ResourceManager, name, culture);
+        }
+
     }
 }

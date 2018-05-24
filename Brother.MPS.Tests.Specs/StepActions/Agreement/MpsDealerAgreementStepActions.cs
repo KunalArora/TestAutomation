@@ -832,20 +832,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public DealerAgreementDevicesPage VerifyConsumableOrders(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        public DealerAgreementDevicesPage VerifyConsumableOrders(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceConsumableOrderMethod)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceConsumableOrderMethod);
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
 
             // Verify consumable order information one by one
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                if (device.hasEmptyInkToner)
+                // In order to be able to use the same function for checking either automatic or manual consumable order this logic is implemented to check the 
+                // order method is manual or automatic explicitly
+                if ((resourceConsumableOrderMethod.ToLower().Equals("manual") && device.hasEmptyInkToner) ||
+                    (resourceConsumableOrderMethod.ToLower().Equals("automatic") && device.hasLowRemLifeInkToner))
                 {
                     dealerAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
+                    dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethod);
 
                     ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage, true);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -889,7 +892,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return dealerAgreementDevicesPage;
         }
 
-        public void VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
+        public DealerAgreementDevicesPage VerifyServiceRequestStatus(DealerAgreementDevicesPage dealerAgreementDevicesPage, string resourceServiceRequestStatus)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage, resourceServiceRequestStatus);
             ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement, dealerAgreementDevicesPage);
@@ -917,6 +920,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             {
                 dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatus, device.ServiceRequestType, true);
             }
+
+            ClickSafety(dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage);
+            return PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public void VerifyDeviceDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)

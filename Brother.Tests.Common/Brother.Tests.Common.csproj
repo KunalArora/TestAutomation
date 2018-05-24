@@ -111,6 +111,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommunicationMethod.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumableOrderMethod.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
       <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -294,6 +299,11 @@
     <EmbeddedResource Include="Resources\CommunicationMethod\CommunicationMethod.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommunicationMethod.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConsumableOrderMethod.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.de-de.resx" />
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">

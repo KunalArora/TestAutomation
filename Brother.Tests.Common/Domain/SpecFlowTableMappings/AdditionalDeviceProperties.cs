@@ -66,6 +66,15 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanStatus { get; set; }
         public string TonerInkMagentaStatus { get; set; }
         public string TonerInkYellowStatus { get; set; }
+        public string TonerInkBlackRemLife { get; set; }
+        public string TonerInkCyanRemLife { get; set; }
+        public string TonerInkMagentaRemLife { get; set; }
+        public string TonerInkYellowRemLife { get; set; }
+        public string TonerInkBlackReplaceCount { get; set; }
+        public string TonerInkCyanReplaceCount { get; set; }
+        public string TonerInkMagentaReplaceCount { get; set; }
+        public string TonerInkYellowReplaceCount { get; set; }
+
 
         public bool hasEmptyInkToner
         {
@@ -80,6 +89,26 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                     hasEmptyInkToner = true;
                 }
                 return hasEmptyInkToner;
+            }
+        }
+
+        public bool hasLowRemLifeInkToner
+        {
+            get
+            {
+                bool hasLowRemLifeInkToner = false;
+                try
+                {
+                    if ((Int32.Parse(TonerInkBlackRemLife) < 10) ||
+                        (Int32.Parse(TonerInkCyanRemLife) < 10) ||
+                        (Int32.Parse(TonerInkMagentaRemLife) < 10) ||
+                        (Int32.Parse(TonerInkYellowRemLife) < 10))
+                    {
+                        hasLowRemLifeInkToner = true;
+                    }
+                }
+                catch { }
+                return hasLowRemLifeInkToner;
             }
         }
 
