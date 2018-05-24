@@ -191,13 +191,13 @@ testRunner.Then("I can verify the correct reflection of updated print counts", (
 #line 27
 testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
-testRunner.When("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("a Cloud MPS Service Desk closes the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
 testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
 testRunner.When("I manually raise a service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
-testRunner.And("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Service Desk closes the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
 testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
