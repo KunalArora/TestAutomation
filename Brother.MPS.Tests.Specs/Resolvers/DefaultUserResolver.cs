@@ -103,7 +103,8 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "loadmin", 1);
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,
+                    _contextData.Environment == "UAT" ? "loadmin" : "admin", 1);
             }
         }
 

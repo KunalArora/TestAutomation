@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE3 @ENDTOEND
+﻿@MPS @UAT @TYPE3 @ENDTOEND @TEST
 Feature: Type3BusinessScenario_5
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer

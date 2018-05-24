@@ -1,13 +1,12 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Models;
-using Brother.Tests.Specs.Domain;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Newtonsoft.Json;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -123,6 +122,9 @@ namespace Brother.Tests.Specs.Services
                     break;
                 case "UAT":
                     authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10";
+                    break;
+                case "TEST":
+                    authToken = @"7H85ss+cZmJuJ$1q_-o2C$2WlN]C^V";
                     break;
             }
 

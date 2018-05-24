@@ -82,6 +82,9 @@ namespace Brother.Tests.Specs.Services
                 case "UAT":
                     authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10";
                     break;
+                case "TEST":
+                    authToken = @"7H85ss+cZmJuJ$1q_-o2C$2WlN]C^V";
+                    break;
                 case "PROD":
                     authToken = @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$";
                     break;
