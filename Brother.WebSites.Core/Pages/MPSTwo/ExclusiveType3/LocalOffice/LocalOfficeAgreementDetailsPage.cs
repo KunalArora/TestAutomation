@@ -36,10 +36,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string PrinterContainerPrefixSelector = ".mps-qa-printer-";
         
 
-        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, string culture, CultureInfo cultureInfo)
+        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, CultureInfo cultureInfo)
         {
-            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, culture);
-            
+            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, cultureInfo);
+
+            string culture = cultureInfo.Name;
+
             ExpectedTranslationService _expectedTranslationService = new ExpectedTranslationService();
 
             foreach(var printer in printers)

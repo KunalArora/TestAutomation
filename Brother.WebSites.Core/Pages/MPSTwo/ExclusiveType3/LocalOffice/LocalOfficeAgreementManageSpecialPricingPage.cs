@@ -161,9 +161,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                 SeleniumHelper.FindElementByCssSelector(NextButtonSelector));
         }
 
-        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, string culture, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice, CultureInfo cultureInfo)
+        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice, CultureInfo cultureInfo)
         {
-            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, culture, specialPriceList);
+            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, specialPriceList, isCheckAutoCalculateClickPrice, cultureInfo);
+
+            string culture = cultureInfo.Name;
 
             var clickTabElement = SeleniumHelper.FindElementByCssSelector(ClickTabSelector);
 

@@ -125,7 +125,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var resourceIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceIncludedInClickPrice;
             localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
-                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice, _contextData.CultureInfo);
+                _contextData.PrintersProperties, _contextData.ServicePackType, specialPriceList, isCheckAutoCalculateClickPrice, _contextData.CultureInfo);
 
             VerifySpecialPricing(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
             localOfficeApproverAgreementManageSpecialPricing.ConfirmSpecialPricingAndApply();
@@ -197,7 +197,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDetailsPage);
 
-            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, _contextData.CultureInfo);
+            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.CultureInfo);
         }
 
         public LocalOfficeAgreementDevicesPage SendReinstallDeviceRequest(LocalOfficeAgreementDevicesPage localOfficeApproverAgreementDevicesPage)
