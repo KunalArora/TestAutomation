@@ -59,7 +59,7 @@ namespace Brother.Tests.Specs.Services
         public double ConvertCultureNumericStringToInvariantDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
-            return double.Parse(Regex.Replace(variable, @"'\s+", string.Empty), ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
+            return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
         }
 
         public double ConvertStringToDoubleInvariant(string variable)
