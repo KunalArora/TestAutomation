@@ -55,10 +55,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ServiceRequestFilterElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement ServiceRequestsContainerElement;
-        
-        
-
-
+        [FindsBy(How = How.CssSelector, Using = "[id*=_ServiceRequestList_List_Row_]")]
+        public IList<IWebElement> List_Row;
+     
 
         public void IsServiceRequestPageDisplayed()
         {
@@ -159,7 +158,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             bool foundDevice = false;
             string inputMessage = MpsUtil.ServiceRequestReplyMessage();
 
-            ClearAndType(ServiceRequestFilterElement, string.Format(model + " " + serialNumber));
+            SeleniumHelper.SetListFilter(ServiceRequestFilterElement, string.Format(model + " " + serialNumber), List_Row);
             var serviceRequestRowElements = SeleniumHelper.FindRowElementsWithinTable(ServiceRequestsContainerElement);
             foreach (var serviceRequestRowElement in serviceRequestRowElements)
             {
