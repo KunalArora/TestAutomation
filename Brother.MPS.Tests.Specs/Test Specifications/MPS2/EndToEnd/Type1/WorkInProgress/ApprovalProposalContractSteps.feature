@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @WORKINPROGRESS
+﻿#@MPS @UAT @TYPE1 @WORKINPROGRESS
 Feature: BusinessScenario_1_WIP_ApprovalProposalContractSteps
 	This task relates to completing the process of approval of proposal and contract (using LO Approver)
 

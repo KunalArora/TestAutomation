@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @WORKINPROGRESS
+﻿#@MPS @UAT @TYPE1 @WORKINPROGRESS
 Feature: BusinessScenario_1_WIP_InstallerCompleteWebInstallationSwapRequestSteps
 	In order to complete the swap of a Cloud MPS device for a contract
 	As a Cloud MPS Dealer

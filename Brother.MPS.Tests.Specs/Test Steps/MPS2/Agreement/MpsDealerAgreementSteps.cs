@@ -337,6 +337,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I create and send a ""(.*)"" swap device installation request")]
         public void WhenICreateAndSendASwapDeviceInstallationRequest(string swapDeviceType)
         {
+            _mpsDealerAgreement.ContractShiftBeforeSwapDeviceInstallationRequest(1);
             _contextData.SwapType = swapDeviceType;
             _dealerAgreementDevicesPage = _mpsDealerAgreement.SendSwapDeviceInstallationRequest(_dealerAgreementDevicesPage, swapDeviceType);
         }

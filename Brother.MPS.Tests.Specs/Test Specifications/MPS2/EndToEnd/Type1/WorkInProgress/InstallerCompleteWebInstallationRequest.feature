@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @WORKINPROGRESS
+﻿#@MPS @UAT @TYPE1 @WORKINPROGRESS
 Feature: BusinessScenario_1_WIP_InstallerCompleteWebInstallationRequestSteps
 	In order to complete installation of Cloud MPS devices for a contract
 	As a Cloud MPS Dealer

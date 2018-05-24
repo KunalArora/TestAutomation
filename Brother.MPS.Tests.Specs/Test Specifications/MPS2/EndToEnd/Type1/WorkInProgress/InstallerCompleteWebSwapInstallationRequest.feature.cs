@@ -19,10 +19,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BusinessScenario_1_WIP_InstallerCompleteWebInstallationSwapRequestSteps")]
-    [NUnit.Framework.CategoryAttribute("MPS")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TYPE1")]
-    [NUnit.Framework.CategoryAttribute("WORKINPROGRESS")]
     public partial class BusinessScenario_1_WIP_InstallerCompleteWebInstallationSwapRequestStepsFeature
     {
         
@@ -36,11 +32,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_1_WIP_InstallerCompleteWebInstallationSwapRequestSteps", "\tIn order to complete the swap of a Cloud MPS device for a contract\r\n\tAs a Cloud " +
-                    "MPS Dealer\r\n\tI want to see that a swap device request has been completed", ProgrammingLanguage.CSharp, new string[] {
-                        "MPS",
-                        "UAT",
-                        "TYPE1",
-                        "WORKINPROGRESS"});
+                    "MPS Dealer\r\n\tI want to see that a swap device request has been completed", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

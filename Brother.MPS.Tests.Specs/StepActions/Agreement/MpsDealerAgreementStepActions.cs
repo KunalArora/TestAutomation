@@ -45,6 +45,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
         private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
+        private readonly IContractShiftService _contractShiftService;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -65,6 +66,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
             IUserResolver userResolver,
             IDeviceSimulatorService deviceSimulatorService,
+            IContractShiftService contractShiftService,
             ICPPAgreementExcelHelper cppAgreementHelper)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
@@ -83,6 +85,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _cppAgreementDevicesExcelHelper = cppAgreementDevicesExcelHelper;
             _cppAgreementHelper = cppAgreementHelper;
             _deviceSimulatorService = deviceSimulatorService;
+            _contractShiftService = contractShiftService;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -294,6 +297,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementsListPage NavigateToAgreementsListPage()
         {
             return PageService.LoadUrl<DealerAgreementsListPage>(string.Format("{0}/mps/dealer/agreements/list", UrlResolver.BaseUrl), RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", false, _dealerWebDriver);
+        }
+
+        public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
+        {
+            LoggingService.WriteLogOnMethodEntry(days);
+            _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
         }
 
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)

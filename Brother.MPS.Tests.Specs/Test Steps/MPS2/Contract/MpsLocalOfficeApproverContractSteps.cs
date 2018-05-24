@@ -125,6 +125,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"a Cloud MPS Local Office Approver click Swap Device in the Actions menu for device to be swapped on the Manage devices page")]
         public void WhenACloudMPSLocalOfficeApproverClickSwapDeviceInTheActionsMenuForDeviceToBeSwappedOnTheManageDevicesPage()
         {
+            _mpsDealerContractStepActions.ContractShiftBeforeSwapDeviceInstallationRequest(1);
             _localOfficeApproverManagedevicesManagePage = _mpsLocalOfficeApproverContractStepActions.RetrieveDealerManageDevicesPage();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)

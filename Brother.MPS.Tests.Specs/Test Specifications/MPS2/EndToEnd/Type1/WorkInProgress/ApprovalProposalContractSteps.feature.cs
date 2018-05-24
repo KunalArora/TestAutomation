@@ -19,10 +19,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BusinessScenario_1_WIP_ApprovalProposalContractSteps")]
-    [NUnit.Framework.CategoryAttribute("MPS")]
-    [NUnit.Framework.CategoryAttribute("UAT")]
-    [NUnit.Framework.CategoryAttribute("TYPE1")]
-    [NUnit.Framework.CategoryAttribute("WORKINPROGRESS")]
     public partial class BusinessScenario_1_WIP_ApprovalProposalContractStepsFeature
     {
         
@@ -36,11 +32,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1.WorkInProgr
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BusinessScenario_1_WIP_ApprovalProposalContractSteps", "\tThis task relates to completing the process of approval of proposal and contract" +
-                    " (using LO Approver)", ProgrammingLanguage.CSharp, new string[] {
-                        "MPS",
-                        "UAT",
-                        "TYPE1",
-                        "WORKINPROGRESS"});
+                    " (using LO Approver)", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
