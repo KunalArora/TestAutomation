@@ -998,6 +998,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
         }
 
+        public void VerifyDeviceAndGraphDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            foreach ( var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
+                var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                dealerDeviceOverviewPage.VerifyPrintCount(device);
+            }
+        }
+
         public void VerifyPrintSummaryAndConsumablesOnDashboard(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);

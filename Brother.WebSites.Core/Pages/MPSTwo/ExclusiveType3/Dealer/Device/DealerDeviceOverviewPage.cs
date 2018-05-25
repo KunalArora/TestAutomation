@@ -157,5 +157,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             TestCheck.AssertIsEqual("", BlackDateElement.Text, "BlackDateElement" + message);
             TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %",""), actualTonerRemainingLife, "TonerRemainingLife" + message);
         }
+
+        public void VerifyPrintSummaryDetails(AdditionalDeviceProperties device)
+        {
+            LoggingService.WriteLogOnMethodEntry(device);
+        }
     }
 }

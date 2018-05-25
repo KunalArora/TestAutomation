@@ -219,6 +219,10 @@ testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" day
                         "e", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
 testRunner.Then("I can verify the device status being silent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+testRunner.And("I can verify the device details and graphui details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

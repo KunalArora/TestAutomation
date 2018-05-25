@@ -70,10 +70,10 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanRemLife { get; set; }
         public string TonerInkMagentaRemLife { get; set; }
         public string TonerInkYellowRemLife { get; set; }
-        public string TonerInkBlackReplaceCount { get; set; }
-        public string TonerInkCyanReplaceCount { get; set; }
-        public string TonerInkMagentaReplaceCount { get; set; }
-        public string TonerInkYellowReplaceCount { get; set; }
+        public int TonerInkBlackReplaceCount { get; set; }
+        public int TonerInkCyanReplaceCount { get; set; }
+        public int TonerInkMagentaReplaceCount { get; set; }
+        public int TonerInkYellowReplaceCount { get; set; }
 
 
         public bool hasEmptyInkToner

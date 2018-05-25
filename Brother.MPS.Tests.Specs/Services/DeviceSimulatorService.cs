@@ -159,7 +159,7 @@ namespace Brother.Tests.Specs.Services
             SetSupply(setSupplyRequest);
         }
 
-        public void SetReplaceCount(string deviceId, string tonerInkBlackReplaceCount, string tonerInkCyanReplaceCount, string tonerInkMagentaReplaceCount, string tonerInkYellowReplaceCount)
+        public void SetReplaceCount(string deviceId, int tonerInkBlackReplaceCount, int tonerInkCyanReplaceCount, int tonerInkMagentaReplaceCount, int tonerInkYellowReplaceCount)
         {
             LoggingService.WriteLogOnMethodEntry(deviceId, tonerInkBlackReplaceCount, tonerInkCyanReplaceCount, tonerInkMagentaReplaceCount, tonerInkYellowReplaceCount);
             var setSupplyRequest = new SetSupplyRequest
