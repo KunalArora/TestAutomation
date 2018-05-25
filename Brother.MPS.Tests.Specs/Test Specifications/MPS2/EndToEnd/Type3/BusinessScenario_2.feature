@@ -26,7 +26,7 @@ When I manually raise a consumable order for above devices
 Then I can verify the generation of manual consumable orders alongwith status
 When I manually raise a service request for above devices
 Then a Cloud MPS Service Desk can verify the service request
-When a Cloud MPS Service Desk close the service request
+When a Cloud MPS Service Desk closes the service request
 Then I can verify that service request has been closed succesfully
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice

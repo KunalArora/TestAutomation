@@ -157,7 +157,7 @@ testRunner.When("I manually raise a service request for above devices", ((string
 #line 28
 testRunner.Then("a Cloud MPS Service Desk can verify the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 29
-testRunner.When("a Cloud MPS Service Desk close the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("a Cloud MPS Service Desk closes the service request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
 testRunner.Then("I can verify that service request has been closed succesfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
