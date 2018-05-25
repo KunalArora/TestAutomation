@@ -344,7 +344,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
             dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType, resourceServicePackTypeIncludedInClickPrice);
-            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso);
+            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.CultureInfo);
             dealerProposalsCreateSummaryPage.VerifyNoAlertInfoMessage();
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
@@ -666,7 +666,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, MpsUtil.GetCurrencySymbol(country.CountryIso), minimumVolumePerQuarter)
+                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
                         };
                         break;
                 default:
@@ -890,7 +890,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerContractsAwaitingAcceptancePage SignToContract(DealerContractsSummaryPage dealerContractsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsSummaryPage);
-            ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage) ;
+            ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage, true) ;
             LoggingService.WriteLog(LoggingLevel.INFO, "Dealer::Signed id={0} name={1}",_contextData.ProposalId,_contextData.ProposalName);
             if (_contextData.DriverInstance == UserType.SubDealer)
             {
@@ -965,8 +965,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerDashBoardPage SelectLanguageGivenCulture(DealerDashBoardPage dealerDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
-            _contextData.Language = dealerDashboardPage.ClickLanguageLink(_contextData.Culture);
-            return PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            
+            if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _contextData.Language = dealerDashboardPage.ClickLanguageLink(_contextData.Culture);
+                dealerDashboardPage = PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+
+            return dealerDashboardPage;
         }
 
         #region private methods

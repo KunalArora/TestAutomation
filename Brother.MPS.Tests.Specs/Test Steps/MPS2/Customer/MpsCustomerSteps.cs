@@ -52,10 +52,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Customer
         public void WhenACustomerHasNavigatedToTheConsumablesDevicesPageToVerifyThatAboveDeviceHaveUpdatedInkStatusAndServiceRequestIsRaised()
         {
             var customerDashBoardPage = _mpsCustomerStepActions.SignInAsCustomerAndNavigateToDashboard(string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
-            {
-                customerDashBoardPage = _mpsCustomerStepActions.SelectLanguageGivenCulture(customerDashBoardPage);
-            }         
+            customerDashBoardPage = _mpsCustomerStepActions.SelectLanguageGivenCulture(customerDashBoardPage);         
             var customerConsumablesDevicesPage = _mpsCustomerStepActions.ClickOnComsumablesTab(customerDashBoardPage);
             _mpsCustomerStepActions.VerifyRaisedConsumableOrderStatus(customerConsumablesDevicesPage);
             var customerServiceRequestActivePage = _mpsCustomerStepActions.ClickOnServiceRequestsTab(customerDashBoardPage);

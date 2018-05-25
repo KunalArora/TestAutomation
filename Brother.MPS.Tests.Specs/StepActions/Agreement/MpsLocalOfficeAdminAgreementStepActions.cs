@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
@@ -145,8 +146,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public LocalOfficeAdminDashBoardPage SelectLanguageGivenCulture(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
-            _contextData.Language = localOfficeAdminDashboardPage.ClickLanguageLink(_contextData.Culture);
-            return PageService.GetPageObject<LocalOfficeAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _contextData.Language = localOfficeAdminDashboardPage.ClickLanguageLink(_contextData.Culture);
+                localOfficeAdminDashboardPage = PageService.GetPageObject<LocalOfficeAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            }
+
+            return localOfficeAdminDashboardPage; 
         }
     }
 }

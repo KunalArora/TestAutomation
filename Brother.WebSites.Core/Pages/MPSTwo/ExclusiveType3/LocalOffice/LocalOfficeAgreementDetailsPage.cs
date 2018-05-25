@@ -39,6 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(printers, servicePackType, cultureInfo);
+            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             string culture = cultureInfo.Name;
 

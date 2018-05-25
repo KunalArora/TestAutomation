@@ -128,7 +128,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                 case CountryIso.UnitedKingdom:
                     return DateTime.ParseExact(date, DATESTRING_BUK, null);
                 case CountryIso.Switzerland:
-                    return DateTime.ParseExact(date, DATESTRING_BUK, null);
+                    return DateTime.ParseExact(date, DATESTRING_BSW, null);
                 default:
                     throw new Exception("Date time format for the country with this countryISO cannot be formulated: " + countryIso);
             }
@@ -1185,6 +1185,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
+        /// <summary>
+        /// Use this function only when CultureInfo.NumberFormat.CurrencySymbol are different depending on Windows OS
+        /// </summary>
+        /// <param name="countryIso"></param>
+        /// <returns></returns>
         public static string GetCurrencySymbol(string countryIso)
         {
             string currencySymbol;

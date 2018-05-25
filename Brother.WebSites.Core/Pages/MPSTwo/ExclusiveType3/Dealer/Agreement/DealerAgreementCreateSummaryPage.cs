@@ -120,6 +120,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public double InstallationPackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
+            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
@@ -135,6 +136,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public double ServicePackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
+            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
@@ -151,6 +153,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
             double clickRateTotal = 0;
+
+            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {

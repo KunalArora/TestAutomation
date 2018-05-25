@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
@@ -124,8 +125,14 @@ namespace Brother.Tests.Specs.StepActions.Customer
         public CustomerDashBoardPage SelectLanguageGivenCulture(CustomerDashBoardPage customerDashBoardPage)
         {
             LoggingService.WriteLogOnMethodEntry(customerDashBoardPage);
-            _contextData.Language = customerDashBoardPage.ClickLanguageLink(_contextData.Culture);
-            return PageService.GetPageObject<CustomerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
+            
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _contextData.Language = customerDashBoardPage.ClickLanguageLink(_contextData.Culture);
+                customerDashBoardPage = PageService.GetPageObject<CustomerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
+            }
+
+            return customerDashBoardPage; 
         }
     }
 }

@@ -123,7 +123,7 @@ namespace Brother.Tests.Specs.Services
             // TODO: Check correct position of currency symbols for all countries
             // Check for UK only for now
 
-            string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+            string currencySymbol = ContextData.CultureInfo.NumberFormat.CurrencySymbol;
 
             if (values.Any(v => v[0].ToString() != currencySymbol))
             {

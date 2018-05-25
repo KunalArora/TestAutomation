@@ -164,6 +164,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(printers, servicePackType, specialPriceList, isCheckAutoCalculateClickPrice, cultureInfo);
+            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             string culture = cultureInfo.Name;
 

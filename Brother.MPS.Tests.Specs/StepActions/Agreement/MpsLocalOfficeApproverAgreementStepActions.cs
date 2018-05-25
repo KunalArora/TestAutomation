@@ -143,7 +143,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Model: DCP-8110DN Click Price - Coverage: 15.00 % / Volume: 4,100 / Margin: 0.00 % / Click Price: £0.01068\r\n
             // Model: DCP-L8450CDW Click Price - Colour: Coverage: 30.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.06141 Mono: Coverage: 15.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.00774\r\n
             string[] auditDetails = localOfficeApproverAgreementManageSpecialPricing.GetAuditDetails();
-            string cs = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            string cs = _contextData.CultureInfo.NumberFormat.CurrencySymbol;
             foreach (var printerProperty in _contextData.PrintersProperties)
             {
                 var specialPrice = specialPriceList.First(l => Regex.IsMatch(printerProperty.Model, l.Model)); ;
