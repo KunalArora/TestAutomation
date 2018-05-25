@@ -13,6 +13,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
     public static class MpsUtil
     {
         private const string DATESTRING_BUK = "dd/MM/yyyy";
+        private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
         
 
@@ -73,6 +74,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             {
                 case CountryIso.UnitedKingdom:
                     return dateTime.ToString(DATESTRING_BUK);
+                case CountryIso.Germany:
+                    return dateTime.ToString(DATESTRING_BIG);
                 case CountryIso.Switzerland:
                     return dateTime.ToString(DATESTRING_BSW);
                 default:

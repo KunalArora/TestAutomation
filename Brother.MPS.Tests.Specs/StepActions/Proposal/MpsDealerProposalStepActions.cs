@@ -788,7 +788,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertSummaryPage SetInformationAndClickSubmitForApproval(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertClickPricePage);
-            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage);
+            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage, true);
             if (_contextData.DriverInstance == UserType.SubDealer)
             {
                 return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);

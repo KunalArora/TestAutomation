@@ -95,8 +95,12 @@ namespace Brother.Tests.Specs.Services
 
         public void RegisterCustomer(string idAsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = CountryIso.UnitedKingdom, string culture = "en-GB")
         {
-            string actionPath = string.Format("registeruser.aspx?email={0}&password={1}&firstname={2}&lastname={3}&maxmind={4}&culture={5}",
-                WebUtility.UrlEncode(idAsMailAddress), WebUtility.UrlEncode(password), WebUtility.UrlEncode(firstName), WebUtility.UrlEncode(lastName), maxmind, culture);
+
+            string actionPath = string.Format("registeruser.aspx?email={0}&password={1}&firstname={2}&lastname={3}&maxmind={4}",
+                WebUtility.UrlEncode(idAsMailAddress), WebUtility.UrlEncode(password), WebUtility.UrlEncode(firstName), WebUtility.UrlEncode(lastName), WebUtility.UrlEncode(maxmind));
+
+            if (!string.IsNullOrEmpty(culture) && !culture.ToLower().Equals("en-gb")) { actionPath = actionPath + "&culture=" + WebUtility.UrlDecode(culture);} // TODO: This statement can been removed once RegisterUser API supports culture "en-GB"
+
             string url = string.Format(_baseUrlWithoutMps2, actionPath);
 
             ExecuteWebTool(url);

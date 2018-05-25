@@ -94,6 +94,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersExistingPage(_dealerDashboardPage);
         }
@@ -106,7 +112,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.Country = _countryService.GetByName(country);
             if(_contextData.Country.Cultures.Count != 1)
             {
-                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
+                throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
             _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
@@ -121,7 +127,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.Country = _countryService.GetByName(country);
             if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
             {
-                throw new ArgumentException("can not support culture in select this country. please check arguments. country=" + country + " culture=" + culture);
+                throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
