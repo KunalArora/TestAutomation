@@ -93,7 +93,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(bankProposalsSummaryPage);
             ClickSafety(bankProposalsSummaryPage.ApproveButtonElement, bankProposalsSummaryPage);
-            bankProposalsSummaryPage.EnterApprovalInformation(_contextData.Country.CountryIso); // de:Freigabeinformationen
+            bankProposalsSummaryPage.EnterApprovalInformation(); // de:Freigabeinformationen
             ClickSafety(bankProposalsSummaryPage.AcceptButtonElement, bankProposalsSummaryPage, true);
             return PageService.GetPageObject<BankProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
 

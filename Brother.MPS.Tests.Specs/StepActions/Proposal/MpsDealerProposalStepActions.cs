@@ -344,7 +344,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
             dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType, resourceServicePackTypeIncludedInClickPrice);
-            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.CultureInfo);
+            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol();
             dealerProposalsCreateSummaryPage.VerifyNoAlertInfoMessage();
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
@@ -799,8 +799,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsAwaitingApprovalPage SubmitForApproval(DealerProposalsConvertSummaryPage dealerProposalsConvertSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertSummaryPage);
-            dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(_contextData.Country.CountryIso); // Envisaged Start Date
-            dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval(_contextData.Culture);       // Approval Has Been Given To Send Information To Brother
+            dealerProposalsConvertSummaryPage.EnterProposedStartDateForContract(); // Envisaged Start Date
+            dealerProposalsConvertSummaryPage.GiveThirdPartyCheckApproval();       // Approval Has Been Given To Send Information To Brother
             _contextData.SnapValues[typeof(DealerProposalsConvertSummaryPage)] = _pageParseHelper.ParseSummaryPageValues(dealerProposalsConvertSummaryPage.SeleniumHelper);
             ClickSafety( dealerProposalsConvertSummaryPage.SaveAsContractButton, dealerProposalsConvertSummaryPage) ;
             if(_contextData.DriverInstance == UserType.SubDealer)
@@ -968,7 +968,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             
             if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                _contextData.Language = dealerDashboardPage.ClickLanguageLink(_contextData.Culture);
+                _contextData.Language = dealerDashboardPage.ClickLanguageLink();
                 dealerDashboardPage = PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
 

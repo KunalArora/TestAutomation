@@ -188,11 +188,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         
-        public void EnterValidUntil(string countryIso)
+        public void EnterValidUntil()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
+            LoggingService.WriteLogOnMethodEntry();
             if (IsFranceSystem() || IsItalySystem() || IsAustriaSystem() || IsUKSystem())
-                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(countryIso));
+                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(CultureInfo.TwoLetterISOLanguageName));
         }
 
         public void EnterCreditLimit()
@@ -218,12 +218,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 CreditCheckNotNeededElement.Click();
         }
 
-        public void EnterApprovalInformation(string countryIso = null)
+        public void EnterApprovalInformation()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
+            LoggingService.WriteLogOnMethodEntry();
             EnterCustomerReference("");
             EnterReference("");
-            EnterValidUntil(countryIso);
+            EnterValidUntil();
             EnterCreditLimit();
             TickCreditCheckNotNeeded();
             WebDriver.Wait(Helper.DurationType.Second, 3);

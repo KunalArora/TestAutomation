@@ -80,7 +80,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminContractsEditEndDatePage, billingType);
 
             var endDay = DateTime.Today.AddDays(1);
-            localOfficeAdminContractsEditEndDatePage.EnterCancellationDateAndReason(endDay, "details set end is " + endDay.ToString(), _contextData.Country.CountryIso);
+            localOfficeAdminContractsEditEndDatePage.EnterCancellationDateAndReason(endDay, "details set end is " + endDay.ToString());
 
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonSaveElement, localOfficeAdminContractsEditEndDatePage);
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonApplyContractCancellationElement, localOfficeAdminContractsEditEndDatePage,true);

@@ -28,7 +28,7 @@ namespace Brother.Tests.Specs.Factories
 
             chromeOptions.AddArgument(string.Format("{0}={1}", languageArgName, string.IsNullOrWhiteSpace(webDriverOptions.Culture) ? _contextData.Culture : webDriverOptions.Culture)); //Note: _contextData.Culture is set to be en-GB in the InjectionSetup before the start of scenario
 
-            chromeOptions.AddUserProfilePreference(defaultDownloadDirectoryKey, string.IsNullOrWhiteSpace(webDriverOptions.DownloadFolder) ? TestController.DownloadPath : webDriverOptions.DownloadFolder);
+            chromeOptions.AddUserProfilePreference(defaultDownloadDirectoryKey, webDriverOptions.DownloadFolder);
 
             return chromeOptions;
         }

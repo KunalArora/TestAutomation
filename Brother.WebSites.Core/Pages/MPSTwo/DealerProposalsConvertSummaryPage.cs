@@ -32,24 +32,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ButtonSaveAsContract")]
         public IWebElement SaveAsContractButton;
 
-        public void FillSubmitForApprovalField(string countryIso)
+        public void FillSubmitForApprovalField()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
-            EnterProposedStartDateForContract(countryIso);
+            LoggingService.WriteLogOnMethodEntry();
+            EnterProposedStartDateForContract();
         }
 
-        public void EnterProposedStartDateForContract(string countryIso)
+        public void EnterProposedStartDateForContract()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
-            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(countryIso));
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(CultureInfo.TwoLetterISOLanguageName));
         
         }
 
-        public void GiveThirdPartyCheckApproval(string culture)
+        public void GiveThirdPartyCheckApproval()
         {
-            LoggingService.WriteLogOnMethodEntry(culture);
+            LoggingService.WriteLogOnMethodEntry();
             IWebElement element = GetElementByCssSelector("#content_1_InputSendToLeasingBank_Label", 5);
             if (element != null)
                 ThirdPartyApproval.Click();
@@ -57,7 +57,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if (element != null)
                 SendToBrotherElement.Click();
 
-            if (culture.ToLower().Equals("de-ch") && SeleniumHelper.IsElementPresent("#content_1_InputUpdateUserBOL_Input"))
+            if (CultureInfo.Name.ToLower().Equals("de-ch") && SeleniumHelper.IsElementPresent("#content_1_InputUpdateUserBOL_Input"))
             {
                 element = SeleniumHelper.FindElementByCssSelector("#content_1_InputUpdateUserBOL_Input");
                 SeleniumHelper.ClickSafety(element);

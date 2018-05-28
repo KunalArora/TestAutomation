@@ -13,6 +13,7 @@ using Brother.WebSites.Core.Pages.BrotherOnline.Checkout;
 using Brother.WebSites.Core.Pages.BrotherOnline.ThirdParty;
 using Brother.WebSites.Core.Pages.OmniJoin;
 using OpenQA.Selenium;
+using System.Globalization;
 using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.Base
@@ -69,7 +70,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public IRuntimeSettings RuntimeSettings { get; set; }
         public ISeleniumHelper SeleniumHelper { get; set; }
         public ITranslationService TranslationService { get; set; }
-        public string Culture { get; set; }
+        public CultureInfo CultureInfo { get; set; }
         #endregion
         // Home pages
         #region WebConferencing Home Page

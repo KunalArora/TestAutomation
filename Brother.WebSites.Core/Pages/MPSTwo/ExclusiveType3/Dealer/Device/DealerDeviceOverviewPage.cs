@@ -67,9 +67,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 
 
 
-        public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType, string countryIso)
+        public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType)
         {
-            LoggingService.WriteLogOnMethodEntry(device, agreementType, agreementLength, usageType, countryIso);
+            LoggingService.WriteLogOnMethodEntry(device, agreementType, agreementLength, usageType);
 
             var DashboardContainerElement = SeleniumHelper.FindElementByCssSelector(ContainerSelector, RuntimeSettings.DefaultFindElementTimeout);
             var deviceDetailsRow  = SeleniumHelper.FindElementByCssSelector(DashboardContainerElement, ".row");
@@ -80,7 +80,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 
             var DeliveryAddress = device.AddressNumber + " " + device.AddressStreet + ", " + device.AddressArea + ", " + device.AddressTown + ", " + device.AddressPostCode;
             var Contact = device.ContactFirstName + ", " + device.ContactLastName + ", " + device.Telephone + ", " + device.Email;
-            var TodaysDate = MpsUtil.DateTimeString(DateTime.Now, countryIso);
+            var TodaysDate = MpsUtil.DateTimeString(DateTime.Now, CultureInfo.TwoLetterISOLanguageName);
 
             //1st row
             TestCheck.AssertTextContains(device.Model, SeleniumHelper.FindElementByCssSelector(deviceDetailsTableBodyElement, ".model-name").Text, string.Format("Device model = {0} could not be verified", device.Model));

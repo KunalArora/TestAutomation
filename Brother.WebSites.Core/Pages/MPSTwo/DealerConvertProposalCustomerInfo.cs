@@ -844,10 +844,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ClearAndType(PrivateLiableLastNameElement, "Liable");
         }
 
-        private void EnterPrivateLiableDateOfBirth(string countryIso)
+        private void EnterPrivateLiableDateOfBirth()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
-            PrivateLiableDOBElement.SendKeys(MpsUtil.DateOfBirth(countryIso));
+            LoggingService.WriteLogOnMethodEntry();
+            PrivateLiableDOBElement.SendKeys(MpsUtil.DateOfBirth(CultureInfo.TwoLetterISOLanguageName));
         }
 
         private void EnterPrivatePropertyNumber()
@@ -875,13 +875,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SelectFromDropdown(PrivateLiablePropertyRegionElement, "Greater Manchester");
         }
 
-        public void EnterPrivateLiableInfo(string countryIso)
+        public void EnterPrivateLiableInfo()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
+            LoggingService.WriteLogOnMethodEntry();
             SelectPrivateLiableTitle();
             EnterPrivateLiableFirstName();
             EnterPrivateLiableLastName();
-            EnterPrivateLiableDateOfBirth(countryIso);
+            EnterPrivateLiableDateOfBirth();
             EnterPrivatePropertyNumber();
             EnterPrivatePropertyStreet();
             EnterPrivatePropertyTown();

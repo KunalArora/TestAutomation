@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.Services
                 RuntimeSettings = _runtimeSettings,
                 LoggingService = this.LoggingService ,
                 TranslationService = _translationService,
-                Culture = _contextData.Culture
+                CultureInfo = _contextData.CultureInfo
             };
             string validationElementSelector = string.IsNullOrWhiteSpace(pageObject.ValidationElementSelector) ? "body" : pageObject.ValidationElementSelector;
 

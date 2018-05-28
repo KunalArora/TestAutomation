@@ -34,10 +34,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonRunReport")]
         public IWebElement ButtonRunReportElement;
 
-        public void EnterRunAtDate(DateTime dateTime, string countryIso)
+        public void EnterRunAtDate(DateTime dateTime)
         {
-            LoggingService.WriteLogOnMethodEntry(dateTime, countryIso);
-            InputRunAtDateElement.SendKeys(MpsUtil.DateTimeString(dateTime, countryIso));
+            LoggingService.WriteLogOnMethodEntry(dateTime);
+            InputRunAtDateElement.SendKeys(MpsUtil.DateTimeString(dateTime, CultureInfo.TwoLetterISOLanguageName));
         }
 
         public void ClickOnRunReport()

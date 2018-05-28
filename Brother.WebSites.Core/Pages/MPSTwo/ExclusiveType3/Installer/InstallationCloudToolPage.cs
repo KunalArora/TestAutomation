@@ -183,7 +183,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             if (isUnmatchDevice)
             {
                 var alert = SeleniumHelper.FindAlertDialog();
-                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, Culture);
+                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, CultureInfo.Name);
                 TestCheck.AssertIsEqual(expectedMessage, alert.Text, "invalid alert message");
                 alert.Accept();
             }

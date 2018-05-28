@@ -1813,13 +1813,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void VerifyTheCorrectPositionOfCurrencySymbol(CultureInfo cultureInfo)
+        public void VerifyTheCorrectPositionOfCurrencySymbol()
         {
-            LoggingService.WriteLogOnMethodEntry(cultureInfo);
+            LoggingService.WriteLogOnMethodEntry();
 
-            if (cultureInfo == null) {TestCheck.AssertFailTest("CultureInfo has null value");}
+            if (CultureInfo == null) {TestCheck.AssertFailTest("CultureInfo has null value");}
 
-            string currencySymbol = cultureInfo.NumberFormat.CurrencySymbol;
+            string currencySymbol = CultureInfo.NumberFormat.CurrencySymbol;
             var message = "Currency symbol position did not get validated";
 
             // TODO refactor later

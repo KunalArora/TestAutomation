@@ -149,7 +149,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                _contextData.Language = localOfficeAdminDashboardPage.ClickLanguageLink(_contextData.Culture);
+                _contextData.Language = localOfficeAdminDashboardPage.ClickLanguageLink();
                 localOfficeAdminDashboardPage = PageService.GetPageObject<LocalOfficeAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
             }
 

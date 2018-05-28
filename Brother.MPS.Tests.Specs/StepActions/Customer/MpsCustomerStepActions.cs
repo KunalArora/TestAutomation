@@ -128,7 +128,7 @@ namespace Brother.Tests.Specs.StepActions.Customer
             
             if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                _contextData.Language = customerDashBoardPage.ClickLanguageLink(_contextData.Culture);
+                _contextData.Language = customerDashBoardPage.ClickLanguageLink();
                 customerDashBoardPage = PageService.GetPageObject<CustomerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _customerWebDriver);
             }
 

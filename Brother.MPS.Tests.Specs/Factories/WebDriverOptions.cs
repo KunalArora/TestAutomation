@@ -1,4 +1,5 @@
-﻿namespace Brother.Tests.Specs.Factories
+﻿using Brother.Tests.Selenium.Lib.Support;
+namespace Brother.Tests.Specs.Factories
 {
     public class WebDriverOptions
     {
@@ -9,6 +10,15 @@
         /// <summary>
         /// Default download folder for the remote driver instance
         /// </summary>
-        public string DownloadFolder { get; set; }
+        public string DownloadFolder { 
+            get
+            {
+                return TestController.DownloadPath;
+            }
+            set
+            {
+
+            } 
+        }
     }
 }

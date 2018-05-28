@@ -332,7 +332,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
             {
-                localOfficeApproverDashBoardPage.ClickLanguageLink(_contextData.Culture);
+                localOfficeApproverDashBoardPage.ClickLanguageLink();
                 localOfficeApproverDashBoardPage = PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
             }
 

@@ -117,14 +117,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text;
         }
 
-        public double InstallationPackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
+        public double InstallationPackTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
-            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                return double.Parse(InstallationPackTotalElement.Text, numberStyles, cultureInfo);
+                return double.Parse(InstallationPackTotalElement.Text, numberStyles, CultureInfo);
             }
             catch(NoSuchElementException)
             {
@@ -133,14 +133,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ServicePackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
+        public double ServicePackTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
-            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                return double.Parse(ServicePackTotalElement.Text, numberStyles, cultureInfo);
+                return double.Parse(ServicePackTotalElement.Text, numberStyles, CultureInfo);
             }
             catch (NoSuchElementException)
             {
@@ -149,16 +149,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ClickRateTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
+        public double ClickRateTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
             double clickRateTotal = 0;
 
-            if (cultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                clickRateTotal = double.Parse(ClickRateTotalElement.Text, numberStyles, cultureInfo);
+                clickRateTotal = double.Parse(ClickRateTotalElement.Text, numberStyles, CultureInfo);
             }
             catch (Exception e)
             {

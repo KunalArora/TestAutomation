@@ -273,9 +273,9 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now, _contextData.Country.CountryIso);
 
             // Save these details for later verification
-            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles, cultureInfo);
-            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal(numberStyles, cultureInfo);
-            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal(numberStyles, cultureInfo);
+            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles);
+            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal(numberStyles);
+            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal(numberStyles);
 
             // Validate calculations/content on summary page
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);
@@ -947,7 +947,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
                 var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
-                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType, _contextData.Country.CountryIso);
+                dealerDeviceOverviewPage.VerifyDeviceDetails(device, _contextData.AgreementType, _contextData.ContractTerm, _contextData.UsageType);
 
                 ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

@@ -53,10 +53,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ButtonApplyContractCancellationElement;
 
 
-        public void EnterCancellationDateAndReason(DateTime endDate, string reason, string countryIso)
+        public void EnterCancellationDateAndReason(DateTime endDate, string reason)
         {
-            LoggingService.WriteLogOnMethodEntry(endDate, reason, countryIso);
-            InputEndDateInputElement.SendKeys(MpsUtil.DateTimeString(endDate, countryIso));
+            LoggingService.WriteLogOnMethodEntry(endDate, reason);
+            InputEndDateInputElement.SendKeys(MpsUtil.DateTimeString(endDate, CultureInfo.TwoLetterISOLanguageName));
             ClearAndType(InputDescriptionElement, reason);
             //SeleniumHelper.ClickSafety(ButtonSaveElement, RuntimeSettings.DefaultFindElementTimeout,true);
         }
