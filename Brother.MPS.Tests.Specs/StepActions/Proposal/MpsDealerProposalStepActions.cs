@@ -975,6 +975,28 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerDashboardPage;
         }
 
+        public void SetCultureInfoAndRegionInfo()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
+
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,

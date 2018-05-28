@@ -129,7 +129,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             if (IsFranceSystem()||IsItalySystem())
-                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(CultureInfo.TwoLetterISOLanguageName));
+                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
         }
 
         public void EnterCreditLimit()

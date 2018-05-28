@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void EnterRunAtDate(DateTime dateTime)
         {
             LoggingService.WriteLogOnMethodEntry(dateTime);
-            InputRunAtDateElement.SendKeys(MpsUtil.DateTimeString(dateTime, CultureInfo.TwoLetterISOLanguageName));
+            InputRunAtDateElement.SendKeys(MpsUtil.DateTimeString(dateTime, RegionInfo.TwoLetterISORegionName));
         }
 
         public void ClickOnRunReport()

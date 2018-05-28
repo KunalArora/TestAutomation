@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
-            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(CultureInfo.TwoLetterISOLanguageName));
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
         
         }
 

@@ -13,6 +13,7 @@ namespace Brother.Tests.Common.ContextData
         Country Country { get; set; }
         string Culture { get; set; }
         CultureInfo CultureInfo { get; set; }
+        RegionInfo RegionInfo { get; set; }
         string Language { get; set; }
         string BaseUrl { get; set; }
         string EnvironmentName { get; set; }

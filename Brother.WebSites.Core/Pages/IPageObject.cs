@@ -17,5 +17,6 @@ namespace Brother.WebSites.Core.Pages
         IRuntimeSettings RuntimeSettings { get; set; }
         ITranslationService TranslationService { get; set; }
         CultureInfo CultureInfo { get; set; }
+        RegionInfo RegionInfo { get; set; }
     }
 }

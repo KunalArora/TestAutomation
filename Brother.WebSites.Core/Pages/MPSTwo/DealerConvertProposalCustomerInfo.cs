@@ -847,7 +847,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void EnterPrivateLiableDateOfBirth()
         {
             LoggingService.WriteLogOnMethodEntry();
-            PrivateLiableDOBElement.SendKeys(MpsUtil.DateOfBirth(CultureInfo.TwoLetterISOLanguageName));
+            PrivateLiableDOBElement.SendKeys(MpsUtil.DateOfBirth(RegionInfo.TwoLetterISORegionName));
         }
 
         private void EnterPrivatePropertyNumber()

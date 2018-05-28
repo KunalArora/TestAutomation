@@ -71,6 +71,7 @@ namespace Brother.WebSites.Core.Pages.Base
         public ISeleniumHelper SeleniumHelper { get; set; }
         public ITranslationService TranslationService { get; set; }
         public CultureInfo CultureInfo { get; set; }
+        public RegionInfo RegionInfo { get; set; }
         #endregion
         // Home pages
         #region WebConferencing Home Page
