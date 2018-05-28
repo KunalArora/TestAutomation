@@ -302,7 +302,18 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
         {
             LoggingService.WriteLogOnMethodEntry(days);
-            _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+            try
+            {
+                _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+            }
+            catch
+            {
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+                _runCommandService.RunStartContractCommand();
+
+                _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+            }
+            
         }
 
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)
