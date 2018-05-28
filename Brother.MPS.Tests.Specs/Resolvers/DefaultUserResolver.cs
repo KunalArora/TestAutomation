@@ -103,8 +103,13 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,
-                    _contextData.Environment == "UAT" ? "loadmin" : "admin", 1);
+                switch (_contextData.Environment.ToUpper())
+                {
+                    case "UAT":
+                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,"loadmin", 1);
+                    default:
+                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,"admin", 1);
+                }
             }
         }
 
@@ -140,17 +145,29 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                // TODO: Change this to use new user name pattern after bank bug has been fixed
-                return string.Format(OLD_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
+                switch (_contextData.Environment.ToUpper())
+                {
+                    case "UAT":
+                        // TODO: Change this to use new user name pattern after bank bug has been fixed
+                        return string.Format(OLD_USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
+                    default:
+                        return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Bank", "");
+                }
             }
         }
         public string BankPassword
         {
             get
             {
-                // TODO: Change this to use new password after bank bug has been fixed
-                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "leasingbank", 1);  // Delete this line after bank bug has been fixed
-                //return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "bank", 1);       // UnComment this line after bank has been fixed
+                switch (_contextData.Environment.ToUpper())
+                {
+                    case "UAT":
+                        // TODO: Change this to use new password after bank bug has been fixed
+                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "leasingbank", 1);  // Delete this line after bank bug has been fixed
+                    default:
+                        // ex. DEbank1
+                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "bank", 1);       // UnComment this line after bank has been fixed
+                }
             }
         }
 
