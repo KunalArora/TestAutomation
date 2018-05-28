@@ -45,28 +45,53 @@ namespace Brother.Tests.Specs.Resolvers
                 return _contextData.SpecificDealerUsername;
             }
 
-            switch (businessType) {
-                case BusinessType.Type1:
-                    // Only Type1
-                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
-                    {
+            if(businessType.Equals(BusinessType.Type1)) // Only Type1
+            {
+                loginPatternNumber = "1";
+                switch (_contextData.Country.CountryIso)
+                {
+                    case CountryIso.UnitedKingdom:
+                        if (_runtimeSettings.DefaultType1DealerUsernameBUK != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerUsernameBUK;
+                        }
+                        break;
+                    case CountryIso.Germany:
+                        if (_runtimeSettings.DefaultType1DealerUsernameBIG != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerUsernameBIG;
+                        }
+                        break;
+                    case CountryIso.Switzerland:
+                        if (_runtimeSettings.DefaultType1DealerUsernameBSW != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerUsernameBSW;
+                        }
                         loginPatternNumber = "2";
-                    }
-                    else
-                    {
-                        loginPatternNumber = "1";
-                    }
-                    break;
-                case BusinessType.Type3:
-                    // Only Type3
-                    if (_runtimeSettings.DefaultType3DealerUsername != null)
-                    {
-                        return _runtimeSettings.DefaultType3DealerUsername;
-                    }
-                    loginPatternNumber = "3";
-                    break;
-                default:
-                    throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerUsername", businessType));
+                        break;
+                    default:
+                        throw new Exception("The dealer username (Type 1) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
+                }
+            }
+            else if(businessType.Equals(BusinessType.Type3)) // Only Type3
+            {
+                loginPatternNumber = "3";
+                switch (_contextData.Country.CountryIso)
+                {
+                    case CountryIso.UnitedKingdom:
+                        if (_runtimeSettings.DefaultType3DealerUsernameBUK != null)
+                        {
+                            return _runtimeSettings.DefaultType3DealerUsernameBUK;
+                        }
+                        break;
+                    
+                    default:
+                        throw new Exception("The dealer username (Type 3) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerUsername", businessType));
             }
 
             return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", loginPatternNumber);
@@ -81,27 +106,53 @@ namespace Brother.Tests.Specs.Resolvers
                 return _contextData.SpecificDealerPassword;
             }
 
-            switch (businessType)
+            if (businessType.Equals(BusinessType.Type1)) // Only Type1
             {
-                case BusinessType.Type1:
-                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
-                    {
+                loginPatternNumber = "1";
+                switch (_contextData.Country.CountryIso)
+                {
+                    case CountryIso.UnitedKingdom:
+                        if (_runtimeSettings.DefaultType1DealerPasswordBUK != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerPasswordBUK;
+                        }
+                        break;
+                    case CountryIso.Germany:
+                        if (_runtimeSettings.DefaultType1DealerPasswordBIG != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerPasswordBIG;
+                        }
+                        break;
+                    case CountryIso.Switzerland:
+                        if (_runtimeSettings.DefaultType1DealerPasswordBSW != null)
+                        {
+                            return _runtimeSettings.DefaultType1DealerPasswordBSW;
+                        }
                         loginPatternNumber = "2";
-                    }
-                    else
-                    {
-                        loginPatternNumber = "1";
-                    }
-                    break;
-                case BusinessType.Type3:
-                    if (_runtimeSettings.DefaultType3DealerPassword != null)
-                    {
-                        return _runtimeSettings.DefaultType3DealerPassword;
-                    }
-                    loginPatternNumber = "3";
-                    break;
-                default:
-                    throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerPassword", businessType));
+                        break;
+                    default:
+                        throw new Exception("The dealer password (Type 1) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
+                }
+            }
+            else if (businessType.Equals(BusinessType.Type3)) // Only Type3
+            {
+                loginPatternNumber = "3";
+                switch (_contextData.Country.CountryIso)
+                {
+                    case CountryIso.UnitedKingdom:
+                        if (_runtimeSettings.DefaultType3DealerPasswordBUK != null)
+                        {
+                            return _runtimeSettings.DefaultType3DealerPasswordBUK;
+                        }
+                        break;
+
+                    default:
+                        throw new Exception("The dealer password (Type 3) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerPassword", businessType));
             }
 
             return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "dealer", loginPatternNumber);
