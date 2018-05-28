@@ -1,4 +1,4 @@
-﻿@MPS @UAT @HIGH @TYPE1
+﻿@MPS @UAT @HIGH @TYPE1 @CI_TestMaintenance
 Feature: SubDealerCreationAndProposalTillInstallation
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer

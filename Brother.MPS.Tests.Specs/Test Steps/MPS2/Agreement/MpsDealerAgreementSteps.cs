@@ -12,6 +12,7 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -77,6 +78,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _contextData.SetBusinessType("3");
             _contextData.Country = _countryService.GetByName(country);
             _contextData.UsableDeviceIndex = 1;
+            if (_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
@@ -286,10 +293,18 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _dealerAgreementDevicesPage = _mpsDealerAgreement.RaiseConsumableOrdersManually(_dealerAgreementDevicesPage);
         }
 
-        [Then(@"I can verify the generation of consumable orders alongwith status")]
-        public void ThenICanVerifyTheGenerationOfConsumableOrdersAlongwithStatus()
+        [Then(@"I can verify the generation of manual consumable orders alongwith status")]
+        public void ThenICanVerifyTheGenerationOfManualConsumableOrdersAlongwithStatus()
         {
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage);
+            string resourceConsumableOrderMethodManual = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Manual, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodManual);
+        }
+
+        [Then(@"I can verify the generation of automatic consumable orders alongwith status")]
+        public void ThenICanVerifyTheGenerationOfAutomaticConsumableOrdersAlongwithStatus()
+        {
+            string resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodAutomatic);
         }
 
         [When(@"I manually raise a service request for above devices")]
@@ -301,7 +316,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that service request has been closed succesfully")]
         public void ThenICanVerifyThatServiceRequestHasBeenClosedSuccesfully()
         {
-            _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
+           _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyServiceRequestStatus(_dealerAgreementDevicesPage, _translationService.GetServiceRequestStatusText(TranslationKeys.ServiceRequestStatus.Closed, _contextData.Culture));
         }
 
         [Then(@"I can verify the device details using show device details option")]

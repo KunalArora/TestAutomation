@@ -1,5 +1,6 @@
 ﻿﻿using Brother.Tests.Common.ContextData;
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
@@ -22,13 +23,13 @@ namespace Brother.Tests.Specs.Services
             ContextData = contextData;
         }
 
-        public void VerifyTotalPrice(string cost, string margin, string displayedPrice)
+        public void VerifyTotalPrice(string cultureNumericUnitCost, string cultureNumericMargin, string cultureNumericDisplayedUnitPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(cost, margin, displayedPrice);
-            double expectedPrice = (100 * ConvertStringToDouble(cost)) / (100 - ConvertStringToDouble(margin));
+            LoggingService.WriteLogOnMethodEntry(cultureNumericUnitCost, cultureNumericMargin, cultureNumericDisplayedUnitPrice);
+            double expectedPrice = (100 * ConvertCultureNumericStringToInvariantDouble(cultureNumericUnitCost)) / (100 - ConvertCultureNumericStringToInvariantDouble(cultureNumericMargin));
 
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedPrice), ConvertStringToDouble(displayedPrice), "Total Price Calculations did not get validated");
+                RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(cultureNumericDisplayedUnitPrice), "Total Price Calculations did not get validated");
         }
 
         public void VerifySum(List<string> prices, string displayedTotalPrice)
@@ -37,28 +38,34 @@ namespace Brother.Tests.Specs.Services
             double expectedTotalPrice = 0.00;
             foreach(string price in prices)
             {
-                expectedTotalPrice = expectedTotalPrice + ConvertStringToDouble(price);
+                expectedTotalPrice = expectedTotalPrice + ConvertCultureNumericStringToInvariantDouble(price);
             }
 
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedTotalPrice), ConvertStringToDouble(displayedTotalPrice), "Total Line Price Calculations did not get validated");
+                RoundOffUptoDecimalPlaces(expectedTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedTotalPrice), "Total Line Price Calculations did not get validated");
         }
 
         public void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice)
         {
             LoggingService.WriteLogOnMethodEntry(netTotalPrice, displayedGrossTotalPrice);
 
-            // TODO: Maintain & use VAT percentage for every country
-            // For now, hard-code it for UK (20%)
-            double expectedGrossTotalPrice = ConvertStringToDouble(netTotalPrice) * 1.2;
+            FinancialInformation _financialInfo = new FinancialInformation();
+
+            double expectedGrossTotalPrice = ConvertCultureNumericStringToInvariantDouble(netTotalPrice) * _financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedGrossTotalPrice), ConvertStringToDouble(displayedGrossTotalPrice), "Gross total price did not get validated");
+                RoundOffUptoDecimalPlaces(expectedGrossTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedGrossTotalPrice), "Gross total price did not get validated");
         }
 
-        public double ConvertStringToDouble(string variable)
+        public double ConvertCultureNumericStringToInvariantDouble(string variable)
         {
             LoggingService.WriteLogOnMethodEntry(variable);
-            return double.Parse(variable, new CultureInfo(ContextData.Culture));
+            return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
+        }
+
+        public double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles)
+        {
+            LoggingService.WriteLogOnMethodEntry(variable, numberStyles);
+            return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
         }
 
         public double ConvertStringToDoubleInvariant(string variable)
@@ -67,7 +74,7 @@ namespace Brother.Tests.Specs.Services
             return double.Parse(variable, CultureInfo.InvariantCulture);
         }
 
-        public string ConvertInvariantNumericToCultureNumericString(string invariant)
+        public string ConvertInvariantNumericStringToCultureNumericString(string invariant)
         {
             LoggingService.WriteLogOnMethodEntry(invariant);
             // 12345  -[de]-> 12345
@@ -79,13 +86,20 @@ namespace Brother.Tests.Specs.Services
 
             invariant = invariant.Trim();
             var ciInvariant = CultureInfo.InvariantCulture;
-            var ciCulture = new CultureInfo(ContextData.Culture);
+            var ciCulture = ContextData.CultureInfo;
             var regx = new Regex("[0-9]");
             var format = regx.Replace(invariant, "0");
             double doubleValue = double.Parse(invariant, ciInvariant);
             var cultured = doubleValue.ToString(format, ciCulture);
             return cultured;
         }
+
+        public string ConvertCultureNumericStringToInvariantNumericString(string cultureString, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number)
+        {
+            LoggingService.WriteLogOnMethodEntry(cultureString, numberStyles);
+            return double.Parse(Regex.Replace(cultureString, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo).ToString();
+        }
+
 
         public double RoundOffUptoDecimalPlaces(double variable, int decimalPlaces = 2)
         {
@@ -97,10 +111,10 @@ namespace Brother.Tests.Specs.Services
         public void VerifyMultiplication(string varA, string varB, string result)
         {
             LoggingService.WriteLogOnMethodEntry(varA, varB, result);
-            double expectedResult = ConvertStringToDouble(varA) * ConvertStringToDouble(varB);
+            double expectedResult = ConvertCultureNumericStringToInvariantDouble(varA) * ConvertCultureNumericStringToInvariantDouble(varB);
             
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedResult), ConvertStringToDouble(result), "Multiplication calculations did not get validated");
+                RoundOffUptoDecimalPlaces(expectedResult), ConvertCultureNumericStringToInvariantDouble(result), "Multiplication calculations did not get validated");
         }
 
         public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso, List<string> values)

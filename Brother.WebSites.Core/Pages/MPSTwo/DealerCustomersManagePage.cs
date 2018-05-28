@@ -497,6 +497,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     FillDenmarkContactInfo();
                     FillDenmarkOrgDetails();
                     break;
+                case "Switzerland":
+                    FillSwissBankDetails(payment);
+                    FillSwissOrgDetails();
+                    break;
                 default:
                     MsgOutput(string.Format("{0} is not recognised", country));
                     break;

@@ -1,10 +1,10 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND @TEST
+﻿@MPS @UAT @TYPE1 @ENDTOEND @CI_TestMaintenance
 Feature: Type1BusinessScenario_5
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 5
+Scenario Outline: Type1BusinessScenario_5
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
@@ -28,7 +28,7 @@ And Enter the serial numbers and complete email installation
 And I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I verify that the email installation is completed successfuly 
 
-@BUK
+@BIG
 Scenarios: 
 		| Country | ContractType               | UsageType      | BillingType | ServicePackType   | ContractTerm | Customer | CommunicationMethod | InstallationType |
 		| Germany | EASY_PRINT_PRO_AND_SERVICE | MINIMUM_VOLUME | MONTHLY     | TO_PAY_IN_ADVANCE | THREE_YEARS  | New      | Email               | Web              |

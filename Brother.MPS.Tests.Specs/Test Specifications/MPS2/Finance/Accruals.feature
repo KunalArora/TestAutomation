@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE1 @HIGH
+﻿@MPS @UAT @TYPE1 @HIGH @CI_TestMaintenance
 Feature: Type1Accruals
 	In order to verify the finance of Cloud MPS service
 	As a Cloud MPS Finance

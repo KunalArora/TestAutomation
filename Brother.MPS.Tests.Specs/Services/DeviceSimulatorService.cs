@@ -137,6 +137,50 @@ namespace Brother.Tests.Specs.Services
             SetSupply(setSupplyRequest);
         }
 
+        public void SetRemainingLife(string deviceId, string tonerInkBlackRemLife, string tonerInkCyanRemLife, string tonerInkMagentaRemLife, string tonerInkYellowRemLife)
+        {
+            LoggingService.WriteLogOnMethodEntry(deviceId, tonerInkBlackRemLife, tonerInkCyanRemLife, tonerInkMagentaRemLife, tonerInkYellowRemLife);
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "TonerInk_Life_Black", value = tonerInkBlackRemLife},
+                    new SetSupplyRequestItem {name = "TonerInk_Life_Cyan", value = tonerInkCyanRemLife},
+                    new SetSupplyRequestItem {name = "TonerInk_Life_Magenta", value = tonerInkMagentaRemLife},
+                    new SetSupplyRequestItem {name = "TonerInk_Life_Yellow", value = tonerInkYellowRemLife},
+                }
+
+            };
+
+            LoggingService.WriteLog(LoggingLevel.DEBUG, "Setting remaining life for device with id {0}: blackRemLife = {1}, cyanRemLife = {2}, magentaRemLife = {3}, yellowRemLife = {4}",
+                deviceId, tonerInkBlackRemLife, tonerInkCyanRemLife, tonerInkMagentaRemLife, tonerInkYellowRemLife);
+
+            SetSupply(setSupplyRequest);
+        }
+
+        public void SetReplaceCount(string deviceId, string tonerInkBlackReplaceCount, string tonerInkCyanReplaceCount, string tonerInkMagentaReplaceCount, string tonerInkYellowReplaceCount)
+        {
+            LoggingService.WriteLogOnMethodEntry(deviceId, tonerInkBlackReplaceCount, tonerInkCyanReplaceCount, tonerInkMagentaReplaceCount, tonerInkYellowReplaceCount);
+            var setSupplyRequest = new SetSupplyRequest
+            {
+                id = deviceId,
+                items = new List<SetSupplyRequestItem>
+                {
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Black", value = tonerInkBlackReplaceCount},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Cyan", value = tonerInkCyanReplaceCount},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Magenta", value = tonerInkMagentaReplaceCount},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Yellow", value = tonerInkYellowReplaceCount}
+                }
+
+            };
+
+            LoggingService.WriteLog(LoggingLevel.DEBUG, "Setting replace count for device with id {0}: blackReplaceCount = {1}, cyanReplaceCount = {2}, magentaReplaceCount = {3}, yellowReplaceCount = {4}",
+                deviceId, tonerInkBlackReplaceCount, tonerInkCyanReplaceCount, tonerInkMagentaReplaceCount, tonerInkYellowReplaceCount);
+
+            SetSupply(setSupplyRequest);
+        }
+
         public void RaiseServiceRequest(string deviceId, string laserUnitStatus, string fuserUnitStatus, string paperFeedingKit1Status, string paperFeedingKit2Status, string paperFeedingKit3Status)
         {
             LoggingService.WriteLogOnMethodEntry(deviceId, laserUnitStatus, fuserUnitStatus, paperFeedingKit1Status, paperFeedingKit2Status, paperFeedingKit3Status);

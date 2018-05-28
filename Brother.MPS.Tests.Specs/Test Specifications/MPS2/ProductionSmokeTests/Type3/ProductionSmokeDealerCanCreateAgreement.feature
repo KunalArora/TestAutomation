@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @TYPE3 @PROD @PRODUCTIONSMOKE
+﻿@MPS @UAT @DEV @TYPE3 @PROD @PRODUCTIONSMOKE @CI_TestMaintenance
 Feature: Type3ProductionSmokeTest
 	In order to verify successful deployment to the production environment
 	As a Cloud MPS Dealer

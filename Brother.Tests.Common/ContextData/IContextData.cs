@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Common.ContextData
 {
@@ -11,6 +12,8 @@ namespace Brother.Tests.Common.ContextData
     {
         Country Country { get; set; }
         string Culture { get; set; }
+        CultureInfo CultureInfo { get; set; }
+        string Language { get; set; }
         string BaseUrl { get; set; }
         string EnvironmentName { get; set; }
         string Environment { get; set; }

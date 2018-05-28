@@ -78,6 +78,8 @@
   <ItemGroup>
     <Compile Include="ContextData\IContextData.cs" />
     <Compile Include="ContextData\MpsContextData.cs" />
+    <Compile Include="Domain\Constants\CountryIso.cs" />
+    <Compile Include="Domain\Constants\FinancialInformation.cs" />
     <Compile Include="Domain\Constants\RunCommands.cs" />
     <Compile Include="Domain\Constants\TranslationKeys.cs" />
     <Compile Include="Domain\Enums\BusinessType.cs" />
@@ -108,6 +110,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CommunicationMethod.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumableOrderMethod.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
       <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
@@ -224,6 +231,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\PdfTranslations\PdfTranslations.fr-ch.Designer.cs">
+      <DependentUpon>PdfTranslations.fr-ch.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\PdfTranslations\PdfTranslations.de-de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,7 +300,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommunicationMethod.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ConsumableOrderMethod\ConsumableOrderMethod.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConsumableOrderMethod.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.de-de.resx" />
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
@@ -306,6 +326,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LeasingBillingCycle.de-de.Designer.cs</LastGenOutput>
@@ -389,15 +411,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PaymentType\PaymentType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.de-de.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.fr-ch.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PdfTranslations.fr-ch.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
       <LastGenOutput>ProposalDeclineReason.Designer.cs</LastGenOutput>
@@ -408,6 +436,7 @@
       <LastGenOutput>PdfTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
@@ -426,6 +455,7 @@
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">
       <LastGenOutput>SwapType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">

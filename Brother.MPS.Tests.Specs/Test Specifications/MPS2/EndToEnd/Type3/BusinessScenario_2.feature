@@ -1,10 +1,10 @@
-﻿@MPS @UAT @TYPE3 @ENDTOEND @TEST
+﻿@MPS @UAT @TYPE3 @ENDTOEND @CI_TestMaintenance
 Feature: Type3BusinessScenario_2
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new agreement and complete the installation of all devices
 
-Scenario Outline: Business Scenario 2
+Scenario Outline: Type3BusinessScenario_2
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
@@ -23,10 +23,11 @@ Then I can verify that all devices are installed and responding
 When the print counts of the devices are updated
 Then I can verify the correct reflection of updated print counts
 When I manually raise a consumable order for above devices
-Then I can verify the generation of consumable orders alongwith status
+Then I can verify the generation of manual consumable orders alongwith status
 When I manually raise a service request for above devices
-Then a Cloud MPS Service Desk can verify the service request and close it
-And I can verify that service request has been closed succesfully
+Then a Cloud MPS Service Desk can verify the service request
+When a Cloud MPS Service Desk closes the service request
+Then I can verify that service request has been closed succesfully
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind
 Then I can verify the click rate billing invoice
 And I can verify the service/installation billing invoice

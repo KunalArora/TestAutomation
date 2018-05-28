@@ -103,6 +103,7 @@
             public static string MinimumClickCharge { get { return "MINIMUM_CLICK_CHARGE"; } }
             public static string PagePriceBlackWhitePrint { get {return "PAGE_PRICE_BLACK_WHITE_PRINT"; }}
             public static string PagePriceColorPrint { get { return "PAGE_PRICE_COLOR_PRINT"; } }
+            public static string MinimumVolumePerQuarter { get { return "MINIMUM_VOLUME_PER_QUARTER"; } }
         }
 
         public static class DeviceConnectionStatus
@@ -165,6 +166,12 @@
             public static string Restricted { get { return "RESTRICTED"; } }
             public static string ContractManager { get { return "CONTRACT_MANAGER"; } }
             public static string Full { get { return "FULL"; } }
+        }
+
+        public static class ConsumableOrderMethod
+        {
+            public static string Manual { get { return "MANUAL"; } }
+            public static string Automatic { get { return "AUTOMATIC"; } }
         }
     }
 }

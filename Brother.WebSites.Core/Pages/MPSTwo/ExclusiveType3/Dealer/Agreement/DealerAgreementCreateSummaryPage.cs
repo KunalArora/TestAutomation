@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Globalization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
@@ -116,13 +117,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text;
         }
 
-        public double InstallationPackTotal()
+        public double InstallationPackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(InstallationPackTotalElement.Text));
+                return double.Parse(InstallationPackTotalElement.Text, numberStyles, cultureInfo);
             }
             catch(NoSuchElementException)
             {
@@ -131,13 +132,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ServicePackTotal()
+        public double ServicePackTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(ServicePackTotalElement.Text));
+                return double.Parse(ServicePackTotalElement.Text, numberStyles, cultureInfo);
             }
             catch (NoSuchElementException)
             {
@@ -146,14 +147,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ClickRateTotal()
+        public double ClickRateTotal(NumberStyles numberStyles, CultureInfo cultureInfo)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles, cultureInfo);
             double clickRateTotal = 0;
 
             try
             {
-                clickRateTotal = double.Parse(MpsUtil.RemoveCurrencySymbol(ClickRateTotalElement.Text));
+                clickRateTotal = double.Parse(ClickRateTotalElement.Text, numberStyles, cultureInfo);
             }
             catch (Exception e)
             {

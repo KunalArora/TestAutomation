@@ -1,4 +1,4 @@
-﻿@MPS @LOGIN
+﻿@MPS @LOGIN @CI_TestMaintenance
 Feature: CloudMPSUKDealerCanLogin
 	In order to manage my proposals
 	As a dealer

@@ -83,24 +83,24 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 {
                     cp.Model = ".*";
                 }
-                cp.InstallUnitCost = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.InstallUnitCost);
-                cp.InstallMargin = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.InstallMargin);
-                cp.InstallUnitPrice = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.InstallUnitPrice);
-                cp.ServiceUnitCost = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ServiceUnitCost);
-                cp.ServiceMargin = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ServiceMargin);
-                cp.ServiceUnitPrice = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ServiceUnitPrice);
-                cp.MonoClickServiceCost = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClickServiceCost);
-                cp.MonoClickServicePrice = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClickServicePrice);
-                cp.MonoClickCoverage = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClickCoverage);
-                cp.MonoClickVolume = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClickVolume);
-                cp.MonoClickMargin = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClickMargin);
-                cp.MonoClick = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.MonoClick);
-                cp.ColourClickServiceCost = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClickServiceCost);
-                cp.ColourClickServicePrice = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClickServicePrice);
-                cp.ColourClickCoverage = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClickCoverage);
-                cp.ColourClickVolume = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClickVolume);
-                cp.ColourClickMargin = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClickMargin);
-                cp.ColourClick = _calculationService.ConvertInvariantNumericToCultureNumericString(cp.ColourClick);
+                cp.InstallUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitCost);
+                cp.InstallMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallMargin);
+                cp.InstallUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.InstallUnitPrice);
+                cp.ServiceUnitCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitCost);
+                cp.ServiceMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceMargin);
+                cp.ServiceUnitPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ServiceUnitPrice);
+                cp.MonoClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServiceCost);
+                cp.MonoClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickServicePrice);
+                cp.MonoClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickCoverage);
+                cp.MonoClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickVolume);
+                cp.MonoClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClickMargin);
+                cp.MonoClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.MonoClick);
+                cp.ColourClickServiceCost = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServiceCost);
+                cp.ColourClickServicePrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickServicePrice);
+                cp.ColourClickCoverage = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickCoverage);
+                cp.ColourClickVolume = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickVolume);
+                cp.ColourClickMargin = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClickMargin);
+                cp.ColourClick = _calculationService.ConvertInvariantNumericStringToCultureNumericString(cp.ColourClick);
             }
             if ( _contextData.PrintersProperties.Any(prop=> prop.InstallationPack == resourceInstallationPackBrotherInstallation))
             {
@@ -148,6 +148,10 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                localOfficeApproverDashBoardPage = _mpsLocalOfficeApproverProposalStepActions.SelectLanguageGivenCulture(localOfficeApproverDashBoardPage, _contextData.Culture);
+            }
             var localOfficeApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApprovalPage);
             var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage);

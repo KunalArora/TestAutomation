@@ -70,9 +70,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         }
 
         public void VerifyConsumableOrderInformation(
-            string serialNumber, string resourceConsumableOrderStatusInProgress)
+            string serialNumber, string resourceConsumableOrderStatusInProgress, string resourceConsumableOrderMethod)
         {
-            LoggingService.WriteLogOnMethodEntry(serialNumber, resourceConsumableOrderStatusInProgress);
+            LoggingService.WriteLogOnMethodEntry(serialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethod);
 
             bool foundDevice = false;
 
@@ -90,12 +90,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                     var OrderIdElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[2];
                     var SKUElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[5];
                     var OrderStatusElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[6];
+                    var OrderMethodElement = deviceRowElement.FindElements(By.TagName("td")).ToList()[7];
 
                     TestCheck.AssertIsNotEqual(
                         OrderIdElement.Text, SKUElement.Text, string.Format("Order Id and SKU have the same value for the device with serial number = {0}", serialNumber));                   
                     
                     TestCheck.AssertIsEqual(
                         OrderStatusElement.Text, resourceConsumableOrderStatusInProgress, string.Format("Status of the consumable order could not be verified for the device with serial number = {0}", serialNumber));
+
+                    TestCheck.AssertIsEqual(
+                        OrderMethodElement.Text, resourceConsumableOrderMethod, string.Format("Method of the consumable order could not be verified for the device with serial number = {0}", serialNumber));
 
                     foundDevice = true;
 

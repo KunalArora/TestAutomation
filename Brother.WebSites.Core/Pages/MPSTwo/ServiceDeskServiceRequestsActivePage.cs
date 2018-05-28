@@ -55,10 +55,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ServiceRequestFilterElement;
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement ServiceRequestsContainerElement;
-        
-        
-
-
+        [FindsBy(How = How.CssSelector, Using = "[id*=_ServiceRequestList_List_Row_]")]
+        public IList<IWebElement> List_Row;
+     
 
         public void IsServiceRequestPageDisplayed()
         {
@@ -114,7 +113,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(messageCount, MessageDetailElement.Count, "Number of messages displayed");
         }
 
-        public string VerifyAndCloseServiceRequest(string model, string serialNumber, string serviceRequestId, string serviceRequestType, string resourceServiceRequestStatusNew)
+
+        public void VerifyServiceRequest(string model, string serialNumber, string serviceRequestId, string serviceRequestType, string resourceServiceRequestStatusNew)
         {
             LoggingService.WriteLogOnMethodEntry(model, serialNumber, serviceRequestId, serviceRequestType, resourceServiceRequestStatusNew);
 
@@ -128,10 +128,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var displayedServiceRequestId = serviceRequestRowElement.GetAttribute(ServiceRequestIdAttributeSelector);
                 if (displayedServiceRequestId.Equals(serviceRequestId))
                 {
-                    try 
+                    try
                     {
                         SeleniumHelper.WaitUntil(
-                        d => 
+                        d =>
                         SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowModelSelector).Text == model &&
                         SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowSerialNumberSelector).Text == serialNumber &&
                         SeleniumHelper.FindElementByCssSelector(serviceRequestRowElement, ServiceRequestRowStatusSelector).Text == resourceServiceRequestStatusNew &&
@@ -141,6 +141,30 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     {
                         throw new Exception(string.Format("Service Request = {0} information could not be verified for device = {1} with serial number = {2}", serviceRequestId, model, serialNumber));
                     }
+                    foundDevice = true;
+                    break;
+                }
+            }
+            if (!foundDevice)
+            {
+                TestCheck.AssertFailTest("Could not find the device row for device with serial number: " + serialNumber + ". Row elements position might have changed.");
+            }
+        }
+
+        public string CloseServiceRequest(string model, string serialNumber, string serviceRequestId)
+        {
+            LoggingService.WriteLogOnMethodEntry(model, serialNumber, serviceRequestId);
+
+            bool foundDevice = false;
+            string inputMessage = MpsUtil.ServiceRequestReplyMessage();
+
+            SeleniumHelper.SetListFilter(ServiceRequestFilterElement, string.Format(model + " " + serialNumber), List_Row);
+            var serviceRequestRowElements = SeleniumHelper.FindRowElementsWithinTable(ServiceRequestsContainerElement);
+            foreach (var serviceRequestRowElement in serviceRequestRowElements)
+            {
+                var displayedServiceRequestId = serviceRequestRowElement.GetAttribute(ServiceRequestIdAttributeSelector);
+                if (displayedServiceRequestId.Equals(serviceRequestId))
+                {
 
                     SeleniumHelper.ClickSafety(serviceRequestRowElement);
 
