@@ -122,6 +122,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 device.ServiceRequestReplyMessage = serviceDeskServiceRequestsActivePage.CloseServiceRequest(device.Model, device.SerialNumber, device.ServiceRequestId);
+                device.ClosedServiceRequest = device.ClosedServiceRequest + 1;
                 serviceDeskServiceRequestsActivePage = Refresh(serviceDeskServiceRequestsActivePage);
             }
         }

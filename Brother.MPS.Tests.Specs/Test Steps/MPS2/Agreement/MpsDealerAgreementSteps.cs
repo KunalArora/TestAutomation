@@ -331,19 +331,12 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsDealerAgreement.VerifyDeviceDetailsOnDashboard(_dealerAgreementDevicesPage);
         }
 
-        [Then(@"I can verify the device details and graphui details")]
-        public void ThenICanVerifyTheDeviceDetailsAndGraphuiDetails()
+        [Then(@"I can verify the detailed device information on device dashboard page")]
+        public void ThenICanVerifyTheDetailedDeviceInformationOnDeviceDashboardPage()
         {
             _mpsDealerAgreement.VerifyDeviceAndGraphDetails(_dealerAgreementDevicesPage);
         }
-
-
-        [Then(@"I can verify the Print Summary and Consumables on device dashboard page")]
-        public void ThenICanVerifyThePrintSummaryAndConsumablesOnDeviceDashboardPage()
-        {
-            _mpsDealerAgreement.VerifyPrintSummaryAndConsumablesOnDashboard(_dealerAgreementDevicesPage);
-        }
-
+        
         [Then(@"I can verify the click rate billing invoice")]
         public void ThenICanVerifyTheClickRateBillingInvoice()
         {

@@ -111,12 +111,13 @@ namespace Brother.Tests.Specs.StepActions.Common
                         device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
                         device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
                         device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
+                        device.UpdateConsumableOrderCount();
                         
                         //Update the consumable order, remaining life and replace count as per specifications
                         _deviceSimulatorService.RaiseConsumableOrder(
                             device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
                         _deviceSimulatorService.SetRemainingLife(
-                            device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
+                            device.BocDeviceId, device.TonerInkBlackRemLife.ToString(), device.TonerInkCyanRemLife.ToString(), device.TonerInkMagentaRemLife.ToString(), device.TonerInkYellowRemLife.ToString());
                         _deviceSimulatorService.SetReplaceCount(
                             device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
                         _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
@@ -139,6 +140,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
 
+            _contextData.AgreementShiftDays = agreementShiftDays;
             _contextData.AgreementStartDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementStartDate, agreementShiftDays);
             _contextData.AgreementEndDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementEndDate, agreementShiftDays);
 
