@@ -1,6 +1,7 @@
-﻿using Brother.Tests.Selenium.Lib.Helpers;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -62,6 +63,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry(contractRejectReason);
             SeleniumHelper.ClickSafety(RejectButtonElement);
             var inputReasonElement = SeleniumHelper.FindElementByCssSelector(InputRejectionReasonSelector);
+
+            var optionElements = inputReasonElement.FindElements(By.TagName("option"));
+            var countOfPleaseSelect = optionElements.Where( el => el.GetAttribute("value") == "Please Select").Count();
+            TestCheck.AssertIsEqual(1, countOfPleaseSelect, "found duplicate of 'Please Select'");
+
             SeleniumHelper.SelectFromDropdownByText(inputReasonElement, contractRejectReason);
             SeleniumHelper.ClickSafety(FinalRejectButtonElement, IsUntilUrlChanges: true);
         }
