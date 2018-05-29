@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Net;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using System.Text;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -35,14 +36,22 @@ namespace Brother.Tests.Specs.Services
             _baseUrlWithAutomation = string.Format("{0}/sitecore/admin/integration/mps2/automation/{{0}}", _urlResolver.CmsUrl);
         }
 
-        private void ExecuteWebTool(string url, string authToken = null)
+        private string ExecuteWebTool(string url, string authToken = null)
         {
             _loggingService.WriteLogOnMethodEntry(url, authToken);
 
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
             var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
 
+//            byte[] plain = Encoding.Default.GetBytes(response.ResponseBody);
+//            byte[] plain = Convert.FromBase64String(response.ResponseBody);
+//            Encoding iso = Encoding.GetEncoding("ISO-8859-6");
+//            var newData = iso.GetString(plain);
+//            var data = response.ResponseBody;
+//            var i = data.TrimStart('\0');
+
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+            return response.ResponseBody;
         }
 
         private WebPageResponse GetWebToolResponse(string url, string authToken = null)
@@ -118,6 +127,14 @@ namespace Brother.Tests.Specs.Services
             string url = string.Format(_baseUrlWithoutMps2, actionPath);
 
             ExecuteWebTool(url);
+        }
+
+        public string DownloadSilentDeviceReport()
+        {
+            string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", "MPS-BUK-TEST-Dealer5-Auto@brother.co.uk", _contextData.Country.CountryIso);
+            string url = string.Format(_baseUrl, actionPath);
+
+            return ExecuteWebTool(url);
         }
 
         public SwapRequestDetail GetSwapRequestDetail(int installedPrinterId)

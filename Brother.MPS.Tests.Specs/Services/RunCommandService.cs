@@ -265,5 +265,14 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteRunCommand(commandUrl);
         }
+
+        public void RunSendSilentDevicesReportsCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = RunCommands.MpsSendSilentDevicesReportsCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
     }
 }

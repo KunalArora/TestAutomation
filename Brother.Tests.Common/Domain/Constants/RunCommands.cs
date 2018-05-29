@@ -14,5 +14,6 @@ namespace Brother.Tests.Common.Domain.Constants
         public const string MpsContractClosingMonitorCommand = "MPS:NEW:ContractClosingMonitorCommand";
         public const string MpsSystemJobSendSwapRequestCommand = "MPS:SystemJobSendSwapRequestCommand";
         public const string MpsSystemJobCreateDealershipAndDealerCommand = "MPS:SystemJobCreateDealershipAndDealerCommand";
+        public const string MpsSendSilentDevicesReportsCommand = "MPS:SendSilentDevicesReportsCommand";
     }
 }

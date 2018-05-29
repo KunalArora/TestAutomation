@@ -40,6 +40,7 @@ When the agreement start date gets shifted "<AgreementShiftDays>" days behind wi
 Then I can verify the device status being silent
 And I can verify the detailed device information on device dashboard page
 And I can verify the print details, consumable and silent tab information
+And I can verify the silent device report
 
 
 

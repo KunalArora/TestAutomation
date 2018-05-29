@@ -12,6 +12,7 @@ namespace Brother.Tests.Specs.Services
         void RemoveConsumableOrderByInstalledPrinter(string serialNumber);
         void SetConsumableOrderStatus(int orderId, int statusId);
         void RegisterCustomer(string idIsMailAddress, string password = "password", string firstName = "John", string lastName = "Doe", string maxmind = CountryIso.UnitedKingdom, string culture = "en-GB");
+        string DownloadSilentDeviceReport();
         SwapRequestDetail GetSwapRequestDetail(int installedPrinterId);
         void DeleteDealership(string dealershipEmail);
         void RemoveProductionSmokeTests();

@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.Services
         void RunCreateConsumableOrderCommand();
         void RunContractClosingMonitorCommand();
         void RunCreateDealershipAndDealerCommand();
+        void RunSendSilentDevicesReportsCommand();
 
         #region Exclusively Type 3 
 

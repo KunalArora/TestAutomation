@@ -223,6 +223,8 @@ testRunner.Then("I can verify the device status being silent", ((string)(null)),
 testRunner.And("I can verify the detailed device information on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
 testRunner.And("I can verify the print details, consumable and silent tab information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+testRunner.And("I can verify the silent device report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

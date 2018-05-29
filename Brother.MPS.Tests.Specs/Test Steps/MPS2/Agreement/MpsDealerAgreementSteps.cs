@@ -398,5 +398,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusSilent);
         }
 
+        [Then(@"I can verify the silent device report")]
+        public void ThenICanVerifyTheSilentDeviceReport()
+        {
+            _mpsDealerAgreement.RunSendSilentDevicesReportsCommand();
+            _mpsDealerAgreement.DownloadSilentDeviceReport();
+        }
     }
 }

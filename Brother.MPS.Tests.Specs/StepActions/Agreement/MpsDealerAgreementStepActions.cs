@@ -47,6 +47,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IDeviceSimulatorService _deviceSimulatorService;
         private readonly MpsApiCallStepActions _mpsApiStepActions;
         private readonly IContractShiftService _contractShiftService;
+        private readonly IMpsWebToolsService _mpsWebToolsService;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -69,7 +70,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IDeviceSimulatorService deviceSimulatorService,
             IContractShiftService contractShiftService,
             ICPPAgreementExcelHelper cppAgreementHelper,
-            MpsApiCallStepActions mpsApiStepActions)
+            MpsApiCallStepActions mpsApiStepActions,
+            IMpsWebToolsService mpsWebToolsService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -89,6 +91,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _deviceSimulatorService = deviceSimulatorService;
             _mpsApiStepActions = mpsApiStepActions;
             _contractShiftService = contractShiftService;
+            _mpsWebToolsService = mpsWebToolsService;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -1424,6 +1427,25 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             VerifyStatusOfDevices(dealerAgreementDevicesPage, resourceDeviceConnectionStatusSilent);
 
             return dealerAgreementDevicesPage;
+        }
+
+        public void RunSendSilentDevicesReportsCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _runCommandService.RunSendSilentDevicesReportsCommand();
+        }
+
+        public void DownloadSilentDeviceReport()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            string silentDeviceCsvData = _mpsWebToolsService.DownloadSilentDeviceReport();
+            
+            foreach(var device in _contextData.AdditionalDeviceProperties)
+            {
+                TestCheck.AssertTextContains(device.SerialNumber, silentDeviceCsvData, "");
+            }
         }
 
         #region private methods
