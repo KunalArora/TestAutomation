@@ -101,6 +101,7 @@
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="Factories\IWebDriverFactory.cs" />
     <Compile Include="Factories\WebDriverFactory.cs" />
+    <Compile Include="Factories\WebDriverOptions.cs" />
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\AccrualsDetailExcelHelper.cs" />

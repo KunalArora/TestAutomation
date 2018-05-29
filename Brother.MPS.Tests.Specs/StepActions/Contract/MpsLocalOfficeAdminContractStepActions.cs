@@ -131,7 +131,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IWebElement startDateElement=null;
             var pdfName = _pdfHelper.Download(ph =>
             {
-                var endDate = MpsUtil.DateTimeString(DateTime.Today.AddDays(-1));
+                var endDate = MpsUtil.DateTimeString(DateTime.Today.AddDays(-1), _contextData.Country.CountryIso);
                 var trlist = _webDriver
                     .FindElement(By.CssSelector("table.table-striped.mps-billing-dates-container"))
                     .FindElement(By.TagName("tbody"))
@@ -160,7 +160,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 throw new Exception("pdf download target view bill button not found.");
             });
             Assert.NotNull(startDateElement.Text);
-            startDateString = MpsUtil.StringToDateTimeFormat(startDateElement.Text);
+            startDateString = MpsUtil.StringToDateTimeFormat(startDateElement.Text, _contextData.Country.CountryIso);
             return pdfName;
         }
 

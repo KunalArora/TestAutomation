@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
@@ -23,6 +24,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
+        private readonly IContextData _contextData;
 
         public MpsLocalOfficeAdminAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -61,6 +63,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _urlResolver = urlResolver;
             _userResolver = userResolver;
             _cppAgreementHelper = cppAgreementHelper;
+            _contextData = contextData;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
@@ -138,6 +141,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             // Delete excel
             _cppAgreementHelper.DeleteExcelFile(excelFilePath);            
+        }
+
+        public LocalOfficeAdminDashBoardPage SelectLanguageGivenCulture(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
+
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _contextData.Language = localOfficeAdminDashboardPage.ClickLanguageLink();
+                localOfficeAdminDashboardPage = PageService.GetPageObject<LocalOfficeAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            }
+
+            return localOfficeAdminDashboardPage; 
         }
     }
 }

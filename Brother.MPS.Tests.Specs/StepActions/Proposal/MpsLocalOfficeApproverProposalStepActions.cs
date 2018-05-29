@@ -161,7 +161,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Model: DCP-8250DN Click Price - Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
             // Model: DCP-L8450CDW Click Price - Colour: Coverage: 40,00% / Volume: 300 / Margin: 50,00% / Click Price: 0,10700 € Mono: Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
             var logList = localOfficeApproverReportsProposalSummaryPage.GetAuditLogDetailsList();
-            var currencySymbol = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            var currencySymbol = ContextData.CultureInfo.NumberFormat.CurrencySymbol;
             var checkedServiceModelList = new List<string>();
             var checkedClickPriceModelList = new List<string>();
             foreach (var logItem in logList)
@@ -186,8 +186,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     var logAppend = "model = " + actualModel + ", actual = " + logValue;
 
                     Assert.True(logValue.Contains(currencySymbol), "Service currencySymbol not found " + logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost) 
-                        || actualValue.Contains("Unit Cost: "+specialPrice.ServiceUnitCost), 
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost)
+                        || Regex.Replace(actualValue, @"\s+", "").Contains("UnitCost:" + specialPrice.ServiceUnitCost), 
                         "Service/Unit Cost "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceMargin) 
                         || actualValue.Contains("Margin: "+specialPrice.ServiceMargin), 
@@ -326,11 +326,17 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
-        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage, string culture)
+        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage, culture);
-            localOfficeApproverDashBoardPage.ClickLanguageLink(culture);
-            return PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                localOfficeApproverDashBoardPage.ClickLanguageLink();
+                localOfficeApproverDashBoardPage = PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            }
+
+            return localOfficeApproverDashBoardPage;
         }
     }
 }

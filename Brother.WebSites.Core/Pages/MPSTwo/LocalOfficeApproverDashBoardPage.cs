@@ -126,10 +126,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
          }
 
-        public void ClickLanguageLink(string culture)
+        public void ClickLanguageLink()
         {
-            LoggingService.WriteLogOnMethodEntry(culture);
-            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/local-office/dashboard?sc_lang={0}']", culture));
+            LoggingService.WriteLogOnMethodEntry();
+            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/local-office/dashboard?sc_lang={0}']", CultureInfo.Name));
             SeleniumHelper.ClickSafety(languageLinkElement);
         }
 

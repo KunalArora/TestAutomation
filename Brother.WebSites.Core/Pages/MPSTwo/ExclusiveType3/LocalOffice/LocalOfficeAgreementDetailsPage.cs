@@ -36,11 +36,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string PrinterContainerPrefixSelector = ".mps-qa-printer-";
         
 
-        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType, CultureInfo cultureInfo)
+        public void VerifySpecialPricing(IEnumerable<PrinterProperties> printers, string servicePackType)
         {
-            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, cultureInfo);
+            LoggingService.WriteLogOnMethodEntry(printers, servicePackType);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
-            string culture = cultureInfo.Name;
+            string culture = CultureInfo.Name;
 
             ExpectedTranslationService _expectedTranslationService = new ExpectedTranslationService();
 
@@ -48,35 +49,35 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             {
                 var printerContainer = SeleniumHelper.FindElementByCssSelector(PrinterContainerPrefixSelector + printer.Model);
 
-                var displayedMonoClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text, cultureInfo);
+                var displayedMonoClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoClickRateSelector).Text, CultureInfo);
                 TestCheck.AssertIsEqualValueInvariant(printer.MonoClickPrice, displayedMonoClickPrice, string.Format(
                     "Mono Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
-                var displayedMonoVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector).Text, cultureInfo);
+                var displayedMonoVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, MonoVolumeSelector).Text, CultureInfo);
                 TestCheck.AssertIsEqualValueInvariant(printer.VolumeMono.ToString(), displayedMonoVolume, string.Format(
                     "Mono Volume for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
                 if(!printer.IsMonochrome)
                 {
-                    var displayedColourClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text, cultureInfo);
+                    var displayedColourClickPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text, CultureInfo);
                     TestCheck.AssertIsEqualValueInvariant(printer.ColourClickPrice, displayedColourClickPrice, string.Format(
                         "Colour Click Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
 
-                    var displayedColourVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourVolumeSelector).Text, cultureInfo);
+                    var displayedColourVolume = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ColourVolumeSelector).Text, CultureInfo);
                     TestCheck.AssertIsEqualValueInvariant(printer.VolumeColour.ToString(), displayedColourVolume, string.Format(
                         "Colour Volume for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
 
                 if (printer.InstallationPack.ToLower().Equals("yes"))
                 {
-                    var displayedInvariantInstallationPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text, cultureInfo);
+                    var displayedInvariantInstallationPrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, InstallationPackPriceSelector).Text, CultureInfo);
                     TestCheck.AssertIsEqualValueInvariant(printer.InstallationPackPrice, displayedInvariantInstallationPrice, string.Format(
                         "Installation Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }
 
                 if (printer.ServicePack.ToLower().Equals("yes") && servicePackType.Equals(_expectedTranslationService.GetServicePackTypeText(TranslationKeys.ServicePackType.PayUpfront, culture)))
                 {
-                    var displayedServicePrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text, cultureInfo);
+                    var displayedServicePrice = PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(SeleniumHelper.FindElementByCssSelector(printerContainer, ServicePackPriceSelector).Text, CultureInfo);
                     TestCheck.AssertIsEqualValueInvariant(printer.ServicePackPrice, displayedServicePrice, string.Format(
                         "Service Pack Price for printer {0} could not be verified after Special Pricing was applied", printer.Model));
                 }

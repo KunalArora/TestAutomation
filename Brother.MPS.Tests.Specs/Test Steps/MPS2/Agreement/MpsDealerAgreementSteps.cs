@@ -83,7 +83,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
-            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            _mpsDealerAgreement.SetCultureInfoAndRegionInfo();
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
@@ -270,7 +270,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [Then(@"I can verify that all devices are installed and responding")]
         public void ThenICanVerifyThatAllDevicesAreInstalledAndResponding()
         {
-            _contextData.AgreementStartDate = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementStartDate = MpsUtil.DateTimeString(DateTime.Now, _contextData.Country.CountryIso);
             _contextData.AgreementEndDate = MpsUtil.ContractEndDate(_contextData.AgreementStartDate, Int32.Parse(_contextData.ContractTerm[0].ToString()));
 
             string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(

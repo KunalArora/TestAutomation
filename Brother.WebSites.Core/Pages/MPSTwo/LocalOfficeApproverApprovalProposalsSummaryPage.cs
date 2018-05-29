@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
-            SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout, true);
+            SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout + 10, true); // Add 10 sec extra to timeout as approval processing takes time
         }
 
         public void DeclineProposal(string proposalDeclineReasonExpired)

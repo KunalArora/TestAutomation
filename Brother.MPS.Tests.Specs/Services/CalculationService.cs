@@ -123,7 +123,7 @@ namespace Brother.Tests.Specs.Services
             // TODO: Check correct position of currency symbols for all countries
             // Check for UK only for now
 
-            string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+            string currencySymbol = ContextData.CultureInfo.NumberFormat.CurrencySymbol;
 
             if (values.Any(v => v[0].ToString() != currencySymbol))
             {
@@ -136,8 +136,8 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry(minimumVolume, startDate, endDate);
          
             // Logic to calculate pro rata used in Type 3
-            DateTime sd = MpsUtil.StringToDateTimeFormat(startDate);
-            DateTime ed = MpsUtil.StringToDateTimeFormat(endDate).AddDays(1);
+            DateTime sd = MpsUtil.StringToDateTimeFormat(startDate, ContextData.Country.CountryIso);
+            DateTime ed = MpsUtil.StringToDateTimeFormat(endDate, ContextData.Country.CountryIso).AddDays(1);
             int monthsDifference = GetMonthsBetween(sd, ed);
             DateTime tempD = ed.AddMonths(-monthsDifference); // Go back "X" months from (end date + 1)
             var surplusDays = (tempD - sd).TotalDays;
@@ -175,8 +175,8 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry(minimumVolume, startPeriodDate, endDeviceDate);
 
             // Logic to calculate pro rata for swapped out device used in Type 3
-            DateTime sd = MpsUtil.StringToDateTimeFormat(startPeriodDate);
-            DateTime ed = MpsUtil.StringToDateTimeFormat(endDeviceDate);
+            DateTime sd = MpsUtil.StringToDateTimeFormat(startPeriodDate, ContextData.Country.CountryIso);
+            DateTime ed = MpsUtil.StringToDateTimeFormat(endDeviceDate, ContextData.Country.CountryIso);
             var surplusDays = (ed - sd).TotalDays + 1;   
             return RoundOffUptoDecimalPlaces((minimumVolume * surplusDays / 30), 0).ToString();
         }

@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
@@ -51,8 +52,9 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 
         public DevicesExcelHelper(
             IRuntimeSettings runtimeSettings,
-            ILoggingService loggingService
-            ): base(loggingService, runtimeSettings)
+            ILoggingService loggingService,
+            IContextData contextData
+            ): base(loggingService, runtimeSettings, contextData)
         {
             LoggingService = loggingService;
         }

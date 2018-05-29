@@ -118,7 +118,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                     {
                         var specialPrice = specialPriceList.First(l => Regex.IsMatch(displayedModelName, l.Model));
                         var unitPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "unit-price", "true");
-                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"), specialPrice.InstallUnitPrice, Culture) ;
+                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"), specialPrice.InstallUnitPrice, CultureInfo.Name);
                         ClearAndType(unitPrice, newUnitPrice);
                         printer.InstallationPackPrice = newUnitPrice; // Save to context data for later verification
                         printer._IsApplySpecialPriceInstall = true;
@@ -148,7 +148,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                     {
                         var specialPrice = specialPriceList.First(l => Regex.IsMatch(displayedModelName, l.Model));
                         var unitPrice = SeleniumHelper.FindElementByDataAttributeValue(rowElement, "unit-price", "true");
-                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"),specialPrice.ServiceUnitPrice,Culture) ;
+                        var newUnitPrice = specialPrice.AdjustValue(unitPrice.GetAttribute("value"), specialPrice.ServiceUnitPrice, CultureInfo.Name);
                         ClearAndType(unitPrice, newUnitPrice);
                         printer.ServicePackPrice = newUnitPrice; // Save to context data for later verification
                         printer._IsApplySpecialPriceService = true;
@@ -161,11 +161,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                 SeleniumHelper.FindElementByCssSelector(NextButtonSelector));
         }
 
-        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice, CultureInfo cultureInfo)
+        public void EditClickPricesAndProceed(IEnumerable<PrinterProperties> printers, string servicePackType, IEnumerable<SpecialPricingProperties> specialPriceList, bool isCheckAutoCalculateClickPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, specialPriceList, isCheckAutoCalculateClickPrice, cultureInfo);
+            LoggingService.WriteLogOnMethodEntry(printers, servicePackType, specialPriceList, isCheckAutoCalculateClickPrice);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
-            string culture = cultureInfo.Name;
+            string culture = CultureInfo.Name;
 
             var clickTabElement = SeleniumHelper.FindElementByCssSelector(ClickTabSelector);
 
@@ -220,7 +221,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
                         var oldMonoClickPrice = SeleniumHelper.FindElementByCssSelector(rowElement, ".m-1-10");
                         if( isCheckAutoCalculateClickPrice)
                         {
-                            SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(oldMonoClickPrice.Text, cultureInfo)));
+                            SeleniumHelper.WaitUntil(d => (monoClickPrice.GetAttribute("value") != PageObjectExtensions.ConvertCultureNumericStringToInvariantNumericString(oldMonoClickPrice.Text, CultureInfo)));
                         }
 
                         // Save to context data for later verification (mono)

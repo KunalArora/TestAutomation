@@ -13,6 +13,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
     public static class MpsUtil
     {
         private const string DATESTRING_BUK = "dd/MM/yyyy";
+        private const string DATESTRING_BIG = "dd/MM/yyyy";
+        private const string DATESTRING_BSW = "dd.MM.yyyy";
         
 
         /// <summary>
@@ -66,9 +68,20 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return createdProposal;
         }
 
-        public static string DateTimeString(DateTime dateTime)
+        public static string DateTimeString(DateTime dateTime, string countryIso)
         {
-            return dateTime.ToString(DATESTRING_BUK);
+            switch(countryIso)
+            {
+                case CountryIso.UnitedKingdom:
+                    return dateTime.ToString(DATESTRING_BUK);
+                case CountryIso.Germany:
+                    return dateTime.ToString(DATESTRING_BIG);
+                case CountryIso.Switzerland:
+                    return dateTime.ToString(DATESTRING_BSW);
+                default:
+                    throw new Exception("Date time string of the country with this countryISO cannot be formulated: " + countryIso);
+            }
+            
         }
 
         public static string SubdealerEmail()
@@ -95,27 +108,33 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return CreatedProposal() + " (1)";
         }
 
-        public static string SomeDaysFromToday()
+        public static string SomeDaysFromToday(string countryIso = CountryIso.UnitedKingdom)
         {
             var todayDate = DateTime.Now;
             var someDaysIntheFuture = todayDate.AddDays(30);
 
-            return someDaysIntheFuture.ToString(DATESTRING_BUK);
-
+            return DateTimeString(someDaysIntheFuture, countryIso);
         }
 
-        public static string DateOfBirth()
+        public static string DateOfBirth(string countryIso)
         {
             var todayDate = DateTime.Now;
             var someDaysInthePast = todayDate.AddDays(-9000);
 
-            return someDaysInthePast.ToString(DATESTRING_BUK);
-
+            return DateTimeString(someDaysInthePast, countryIso);
         }
 
-        public static DateTime StringToDateTimeFormat(string date)
+        public static DateTime StringToDateTimeFormat(string date, string countryIso)
         {
-            return DateTime.ParseExact(date, DATESTRING_BUK, null);
+            switch (countryIso)
+            {
+                case CountryIso.UnitedKingdom:
+                    return DateTime.ParseExact(date, DATESTRING_BUK, null);
+                case CountryIso.Switzerland:
+                    return DateTime.ParseExact(date, DATESTRING_BSW, null);
+                default:
+                    throw new Exception("Date time format for the country with this countryISO cannot be formulated: " + countryIso);
+            }
         }
 
         public static string CustomerReference()
@@ -1169,6 +1188,11 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
+        /// <summary>
+        /// Use this function only when CultureInfo.NumberFormat.CurrencySymbol are different depending on Windows OS
+        /// </summary>
+        /// <param name="countryIso"></param>
+        /// <returns></returns>
         public static string GetCurrencySymbol(string countryIso)
         {
             string currencySymbol;

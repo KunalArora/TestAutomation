@@ -270,12 +270,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var numberStyles = NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
             var cultureInfo = _contextData.CultureInfo == null ? new CultureInfo(_contextData.Culture) : _contextData.CultureInfo;
             _contextData.AgreementId = dealerAgreementCreateSummaryPage.AgreementId();
-            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now);
+            _contextData.AgreementDateCreated = MpsUtil.DateTimeString(DateTime.Now, _contextData.Country.CountryIso);
 
             // Save these details for later verification
-            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles, cultureInfo);
-            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal(numberStyles, cultureInfo);
-            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal(numberStyles, cultureInfo);
+            _contextData.ClickRateTotal = dealerAgreementCreateSummaryPage.ClickRateTotal(numberStyles);
+            _contextData.InstallationPackTotal = dealerAgreementCreateSummaryPage.InstallationPackTotal(numberStyles);
+            _contextData.ServicePackTotal = dealerAgreementCreateSummaryPage.ServicePackTotal(numberStyles);
 
             // Validate calculations/content on summary page
             ValidateCalculationOnSummaryPage(dealerAgreementCreateSummaryPage);
@@ -1288,6 +1288,28 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             
             // Delete excel
             _cppAgreementHelper.DeleteExcelFile(excelFilePath);
+        }
+
+        public void SetCultureInfoAndRegionInfo()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
+
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+                    break;
+                default:
+                    break;
+            }
         }
 
         #region private methods

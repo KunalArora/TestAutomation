@@ -17,11 +17,19 @@ namespace Brother.Tests.Specs.Factories
         private IContextData _contextData;
 
 
-        private static ChromeOptions CreateDefaultChromeOptions()
+        private ChromeOptions CreateDefaultChromeOptions(WebDriverOptions webDriverOptions)
         {
+            const string languageArgName = "--lang";
+            const string defaultDownloadDirectoryKey = "download.default_directory";
+
             var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--lang=en-GB"); // for date stamp
-            chromeOptions.AddUserProfilePreference("download.default_directory", TestController.DownloadPath);
+
+            if (webDriverOptions == null) { webDriverOptions = new WebDriverOptions();}
+
+            chromeOptions.AddArgument(string.Format("{0}={1}", languageArgName, string.IsNullOrWhiteSpace(webDriverOptions.Culture) ? _contextData.Culture : webDriverOptions.Culture)); //Note: _contextData.Culture is set to be en-GB in the InjectionSetup before the start of scenario
+
+            chromeOptions.AddUserProfilePreference(defaultDownloadDirectoryKey, webDriverOptions.DownloadFolder);
+
             return chromeOptions;
         }
 
@@ -33,8 +41,8 @@ namespace Brother.Tests.Specs.Factories
             _chromeDriverService.Start();
             _contextData = contextData;
         }
-        //TODO: allow driver and options to be specified
-        public IWebDriver GetWebDriverInstance(UserType userType, ChromeOptions chromeOptions = null)
+        
+        public IWebDriver GetWebDriverInstance(UserType userType, WebDriverOptions webDriverOptions = null)
         {
             var key = WebDriverKey(userType);
 
@@ -42,9 +50,8 @@ namespace Brother.Tests.Specs.Factories
             {
                 return _context.Get<IWebDriver>(key);
             }
-            if (chromeOptions == null) {
-                chromeOptions = CreateDefaultChromeOptions();
-            }
+            
+            var chromeOptions = CreateDefaultChromeOptions(webDriverOptions);
 
             chromeOptions.SetLoggingPreference("browser", LogLevel.All);
 

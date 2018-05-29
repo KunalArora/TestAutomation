@@ -132,6 +132,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            localOfficeApproverDashBoardPage = _mpsLocalOfficeApproverProposalStepActions.SelectLanguageGivenCulture(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApprovalPage);
             var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage);
@@ -148,10 +149,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
 
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
-            {
-                localOfficeApproverDashBoardPage = _mpsLocalOfficeApproverProposalStepActions.SelectLanguageGivenCulture(localOfficeApproverDashBoardPage, _contextData.Culture);
-            }
+            localOfficeApproverDashBoardPage = _mpsLocalOfficeApproverProposalStepActions.SelectLanguageGivenCulture(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalDashboard(localOfficeApproverDashBoardPage);
             var localOfficeApproverApprovalProposalsPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToApprovalListPage(localOfficeApproverApprovalPage);
             var localOfficeApproverApprovalProposalsSummaryPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToViewSummary(localOfficeApproverApprovalProposalsPage);

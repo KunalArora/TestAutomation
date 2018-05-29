@@ -24,6 +24,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IContractShiftService _contractShiftService;
         private readonly ITranslationService _translationService;
         private readonly IPageParseHelper _pageParseHelper;
+        private readonly IContextData _contextData;
 
         public MpsBankProposalStepActions(
             IPageParseHelper pageParseHelper,
@@ -42,6 +43,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contractShiftService = contractShiftService;
             _translationService = translationService;
             _pageParseHelper = pageParseHelper;
+            _contextData = contextData;
         }
 
         public BankProposalsAwaitingApprovalPage NavigateToProposalsAwaitingApprovalPage(BankDashBoardPage bankDashBoardPage)
