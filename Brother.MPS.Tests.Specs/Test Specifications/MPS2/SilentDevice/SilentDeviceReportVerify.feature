@@ -39,6 +39,7 @@ Then I can verify the generation of automatic consumable orders alongwith status
 When the agreement start date gets shifted "<AgreementShiftDays>" days behind without generating invoice
 Then I can verify the device status being silent
 And I can verify the detailed device information on device dashboard page
+And I can verify the print details, consumable and silent tab information
 
 
 

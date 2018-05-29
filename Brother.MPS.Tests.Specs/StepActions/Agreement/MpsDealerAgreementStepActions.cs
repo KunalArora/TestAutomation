@@ -1040,8 +1040,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerDeviceOverviewPage.VerifyConsumableYellow(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
                 }
 
-
-
                 //Verify the service request details
                 var serviceRequestTextContent = dealerDeviceOverviewPage.ServiceRequestGraphDataElement.GetAttribute("textContent");
                 var serviceRequestJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(serviceRequestTextContent);
@@ -1052,6 +1050,52 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 var silentJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(silentTextContent);
                 dealerDeviceOverviewPage.VerifySilentDetails(device, silentJson, _contextData.AgreementShiftDays);
 
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+        }
+
+        public void VerifyInformationOtherThanOverviewOnDeviceDetails(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                dealerAgreementDevicesPage.ClickShowDeviceDetails(device.MpsDeviceId);
+                var dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                //Verify print detail page
+                dealerDeviceOverviewPage.SeleniumHelper.ClickSafety(dealerDeviceOverviewPage.PrintDetailTabElement);
+                var dealerDevicePrintDetailPage = PageService.GetPageObject<DealerDevicePrintDetailPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerDevicePrintDetailPage.VerifyChartDisplayed();
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                //Verify consumable orders page
+                dealerDeviceOverviewPage.SeleniumHelper.ClickSafety(dealerDeviceOverviewPage.ConsumableOrdersTabElement);
+                var dealerDeviceConsumableOrdersPage = PageService.GetPageObject<DealerDeviceConsumableOrdersPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                var resourceConsumableOrderMethodManual = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Manual, _contextData.Culture);
+                var resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
+                dealerDeviceConsumableOrdersPage.VerifyManualConsumableOrder(device, resourceConsumableOrderMethodManual, _contextData.AgreementStartDate);
+                dealerDeviceConsumableOrdersPage.VerifyAutomaticConsumableOrder(device, resourceConsumableOrderMethodAutomatic, _contextData.AgreementStartDate);
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                //Verify Service request page
+                dealerDeviceOverviewPage.SeleniumHelper.ClickSafety(dealerDeviceOverviewPage.ServiceRequestsTabElement);
+                var dealerDeviceServiceRequestsPage = PageService.GetPageObject<DealerDeviceServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerDeviceServiceRequestsPage.VerifyServiceRequets(device);
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                //Verify Silent page
+                dealerDeviceOverviewPage.SeleniumHelper.ClickSafety(dealerDeviceOverviewPage.SilentTabElement);
+                var dealerDeviceSilentPage = PageService.GetPageObject<DealerDeviceSilentPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerDeviceSilentPage.VerifySilentInfo(_contextData.AgreementStartDate, _contextData.AgreementShiftDays);
+                ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
+                dealerDeviceOverviewPage = PageService.GetPageObject<DealerDeviceOverviewPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                //Go back to agreement devices page
                 ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }

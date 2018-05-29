@@ -75,6 +75,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
         [FindsBy(How = How.CssSelector, Using = "#silentGraphData")]
         public IWebElement SilentGraphDataElement;
 
+
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/print-detail']")] // ex. /mps/dealer/agreement/173259/print-detail
+        public IWebElement PrintDetailTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumable-orders']")]
+        public IWebElement ConsumableOrdersTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent']")]
+        public IWebElement SilentTabElement;
         
         public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType)
         {
