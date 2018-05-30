@@ -22,8 +22,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 
@@ -232,7 +232,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var actualProps = _cppAgreementDevicesExcelHelper.Parse(excelFilePath);
-            var expectSummaryPageValues = _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)];
 
             _cppAgreementDevicesExcelHelper.AssertAreEqualProperties(
                 _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)],
