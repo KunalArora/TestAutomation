@@ -1017,6 +1017,33 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
         }
 
+        public DealerReportsDashboardPage NavigateToDealerReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.SeleniumHelper.ClickSafety(dealerDashboardPage.DealerReportLinkElement);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsDataQueryPage NavigateToDataqueryPage(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            dealerReportsDashboardPage.SeleniumHelper.ClickSafety(dealerReportsDashboardPage.DataQueryElement);
+            return PageService.GetPageObject<DealerReportsDataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsProposalsSummaryPage NavigateToProposalsSummaryPage(DealerReportsDataQueryPage dealerReportsDataqueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDataqueryPage);
+            dealerReportsDataqueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyProposalName(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+            dealerReportsProposalsSummaryPage.VerifyProposalName(_contextData.ProposalName);
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
@@ -1134,5 +1161,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
         }
         #endregion
+
     }
  }
