@@ -10,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 
+
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
     public class InstallationCloudToolPage: BasePage, IPageObject
@@ -345,7 +346,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
         {
             LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
-            var element = deviceRowElements.First(e => e.GetAttribute("data-id").Equals(mpsDeviceId));
+            var element = deviceRowElements.FirstOrDefault(e => e.GetAttribute("data-id").Equals(mpsDeviceId));
+            TestCheck.AssertIsNotNull(element, string.Format("Device with device id = {0} could not be found", mpsDeviceId));
             TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(element, SelectSerialLinkSelector), true, "Select serial link not displayed for device with device id = " + mpsDeviceId);
         }
     }
