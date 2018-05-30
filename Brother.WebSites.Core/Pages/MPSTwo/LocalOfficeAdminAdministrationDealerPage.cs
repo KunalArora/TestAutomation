@@ -11,8 +11,24 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminAdministrationDealerPage : BasePage
+    public class LocalOfficeAdminAdministrationDealerPage : BasePage, IPageObject
     {
+
+        private string _validationElementSelector = ".js-mps-dealership-list-container";
+        private const string _url = "/mps/local-office/admin/dealers/dealerships";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/admin/dealers/dealerships\"]")]
         public IWebElement LOAdminDealershipTabElement;
@@ -22,10 +38,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ActionButtonElement;
         [FindsBy(How = How.CssSelector, Using = ".open .js-mps-dealership-users")]
         public IWebElement OpenDealershipUserButtonElement;
-        
-        
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipListViewActions_ActionList_Button_0")]
+        public IWebElement CreateDealerButtonElement;
 
+        private const string DealerCreationSuccessAlertSelector = ".alert-success.js-mps-alert";
 
         public void NavigateToDealership()
         {
@@ -64,6 +80,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetInstance<LocalOfficeAdminExistingDealershipUsersPage>();
 
         }
-        
+
+        public void VerifyDealerCreation()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            var DealerCreationSuccessAlertElement = SeleniumHelper.FindElementByCssSelector(DealerCreationSuccessAlertSelector);
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(DealerCreationSuccessAlertElement), true, "Dealer creation is not successful");
+        }
     }
 }

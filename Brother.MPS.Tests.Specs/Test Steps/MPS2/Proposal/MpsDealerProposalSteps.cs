@@ -57,6 +57,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerReportsDashboardPage _dealerReportsDashboardPage;
         private DealerReportsDataQueryPage _dealerReportsDataqueryPage;
         private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
+        private DealerAdminDashBoardPage _dealerAdminDashboardPage;
 
         // other
         private string _pdfFile;
@@ -524,6 +525,20 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerReportsDataqueryPage = _mpsDealerProposalStepActions.NavigateToDataqueryPage(_dealerReportsDashboardPage);
             _dealerReportsProposalsSummaryPage = _mpsDealerProposalStepActions.NavigateToProposalsSummaryPage(_dealerReportsDataqueryPage);
             _mpsDealerProposalStepActions.VerifyProposalName(_dealerReportsProposalsSummaryPage);
+        }
+
+        [Then(@"a newly created Cloud MPS dealer can succesfully login with culture ""(.*)"" from ""(.*)""")]
+        public void ThenANewlyCreatedCloudMPSDealerCanSuccesfullyLoginWithCultureFrom(string culture, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
+            {
+                throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
+            }
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
+            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_contextData.CreatedDealerEmail, _contextData.CreatedDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
     }

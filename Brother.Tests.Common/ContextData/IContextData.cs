@@ -63,6 +63,10 @@ namespace Brother.Tests.Common.ContextData
         string SubDealerLastName { get; set; }
         UserType DriverInstance { get; set; }
         IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
+        string CreatedDealerEmail { get; set; }
+        string CreatedDealerPassword { get; set; }
+        string CreatedDealerFirstName { get; set; }
+        string CreatedDealerLastName { get; set; }
 
         // Exclusively Type 3
         string AgreementDateCreated { get; set; }

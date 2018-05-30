@@ -69,20 +69,17 @@ namespace Brother.Tests.Specs.StepActions.Common
                 if (_contextData.Environment == "PROD" && _contextData.Country.AtYourSideEnabled)
                 {
                     var signInPage = LoadAtYourSideSignInPage(url, _dealerWebDriver);
-                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
+                    SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, string.Format("{0}{1}", UrlResolver.BaseUrl, dealerDashboardUrl), _dealerWebDriver);
                 }
                 else
                 {
                     var signInPage = LoadBrotherOnlineSignInPage(url, _dealerWebDriver);
-                    return SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
+                    SignInToMpsDashboardAs<DealerDashBoardPage>(signInPage, email, password, _dealerWebDriver);
                 }
             }
-            else
-            {
-                var uri = new Uri(_dealerWebDriver.Url);
-                var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, dealerDashboardUrl);
-                return PageService.LoadUrl<DealerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _dealerWebDriver);
-            }
+            var uri = new Uri(_dealerWebDriver.Url);
+            var dashBoardUri = string.Format("{0}://{1}{2}", uri.Scheme, uri.Host, dealerDashboardUrl);
+            return PageService.LoadUrl<DealerDashBoardPage>(dashBoardUri, RuntimeSettings.DefaultPageLoadTimeout, "div.mps-dashboard", true, _dealerWebDriver);
         }
 
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApprover(string email, string password, string url)

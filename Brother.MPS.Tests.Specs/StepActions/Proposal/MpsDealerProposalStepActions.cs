@@ -1048,6 +1048,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerReportsProposalsSummaryPage.VerifyProposalName(_contextData.ProposalName);
         }
 
+        public DealerAdminDashBoardPage NavigateToDealerAdminDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.SeleniumHelper.ClickSafety(dealerDashboardPage.AdminLinkElement);
+            return PageService.GetPageObject<DealerAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,

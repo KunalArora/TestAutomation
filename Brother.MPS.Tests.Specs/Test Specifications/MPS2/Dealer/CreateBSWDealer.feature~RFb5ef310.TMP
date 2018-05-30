@@ -1,0 +1,14 @@
+﻿@MPS @UAT @TYPE3 @HIGH @DEALERCREATION @CI_TestMaintenance
+Feature: CreateBSWDealer
+	In order to sell Cloud MPS services to customers
+	As a Cloud MPS Dealer
+	I want to create a dealer for bsw-french
+
+Scenario Outline: CreateBSWDealer
+Given a Cloud MPS Local Office Admin navigates to the admin page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
+When 
+
+@BSW
+Scenarios: 
+		| Country        | Culture |
+		| Switzerland    | fr-CH   |

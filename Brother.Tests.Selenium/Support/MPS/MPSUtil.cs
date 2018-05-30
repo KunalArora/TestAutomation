@@ -1107,7 +1107,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return postCode;
         }
 
-
         public static string PostCodeGb()
         {
             String[] zip = {
@@ -1385,6 +1384,54 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             DateTime dt = DateTime.ParseExact(date, DATESTRING_BUK, CultureInfo.InvariantCulture);
             DateTime result = dt.AddDays(-daysToSubtract);
             return result.ToString(DATESTRING_BUK);
+        }
+
+        public static string UatBswFrDealershipName()
+        {
+            string name = "UAT BSW FR Dealer 3";
+            return name;
+        }
+
+        public static string CompaniesHouseNumber()
+        {
+            string houseNumber = "22222";
+            return houseNumber;
+        }
+
+        public static string CompanyTaxNumber()
+        {
+            string taxNumber = "33333";
+            return taxNumber;
+        }
+
+        public static string CreditLicenceNumber()
+        {
+            string creditLicenceNumber = "44444";
+            return creditLicenceNumber;
+        }
+
+        public static string RegisteredCity()
+        {
+            string registeredCity = "D Registered City";
+            return registeredCity;
+        }
+
+        public static string BankName()
+        {
+            string bankName = "D Bank Name";
+            return bankName;
+        }
+
+        public static string BankAccountNumber()
+        {
+            string bankAccountNumber = "55555";
+            return bankAccountNumber;
+        }
+
+        public static string BrotherSalesPerson()
+        {
+            string brotherSalesPerson = "D Brother Sales Person";
+            return brotherSalesPerson;
         }
     }
 }
