@@ -197,6 +197,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ClickSafety(dealerAgreementServiceRequestsPage.ConsumablesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
             var dealerAgreementConsumablesPage = PageService.GetPageObject<DealerAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             // note: Processing time is uneven. min:<10s max:5min (in debugging)
+            _runCommandService.RunCreateConsumableOrderCommand();
             var consumablesPageValues = LoggingService.WriteLogWhenWarningTimeoutExceeds(ls => 
                 dealerAgreementConsumablesPage.SeleniumHelper.WaitUntil(d =>
                 {
