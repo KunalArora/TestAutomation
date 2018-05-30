@@ -4,6 +4,8 @@ using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -46,9 +48,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
         private const string ConfirmationModalAdditionalAuditSelector = ".js-special-pricing-modal-additional-audit";
         private const string ConfirmationModalApplySpecialPricingSelector = ".js-special-pricing-confirm";
         private const string AuditDetailsSelector = "div > div.modal-body.mps-special-pricing-modal-body > div > div.panel.panel-default > div.panel-body > table > tbody";
-
-
-
+       
+        public IList<IWebElement> ColourClickPriceElements;
+        [FindsBy(How = How.CssSelector, Using = "#InputAdditionalAudit")]
+        public IWebElement ConfirmationAdditionalInformation;
+        [FindsBy(How = How.CssSelector, Using = ".btn.btn-success.pull-right.js-special-pricing-confirm.js-mps-val-btn-next")]
+        public IWebElement ApplySpecialPricing;
 
 
         public void VerifyDisplayOfAppropriateTabs(IEnumerable<PrinterProperties> printers, string servicePackType, string culture, out bool isInstallationTab, out bool isServiceTab)
@@ -244,9 +249,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             LoggingService.WriteLogOnMethodEntry();
 
             var confirmationModal = SeleniumHelper.FindElementByCssSelector(ConfirmationModalSelector);
+            
             // Fill Additional Audit Information
-            var additionalAudit = SeleniumHelper.FindElementByCssSelector(confirmationModal, ConfirmationModalAdditionalAuditSelector);
-            ClearAndType(additionalAudit, "New prices requested for this agreement", true);
+            EnterAdditionalAuditInformation();
 
             var applySpecialPricingButton = SeleniumHelper.FindElementByCssSelector(confirmationModal, ConfirmationModalApplySpecialPricingSelector);
 
@@ -255,6 +260,34 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.LocalOffice
             // Click Apply Special Pricing button
             SeleniumHelper.ClickSafety(applySpecialPricingButton);
             SeleniumHelper.WaitUntil(d => ExpectedConditions.StalenessOf(applySpecialPricingButton));
+        }
+
+        public void EnterAdditionalAuditInformation(string message = @"This is automation changes added to special pricing")
+        {
+            LoggingService.WriteLogOnMethodEntry(message);
+
+            WaitForConfirmationAdditionalInformationReady();
+            ClearAndType(ConfirmationAdditionalInformation, message);
+            SeleniumHelper.WaitUntil(d => ApplySpecialPricing.GetAttribute("class").Contains("disabled") == false);
+        }
+
+        private void WaitForConfirmationAdditionalInformationReady()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.WaitUntil(d =>
+            {
+                try
+                {
+                    if (ConfirmationAdditionalInformation.Displayed == false) { return false; }
+                    if (ApplySpecialPricing.Displayed == false) { return false; }
+                    ConfirmationAdditionalInformation.SendKeys("a");// dummy string.
+                    return ApplySpecialPricing.GetAttribute("class").Contains("disabled") == false;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
         }
 
         public string[] GetAuditDetails()

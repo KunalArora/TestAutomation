@@ -340,5 +340,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 
             TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
         }
+
+        public void AssertSelectSerialLinkIsDisplayed(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            var element = deviceRowElements.First(e => e.GetAttribute("data-id").Equals(mpsDeviceId));
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(element, SelectSerialLinkSelector), true, "Select serial link not displayed for device with device id = " + mpsDeviceId);
+        }
     }
 }
