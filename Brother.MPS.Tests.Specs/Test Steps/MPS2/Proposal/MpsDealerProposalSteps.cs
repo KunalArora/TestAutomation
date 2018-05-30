@@ -510,7 +510,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsAwaitingApprovalPage);
             _dealerProposalsClosedPage = _mpsDealerProposalStepActions.ClickOnCancelProposalButton(_dealerProposalsSummaryPage);
-            _mpsDealerProposalStepActions.IsClosedProposalPresent(_dealerProposalsClosedPage);
+            _mpsDealerProposalStepActions.VerifyClosedProposalPresent(_dealerProposalsClosedPage);
         }
     }
 }

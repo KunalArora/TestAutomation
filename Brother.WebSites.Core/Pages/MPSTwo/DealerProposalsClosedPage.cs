@@ -30,7 +30,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.Id, Using = "content_1_ProposalListFilter_InputFilterBy")]
         public IWebElement ProposalFilter;
 
-        public void IsClosedProposalPresent(int proposalId, string proposalName)
+        public void VerifyClosedProposalPresent(int proposalId, string proposalName)
         {
             LoggingService.WriteLogOnMethodEntry(proposalId, proposalName);
             SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");

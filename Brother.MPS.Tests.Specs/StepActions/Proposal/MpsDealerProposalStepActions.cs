@@ -760,10 +760,10 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsClosedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void IsClosedProposalPresent(DealerProposalsClosedPage dealerProposalsClosedPage)
+        public void VerifyClosedProposalPresent(DealerProposalsClosedPage dealerProposalsClosedPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsClosedPage);
-            dealerProposalsClosedPage.IsClosedProposalPresent(_contextData.ProposalId, _contextData.ProposalName);
+            dealerProposalsClosedPage.VerifyClosedProposalPresent(_contextData.ProposalId, _contextData.ProposalName);
         }
 
         public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
