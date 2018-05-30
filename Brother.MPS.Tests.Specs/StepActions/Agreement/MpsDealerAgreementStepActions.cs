@@ -22,8 +22,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 
@@ -197,6 +197,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ClickSafety(dealerAgreementServiceRequestsPage.ConsumablesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
             var dealerAgreementConsumablesPage = PageService.GetPageObject<DealerAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             // note: Processing time is uneven. min:<10s max:5min (in debugging)
+            _runCommandService.RunCreateConsumableOrderCommand();
             var consumablesPageValues = LoggingService.WriteLogWhenWarningTimeoutExceeds(ls => 
                 dealerAgreementConsumablesPage.SeleniumHelper.WaitUntil(d =>
                 {
@@ -232,7 +233,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(excelFilePath);
             var actualProps = _cppAgreementDevicesExcelHelper.Parse(excelFilePath);
-            var expectSummaryPageValues = _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)];
 
             _cppAgreementDevicesExcelHelper.AssertAreEqualProperties(
                 _contextData.SnapValues[typeof(DealerAgreementCreateSummaryPage)],
