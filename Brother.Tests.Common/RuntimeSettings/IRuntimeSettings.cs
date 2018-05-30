@@ -14,7 +14,13 @@
         int DefaultInvoiceGenerationTimeout { get; set; }
         int DefaultElementNotPresentTimeout { get; set; }
         int DefaultWaitForItemTimeout { get; set; }
-        string DefaultType3DealerUsername { get; set; }
-        string DefaultType3DealerPassword { get; set; }
+        string DefaultType3DealerUsernameBUK { get; set; }
+        string DefaultType3DealerPasswordBUK { get; set; }
+        string DefaultType1DealerUsernameBUK { get; set; }
+        string DefaultType1DealerPasswordBUK { get; set; }
+        string DefaultType1DealerUsernameBIG { get; set; }
+        string DefaultType1DealerPasswordBIG { get; set; }
+        string DefaultType1DealerUsernameBSW { get; set; }
+        string DefaultType1DealerPasswordBSW { get; set; }
     }
 }
