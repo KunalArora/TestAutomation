@@ -260,6 +260,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EnhancedUserMonitoring\EnhancedUserMonitoring.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnhancedUserMonitoring.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1737,6 +1742,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_5.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EnhancedUserMonitoring\EnhancedUserMonitoring.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EnhancedUserMonitoring.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
