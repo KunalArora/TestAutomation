@@ -6,8 +6,7 @@ Feature: EnhancedUserMonitoring
 
 Scenario Outline: Type3EnhancedUserMonitoring
 Given a Cloud MPS BIE Admin has navigated to the Dashboard page
-When a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page
-And a Cloud MPS BIE Admin navigates to the Printer Engine tab
+When a Cloud MPS BIE Admin navigates to the Printer Engine tab under Manage Device Order Threshold section
 And a Cloud MPS BIE Admin selects the country as "<Country>"
 Then a Cloud MPS BIE Admin can set the threshold value for printer engines types as follows and saves the details
 		| PrinterEngineType | SupplyItemType | ThresholdValue | PrinterEngineEnabled |
@@ -29,8 +28,7 @@ When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
-When a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page
-And a Cloud MPS BIE Admin navigates to the Installed Printer tab
+When a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device Order Threshold section
 Then a Cloud MPS BIE Admin searches for the agreement and ensures correct printer details
 And a Cloud MPS BIE Admin validates the default threshold values for the printers
 And a Cloud MPS BIE Admin updates the threshold value for printers and saves the details

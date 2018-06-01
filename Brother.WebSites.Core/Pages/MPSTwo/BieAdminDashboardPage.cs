@@ -36,6 +36,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ProductsListLink;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bie-admin/products\"] .media-body")]
         public IWebElement PricingListLink;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bie-admin/enhanced-usage-monitoring-new/installed-printer\"] .media-body")]
+        public IWebElement ManageDeviceOrderThresholdLink;
 
 
         public void IsBieAdminDashboardDisplayed()

@@ -88,10 +88,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given("a Cloud MPS BIE Admin has navigated to the Dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("a Cloud MPS BIE Admin navigates to the Printer Engine tab under Manage Device Ord" +
+                    "er Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.And("a Cloud MPS BIE Admin navigates to the Printer Engine tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
 testRunner.And(string.Format("a Cloud MPS BIE Admin selects the country as \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -109,15 +108,15 @@ testRunner.And(string.Format("a Cloud MPS BIE Admin selects the country as \"{0}
                         "Colour",
                         "15.00",
                         "true"});
-#line 12
+#line 11
 testRunner.Then("a Cloud MPS BIE Admin can set the threshold value for printer engines types as fo" +
                     "llows and saves the details", ((string)(null)), table1, "Then ");
-#line 16
+#line 15
 testRunner.Given(string.Format("I have navigated to the Create Agreement page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 16
 testRunner.When(string.Format("I input the fields (Fill Optional fields: \"{0}\") on Agreement Description Page fo" +
                         "r \"{1}\" type agreement", optionalFields_1, agreementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 17
 testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term of \"{1}\" and Service of \"{2}\"", usageType, contractTerm, service), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -144,39 +143,38 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "12.00",
                         "15.00"});
-#line 19
+#line 18
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table2, "And ");
-#line 22
+#line 21
 testRunner.And("I complete the setup of agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
+#line 22
 testRunner.Then("I can verify the creation of agreement in the agreement list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 24
+#line 23
 testRunner.When("I navigate to edit device data page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 24
 testRunner.And(string.Format("I edit device data one by one for all devices (Fill Optional fields: \"{0}\")", optionalFields_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 25
 testRunner.And("I can verify that devices are ready for installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 26
 testRunner.Then("I can create and send a bulk installation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 27
 testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 28
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 29
 testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 30
 testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
+testRunner.When("a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device " +
+                    "Order Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 32
-testRunner.When("a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
-testRunner.And("a Cloud MPS BIE Admin navigates to the Installed Printer tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
 testRunner.Then("a Cloud MPS BIE Admin searches for the agreement and ensures correct printer deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 35
+#line 33
 testRunner.And("a Cloud MPS BIE Admin validates the default threshold values for the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 34
 testRunner.And("a Cloud MPS BIE Admin updates the threshold value for printers and saves the deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

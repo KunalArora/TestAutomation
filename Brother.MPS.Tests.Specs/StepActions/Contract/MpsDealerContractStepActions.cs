@@ -586,11 +586,5 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
-
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
-        }
     }
 }

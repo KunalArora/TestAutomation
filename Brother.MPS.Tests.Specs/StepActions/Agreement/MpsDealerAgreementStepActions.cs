@@ -184,17 +184,17 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementBillingPage);
 
-            ClickSafety(dealerAgreementBillingPage.DevicesTabElement, dealerAgreementBillingPage, isUntilUrlChanges: true);
+            ClickSafety(dealerAgreementBillingPage.DevicesTabElement, dealerAgreementBillingPage, IsUntilUrlChanges: true);
             var dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             var devicesPagesValues = _pageParseHelper.ParseDealerAgreementDevicesPage(dealerAgreementDevicesPage);
             _contextData.SnapValues[typeof(DealerAgreementDevicesPage)] = devicesPagesValues;
 
-            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement, dealerAgreementDevicesPage, isUntilUrlChanges: true);
+            ClickSafety(dealerAgreementDevicesPage.ServiceRequestsTabElement, dealerAgreementDevicesPage, IsUntilUrlChanges: true);
             var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             var serviceRequestValues = _pageParseHelper.ParseDealerAgreementServiceRequestsPage(dealerAgreementServiceRequestsPage);
             _contextData.SnapValues[typeof(DealerAgreementServiceRequestsPage)] = serviceRequestValues;
 
-            ClickSafety(dealerAgreementServiceRequestsPage.ConsumablesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+            ClickSafety(dealerAgreementServiceRequestsPage.ConsumablesTabElement, dealerAgreementServiceRequestsPage, IsUntilUrlChanges: true);
             var dealerAgreementConsumablesPage = PageService.GetPageObject<DealerAgreementConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             // note: Processing time is uneven. min:<10s max:5min (in debugging)
             _runCommandService.RunCreateConsumableOrderCommand();
@@ -212,13 +212,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.SnapValues[typeof(DealerAgreementConsumablesPage)] = consumablesPageValues;
 
             // restore current tab
-            ClickSafety(dealerAgreementConsumablesPage.BillingTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+            ClickSafety(dealerAgreementConsumablesPage.BillingTabElement, dealerAgreementServiceRequestsPage, IsUntilUrlChanges: true);
         }
 
         public DealerReportsDashboardPage NavigateToReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
-            ClickSafety(dealerDashboardPage.DealerReportLinkElement, dealerDashboardPage,isUntilUrlChanges: true);
+            ClickSafety(dealerDashboardPage.DealerReportLinkElement, dealerDashboardPage, IsUntilUrlChanges: true);
             return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
@@ -882,7 +882,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 device.ServiceRequestId = dealerAgreementServiceRequestsPage.VerifyServiceRequestInformation(device.Model, device.SerialNumber, resourceServiceRequestStatusNew, device.ServiceRequestType);
 
                 ClickSafety(
-                    dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage, isUntilUrlChanges: true);
+                    dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage, IsUntilUrlChanges: true);
 
                 _dealerWebDriver.Navigate().Refresh();
 
@@ -1364,12 +1364,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 TranslationKeys.UsageType.PayAsYouGo, _contextData.Culture);
             product.IsMonochrome = dealerAgreementCreateClickPricePage.PopulatePrinterCoverageAndVolume(
                 product.Model, product.CoverageMono, product.VolumeMono, product.CoverageColour, product.VolumeColour, _contextData.UsageType, resourceUsageTypePayAsYouGo);
-        }
-
-        private void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
 
         private void ImportExcelFile(DealerAgreementDevicesPage dealerAgreementDevicesPage, string excelFilePath)
