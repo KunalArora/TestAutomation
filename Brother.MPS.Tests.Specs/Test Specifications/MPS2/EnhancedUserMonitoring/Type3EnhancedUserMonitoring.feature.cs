@@ -22,7 +22,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
-    [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("EUM")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
@@ -31,7 +30,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EnhancedUserMonitoring.feature"
+#line 1 "Type3EnhancedUserMonitoring.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -43,7 +42,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
                         "MPS",
                         "UAT",
                         "HIGH",
-                        "TYPE1",
                         "TYPE3",
                         "EUM",
                         "CI_TestMaintenance"});
@@ -79,12 +77,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EnhancedUserMonitoring")]
+        [NUnit.Framework.DescriptionAttribute("Type3EnhancedUserMonitoring")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "MINIMUM_VOLUME", "THREE_YEARS", "PAY_UPFRONT", "True", "Cloud", "Bor", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void EnhancedUserMonitoring(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void Type3EnhancedUserMonitoring(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EnhancedUserMonitoring", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type3EnhancedUserMonitoring", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

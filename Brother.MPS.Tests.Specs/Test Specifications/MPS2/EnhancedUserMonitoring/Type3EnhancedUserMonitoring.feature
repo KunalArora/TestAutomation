@@ -1,10 +1,10 @@
-﻿@MPS @UAT @HIGH @TYPE1 @TYPE3 @EUM @CI_TestMaintenance
+﻿@MPS @UAT @HIGH @TYPE3 @EUM @CI_TestMaintenance
 Feature: EnhancedUserMonitoring
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to ensure the correct working of the default order threshold functionality
 
-Scenario Outline: EnhancedUserMonitoring
+Scenario Outline: Type3EnhancedUserMonitoring
 Given a Cloud MPS BIE Admin has navigated to the Dashboard page
 When a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page
 And a Cloud MPS BIE Admin navigates to the Printer Engine tab
