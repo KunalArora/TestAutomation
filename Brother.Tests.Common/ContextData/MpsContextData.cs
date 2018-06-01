@@ -53,6 +53,7 @@ namespace Brother.Tests.Common.ContextData
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
             SnapValues = new SnapDictionary();
             SkipBOLRegistration = false;
+            AdditionalChargesItemList = new List<AdditionalChargesItem>();
         }
 
         public void SetBusinessType(string businessTypeId)
@@ -93,6 +94,7 @@ namespace Brother.Tests.Common.ContextData
         public string SubDealerFirstName { get; set; }
         public string SubDealerLastName { get; set; }
         public UserType DriverInstance { get; set; }
+        public IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }
@@ -126,4 +128,15 @@ namespace Brother.Tests.Common.ContextData
             set { base[pageClass.FullName] = value; }
         }
     }
+
+    public class AdditionalChargesItem
+    {
+
+        public int chargeTypeValue { get; set; } // (int)ChargeTypeSelectorElementValue
+        public double costPrice { get; set; }
+        public double marginPercent { get; set; }
+    }
+
+    // use for LocalOfficeAdminContractsAdditionalCharges#ChargeTypeSelectorElement
+
 }

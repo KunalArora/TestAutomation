@@ -40,6 +40,7 @@ And a Cloud MPS Local Office Approver apply and verify the Overusage
 And I will raise consumable order and service request for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
 Given a Cloud MPS Local Office Admin navigates to the contract end screen 
+When a Cloud MPS Local Office Admin set the New additional charges , Charge Type of "Consumables_Return_Management_Fee", Cost Price of "10.00", and Margin Percent of "3.00" and save  
 When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
 Then a Cloud MPS Local Office Admin can validate the final bill
 

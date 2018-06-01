@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
@@ -13,6 +12,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using static Brother.WebSites.Core.Pages.MPSTwo.LocalOfficeAdminContractsAdditionalCharges;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
 {
@@ -35,6 +35,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminReportsProposalSummaryPage _localOfficeAdminReportsProposalSummaryPage;
 
         public LocalOfficeAdminSteps(
+            IPageParseHelper pageParseHelper,
             MpsSignInStepActions mpsSignInStepActions,
             MpsLocalOfficeAdminContractStepActions mpsLocalOfficeAdminContractStepActions,
             MpsLocalOfficeAdminAgreementStepActions mpsLocalOfficeAdminAgreementStepActions,
@@ -84,11 +85,21 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.EnterContractCancellationDetailsAndSave(localOfficeAdminContractsEditEndDatePage, _contextData.BillingType);
         }
 
+        [StepDefinition(@"a Cloud MPS Local Office Admin set the New additional charges , Charge Type of ""(.*)"", Cost Price of ""(.*)"", and Margin Percent of ""(.*)"" and save")]
+        public void WhenACloudMPSLocalOfficeAdminSetTheNewAdditionalChargesChargeTypeOfCostPriceOfAndMarginPercentOfAndSave(ChargeTypeSelectorElementValue chargeType, double costPrice, double marginPercent)
+        {
+            var localOfficeAdminContractsAdditionalCharges =  _mpsLocalOfficeAdminContractStepActions.ClickOnAdditionalCharges(_localOfficeAdminReportsProposalSummaryPage);
+            _mpsLocalOfficeAdminContractStepActions.AddAdditionalCharges(localOfficeAdminContractsAdditionalCharges, chargeType, costPrice, marginPercent);
+            _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.ClickOnBack(localOfficeAdminContractsAdditionalCharges);
+        }
+
+
         [StepDefinition(@"a Cloud MPS Local Office Admin can validate the final bill")]
         public void ThenACloudMPSLocalOfficeAdminCanValidateTheFinalBill()
         {
             DateTime startDate;
             var pdfFinalInvoice = _mpsLocalOfficeAdminContractStepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
+            _mpsLocalOfficeAdminContractStepActions.AssertAreEquealsAdditionalCharges(pdfFinalInvoice, _contextData.SnapValues[typeof(LocalOfficeAdminContractsEditEndDatePage)] as LocalOfficeAdminContractsEditEndDatePageValue);
             _mpsLocalOfficeAdminContractStepActions.AssertAreEqualOverusageValues(pdfFinalInvoice, startDate);
         }
 

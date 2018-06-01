@@ -604,6 +604,87 @@ namespace Brother.Tests.Specs.Helpers
                 }
             }
         }
+
+        /// <summary>
+        /// parse values
+        /// </summary>
+        /// <param name="localOfficeAdminContractsEditEndDatePage">from</param>
+        /// <returns>
+        /// for example:
+        /// {[ContractDetails.ContractName, MPS_Smoke_Ross-061154349 (1)]}
+        /// {[ContractDetails.ContractType, Purchase + Click with Service]}
+        /// {[ContractDetails.ContractTerm, 4 years]}
+        /// {[ContractDetails.UsageType, Minimum Volume]}
+        /// {[ContractDetails.CustomerName, Cozy Pike_18061154322 Ltd]}
+        /// {[ContractDetails.LeadCodeReference, ]}
+        /// {[ContractDetails.Dealership, MPS-BUK-UAT-Dealer1-Auto]}
+        /// {[ExistingCharges.0.ChargeType, Consumables Return Management Fee]}
+        /// {[ExistingCharges.0.ChargeType@value, 2]}
+        /// {[ExistingCharges.0.CostPrice, 10.00]}
+        /// {[ExistingCharges.0.DealerMargin, 3.00]}
+        /// {[ExistingCharges.0.CustomerPrice, 10.31]}
+        /// {[ExistingCharges.Count, 1]}
+        /// {[ContractCacellationDetails.InputEndDate, 2018-06-08]}
+        /// {[ContractCacellationDetails.InputEndDate@placeholder, yyyy-mm-dd]}
+        /// {[ContractCacellationDetails.InputDescription, aaa]}
+        /// 
+        /// </returns>
+        public LocalOfficeAdminContractsEditEndDatePageValue ParseLocalOfficeAdminContractsEditEndDatePage(LocalOfficeAdminContractsEditEndDatePage localOfficeAdminContractsEditEndDatePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminContractsEditEndDatePage);
+            const string ContractDetailsSelector = "#content_1_EditEndDateContainer table.table-condensed.mps-table-proposal-details";
+            const string ExistingChargrsSelector = "#content_1_EditEndDateContainer div.panel-body.responsive.js-mps-additional-charges-existing-charges-container";
+            var value = new LocalOfficeAdminContractsEditEndDatePageValue();
+            var SeleniumHelper = localOfficeAdminContractsEditEndDatePage.SeleniumHelper;
+
+            var prefix = LocalOfficeAdminContractsEditEndDatePageValue.PrefixContractDetails;
+            var keyName = (string)null;
+            SeleniumHelper
+                .FindElementByCssSelector(ContractDetailsSelector)
+                .FindElements(By.TagName("td"))
+                .All(td => {
+                    if( keyName == null)
+                    {
+                        keyName = td.Text.Replace(" ","");
+                    }
+                    else
+                    {
+                        value.Add(prefix + "." + keyName, td.Text);
+                        keyName = null;
+                    }
+                    return true;
+                });
+
+            prefix = LocalOfficeAdminContractsEditEndDatePageValue.PrefixExistingCharges;
+            var count = 0;
+            SeleniumHelper
+                .FindElementByCssSelector(ExistingChargrsSelector)
+                .FindElements(By.CssSelector("div.row.js-mps-additional-charge-row-template"))
+                .All(divRow =>
+                {
+                    IgnoreThrow(() =>
+                    {
+                        var chargeTypeElement = new SelectElement(divRow.FindElement(By.CssSelector(".js-mps-charge-type")));
+                        value.Add(prefix + "." + count + ".ChargeType", chargeTypeElement.SelectedOption.Text);
+                        value.Add(prefix + "." + count + ".ChargeType@value", chargeTypeElement.SelectedOption.GetAttribute("value"));
+                    });
+                    divRow.FindElements(By.TagName("input")).All(divInput =>
+                    {
+                        value.Add(prefix + "." + count + "." + divInput.GetAttribute("name"), divInput.GetAttribute("value"));
+                        return true;
+                    });
+                    count++;
+                    return true;
+                });
+            value.Add(prefix + ".Count", count.ToString());
+
+            prefix = LocalOfficeAdminContractsEditEndDatePageValue.PrefixContractCacellationDetails ;
+            IgnoreThrow(() => value.Add(prefix + ".InputEndDate", SeleniumHelper.FindElementByCssSelector("#content_1_InputEndDate_Input").GetAttribute("value")));
+            IgnoreThrow(() => value.Add(prefix + ".InputEndDate@placeholder", SeleniumHelper.FindElementByCssSelector("#content_1_InputEndDate_Input").GetAttribute("placeholder")));
+            IgnoreThrow(() => value.Add(prefix + ".InputDescription", SeleniumHelper.FindElementByCssSelector("#content_1_InputDescription_Input").GetAttribute("value")));
+
+            return value;
+        }
     }
 
     public class SummaryPageValue : Dictionary<string, string>
@@ -638,5 +719,13 @@ namespace Brother.Tests.Specs.Helpers
         // For the future
     }
 
+    public class LocalOfficeAdminContractsEditEndDatePageValue : Dictionary<string, string>
+    {
+        public static readonly string PrefixExistingCharges = "ExistingCharges";
+        public static readonly object PrefixContractDetails = "ContractDetails";
+        public static readonly object PrefixContractCacellationDetails = "ContractCacellationDetails";
+
+        public IList<Dictionary<string, string>> GetExistingChargesList(IPageParseHelper ph) { return ph.ToList(this, PrefixExistingCharges); }
+    }
 
 }

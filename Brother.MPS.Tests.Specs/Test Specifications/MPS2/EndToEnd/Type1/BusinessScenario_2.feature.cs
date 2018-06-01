@@ -259,9 +259,13 @@ testRunner.Then("a Customer has navigated to the Consumables Devices page to ver
 #line 42
 testRunner.Given("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 43
+testRunner.When("a Cloud MPS Local Office Admin set the New additional charges , Charge Type of \"C" +
+                    "onsumables_Return_Management_Fee\", Cost Price of \"10.00\", and Margin Percent of " +
+                    "\"3.00\" and save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 44
 testRunner.When("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
                     "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 44
+#line 45
 testRunner.Then("a Cloud MPS Local Office Admin can validate the final bill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

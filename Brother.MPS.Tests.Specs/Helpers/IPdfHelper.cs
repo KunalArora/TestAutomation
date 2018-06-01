@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace Brother.Tests.Specs.Helpers
@@ -41,5 +42,12 @@ namespace Brother.Tests.Specs.Helpers
         /// <param name="PrintersProperties"></param>
         /// <param name="Culture"></param>
         void AssertAreEqualOverusageValues(string pdfFile, IEnumerable<PrinterProperties> PrintersProperties, string Culture);
+        /// <summary>
+        /// validate exist additional chaeges in invoice
+        /// </summary>
+        /// <param name="pdfFinalInvoice"></param>
+        /// <param name="expectedList"></param>
+        /// <param name="cultureInfo"></param>
+        void AssertAreEquealsAdditionalCharges(string pdfFinalInvoice, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo);
     }
 }
