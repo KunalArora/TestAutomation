@@ -62,7 +62,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
         [When(@"a Cloud MPS BIE Admin selects the country as ""(.*)""")]
         public void WhenACloudMPSBIEAdminSelectsTheCountryAs(string country)
         {
-            ScenarioContext.Current.Pending();
+            _bieAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsBieAdminStepActions.SelectCountry(_bieAdminEnhancedUsageMonitoringNewPrinterEnginePage, country);
         }
 
         [Then(@"a Cloud MPS BIE Admin can set the threshold value for printer engines types as follows and saves the details")]

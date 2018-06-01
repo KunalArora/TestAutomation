@@ -25,5 +25,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         // TABs
         [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-new/installed-printer']")]
         public IWebElement InstalledPrinterTabElement;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_DropDownListCountry")]
+        public IWebElement SelectCountryDropdownElement;
+
+        public void SelectCountryFromDropdownMenu(string country)
+        {
+            LoggingService.WriteLogOnMethodEntry(country);
+            SeleniumHelper.SelectFromDropdownByText(SelectCountryDropdownElement, country);
+        }
     }
 }

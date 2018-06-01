@@ -44,5 +44,23 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
             ClickSafety(bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.PrinterEngineTabElement, bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage, IsUntilUrlChanges: true);
             return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
         }
+
+        public BieAdminEnhancedUsageMonitoringNewPrinterEnginePage SelectCountry(BieAdminEnhancedUsageMonitoringNewPrinterEnginePage bieAdminEnhancedUsageMonitoringNewPrinterEnginePage, string country)
+        {
+            LoggingService.WriteLogOnMethodEntry(bieAdminEnhancedUsageMonitoringNewPrinterEnginePage, country);
+
+            switch(country)
+            {
+                case "United Kingdom":
+                    country = "UK";
+                    break;
+                default:
+                    break;
+            }
+
+            bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.SelectCountryFromDropdownMenu(country);
+            return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
+
+        }
     }
 }
