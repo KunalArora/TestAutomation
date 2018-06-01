@@ -94,10 +94,10 @@ testRunner.When("a Cloud MPS BIE Admin navigates to the Printer Engine tab under
 testRunner.And(string.Format("a Cloud MPS BIE Admin selects the country as \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "PrinterEngineType",
+                        "PrinterEngine",
                         "SupplyItemType",
-                        "ThresholdValue",
-                        "PrinterEngineEnabled"});
+                        "Threshold",
+                        "Enabled"});
             table1.AddRow(new string[] {
                         "BC2 Step",
                         "Mono",

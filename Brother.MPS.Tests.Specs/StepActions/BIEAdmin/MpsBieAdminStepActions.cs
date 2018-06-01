@@ -49,9 +49,9 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
         {
             LoggingService.WriteLogOnMethodEntry(bieAdminEnhancedUsageMonitoringNewPrinterEnginePage, country);
 
-            switch(country)
+            switch(country.ToUpper()) // Note: Other languages support is unnecessary as BIE admin is only in English language
             {
-                case "United Kingdom":
+                case "UNITED KINGDOM":
                     country = "UK";
                     break;
                 default:
@@ -60,7 +60,23 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
 
             bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.SelectCountryFromDropdownMenu(country);
             return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
+        }
 
+        public BieAdminEnhancedUsageMonitoringNewPrinterEnginePage UpdatePrinterEngineThresholdDetailsAndSave(BieAdminEnhancedUsageMonitoringNewPrinterEnginePage bieAdminEnhancedUsageMonitoringNewPrinterEnginePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(bieAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+            
+            foreach(var printerEngine in _contextData.PrinterEngineThresholdDetails)
+            {
+                bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.EditPrinterEngineThresholdDetails(printerEngine);
+            }
+
+            ClickSafety(bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.SaveButtonElement, bieAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+            
+            // Validate success element
+            bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.ValidateSuccessElementOnSaving();
+
+            return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver); 
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.BIEAdmin;
 using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
 {
@@ -66,9 +68,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
         }
 
         [Then(@"a Cloud MPS BIE Admin can set the threshold value for printer engines types as follows and saves the details")]
-        public void ThenACloudMPSBIEAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineDetails)
+        public void ThenACloudMPSBIEAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
-            ScenarioContext.Current.Pending();
+            _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
+            _bieAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsBieAdminStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_bieAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+
         }
 
         [When(@"a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device Order Threshold section")]

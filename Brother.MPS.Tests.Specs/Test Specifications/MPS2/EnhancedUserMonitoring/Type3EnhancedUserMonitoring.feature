@@ -9,9 +9,9 @@ Given a Cloud MPS BIE Admin has navigated to the Dashboard page
 When a Cloud MPS BIE Admin navigates to the Printer Engine tab under Manage Device Order Threshold section
 And a Cloud MPS BIE Admin selects the country as "<Country>"
 Then a Cloud MPS BIE Admin can set the threshold value for printer engines types as follows and saves the details
-		| PrinterEngineType | SupplyItemType | ThresholdValue | PrinterEngineEnabled |
-		| BC2 Step          | Mono           | 12.00          | true                 |
-		| BC2 Step          | Colour         | 15.00          | true                 |
+		| PrinterEngine | SupplyItemType | Threshold | Enabled |
+		| BC2 Step      | Mono           | 12.00     | true    |
+		| BC2 Step      | Colour         | 15.00     | true    |
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
