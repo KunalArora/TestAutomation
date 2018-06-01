@@ -2,6 +2,7 @@
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.WebSites.Core.Pages.MPSTwo;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
@@ -16,6 +17,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
         private readonly IUserResolver _userResolver;
         private readonly IUrlResolver _urlResolver;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
+
+        // Page objects
+        private BieAdminDashboardPage _bieAdminDashboardPage;
 
         public MpsBieAdminSteps(
             ScenarioContext context,
@@ -38,7 +42,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
         [Given(@"a Cloud MPS BIE Admin has navigated to the Dashboard page")]
         public void GivenACloudMPSBIEAdminHasNavigatedToTheDashboardPage()
         {
-            ScenarioContext.Current.Pending();
+            _bieAdminDashboardPage = _mpsSignInStepActions.SignInAsBieAdmin(_userResolver.BIEAdminUsername, _userResolver.BIEAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
         [When(@"a Cloud MPS BIE Admin navigates to the Manage Device Order Threshold page")]

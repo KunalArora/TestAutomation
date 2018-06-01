@@ -10,8 +10,23 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class BieAdminDashboardPage : BasePage
+    public class BieAdminDashboardPage : BasePage, IPageObject
     {
+        private string _validationElementSelector = ".separator [href=\"/mps/bie-admin/enhanced-usage-monitoring\"]";
+        private const string _url = "/mps/bie-admin/dashboard";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/bie-admin/enhanced-usage-monitoring\"] .media-body")] 
         public IWebElement EnhancedUsageMonitoringLink;

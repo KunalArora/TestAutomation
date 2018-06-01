@@ -260,10 +260,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\EnhancedUserMonitoring\EnhancedUserMonitoring.feature.cs">
+    <Compile Include="Test Specifications\MPS2\EnhancedUserMonitoring\Type3EnhancedUserMonitoring.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EnhancedUserMonitoring.feature</DependentUpon>
+      <DependentUpon>Type3EnhancedUserMonitoring.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1421,6 +1421,7 @@
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeAdminAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\BIEAdmin\MpsBieAdminSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsApiCallSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
@@ -1743,9 +1744,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\EnhancedUserMonitoring\EnhancedUserMonitoring.feature">
+    <None Include="Test Specifications\MPS2\EnhancedUserMonitoring\Type3EnhancedUserMonitoring.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EnhancedUserMonitoring.feature.cs</LastGenOutput>
+      <LastGenOutput>Type3EnhancedUserMonitoring.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
