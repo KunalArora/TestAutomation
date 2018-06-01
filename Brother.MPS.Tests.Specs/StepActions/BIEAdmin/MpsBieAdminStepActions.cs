@@ -78,5 +78,26 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
 
             return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver); 
         }
+
+        public BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage SearchAgreementAndValidateDetails(BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
+
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.SearchAgreementAndLoadDetails(_contextData.AgreementId);
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
+
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.ValidateAgreementDetails(
+                _contextData.AgreementName, 
+                _contextData.ContractTerm, 
+                _contextData.LeadCodeReference, 
+                _contextData.LeasingFinanceReference, 
+                _contextData.ContractType, 
+                _contextData.UsageType, 
+                _contextData.DealerReference);
+
+            // TODO: Verify printer details
+
+            return bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
+        }
     }
 }

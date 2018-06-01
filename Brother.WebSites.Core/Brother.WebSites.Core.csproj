@@ -155,6 +155,8 @@
     <Compile Include="Pages\MPSTwo\BankProposalsAwaitingApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\BaseSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\BieAdminEnhancedUsageMonitoringNewPrinterEnginePage.cs" />
+    <Compile Include="Pages\MPSTwo\BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\CalculationEngineModule.cs" />
     <Compile Include="Pages\MPSTwo\CompleteSwapProcessPage.cs" />
     <Compile Include="Pages\MPSTwo\ConsumableExistingOrderListPage.cs" />

@@ -149,6 +149,7 @@
     <Compile Include="StepActions\Agreement\MpsLocalOfficeAdminAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
+    <Compile Include="StepActions\BIEAdmin\MpsBieAdminStepActions.cs" />
     <Compile Include="StepActions\Common\MpsApiCallStepActions.cs" />
     <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />

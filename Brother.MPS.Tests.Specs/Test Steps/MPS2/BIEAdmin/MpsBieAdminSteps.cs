@@ -72,19 +72,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
         {
             _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
             _bieAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsBieAdminStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_bieAdminEnhancedUsageMonitoringNewPrinterEnginePage);
-
         }
 
         [When(@"a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device Order Threshold section")]
         public void WhenACloudMPSBIEAdminNavigatesToTheInstalledPrinterTabUnderManageDeviceOrderThresholdSection()
         {
-            ScenarioContext.Current.Pending();
+            _bieAdminDashboardPage = _mpsSignInStepActions.SignInAsBieAdmin(_userResolver.BIEAdminUsername, _userResolver.BIEAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsBieAdminStepActions.NavigateToEnhancedUsageMonitoringNewInstalledPrinterPage(_bieAdminDashboardPage);
         }
 
         [Then(@"a Cloud MPS BIE Admin searches for the agreement and ensures correct printer details")]
         public void ThenACloudMPSBIEAdminSearchesForTheAgreementAndEnsuresCorrectPrinterDetails()
         {
-            ScenarioContext.Current.Pending();
+            _bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsBieAdminStepActions.SearchAgreementAndValidateDetails(_bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
         }
 
         [Then(@"a Cloud MPS BIE Admin validates the default threshold values for the printers")]

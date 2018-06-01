@@ -55,7 +55,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var thresholdInputElement = SeleniumHelper.FindElementByCssSelector(targetPrinterEngineElement, ".js-mps-printer-engine-threshold");
             ClearAndType(thresholdInputElement, printerEngineThresholdDetails.Threshold);
 
-            var enabledCheckBoxElement = SeleniumHelper.FindElementByCssSelector(targetPrinterEngineElement, "[id*=content_1_PrinterEngineRepeater_InputEnabled_6]");
+            var enabledCheckBoxElement = SeleniumHelper.FindElementByCssSelector(targetPrinterEngineElement, "[id*=content_1_PrinterEngineRepeater_InputEnabled_]");
             if(printerEngineThresholdDetails.Enabled && !enabledCheckBoxElement.Selected)
             {
                 SeleniumHelper.ClickSafety(enabledCheckBoxElement);
