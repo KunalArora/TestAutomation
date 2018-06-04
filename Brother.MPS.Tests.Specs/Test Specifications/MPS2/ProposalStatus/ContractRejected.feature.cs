@@ -138,6 +138,8 @@ testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlo
 testRunner.And("a Cloud MPS Local Office Approver rejects the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
 testRunner.Then("I can see the above proposal in the Rejected list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+testRunner.And("I can verify the proposal is present in the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

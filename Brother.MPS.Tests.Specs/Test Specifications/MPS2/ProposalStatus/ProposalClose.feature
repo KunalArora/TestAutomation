@@ -16,6 +16,7 @@ And I add these printers:
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And I cancel the above proposal and verify the proposal is in closed state
+Then I can verify the proposal is present in the dataquery page
 
 
 

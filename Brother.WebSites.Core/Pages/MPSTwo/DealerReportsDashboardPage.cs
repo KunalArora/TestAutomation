@@ -12,6 +12,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/cpp-agreement-report\"] .media-heading")]
         public IWebElement CppAgreementReportElement;
 
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/data-query\"] .media-heading")]
+        public IWebElement DataQueryElement;
+
         public string ValidationElementSelector
         {
             get
@@ -28,7 +31,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/cpp-agreement-report\"] .media-heading")]
-        public IWebElement CPPAgreementReportElement;
+
     }
 }

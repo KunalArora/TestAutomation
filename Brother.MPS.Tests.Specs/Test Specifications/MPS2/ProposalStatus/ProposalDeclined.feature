@@ -17,6 +17,7 @@ And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver declines the above proposal
 Then I can see the above proposal in the Declined list
+And I can verify the proposal is present in the dataquery page
 
 @BUK
 Scenarios: 

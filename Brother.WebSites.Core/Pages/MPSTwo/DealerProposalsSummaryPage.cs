@@ -1,12 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class DealerProposalsSummaryPage : BaseSummaryPage, IPageObject
     {
-        public static string _url = "/mps/dealer/contracts/summary";
-        private const string _validationElementSelector = "#content_1_ButtonDownloadProposalPdfWithCalcs"; // Download PDF
+        public static string _url = "/mps/dealer/proposals/summary";
+        private const string _validationElementSelector = ".js-mps-nav-back"; // Back button element
 
         public override string DefaultTitle
         {

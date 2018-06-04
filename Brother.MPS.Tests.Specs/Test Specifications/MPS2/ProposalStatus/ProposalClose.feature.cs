@@ -123,6 +123,8 @@ testRunner.And("I calculate the click price for each of the above printers", ((s
 testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
 testRunner.And("I cancel the above proposal and verify the proposal is in closed state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+testRunner.Then("I can verify the proposal is present in the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

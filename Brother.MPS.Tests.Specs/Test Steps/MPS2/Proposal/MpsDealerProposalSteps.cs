@@ -54,6 +54,9 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsDeclinedPage _dealerProposalsDeclinedPage;
         private DealerDashBoardPage _subDealerDashboardPage;
         private DealerProposalsClosedPage _dealerProposalsClosedPage;
+        private DealerReportsDashboardPage _dealerReportsDashboardPage;
+        private DealerReportsDataQueryPage _dealerReportsDataqueryPage;
+        private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
 
         // other
         private string _pdfFile;
@@ -512,5 +515,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsClosedPage = _mpsDealerProposalStepActions.ClickOnCancelProposalButton(_dealerProposalsSummaryPage);
             _mpsDealerProposalStepActions.VerifyClosedProposalPresent(_dealerProposalsClosedPage);
         }
+
+        [Then(@"I can verify the proposal is present in the dataquery page")]
+        public void ThenICanVerifyTheProposalIsPresentInTheDataqueryPage()
+        {
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerReportsDashboardPage = _mpsDealerProposalStepActions.NavigateToDealerReportsDashboardPage(_dealerDashboardPage);
+            _dealerReportsDataqueryPage = _mpsDealerProposalStepActions.NavigateToDataqueryPage(_dealerReportsDashboardPage);
+            _dealerReportsProposalsSummaryPage = _mpsDealerProposalStepActions.NavigateToProposalsSummaryPage(_dealerReportsDataqueryPage);
+            _mpsDealerProposalStepActions.VerifyProposalName(_dealerReportsProposalsSummaryPage);
+        }
+
     }
 }
