@@ -746,6 +746,26 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsAwaitingApprovalPage dealerProposalsAwaitingApprovalPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsAwaitingApprovalPage);
+            dealerProposalsAwaitingApprovalPage.ClickOnSummaryPage(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsClosedPage ClickOnCancelProposalButton(DealerProposalsSummaryPage dealerProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsSummaryPage);
+            dealerProposalsSummaryPage.ClickOnCancelProposalButton();
+            return PageService.GetPageObject<DealerProposalsClosedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyClosedProposalPresent(DealerProposalsClosedPage dealerProposalsClosedPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsClosedPage);
+            dealerProposalsClosedPage.VerifyClosedProposalPresent(_contextData.ProposalId, _contextData.ProposalName);
+        }
+
         public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertTermAndTypePage);

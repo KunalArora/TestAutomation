@@ -173,6 +173,7 @@
     <Compile Include="Pages\MPSTwo\CustomerDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsRejectedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsApprovedPage.cs" />
+    <Compile Include="Pages\MPSTwo\DealerProposalsClosedPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsConvertClickPricePage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsConvertCustomerInformationPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsConvertProductsPage.cs" />

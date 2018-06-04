@@ -53,6 +53,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerProposalsAwaitingApprovalPage _dealerProposalsAwaitingApprovalPage;
         private DealerProposalsDeclinedPage _dealerProposalsDeclinedPage;
         private DealerDashBoardPage _subDealerDashboardPage;
+        private DealerProposalsClosedPage _dealerProposalsClosedPage;
 
         // other
         private string _pdfFile;
@@ -502,6 +503,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenASubDealerCalculateTheClickPriceForEachOfTheAbovePrinters()
         {
             _dealerProposalsCreateSummaryPage = _mpsDealerProposalStepActions.CalculateClickPriceAndProceed(_dealerProposalsCreateClickPricePage);
+        }
+
+        [When(@"I cancel the above proposal and verify the proposal is in closed state")]
+        public void WhenICancelTheAboveProposalAndVerifyTheProposalIsInClosedState()
+        {
+            _dealerProposalsSummaryPage = _mpsDealerProposalStepActions.ClickOnViewSummary(_dealerProposalsAwaitingApprovalPage);
+            _dealerProposalsClosedPage = _mpsDealerProposalStepActions.ClickOnCancelProposalButton(_dealerProposalsSummaryPage);
+            _mpsDealerProposalStepActions.VerifyClosedProposalPresent(_dealerProposalsClosedPage);
         }
     }
 }

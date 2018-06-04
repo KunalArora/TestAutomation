@@ -34,6 +34,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.Id, Using = "content_1_ButtonCancel")]
         public IWebElement CancelProposalElement;
+
+        public void ClickOnCancelProposalButton()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.ClickSafety(CancelProposalElement);
+            SeleniumHelper.AcceptJavascriptAlert();
+        }
     }
 
 }
