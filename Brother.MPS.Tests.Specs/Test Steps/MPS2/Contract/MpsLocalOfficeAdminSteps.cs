@@ -12,7 +12,6 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
-using static Brother.WebSites.Core.Pages.MPSTwo.LocalOfficeAdminContractsAdditionalCharges;
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
 {
@@ -86,7 +85,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         }
 
         [StepDefinition(@"a Cloud MPS Local Office Admin set the New additional charges , Charge Type of ""(.*)"", Cost Price of ""(.*)"", and Margin Percent of ""(.*)"" and save")]
-        public void WhenACloudMPSLocalOfficeAdminSetTheNewAdditionalChargesChargeTypeOfCostPriceOfAndMarginPercentOfAndSave(ChargeTypeSelectorElementValue chargeType, double costPrice, double marginPercent)
+        public void WhenACloudMPSLocalOfficeAdminSetTheNewAdditionalChargesChargeTypeOfCostPriceOfAndMarginPercentOfAndSave(LocalOfficeAdminContractsAdditionalCharges.ChargeTypeSelectorElementValue chargeType, double costPrice, double marginPercent)
         {
             var localOfficeAdminContractsAdditionalCharges =  _mpsLocalOfficeAdminContractStepActions.ClickOnAdditionalCharges(_localOfficeAdminReportsProposalSummaryPage);
             _mpsLocalOfficeAdminContractStepActions.AddAdditionalCharges(localOfficeAdminContractsAdditionalCharges, chargeType, costPrice, marginPercent);
