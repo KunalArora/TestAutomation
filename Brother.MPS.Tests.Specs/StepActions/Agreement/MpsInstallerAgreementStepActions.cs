@@ -268,6 +268,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 }
             }
 
+            
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (_contextData.AdditionalDeviceProperties.FirstOrDefault(d => ((d.Model == device.Model) && (d.MpsDeviceId != device.MpsDeviceId))) != null)
+                {
+                    // Verify that this multiple quantity model has select serial number link displayed against it
+                    installationCloudUsbPage.AssertSelectSerialLinkIsDisplayed(device.MpsDeviceId);
+                }
+            }
+
             // 5. Select serial numbers of devices wherever possible
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
@@ -508,11 +518,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(installationCloudToolPage);
             var props = _contextData.PrintersProperties;
+
+            foreach (var device in _contextData.AdditionalDeviceProperties)
+            {
+                if (_contextData.AdditionalDeviceProperties.FirstOrDefault(d => ((d.Model == device.Model) && (d.MpsDeviceId != device.MpsDeviceId))) != null)
+                {
+                    // Verify that this multiple quantity model has select serial number link displayed against it
+                    installationCloudToolPage.AssertSelectSerialLinkIsDisplayed(device.MpsDeviceId);
+                }
+            }
+
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
                 var deviceRowElements = installationCloudToolPage.SeleniumHelper.FindRowElementsWithinTable(
                     installationCloudToolPage.DeviceTableContainerElement);
                 var prop = props.First(p => p.Model == device.Model);
+
+                
 
                 foreach (var element in deviceRowElements)
                 {
