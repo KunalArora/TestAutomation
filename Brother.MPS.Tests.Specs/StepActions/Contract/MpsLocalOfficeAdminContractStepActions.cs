@@ -272,7 +272,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(startDate, endDate);
             if (startDate.Day==1 && endDate.Day == DateTime.DaysInMonth(endDate.Year, endDate.Month))
             {
-                var elpasedMonth = endDate.Month - startDate.Month + 1;
+                var elpasedMonth = (endDate.Year*12+endDate.Month) - (startDate.Year*12+startDate.Month) + 1;
                 return (double)elpasedMonth; // Apr.1-30=1 May.1-31=1 Apr.1-May.31=2
             }
             // if billing cycle below
