@@ -91,11 +91,11 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
                 _contextData.ContractTerm, 
                 _contextData.LeadCodeReference, 
                 _contextData.LeasingFinanceReference, 
-                _contextData.ContractType, 
+                _contextData.AgreementType, 
                 _contextData.UsageType, 
                 _contextData.DealerReference);
 
-            // TODO: Verify printer details
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.VerifyPrinterDetails(_contextData.PrinterEngineThresholdDetails);
 
             return bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
         }

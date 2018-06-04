@@ -17,7 +17,7 @@ When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreemen
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
 		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SendInstallationRequest | MonoThresholdValue | ColourThresholdValue |
-		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2250       | 25             | 2250         | Yes                     | 12.00              | 15.00                |
+		| DCP-L8450CDW | 1        | Yes              | Yes         | 25           | 2500       | 25             | 2500         | Yes                     | 12.00              | 15.00                |
 And I complete the setup of agreement
 Then I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page
@@ -25,8 +25,7 @@ And I edit device data one by one for all devices (Fill Optional fields: "<Optio
 And I can verify that devices are ready for installation
 Then I can create and send a bulk installation request
 When I export the device data into excel and retrieve installation information
-And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
-And a Cloud MPS Installer resets the devices and reinstalls them
+And a Cloud MPS Installer is able to install devices one by one using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that all devices are installed and responding
 When a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device Order Threshold section
 Then a Cloud MPS BIE Admin searches for the agreement and ensures correct printer details

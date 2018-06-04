@@ -137,9 +137,9 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "Yes",
                         "Yes",
                         "25",
-                        "2250",
+                        "2500",
                         "25",
-                        "2250",
+                        "2500",
                         "Yes",
                         "12.00",
                         "15.00"});
@@ -160,21 +160,19 @@ testRunner.Then("I can create and send a bulk installation request", ((string)(n
 #line 27
 testRunner.When("I export the device data into excel and retrieve installation information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
-testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
-                        "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("a Cloud MPS Installer is able to install devices one by one using \"{0}\" communica" +
+                        "tion and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
-testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
 testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 31
+#line 30
 testRunner.When("a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device " +
                     "Order Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 31
 testRunner.Then("a Cloud MPS BIE Admin searches for the agreement and ensures correct printer deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 33
+#line 32
 testRunner.And("a Cloud MPS BIE Admin validates the default threshold values for the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 33
 testRunner.And("a Cloud MPS BIE Admin updates the threshold value for printers and saves the deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

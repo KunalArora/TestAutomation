@@ -65,16 +65,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void ValidateSuccessElementOnSaving()
         {
             LoggingService.WriteLogOnMethodEntry();
-
-            try
+            if(SeleniumHelper.IsElementPresent(SuccessAlertSelector))
             {
                 var successElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
                 SeleniumHelper.ClickSafety(successElement.FindElement(By.ClassName("close")));
-            }
-            catch (Exception e)
-            {
-                TestCheck.AssertFailTest("Success alert could not be verified on saving printer engine details under Manage Device Order Threshold section of BIE Admin. Error details:" + e);
-            }
+            }     
         }
     }
 }
