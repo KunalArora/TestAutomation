@@ -220,7 +220,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.CreatedDealerLastName = localOfficeAdminDealersCreateDealershipPage.GetLastName();
 
             _mpsWebToolsService.RegisterCustomer(_contextData.CreatedDealerEmail, _contextData.CreatedDealerPassword, _contextData.CreatedDealerFirstName, _contextData.CreatedDealerLastName, _contextData.Country.CountryIso);
-
+            _mpsWebToolsService.RegisterRole(_contextData.CreatedDealerEmail, MpsRoles.Dealer);
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SaveButtonElement);
             return PageService.GetPageObject<LocalOfficeAdminAdministrationDealerPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }

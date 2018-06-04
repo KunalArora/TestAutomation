@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TYPE3 @HIGH @DEALERCREATION @CI_TestMaintenance
+﻿@MPS @UAT @TYPE1 @TYPE3 @HIGH @DEALERCREATION @CI_TestMaintenance
 Feature: CreateBSWDealer
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Local Office Admin

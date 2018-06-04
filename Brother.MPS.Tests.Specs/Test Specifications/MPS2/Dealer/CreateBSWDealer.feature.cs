@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
     [NUnit.Framework.DescriptionAttribute("CreateBSWDealer")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
+    [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("DEALERCREATION")]
@@ -41,6 +42,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
                     "dmin\r\n\tI want to create a dealer for bsw-french", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
+                        "TYPE1",
                         "TYPE3",
                         "HIGH",
                         "DEALERCREATION",
