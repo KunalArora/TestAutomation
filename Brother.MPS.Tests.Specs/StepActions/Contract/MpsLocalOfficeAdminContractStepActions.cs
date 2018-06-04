@@ -125,6 +125,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
+        public void AssertTheContractStatusIsClosed(DataQueryPage dataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
+            try
+            {
+                dataQueryPage.SeleniumHelper.ClickSafety(dataQueryPage.ClosedContractElement);
+                dataQueryPage.SeleniumHelper.SetListFilter(dataQueryPage.DataQuerySearchField, _contextData.ProposalId.ToString(), dataQueryPage.VisibleItemDivElements);
+            }
+            catch(Exception )
+            {
+                Assert.Fail( "AssertTheContractStatusIsClosed() Contract may not closed or not found id=" + _contextData.ProposalId);   
+            }
+
+        }
+
         public LocalOfficeAdminContractsAdditionalCharges ClickOnAdditionalCharges(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminReportsProposalSummaryPage);

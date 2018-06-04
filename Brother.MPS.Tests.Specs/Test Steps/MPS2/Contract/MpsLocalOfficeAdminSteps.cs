@@ -101,6 +101,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             var pdfFinalInvoice = _mpsLocalOfficeAdminContractStepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
             _mpsLocalOfficeAdminContractStepActions.AssertAreEquealsAdditionalCharges(pdfFinalInvoice, _contextData.SnapValues[typeof(LocalOfficeAdminContractsEditEndDatePage)] as LocalOfficeAdminContractsEditEndDatePageValue);
             _mpsLocalOfficeAdminContractStepActions.AssertAreEqualOverusageValues(pdfFinalInvoice, startDate);
+
+            var localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dataQueryPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToReportsDataQuery(localOfficeAdminDashboardPage);
+            _mpsLocalOfficeAdminContractStepActions.AssertTheContractStatusIsClosed(dataQueryPage);
         }
 
         [StepDefinition(@"a Local Office Admin assert the final bill is generated/present")]
