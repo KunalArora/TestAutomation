@@ -877,10 +877,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage, true);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
                 }
-                else
-                {
-                    TestCheck.AssertFailTest("Consumable order generation could not be verified.");
-                }
             }
 
             return dealerAgreementDevicesPage;
