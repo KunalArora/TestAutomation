@@ -678,7 +678,7 @@ namespace Brother.Tests.Specs.Helpers
                 });
             value.Add(prefix + ".Count", count.ToString());
 
-            prefix = LocalOfficeAdminContractsEditEndDatePageValue.PrefixContractCacellationDetails ;
+            prefix = LocalOfficeAdminContractsEditEndDatePageValue.PrefixContractCancellationDetails ;
             IgnoreThrow(() => value.Add(prefix + ".InputEndDate", SeleniumHelper.FindElementByCssSelector("#content_1_InputEndDate_Input").GetAttribute("value")));
             IgnoreThrow(() => value.Add(prefix + ".InputEndDate@placeholder", SeleniumHelper.FindElementByCssSelector("#content_1_InputEndDate_Input").GetAttribute("placeholder")));
             IgnoreThrow(() => value.Add(prefix + ".InputDescription", SeleniumHelper.FindElementByCssSelector("#content_1_InputDescription_Input").GetAttribute("value")));
@@ -723,7 +723,7 @@ namespace Brother.Tests.Specs.Helpers
     {
         public static readonly string PrefixExistingCharges = "ExistingCharges";
         public static readonly object PrefixContractDetails = "ContractDetails";
-        public static readonly object PrefixContractCacellationDetails = "ContractCacellationDetails";
+        public static readonly object PrefixContractCancellationDetails = "ContractCacellationDetails";
 
         public IList<Dictionary<string, string>> GetExistingChargesList(IPageParseHelper ph) { return ph.ToList(this, PrefixExistingCharges); }
     }

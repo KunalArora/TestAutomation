@@ -48,6 +48,6 @@ namespace Brother.Tests.Specs.Helpers
         /// <param name="pdfFinalInvoice"></param>
         /// <param name="expectedList"></param>
         /// <param name="cultureInfo"></param>
-        void AssertAreEquealsAdditionalCharges(string pdfFinalInvoice, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo);
+        void AssertAreEquealAdditionalCharges(string pdfFinalInvoice, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo);
     }
 }

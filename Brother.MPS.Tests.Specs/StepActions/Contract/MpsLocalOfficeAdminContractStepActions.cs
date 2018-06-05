@@ -133,9 +133,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 dataQueryPage.SeleniumHelper.ClickSafety(dataQueryPage.ClosedContractElement);
                 dataQueryPage.SeleniumHelper.SetListFilter(dataQueryPage.DataQuerySearchField, _contextData.ProposalId.ToString(), dataQueryPage.VisibleItemDivElements);
             }
-            catch(Exception )
+            catch(Exception e)
             {
-                Assert.Fail( "AssertTheContractStatusIsClosed() Contract may not closed or not found id=" + _contextData.ProposalId);   
+                Assert.Fail( "AssertTheContractStatusIsClosed() Contract may not closed or not found id={0}, e={1}, tacktrace={2}" , _contextData.ProposalId, e, e.StackTrace);   
             }
 
         }
@@ -260,10 +260,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
         }
 
-        public void AssertAreEquealsAdditionalCharges(string pdfFinalInvoice, LocalOfficeAdminContractsEditEndDatePageValue expectedSnapValues)
+        public void AssertAreEquealAdditionalCharges(string pdfFinalInvoice, LocalOfficeAdminContractsEditEndDatePageValue expectedSnapValues)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice, expectedSnapValues);            
-            _pdfHelper.AssertAreEquealsAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
+            _pdfHelper.AssertAreEquealAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
         }
 
 
@@ -272,8 +272,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(startDate, endDate);
             if (startDate.Day==1 && endDate.Day == DateTime.DaysInMonth(endDate.Year, endDate.Month))
             {
-                var elpasedMonth = (endDate.Year*12+endDate.Month) - (startDate.Year*12+startDate.Month) + 1;
-                return (double)elpasedMonth; // Apr.1-30=1 May.1-31=1 Apr.1-May.31=2
+                var elapsedMonth = (endDate.Year*12+endDate.Month) - (startDate.Year*12+startDate.Month) + 1;
+                return (double)elapsedMonth; // Apr.1-30=1 May.1-31=1 Apr.1-May.31=2
             }
             // if billing cycle below
             // 01/03/2018    03/04/2018

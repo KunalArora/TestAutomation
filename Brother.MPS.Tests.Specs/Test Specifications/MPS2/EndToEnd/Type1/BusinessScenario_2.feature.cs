@@ -263,8 +263,8 @@ testRunner.When("a Cloud MPS Local Office Admin set the New additional charges ,
                     "onsumables_Return_Management_Fee\", Cost Price of \"10.00\", and Margin Percent of " +
                     "\"3.00\" and save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 44
-testRunner.When("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
-                    "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
+                    "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
 testRunner.Then("a Cloud MPS Local Office Admin can validate the final bill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
