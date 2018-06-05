@@ -46,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly ICPPAgreementExcelHelper _cppAgreementHelper;
         private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
+        private readonly MpsApiCallStepActions _mpsApiStepActions;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -66,7 +67,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
             IUserResolver userResolver,
             IDeviceSimulatorService deviceSimulatorService,
-            ICPPAgreementExcelHelper cppAgreementHelper)
+            ICPPAgreementExcelHelper cppAgreementHelper,
+            MpsApiCallStepActions mpsApiStepActions)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -84,6 +86,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _cppAgreementDevicesExcelHelper = cppAgreementDevicesExcelHelper;
             _cppAgreementHelper = cppAgreementHelper;
             _deviceSimulatorService = deviceSimulatorService;
+            _mpsApiStepActions = mpsApiStepActions;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -671,6 +674,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                         device.ReInstallDevice = product.ReInstallDevice;
                         device.CoverageMono = product.CoverageMono;
                         device.CoverageColour = product.CoverageColour;
+                        device.MonoThresholdValue = product.MonoThresholdValue;
+                        device.ColourThresholdValue = product.ColourThresholdValue;
                     }
                 }
             }
@@ -735,6 +740,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ClickSafety(dealerAgreementDetailsPage.DevicesTabElement, dealerAgreementDetailsPage);
             dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
                 RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
             return dealerAgreementDevicesPage;
         }
 
@@ -848,10 +854,32 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                     dealerAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
 
+                    int retries = 0;
+
+                    while(dealerAgreementDeviceConsumablesPage.IsNoConsumablesFound())
+                    {
+                        _mpsApiStepActions.UpdateMPSForConsumableOrder();
+
+                        // Refresh page
+                        _dealerWebDriver.Navigate().Refresh();
+                        dealerAgreementDeviceConsumablesPage = PageService.GetPageObject<DealerAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+
+                        retries++;
+                        if (retries > RuntimeSettings.DefaultRetryCount)
+                        {
+                            throw new Exception(
+                                string.Format("Number of retries exceeded the default limit during verification of consumable order generation for agreement {0}", _contextData.AgreementId));
+                        }
+                    }
+
                     dealerAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethod);
 
                     ClickSafety(dealerAgreementDeviceConsumablesPage.BackButtonElement, dealerAgreementDeviceConsumablesPage, true);
                     dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                }
+                else
+                {
+                    TestCheck.AssertFailTest("Consumable order generation could not be verified.");
                 }
             }
 

@@ -130,7 +130,11 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "VolumeColour",
                         "SendInstallationRequest",
                         "MonoThresholdValue",
-                        "ColourThresholdValue"});
+                        "ColourThresholdValue",
+                        "TonerInkBlackRemLife",
+                        "TonerInkCyanRemLife",
+                        "TonerInkMagentaRemLife",
+                        "TonerInkYellowRemLife"});
             table2.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1",
@@ -141,8 +145,12 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "25",
                         "2500",
                         "Yes",
-                        "12.00",
-                        "15.00"});
+                        "15.00",
+                        "20.00",
+                        "14",
+                        "100",
+                        "19",
+                        "100"});
 #line 18
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table2, "And ");
 #line 21
@@ -168,13 +176,15 @@ testRunner.Then("I can verify that all devices are installed and responding", ((
 testRunner.When("a Cloud MPS BIE Admin navigates to the Installed Printer tab under Manage Device " +
                     "Order Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 31
-testRunner.Then("a Cloud MPS BIE Admin searches for the agreement and ensures correct printer deta" +
-                    "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("a Cloud MPS BIE Admin searches for the agreement and ensures correct printer and " +
+                    "threshold details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 32
-testRunner.And("a Cloud MPS BIE Admin validates the default threshold values for the printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
 testRunner.And("a Cloud MPS BIE Admin updates the threshold value for printers and saves the deta" +
                     "ils", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+testRunner.When("I automatically raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
+testRunner.Then("I can verify the generation of automatic consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

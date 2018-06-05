@@ -81,22 +81,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.BIEAdmin
             _bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsBieAdminStepActions.NavigateToEnhancedUsageMonitoringNewInstalledPrinterPage(_bieAdminDashboardPage);
         }
 
-        [Then(@"a Cloud MPS BIE Admin searches for the agreement and ensures correct printer details")]
-        public void ThenACloudMPSBIEAdminSearchesForTheAgreementAndEnsuresCorrectPrinterDetails()
+        [Then(@"a Cloud MPS BIE Admin searches for the agreement and ensures correct printer and threshold details")]
+        public void ThenACloudMPSBIEAdminSearchesForTheAgreementAndEnsuresCorrectPrinterAndThresholdDetails()
         {
             _bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsBieAdminStepActions.SearchAgreementAndValidateDetails(_bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
-        }
-
-        [Then(@"a Cloud MPS BIE Admin validates the default threshold values for the printers")]
-        public void ThenACloudMPSBIEAdminValidatesTheDefaultThresholdValuesForThePrinters()
-        {
-            ScenarioContext.Current.Pending();
         }
 
         [Then(@"a Cloud MPS BIE Admin updates the threshold value for printers and saves the details")]
         public void ThenACloudMPSBIEAdminUpdatesTheThresholdValueForPrintersAndSavesTheDetails()
         {
-            ScenarioContext.Current.Pending();
+            _bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsBieAdminStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
         }
     }
 }

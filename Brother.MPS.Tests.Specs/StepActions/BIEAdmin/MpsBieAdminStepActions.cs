@@ -99,5 +99,16 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
 
             return bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
         }
+
+        public BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage UpdatePrinterEngineThresholdDetailsAndSave(BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
+
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.UpdateThresholdValuesAndSave(_contextData.PrintersProperties);
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.ValidateSuccessElementOnSaving();
+
+            return bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
+        }
     }
 }

@@ -25,6 +25,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
+        // Selectors
+        private const string EUMRowSelector = ".js-mps-installed-printer-eum-row";
+        private const string EUMRowModelSelector = "[id*=content_1_InstalledPrinterRepeater_CellModel_]";
+        private const string EUMRowSupplyItemTypeSelector = "[id*=content_1_InstalledPrinterRepeater_CellSupplyItemType_]";
+        private const string EUMRowPrinterEngineSelector = "[id*=content_1_InstalledPrinterRepeater_CellPrinterEngine_]";
+        private const string EUMRowDefaultThresholdSelector = "[id*=content_1_InstalledPrinterRepeater_CellDefaultThresholdValue_]";
+        private const string EUMRowInputThresholdSelector = "[id*=content_1_InstalledPrinterRepeater_InputThreshold_]";
+        private const string EUMRowInputEnabledCheckboxSelector = "[id*=content_1_InstalledPrinterRepeater_InputEnabled_]";
+        private const string SuccessAlertSelector = ".alert.alert-success.mps-alert.js-mps-alert";
+
+
         // TABs
         [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-new/printer-engine']")]
         public IWebElement PrinterEngineTabElement;
@@ -33,6 +44,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement ContractNumberInputElement;
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonGo")]
         public IWebElement GoButtonElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSave")]
+        public IWebElement SaveButtonElement;
 
         
         public void SearchAgreementAndLoadDetails(int agreementId) // Ok for proposalId as well
@@ -71,15 +84,61 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(printerEngineThresholdDetails);
 
-            var eumRowElements = SeleniumHelper.FindElementsByCssSelector(".js-mps-installed-printer-eum-row");
+            var eumRowElements = SeleniumHelper.FindElementsByCssSelector(EUMRowSelector);
             foreach(var thresholdDetails in printerEngineThresholdDetails)
             {
                 TestCheck.AssertIsNotNull(eumRowElements.Find(
                     d =>
-                        d.FindElement(By.CssSelector("[id*=content_1_InstalledPrinterRepeater_CellSupplyItemType_]")).Text == thresholdDetails.SupplyItemType &&
-                        d.FindElement(By.CssSelector("[id*=content_1_InstalledPrinterRepeater_CellPrinterEngine_]")).Text == thresholdDetails.PrinterEngine &&
-                        d.FindElement(By.CssSelector("[id*=content_1_InstalledPrinterRepeater_CellDefaultThresholdValue_]")).Text == thresholdDetails.Threshold), 
+                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == thresholdDetails.SupplyItemType &&
+                        d.FindElement(By.CssSelector(EUMRowPrinterEngineSelector)).Text == thresholdDetails.PrinterEngine &&
+                        d.FindElement(By.CssSelector(EUMRowDefaultThresholdSelector)).Text == thresholdDetails.Threshold), 
                         "Printer Engine Threshold details could not be verified. Expected threshold details = " + thresholdDetails);
+            }
+        }
+
+        public void UpdateThresholdValuesAndSave(IEnumerable<PrinterProperties> printerProperties)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerProperties);
+
+            var eumRowElements = SeleniumHelper.FindElementsByCssSelector(EUMRowSelector);
+            foreach(var printer in printerProperties)
+            {
+                var targetEumRow = eumRowElements.Find(
+                    d =>
+                        d.FindElement(By.CssSelector(EUMRowModelSelector)).Text == printer.Model &&
+                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == "Mono");
+
+                TestCheck.AssertIsNotNull(targetEumRow, "Printer engine mono threshold details not found for printer = " + printer.Model);
+
+                ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.MonoThresholdValue, true);
+                var checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
+                if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
+
+                if(!printer.IsMonochrome)
+                {
+                    targetEumRow = eumRowElements.Find(
+                    d =>
+                        d.FindElement(By.CssSelector(EUMRowModelSelector)).Text == printer.Model &&
+                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == "Colour");
+
+                    TestCheck.AssertIsNotNull(targetEumRow, "Printer engine colour threshold details not found for printer = " + printer.Model);
+
+                    ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.ColourThresholdValue, true);
+                    checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
+                    if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
+                }
+            }
+
+            SeleniumHelper.ClickSafety(SaveButtonElement);
+        }
+
+        public void ValidateSuccessElementOnSaving()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            if (SeleniumHelper.IsElementPresent(SuccessAlertSelector))
+            {
+                var successElement = SeleniumHelper.FindElementByCssSelector(SuccessAlertSelector);
+                SeleniumHelper.ClickSafety(successElement.FindElement(By.ClassName("close")));
             }
         }
     }

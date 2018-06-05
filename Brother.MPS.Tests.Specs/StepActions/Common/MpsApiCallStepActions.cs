@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
@@ -87,6 +88,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void UpdateAndNotifyBOCForConsumableOrderWithReplaceCountAndRemLife()
         {
             LoggingService.WriteLogOnMethodEntry();
+
             var products = _contextData.PrintersProperties;
             var devices = _contextData.AdditionalDeviceProperties;
 
@@ -137,6 +139,8 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry();
 
+            // Sets the agreement status to "Running"
+            _runCommandService.RunStartContractCommand();
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();           
