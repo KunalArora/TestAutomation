@@ -724,7 +724,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, filterString);
             dealerProposalsDeclinedPage.SetListFilter(filterString);
-            proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+            proposalNameForSearch = dealerProposalsDeclinedPage.SeleniumHelper.WaitUntil(d =>
+           {
+               var text = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+               return string.IsNullOrWhiteSpace(text) ? null : text;
+           }); // stabilizing
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.CopyAProposal(_dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;

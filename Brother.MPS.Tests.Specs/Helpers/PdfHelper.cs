@@ -175,5 +175,17 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
+        public void AssertAreEqualAdditionalCharges(string pdfFile, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFile, expectedList,cultureInfo);
+            Assert.True(PdfExists(pdfFile), "pdf file does not exist={0}", pdfFile);
+            foreach( var expected in expectedList)
+            {
+                // ex. "01/05/2018 - 31/05/2018 Consumables Return Management Fee £10.31\n" in PDF(UK)
+                var totalPrice = double.Parse(expected["CustomerPrice"], cultureInfo);
+                var expectedString = string.Format(cultureInfo, "{0} {1:C2}", expected["ChargeType"], totalPrice);
+                Assert.True(PdfContainsText(pdfFile, expectedString), "String not found in pdf. pdfFile=[{0}], expected=[{1}]", pdfFile, expected);
+            }
+        }
     }
 }

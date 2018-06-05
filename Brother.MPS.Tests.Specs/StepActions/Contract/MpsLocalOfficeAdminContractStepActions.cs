@@ -14,6 +14,8 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
@@ -29,6 +31,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IPdfHelper _pdfHelper;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IContractShiftService _contractShiftService;
+        private readonly IPageParseHelper _pageParseHelper;
 
         public MpsLocalOfficeAdminContractStepActions(
             DeviceSimulatorService deviceSimulatorService,
@@ -37,6 +40,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IPdfHelper pdfHelper,
             MpsSignInStepActions mpsSignIn,
             IContractShiftService contractShiftService,
+            IPageParseHelper pageParseHelper,
 
             IWebDriverFactory webDriverFactory, 
             IContextData contextData, 
@@ -55,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper = pdfHelper;
             _mpsSignIn = mpsSignIn;
             _contractShiftService = contractShiftService;
+            _pageParseHelper = pageParseHelper;
 
         }
 
@@ -82,10 +87,33 @@ namespace Brother.Tests.Specs.StepActions.Contract
             var endDay = DateTime.Today.AddDays(1);
             localOfficeAdminContractsEditEndDatePage.EnterCancellationDateAndReason(endDay, "details set end is " + endDay.ToString());
 
+            var snapValues = _pageParseHelper.ParseLocalOfficeAdminContractsEditEndDatePage(localOfficeAdminContractsEditEndDatePage);
+            AssertAreEqualsAdditionalCharges(_contextData.AdditionalChargesItemList, snapValues);
+            _contextData.SnapValues[typeof(LocalOfficeAdminContractsEditEndDatePage)] = snapValues;
+
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonSaveElement, localOfficeAdminContractsEditEndDatePage);
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonApplyContractCancellationElement, localOfficeAdminContractsEditEndDatePage,true);
             return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
 
+        }
+
+        public void AssertAreEqualsAdditionalCharges( IList<AdditionalChargesItem> expectedAdditionalChargesItemList, LocalOfficeAdminContractsEditEndDatePageValue actualSnapValues)
+        {
+            LoggingService.WriteLogOnMethodEntry(expectedAdditionalChargesItemList,actualSnapValues);
+            var actualChargesList = actualSnapValues.GetExistingChargesList(_pageParseHelper) ;
+            Assert.AreEqual(actualChargesList.Count, expectedAdditionalChargesItemList.Count, "AssertAreEqualsAdditionalCharges() different item count");
+            expectedAdditionalChargesItemList.All(expectedItem =>
+            {
+                var found = actualChargesList.Any(actualItem =>
+               {
+                   if( actualItem["ChargeType@value"] != expectedItem.chargeTypeValue.ToString()) { return false; }
+                   if (double.Parse(actualItem["CostPrice"],_contextData.CultureInfo) != expectedItem.costPrice) { return false; }
+                   if (double.Parse(actualItem["DealerMargin"], _contextData.CultureInfo) != expectedItem.marginPercent) { return false; }
+                   return true;
+               });
+                Assert.True(found, "AssertAreEqualsAdditionalCharges() target charges not found. expectedItem=" + expectedItem);
+                return found;
+            });
         }
 
         public LocalOfficeAdminReportsProposalSummaryPage EditProposalNotes(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
@@ -94,6 +122,46 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             localOfficeAdminReportsProposalSummaryPage.EditProposalNotes();
             ClickSafety(localOfficeAdminReportsProposalSummaryPage.SaveButtonElement, localOfficeAdminReportsProposalSummaryPage);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+
+        public void AssertTheContractStatusIsClosed(DataQueryPage dataQueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dataQueryPage);
+            try
+            {
+                dataQueryPage.SeleniumHelper.ClickSafety(dataQueryPage.ClosedContractElement);
+                dataQueryPage.SeleniumHelper.SetListFilter(dataQueryPage.DataQuerySearchField, _contextData.ProposalId.ToString(), dataQueryPage.VisibleItemDivElements);
+            }
+            catch(Exception e)
+            {
+                Assert.Fail( "AssertTheContractStatusIsClosed() Contract may not closed or not found id={0}, e={1}, tacktrace={2}" , _contextData.ProposalId, e, e.StackTrace);   
+            }
+
+        }
+
+        public LocalOfficeAdminContractsAdditionalCharges ClickOnAdditionalCharges(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminReportsProposalSummaryPage);
+            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
+            ActionsModule.NavigateToAdditionalChargesActionButton(_webDriver, localOfficeAdminReportsProposalSummaryPage.SeleniumHelper);
+            return PageService.GetPageObject<LocalOfficeAdminContractsAdditionalCharges>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+
+        public void AddAdditionalCharges(LocalOfficeAdminContractsAdditionalCharges localOfficeAdminContractsAdditionalCharges, LocalOfficeAdminContractsAdditionalCharges.ChargeTypeSelectorElementValue chargeType, double costPrice, double marginPercent)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminContractsAdditionalCharges, chargeType, costPrice, marginPercent);
+            var SeleniumHelper = localOfficeAdminContractsAdditionalCharges.SeleniumHelper;
+            localOfficeAdminContractsAdditionalCharges.EnterAdditionalChargesValue(chargeType, costPrice, marginPercent);
+            SeleniumHelper.ClickSafety(localOfficeAdminContractsAdditionalCharges.AddButtonElement);
+            ContextData.AdditionalChargesItemList.Add( new AdditionalChargesItem() { chargeTypeValue = (int)chargeType, costPrice = costPrice, marginPercent = marginPercent } );
+        }
+
+        public LocalOfficeAdminReportsProposalSummaryPage ClickOnBack(LocalOfficeAdminContractsAdditionalCharges localOfficeAdminContractsAdditionalCharges)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminContractsAdditionalCharges);
+            var SeleniumHelper = localOfficeAdminContractsAdditionalCharges.SeleniumHelper;
+            SeleniumHelper.ClickSafety(localOfficeAdminContractsAdditionalCharges.BackElement,IsUntilUrlChanges:true);
             return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
@@ -165,9 +233,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
         }
 
         private const int FINAL_PV_COEFFICIENT = 2;
+
         public void AssertAreEqualOverusageValues(string pdfFinalInvoice,DateTime startDate)
         {
-            LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice);
+            LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice, startDate);
 
             var products = _contextData.PrintersProperties;
             var endDate = DateTime.Today.AddDays(-1); // yesterday
@@ -191,8 +260,21 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
         }
 
+        public void AssertAreEqualAdditionalCharges(string pdfFinalInvoice, LocalOfficeAdminContractsEditEndDatePageValue expectedSnapValues)
+        {
+            LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice, expectedSnapValues);            
+            _pdfHelper.AssertAreEqualAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
+        }
+
+
         private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)
         {
+            LoggingService.WriteLogOnMethodEntry(startDate, endDate);
+            if (startDate.Day==1 && endDate.Day == DateTime.DaysInMonth(endDate.Year, endDate.Month))
+            {
+                var elapsedMonth = (endDate.Year*12+endDate.Month) - (startDate.Year*12+startDate.Month) + 1;
+                return (double)elapsedMonth; // Apr.1-30=1 May.1-31=1 Apr.1-May.31=2
+            }
             // if billing cycle below
             // 01/03/2018    03/04/2018
             // 

@@ -234,6 +234,7 @@
     <Compile Include="Pages\MPSTwo\InvoiceToolsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDealerPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminContractsAdditionalCharges.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminContractsEditEndDatePage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
