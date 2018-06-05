@@ -260,10 +260,10 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualOverusageValues(pdfFinalInvoice, _contextData.PrintersProperties, _contextData.Culture);
         }
 
-        public void AssertAreEquealAdditionalCharges(string pdfFinalInvoice, LocalOfficeAdminContractsEditEndDatePageValue expectedSnapValues)
+        public void AssertAreEqualAdditionalCharges(string pdfFinalInvoice, LocalOfficeAdminContractsEditEndDatePageValue expectedSnapValues)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFinalInvoice, expectedSnapValues);            
-            _pdfHelper.AssertAreEquealAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
+            _pdfHelper.AssertAreEqualAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
         }
 
 

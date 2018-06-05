@@ -98,7 +98,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         {
             DateTime startDate;
             var pdfFinalInvoice = _mpsLocalOfficeAdminContractStepActions.ApplyOverUsageAndContractShiftAndDownload(out startDate);
-            _mpsLocalOfficeAdminContractStepActions.AssertAreEquealAdditionalCharges(pdfFinalInvoice, _contextData.SnapValues[typeof(LocalOfficeAdminContractsEditEndDatePage)] as LocalOfficeAdminContractsEditEndDatePageValue);
+            _mpsLocalOfficeAdminContractStepActions.AssertAreEqualAdditionalCharges(pdfFinalInvoice, _contextData.SnapValues[typeof(LocalOfficeAdminContractsEditEndDatePage)] as LocalOfficeAdminContractsEditEndDatePageValue);
             _mpsLocalOfficeAdminContractStepActions.AssertAreEqualOverusageValues(pdfFinalInvoice, startDate);
 
             var localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(

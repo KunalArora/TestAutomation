@@ -175,7 +175,7 @@ namespace Brother.Tests.Specs.Helpers
             }
         }
 
-        public void AssertAreEquealAdditionalCharges(string pdfFile, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo)
+        public void AssertAreEqualAdditionalCharges(string pdfFile, IList<Dictionary<string, string>> expectedList, CultureInfo cultureInfo)
         {
             LoggingService.WriteLogOnMethodEntry(pdfFile, expectedList,cultureInfo);
             Assert.True(PdfExists(pdfFile), "pdf file does not exist={0}", pdfFile);
