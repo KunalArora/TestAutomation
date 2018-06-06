@@ -151,7 +151,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifyUpdatedDealerDetails(string dealershipName, string dealerEmail, string dealerSapId, string dealerOwnerName, string dealerCeoName)
         {
-            LoggingService.WriteLogOnMethodEntry(dealerEmail, dealerSapId, dealerOwnerName, dealerCeoName);
+            LoggingService.WriteLogOnMethodEntry(dealershipName, dealerEmail, dealerSapId, dealerOwnerName, dealerCeoName);
 
             var element = SeleniumHelper.SetListFilter(FilterElement, null, dealerEmail, List_Row);
             var elementRowId = element.GetAttribute("id");
