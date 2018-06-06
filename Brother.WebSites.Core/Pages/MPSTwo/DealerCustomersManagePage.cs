@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -1735,10 +1736,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private void SelectPaymentType(string value)
         {
             LoggingService.WriteLogOnMethodEntry(value);
-            if (PaymentTypeElement.Displayed)
-                SelectFromDropdown(PaymentTypeElement, value);
+            try
+            {
+                if (PaymentTypeElement.Displayed)
+                    SelectFromDropdown(PaymentTypeElement, value);
 
-            WebDriver.Wait(DurationType.Millisecond, 3000);
+                WebDriver.Wait(DurationType.Millisecond, 3000);
+            }
+            catch (NoSuchElementException noSuchElementException)
+            {
+                LoggingService.WriteLog(LoggingLevel.INFO, "PaymentTypeElement not found, assume only one payment type is available for this program");
+            }
         }
 
         private void EnterBankAccountNumber(string acc)
