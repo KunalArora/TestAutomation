@@ -259,13 +259,30 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             return PageService.GetPageObject<LocalOfficeAdminDealersEditDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public void EditDetails(LocalOfficeAdminDealersEditDealershipPage localOfficeAdminDealersEditDealershipPage)
+        public LocalOfficeAdminAdministrationDealerPage EditDealerDetails(LocalOfficeAdminDealersEditDealershipPage localOfficeAdminDealersEditDealershipPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersEditDealershipPage);
             localOfficeAdminDealersEditDealershipPage.VerifyPopulatedDetails(_contextData.DealerProperties.DiscountForType3, 
                 _contextData.DealerProperties.BillingDateForType3, _contextData.DealerProperties.DealerBankName, 
                 _contextData.DealerProperties.DealerBankAccountNumber, _contextData.DealerProperties.DealerBankSortCode, 
                 _contextData.DealerProperties.DealerBrotherSalesPerson);
+            localOfficeAdminDealersEditDealershipPage.EditDealerDetails();
+
+            _contextData.DealerProperties.DiscountForType3 = localOfficeAdminDealersEditDealershipPage.GetType3DiscountValue();
+            _contextData.DealerProperties.BillingDateForType3 = localOfficeAdminDealersEditDealershipPage.GetType3BillingDateValue();
+            _contextData.DealerProperties.DealerOwnerFirstName = localOfficeAdminDealersEditDealershipPage.GetOwnerFirstName();
+            _contextData.DealerProperties.DealerCeoFirstName = localOfficeAdminDealersEditDealershipPage.GetCeoFirstName();
+
+            localOfficeAdminDealersEditDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersEditDealershipPage.ButtonSaveElement);
+            return PageService.GetPageObject<LocalOfficeAdminAdministrationDealerPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public void VerifyUpdatedDealerDeatils(LocalOfficeAdminAdministrationDealerPage localOfficeAdminAdministrationDealerPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminAdministrationDealerPage);
+            localOfficeAdminAdministrationDealerPage.VerifyUpdatedDealerDetails(_contextData.DealerProperties.DealershipName, 
+                _contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerSapId, 
+                _contextData.DealerProperties.DealerOwnerName, _contextData.DealerProperties.DealerCeoName);
         }
     }
 }

@@ -1055,6 +1055,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<DealerAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
+        public void VerifyDashboardOptions(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.VerifyDashboardOptions();
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
@@ -1166,6 +1172,5 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
         #endregion
-
     }
  }

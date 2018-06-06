@@ -157,168 +157,144 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(dealershipName);
             ClearAndType(InputDealershipNameElement, dealershipName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterOwnerFirstName(string ownerFirstName)
         {
             LoggingService.WriteLogOnMethodEntry(ownerFirstName);
             ClearAndType(InputOwnerFirstNameElement, ownerFirstName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterOwnerLastName(string ownerLastName)
         {
             LoggingService.WriteLogOnMethodEntry(ownerLastName);
             ClearAndType(InputOwnerLastNameElement, ownerLastName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyNumber(string propertyNumber)
         {
             LoggingService.WriteLogOnMethodEntry(propertyNumber);
             ClearAndType(InputPropertyNumberElement, propertyNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyStreet(string propertyStreet)
         {
             LoggingService.WriteLogOnMethodEntry(propertyStreet);
             ClearAndType(InputPropertyStreetElement, propertyStreet);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyTown(string propertyTown)
         {
             LoggingService.WriteLogOnMethodEntry(propertyTown);
             ClearAndType(InputPropertyTownElement, propertyTown);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterPropertyPostCode(string propertyPostCode)
         {
             LoggingService.WriteLogOnMethodEntry(propertyPostCode);
             ClearAndType(InputPropertyPostCodeElement, propertyPostCode);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterCompaniesHouseNumber(string companiesHouseNumber)
         {
             LoggingService.WriteLogOnMethodEntry(companiesHouseNumber);
             ClearAndType(InputCompaniesHouseNumberElement, companiesHouseNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterVatNumber(string vatNumber)
         {
             LoggingService.WriteLogOnMethodEntry(vatNumber);
             ClearAndType(InputVatNumberElement, vatNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterCompanyTaxNumber(string companyTaxNumber)
         {
             LoggingService.WriteLogOnMethodEntry(companyTaxNumber);
             ClearAndType(InputCompanyTaxNumberElement, companyTaxNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterConsumerCreditLicenceNumber(string consumerCreditLicenceNumber)
         {
             LoggingService.WriteLogOnMethodEntry(consumerCreditLicenceNumber);
             ClearAndType(InputCustomerCreditLicenceNumberElement, consumerCreditLicenceNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterRegisteredCity(string registeredCity)
         {
             LoggingService.WriteLogOnMethodEntry(registeredCity);
             ClearAndType(InputRegisteredCityElement, registeredCity);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void SetCompanyBookIsRegisteredLabel(bool value)
         {
             LoggingService.WriteLogOnMethodEntry(value);
             SeleniumHelper.SetCheckBox(InputCompanyBookIsRegisteredCheckboxElement, value);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankName(string bankName)
         {
             LoggingService.WriteLogOnMethodEntry(bankName);
             ClearAndType(InputBankNameElement, bankName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankAccountNumber(string bankAccountNumber)
         {
             LoggingService.WriteLogOnMethodEntry(bankAccountNumber);
             ClearAndType(InputBankAccountNumberElement, bankAccountNumber);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBankSortCode(string bankSortCode)
         {
             LoggingService.WriteLogOnMethodEntry(bankSortCode);
             ClearAndType(InputBankSortCodeElement, bankSortCode);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterBrotherSalesPerson(string brotherSalesPerson)
         {
             LoggingService.WriteLogOnMethodEntry(brotherSalesPerson);
             ClearAndType(InputBrotherSalesPersonElement, brotherSalesPerson);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterDealerCulture(string dealerCulture)
         {
             LoggingService.WriteLogOnMethodEntry(dealerCulture);
             SeleniumHelper.SelectFromDropdownByText(InputDealerCultureElement, dealerCulture);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterCEOFirstName(string ceoFirstName)
         {
             LoggingService.WriteLogOnMethodEntry(ceoFirstName);
             ClearAndType(InputCEOFirstNameElement, ceoFirstName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterCEOLastName(string ceoLastName)
         {
             LoggingService.WriteLogOnMethodEntry(ceoLastName);
             ClearAndType(InputCEOLastNameElement, ceoLastName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactFirstName(string firstName)
         {
             LoggingService.WriteLogOnMethodEntry(firstName);
             ClearAndType(InputContactFirstNameElement, firstName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactLastName(string lastName)
         {
             LoggingService.WriteLogOnMethodEntry(lastName);
             ClearAndType(InputContactLastNameElement, lastName);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactTelephone(string telephone)
         {
             LoggingService.WriteLogOnMethodEntry(telephone);
             ClearAndType(InputContactTelephoneElement, telephone);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void EnterContactEmailAdress(string email)
         {
             LoggingService.WriteLogOnMethodEntry(email);
             ClearAndType(InputContactEmailElement, email);
-            WebDriver.Wait(DurationType.Millisecond, 100);
         }
 
         private void SelectTitleFromDropdown(string value = "0002")

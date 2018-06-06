@@ -96,6 +96,8 @@ testRunner.And("I edit the details for created dealer", ((string)(null)), ((Tech
 #line 11
 testRunner.Then(string.Format("a newly created Cloud MPS dealer can succesfully login with culture \"{0}\" from \"{" +
                         "1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+testRunner.And("a created Cloud MPS dealer can verify the dashboard icons properly shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

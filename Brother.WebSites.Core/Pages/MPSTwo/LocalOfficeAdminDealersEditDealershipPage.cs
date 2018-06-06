@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -43,6 +44,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement InputDiscountForType3Element;
         [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipManage_InputPreferredT3BillingDate_Input")]
         public IWebElement InputBillingDateForType3Element;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipManage_InputOwnerFirstName_Input")]
+        public IWebElement InputOwnerFirstNameElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipManage_InputCEOFirstName_Input")]
+        public IWebElement InputCEOFirstNameElement;
+
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSave")]
+        public IWebElement ButtonSaveElement;
 
         public void VerifyPopulatedDetails(string discountType3, string billingDateType3, string bankName, string bankAccountNumber, string bankSortCode, string brotherSalesPerson)
         {
@@ -61,5 +69,70 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(bankSortCode, InputBankSortCodeElement.GetAttribute("value"), "Bank sort code does not match");
             TestCheck.AssertIsEqual(brotherSalesPerson, InputBrotherSalesPersonElement.GetAttribute("value"), "Brother sales person does not match");
         }
+
+        public void EditDealerDetails()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            EnterDiscountForType3("2");
+            EnterBillingDateForType3("2");
+            EnterOwnerFirstName(MpsUtil.UatBswFrOwnerFirstName());
+            EnterCEOFirstName(MpsUtil.UatBswFrCeoFirstNameName());
+
+        }
+
+        private void EnterDiscountForType3(string dicount)
+        {
+            LoggingService.WriteLogOnMethodEntry(dicount);
+            ClearAndType(InputDiscountForType3Element, dicount);
+        }
+
+        private void EnterBillingDateForType3(string billingDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(billingDate);
+            SeleniumHelper.SelectFromDropdownByText(InputBillingDateForType3Element, billingDate);
+        }
+
+        private void EnterOwnerFirstName(string ownerFirstName)
+        {
+            LoggingService.WriteLogOnMethodEntry(ownerFirstName);
+            ClearAndType(InputOwnerFirstNameElement, ownerFirstName);
+        }
+
+        private void EnterCEOFirstName(string ceoFirstName)
+        {
+            LoggingService.WriteLogOnMethodEntry(ceoFirstName);
+            ClearAndType(InputCEOFirstNameElement, ceoFirstName);
+        }
+
+        public string GetType3DiscountValue()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputDiscountForType3Element);
+        }
+
+        public string GetType3BillingDateValue()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputBillingDateForType3Element);
+        }
+
+        public string GetOwnerFirstName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputOwnerFirstNameElement);
+        }
+
+        public string GetCeoFirstName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputCEOFirstNameElement);
+        }
+
+        private string GetFieldValue(IWebElement element)
+        {
+            LoggingService.WriteLogOnMethodEntry(element);
+            return element.GetAttribute("value");
+        }
+
     }
 }

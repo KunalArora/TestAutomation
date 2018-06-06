@@ -541,5 +541,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
+        [Then(@"a created Cloud MPS dealer can verify the dashboard icons properly shown")]
+        public void ThenACreatedCloudMPSDealerCanVerifyTheDashboardIconsProperlyShown()
+        {
+            _mpsDealerProposalStepActions.VerifyDashboardOptions(_dealerDashboardPage);
+        }
+
     }
 }

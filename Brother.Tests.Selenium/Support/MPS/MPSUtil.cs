@@ -1433,5 +1433,18 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             string brotherSalesPerson = "D Brother Sales Person";
             return brotherSalesPerson;
         }
+
+        public static string UatBswFrOwnerFirstName()
+        {
+            string name = "D Owner first name test";
+            return name;
+        }
+
+        public static string UatBswFrCeoFirstNameName()
+        {
+            string name = "D Ceo first name test";
+            return name;
+        }
+
     }
 }

@@ -9,6 +9,7 @@ Given I navigate to the administration page with culture "<Culture>" from "<Coun
 When I create a new dealer and verify the created dealer details
 And I edit the details for created dealer
 Then a newly created Cloud MPS dealer can succesfully login with culture "<Culture>" from "<Country>"
+And a created Cloud MPS dealer can verify the dashboard icons properly shown
 
 @BSW
 Scenarios: 

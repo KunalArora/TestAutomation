@@ -148,5 +148,29 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var EditActionElement = SeleniumHelper.FindElementByCssSelector(ActionsElement, ListActionsEditSelector);
             SeleniumHelper.ClickSafety(EditActionElement);
         }
+
+        public void VerifyUpdatedDealerDetails(string dealershipName, string dealerEmail, string dealerSapId, string dealerOwnerName, string dealerCeoName)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerEmail, dealerSapId, dealerOwnerName, dealerCeoName);
+
+            var element = SeleniumHelper.SetListFilter(FilterElement, null, dealerEmail, List_Row);
+            var elementRowId = element.GetAttribute("id");
+            var elementRowNo = elementRowId.Substring(elementRowId.Length - 2);
+
+            var DealershipNameElement = SeleniumHelper.FindElementByCssSelector(element, (DealerNameSelector + elementRowNo));
+            TestCheck.AssertIsEqual(dealershipName, DealershipNameElement.Text, "Dealership name does not match");
+
+            var DealerSapIdEement = SeleniumHelper.FindElementByCssSelector(element, (DealerSapIdSelector + elementRowNo));
+            TestCheck.AssertIsEqual(dealerSapId, DealerSapIdEement.Text, "Dealer sap Id does not match");
+
+            var DealerEmailElement = SeleniumHelper.FindElementByCssSelector(element, (DealerEmailSelector + elementRowNo));
+            TestCheck.AssertIsEqual(dealerEmail, DealerEmailElement.Text, "Dealer email does not match");
+
+            var DealerOwnerElement = SeleniumHelper.FindElementByCssSelector(element, (DealerOwnerSelector + elementRowNo));
+            TestCheck.AssertIsEqual(dealerOwnerName, DealerOwnerElement.Text, "Dealer owner does not match");
+
+            var DealerCeoElement = SeleniumHelper.FindElementByCssSelector(element, (DealerCeoSelector + elementRowNo));
+            TestCheck.AssertIsEqual(dealerCeoName, DealerCeoElement.Text, "Dealer ceo does not match");
+        }
     }
 }

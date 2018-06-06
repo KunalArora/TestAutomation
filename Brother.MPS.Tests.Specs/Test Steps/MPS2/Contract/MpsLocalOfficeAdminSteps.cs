@@ -159,7 +159,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void WhenIEditTheDetailsForCreatedDealer()
         {
             _localOfficeAdminDealersEditDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToEditDealershipPage(_localOfficeAdminAdministrationDealerPage);
-            _mpsLocalOfficeAdminAgreementStepActions.EditDetails(_localOfficeAdminDealersEditDealershipPage);
+            _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.EditDealerDetails(_localOfficeAdminDealersEditDealershipPage);
+            _mpsLocalOfficeAdminAgreementStepActions.VerifyUpdatedDealerDeatils(_localOfficeAdminAdministrationDealerPage);
         }
 
     }
