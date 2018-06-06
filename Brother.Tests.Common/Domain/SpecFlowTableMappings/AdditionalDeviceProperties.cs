@@ -99,10 +99,10 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                 bool hasLowRemLifeInkToner = false;
                 try
                 {
-                    if ((double.Parse(TonerInkBlackRemLife) <= (MonoThresholdValue != null ? double.Parse(MonoThresholdValue) : 10)) ||
-                        (double.Parse(TonerInkCyanRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10)) ||
-                        (double.Parse(TonerInkMagentaRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10)) ||
-                        (double.Parse(TonerInkYellowRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10)))
+                    if ((double.Parse(TonerInkBlackRemLife) <= (MonoThresholdValue != null ? double.Parse(MonoThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkCyanRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkMagentaRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkYellowRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)))
                     {
                         hasLowRemLifeInkToner = true;
                     }
