@@ -42,7 +42,7 @@ namespace Brother.Tests.Specs.Services
             }
 
             TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedTotalPrice), "Total Line Price Calculations did not get validated");
+                RoundOffUptoDecimalPlaces(expectedTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedTotalPrice, NumberStyles.Number | NumberStyles.Currency), "Total Line Price Calculations did not get validated");
         }
 
         public void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice)
@@ -72,7 +72,14 @@ namespace Brother.Tests.Specs.Services
         public double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles)
         {
             LoggingService.WriteLogOnMethodEntry(variable, numberStyles);
-            return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
+            if (variable == "-")
+            {
+                return 0.0;
+            }
+            else
+            {
+                return double.Parse(Regex.Replace(variable, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo);
+            }
         }
 
         public double ConvertStringToDoubleInvariant(string variable)
