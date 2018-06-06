@@ -546,5 +546,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _mpsDealerProposalStepActions.VerifyDashboardOptions(_dealerDashboardPage);
         }
 
+        [Then(@"a created Cloud MPS dealer can verify the dashboard icons properly shown")]
+        public void ThenACreatedCloudMPSDealerCanVerifyTheDashboardIconsProperlyShown()
+        {
+            _mpsDealerProposalStepActions.VerifyDashboardOptions(_dealerDashboardPage);
+        }
+
     }
 }
