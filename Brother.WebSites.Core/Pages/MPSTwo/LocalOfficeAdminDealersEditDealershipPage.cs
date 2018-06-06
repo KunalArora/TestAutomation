@@ -62,8 +62,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual("true", Type1BusinessTypeCheckboxElementValue, "Type 1 Business type is not checked");
             TestCheck.AssertIsEqual("true", Type3BusinessTypeCheckboxElementValue, "Type 3 Business type is not checked");
 
-//            TestCheck.AssertIsEqual(discountType3, InputDiscountForType3Element.Text, "Discount for type 3 does not match");
-//            TestCheck.AssertIsEqual(billingDateType3, InputBillingDateForType3Element.Text, "Billing date for type 3 does not match");
             TestCheck.AssertIsEqual(bankName, InputBankNameElement.GetAttribute("value"), "Bank name does not match");
             TestCheck.AssertIsEqual(bankAccountNumber, InputBankAccountNumberElement.GetAttribute("value"), "Bank account number does not match");
             TestCheck.AssertIsEqual(bankSortCode, InputBankSortCodeElement.GetAttribute("value"), "Bank sort code does not match");
