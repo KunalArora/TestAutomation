@@ -6,7 +6,8 @@ Feature: CreateBSWDealer
 
 Scenario Outline: CreateBSWDealer
 Given I navigate to the administration page with culture "<Culture>" from "<Country>"
-When I create a new dealer 
+When I create a new dealer and verify the created dealer details
+And I edit the details for created dealer
 Then a newly created Cloud MPS dealer can succesfully login with culture "<Culture>" from "<Country>"
 
 @BSW

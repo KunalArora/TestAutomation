@@ -538,7 +538,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
-            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_contextData.CreatedDealerEmail, _contextData.CreatedDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
     }

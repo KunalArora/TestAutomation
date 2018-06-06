@@ -252,5 +252,14 @@ namespace Brother.Tests.Specs.Services
 
             ExecuteRunCommand(commandUrl);
         }
+
+        public void RunCreateDealershipAndDealerCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = RunCommands.MpsSystemJobCreateDealershipAndDealerCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
     }
 }

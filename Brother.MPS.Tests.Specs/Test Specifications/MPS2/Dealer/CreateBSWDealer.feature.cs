@@ -90,8 +90,10 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I navigate to the administration page with culture \"{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("I create a new dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I create a new dealer and verify the created dealer details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+testRunner.And("I edit the details for created dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
 testRunner.Then(string.Format("a newly created Cloud MPS dealer can succesfully login with culture \"{0}\" from \"{" +
                         "1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

@@ -36,6 +36,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminAdministrationDashboardPage _localOfficeAdminAdministrationDashboardPage;
         private LocalOfficeAdminAdministrationDealerPage _localOfficeAdminAdministrationDealerPage;
         private LocalOfficeAdminDealersCreateDealershipPage _localOfficeAdminDealersCreateDealershipPage;
+        private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -143,8 +144,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
         }
 
-        [When(@"I create a new dealer")]
-        public void WhenICreateANewDealer()
+
+        [When(@"I create a new dealer and verify the created dealer details")]
+        public void WhenICreateANewDealerAndVerifyTheCreatedDealerDetails()
         {
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
             _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
@@ -152,5 +154,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.IputDealerDetails(_localOfficeAdminDealersCreateDealershipPage);
             _mpsLocalOfficeAdminAgreementStepActions.VerifyDealerCreation(_localOfficeAdminAdministrationDealerPage);
         }
+
+        [When(@"I edit the details for created dealer")]
+        public void WhenIEditTheDetailsForCreatedDealer()
+        {
+            _localOfficeAdminDealersEditDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToEditDealershipPage(_localOfficeAdminAdministrationDealerPage);
+            _mpsLocalOfficeAdminAgreementStepActions.EditDetails(_localOfficeAdminDealersEditDealershipPage);
+        }
+
     }
 }

@@ -108,8 +108,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.SelectFromDropdownByText(BillingDateForCPPAgreementsElement, "1");
 
             SeleniumHelper.ClickRadioButtonSafely(CustomerSapIdExistsNoRadioButtonElement);
-
-            SeleniumHelper.ClickSafety(CompleteButtonElement);
         }
 
 
@@ -348,12 +346,78 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetFieldValue(InputContactLastNameElement);
         }
 
+        public string GetOwnerFirstName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputOwnerFirstNameElement);
+        }
+
+        public string GetOwnerLastName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputOwnerLastNameElement);
+        }
+
+        public string GetCeoFirstName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputCEOFirstNameElement);
+        }
+
+        public string GetCeoLastName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputCEOLastNameElement);
+        }
+
+        public string GetDealershipName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputDealershipNameElement);
+        }
+
+        public string GetBankName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputBankNameElement);
+        }
+
+        public string GetBankAccountNumber()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputBankAccountNumberElement);
+        }
+
+        public string GetBankSortCode()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputBankSortCodeElement);
+        }
+
+        public string GetBrotherSalesPerson()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            return GetFieldValue(InputBrotherSalesPersonElement);
+        }
+
+        public string GetType3DiscountValue()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var Type3DiscountElement = SeleniumHelper.FindElementByCssSelector(Type3DiscountSelector);
+            return GetFieldValue(Type3DiscountElement);
+        }
+
+        public string GetType3BillingDateValue()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var BillingDateForCPPAgreementsElement = SeleniumHelper.FindElementByCssSelector(BillingDateForCPPAgreementsSelector);
+            return GetFieldValue(BillingDateForCPPAgreementsElement);
+        }
+
         private string GetFieldValue(IWebElement element)
         {
             LoggingService.WriteLogOnMethodEntry(element);
             return element.GetAttribute("value");
         }
-
-
     }
 }

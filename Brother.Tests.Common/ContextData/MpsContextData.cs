@@ -46,9 +46,10 @@ namespace Brother.Tests.Common.ContextData
         public MpsContextData()
         {
             WindowHandles = new Dictionary<UserType, string>();
+            DealerProperties = new DealerProperties();
             CustomerPassword = "password";
             SubDealerPassword = "password";
-            CreatedDealerPassword = "password";
+            DealerProperties.DealerPassword = "password";
             RegisteredDeviceIds = new List<string>();
             //SnapClickPricePageValues = new Dictionary<string,string>();
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
@@ -96,10 +97,7 @@ namespace Brother.Tests.Common.ContextData
         public string SubDealerLastName { get; set; }
         public UserType DriverInstance { get; set; }
         public IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
-        public string CreatedDealerEmail { get; set; }
-        public string CreatedDealerPassword { get; set; }
-        public string CreatedDealerFirstName { get; set; }
-        public string CreatedDealerLastName { get; set; }
+        public DealerProperties DealerProperties { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }
