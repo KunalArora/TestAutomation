@@ -74,7 +74,7 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
             ClickSafety(bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.SaveButtonElement, bieAdminEnhancedUsageMonitoringNewPrinterEnginePage);
             
             // Validate success element
-            bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.ValidateSuccessElementOnSaving();
+            bieAdminEnhancedUsageMonitoringNewPrinterEnginePage.CloseSuccessElementIfPresent();
 
             return PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver); 
         }
@@ -106,7 +106,7 @@ namespace Brother.Tests.Specs.StepActions.BIEAdmin
 
             bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.UpdateThresholdValuesAndSave(_contextData.PrintersProperties);
             bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage = PageService.GetPageObject<BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _bieAdminWebDriver);
-            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.ValidateSuccessElementOnSaving();
+            bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.CloseSuccessElementIfPresent();
 
             return bieAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
         }

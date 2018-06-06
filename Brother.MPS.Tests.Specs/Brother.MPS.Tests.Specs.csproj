@@ -261,10 +261,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\EnhancedUserMonitoring\Type3EnhancedUserMonitoring.feature.cs">
+    <Compile Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Type3EnhancedUserMonitoring.feature</DependentUpon>
+      <DependentUpon>Type3EnhancedUsageMonitoring.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1745,9 +1745,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\EnhancedUserMonitoring\Type3EnhancedUserMonitoring.feature">
+    <None Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Type3EnhancedUserMonitoring.feature.cs</LastGenOutput>
+      <LastGenOutput>Type3EnhancedUsageMonitoring.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

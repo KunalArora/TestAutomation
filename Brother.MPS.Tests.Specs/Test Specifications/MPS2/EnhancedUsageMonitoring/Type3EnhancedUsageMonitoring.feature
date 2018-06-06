@@ -1,10 +1,10 @@
 ﻿@MPS @UAT @HIGH @TYPE3 @EUM @CI_TestMaintenance
-Feature: EnhancedUserMonitoring
+Feature: Type3EnhancedUsageMonitoring
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to ensure the correct working of the default order threshold functionality
 
-Scenario Outline: Type3EnhancedUserMonitoring
+Scenario Outline: Type3EnhancedUsageMonitoring
 Given a Cloud MPS BIE Admin has navigated to the Dashboard page
 When a Cloud MPS BIE Admin navigates to the Printer Engine tab under Manage Device Order Threshold section
 And a Cloud MPS BIE Admin selects the country as "<Country>"

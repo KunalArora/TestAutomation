@@ -132,7 +132,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(SaveButtonElement);
         }
 
-        public void ValidateSuccessElementOnSaving()
+        public void CloseSuccessElementIfPresent()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (SeleniumHelper.IsElementPresent(SuccessAlertSelector))

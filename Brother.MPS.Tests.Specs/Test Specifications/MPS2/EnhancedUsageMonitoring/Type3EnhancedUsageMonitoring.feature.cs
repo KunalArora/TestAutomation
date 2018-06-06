@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
+namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUsageMonitoring
 {
     using TechTalk.SpecFlow;
     
@@ -18,26 +18,26 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EnhancedUserMonitoring")]
+    [NUnit.Framework.DescriptionAttribute("Type3EnhancedUsageMonitoring")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("EUM")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
-    public partial class EnhancedUserMonitoringFeature
+    public partial class Type3EnhancedUsageMonitoringFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Type3EnhancedUserMonitoring.feature"
+#line 1 "Type3EnhancedUsageMonitoring.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EnhancedUserMonitoring", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type3EnhancedUsageMonitoring", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer\r\n\tI wan" +
                     "t to ensure the correct working of the default order threshold functionality", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -77,12 +77,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUserMonitoring
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Type3EnhancedUserMonitoring")]
+        [NUnit.Framework.DescriptionAttribute("Type3EnhancedUsageMonitoring")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "True", "MINIMUM_VOLUME", "THREE_YEARS", "PAY_UPFRONT", "True", "Cloud", "Bor", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void Type3EnhancedUserMonitoring(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
+        public virtual void Type3EnhancedUsageMonitoring(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type3EnhancedUserMonitoring", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type3EnhancedUsageMonitoring", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

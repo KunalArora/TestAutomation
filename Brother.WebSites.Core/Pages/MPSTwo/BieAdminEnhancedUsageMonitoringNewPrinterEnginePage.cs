@@ -62,7 +62,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
         }
 
-        public void ValidateSuccessElementOnSaving()
+        public void CloseSuccessElementIfPresent()
         {
             LoggingService.WriteLogOnMethodEntry();
             if(SeleniumHelper.IsElementPresent(SuccessAlertSelector))
