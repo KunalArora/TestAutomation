@@ -89,6 +89,7 @@
     <Compile Include="Domain\Models\SwapRequestDetail.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
+    <Compile Include="Domain\SpecFlowTableMappings\DealerMarginsProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\SpecialPricingProperties.cs" />
     <Compile Include="CommandLineSettings\ICommandLineSettings.cs" />
@@ -290,7 +291,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\AgreementType\AgreementType.en-gb.resx" />
     <EmbeddedResource Include="Resources\AgreementType\AgreementType.resx">

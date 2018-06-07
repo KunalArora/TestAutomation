@@ -86,6 +86,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string clickPriceColourValue = @"[data-mono-only='False'] [class='mps-col mps-top mps-clickprice-line2'][data-click-price-colour='true']";
         private const string clickPricePageNext = @"#content_1_ButtonNext";
         private const string printerPriceSelector = "#CostPrice";
+        private const string optionCostPrice0Selector = "#OptionCostPrice0";
+        private const string optionQuantity0Selector = "#OptionQuantity0";
         private const string installationPackInputSelector = "#InstallationPackId";
         private const string addToProposalButtonSelector = ".js-mps-product-configuration-submit";
         private const string deliveryInputSelector = "#DeliveryCostPrice";
@@ -1911,6 +1913,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public IWebElement PopulatePrinterDetails(string printerName,
             string printerPrice,
+            string lowerTrayPrice,
             string installationPack,
             bool delivery,
             string servicePackType,
@@ -1929,6 +1932,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var installationPackInput = SeleniumHelper.FindElementByCssSelector(printerContainer, installationPackInputSelector);
             var deliveryPriceInput = SeleniumHelper.FindElementByCssSelector(printerContainer, deliveryInputSelector);
             var addToProposalButton = SeleniumHelper.FindElementByCssSelector(printerContainer, addToProposalButtonSelector);
+            var optionCostPriceInput = SeleniumHelper.IsElementDisplayed(printerContainer, optionCostPrice0Selector) ? SeleniumHelper.FindElementByCssSelector(printerContainer, optionCostPrice0Selector) : null ;
+            var optionQuantity0Input = SeleniumHelper.IsElementDisplayed(printerContainer, optionQuantity0Selector) ? SeleniumHelper.FindElementByCssSelector(printerContainer, optionQuantity0Selector) : null;
 
             ClearAndType(printerPriceInput, printerPrice.ToString());
 
@@ -1940,6 +1945,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             if(string.IsNullOrWhiteSpace(installationPack) == false)
             {
                 SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
+            }
+
+            if( string.IsNullOrWhiteSpace(lowerTrayPrice) == false)
+            {
+                TestCheck.AssertIsNotNull(optionCostPriceInput,"lower tray price field not found");
+                TestCheck.AssertIsNotNull(optionQuantity0Input, "lower tray quantity field not found");
+                ClearAndType(optionQuantity0Input, "1");
+                ClearAndType(optionCostPriceInput, lowerTrayPrice);
             }
 
             margin = SeleniumHelper.FindElementByCssSelector(printerContainer, printerMarginSelector).GetAttribute("value");            

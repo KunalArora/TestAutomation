@@ -3,7 +3,6 @@ using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
-using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -12,7 +11,6 @@ using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
-using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -249,6 +247,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             foreach ( var product in products)
             {
                 product.Price = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.Price);
+                product.LowerTrayPrice = _calculationService.ConvertInvariantNumericStringToCultureNumericString(product.LowerTrayPrice);
                 product.InstallationPack = _translationService.GetInstallationPackText(product.InstallationPack, _contextData.Culture);
             }
             _contextData.PrintersProperties = products;

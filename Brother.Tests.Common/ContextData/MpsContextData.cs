@@ -41,7 +41,8 @@ namespace Brother.Tests.Common.ContextData
 
         public string CommunicationMethod { get; set; }
         public string InstallationType { get; set; }
-
+        public DealerDefaultMargins DealerAdminDefaultMargins { get; set; }
+        public DealerDefaultMargins DealerAdminDefaultMarginsOriginal { get; set; }
 
         public MpsContextData()
         {
@@ -113,6 +114,7 @@ namespace Brother.Tests.Common.ContextData
         public double ClickRateTotal { get; set; }
         public double ServicePackTotal { get; set; }
         public double InstallationPackTotal { get; set; }
+
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
@@ -138,5 +140,14 @@ namespace Brother.Tests.Common.ContextData
     }
 
     // use for LocalOfficeAdminContractsAdditionalCharges#ChargeTypeSelectorElement
-
+    public class DealerDefaultMargins
+    {
+        public double HardwareDefaultMargin { get; set; }
+        public double AccessoriesDefaultMargin { get; set; }
+        public double DeliveryDefaultMargin { get; set; }
+        public double InstallationDefaultMargin { get; set; }
+        public double ServicePackDefaultMargin { get; set; }
+        public double MonoClickDefaultCommission { get; set; }
+        public double ColourClickDefaultCommission { get; set; }
+    }
 }

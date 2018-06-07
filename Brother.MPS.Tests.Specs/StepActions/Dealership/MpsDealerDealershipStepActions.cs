@@ -8,7 +8,9 @@ using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.MPSTwo;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Dealership
@@ -91,6 +93,37 @@ namespace Brother.Tests.Specs.StepActions.Dealership
 
             var resourceStaffAccessPermissionRestricted = _translationService.GetStaffAccessPermission(TranslationKeys.StaffAccessPermission.Restricted, _contextData.Culture);
             dealerAdminDealershipUsersPage.VerifySubDealer(_contextData.SubDealerEmail, resourceStaffAccessPermissionRestricted);
+        }
+
+        public  void ValidateDealershipProfileTab(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
+            Assert.True(dealerAdminDealershipProfilePage.DealershipProfileTabElement.Displayed, "'Dealership Profile' tab not found");           
+        }
+
+        public DealerAdminDealershipProfilePage NavigateToDealershipProfilePage(DealerAdminDashBoardPage dealerAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAdminDashboardPage);
+            dealerAdminDashboardPage.SeleniumHelper.ClickSafety(dealerAdminDashboardPage.DealershipProfileElement, IsUntilUrlChanges: true);
+            return PageService.GetPageObject<DealerAdminDealershipProfilePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void UploadLogoToProfile(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage, string filePath)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage,filePath);
+            dealerAdminDealershipProfilePage.UploadLogo(filePath);
+        }
+
+        public void VerifyDealershipProfileWasUpdatedSuccessfully(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
+            Assert.True(dealerAdminDealershipProfilePage.CloseAlertSuccessElement.Displayed, "VerifyDealershipProfileWasUpdatedSuccessfully() Updated Successflly alert not found");
+        }
+
+        public void RemoveProfileLogo(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
+            dealerAdminDealershipProfilePage.RemoveLogo();
         }
     }
 }

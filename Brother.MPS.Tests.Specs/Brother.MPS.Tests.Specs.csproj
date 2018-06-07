@@ -159,6 +159,7 @@
     <Compile Include="StepActions\Contract\MpsLocalOfficeApproverContractStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
+    <Compile Include="StepActions\Dealership\MpsDealerDefaultMarginsStepActions.cs" />
     <Compile Include="StepActions\Finance\MpsFinanceStepActions.cs" />
     <Compile Include="StepActions\Dealership\MpsDealerDealershipStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsBankProposalStepActions.cs" />
@@ -199,6 +200,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\Admin\Type1DealerAdminCapabilities.feature.cs">
+      <DependentUpon>Type1DealerAdminCapabilities.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1544,6 +1550,7 @@
     <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsCustomerSteps.cs" />
     <Compile Include="Test Steps\MPS2\Customer\MpsDealerCustomerSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Dealership\MpsDealerDefaultMarginsSteps.cs" />
     <Compile Include="Test Steps\MPS2\Finance\MpsFinanceSteps.cs" />
     <Compile Include="Test Steps\MPS2\Dealership\MpsDealerDealershipSteps.cs" />
     <Compile Include="Test Steps\MPS2\Proposal\MpsBankProposalSteps.cs" />
@@ -1689,6 +1696,10 @@
     <None Include="Test Specifications\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Admin\Type1DealerAdminCapabilities.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Type1DealerAdminCapabilities.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
