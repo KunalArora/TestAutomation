@@ -113,6 +113,8 @@ namespace Brother.Tests.Common.ContextData
         public double ClickRateTotal { get; set; }
         public double ServicePackTotal { get; set; }
         public double InstallationPackTotal { get; set; }
+
+        public IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>

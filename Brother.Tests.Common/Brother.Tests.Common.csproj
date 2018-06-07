@@ -89,6 +89,7 @@
     <Compile Include="Domain\Models\SwapRequestDetail.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
+    <Compile Include="Domain\SpecFlowTableMappings\PrinterEngineThresholdDetails.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\SpecialPricingProperties.cs" />
     <Compile Include="CommandLineSettings\ICommandLineSettings.cs" />

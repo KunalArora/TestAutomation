@@ -714,13 +714,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Refresh until device is connected
             installationCloudToolPage = RefreshUntilConnectedForCloudBor(installationCloudToolPage);
         }
-
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
-        }
-
         #endregion
     }
 }

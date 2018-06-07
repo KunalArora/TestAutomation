@@ -82,5 +82,7 @@ namespace Brother.Tests.Common.ContextData
         double ClickRateTotal { get; set; }
         double ServicePackTotal { get; set; }
         double InstallationPackTotal { get; set; }
+
+        IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
     }
 }

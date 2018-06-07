@@ -310,13 +310,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
-        }
-
-
         public LocalOfficeApproverApprovalProposalsDeclinedPage DeclineProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverApprovalProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalProposalsSummaryPage);

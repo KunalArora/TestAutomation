@@ -205,8 +205,23 @@ namespace Brother.Tests.Specs.Resolvers
             }
         }
 
-        public string BIEAdminUsername { get; set; }
-        public string BIEAdminPassword { get; set; }
+        public string BIEAdminUsername 
+        {
+            get
+            {
+                // TODO: Change this to use new USERNAME_PATTERN once account has been prepared
+                return string.Format(OLD_USERNAME_PATTERN, "BIE", _contextData.Environment, "BIEAdmin", ""); // "BIE" is hard-coded as only one account for Europe
+            }
+        }
+
+        public string BIEAdminPassword
+        {
+            get 
+            {
+                return string.Format(PASSWORD_PATTERN, "BIE", "admin", 1); // "BIE" is hard-coded as only one account for Europe
+            }
+        }
+
         public string BankUsername
         {
             get
