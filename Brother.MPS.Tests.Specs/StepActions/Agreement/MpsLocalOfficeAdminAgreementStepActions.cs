@@ -29,6 +29,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IContextData _contextData;
         private readonly IMpsWebToolsService _mpsWebToolsService;
         private readonly IRunCommandService _runCommandService;
+        private readonly ITranslationService _translationService;
 
         public MpsLocalOfficeAdminAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -71,6 +72,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData = contextData;
             _mpsWebToolsService = mpsWebToolsService;
             _runCommandService = runCommandService;
+            _translationService = translationService;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
@@ -198,7 +200,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public LocalOfficeAdminAdministrationDealerPage IputDealerDetails(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
-            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso);
+            var resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.English, _contextData.Culture);
+            var postcode = MpsUtil.PostCodeGb();
+            if(_contextData.Country.CountryIso == CountryIso.Switzerland)
+            {
+                resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.French, _contextData.Culture);
+                postcode = MpsUtil.PostCodeSw();
+            }
+            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso, resourceDealerCulture, postcode);
 
             _contextData.DealerProperties.Email = localOfficeAdminDealersCreateDealershipPage.GetEmail();
             _contextData.DealerProperties.FirstName = localOfficeAdminDealersCreateDealershipPage.GetFirstName();
@@ -260,6 +269,20 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             localOfficeAdminAdministrationDealerPage.VerifyUpdatedDealerDetails(_contextData.DealerProperties.DealershipName, 
                 _contextData.DealerProperties.Email, _contextData.DealerProperties.SapId, 
                 _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
+        }
+
+        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
+            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber("0000129120");
+
+            localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapButtonCheckElement);
+            localOfficeAdminDealersCreateDealershipPage = PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            
+            localOfficeAdminDealersCreateDealershipPage.VerifySapVendorName();
+
+            localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapVendorCheckCompleteElement);
+            return PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
     }
 }

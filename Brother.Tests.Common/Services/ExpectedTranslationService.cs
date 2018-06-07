@@ -95,6 +95,11 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.StaffAccessPermission.StaffAccessPermission.ResourceManager, name, culture);
         }
 
+        public string GetDealerCulture(string name, string culture)
+        {
+            return GetText(Resources.DealerCulture.DealerCulture.ResourceManager, name, culture);
+        }
+
         
         #region Exclusively Type 3
 

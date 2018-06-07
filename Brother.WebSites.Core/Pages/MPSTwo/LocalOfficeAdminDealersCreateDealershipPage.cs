@@ -88,10 +88,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonSave")]
         public IWebElement SaveButtonElement;
-        
+        [FindsBy(How = How.CssSelector, Using = "#content_1_DealershipVendorSapIdCheck_ButtonCheck")]
+        public IWebElement SapButtonCheckElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonVendorCheckComplete")]
+        public IWebElement SapVendorCheckCompleteElement;
+
         private const string Type3DiscountSelector = "#content_1_BusinessTypeSelect_InputDiscountForType3_Input";
         private const string BillingDateForCPPAgreementsSelector = "#content_1_BusinessTypeSelect_InputPreferredT3BillingDate_Input";
-        
+        private const string SapVendorNumberSelector = "#content_1_DealershipVendorSapIdCheck_InputVendorNumber_Input";
+        private const string SapVendorNameSelector = "#content_1_DealershipVendorSapIdCheck_VendorNameHiddenField";
+
         public void InputBusinessTypeDetails()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -111,10 +117,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void InputDealerDetails(string countryIso)
+        public void InputDealerDetails(string countryIso, string resourceDealerCulture, string postcode)
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
-            FillResellerDetails(countryIso);
+            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode);
+            FillResellerDetails(countryIso, resourceDealerCulture, postcode);
             FillContactDetails();
         }
 
@@ -128,9 +134,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
         }
 
-        private void FillResellerDetails(string countryIso)
+        private void FillResellerDetails(string countryIso, string resourceDealerCulture, string postcode)
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
+            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode);
             EnterDealershipName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
             EnterOwnerFirstName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
             EnterOwnerLastName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
@@ -139,9 +145,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown(MpsUtil.PropertyTown());
-            EnterPropertyPostCode(MpsUtil.PostCodeSw());
+            EnterPropertyPostCode(postcode);
             EnterCompaniesHouseNumber(MpsUtil.CompaniesHouseNumber());
-            EnterVatNumber(MpsUtil.VatNumber());
+//            EnterVatNumber(MpsUtil.VatNumber());
             EnterCompanyTaxNumber(MpsUtil.CompanyTaxNumber());
             EnterConsumerCreditLicenceNumber(MpsUtil.CreditLicenceNumber());
             EnterRegisteredCity(MpsUtil.RegisteredCity());
@@ -150,7 +156,24 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterBankAccountNumber(MpsUtil.BankAccountNumber());
             EnterBankSortCode(MpsUtil.BankCodeNumber());
             EnterBrotherSalesPerson(MpsUtil.BrotherSalesPerson());
-            EnterDealerCulture("Français");
+            EnterDealerCulture(resourceDealerCulture);
+        }
+
+        public void EnterSapVendorNumber(string sapVendorNumber)
+        {
+            LoggingService.WriteLogOnMethodEntry(sapVendorNumber);
+            var SapVendorNumberElement = SeleniumHelper.FindElementByCssSelector(SapVendorNumberSelector);
+            ClearAndType(SapVendorNumberElement, sapVendorNumber);
+        }
+
+        public void VerifySapVendorName()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            
+            var SapVendorNameElement = SeleniumHelper.FindElementByCssSelector(SapVendorNameSelector);
+            SeleniumHelper.WaitUntil(d => SapVendorNameElement.GetAttribute("value") != string.Empty);
+            //Have to check the below written specific value only that's why, it's hard-coded
+            TestCheck.AssertIsEqual("Automation Test Dealer", SapVendorNameElement.GetAttribute("value"), "Sap vendor name does not match");
         }
 
         private void EnterDealershipName(string dealershipName)

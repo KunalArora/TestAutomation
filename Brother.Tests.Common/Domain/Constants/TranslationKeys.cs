@@ -173,5 +173,11 @@
             public static string Manual { get { return "MANUAL"; } }
             public static string Automatic { get { return "AUTOMATIC"; } }
         }
+
+        public static class DealerCulture
+        {
+            public static string English { get { return "ENGLISH"; } }
+            public static string French { get { return "FRENCH"; } }
+        }
     }
 }

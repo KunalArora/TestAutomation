@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
@@ -150,6 +151,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         {
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
             _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
+            if(_contextData.Country.CountryIso == CountryIso.UnitedKingdom)
+            {
+                _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.EnterSapVendorNumber(_localOfficeAdminDealersCreateDealershipPage);
+            }
             _mpsLocalOfficeAdminAgreementStepActions.SelectBusinessType(_localOfficeAdminDealersCreateDealershipPage);
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.IputDealerDetails(_localOfficeAdminDealersCreateDealershipPage);
             _mpsLocalOfficeAdminAgreementStepActions.VerifyDealerCreation(_localOfficeAdminAdministrationDealerPage);

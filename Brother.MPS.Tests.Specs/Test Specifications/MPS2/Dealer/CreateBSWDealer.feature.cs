@@ -18,7 +18,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateBSWDealer")]
+    [NUnit.Framework.DescriptionAttribute("CreateDealer")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
@@ -26,7 +26,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("DEALERCREATION")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
-    public partial class CreateBSWDealerFeature
+    public partial class CreateDealerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -38,8 +38,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateBSWDealer", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Local Office A" +
-                    "dmin\r\n\tI want to create a dealer for bsw-french", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateDealer", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Local Office A" +
+                    "dmin\r\n\tI want to create a new dealer ", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TYPE1",
@@ -79,12 +79,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateBSWDealer")]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "fr-CH", new string[] {
-                "BSW"}, Category="BSW")]
-        public virtual void CreateBSWDealer(string country, string culture, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("CreateDealer")]
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", new string[] {
+                "BUK"}, Category="BUK")]
+        public virtual void CreateDealer(string country, string culture, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateBSWDealer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateDealer", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
