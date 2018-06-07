@@ -1279,7 +1279,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Download excel
             string excelFilePath = _cppAgreementHelper.Download(() =>
             {
-                ClickSafety(dealerReportsDashboardPage.CPPAgreementReportElement, dealerReportsDashboardPage);
+                ClickSafety(dealerReportsDashboardPage.CppAgreementReportElement, dealerReportsDashboardPage);
                 return true;
             });
 
