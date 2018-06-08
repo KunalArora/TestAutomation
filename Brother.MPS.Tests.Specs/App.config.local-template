@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <appSettings>
 <!-- sample
-  <add key="RuntimeSettings.DefaultSerialNumberOffset" value="40"/>
-  <add key="RuntimeSettings.DefaultType3DealerUsername" value="dealerXXXX@brother.co.uk" />
-  <add key="RuntimeSettings.DefaultType3DealerPassword" value="xxxx" />
+  <add key="RuntimeSettings.DefaultSerialNumberOffset" value="XX"/>
+  <add key="RuntimeSettings.DefaultType3DealerUsernameBUK" value="xxxx.xxxx-BUK-UAT-type3@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType3DealerPasswordBUK" value="UKdealer1" />
+  <add key="RuntimeSettings.DefaultType1DealerUsernameBUK" value="xxxx.xxxx-BUK-UAT-type1@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1DealerPasswordBUK" value="UKdealer1" />
+  <add key="RuntimeSettings.DefaultType1DealerUsernameBIG" value="xxxx.xxxx-BIG-UAT-type1@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1DealerPasswordBIG" value="DEdealer1" />
+  <add key="RuntimeSettings.DefaultType1DealerUsernameBSW" value="xxxx.xxxx-BSW-fr-UAT-type1@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1DealerPasswordBSW" value="CHdealer1" />
 -->
 </appSettings>

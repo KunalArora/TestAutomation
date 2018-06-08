@@ -163,16 +163,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SwapNewDeviceInputMonoSelector = "#content_0_SwapNewDeviceInputMono";
         private const string SwapNewDeviceInputColourSelector = "#content_0_SwapNewDeviceInitialColour";
 
-        public void ResetSerialNumber(string serialNumber)
-        {
-            LoggingService.WriteLogOnMethodEntry(serialNumber);
-            if (ContractReferencePageAlertElement == null)
-                TestCheck.AssertFailTest("Installer page is not displayed");
-            AssertElementPresent(ContractReferencePageAlertElement, "Installer pager alert");
-
-            MpsJobRunnerPage.RunResetSerialNumberJob(serialNumber);
-        }
-
         public void EnterSerialNumber(string modelName, string serialNumber, IWebDriver installerDriver)
         {
             LoggingService.WriteLogOnMethodEntry(modelName, serialNumber, installerDriver);
@@ -182,7 +172,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var rows = SeleniumHelper.FindRowElementsWithinTable(tableElement);
             foreach (var row in rows)
             {
-                ResetSerialNumber(serialNumber);
                 var modelElement = SeleniumHelper.FindElementByCssSelector(row, InstallationModelSelector);
                 var serialNumberElement = SeleniumHelper.FindElementByCssSelector(row, InstallationSerialNumberSelector);
                 if(modelElement.Text.Equals(modelName))

@@ -43,8 +43,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
-            IUserResolver userResolver)
-            : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings, translationService, runCommandService, devicesExcelHelper, clickBillExcelHelper, serviceInstallationBillExcelHelper, userResolver)
+            IUserResolver userResolver,
+            ICalculationService calculationService)
+            : base(
+            webDriverFactory,
+            contextData,
+            pageService,
+            context,
+            urlResolver,
+            loggingService,
+            runtimeSettings,
+            translationService,
+            runCommandService,
+            devicesExcelHelper,
+            clickBillExcelHelper,
+            serviceInstallationBillExcelHelper,
+            userResolver,
+            calculationService)
         {
             _loApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _contextData = contextData;
@@ -110,7 +125,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var resourceIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
             var isCheckAutoCalculateClickPrice = _contextData.ServicePackType == resourceIncludedInClickPrice;
             localOfficeApproverAgreementManageSpecialPricing.EditClickPricesAndProceed(
-                _contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture, specialPriceList, isCheckAutoCalculateClickPrice);
+                _contextData.PrintersProperties, _contextData.ServicePackType, specialPriceList, isCheckAutoCalculateClickPrice);
 
             VerifySpecialPricing(localOfficeApproverAgreementManageSpecialPricing, specialPriceList);
             localOfficeApproverAgreementManageSpecialPricing.ConfirmSpecialPricingAndApply();
@@ -128,7 +143,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Model: DCP-8110DN Click Price - Coverage: 15.00 % / Volume: 4,100 / Margin: 0.00 % / Click Price: £0.01068\r\n
             // Model: DCP-L8450CDW Click Price - Colour: Coverage: 30.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.06141 Mono: Coverage: 15.00 % / Volume: 1,100 / Margin: 0.00 % / Click Price: £0.00774\r\n
             string[] auditDetails = localOfficeApproverAgreementManageSpecialPricing.GetAuditDetails();
-            string cs = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            string cs = _contextData.CultureInfo.NumberFormat.CurrencySymbol;
             foreach (var printerProperty in _contextData.PrintersProperties)
             {
                 var specialPrice = specialPriceList.First(l => Regex.IsMatch(printerProperty.Model, l.Model)); ;
@@ -182,7 +197,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAgreementDetailsPage);
 
-            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType, _contextData.Culture);
+            localOfficeApproverAgreementDetailsPage.VerifySpecialPricing(_contextData.PrintersProperties, _contextData.ServicePackType);
         }
 
         public LocalOfficeAgreementDevicesPage SendReinstallDeviceRequest(LocalOfficeAgreementDevicesPage localOfficeApproverAgreementDevicesPage)

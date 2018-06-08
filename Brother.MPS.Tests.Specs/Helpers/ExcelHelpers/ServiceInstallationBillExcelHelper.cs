@@ -55,7 +55,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             ILoggingService loggingService,
             IContextData contextData,
             ICalculationService calculationService
-            ): base(loggingService, runtimeSettings)
+            ): base(loggingService, runtimeSettings, contextData)
         {
             LoggingService = loggingService;
             _contextData = contextData;

@@ -25,6 +25,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("PROPOSALSTATUS")]
     [NUnit.Framework.CategoryAttribute("HIGH")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class DeclineProposalFeature
     {
         
@@ -44,7 +45,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProposalStatus
                         "DEV",
                         "TYPE1",
                         "PROPOSALSTATUS",
-                        "HIGH"});
+                        "HIGH",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -125,6 +127,8 @@ testRunner.And("I save the above proposal and submit it for approval", ((string)
 testRunner.And("a Cloud MPS Local Office Approver declines the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
 testRunner.Then("I can see the above proposal in the Declined list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+testRunner.And("I can verify the proposal is present in the dataquery page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

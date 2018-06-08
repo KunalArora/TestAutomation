@@ -54,6 +54,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement GetPrinterContainer(string deviceModel)
         {
             LoggingService.WriteLogOnMethodEntry(deviceModel);
+            
             return SeleniumHelper.FindElementByCssSelector(MpsQaPrinterSelector + deviceModel);
         }
 

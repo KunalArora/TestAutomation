@@ -30,6 +30,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private readonly IClickBillExcelHelper _clickBillExcelHelper;
         private readonly IServiceInstallationBillExcelHelper _serviceInstallationBillExcelHelper;
         private readonly IUserResolver _userResolver;
+        private readonly ICalculationService _calculationService;
 
         public MpsLocalOfficeStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -43,7 +44,8 @@ namespace Brother.Tests.Specs.StepActions.Common
             IDevicesExcelHelper devicesExcelHelper,
             IClickBillExcelHelper clickBillExcelHelper,
             IServiceInstallationBillExcelHelper serviceInstallationBillExcelHelper,
-            IUserResolver userResolver)
+            IUserResolver userResolver,
+            ICalculationService calculationService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _contextData = contextData;
@@ -53,6 +55,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             _clickBillExcelHelper = clickBillExcelHelper;
             _serviceInstallationBillExcelHelper = serviceInstallationBillExcelHelper;
             _userResolver = userResolver;
+            _calculationService = calculationService;
         }
 
         public LocalOfficeApproverReportsProposalSummaryPage NavigateToContractsSummaryPage(DataQueryPage dataQueryPage, IWebDriver webDriver)
@@ -73,7 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
             _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
 
-            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
+            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, IsUntilUrlChanges: true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
@@ -232,6 +235,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             // Try refreshing until consumable order information is updated on UI
             int retries = 0;
             string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+            string resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
 
             ClickSafety(
                 localOfficeAgreementDevicesPage.ConsumablesTabElement(_contextData.AgreementId), localOfficeAgreementDevicesPage);
@@ -267,7 +271,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     localOfficeAgreementDevicesPage.ClickShowConsumableOrders(device.MpsDeviceId);
                     var localOfficeAgreementDeviceConsumablesPage = PageService.GetPageObject<LocalOfficeAgreementDeviceConsumablesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
 
-                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress);
+                    localOfficeAgreementDeviceConsumablesPage.VerifyConsumableOrderInformation(device.SerialNumber, resourceConsumableOrderStatusInProgress, resourceConsumableOrderMethodAutomatic);
 
                     ClickSafety(localOfficeAgreementDeviceConsumablesPage.BackButtonElement, localOfficeAgreementDeviceConsumablesPage, true);
                     localOfficeAgreementDevicesPage = PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
@@ -326,7 +330,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     }
 
                     // 2. Verify click rate invoice excel
-                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedClickRateTotal));
+                    _clickBillExcelHelper.VerifySummaryWorksheet(excelFilePath, startDate, endDate, _calculationService.ConvertCultureNumericStringToInvariantNumericString(expectedClickRateTotal));
                     _clickBillExcelHelper.VerifyClickChargesWorksheet(excelFilePath, startDate, endDate, isFirstBillingPeriod);
 
                     // 3. Delete excel file
@@ -418,7 +422,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                 string expectedServiceInstallationTotal = localOfficeAgreementBillingPage.GetServiceInstallationTotal(rowIndex);
 
                 // 2. Verify service installation invoice excel
-                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, MpsUtil.RemoveCurrencySymbol(expectedServiceInstallationTotal));
+                _serviceInstallationBillExcelHelper.VerifyDetailWorksheet(excelFilePath, startDate, endDate, _calculationService.ConvertCultureNumericStringToInvariantNumericString(expectedServiceInstallationTotal));
 
                 // 3. Delete excel file
                 _serviceInstallationBillExcelHelper.DeleteExcelFile(excelFilePath);
@@ -560,12 +564,6 @@ namespace Brother.Tests.Specs.StepActions.Common
             _devicesExcelHelper.DeleteExcelFile(excelFilePath);
             
             return localOfficeAgreementDevicesPage;
-        }
-
-        public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
     }
 }

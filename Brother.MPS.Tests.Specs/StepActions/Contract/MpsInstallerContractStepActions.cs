@@ -11,8 +11,8 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
-using TechTalk.SpecFlow;
 using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Contract
 {
@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IContextData _contextData;
         private readonly IWebDriver _installerWebDriver;
         private readonly DeviceSimulatorService _deviceSimulatorService;
+        private readonly IMpsWebToolsService _webToolsService;
 
         public MpsInstallerContractStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -31,6 +32,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IUrlResolver urlResolver,
             IRuntimeSettings runtimeSettings,
             ILoggingService loggingService,
+            IMpsWebToolsService webToolsService,
             MpsSignInStepActions mpsSignIn,
             DeviceSimulatorService deviceSimulatorService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
@@ -39,6 +41,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contextData = contextData;
             _installerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Installer);
             _deviceSimulatorService = deviceSimulatorService;
+            _webToolsService = webToolsService;
         }
 
         public InstallerContractReferenceInstallationPage NavigateToWebInstallationPage(string url)
@@ -65,6 +68,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 string serialNumber = SerialNumberCalculationHelper(product.SerialNumber);
                 product.SerialNumber = serialNumber;
+                _webToolsService.RecycleSerialNumber(serialNumber);
                 RegisterDeviceOnBOC(product, installationPin, product.SerialNumber);
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
                 RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, product.SerialNumber, installerDriver);
@@ -94,6 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             {
                 string serialNumber = SerialNumberCalculationHelper(product.SerialNumber);
                 product.SerialNumber = serialNumber;
+                _webToolsService.RecycleSerialNumber(serialNumber);
                 _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
                 _installerDeviceInstallationPage.SeleniumHelper.CloseBrowserTabsExceptMainWindow(installerWindowHandle);
             }
@@ -119,6 +124,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                 {
                     string serialNumber = SerialNumberCalculationHelper(swapNewDeviceSerialNumber);
                     _contextData.SwapNewDeviceSerialNumber = serialNumber;
+                    _webToolsService.RecycleSerialNumber(serialNumber);
                     RegisterDeviceOnBOC(product, installationPin, serialNumber);
                     _installerDeviceInstallationPage.EnterSerialNumber(product.Model, serialNumber, installerDriver);
                     RetryRefreshHelper(_installerDeviceInstallationPage, product.Model, serialNumber, installerDriver);
@@ -191,19 +197,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private string SerialNumberCalculationHelper(string serialNumber)
         {
             LoggingService.WriteLogOnMethodEntry(serialNumber);
+
             string serialNumberResponse;
             string lastValue;
-            int last2SerialNumbervalue = Int32.Parse(serialNumber.Substring(serialNumber.Length - 2));
-            last2SerialNumbervalue = last2SerialNumbervalue + RuntimeSettings.DefaultSerialNumberOffset;
-            if (last2SerialNumbervalue < 9)
-            {
-                lastValue = '0' + last2SerialNumbervalue.ToString();
-            }
-            else
-            {
-                lastValue = last2SerialNumbervalue.ToString();
-            }
-            serialNumberResponse = serialNumber.Remove(serialNumber.Length - 2, 2) + lastValue;
+            string zeroLeadingString = new string('0', 6);
+            int lastSerialValues = Int32.Parse(serialNumber.Substring(serialNumber.Length - 6));
+
+            lastSerialValues = lastSerialValues + RuntimeSettings.DefaultSerialNumberOffset;
+            lastValue = lastSerialValues.ToString(zeroLeadingString);
+
+            serialNumberResponse = serialNumber.Remove(serialNumber.Length - 6, 6) + lastValue;
 
             return serialNumberResponse;
         }

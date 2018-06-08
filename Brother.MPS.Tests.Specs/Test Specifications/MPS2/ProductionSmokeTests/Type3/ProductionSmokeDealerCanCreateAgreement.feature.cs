@@ -25,6 +25,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProductionSmokeTests.Type3
     [NUnit.Framework.CategoryAttribute("TYPE3")]
     [NUnit.Framework.CategoryAttribute("PROD")]
     [NUnit.Framework.CategoryAttribute("PRODUCTIONSMOKE")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type3ProductionSmokeTestFeature
     {
         
@@ -44,7 +45,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.ProductionSmokeTests.Type3
                         "DEV",
                         "TYPE3",
                         "PROD",
-                        "PRODUCTIONSMOKE"});
+                        "PRODUCTIONSMOKE",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -103,23 +105,23 @@ testRunner.And(string.Format("I select the Usage Type of \"{0}\", Contract Term 
                         "CoverageColour",
                         "VolumeColour"});
             table1.AddRow(new string[] {
-                        "HL-L2360DN",
+                        "DCP-L8400CDN",
                         "1",
                         "Yes",
                         "Yes",
                         "10",
-                        "1500",
-                        "0",
-                        "0"});
+                        "1000",
+                        "25",
+                        "1000"});
             table1.AddRow(new string[] {
-                        "HL-L2340DW",
+                        "DCP-L8450CDW",
                         "1",
                         "Yes",
                         "Yes",
                         "10",
-                        "1500",
-                        "0",
-                        "0"});
+                        "1000",
+                        "25",
+                        "1000"});
 #line 11
 testRunner.And("I add these printers and verify click price:", ((string)(null)), table1, "And ");
 #line 15

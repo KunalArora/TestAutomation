@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Globalization;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
 {
@@ -116,13 +117,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             return SeleniumHelper.FindElementByCssSelector(printerContainer, ColourClickRateSelector).Text;
         }
 
-        public double InstallationPackTotal()
+        public double InstallationPackTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(InstallationPackTotalElement.Text));
+                return double.Parse(InstallationPackTotalElement.Text, numberStyles, CultureInfo);
             }
             catch(NoSuchElementException)
             {
@@ -131,13 +133,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ServicePackTotal()
+        public double ServicePackTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                return double.Parse(MpsUtil.RemoveCurrencySymbol(ServicePackTotalElement.Text));
+                return double.Parse(ServicePackTotalElement.Text, numberStyles, CultureInfo);
             }
             catch (NoSuchElementException)
             {
@@ -146,14 +149,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        public double ClickRateTotal()
+        public double ClickRateTotal(NumberStyles numberStyles)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(numberStyles);
             double clickRateTotal = 0;
+
+            if (CultureInfo == null) { TestCheck.AssertFailTest("CultureInfo has null value"); }
 
             try
             {
-                clickRateTotal = double.Parse(MpsUtil.RemoveCurrencySymbol(ClickRateTotalElement.Text));
+                clickRateTotal = double.Parse(ClickRateTotalElement.Text, numberStyles, CultureInfo);
             }
             catch (Exception e)
             {

@@ -1,10 +1,10 @@
-﻿@MPS @UAT @TYPE3 @SMOKE
+﻿@MPS @UAT @TYPE3 @SMOKE @CI_TestMaintenance
 Feature: Type3BusinessScenario_1
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new agreement and complete the installation of all devices
 
-Scenario Outline: Business Scenario 1
+Scenario Outline: Type3BusinessScenario_1
 Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "<Country>"
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"

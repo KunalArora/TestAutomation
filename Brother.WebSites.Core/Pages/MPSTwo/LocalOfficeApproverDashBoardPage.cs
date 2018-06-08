@@ -126,6 +126,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
          }
 
+        public void ClickLanguageLink()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var languageLinkElement = SeleniumHelper.FindElementByCssSelector(string.Format("a[href='/mps/local-office/dashboard?sc_lang={0}']", CultureInfo.Name));
+            SeleniumHelper.ClickSafety(languageLinkElement);
+        }
+
         private void SwitchBelgianLanguage(string lang)
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -190,9 +197,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             }
         }
-
-
-       
-       
     }
 }

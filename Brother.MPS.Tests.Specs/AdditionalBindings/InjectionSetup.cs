@@ -169,8 +169,14 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
                     defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
-                    defaultType3DealerUsername: AppSettingToString("RuntimeSettings.DefaultType3DealerUsername"),
-                    defaultType3DealerPassword: AppSettingToString("RuntimeSettings.DefaultType3DealerPassword")
+                    defaultType3DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerUsernameBUK"),
+                    defaultType3DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerPasswordBUK"),
+                    defaultType1DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBUK"),
+                    defaultType1DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBUK"),
+                    defaultType1DealerUsernameBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBIG"),
+                    defaultType1DealerPasswordBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBIG"),
+                    defaultType1DealerUsernameBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBSW"),
+                    defaultType1DealerPasswordBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBSW")
             );
 
             return runtimeSettings;

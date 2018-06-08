@@ -587,12 +587,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element);
-        }
-
         public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
         {
             LoggingService.WriteLogOnMethodEntry(days);

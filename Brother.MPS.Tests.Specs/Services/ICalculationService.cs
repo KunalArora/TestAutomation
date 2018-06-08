@@ -1,5 +1,7 @@
 ﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -8,10 +10,10 @@ namespace Brother.Tests.Specs.Services
         /// <summary>
         /// Verify the relation between Unit Cost, Margin & Unit Price (Used in Type 1)
         /// </summary>
-        /// <param name="unitCost"></param>
-        /// <param name="margin"></param>
-        /// <param name="displayedUnitPrice"></param>
-        void VerifyTotalPrice(string unitCost, string margin, string displayedUnitPrice);
+        /// <param name="cultureNumericUnitCost"></param>
+        /// <param name="cultureNumericMargin"></param>
+        /// <param name="cultureNumericDisplayedUnitPrice"></param>
+        void VerifyTotalPrice(string cultureNumericUnitCost, string cultureNumericMargin, string cultureNumericDisplayedUnitPrice);
 
         /// <summary>
         /// Verify that the sum of the string values in "prices" parameter is calculated correctly 
@@ -28,18 +30,33 @@ namespace Brother.Tests.Specs.Services
         void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice);
 
         /// <summary>
-        /// Converts string value to double value
+        /// Converts culture dependent string value to invariant double value
         /// </summary>
         /// <param name="variable"></param>
         /// <returns></returns>
-        double ConvertStringToDouble(string variable);
+        double ConvertCultureNumericStringToInvariantDouble(string variable);
+
+        /// <summary>
+        /// Converts culture dependent string value to invariant double value
+        /// </summary>
+        /// <param name="variable"></param>
+        /// <param name="numberStyles"></param>
+        /// <returns></returns>
+        double ConvertCultureNumericStringToInvariantDouble(string variable, NumberStyles numberStyles);
 
         /// <summary>
         /// Convert invariant numeric to cultured numeric string
         /// </summary>
         /// <param name="invariant"></param>
         /// <returns></returns>
-        string ConvertInvariantNumericToCultureNumericString(string invariant);
+        string ConvertInvariantNumericStringToCultureNumericString(string invariant);
+
+        /// <summary>
+        /// Convert invariant numeric to cultured numeric string
+        /// </summary>
+        /// <param name="invariant"></param>
+        /// <returns></returns>
+        string ConvertCultureNumericStringToInvariantNumericString(string cultureString, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number);
 
         /// <summary>
         /// Round off a double variable to certain decimal places

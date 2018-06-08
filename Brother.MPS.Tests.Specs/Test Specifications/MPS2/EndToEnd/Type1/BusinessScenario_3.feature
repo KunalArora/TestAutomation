@@ -1,19 +1,19 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND
+﻿@MPS @UAT @TYPE1 @ENDTOEND @CI_TestMaintenance
 Feature: Type1BusinessScenario_3
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 3
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
+Scenario Outline: Type1BusinessScenario_3
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
-		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
-		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| HL-L2340DW   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 100             | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
+		| HL-L2360DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
@@ -49,7 +49,10 @@ Then a Cloud MPS Local Office Approver will be able to see the status of the swa
 
 @BUK
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType             | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE     | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB         | A3P145606                 | 100                         | 0                            |
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
+		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145604                 | 100                         | 0                            |
 
-		
+@BSW
+Scenarios: 
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType         | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType        | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
+		| Switzerland    | fr-CH   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ADVANCE | INCLUDED_IN_CLICK_PRICE | FIVE_YEARS   | New      | Cloud               | Web              | REPLACE_THE_PCB | A3P145604                 | 100                         | 0                            |

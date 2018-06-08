@@ -86,7 +86,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
             ICalculationService calculationService,
             IContextData contextData,
             ITranslationService translationService
-            ): base(loggingService, runtimeSettings)
+            ): base(loggingService, runtimeSettings, contextData)
         {
             LoggingService = loggingService;
             _calculationService = calculationService;
@@ -168,8 +168,8 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                         }
                     }
 
-                    device.StartDeviceDate = FormatExcelSerialDate(HandleNullCase(_calculationService.RoundOffUptoDecimalPlaces((double)ws.Cells[rowIndex, ClickCharges_StartDate_Col_No].Value, 0)));
-                    device.EndDeviceDate = FormatExcelSerialDate(HandleNullCase(_calculationService.RoundOffUptoDecimalPlaces((double)ws.Cells[rowIndex, ClickCharges_EndDate_Col_No].Value, 0)));
+                    device.StartDeviceDate = ws.Cells[rowIndex, ClickCharges_StartDate_Col_No].Text;
+                    device.EndDeviceDate = ws.Cells[rowIndex, ClickCharges_EndDate_Col_No].Text;
                 }
 
                 foreach(var device in _contextData.AdditionalDeviceProperties)

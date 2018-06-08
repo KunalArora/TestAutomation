@@ -23,6 +23,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("ENDTOEND")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type1BusinessScenario_5Feature
     {
         
@@ -40,7 +41,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
                         "MPS",
                         "UAT",
                         "TYPE1",
-                        "ENDTOEND"});
+                        "ENDTOEND",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,12 +75,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Business Scenario 5")]
+        [NUnit.Framework.DescriptionAttribute("Type1BusinessScenario_5")]
         [NUnit.Framework.TestCaseAttribute("Germany", "EASY_PRINT_PRO_AND_SERVICE", "MINIMUM_VOLUME", "MONTHLY", "TO_PAY_IN_ADVANCE", "THREE_YEARS", "New", "Email", "Web", new string[] {
-                "BUK"}, Category="BUK")]
-        public virtual void BusinessScenario5(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
+                "BIG"}, Category="BIG")]
+        public virtual void Type1BusinessScenario_5(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Business Scenario 5", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1BusinessScenario_5", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

@@ -23,7 +23,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string actionsButtonSelector = @".js-mps-filter-ignore .dropdown-toggle";
         private const string summaryButtonSelector = @".js-mps-view-summary";
-        private const string actionsButton = @".js-mps-filter-ignore .dropdown-toggle";
 
         public string PageUrl
         {
@@ -75,6 +74,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             ActionsModule.NavigateToSummaryPageUsingActionButton(Driver);
 
             return GetTabInstance<DealerProposalsCreateSummaryPage>(Driver);
+        }
+
+        public void ClickOnSummaryPage(int proposalId, string proposalName, IWebDriver driver)
+        {
+            LoggingService.WriteLogOnMethodEntry(proposalId, proposalName, driver);
+            SeleniumHelper.SetListFilter(ProposalFilter, proposalId, proposalName, ProposalListProposalNameRowElement, waitSelector: "#DataTables_Table_0_info");
+            var actionElement = SeleniumHelper.FindElementByCssSelector(actionsButtonSelector);
+            SeleniumHelper.ClickSafety(actionElement);
+            var actionSummaryElement = SeleniumHelper.FindElementByCssSelector(summaryButtonSelector);
+            SeleniumHelper.ClickSafety(actionSummaryElement);
         }
     }
 }

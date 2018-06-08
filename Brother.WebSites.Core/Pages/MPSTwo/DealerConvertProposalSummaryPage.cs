@@ -44,12 +44,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(ProposedStartDate, "Is convert proposal summary page displayed");
         }
 
-        public void EnterProposedStartDateForContract()
+        public void EnterProposedStartDateForContract(string countryIso)
         {
+            LoggingService.WriteLogOnMethodEntry(countryIso);
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
-            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(countryIso));
+        }
 
+        public void EnterProposedStartDateForContract()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            if (ProposedStartDate == null)
+                throw new NullReferenceException("Contract start date field not displayed");
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday("GB"));
         }
 
         public void GiveThirdPartyCheckApproval()

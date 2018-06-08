@@ -14,7 +14,7 @@ namespace Brother.Tests.Specs.Factories
     /// </summary>
     public interface IWebDriverFactory
     {
-        IWebDriver GetWebDriverInstance(UserType userType, ChromeOptions chromeOptions = null);
+        IWebDriver GetWebDriverInstance(UserType userType, WebDriverOptions webDriverOptions = null);
         void CloseAllWebDrivers();
     }
 }

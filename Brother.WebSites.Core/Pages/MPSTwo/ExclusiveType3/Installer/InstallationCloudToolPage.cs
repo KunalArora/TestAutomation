@@ -10,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 
+
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
 {
     public class InstallationCloudToolPage: BasePage, IPageObject
@@ -183,7 +184,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             if (isUnmatchDevice)
             {
                 var alert = SeleniumHelper.FindAlertDialog();
-                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, Culture);
+                var expectedMessage = TranslationService.GetDisplayMessageText(TranslationKeys.DisplayMessage.AreYouSureUnmatch, CultureInfo.Name);
                 TestCheck.AssertIsEqual(expectedMessage, alert.Text, "invalid alert message");
                 alert.Accept();
             }
@@ -339,6 +340,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer
             });
 
             TestCheck.AssertIsEqual(serialNumber, snElement.Text, "assigned SerialNumber not equals mpdDeviceId=" + mpsDeviceId);
+        }
+
+        public void AssertSelectSerialLinkIsDisplayed(string mpsDeviceId)
+        {
+            LoggingService.WriteLogOnMethodEntry(mpsDeviceId);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceTableContainerElement);
+            var element = deviceRowElements.FirstOrDefault(e => e.GetAttribute("data-id").Equals(mpsDeviceId));
+            TestCheck.AssertIsNotNull(element, string.Format("Device with device id = {0} could not be found", mpsDeviceId));
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(element, SelectSerialLinkSelector), true, "Select serial link not displayed for device with device id = " + mpsDeviceId);
         }
     }
 }

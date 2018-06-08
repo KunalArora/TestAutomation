@@ -1,10 +1,10 @@
-﻿@MPS @UAT @TYPE1 @SMOKE
+﻿@MPS @UAT @TYPE1 @SMOKE @CI_TestMaintenance
 Feature: Type1BusinessScenario_1
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 1
+Scenario Outline: Type1BusinessScenario_1
 Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
@@ -45,7 +45,7 @@ Then I will be able to see the status of the swap device is set Being Swapped wi
 @BUK
 Scenarios: 
 		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145606                 | 100                         | 0                            |
+		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |
 
 #@BFR
 #Scenarios:

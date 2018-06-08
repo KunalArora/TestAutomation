@@ -1,10 +1,10 @@
-﻿@MPS @UAT @TYPE1 @ENDTOEND
+﻿@MPS @UAT @TYPE1 @ENDTOEND @CI_TestMaintenance
 Feature: Type1BusinessScenario_2
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
 	I want to create a new contract and complete the installation of all devices
 
-Scenario Outline: Business Scenario 2
+Scenario Outline: Type1BusinessScenario_2
 Given I have navigated to the Create Customer page as a Cloud MPS Dealer from "<Country>"
 When I create a new customer by clicking on Create Customer button
 And I have navigated to the Create Proposal page 
@@ -40,7 +40,8 @@ And a Cloud MPS Local Office Approver apply and verify the Overusage
 And I will raise consumable order and service request for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
 Given a Cloud MPS Local Office Admin navigates to the contract end screen 
-When a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
+When a Cloud MPS Local Office Admin set the New additional charges , Charge Type of "Consumables_Return_Management_Fee", Cost Price of "10.00", and Margin Percent of "3.00" and save  
+And a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels the contract
 Then a Cloud MPS Local Office Admin can validate the final bill
 
 @BUK

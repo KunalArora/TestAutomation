@@ -101,6 +101,7 @@
     <Compile Include="Extensions\ScenarioContextExtensions.cs" />
     <Compile Include="Factories\IWebDriverFactory.cs" />
     <Compile Include="Factories\WebDriverFactory.cs" />
+    <Compile Include="Factories\WebDriverOptions.cs" />
     <Compile Include="Helpers\DefaultAgreementHelper.cs" />
     <Compile Include="Helpers\DefaultProposalHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\AccrualsDetailExcelHelper.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="StepActions\Agreement\MpsLocalOfficeAdminAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsLocalOfficeApproverAgreementStepActions.cs" />
     <Compile Include="StepActions\Agreement\MpsServiceDeskAgreementStepActions.cs" />
+    <Compile Include="StepActions\BIEAdmin\MpsBieAdminStepActions.cs" />
     <Compile Include="StepActions\Common\MpsApiCallStepActions.cs" />
     <Compile Include="StepActions\Common\MpsLocalOfficeStepActions.cs" />
     <Compile Include="StepActions\Common\MpsSignInStepActions.cs" />
@@ -234,46 +236,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_4.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateCustomerSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateInstallationRequestSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateProposalSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerCreateSwapInstallationRequestSteps.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DealerDownloadsProposalSummaryPDF.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallerCompleteWebInstallationRequest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InstallerCompleteWebSwapInstallationRequest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApprovalProposalContractSteps.feature</DependentUpon>
-    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -299,6 +261,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Type3EnhancedUsageMonitoring.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\Finance\Accruals.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,6 +281,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContractRejected.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalClose.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalClose.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -328,6 +300,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SubDealerCreationAndProposalTillInstallation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilentDeviceReportVerify.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature.cs">
       <DependentUpon>CloudMPSErrorMessageShowsCorrectCurrency.feature</DependentUpon>
@@ -1445,6 +1422,7 @@
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeApproverAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsServiceDeskAgreementSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsLocalOfficeAdminAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\BIEAdmin\MpsBieAdminSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsApiCallSteps.cs" />
     <Compile Include="Test Steps\MPS2\Common\MpsSignInSteps.cs" />
     <Compile Include="Test Steps\Global\GlobalSteps.cs" />
@@ -1747,38 +1725,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_4.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateCustomerSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateCustomerSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateInstallationRequestSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateInstallationRequestSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateProposalSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateProposalSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerCreateSwapInstallationRequestSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerCreateSwapInstallationRequestSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\DealerDownloadsProposalSummaryPDF.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DealerDownloadsProposalSummaryPDF.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>InstallerCompleteWebInstallationRequest.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\ApprovalProposalContractSteps.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ApprovalProposalContractSteps.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Test Specifications\MPS2\EndToEnd\Type1\WorkInProgress\InstallerCompleteWebSwapInstallationRequest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>InstallerCompleteWebSwapInstallationRequest.feature.cs</LastGenOutput>
-    </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_1.feature.cs</LastGenOutput>
@@ -1799,6 +1745,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Type3EnhancedUsageMonitoring.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\Finance\Accruals.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Accruals.feature.cs</LastGenOutput>
@@ -1811,6 +1761,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ContractRejected.feature.cs</LastGenOutput>
     </None>
+    <None Include="Test Specifications\MPS2\ProposalStatus\ProposalClose.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProposalClose.feature.cs</LastGenOutput>
+    </None>
     <None Include="Test Specifications\MPS2\ProposalStatus\ProposalDeclined.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProposalDeclined.feature.cs</LastGenOutput>
@@ -1822,6 +1776,10 @@
     <None Include="Test Specifications\MPS2\SubDealer\SubDealerCreationAndProposalTillInstallation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubDealerCreationAndProposalTillInstallation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\SilentDevice\SilentDeviceReportVerify.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SilentDeviceReportVerify.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPSTwoByCountries\BIEPC110\BES\Proposal\CloudMPSErrorMessageShowsCorrectCurrency.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

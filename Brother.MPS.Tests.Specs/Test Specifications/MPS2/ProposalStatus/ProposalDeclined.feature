@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS @HIGH
+﻿@MPS @UAT @DEV @TYPE1 @PROPOSALSTATUS @HIGH @CI_TestMaintenance
 Feature: Decline Proposal
 	In order to clearly monitor the progress of created proposals
 	As a Cloud MPS Dealer
@@ -17,6 +17,7 @@ And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver declines the above proposal
 Then I can see the above proposal in the Declined list
+And I can verify the proposal is present in the dataquery page
 
 @BUK
 Scenarios: 

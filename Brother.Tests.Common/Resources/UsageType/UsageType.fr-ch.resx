@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BROTHER_INSTALLATION" xml:space="preserve">
-    <value>Brother-Install</value>
-    <comment>TODO</comment>
+  <data name="MINIMUM_VOLUME" xml:space="preserve">
+    <value>Volume minimal</value>
   </data>
-  <data name="DEALER_INSTALLATION_TYPE1" xml:space="preserve">
-    <value>Händler-Install</value>
-  </data>
-  <data name="DEALER_INSTALLATION_TYPE3" xml:space="preserve">
-    <value>Type 3 IP (en)</value>
-    <comment>TODO</comment>
-  </data>
-  <data name="NO_INSTALLATION" xml:space="preserve">
-    <value>No installation pack</value>
-    <comment>TODO</comment>
+  <data name="PAY_AS_YOU_GO" xml:space="preserve">
+    <value>Mode prépayé</value>
   </data>
 </root>

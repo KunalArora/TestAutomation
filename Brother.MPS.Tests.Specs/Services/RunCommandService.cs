@@ -62,7 +62,8 @@ namespace Brother.Tests.Specs.Services
                    }
                    if(retryInterval > 0)
                    {
-                       System.Threading.Tasks.Task.Delay(retryInterval * 1000);
+                       LoggingService.WriteLog(LoggingLevel.DEBUG, "RunCommand failed, retrying in {0} seconds", retryInterval);
+                       System.Threading.Thread.Sleep(retryInterval * 1000);
                    }
                } while (retry && (DateTime.UtcNow < endTime));
                Assert.Fail("ExecuteRunCommand timeout timeOut={0}, retryFor={1}, url={2}", timeOut, retryFor,url);
@@ -81,6 +82,9 @@ namespace Brother.Tests.Specs.Services
                     break;
                 case "UAT":
                     authToken = @".Kol%CV#<X$6o4C4/0WKxK36yYaH10";
+                    break;
+                case "TEST":
+                    authToken = @"7H85ss+cZmJuJ$1q_-o2C$2WlN]C^V";
                     break;
                 case "PROD":
                     authToken = @"0<*87kV?_dtqrr?5+S<L6?W(BO;bF$";

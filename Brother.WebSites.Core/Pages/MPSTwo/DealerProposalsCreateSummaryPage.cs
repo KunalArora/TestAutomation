@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -1812,11 +1813,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void VerifyTheCorrectPositionOfCurrencySymbol(string countryIso)
+        public void VerifyTheCorrectPositionOfCurrencySymbol()
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso);
+            LoggingService.WriteLogOnMethodEntry();
 
-            string currencySymbol = MpsUtil.GetCurrencySymbol(countryIso);
+            if (CultureInfo == null) {TestCheck.AssertFailTest("CultureInfo has null value");}
+
+            string currencySymbol = CultureInfo.NumberFormat.CurrencySymbol;
             var message = "Currency symbol position did not get validated";
 
             // TODO refactor later

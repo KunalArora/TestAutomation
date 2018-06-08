@@ -2,6 +2,7 @@
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Helpers;
+using System.Globalization;
 
 namespace Brother.WebSites.Core.Pages
 {
@@ -38,6 +39,9 @@ namespace Brother.WebSites.Core.Pages
         public IRuntimeSettings RuntimeSettings { get; set; }
 
         public ITranslationService TranslationService { get; set; }
-        public string Culture { get; set; }
+        
+        public CultureInfo CultureInfo { get; set; }
+
+        public RegionInfo RegionInfo { get; set; }
     }
 }

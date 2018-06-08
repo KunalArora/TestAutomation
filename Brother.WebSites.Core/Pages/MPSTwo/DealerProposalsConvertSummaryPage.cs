@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             if (ProposedStartDate == null)
                 throw new NullReferenceException("Contract start date field not displayed");
-            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday());
+            ProposedStartDate.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
         
         }
 
@@ -56,8 +56,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             element = GetElementByCssSelector("#content_1_InputSendToBrother_Input", 5);
             if (element != null)
                 SendToBrotherElement.Click();
+
+            if (CultureInfo.Name.ToLower().Equals("de-ch") && SeleniumHelper.IsElementPresent("#content_1_InputUpdateUserBOL_Input"))
+            {
+                element = SeleniumHelper.FindElementByCssSelector("#content_1_InputUpdateUserBOL_Input");
+                SeleniumHelper.ClickSafety(element);
+            }
         }
-
-
     }
 }

@@ -1,4 +1,4 @@
-﻿@MPS @LOGIN
+﻿@MPS @LOGIN @CI_TestMaintenance
 Feature: LoginAsDealer
 	In order to view the dashboard
 	As a Cloud MPS Dealer

@@ -190,8 +190,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         public void EnterValidUntil()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (IsFranceSystem() || IsItalySystem() || IsAustriaSystem() || IsUKSystem())
-                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday());
+                ValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
         }
 
         public void EnterCreditLimit()
@@ -219,6 +220,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterApprovalInformation()
         {
+            LoggingService.WriteLogOnMethodEntry();
             EnterCustomerReference("");
             EnterReference("");
             EnterValidUntil();

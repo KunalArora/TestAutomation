@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Common.ContextData
 {
@@ -11,6 +12,9 @@ namespace Brother.Tests.Common.ContextData
     {
         Country Country { get; set; }
         string Culture { get; set; }
+        CultureInfo CultureInfo { get; set; }
+        RegionInfo RegionInfo { get; set; }
+        string Language { get; set; }
         string BaseUrl { get; set; }
         string EnvironmentName { get; set; }
         string Environment { get; set; }
@@ -58,6 +62,7 @@ namespace Brother.Tests.Common.ContextData
         string SubDealerFirstName { get; set; }
         string SubDealerLastName { get; set; }
         UserType DriverInstance { get; set; }
+        IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
 
         // Exclusively Type 3
         string AgreementDateCreated { get; set; }
@@ -77,5 +82,7 @@ namespace Brother.Tests.Common.ContextData
         double ClickRateTotal { get; set; }
         double ServicePackTotal { get; set; }
         double InstallationPackTotal { get; set; }
+
+        IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
     }
 }

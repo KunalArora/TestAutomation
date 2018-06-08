@@ -33,6 +33,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         // @".js-mps-contract-cancellation" or @".js-mps-contract-cancellation-running"
         private const string CancelContract = "[class^=\"js-mps-contract-cancellation\"]";
+        private const string AdditionalCharges = "[class^=\"js-mps-additional-charges\"]";
 
 
         private static IWebElement CopyProposalButtonElement(ISearchContext driver)
@@ -68,6 +69,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public static void NavigateToCancelContractActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
         {
             var element = seleniumHelper.FindElementByCssSelector(CancelContract);
+            MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, element);
+        }
+        public static void NavigateToAdditionalChargesActionButton(IWebDriver driver, Brother.Tests.Selenium.Lib.Helpers.ISeleniumHelper seleniumHelper)
+        {
+            var element = seleniumHelper.FindElementByCssSelector(AdditionalCharges);
             MpsUtil.ClickButtonThenNavigateToOtherUrl(driver, element);
         }
 

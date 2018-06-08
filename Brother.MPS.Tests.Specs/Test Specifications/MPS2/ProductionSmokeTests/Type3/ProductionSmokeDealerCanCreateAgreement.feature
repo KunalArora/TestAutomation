@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @TYPE3 @PROD @PRODUCTIONSMOKE
+﻿@MPS @UAT @DEV @TYPE3 @PROD @PRODUCTIONSMOKE @CI_TestMaintenance
 Feature: Type3ProductionSmokeTest
 	In order to verify successful deployment to the production environment
 	As a Cloud MPS Dealer
@@ -9,9 +9,9 @@ Given I have navigated to the Create Agreement page as a Cloud MPS Dealer from "
 When I input the fields (Fill Optional fields: "<OptionalFields_1>") on Agreement Description Page for "<AgreementType>" type agreement
 And I select the Usage Type of "<UsageType>", Contract Term of "<ContractTerm>" and Service of "<Service>"
 And I add these printers and verify click price:
-		| Model     | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
-		| HL-L2360DN | 1        | Yes              | Yes         | 10           | 1500       | 0              | 0            |
-		| HL-L2340DW | 1        | Yes              | Yes         | 10           | 1500       | 0              | 0            |
+		| Model        | Quantity | InstallationPack | ServicePack | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
+		| DCP-L8400CDN | 1        | Yes              | Yes         | 10           | 1000       | 25             | 1000         |
+		| DCP-L8450CDW | 1        | Yes              | Yes         | 10           | 1000       | 25             | 1000         |
 And I complete the setup of agreement
 And I can verify the creation of agreement in the agreement list
 When I navigate to edit device data page

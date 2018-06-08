@@ -1,4 +1,4 @@
-﻿@MPS @UAT @DEV @PROD @TYPE1 @PROPOSALSTATUS @HIGH @PRODUCTIONSMOKE
+﻿@MPS @UAT @DEV @PROD @TYPE1 @PROPOSALSTATUS @HIGH @PRODUCTIONSMOKE @CI_TestMaintenance
 Feature: Reject Contract
 	In order to clearly monitor the progress of created proposals
 	As a Cloud MPS Dealer
@@ -20,6 +20,7 @@ And I have navigated to the Approved Proposals page and navigate to the proposal
 And I sign the above proposal
 And a Cloud MPS Local Office Approver rejects the above proposal
 Then I can see the above proposal in the Rejected list
+And I can verify the proposal is present in the dataquery page
 
 @BUK
 Scenarios:

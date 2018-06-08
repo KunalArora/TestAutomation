@@ -161,7 +161,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Model: DCP-8250DN Click Price - Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
             // Model: DCP-L8450CDW Click Price - Colour: Coverage: 40,00% / Volume: 300 / Margin: 50,00% / Click Price: 0,10700 € Mono: Coverage: 10,00% / Volume: 100 / Margin: 50,00% / Click Price: 0,01300 €
             var logList = localOfficeApproverReportsProposalSummaryPage.GetAuditLogDetailsList();
-            var currencySymbol = MpsUtil.GetCurrencySymbol(ContextData.Country.CountryIso);
+            var currencySymbol = ContextData.CultureInfo.NumberFormat.CurrencySymbol;
             var checkedServiceModelList = new List<string>();
             var checkedClickPriceModelList = new List<string>();
             foreach (var logItem in logList)
@@ -186,8 +186,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     var logAppend = "model = " + actualModel + ", actual = " + logValue;
 
                     Assert.True(logValue.Contains(currencySymbol), "Service currencySymbol not found " + logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost) 
-                        || actualValue.Contains("Unit Cost: "+specialPrice.ServiceUnitCost), 
+                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceUnitCost)
+                        || Regex.Replace(actualValue, @"\s+", "").Contains("UnitCost:" + specialPrice.ServiceUnitCost), 
                         "Service/Unit Cost "+logAppend);
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ServiceMargin) 
                         || actualValue.Contains("Margin: "+specialPrice.ServiceMargin), 
@@ -225,11 +225,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClickMargin)
                         || actualMonoValue.Contains("Margin: "+specialPrice.MonoClickMargin),
                         "Click Price/Margin(Mono) "+logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
-                        || actualMonoValue.Contains("Click Price: "+specialPrice.MonoClick),
-                        "Click Price/Click Price(Mono) "+logAppend);
-
-
+                   if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+                   {
+                       Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
+                        || actualMonoValue.Contains("Click Price:  " + specialPrice.MonoClick),
+                        "Click Price/Click Price(Mono) " + logAppend + actualMonoValue);
+                   }
+                   else
+                   {
+                       Assert.True(string.IsNullOrWhiteSpace(specialPrice.MonoClick)
+                        || actualMonoValue.Contains("Click Price: " + specialPrice.MonoClick),
+                        "Click Price/Click Price(Mono) " + logAppend);
+                   }
+                    
                     if ( string.IsNullOrWhiteSpace(actualColorValue))
                     {
                         checkedClickPriceModelList.Add(actualModel);
@@ -246,9 +254,18 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                     Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClickMargin)
                         || actualColorValue.Contains("Margin: " + specialPrice.ColourClickMargin),
                         "Click Price/Margin(Colour) "+logAppend);
-                    Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
-                        || actualColorValue.Contains("Click Price: " + specialPrice.ColourClick),
-                        "Click Price/Click Price(Colour) "+logAppend);
+                    if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+                    {
+                        Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
+                            || actualColorValue.Contains("Click Price:  " + specialPrice.ColourClick),
+                            "Click Price/Click Price(Colour) " + logAppend);
+                    }
+                    else
+                    {
+                        Assert.True(string.IsNullOrWhiteSpace(specialPrice.ColourClick)
+                            || actualColorValue.Contains("Click Price: " + specialPrice.ColourClick),
+                            "Click Price/Click Price(Colour) " + logAppend);
+                    }
 
                     checkedClickPriceModelList.Add(actualModel);
 
@@ -293,13 +310,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _localOfficeApproverApprovalContractsAcceptedPage.VerifyContractFilter(proposalId, proposalName);
         }
 
-        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
-        }
-
-
         public LocalOfficeApproverApprovalProposalsDeclinedPage DeclineProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverApprovalProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverApprovalProposalsSummaryPage);
@@ -309,5 +319,17 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsDeclinedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }
 
+        public LocalOfficeApproverDashBoardPage SelectLanguageGivenCulture(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+
+            if (_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                localOfficeApproverDashBoardPage.ClickLanguageLink();
+                localOfficeApproverDashBoardPage = PageService.GetPageObject<LocalOfficeApproverDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            }
+
+            return localOfficeApproverDashBoardPage;
+        }
     }
 }

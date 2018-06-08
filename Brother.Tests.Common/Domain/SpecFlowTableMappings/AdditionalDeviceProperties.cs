@@ -66,6 +66,15 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanStatus { get; set; }
         public string TonerInkMagentaStatus { get; set; }
         public string TonerInkYellowStatus { get; set; }
+        public string TonerInkBlackRemLife { get; set; }
+        public string TonerInkCyanRemLife { get; set; }
+        public string TonerInkMagentaRemLife { get; set; }
+        public string TonerInkYellowRemLife { get; set; }
+        public string TonerInkBlackReplaceCount { get; set; }
+        public string TonerInkCyanReplaceCount { get; set; }
+        public string TonerInkMagentaReplaceCount { get; set; }
+        public string TonerInkYellowReplaceCount { get; set; }
+
 
         public bool hasEmptyInkToner
         {
@@ -83,6 +92,28 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
             }
         }
 
+        public bool hasLowRemLifeInkToner
+        {
+            get
+            {
+                bool hasLowRemLifeInkToner = false;
+                try
+                {
+                    if ((double.Parse(TonerInkBlackRemLife) <= (MonoThresholdValue != null ? double.Parse(MonoThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkCyanRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkMagentaRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkYellowRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)))
+                    {
+                        hasLowRemLifeInkToner = true;
+                    }
+                }
+                catch(Exception e) {
+                    throw new Exception("Parameter hasLowRemLifeInkToner cannot be determined as the following exception occurred. Exception: " + e);
+                }
+                return hasLowRemLifeInkToner;
+            }
+        }
+
         public string ServiceRequestId { get; set; }
         public string ServiceRequestType { get; set; }
         public string ServiceRequestReplyMessage { get; set; }
@@ -97,5 +128,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public int TotalPagesPrintedMono { get; set; }
         public int TotalPagesPrintedColour { get; set; }
         public bool IsResultSerialNumberSelected { get; set; }
+        
+        //printer engine threshold values
+        public string MonoThresholdValue { get; set; }
+        public string ColourThresholdValue { get; set; }
     }
 }

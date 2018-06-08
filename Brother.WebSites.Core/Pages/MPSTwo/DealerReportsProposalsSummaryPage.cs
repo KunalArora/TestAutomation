@@ -35,6 +35,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = ".js-mps-searchable")]
         public IWebElement PrintersContainerElement;
 
+        [FindsBy(How = How.Id, Using = "content_0_SummaryTable_ProposalName")]
+        public IWebElement SummaryTable_ProposalName;
+
         private const string DeviceSerialNumberSelector = "[id*=content_0_ContractDevicesList_Contracts_List_0_CellSerialNo_]";
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string PrintCountsModalSelector = ".js-mps-print-counts-list";
@@ -204,6 +207,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var InvoicePdfElement = SeleniumHelper.FindElementByCssSelector(InvoicePdfSelector);
             SeleniumHelper.ClickSafety(InvoicePdfElement);
+        }
+
+        public void VerifyProposalName(string proposalName)
+        {
+            LoggingService.WriteLogOnMethodEntry(proposalName);
+            TestCheck.AssertIsEqual(proposalName, SummaryTable_ProposalName.Text, "Proposal name does not match");
         }
     }
 }

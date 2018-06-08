@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -17,6 +18,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
@@ -28,8 +30,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly IContextData _contextData;
         private readonly ICalculationService _calculationService;
-        private readonly IWebDriver _dealerWebDriver;
-        private readonly IWebDriver _subDealerWebDriver;
+        private IWebDriver _dealerWebDriver;
+        private IWebDriver _subDealerWebDriver;
         private readonly IPdfHelper _pdfHelper;
         private readonly IMpsWebToolsService _webToolService;
         private readonly ILoggingService _loggingService;
@@ -56,8 +58,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _calculationService = calculationService;
-            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
-            _subDealerWebDriver = webDriverFactory.GetWebDriverInstance(UserType.SubDealer);
             _pdfHelper = pdfHelper;
             _webToolService = webToolService;
             _loggingService = loggingService;
@@ -68,12 +68,14 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer, new WebDriverOptions { Culture = _contextData.Culture });
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
         public DealerDashBoardPage SignInAsSubDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer, new WebDriverOptions { Culture = _contextData.Culture });
             return _mpsSignIn.SignInAsSubDealer(email, password, url);
         }
 
@@ -154,8 +156,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 detailInputPage = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             }
-            detailInputPage.FillOrganisationDetails();
-            detailInputPage.FillOrganisationContactDetail();
+            detailInputPage.FillOrganisationDetails(_contextData.Language);
+            detailInputPage.FillOrganisationContactDetail(_contextData.Language);
             _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
             _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
             _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
@@ -342,7 +344,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerProposalsCreateSummaryPage.VerifyCorrectBillingTermIsDisplayedOnSummaryPage(_contextData.BillingType);
             dealerProposalsCreateSummaryPage.VerifyCorrectUsageTypeIsDisplayedOnSummaryPage(_contextData.UsageType);
             dealerProposalsCreateSummaryPage.VerifyThatServicePackIsCorrectOnSummaryPage(_contextData.ServicePackType, resourceServicePackTypeIncludedInClickPrice);
-            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol(_contextData.Country.CountryIso);
+            dealerProposalsCreateSummaryPage.VerifyTheCorrectPositionOfCurrencySymbol();
             dealerProposalsCreateSummaryPage.VerifyNoAlertInfoMessage();
 
             dealerProposalsCreateSummaryPage.ClickSaveProposal();
@@ -494,7 +496,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerLastName = dealerProposalsConvertCustomerInformationPage.GetLastName();
             if (!_contextData.SkipBOLRegistration)
             {
-                _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso);
+                _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, country.CountryIso, _contextData.Culture);
             }
 
             _contextData.SnapValues[typeof(DealerProposalsConvertCustomerInformationPage)]= _pageParseHelper.ParseCustomerInformationPageValues(dealerProposalsConvertCustomerInformationPage.SeleniumHelper);
@@ -630,6 +632,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var resourcePdfFileAgreementPeriod = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.AgreementPeriod, _contextData.Culture);
             var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.TotalInstalledPurchasePrice, _contextData.Culture);
             var resourcePdfFileMinimumClickCharge = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumClickCharge, _contextData.Culture);
+            var resourcePdfFileMinimumVolumePerQuarter = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumVolumePerQuarter, _contextData.Culture);
             Country country = _contextData.Country;
 
             if (_pdfHelper.PdfExists(pdfFile) == false)
@@ -637,13 +640,47 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 throw new Exception("pdf not exists file=" + pdfFile);
             }
             var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue["SummaryTable.ContractTerm"],"");
-            string[] searchTextArray =
+
+            string[] searchTextArray;
+
+            switch(_contextData.Country.CountryIso)
             {
-                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
-                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
-            };
+                case CountryIso.UnitedKingdom:
+                    searchTextArray = new string[] 
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
+                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
+                        };
+                    break;
+                case CountryIso.Switzerland:
+                    var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
+                    var quarterInterval = (double.Parse(contractTermDigitString)/3);
+                    double minimumVolumePerQuarter = 0;
+                    if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture)))
+                    {
+                        minimumVolumePerQuarter =  _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet/quarterInterval, 2);
+                    }
+                    searchTextArray = new string[]
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
+                        };
+                        break;
+                default:
+                    searchTextArray = new string[]
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
+                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
+                        };
+                    break;
+            }
+            
+
             searchTextArray.ToList().ForEach(expected =>
                {
                    if( _pdfHelper.PdfContainsText(pdfFile, expected) == false)
@@ -687,7 +724,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsDeclinedPage, filterString);
             dealerProposalsDeclinedPage.SetListFilter(filterString);
-            proposalNameForSearch = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+            proposalNameForSearch = dealerProposalsDeclinedPage.SeleniumHelper.WaitUntil(d =>
+           {
+               var text = dealerProposalsDeclinedPage.NameRowElementList[0].Text;
+               return string.IsNullOrWhiteSpace(text) ? null : text;
+           }); // stabilizing
             ActionsModule.ClickOnTheActionsDropdown(0, _dealerWebDriver);
             ActionsModule.CopyAProposal(_dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsInprogressPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver); ;
@@ -707,6 +748,26 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
             dealerProposalsApprovedPage.ClickOnSummaryPage(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsSummaryPage ClickOnViewSummary(DealerProposalsAwaitingApprovalPage dealerProposalsAwaitingApprovalPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsAwaitingApprovalPage);
+            dealerProposalsAwaitingApprovalPage.ClickOnSummaryPage(_contextData.ProposalId, _contextData.ProposalName, _dealerWebDriver);
+            return PageService.GetPageObject<DealerProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsClosedPage ClickOnCancelProposalButton(DealerProposalsSummaryPage dealerProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsSummaryPage);
+            dealerProposalsSummaryPage.ClickOnCancelProposalButton();
+            return PageService.GetPageObject<DealerProposalsClosedPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyClosedProposalPresent(DealerProposalsClosedPage dealerProposalsClosedPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsClosedPage);
+            dealerProposalsClosedPage.VerifyClosedProposalPresent(_contextData.ProposalId, _contextData.ProposalName);
         }
 
         public DealerProposalsConvertProductsPage ClickNext(DealerProposalsConvertTermAndTypePage dealerProposalsConvertTermAndTypePage)
@@ -751,7 +812,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerProposalsConvertSummaryPage SetInformationAndClickSubmitForApproval(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertClickPricePage);
-            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage);
+            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage, true);
             if (_contextData.DriverInstance == UserType.SubDealer)
             {
                 return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
@@ -799,7 +860,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _contextData.CustomerFirstName = dealerCustomersManagePage.GetFirstName();
             _contextData.CustomerLastName = dealerCustomersManagePage.GetLastName();
             dealerCustomersManagePage.saveButtonElement.Click();
-            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso);
+            _webToolService.RegisterCustomer(_contextData.CustomerEmail, _contextData.CustomerPassword, _contextData.CustomerFirstName, _contextData.CustomerLastName, _contextData.Country.CountryIso, _contextData.Culture);
             var nextPage = PageService.GetPageObject<DealerCustomersExistingPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             return nextPage;
         }
@@ -853,7 +914,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public DealerContractsAwaitingAcceptancePage SignToContract(DealerContractsSummaryPage dealerContractsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerContractsSummaryPage);
-            ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage) ;
+            ClickSafety( dealerContractsSummaryPage.SignButtonElement, dealerContractsSummaryPage, true) ;
             LoggingService.WriteLog(LoggingLevel.INFO, "Dealer::Signed id={0} name={1}",_contextData.ProposalId,_contextData.ProposalName);
             if (_contextData.DriverInstance == UserType.SubDealer)
             {
@@ -923,6 +984,68 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsApprovedPage);
             dealerProposalsApprovedPage.FilterProposalAndVerify(_contextData.ProposalId, _contextData.ProposalName);
+        }
+
+        public DealerDashBoardPage SelectLanguageGivenCulture(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            
+            if(_contextData.Country.CountryIso.Equals(CountryIso.Switzerland))
+            {
+                _contextData.Language = dealerDashboardPage.ClickLanguageLink();
+                dealerDashboardPage = PageService.GetPageObject<DealerDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            }
+
+            return dealerDashboardPage;
+        }
+
+        public void SetCultureInfoAndRegionInfo()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
+
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public DealerReportsDashboardPage NavigateToDealerReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.SeleniumHelper.ClickSafety(dealerDashboardPage.DealerReportLinkElement);
+            return PageService.GetPageObject<DealerReportsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsDataQueryPage NavigateToDataqueryPage(DealerReportsDashboardPage dealerReportsDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDashboardPage);
+            dealerReportsDashboardPage.SeleniumHelper.ClickSafety(dealerReportsDashboardPage.DataQueryElement);
+            return PageService.GetPageObject<DealerReportsDataQueryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerReportsProposalsSummaryPage NavigateToProposalsSummaryPage(DealerReportsDataQueryPage dealerReportsDataqueryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsDataqueryPage);
+            dealerReportsDataqueryPage.FilterAndClickAgreement(_contextData.ProposalId);
+            return PageService.GetPageObject<DealerReportsProposalsSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyProposalName(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
+            dealerReportsProposalsSummaryPage.VerifyProposalName(_contextData.ProposalName);
         }
 
         #region private methods
@@ -1035,12 +1158,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateClickPricePage);
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
-
-        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
-        }
         #endregion
+
     }
  }

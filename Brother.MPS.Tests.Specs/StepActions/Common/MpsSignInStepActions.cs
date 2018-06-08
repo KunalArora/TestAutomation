@@ -30,6 +30,7 @@ namespace Brother.Tests.Specs.StepActions.Common
         private IWebDriver _bankWebDriver;
         private IWebDriver _loFinanceWebDriver;
         private IWebDriver _subDealerWebDriver;
+        private IWebDriver _bieAdminWebDriver;
         private IContextData _contextData;
 
         private readonly Dictionary<UserType, string> DashBoardUrl = new Dictionary<UserType, string>()
@@ -42,6 +43,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             { UserType.Bank,                    "/mps/bank/dashboard" },
             { UserType.LocalOfficeFinance,      "/mps/local-office/finance/dashboard" },
             { UserType.SubDealer,               "/mps/dealer/dashboard" },
+            { UserType.BIEAdmin,                "/mps/bie-admin/dashboard" },
         };
 
         public MpsSignInStepActions (
@@ -127,6 +129,12 @@ namespace Brother.Tests.Specs.StepActions.Common
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
             return SignInAs<LocalOfficeFinanceDashBoardPage>(email, password, url, UserType.LocalOfficeFinance, out _loFinanceWebDriver);
+        }
+
+        public BieAdminDashboardPage SignInAsBieAdmin(string email, string password, string url)
+        {
+            LoggingService.WriteLogOnMethodEntry(email, password, url);
+            return SignInAs<BieAdminDashboardPage>(email, password, url, UserType.BIEAdmin, out _bieAdminWebDriver);
         }
 
         private TPage SignInAs<TPage>(string email, string password, string url, UserType userType, out IWebDriver webDriver) where TPage : BasePage, IPageObject, new()

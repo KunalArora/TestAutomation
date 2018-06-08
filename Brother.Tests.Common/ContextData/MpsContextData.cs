@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Brother.Tests.Common.ContextData
 {
@@ -9,6 +10,9 @@ namespace Brother.Tests.Common.ContextData
     {
         public Country Country { get; set; }
         public string Culture { get; set; }
+        public CultureInfo CultureInfo { get; set; }
+        public RegionInfo RegionInfo { get; set; }
+        public string Language { get; set; }
         public string BaseUrl { get; set; }
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }
@@ -49,6 +53,7 @@ namespace Brother.Tests.Common.ContextData
             //SnapCreateProductsPageValues = new Dictionary<string, string>();
             SnapValues = new SnapDictionary();
             SkipBOLRegistration = false;
+            AdditionalChargesItemList = new List<AdditionalChargesItem>();
         }
 
         public void SetBusinessType(string businessTypeId)
@@ -89,6 +94,7 @@ namespace Brother.Tests.Common.ContextData
         public string SubDealerFirstName { get; set; }
         public string SubDealerLastName { get; set; }
         public UserType DriverInstance { get; set; }
+        public IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
 
         // Exclusively Type 3
         public string AgreementDateCreated { get; set; }
@@ -107,6 +113,8 @@ namespace Brother.Tests.Common.ContextData
         public double ClickRateTotal { get; set; }
         public double ServicePackTotal { get; set; }
         public double InstallationPackTotal { get; set; }
+
+        public IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
     }
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
@@ -122,4 +130,15 @@ namespace Brother.Tests.Common.ContextData
             set { base[pageClass.FullName] = value; }
         }
     }
+
+    public class AdditionalChargesItem
+    {
+
+        public int chargeTypeValue { get; set; } // (int)ChargeTypeSelectorElementValue
+        public double costPrice { get; set; }
+        public double marginPercent { get; set; }
+    }
+
+    // use for LocalOfficeAdminContractsAdditionalCharges#ChargeTypeSelectorElement
+
 }
