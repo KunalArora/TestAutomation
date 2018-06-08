@@ -6,6 +6,7 @@ using Brother.Tests.Specs.StepActions.Dealership;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.MPS2.Dealership
@@ -91,7 +92,9 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         [When(@"I Amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save\.")]
         public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave_()
         {
-            _mpsDealerDealershipStepActions.UploadLogoToProfile(_dealerAdminDealershipProfilePage, @"C:\Users\ZZPX0890\Downloads\onaka_heru_man.jpg"); // TODO OIKE
+            var filePath = _mpsDealerDealershipStepActions.CreateUploadLogoFile();
+            _mpsDealerDealershipStepActions.UploadLogoToProfile(_dealerAdminDealershipProfilePage, filePath);
+            File.Delete(filePath);
         }
 
         [Then(@"I 'Dealership profile was updated successfully' will appear at the top of the screen\.")]

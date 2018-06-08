@@ -2,8 +2,10 @@
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.Resources.Binary;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -11,6 +13,7 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Dealership
@@ -101,6 +104,18 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             Assert.True(dealerAdminDealershipProfilePage.DealershipProfileTabElement.Displayed, "'Dealership Profile' tab not found");           
         }
 
+        public string CreateUploadLogoFile()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            var fullpath = Path.Combine(TestController.DownloadPath, string.Format("logotest-{0}.jpg",DateTime.Now.Ticks));
+            using (var fs = File.Create(fullpath))
+            {
+                var jpegBinary = BinaryResource.onaka_heru_man_jpg;
+                fs.Write(jpegBinary, 0, jpegBinary.Length);
+            }
+            return fullpath;
+        }
+
         public DealerAdminDealershipProfilePage NavigateToDealershipProfilePage(DealerAdminDashBoardPage dealerAdminDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDashboardPage);
@@ -117,7 +132,13 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         public void VerifyDealershipProfileWasUpdatedSuccessfully(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
-            Assert.True(dealerAdminDealershipProfilePage.CloseAlertSuccessElement.Displayed, "VerifyDealershipProfileWasUpdatedSuccessfully() Updated Successflly alert not found");
+            var SeleniumHelper = dealerAdminDealershipProfilePage.SeleniumHelper;
+            if (SeleniumHelper.IsElementDisplayed(dealerAdminDealershipProfilePage.ValidationErrorsErrorContainerElement))
+            {
+                Assert.Fail("VerifyDealershipProfileWasUpdatedSuccessfully() may upload error. message={0}", dealerAdminDealershipProfilePage.ValidationErrorsErrorContainerElement.Text);
+            }
+            Assert.True(SeleniumHelper.IsElementDisplayed(dealerAdminDealershipProfilePage.CloseAlertSuccessElement), 
+                "VerifyDealershipProfileWasUpdatedSuccessfully() updated successflly alert not found");
         }
 
         public void RemoveProfileLogo(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)

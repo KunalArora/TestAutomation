@@ -55,6 +55,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement DivAlertSuccessElement;
         [FindsBy(How = How.CssSelector, Using = "div.alert.alert-success button.close")]
         public IWebElement CloseAlertSuccessElement;
+        [FindsBy(How = How.CssSelector, Using = "#content_1_ValidationErrors_ErrorContainer")]
+        public IWebElement ValidationErrorsErrorContainerElement;
 
         private void IsDealershopProfilePageDisplayed()
         {
@@ -97,7 +99,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void RemoveLogo()
         {
             LoggingService.WriteLogOnMethodEntry();
-            SeleniumHelper.SetCheckBox(InputLogoRemoveElement, false);
+            SeleniumHelper.SetCheckBox(InputLogoRemoveElement, true);
             SeleniumHelper.ClickSafety(ProfileSaveButtonElement);
         }
     }
