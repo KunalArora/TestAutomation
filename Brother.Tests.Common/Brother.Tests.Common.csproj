@@ -89,6 +89,7 @@
     <Compile Include="Domain\Models\SwapRequestDetail.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\AdditionalDeviceProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\Country.cs" />
+    <Compile Include="Domain\SpecFlowTableMappings\PrinterEngineThresholdDetails.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\DealerMarginsProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\PrinterProperties.cs" />
     <Compile Include="Domain\SpecFlowTableMappings\SpecialPricingProperties.cs" />
@@ -488,9 +489,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UsageType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\onaka_heru_man.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.33\build\Selenium.Chrome.WebDriver.targets')" />

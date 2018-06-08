@@ -99,15 +99,17 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                 bool hasLowRemLifeInkToner = false;
                 try
                 {
-                    if ((Int32.Parse(TonerInkBlackRemLife) < 10) ||
-                        (Int32.Parse(TonerInkCyanRemLife) < 10) ||
-                        (Int32.Parse(TonerInkMagentaRemLife) < 10) ||
-                        (Int32.Parse(TonerInkYellowRemLife) < 10))
+                    if ((double.Parse(TonerInkBlackRemLife) <= (MonoThresholdValue != null ? double.Parse(MonoThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkCyanRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkMagentaRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)) ||
+                        (double.Parse(TonerInkYellowRemLife) <= (ColourThresholdValue != null ? double.Parse(ColourThresholdValue) : 10.00)))
                     {
                         hasLowRemLifeInkToner = true;
                     }
                 }
-                catch { }
+                catch(Exception e) {
+                    throw new Exception("Parameter hasLowRemLifeInkToner cannot be determined as the following exception occurred. Exception: " + e);
+                }
                 return hasLowRemLifeInkToner;
             }
         }
@@ -126,5 +128,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public int TotalPagesPrintedMono { get; set; }
         public int TotalPagesPrintedColour { get; set; }
         public bool IsResultSerialNumberSelected { get; set; }
+        
+        //printer engine threshold values
+        public string MonoThresholdValue { get; set; }
+        public string ColourThresholdValue { get; set; }
     }
 }

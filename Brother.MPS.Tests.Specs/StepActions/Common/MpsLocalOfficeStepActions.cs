@@ -76,7 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             _contextData.DealerName = localOfficeAgreementSummaryPage.DealershipNameElement.Text;
             _contextData.DealerSAPAccountNumber = localOfficeAgreementSummaryPage.DealershipSapNumberElement.Text;
 
-            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, isUntilUrlChanges:true);
+            ClickSafety(localOfficeAgreementSummaryPage.DevicesTabElement(_contextData.AgreementId), localOfficeAgreementSummaryPage, IsUntilUrlChanges: true);
             return PageService.GetPageObject<LocalOfficeAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, webDriver);
         }
 
@@ -564,12 +564,6 @@ namespace Brother.Tests.Specs.StepActions.Common
             _devicesExcelHelper.DeleteExcelFile(excelFilePath);
             
             return localOfficeAgreementDevicesPage;
-        }
-
-        public void ClickSafety(IWebElement element, IPageObject pageObject, bool isUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject, isUntilUrlChanges);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: isUntilUrlChanges);
         }
     }
 }

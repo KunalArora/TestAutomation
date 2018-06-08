@@ -63,6 +63,8 @@ namespace Brother.Tests.Common.ContextData
         string SubDealerLastName { get; set; }
         UserType DriverInstance { get; set; }
         IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
+        DealerDefaultMargins DealerAdminDefaultMargins { get; set; }
+        DealerDefaultMargins DealerAdminDefaultMarginsOriginal { get; set; }
 
         // Exclusively Type 3
         string AgreementDateCreated { get; set; }
@@ -82,7 +84,7 @@ namespace Brother.Tests.Common.ContextData
         double ClickRateTotal { get; set; }
         double ServicePackTotal { get; set; }
         double InstallationPackTotal { get; set; }
-        DealerDefaultMargins DealerAdminDefaultMargins { get; set; }
-        DealerDefaultMargins DealerAdminDefaultMarginsOriginal { get; set; }
+
+        IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
     }
 }

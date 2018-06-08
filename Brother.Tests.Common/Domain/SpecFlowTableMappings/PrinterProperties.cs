@@ -69,5 +69,9 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public bool _IsApplySpecialPriceInstall { get; set; }
         public bool _IsApplySpecialPriceService { get; set; }
         public bool _IsApplySpecialPriceClickPrice { get; set; }
+
+        //printer engine threshold values
+        public string MonoThresholdValue { get; set; }
+        public string ColourThresholdValue { get; set; }
     }
 }

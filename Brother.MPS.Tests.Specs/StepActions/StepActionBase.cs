@@ -6,6 +6,7 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.Base;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions
@@ -43,5 +44,10 @@ namespace Brother.Tests.Specs.StepActions
             return PageService.Refresh(page, timeout ?? RuntimeSettings.DefaultPageLoadTimeout);
         }
 
+        public void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
+        {
+            LoggingService.WriteLogOnMethodEntry(element, pageObject);
+            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
+        }
     }
 }

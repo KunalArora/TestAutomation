@@ -19,4 +19,6 @@ Then I 'Dealership profile was updated successfully' will appear at the top of t
 @BUK
 Scenarios: 
 		| Country        | HardwareDefaultMargin | AccessoriesDefaultMargin | DeliveryDefaultMargin | InstallationDefaultMargin | ServicePackDefaultMargin | MonoClickDefaultCommission | ColourClickDefaultCommission |
-		| United Kingdom | 15.00                 | 15.00                    | 19.00                 | 19.00                     | 19.00                    | 19.00                      | 19.00                        |
+		| United Kingdom | 11.01                 | 22.02                    | 33.03                 | 44.04                     | 55.05                    | 66.06                      | 77.07                        |
+#default value
+#		| United Kingdom | 15.00                 | 15.00                    | 19.00                 | 19.00                     | 19.00                    | 19.00                      | 19.00                        |

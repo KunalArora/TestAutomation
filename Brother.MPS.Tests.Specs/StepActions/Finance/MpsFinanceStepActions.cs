@@ -73,7 +73,7 @@ namespace Brother.Tests.Specs.StepActions.Finance
                     localOfficeFinanceAccrualsReportPage.ClickOnRunReport();
                     return true;
                 },
-               downloadTimeout: RuntimeSettings.DefaultDownloadTimeout * 10, // very long time, about 3 minute.
+               downloadTimeout: RuntimeSettings.DefaultDownloadTimeout * 15, // very long time, about 3 minute.
                filter: "*.zip"
                ), RuntimeSettings.DefaultDownloadTimeout * 5, "ClickOnRunReport() Too Long. ");
             LoggingService.WriteLog(LoggingLevel.DEBUG, "RunReport={0}", zipFilePath);

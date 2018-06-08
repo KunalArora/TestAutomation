@@ -8,6 +8,7 @@ using Brother.Tests.Specs.StepActions.Finance;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Finance
@@ -64,6 +65,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Finance
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
         }
 
         [When(@"a Cloud MPS Finance navigate to Accruals Page")]

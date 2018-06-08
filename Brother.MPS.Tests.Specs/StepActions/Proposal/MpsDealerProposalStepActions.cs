@@ -1160,12 +1160,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateClickPricePage);
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
-
-        private void ClickSafety(IWebElement element, IPageObject pageObject, bool IsUntilUrlChanges = false)
-        {
-            LoggingService.WriteLogOnMethodEntry(element, pageObject);
-            pageObject.SeleniumHelper.ClickSafety(element, IsUntilUrlChanges: IsUntilUrlChanges);
-        }
         #endregion
 
     }

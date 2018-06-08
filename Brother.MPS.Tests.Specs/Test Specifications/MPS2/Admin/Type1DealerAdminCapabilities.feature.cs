@@ -79,7 +79,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Type1DealerAdminCapabilities")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "15.00", "15.00", "19.00", "19.00", "19.00", "19.00", "19.00", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "11.01", "22.02", "33.03", "44.04", "55.05", "66.06", "77.07", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void Type1DealerAdminCapabilities(string country, string hardwareDefaultMargin, string accessoriesDefaultMargin, string deliveryDefaultMargin, string installationDefaultMargin, string servicePackDefaultMargin, string monoClickDefaultCommission, string colourClickDefaultCommission, string[] exampleTags)
         {
