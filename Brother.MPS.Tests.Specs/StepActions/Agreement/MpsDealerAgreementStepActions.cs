@@ -308,6 +308,13 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
             catch
             {
+                // note: run ConstractTimeShiftCommand before PrintCount > 0. 
+                // see https://brother-bie.atlassian.net/browse/MPS-5923?focusedCommentId=147451&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-147451
+                LoggingService.WriteLog(LoggingLevel.WARNING, "ContractShiftBeforeSwapDeviceInstallationRequest() dummy count set to all devices for ContractTimeShiftCommand api");
+                foreach (var prop in _contextData.AdditionalDeviceProperties)
+                {
+                    _deviceSimulatorService.SetPrintCounts(prop.BocDeviceId, 1, 0); // dummy count
+                }
                 _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
                 _runCommandService.RunStartContractCommand();
 
