@@ -1823,7 +1823,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var message = "Currency symbol position did not get validated";
 
             // TODO refactor later
-            TestCheck.AssertIsEqual(true,SummaryGrandDeviceTotalPriceElement.Text.Contains(currencySymbol), message);
+            if (SummaryGrandDeviceTotalPriceElement.Text != "-") { TestCheck.AssertIsEqual(true, SummaryGrandDeviceTotalPriceElement.Text.Contains(currencySymbol), message); }
+            
             if(SeleniumHelper.IsElementDisplayed(SummaryContractGrandTotalPriceGrossElement))
             {
                 TestCheck.AssertIsEqual(true, SummaryContractGrandTotalPriceGrossElement.Text.Contains(currencySymbol), message);
