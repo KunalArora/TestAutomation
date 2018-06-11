@@ -80,7 +80,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
                 throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
-            _mpsLocalOfficeAdminAgreementStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);

@@ -104,7 +104,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
-            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersExistingPage(_dealerDashboardPage);
         }
@@ -120,7 +120,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
-            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
 
         }
@@ -135,7 +135,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
-            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
              _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
@@ -464,7 +464,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("can not auto select culture. please call alternate some garkin");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
-            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _subDealerDashboardPage = _mpsDealerProposalStepActions.SignInAsSubDealerAndNavigateToDashboard(_contextData.SubDealerEmail, _contextData.SubDealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_subDealerDashboardPage);
         }
@@ -537,7 +537,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
                 throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
             }
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
-            _mpsDealerProposalStepActions.SetCultureInfoAndRegionInfo();
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_contextData.DealerProperties.Email, _contextData.DealerProperties.Password, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
