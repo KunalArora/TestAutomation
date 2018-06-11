@@ -75,30 +75,30 @@ namespace Brother.Tests.Specs.MPS2.Dealership
             _mpsDealerDealershipStepActions.VerifySubDealer(_dealerAdminDealershipUsersPage);
         }
 
-        [Given(@"I Select Admin menu and click on Delearship Profile\.")]
-        public void GivenISelectAdminMenuAndClickOnDelearshipProfile_()
+        [Given(@"I Select Admin menu and click on Delearship Profile")]
+        public void GivenISelectAdminMenuAndClickOnDelearshipProfile()
         {
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dealerAdminDashboardPage = _mpsDealerDealershipStepActions.NavigateToDealerAdminDashboardPage(dealerDashboardPage);
             _dealerAdminDealershipProfilePage = _mpsDealerDealershipStepActions.NavigateToDealershipProfilePage(dealerAdminDashboardPage);
         }
 
-        [Then(@"I will be taken into the Dealership Profile tab\.")]
-        public void ThenIWillBeTakenIntoTheDealershipProfileTab_()
+        [Then(@"I will be taken into the Dealership Profile tab")]
+        public void ThenIWillBeTakenIntoTheDealershipProfileTab()
         {
             _mpsDealerDealershipStepActions.ValidateDealershipProfileTab(_dealerAdminDealershipProfilePage);
         }
 
-        [When(@"I Amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save\.")]
-        public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave_()
+        [When(@"I Amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save")]
+        public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave()
         {
             var filePath = _mpsDealerDealershipStepActions.CreateUploadLogoFile();
             _mpsDealerDealershipStepActions.UploadLogoToProfile(_dealerAdminDealershipProfilePage, filePath);
             File.Delete(filePath);
         }
 
-        [Then(@"I 'Dealership profile was updated successfully' will appear at the top of the screen\.")]
-        public void ThenIDealershipProfileWasUpdatedSuccessfullyWillAppearAtTheTopOfTheScreen_()
+        [Then(@"I 'Dealership profile was updated successfully' will appear at the top of the screen")]
+        public void ThenIDealershipProfileWasUpdatedSuccessfullyWillAppearAtTheTopOfTheScreen()
         {
             _mpsDealerDealershipStepActions.VerifyDealershipProfileWasUpdatedSuccessfully(_dealerAdminDealershipProfilePage);
             _mpsDealerDealershipStepActions.RemoveProfileLogo(_dealerAdminDealershipProfilePage); // GC

@@ -6,7 +6,6 @@ using Brother.Tests.Specs.StepActions.Common;
 using Brother.Tests.Specs.StepActions.Dealership;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
-using System;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
@@ -50,23 +49,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
             _translationService = translationService;
         }
 
-        [Given(@"I Select Admin menu and click on Default Margins\.")]
-        public void GivenISelectAdminMenuAndClickOnDefaultMargins_()
+        [Given(@"I Select Admin menu and click on Default Margins")]
+        public void GivenISelectAdminMenuAndClickOnDefaultMargins()
         {
-            _contextData.SetBusinessType("1");
-            //_contextData.Country = _countryService.GetByName(country);
-            if (_contextData.Country.Cultures.Count != 1)
-            {
-                throw new ArgumentException("can not auto select culture. please call alternate some garkin");
-            }
-            _contextData.Culture = _contextData.Country.Cultures[0];
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var dealerAdminDashboardPage = _mpsDealerDealershipStepActions.NavigateToDealerAdminDashboardPage(dealerDashboardPage);
             _dealerAdminDefaultMarginsPage = _mpsDealerDefaultMarginsStepActions.NavigateToDealerMarginsPage(dealerAdminDashboardPage);
         }
 
-        [Then(@"I will be taken into the Default Margins tab\.")]
-        public void ThenIWillBeTakenIntoTheDefaultMarginsTab_()
+        [Then(@"I will be taken into the Default Margins tab")]
+        public void ThenIWillBeTakenIntoTheDefaultMarginsTab()
         {
             _mpsDealerDefaultMarginsStepActions.AssertAreSelectDefaultMarginsTab(_dealerAdminDefaultMarginsPage);
         }
@@ -97,8 +89,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
         }
 
 
-        [Then(@"I Default margins will be amended\.")]
-        public void ThenIDefaultMarginsWillBeAmended_()
+        [Then(@"I Default margins will be amended")]
+        public void ThenIDefaultMarginsWillBeAmended()
         {
             // try create proposal for view margins. logic similar as Type1BusinessScenario_1
             Given(string.Format(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""{0}""", _contextData.Country.Name));
@@ -117,7 +109,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
             // verify
             _mpsDealerDefaultMarginsStepActions.VerifyDefaultMarginsWillBeAmended(_contextData.DealerAdminDefaultMargins, colourModel);
             // restore
-            Given(@"I Select Admin menu and click on Default Margins.");
+            Given(@"I Select Admin menu and click on Default Margins");
             _mpsDealerDefaultMarginsStepActions.SetDealerMargins(_dealerAdminDefaultMarginsPage, _contextData.DealerAdminDefaultMarginsOriginal);
             _dealerAdminDefaultMarginsPage = _mpsDealerDefaultMarginsStepActions.ClickOnSave(_dealerAdminDefaultMarginsPage);
         }
