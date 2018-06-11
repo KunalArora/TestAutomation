@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -117,7 +118,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                         _deviceSimulatorService.RaiseConsumableOrder(
                             device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
                         _deviceSimulatorService.SetRemainingLife(
-                            device.BocDeviceId, device.TonerInkBlackRemLife.ToString(), device.TonerInkCyanRemLife.ToString(), device.TonerInkMagentaRemLife.ToString(), device.TonerInkYellowRemLife.ToString());
+                            device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
                         _deviceSimulatorService.SetReplaceCount(
                             device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
                         _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
