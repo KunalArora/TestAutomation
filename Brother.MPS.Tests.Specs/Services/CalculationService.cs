@@ -111,16 +111,8 @@ namespace Brother.Tests.Specs.Services
         public string ConvertCultureNumericStringToInvariantNumericString(string cultureString, NumberStyles numberStyles = NumberStyles.Currency | NumberStyles.Number)
         {
             LoggingService.WriteLogOnMethodEntry(cultureString, numberStyles);
-            if (cultureString == "-")
-            {
-                return "0.0";
-            }
-            else
-            {
-                return double.Parse(Regex.Replace(cultureString, @"['\s]+", string.Empty), numberStyles, ContextData.CultureInfo == null ? new CultureInfo(ContextData.Culture) : ContextData.CultureInfo).ToString();
-            }
+            return ConvertCultureNumericStringToInvariantDouble(cultureString, numberStyles).ToString();
         }
-
 
         public double RoundOffUptoDecimalPlaces(double variable, int decimalPlaces = 2)
         {
