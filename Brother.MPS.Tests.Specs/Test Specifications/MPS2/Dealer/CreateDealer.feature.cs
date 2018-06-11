@@ -31,7 +31,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateBSWDealer.feature"
+#line 1 "CreateDealer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

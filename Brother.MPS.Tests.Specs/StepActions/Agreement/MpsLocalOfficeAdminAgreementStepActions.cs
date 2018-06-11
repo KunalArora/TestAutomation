@@ -202,12 +202,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
             var resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.English, _contextData.Culture);
             var postcode = MpsUtil.PostCodeGb();
+            var vatNumber = MpsUtil.VatNumberGb();
             if(_contextData.Country.CountryIso == CountryIso.Switzerland)
             {
                 resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.French, _contextData.Culture);
                 postcode = MpsUtil.PostCodeSw();
+                vatNumber = MpsUtil.VatNumber();
             }
-            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso, resourceDealerCulture, postcode);
+            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso, resourceDealerCulture, postcode, vatNumber);
 
             _contextData.DealerProperties.Email = localOfficeAdminDealersCreateDealershipPage.GetEmail();
             _contextData.DealerProperties.FirstName = localOfficeAdminDealersCreateDealershipPage.GetFirstName();

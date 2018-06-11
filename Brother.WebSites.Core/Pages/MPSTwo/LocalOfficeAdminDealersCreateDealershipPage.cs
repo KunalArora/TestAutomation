@@ -117,10 +117,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void InputDealerDetails(string countryIso, string resourceDealerCulture, string postcode)
+        public void InputDealerDetails(string countryIso, string resourceDealerCulture, string postcode, string vatNumber)
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode);
-            FillResellerDetails(countryIso, resourceDealerCulture, postcode);
+            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode, vatNumber);
+            FillResellerDetails(countryIso, resourceDealerCulture, postcode, vatNumber);
             FillContactDetails();
         }
 
@@ -134,9 +134,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
         }
 
-        private void FillResellerDetails(string countryIso, string resourceDealerCulture, string postcode)
+        private void FillResellerDetails(string countryIso, string resourceDealerCulture, string postcode, string vatNumber)
         {
-            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode);
+            LoggingService.WriteLogOnMethodEntry(countryIso, resourceDealerCulture, postcode, vatNumber);
             EnterDealershipName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
             EnterOwnerFirstName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
             EnterOwnerLastName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
@@ -147,7 +147,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterPropertyTown(MpsUtil.PropertyTown());
             EnterPropertyPostCode(postcode);
             EnterCompaniesHouseNumber(MpsUtil.CompaniesHouseNumber());
-//            EnterVatNumber(MpsUtil.VatNumber());
+            EnterVatNumber(vatNumber);
             EnterCompanyTaxNumber(MpsUtil.CompanyTaxNumber());
             EnterConsumerCreditLicenceNumber(MpsUtil.CreditLicenceNumber());
             EnterRegisteredCity(MpsUtil.RegisteredCity());
