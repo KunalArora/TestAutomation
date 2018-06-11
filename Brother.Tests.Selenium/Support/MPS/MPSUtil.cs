@@ -1386,9 +1386,18 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return result.ToString(DATESTRING_BUK);
         }
 
-        public static string UatBswFrDealershipName()
+        public static string DealershipName(string env, string countryIso)
         {
-            string name = "UAT BSW FR Dealer 3";
+            string name = "";
+            switch(countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Dealer 3";
+                    break;
+                default:
+                    name = env + " BUK GB Dealer 3";
+                    break;
+            }
             return name;
         }
 

@@ -49,7 +49,7 @@ namespace Brother.Tests.Common.ContextData
             DealerProperties = new DealerProperties();
             CustomerPassword = "password";
             SubDealerPassword = "password";
-            DealerProperties.DealerPassword = "password";
+            DealerProperties.Password = "password";
             RegisteredDeviceIds = new List<string>();
             //SnapClickPricePageValues = new Dictionary<string,string>();
             //SnapCreateProductsPageValues = new Dictionary<string, string>();

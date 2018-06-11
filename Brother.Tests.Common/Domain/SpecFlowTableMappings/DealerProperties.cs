@@ -8,35 +8,34 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
 {
     public class DealerProperties
     {
-        public string DealerEmail { get; set; }
-        public string DealerPassword { get; set; }
-        public string DealerFirstName { get; set; }
-        public string DealerLastName { get; set; }
-        public string DealerOwnerFirstName { get; set; }
-        public string DealerOwnerLastName { get; set; }
-        public string DealerOwnerName
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string OwnerFirstName { get; set; }
+        public string OwnerLastName { get; set; }
+        public string OwnerName
         {
             get
             {
-                return DealerOwnerFirstName + " " + DealerOwnerLastName;
+                return OwnerFirstName + " " + OwnerLastName;
             }
         }
-        public string DealerCeoFirstName { get; set; }
-        public string DealerCeoLastName { get; set; }
-        public string DealerCeoName
+        public string CeoFirstName { get; set; }
+        public string CeoLastName { get; set; }
+        public string CeoName
         {
             get
             {
-                return DealerCeoFirstName + " " + DealerCeoLastName;
+                return CeoFirstName + " " + CeoLastName;
             }
         }
         public string DealershipName { get; set; }
-        public string DealerSapId { get; set; }
-        public string DealerBankName { get; set; }
-        public string DealerBankAccountNumber { get; set; }
-        public string DealerBankSortCode { get; set; }
-        public string DealerBrotherSalesPerson { get; set; }
-
+        public string SapId { get; set; }
+        public string BankName { get; set; }
+        public string BankAccountNumber { get; set; }
+        public string BankSortCode { get; set; }
+        public string BrotherSalesPerson { get; set; }
         public string DiscountForType3 { get; set; }
         public string BillingDateForType3 { get; set; }
     }

@@ -220,23 +220,23 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public LocalOfficeAdminAdministrationDealerPage IputDealerDetails(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
-            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails();
+            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso);
 
-            _contextData.DealerProperties.DealerEmail = localOfficeAdminDealersCreateDealershipPage.GetEmail();
-            _contextData.DealerProperties.DealerFirstName = localOfficeAdminDealersCreateDealershipPage.GetFirstName();
-            _contextData.DealerProperties.DealerLastName = localOfficeAdminDealersCreateDealershipPage.GetLastName();
-            _contextData.DealerProperties.DealerOwnerFirstName = localOfficeAdminDealersCreateDealershipPage.GetOwnerFirstName();
-            _contextData.DealerProperties.DealerOwnerLastName = localOfficeAdminDealersCreateDealershipPage.GetOwnerLastName();
-            _contextData.DealerProperties.DealerCeoFirstName = localOfficeAdminDealersCreateDealershipPage.GetCeoFirstName();
-            _contextData.DealerProperties.DealerCeoLastName = localOfficeAdminDealersCreateDealershipPage.GetCeoLastName();
+            _contextData.DealerProperties.Email = localOfficeAdminDealersCreateDealershipPage.GetEmail();
+            _contextData.DealerProperties.FirstName = localOfficeAdminDealersCreateDealershipPage.GetFirstName();
+            _contextData.DealerProperties.LastName = localOfficeAdminDealersCreateDealershipPage.GetLastName();
+            _contextData.DealerProperties.OwnerFirstName = localOfficeAdminDealersCreateDealershipPage.GetOwnerFirstName();
+            _contextData.DealerProperties.OwnerLastName = localOfficeAdminDealersCreateDealershipPage.GetOwnerLastName();
+            _contextData.DealerProperties.CeoFirstName = localOfficeAdminDealersCreateDealershipPage.GetCeoFirstName();
+            _contextData.DealerProperties.CeoLastName = localOfficeAdminDealersCreateDealershipPage.GetCeoLastName();
             _contextData.DealerProperties.DealershipName = localOfficeAdminDealersCreateDealershipPage.GetDealershipName();
-            _contextData.DealerProperties.DealerBankName = localOfficeAdminDealersCreateDealershipPage.GetBankName();
-            _contextData.DealerProperties.DealerBankAccountNumber = localOfficeAdminDealersCreateDealershipPage.GetBankAccountNumber();
-            _contextData.DealerProperties.DealerBankSortCode = localOfficeAdminDealersCreateDealershipPage.GetBankSortCode();
-            _contextData.DealerProperties.DealerBrotherSalesPerson = localOfficeAdminDealersCreateDealershipPage.GetBrotherSalesPerson();
+            _contextData.DealerProperties.BankName = localOfficeAdminDealersCreateDealershipPage.GetBankName();
+            _contextData.DealerProperties.BankAccountNumber = localOfficeAdminDealersCreateDealershipPage.GetBankAccountNumber();
+            _contextData.DealerProperties.BankSortCode = localOfficeAdminDealersCreateDealershipPage.GetBankSortCode();
+            _contextData.DealerProperties.BrotherSalesPerson = localOfficeAdminDealersCreateDealershipPage.GetBrotherSalesPerson();
 
-            _mpsWebToolsService.RegisterCustomer(_contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerPassword, _contextData.DealerProperties.DealerFirstName, _contextData.DealerProperties.DealerLastName, _contextData.Country.CountryIso);
-            _mpsWebToolsService.RegisterRole(_contextData.DealerProperties.DealerEmail, MpsRoles.Dealer);
+            _mpsWebToolsService.RegisterCustomer(_contextData.DealerProperties.Email, _contextData.DealerProperties.Password, _contextData.DealerProperties.FirstName, _contextData.DealerProperties.LastName, _contextData.Country.CountryIso);
+            _mpsWebToolsService.RegisterRole(_contextData.DealerProperties.Email, MpsRoles.Dealer);
 
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SaveButtonElement);
             _runCommandService.RunCreateDealershipAndDealerCommand();
@@ -248,14 +248,14 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminAdministrationDealerPage);
             localOfficeAdminAdministrationDealerPage.VerifyDealerCreationSuccessfulMessage();
-            _contextData.DealerProperties.DealerSapId = localOfficeAdminAdministrationDealerPage.VerifyDealerDetails(_contextData.DealerProperties.DealershipName, _contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerOwnerName, _contextData.DealerProperties.DealerCeoName);
+            _contextData.DealerProperties.SapId = localOfficeAdminAdministrationDealerPage.VerifyDealerDetails(_contextData.DealerProperties.DealershipName, _contextData.DealerProperties.Email, _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
             localOfficeAdminAdministrationDealerPage = Refresh(localOfficeAdminAdministrationDealerPage);
         }
 
         public LocalOfficeAdminDealersEditDealershipPage NavigateToEditDealershipPage(LocalOfficeAdminAdministrationDealerPage localOfficeAdminAdministrationDealerPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminAdministrationDealerPage);
-            localOfficeAdminAdministrationDealerPage.NavigateToEditDealershipPage(_contextData.DealerProperties.DealerEmail);
+            localOfficeAdminAdministrationDealerPage.NavigateToEditDealershipPage(_contextData.DealerProperties.Email);
             return PageService.GetPageObject<LocalOfficeAdminDealersEditDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
@@ -263,15 +263,15 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersEditDealershipPage);
             localOfficeAdminDealersEditDealershipPage.VerifyPopulatedDetails(_contextData.DealerProperties.DiscountForType3, 
-                _contextData.DealerProperties.BillingDateForType3, _contextData.DealerProperties.DealerBankName, 
-                _contextData.DealerProperties.DealerBankAccountNumber, _contextData.DealerProperties.DealerBankSortCode, 
-                _contextData.DealerProperties.DealerBrotherSalesPerson);
+                _contextData.DealerProperties.BillingDateForType3, _contextData.DealerProperties.BankName, 
+                _contextData.DealerProperties.BankAccountNumber, _contextData.DealerProperties.BankSortCode, 
+                _contextData.DealerProperties.BrotherSalesPerson);
             localOfficeAdminDealersEditDealershipPage.EditDealerDetails();
 
             _contextData.DealerProperties.DiscountForType3 = localOfficeAdminDealersEditDealershipPage.GetType3DiscountValue();
             _contextData.DealerProperties.BillingDateForType3 = localOfficeAdminDealersEditDealershipPage.GetType3BillingDateValue();
-            _contextData.DealerProperties.DealerOwnerFirstName = localOfficeAdminDealersEditDealershipPage.GetOwnerFirstName();
-            _contextData.DealerProperties.DealerCeoFirstName = localOfficeAdminDealersEditDealershipPage.GetCeoFirstName();
+            _contextData.DealerProperties.OwnerFirstName = localOfficeAdminDealersEditDealershipPage.GetOwnerFirstName();
+            _contextData.DealerProperties.CeoFirstName = localOfficeAdminDealersEditDealershipPage.GetCeoFirstName();
 
             localOfficeAdminDealersEditDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersEditDealershipPage.ButtonSaveElement);
             return PageService.GetPageObject<LocalOfficeAdminAdministrationDealerPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
@@ -281,8 +281,8 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminAdministrationDealerPage);
             localOfficeAdminAdministrationDealerPage.VerifyUpdatedDealerDetails(_contextData.DealerProperties.DealershipName, 
-                _contextData.DealerProperties.DealerEmail, _contextData.DealerProperties.DealerSapId, 
-                _contextData.DealerProperties.DealerOwnerName, _contextData.DealerProperties.DealerCeoName);
+                _contextData.DealerProperties.Email, _contextData.DealerProperties.SapId, 
+                _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
         }
     }
 }

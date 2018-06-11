@@ -111,10 +111,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
 
-        public void InputDealerDetails()
+        public void InputDealerDetails(string countryIso)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            FillResellerDetails();
+            LoggingService.WriteLogOnMethodEntry(countryIso);
+            FillResellerDetails(countryIso);
             FillContactDetails();
         }
 
@@ -128,14 +128,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             EnterContactEmailAdress(MpsUtil.GenerateUniqueEmail());
         }
 
-        private void FillResellerDetails()
+        private void FillResellerDetails(string countryIso)
         {
-            LoggingService.WriteLogOnMethodEntry();
-            EnterDealershipName(MpsUtil.UatBswFrDealershipName());
-            EnterOwnerFirstName(MpsUtil.UatBswFrDealershipName());
-            EnterOwnerLastName(MpsUtil.UatBswFrDealershipName());
-            EnterCEOFirstName(MpsUtil.UatBswFrDealershipName());
-            EnterCEOLastName(MpsUtil.UatBswFrDealershipName());
+            LoggingService.WriteLogOnMethodEntry(countryIso);
+            EnterDealershipName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
+            EnterOwnerFirstName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
+            EnterOwnerLastName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
+            EnterCEOFirstName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
+            EnterCEOLastName(MpsUtil.DealershipName(GetRunTimeEnv(), countryIso));
             EnterPropertyNumber(MpsUtil.PropertyNumber());
             EnterPropertyStreet(MpsUtil.PropertyStreet());
             EnterPropertyTown(MpsUtil.PropertyTown());
