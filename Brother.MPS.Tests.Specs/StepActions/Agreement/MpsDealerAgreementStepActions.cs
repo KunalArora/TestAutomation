@@ -308,28 +308,19 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
         {
             LoggingService.WriteLogOnMethodEntry(days);
-            try
+            // note: run ConstractTimeShiftCommand before PrintCount > 0. 
+            // see https://brother-bie.atlassian.net/browse/MPS-5923?focusedCommentId=147451&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-147451
+            foreach (var prop in _contextData.AdditionalDeviceProperties)
             {
-                _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+                prop.MonoPrintCount++;
+                _deviceSimulatorService.SetPrintCounts(prop.BocDeviceId, prop.MonoPrintCount, prop.ColorPrintCount); 
+                _deviceSimulatorService.NotifyBocOfDeviceChanges(prop.BocDeviceId);
             }
-            catch
-            {
-                // note: run ConstractTimeShiftCommand before PrintCount > 0. 
-                // see https://brother-bie.atlassian.net/browse/MPS-5923?focusedCommentId=147451&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-147451
-                foreach (var prop in _contextData.AdditionalDeviceProperties)
-                {
-                    if (prop.MonoPrintCount > 0 || prop.ColorPrintCount > 0) { continue; }
-                    LoggingService.WriteLog(LoggingLevel.WARNING, "ContractShiftBeforeSwapDeviceInstallationRequest() MonoPrintCount>0 for ContractTimeShiftCommand api AgreementId={0}, BocDeviceId={1}", _contextData.AgreementId, prop.BocDeviceId);
-                    prop.MonoPrintCount++;
-                    _deviceSimulatorService.SetPrintCounts(prop.BocDeviceId, prop.MonoPrintCount, prop.ColorPrintCount); // dummy count
-                    _deviceSimulatorService.NotifyBocOfDeviceChanges(prop.BocDeviceId);
-                }
-                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
-                _runCommandService.RunStartContractCommand();
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+            _runCommandService.RunStartContractCommand();
 
-                _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
-            }
-            
+            _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+
         }
 
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)
