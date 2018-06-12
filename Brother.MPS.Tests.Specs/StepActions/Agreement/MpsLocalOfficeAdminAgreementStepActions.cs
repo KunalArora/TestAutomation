@@ -244,7 +244,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _contextData.DealerProperties.BillingDateForType3, _contextData.DealerProperties.BankName, 
                 _contextData.DealerProperties.BankAccountNumber, _contextData.DealerProperties.BankSortCode, 
                 _contextData.DealerProperties.BrotherSalesPerson);
-            localOfficeAdminDealersEditDealershipPage.EditDealerDetails();
+            localOfficeAdminDealersEditDealershipPage.EditDealerDetails(_contextData.Country.CountryIso);
 
             _contextData.DealerProperties.DiscountForType3 = localOfficeAdminDealersEditDealershipPage.GetType3DiscountValue();
             _contextData.DealerProperties.BillingDateForType3 = localOfficeAdminDealersEditDealershipPage.GetType3BillingDateValue();

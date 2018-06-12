@@ -68,20 +68,20 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertIsEqual(brotherSalesPerson, InputBrotherSalesPersonElement.GetAttribute("value"), "Brother sales person does not match");
         }
 
-        public void EditDealerDetails()
+        public void EditDealerDetails(string countryIso)
         {
-            LoggingService.WriteLogOnMethodEntry();
+            LoggingService.WriteLogOnMethodEntry(countryIso);
             EnterDiscountForType3("2");
             EnterBillingDateForType3("2");
-            EnterOwnerFirstName(MpsUtil.UatBswFrOwnerFirstName());
-            EnterCEOFirstName(MpsUtil.UatBswFrCeoFirstNameName());
+            EnterOwnerFirstName(MpsUtil.OwnerFirstName(GetRunTimeEnv(), countryIso));
+            EnterCEOFirstName(MpsUtil.CeoFirstName(GetRunTimeEnv(), countryIso));
 
         }
 
-        private void EnterDiscountForType3(string dicount)
+        private void EnterDiscountForType3(string discount)
         {
-            LoggingService.WriteLogOnMethodEntry(dicount);
-            ClearAndType(InputDiscountForType3Element, dicount);
+            LoggingService.WriteLogOnMethodEntry(discount);
+            ClearAndType(InputDiscountForType3Element, discount);
         }
 
         private void EnterBillingDateForType3(string billingDate)

@@ -1443,17 +1443,34 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return brotherSalesPerson;
         }
 
-        public static string UatBswFrOwnerFirstName()
+        public static string OwnerFirstName(string env, string countryIso)
         {
-            string name = "D Owner first name test";
+            string name = "";
+            switch (countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Owner first name test";
+                    break;
+                default:
+                    name = env + " BUK GB Owner first name test";
+                    break;
+            }
             return name;
         }
 
-        public static string UatBswFrCeoFirstNameName()
+        public static string CeoFirstName(string env, string countryIso)
         {
-            string name = "D Ceo first name test";
+            string name = "";
+            switch (countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Ceo first name test";
+                    break;
+                default:
+                    name = env + " BUK GB Ceo first name test";
+                    break;
+            }
             return name;
         }
-
     }
 }

@@ -142,7 +142,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var element = SeleniumHelper.SetListFilter(FilterElement, null, dealerEmail, List_Row);
             var elementRowId = element.GetAttribute("id");
-            var elementRowNo = elementRowId.Substring(elementRowId.Length - 2);
+            string[] splitElementRowString = elementRowId.Split('_');
+            var elementRowNo = splitElementRowString.Last();
 
             var ActionsElement = SeleniumHelper.FindElementByCssSelector(element, (ListActionsSelector + elementRowNo));
             SeleniumHelper.ClickSafety(ActionsElement);
@@ -156,7 +157,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
             var element = SeleniumHelper.SetListFilter(FilterElement, null, dealerEmail, List_Row);
             var elementRowId = element.GetAttribute("id");
-            var elementRowNo = elementRowId.Substring(elementRowId.Length - 2);
+            string[] splitElementRowString = elementRowId.Split('_');
+            var elementRowNo = splitElementRowString.Last();
 
             var DealershipNameElement = SeleniumHelper.FindElementByCssSelector(element, (DealerNameSelector + elementRowNo));
             TestCheck.AssertIsEqual(dealershipName, DealershipNameElement.Text, "Dealership name does not match");
