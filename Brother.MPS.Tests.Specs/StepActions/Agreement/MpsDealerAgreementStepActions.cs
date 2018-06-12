@@ -1439,11 +1439,33 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             LoggingService.WriteLogOnMethodEntry();
 
             string silentDeviceCsvData = _mpsWebToolsService.DownloadSilentDeviceReport();
-//            silentDeviceCsvData = silentDeviceCsvData.Replace('\"', '"');
+            var res = silentDeviceCsvData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+//            string ser = res[9];
+ //           string[] values = silentDeviceCsvData.Split(',').Select(sValue => sValue.Trim()).ToArray();
+
+         //   silentDeviceCsvData = silentDeviceCsvData.Replace('\"', '"');
             
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
-                TestCheck.AssertTextContains(device.SerialNumber, silentDeviceCsvData, "");
+                var IsPresent = false;
+
+                foreach(var row in res)
+                {
+                    try
+                    {
+                        string[] parts = row.Split(',');
+                        string serialNumber = parts[9];
+                        if (serialNumber == device.SerialNumber)
+                        {
+                            IsPresent = true;
+                        }
+                    }
+                    catch { }
+                }
+                if(IsPresent == false)
+                {
+                    throw new Exception("Serial Number not present in the silent device report");
+                }
             }
         }
 
@@ -1592,5 +1614,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _devicesExcelHelper.DeleteExcelFile(excelFilePath);
         }
         #endregion
+
     }
 }
