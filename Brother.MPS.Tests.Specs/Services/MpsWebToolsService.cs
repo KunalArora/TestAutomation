@@ -36,21 +36,15 @@ namespace Brother.Tests.Specs.Services
             _baseUrlWithAutomation = string.Format("{0}/sitecore/admin/integration/mps2/automation/{{0}}", _urlResolver.CmsUrl);
         }
 
-        private string ExecuteWebTool(string url, string authToken = null)
+        private string ExecuteWebTool(string url, string authToken = null, Encoding encoding = null)
         {
-            _loggingService.WriteLogOnMethodEntry(url, authToken);
+            _loggingService.WriteLogOnMethodEntry(url, authToken, encoding);
 
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
-            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
-
-//            byte[] plain = Encoding.Default.GetBytes(response.ResponseBody);
-//            byte[] plain = Convert.FromBase64String(response.ResponseBody);
-//            Encoding iso = Encoding.GetEncoding("ISO-8859-6");
-//            var newData = iso.GetString(plain);
-//            var data = response.ResponseBody;
-//            var i = data.TrimStart('\0');
+            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders, encoding);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+
             return response.ResponseBody;
         }
 
@@ -134,7 +128,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", "MPS-BUK-TEST-Dealer5-Auto@brother.co.uk", _contextData.Country.CountryIso);
             string url = string.Format(_baseUrl, actionPath);
 
-            return ExecuteWebTool(url);
+            return ExecuteWebTool(url, encoding: Encoding.Unicode);
         }
 
         public SwapRequestDetail GetSwapRequestDetail(int installedPrinterId)

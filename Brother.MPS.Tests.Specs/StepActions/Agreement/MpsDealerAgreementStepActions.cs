@@ -1406,9 +1406,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
 
             // Refresh to reflect the device status changes
-            _dealerWebDriver.Navigate().Refresh();
-            dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(
-                RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            dealerAgreementDevicesPage = Refresh(dealerAgreementDevicesPage);
 
             // Verify status icon
             if (_contextData.CommunicationMethod.ToLower().Equals("cloud"))
@@ -1441,6 +1439,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             LoggingService.WriteLogOnMethodEntry();
 
             string silentDeviceCsvData = _mpsWebToolsService.DownloadSilentDeviceReport();
+//            silentDeviceCsvData = silentDeviceCsvData.Replace('\"', '"');
             
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
