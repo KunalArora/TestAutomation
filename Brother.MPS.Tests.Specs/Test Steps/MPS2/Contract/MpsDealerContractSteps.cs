@@ -84,6 +84,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I click Swap Device in the Actions menu for device to be swapped on the Manage devices page")]
         public void WhenIClickSwapDeviceInTheActionsMenuForDeviceToBeSwappedOnTheManageDevicesPage()
         {
+            _mpsDealerContractStepActions.ContractShiftBeforeSwapDeviceInstallationRequest(1);
             _dealerManageDevicesPage = _mpsDealerContractStepActions.RetrieveDealerManageDevicesPage();
             var products = _contextData.PrintersProperties;
             foreach (var product in products)

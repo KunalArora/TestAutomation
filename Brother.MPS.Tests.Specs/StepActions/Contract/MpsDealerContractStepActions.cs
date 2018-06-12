@@ -586,5 +586,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
+
+        public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
+        {
+            LoggingService.WriteLogOnMethodEntry(days);
+            _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 1, "d", false, false, "any");
+        }
+
+
     }
 }
