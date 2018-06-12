@@ -1,8 +1,10 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Selenium.Lib.Helpers;
+using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Extensions;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
@@ -15,6 +17,7 @@ using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Installer;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Common
@@ -268,7 +271,26 @@ namespace Brother.Tests.Specs.StepActions.Common
             return installationPage;
         }
 
+        public void SetCultureInfoAndRegionInfo()
+        {
+            LoggingService.WriteLogOnMethodEntry();
 
+            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
+            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
 
+            switch (_contextData.Country.CountryIso)
+            {
+                case CountryIso.Switzerland:
+                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
+
+                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
+                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

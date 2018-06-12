@@ -1107,7 +1107,6 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             return postCode;
         }
 
-
         public static string PostCodeGb()
         {
             String[] zip = {
@@ -1385,6 +1384,93 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
             DateTime dt = DateTime.ParseExact(date, DATESTRING_BUK, CultureInfo.InvariantCulture);
             DateTime result = dt.AddDays(-daysToSubtract);
             return result.ToString(DATESTRING_BUK);
+        }
+
+        public static string DealershipName(string env, string countryIso)
+        {
+            string name = "";
+            switch(countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Dealer 3";
+                    break;
+                default:
+                    name = env + " BUK GB Dealer 3";
+                    break;
+            }
+            return name;
+        }
+
+        public static string CompaniesHouseNumber()
+        {
+            string houseNumber = "22222";
+            return houseNumber;
+        }
+
+        public static string CompanyTaxNumber()
+        {
+            string taxNumber = "33333";
+            return taxNumber;
+        }
+
+        public static string CreditLicenceNumber()
+        {
+            string creditLicenceNumber = "44444";
+            return creditLicenceNumber;
+        }
+
+        public static string RegisteredCity()
+        {
+            string registeredCity = "D Registered City";
+            return registeredCity;
+        }
+
+        public static string BankName()
+        {
+            string bankName = "D Bank Name";
+            return bankName;
+        }
+
+        public static string BankAccountNumber()
+        {
+            string bankAccountNumber = "55555";
+            return bankAccountNumber;
+        }
+
+        public static string BrotherSalesPerson()
+        {
+            string brotherSalesPerson = "D Brother Sales Person";
+            return brotherSalesPerson;
+        }
+
+        public static string OwnerFirstName(string env, string countryIso)
+        {
+            string name = "";
+            switch (countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Owner first name test";
+                    break;
+                default:
+                    name = env + " BUK GB Owner first name test";
+                    break;
+            }
+            return name;
+        }
+
+        public static string CeoFirstName(string env, string countryIso)
+        {
+            string name = "";
+            switch (countryIso)
+            {
+                case CountryIso.Switzerland:
+                    name = env + " BSW FR Ceo first name test";
+                    break;
+                default:
+                    name = env + " BUK GB Ceo first name test";
+                    break;
+            }
+            return name;
         }
     }
 }
