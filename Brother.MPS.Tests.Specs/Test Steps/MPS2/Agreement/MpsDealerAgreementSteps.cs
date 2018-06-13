@@ -402,7 +402,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheSilentDeviceReport()
         {
             _mpsDealerAgreement.RunSendSilentDevicesReportsCommand();
-            _mpsDealerAgreement.DownloadSilentDeviceReport();
+            _mpsDealerAgreement.DownloadSilentDeviceReportAndVerifyDevices();
         }
     }
 }

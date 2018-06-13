@@ -1434,37 +1434,33 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _runCommandService.RunSendSilentDevicesReportsCommand();
         }
 
-        public void DownloadSilentDeviceReport()
+        public void DownloadSilentDeviceReportAndVerifyDevices()
         {
             LoggingService.WriteLogOnMethodEntry();
 
             string silentDeviceCsvData = _mpsWebToolsService.DownloadSilentDeviceReport();
-            var res = silentDeviceCsvData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-//            string ser = res[9];
- //           string[] values = silentDeviceCsvData.Split(',').Select(sValue => sValue.Trim()).ToArray();
-
-         //   silentDeviceCsvData = silentDeviceCsvData.Replace('\"', '"');
+            var splitSilentDeviceCsvData = silentDeviceCsvData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
                 var IsPresent = false;
-
-                foreach(var row in res)
+                foreach (var line in splitSilentDeviceCsvData)
                 {
                     try
                     {
-                        string[] parts = row.Split(',');
-                        string serialNumber = parts[9];
-                        if (serialNumber == device.SerialNumber)
+                        string[] parts = line.Split(',');
+                        var checkString = string.Join(" ", parts);
+                        if (checkString.Contains(device.SerialNumber))
                         {
                             IsPresent = true;
+                            break;
                         }
                     }
                     catch { }
                 }
                 if(IsPresent == false)
                 {
-                    throw new Exception("Serial Number not present in the silent device report");
+                    throw new Exception(string.Format("Serial Number = {0} not present in the silent device report", device.SerialNumber));
                 }
             }
         }
