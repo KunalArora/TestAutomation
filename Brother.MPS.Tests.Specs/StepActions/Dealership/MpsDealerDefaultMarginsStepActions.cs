@@ -97,7 +97,6 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         public void VerifyDefaultMarginsWillBeAmended(DealerDefaultMargins expectedDealerAdminDefaultMargins, IEnumerable<PrinterProperties> printersProperties)
         {
             LoggingService.WriteLogOnMethodEntry(expectedDealerAdminDefaultMargins, printersProperties);
-            var expected = expectedDealerAdminDefaultMargins;
             var dealerProposalsCreateSummaryPage = PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             var actualValues = _pageParseHelper.ParseSummaryPageValues(dealerProposalsCreateSummaryPage.SeleniumHelper);
             foreach( var prop in printersProperties)
