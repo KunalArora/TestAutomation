@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Common.ContextData;
+﻿using Brother.MPS.Tests.Specs.MPS2.Proposal;
+using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
@@ -24,10 +25,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
         private readonly MpsDealerDefaultMarginsStepActions _mpsDealerDefaultMarginsStepActions;
         private DealerAdminDefaultMarginsPage _dealerAdminDefaultMarginsPage;
         private readonly ITranslationService _translationService;
+        private readonly MpsDealerProposalSteps _mpsDealerProposalSteps;
 
         //Page objects
 
         public MpsDealerDefaultMarginsSteps(
+            MpsDealerProposalSteps mpsDealerProposalSteps,
             ITranslationService translationService,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
             MpsDealerDealershipStepActions mpsDealerDealershipStepActions,
@@ -47,6 +50,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
             _mpsDealerDealershipStepActions = mpsDealerDealershipStepActions;
             _mpsDealerDefaultMarginsStepActions = mpsDealerDefaultMarginsStepActions;
             _translationService = translationService;
+            _mpsDealerProposalSteps = mpsDealerProposalSteps;
         }
 
         [Given(@"I select Admin menu and click on Default Margins")]
@@ -93,23 +97,24 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
         public void ThenIDefaultMarginsWillBeAmended(Table printers)
         {
             // try create proposal for view margins. logic similar as Type1BusinessScenario_1
-            Given(string.Format(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""{0}""", _contextData.Country.Name));
-            When(string.Format(@"I create a ""{0}"" proposal", "PURCHASE_AND_CLICK"));
-            When(@"I enter the proposal description");
-            When(@"I create a new customer for the proposal");
-            When(string.Format(@"I select Usage Type of ""{0}"", Contract Term of ""{1}"", Billing Type of ""{2}"" and Service Pack type of ""{3}""",
+            _mpsDealerProposalSteps.GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom(_contextData.Country.Name);
+            _mpsDealerProposalSteps.WhenICreateAProposalOfContractType("PURCHASE_AND_CLICK");
+            _mpsDealerProposalSteps.WhenIEnterTheProposalDescription();
+            _mpsDealerProposalSteps.WhenICreateANewCustomerForTheProposal();
+            _mpsDealerProposalSteps.WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(
                 "MINIMUM_VOLUME",       // UsageType
                 "THREE_YEARS",          // ContractTerm
                 "QUARTERLY_IN_ARREARS", // BillingType
                 "PAY_UPFRONT"           // ServicePackType
-                ));
-            When(@"I add these printers:", printers);
-            When(@"I calculate the click price for each of the above printers");
+                );
+            _mpsDealerProposalSteps.WhenIAddThesePrinters(printers);
+            _mpsDealerProposalSteps.WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters();
+
             // verify
             _mpsDealerDefaultMarginsStepActions.VerifyDefaultMarginsWillBeAmended(_contextData.DealerAdminDefaultMargins, _contextData.PrintersProperties);
             
             // restore
-            Given(@"I Select Admin menu and click on Default Margins");
+            GivenISelectAdminMenuAndClickOnDefaultMargins();
             _mpsDealerDefaultMarginsStepActions.SetDealerMargins(_dealerAdminDefaultMarginsPage, _contextData.DealerAdminDefaultMarginsOriginal);
             _dealerAdminDefaultMarginsPage = _mpsDealerDefaultMarginsStepActions.ClickOnSave(_dealerAdminDefaultMarginsPage);
         }
