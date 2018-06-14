@@ -16,7 +16,7 @@ Then I verify default margins will be amended
 #Stage: 3 Amend Dealership Profile
 Given I select Admin menu and click on Delearship Profile
 Then I will be taken into the Dealership Profile tab
-When I amend Profile description and use the browse function to add a Jpeg as a logo. Click Save
+When I amend Profile description and use the browse function to add a Jpeg as a logo, Click Save
 Then I can verify that dealership profile was updated successfully
 
 @BUK

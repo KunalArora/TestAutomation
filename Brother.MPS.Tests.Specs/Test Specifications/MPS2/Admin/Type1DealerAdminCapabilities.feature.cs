@@ -122,7 +122,7 @@ testRunner.Given("I select Admin menu and click on Delearship Profile", ((string
 #line 18
 testRunner.Then("I will be taken into the Dealership Profile tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
-testRunner.When("I amend Profile description and use the browse function to add a Jpeg as a logo. " +
+testRunner.When("I amend Profile description and use the browse function to add a Jpeg as a logo, " +
                     "Click Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
 testRunner.Then("I can verify that dealership profile was updated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

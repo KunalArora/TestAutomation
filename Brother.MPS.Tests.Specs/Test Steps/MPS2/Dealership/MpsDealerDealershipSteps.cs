@@ -89,7 +89,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
             _mpsDealerDealershipStepActions.ValidateDealershipProfileTab(_dealerAdminDealershipProfilePage);
         }
 
-        [When(@"I amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save")]
+        [When(@"I amend Profile description and use the browse function to add a Jpeg as a logo, Click Save")]
         public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave()
         {
             var filePath = _mpsDealerDealershipStepActions.CreateUploadLogoFile();
