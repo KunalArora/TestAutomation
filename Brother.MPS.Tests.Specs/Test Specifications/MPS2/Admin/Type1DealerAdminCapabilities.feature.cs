@@ -94,16 +94,37 @@ testRunner.Given("I Select Admin menu and click on Default Margins", ((string)(n
 testRunner.Then("I will be taken into the Default Margins tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
 testRunner.When(string.Format(@"I Overtype default margins HardwareDefaultMargin of ""{0}"", AccessoriesDefaultMargin of ""{1}"", DeliveryDefaultMargin of ""{2}"", InstallationDefaultMargin of ""{3}"", ServicePackDefaultMargin of ""{4}"", MonoClickDefaultCommission of ""{5}"", and ColourClickDefaultCommission of ""{6}""  with required % and click Save", hardwareDefaultMargin, accessoriesDefaultMargin, deliveryDefaultMargin, installationDefaultMargin, servicePackDefaultMargin, monoClickDefaultCommission, colourClickDefaultCommission), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Model",
+                        "Price",
+                        "LowerTrayPrice",
+                        "InstallationPack",
+                        "Delivery",
+                        "CoverageMono",
+                        "VolumeMono",
+                        "CoverageColour",
+                        "VolumeColour"});
+            table1.AddRow(new string[] {
+                        "DCP-L8450CDW",
+                        "1000.00",
+                        "1000.00",
+                        "BROTHER_INSTALLATION",
+                        "Yes",
+                        "5",
+                        "1000",
+                        "20",
+                        "250"});
 #line 12
-testRunner.Then("I Default margins will be amended", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
+testRunner.Then("I am Default margins will be amended", ((string)(null)), table1, "Then ");
+#line 17
 testRunner.Given("I Select Admin menu and click on Delearship Profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 18
 testRunner.Then("I will be taken into the Dealership Profile tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
+#line 19
 testRunner.When("I Amend Profile description and use the browse function to add a Jpeg as a logo. " +
                     "Click Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 20
 testRunner.Then("I \'Dealership profile was updated successfully\' will appear at the top of the scr" +
                     "een", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

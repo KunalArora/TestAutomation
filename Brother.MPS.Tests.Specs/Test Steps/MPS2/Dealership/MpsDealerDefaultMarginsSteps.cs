@@ -89,8 +89,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
         }
 
 
-        [Then(@"I Default margins will be amended")]
-        public void ThenIDefaultMarginsWillBeAmended()
+        [Then(@"I am Default margins will be amended")]
+        public void ThenIDefaultMarginsWillBeAmended(Table printers)
         {
             // try create proposal for view margins. logic similar as Type1BusinessScenario_1
             Given(string.Format(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer from ""{0}""", _contextData.Country.Name));
@@ -103,69 +103,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
                 "QUARTERLY_IN_ARREARS", // BillingType
                 "PAY_UPFRONT"           // ServicePackType
                 ));
-            var colourModel = "DCP-L8450CDW";
-            When(@"I add these printers:",CreateColourPrinterTable(colourModel));
+            When(@"I add these printers:", printers);
             When(@"I calculate the click price for each of the above printers");
             // verify
-            _mpsDealerDefaultMarginsStepActions.VerifyDefaultMarginsWillBeAmended(_contextData.DealerAdminDefaultMargins, colourModel);
+            _mpsDealerDefaultMarginsStepActions.VerifyDefaultMarginsWillBeAmended(_contextData.DealerAdminDefaultMargins, _contextData.PrintersProperties);
+            
             // restore
             Given(@"I Select Admin menu and click on Default Margins");
             _mpsDealerDefaultMarginsStepActions.SetDealerMargins(_dealerAdminDefaultMarginsPage, _contextData.DealerAdminDefaultMarginsOriginal);
             _dealerAdminDefaultMarginsPage = _mpsDealerDefaultMarginsStepActions.ClickOnSave(_dealerAdminDefaultMarginsPage);
         }
 
-        private Table CreateColourPrinterTable(string colourModel)
-        {
-            Table table = new Table(new string[] {
-                        "Model",
-                        "Price",
-                        "InstallationPack",
-                        "Delivery",
-                        "CoverageMono",
-                        "VolumeMono",
-                        "CoverageColour",
-                        "VolumeColour",
-                        "SerialNumber",
-                        "MonoPrintCount",
-                        "ColorPrintCount",
-                        "TonerInkBlackStatus",
-                        "TonerInkCyanStatus",
-                        "TonerInkMagentaStatus",
-                        "TonerInkYellowStatus",
-                        "LaserUnit",
-                        "FuserUnit",
-                        "PaperFeedingKit1",
-                        "PaperFeedingKit2",
-                        "PaperFeedingKit3",
-                        "IsSwap",
-                        "lowerTrayPrice"
-
-            });
-            table.AddRow(new string[] {
-                        colourModel,
-                        "1000.00",
-                        "BROTHER_INSTALLATION",
-                        "Yes",
-                        "5",
-                        "1000",
-                        "20",
-                        "250",
-                        "A3P145602",
-                        "3000",
-                        "1500",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "false",
-                        "1000.00"
-            });
-            return table;
-        }
     }
 }

@@ -7,7 +7,7 @@ using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerAdminDealershipProfilePage : BasePage, IPageObject
+    public class DealerAdminProfileDealershipPage : BasePage, IPageObject
     {
 
         public static string Url = "/mps/dealer/admin/profile/dealership";

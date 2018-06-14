@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Enums;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
@@ -10,11 +11,11 @@ using Brother.Tests.Specs.Services;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace Brother.Tests.Specs.StepActions.Dealership
 {
-    [Binding]
     public class MpsDealerDefaultMarginsStepActions : StepActionBase
     {
         private readonly ILoggingService _loggingService;
@@ -93,20 +94,31 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             return PageService.GetPageObject<DealerAdminDefaultMarginsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void VerifyDefaultMarginsWillBeAmended(DealerDefaultMargins expectedDealerAdminDefaultMargins, string model )
+        public void VerifyDefaultMarginsWillBeAmended(DealerDefaultMargins expectedDealerAdminDefaultMargins, IEnumerable<PrinterProperties> printersProperties)
         {
-            LoggingService.WriteLogOnMethodEntry(model);
+            LoggingService.WriteLogOnMethodEntry(expectedDealerAdminDefaultMargins, printersProperties);
             var expected = expectedDealerAdminDefaultMargins;
             var dealerProposalsCreateSummaryPage = PageService.GetPageObject<DealerProposalsCreateSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             var actualValues = _pageParseHelper.ParseSummaryPageValues(dealerProposalsCreateSummaryPage.SeleniumHelper);
+            foreach( var prop in printersProperties)
+            {
+                VerifyDefaultMarginsWillBeAmended(expectedDealerAdminDefaultMargins, actualValues, prop.Model, prop.IsMonochrome);
+            }
+        }
 
+        private void VerifyDefaultMarginsWillBeAmended(DealerDefaultMargins expected, Dictionary<string,string> actualValues,  string model, bool isMonochrome)
+        {
+            LoggingService.WriteLogOnMethodEntry(expected, actualValues, model, isMonochrome);
             Assert.AreEqual(SPrintN2(expected.HardwareDefaultMargin), actualValues[model + ".HardwareMarginPercentage"], "wrong HardwareMarginPercentage");
             Assert.AreEqual(SPrintN2(expected.AccessoriesDefaultMargin), actualValues[model + ".AccessoryMarginPercentage"], "wrong AccessoryMarginPercentage");
             Assert.AreEqual(SPrintN2(expected.DeliveryDefaultMargin), actualValues[model + ".DeliveryMarginPercentage"], "wrong DeliveryMarginPercentage");
             Assert.AreEqual(SPrintN2(expected.InstallationDefaultMargin), actualValues[model + ".InstallationPackMarginPercentage"], "wrong InstallationPackMarginPercentage");
             Assert.AreEqual(SPrintN2(expected.ServicePackDefaultMargin), actualValues[model + ".ServicePackMarginPercentage"], "wrong ServicePackMarginPercentage");
             Assert.AreEqual(SPrintN2(expected.MonoClickDefaultCommission), actualValues[model + ".MonoMarginPercentage"], "wrong MonoMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.ColourClickDefaultCommission), actualValues[model + ".ColourMarginPercentage"], "wrong ColourMarginPercentage");
+            if(isMonochrome == false)
+            {
+                Assert.AreEqual(SPrintN2(expected.ColourClickDefaultCommission), actualValues[model + ".ColourMarginPercentage"], "wrong ColourMarginPercentage");
+            }            
         }
 
         private string SPrintN2(double arg)

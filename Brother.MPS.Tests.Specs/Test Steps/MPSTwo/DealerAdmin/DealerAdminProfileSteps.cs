@@ -10,19 +10,19 @@ namespace Brother.Tests.Specs.MPSTwo.DealerAdmin
         [When(@"I enter new profile into the profile box")]
         public void WhenIEnterNewProfileIntoTheProfileBox()
         {
-            CurrentPage.As<DealerAdminDealershipProfilePage>().EnterDealershipProfile();
+            CurrentPage.As<DealerAdminProfileDealershipPage>().EnterDealershipProfile();
         }
 
         [When(@"I save the profile")]
         public void WhenISaveTheProfile()
         {
-            CurrentPage.As<DealerAdminDealershipProfilePage>().SaveEnterDealerProfile();
+            CurrentPage.As<DealerAdminProfileDealershipPage>().SaveEnterDealerProfile();
         }
 
         [Then(@"the new profile is same as the recently entered profile")]
         public void ThenTheNewProfileIsSameAsTheRecentlyEnteredProfile()
         {
-            CurrentPage.As<DealerAdminDealershipProfilePage>().VerifyThatProfileInputedIsSaved();
+            CurrentPage.As<DealerAdminProfileDealershipPage>().VerifyThatProfileInputedIsSaved();
         }
 
         [Given(@"I navigate to Admin page")]

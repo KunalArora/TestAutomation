@@ -27,7 +27,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         private DealerAdminDashBoardPage _dealerAdminDashboardPage;
         private DealerAdminDealershipUsersPage _dealerAdminDealershipUsersPage;
         private DealerAdminDealershipUsersCreationPage _dealerAdminDealershipUsersCreationPage;
-        private DealerAdminDealershipProfilePage _dealerAdminDealershipProfilePage;
+        private DealerAdminProfileDealershipPage _dealerAdminDealershipProfilePage;
 
         public MpsDealerDealershipSteps(
             MpsDealerProposalStepActions mpsDealerProposalStepActions,

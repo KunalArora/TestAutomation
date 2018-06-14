@@ -98,7 +98,7 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             dealerAdminDealershipUsersPage.VerifySubDealer(_contextData.SubDealerEmail, resourceStaffAccessPermissionRestricted);
         }
 
-        public  void ValidateDealershipProfileTab(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        public  void ValidateDealershipProfileTab(DealerAdminProfileDealershipPage dealerAdminDealershipProfilePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
             Assert.True(dealerAdminDealershipProfilePage.DealershipProfileTabElement.Displayed, "'Dealership Profile' tab not found");           
@@ -116,20 +116,20 @@ namespace Brother.Tests.Specs.StepActions.Dealership
             return fullpath;
         }
 
-        public DealerAdminDealershipProfilePage NavigateToDealershipProfilePage(DealerAdminDashBoardPage dealerAdminDashboardPage)
+        public DealerAdminProfileDealershipPage NavigateToDealershipProfilePage(DealerAdminDashBoardPage dealerAdminDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDashboardPage);
             dealerAdminDashboardPage.SeleniumHelper.ClickSafety(dealerAdminDashboardPage.DealershipProfileElement, IsUntilUrlChanges: true);
-            return PageService.GetPageObject<DealerAdminDealershipProfilePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            return PageService.GetPageObject<DealerAdminProfileDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public void UploadLogoToProfile(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage, string filePath)
+        public void UploadLogoToProfile(DealerAdminProfileDealershipPage dealerAdminDealershipProfilePage, string filePath)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage,filePath);
             dealerAdminDealershipProfilePage.UploadLogo(filePath);
         }
 
-        public void VerifyDealershipProfileWasUpdatedSuccessfully(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        public void VerifyDealershipProfileWasUpdatedSuccessfully(DealerAdminProfileDealershipPage dealerAdminDealershipProfilePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
             var SeleniumHelper = dealerAdminDealershipProfilePage.SeleniumHelper;
@@ -141,7 +141,7 @@ namespace Brother.Tests.Specs.StepActions.Dealership
                 "VerifyDealershipProfileWasUpdatedSuccessfully() updated successflly alert not found");
         }
 
-        public void RemoveProfileLogo(DealerAdminDealershipProfilePage dealerAdminDealershipProfilePage)
+        public void RemoveProfileLogo(DealerAdminProfileDealershipPage dealerAdminDealershipProfilePage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAdminDealershipProfilePage);
             dealerAdminDealershipProfilePage.RemoveLogo();

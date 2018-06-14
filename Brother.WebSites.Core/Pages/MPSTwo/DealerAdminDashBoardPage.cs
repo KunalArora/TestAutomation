@@ -77,11 +77,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return GetTabInstance<DealerAdminDefaultMarginsPage>(Driver);
         }
 
-        public DealerAdminDealershipProfilePage NavigateToDealerAdminDealershipProfilePage()
+        public DealerAdminProfileDealershipPage NavigateToDealerAdminDealershipProfilePage()
         {
             IsDealershipProfileLinkAvailable();
             MpsUtil.ClickButtonThenNavigateToOtherUrl(Driver, DealershipProfileElement);
-            return GetTabInstance<DealerAdminDealershipProfilePage>(Driver);
+            return GetTabInstance<DealerAdminProfileDealershipPage>(Driver);
         }
 
 
