@@ -109,15 +109,15 @@ namespace Brother.Tests.Specs.StepActions.Dealership
         private void VerifyDefaultMarginsWillBeAmended(DealerDefaultMargins expected, Dictionary<string,string> actualValues,  string model, bool isMonochrome)
         {
             LoggingService.WriteLogOnMethodEntry(expected, actualValues, model, isMonochrome);
-            Assert.AreEqual(SPrintN2(expected.HardwareDefaultMargin), actualValues[model + ".HardwareMarginPercentage"], "wrong HardwareMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.AccessoriesDefaultMargin), actualValues[model + ".AccessoryMarginPercentage"], "wrong AccessoryMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.DeliveryDefaultMargin), actualValues[model + ".DeliveryMarginPercentage"], "wrong DeliveryMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.InstallationDefaultMargin), actualValues[model + ".InstallationPackMarginPercentage"], "wrong InstallationPackMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.ServicePackDefaultMargin), actualValues[model + ".ServicePackMarginPercentage"], "wrong ServicePackMarginPercentage");
-            Assert.AreEqual(SPrintN2(expected.MonoClickDefaultCommission), actualValues[model + ".MonoMarginPercentage"], "wrong MonoMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.HardwareDefaultMargin), actualValues[model + ".HardwareMarginPercentage"], "Incorrect HardwareMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.AccessoriesDefaultMargin), actualValues[model + ".AccessoryMarginPercentage"], "Incorrect AccessoryMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.DeliveryDefaultMargin), actualValues[model + ".DeliveryMarginPercentage"], "Incorrect DeliveryMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.InstallationDefaultMargin), actualValues[model + ".InstallationPackMarginPercentage"], "Incorrect InstallationPackMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.ServicePackDefaultMargin), actualValues[model + ".ServicePackMarginPercentage"], "Incorrect ServicePackMarginPercentage");
+            Assert.AreEqual(SPrintN2(expected.MonoClickDefaultCommission), actualValues[model + ".MonoMarginPercentage"], "Incorrect MonoMarginPercentage");
             if(isMonochrome == false)
             {
-                Assert.AreEqual(SPrintN2(expected.ColourClickDefaultCommission), actualValues[model + ".ColourMarginPercentage"], "wrong ColourMarginPercentage");
+                Assert.AreEqual(SPrintN2(expected.ColourClickDefaultCommission), actualValues[model + ".ColourMarginPercentage"], "Incorrect ColourMarginPercentage");
             }            
         }
 
