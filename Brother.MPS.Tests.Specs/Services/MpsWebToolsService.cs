@@ -125,7 +125,7 @@ namespace Brother.Tests.Specs.Services
 
         public string DownloadSilentDeviceReport()
         {
-            string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", "MPS-BUK-TEST-Dealer5-Auto@brother.co.uk", _contextData.Country.CountryIso);
+            string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", _contextData.DealerEmail, _contextData.Country.CountryIso);
             string url = string.Format(_baseUrl, actionPath);
 
             return ExecuteWebTool(url, encoding: Encoding.Unicode);

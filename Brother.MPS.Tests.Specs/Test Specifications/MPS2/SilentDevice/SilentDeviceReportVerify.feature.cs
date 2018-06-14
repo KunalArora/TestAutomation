@@ -78,7 +78,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SilentDevice
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SilentDeviceReportVerify")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "False", "Cloud", "Bor", "5", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "False", "Cloud", "Bor", "6", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void SilentDeviceReportVerify(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
         {

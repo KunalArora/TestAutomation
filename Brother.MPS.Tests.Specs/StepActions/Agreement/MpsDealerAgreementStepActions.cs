@@ -97,6 +97,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
         {
             LoggingService.WriteLogOnMethodEntry(email, password, url);
+            _contextData.DealerEmail = email;
             return _mpsSignIn.SignInAsDealer(email, password, url);
         }
 
@@ -912,7 +913,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                device.OpenServiceRequest = device.OpenServiceRequest + 1;
+                device.OpenServiceRequest++;
                 dealerAgreementDevicesPage.ClickRaiseServiceRequest(device.MpsDeviceId);
 
                 var dealerAgreementServiceRequestsCreatePage = PageService.GetPageObject<DealerAgreementServiceRequestsCreatePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

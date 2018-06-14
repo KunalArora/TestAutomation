@@ -25,6 +25,8 @@ namespace Brother.Tests.Common.ContextData
         BusinessType BusinessType { get; set; }
         DealerAccountType? DealerAccountType { get; set; }
 
+        string DealerEmail { get; set; }
+        
         string ProposalName { get; set; }
         int ProposalId { get; set; }
         string UsageType { get; set; }

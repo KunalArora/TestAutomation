@@ -1,6 +1,7 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Specs.Configuration;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;

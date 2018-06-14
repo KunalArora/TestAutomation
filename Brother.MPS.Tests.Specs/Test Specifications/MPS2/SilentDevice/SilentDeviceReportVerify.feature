@@ -47,4 +47,4 @@ And I can verify the silent device report
 @BUK
 Scenarios: 
 		| Country        | AgreementType | OptionalFields_1 | UsageType      | ContractTerm | Service                 | OptionalFields_2 | CommunicationMethod | InstallationType | AgreementShiftDays | 
-		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | False            | Cloud               | Bor              | 5                  | 
+		| United Kingdom | CPP_AGREEMENT | False            | MINIMUM_VOLUME | FOUR_YEARS   | INCLUDED_IN_CLICK_PRICE | False            | Cloud               | Bor              | 6                  | 
