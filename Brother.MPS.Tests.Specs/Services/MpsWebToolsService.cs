@@ -21,6 +21,7 @@ namespace Brother.Tests.Specs.Services
         private readonly ILoggingService _loggingService;
         private string _baseUrl = string.Empty;
         private string _baseUrlWithoutMps2 = string.Empty;
+        private string _baseUrlWithAutomation = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
 
         public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService, IContextData contextData, ILoggingService loggingService)
@@ -31,7 +32,7 @@ namespace Brother.Tests.Specs.Services
             _loggingService = loggingService;
             _baseUrl = string.Format("{0}/sitecore/admin/integration/mps2/{{0}}", _urlResolver.CmsUrl);
             _baseUrlWithoutMps2 = string.Format("{0}/sitecore/admin/integration/{{0}}", _urlResolver.CmsUrl).Replace("https://", "http://");
-
+            _baseUrlWithAutomation = string.Format("{0}/sitecore/admin/integration/mps2/automation/{{0}}", _urlResolver.CmsUrl);
         }
 
         private void ExecuteWebTool(string url, string authToken = null)
@@ -131,6 +132,26 @@ namespace Brother.Tests.Specs.Services
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
 
+        public void RegisterRole(string emailAddress, string role)
+        {
+            _loggingService.WriteLogOnMethodEntry(emailAddress, role);
+
+            string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
+            string url = string.Format(_baseUrlWithoutMps2, actionPath);
+
+            ExecuteWebTool(url);
+        }
+ 
+        public void DeleteDealership(string dealershipEmail)
+        {
+            _loggingService.WriteLogOnMethodEntry(dealershipEmail);
+
+            string actionPath = string.Format("deletedealership.aspx?dealershipemail={0}", dealershipEmail);
+            string url = string.Format(_baseUrlWithAutomation, actionPath);
+
+            ExecuteWebTool(url);
+        }
+
         private string AuthToken()
         {
             var authToken = string.Empty;
@@ -166,16 +187,6 @@ namespace Brother.Tests.Specs.Services
             {
                 _loggingService.WriteLog(LoggingLevel.INFO, response.ResponseBody);
             }
-        }
-
-        public void RegisterRole(string emailAddress, string role)
-        {
-            _loggingService.WriteLogOnMethodEntry(emailAddress, role);
-
-            string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
-            string url = string.Format(_baseUrlWithoutMps2, actionPath);
-
-            ExecuteWebTool(url);
         }
     }
 }
