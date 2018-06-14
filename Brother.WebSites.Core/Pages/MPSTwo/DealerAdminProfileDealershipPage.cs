@@ -60,6 +60,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void IsDealershopProfilePageDisplayed()
         {
+            LoggingService.WriteLogOnMethodEntry();
             if (ProfileBoxElement == null)
                 throw new Exception("Dealership profile page not displayed");
 
@@ -68,6 +69,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void EnterDealershipProfile()
         {
+            LoggingService.WriteLogOnMethodEntry();
             IsDealershopProfilePageDisplayed();
 
             var generateProfile = MpsUtil.DealerProfileSample();
@@ -77,12 +79,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void SaveEnterDealerProfile()
         {
+            LoggingService.WriteLogOnMethodEntry();
             ProfileSaveButtonElement.Click();
             WebDriver.Wait(DurationType.Second, 3);
         }
 
         public void VerifyThatProfileInputedIsSaved()
         {
+            LoggingService.WriteLogOnMethodEntry();
             var savedProfile = ProfileBoxElement.Text;
             var generatedProfile = SpecFlow.GetContext("GeneratedProfile");
 
