@@ -1017,42 +1017,42 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
                 //Verify the consumable details
                 var bocSupplyItems = _deviceSimulatorService.GetSupply(device.BocDeviceId);
-                var consumableTextContent = dealerDeviceOverviewPage.ConsumablesGraphDataElement.GetAttribute("textContent");
-                var consumableJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(consumableTextContent);
+                var actualConsumableTextContent = dealerDeviceOverviewPage.ConsumablesGraphDataElement.GetAttribute("textContent");
+                var actualConsumableJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(actualConsumableTextContent);
 
                 //Black consumable order  
-                var bocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Black");
-                var bocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Black");
+                var actualBocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Black");
+                var actualBocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Black");
                 var latestDate = (_contextData.AgreementStartDate != "0") ? _contextData.AgreementStartDate : "";
-                dealerDeviceOverviewPage.VerifyConsumableBlack(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+                dealerDeviceOverviewPage.VerifyConsumableBlack(device, actualConsumableJson, actualBocTonerInkReplaceCount, actualBocTonerInkLife, latestDate);
 
                 if (device.IsMonochrome == false)
                 {
                     //Cyan consumable order
-                    bocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Cyan");
-                    bocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Cyan");
-                    dealerDeviceOverviewPage.VerifyConsumableCyan(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+                    actualBocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Cyan");
+                    actualBocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Cyan");
+                    dealerDeviceOverviewPage.VerifyConsumableCyan(device, actualConsumableJson, actualBocTonerInkReplaceCount, actualBocTonerInkLife, latestDate);
 
                     //Magenta consumable order
-                    bocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Magenta");
-                    bocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Magenta");
-                    dealerDeviceOverviewPage.VerifyConsumableMagenta(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+                    actualBocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Magenta");
+                    actualBocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Magenta");
+                    dealerDeviceOverviewPage.VerifyConsumableMagenta(device, actualConsumableJson, actualBocTonerInkReplaceCount, actualBocTonerInkLife, latestDate);
 
                     //Yellow consumable order
-                    bocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Yellow");
-                    bocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Yellow");
-                    dealerDeviceOverviewPage.VerifyConsumableYellow(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+                    actualBocTonerInkReplaceCount = GetBocSimValue(bocSupplyItems, "TonerInk_ReplaceCount_Yellow");
+                    actualBocTonerInkLife = GetBocSimValue(bocSupplyItems, "TonerInk_Life_Yellow");
+                    dealerDeviceOverviewPage.VerifyConsumableYellow(device, actualConsumableJson, actualBocTonerInkReplaceCount, actualBocTonerInkLife, latestDate);
                 }
 
                 //Verify the service request details
-                var serviceRequestTextContent = dealerDeviceOverviewPage.ServiceRequestGraphDataElement.GetAttribute("textContent");
-                var serviceRequestJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(serviceRequestTextContent);
-                dealerDeviceOverviewPage.VerifyServiceRequest(device, serviceRequestJson, latestDate);
+                var actualServiceRequestTextContent = dealerDeviceOverviewPage.ServiceRequestGraphDataElement.GetAttribute("textContent");
+                var actualServiceRequestJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(actualServiceRequestTextContent);
+                dealerDeviceOverviewPage.VerifyServiceRequest(device, actualServiceRequestJson, latestDate);
 
                 //Verify the silent device details
-                var silentTextContent = dealerDeviceOverviewPage.SilentGraphDataElement.GetAttribute("textContent");
-                var silentJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(silentTextContent);
-                dealerDeviceOverviewPage.VerifySilentDetails(device, silentJson, _contextData.AgreementShiftDays);
+                var actualSilentTextContent = dealerDeviceOverviewPage.SilentGraphDataElement.GetAttribute("textContent");
+                var actualSilentJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(actualSilentTextContent);
+                dealerDeviceOverviewPage.VerifySilentDetails(device, actualSilentJson, _contextData.AgreementShiftDays);
 
                 ClickSafety(dealerDeviceOverviewPage.ButtonBackElement, dealerDeviceOverviewPage, true);
                 dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);

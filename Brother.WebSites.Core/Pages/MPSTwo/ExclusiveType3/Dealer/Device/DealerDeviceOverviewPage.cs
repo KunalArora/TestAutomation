@@ -137,14 +137,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             TestCheck.AssertTextContains(device.IsMonochrome ? "-" : device.ColorPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.colour-month").Text, string.Format("Pages This Month(Colour) = {0} could not be verified", device.ColorPrintCount));
         }
 
-        public void VerifyConsumableBlack(AdditionalDeviceProperties device, Dictionary<string, string> consumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
+        public void VerifyConsumableBlack(AdditionalDeviceProperties device, Dictionary<string, string> actualConsumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
         {
-            LoggingService.WriteLogOnMethodEntry(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+            LoggingService.WriteLogOnMethodEntry(device, actualConsumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
             var message = " mismatch BOCSim.id=" + device.BocDeviceId;
             TestCheck.AssertIsEqual(bocTonerInkReplaceCount, BlackReplaceCountElement.Text, "BlackReplaceCountElement" + message);
             TestCheck.AssertIsEqual(device.TonerInkBlackOrderCount.ToString(), BlackTotalElement.Text, "BlackTotalElement" + message);
             TestCheck.AssertIsEqual((BlackTotalElement.Text != "0" ? latestDate : ""), BlackDateElement.Text, "BlackDateElement" + message);
-            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), consumableJson["BlackTonerRemainingLife"], "TonerRemainingLife" + message);
+            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), actualConsumableJson["BlackTonerRemainingLife"], "TonerRemainingLife" + message);
         }
 
         public void VerifyConsumableCyan(AdditionalDeviceProperties device, Dictionary<string, string> consumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
