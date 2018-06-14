@@ -320,7 +320,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _calculationService.VerifySum(
                 deviceTotalsElements,
-                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.CollectDigitOnly());
+                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text);
             var SeleniumHelper = dealerProposalsCreateSummaryPage.SeleniumHelper;
             if( SeleniumHelper.IsElementDisplayed(dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement))
             {
@@ -999,28 +999,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerDashboardPage;
         }
 
-        public void SetCultureInfoAndRegionInfo()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-
-            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
-            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
-
-            switch (_contextData.Country.CountryIso)
-            {
-                case CountryIso.Switzerland:
-                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
-                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
-
-                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
-                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
-
-                    break;
-                default:
-                    break;
-            }
-        }
-
         public DealerReportsDashboardPage NavigateToDealerReportsDashboardPage(DealerDashBoardPage dealerDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
@@ -1046,6 +1024,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage);
             dealerReportsProposalsSummaryPage.VerifyProposalName(_contextData.ProposalName);
+        }
+
+        public DealerAdminDashBoardPage NavigateToDealerAdminDashboardPage(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.SeleniumHelper.ClickSafety(dealerDashboardPage.AdminLinkElement);
+            return PageService.GetPageObject<DealerAdminDashBoardPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public void VerifyDashboardOptions(DealerDashBoardPage dealerDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerDashboardPage);
+            dealerDashboardPage.VerifyDashboardOptions();
         }
 
         #region private methods
@@ -1161,6 +1152,5 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
         }
         #endregion
-
     }
  }

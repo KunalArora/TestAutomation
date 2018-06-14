@@ -32,6 +32,11 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private readonly MpsLocalOfficeAdminContractStepActions _mpsLocalOfficeAdminContractStepActions;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdminAgreementStepActions;
         private LocalOfficeAdminReportsProposalSummaryPage _localOfficeAdminReportsProposalSummaryPage;
+        private LocalOfficeAdminDashBoardPage _localOfficeAdminDashboardPage;
+        private LocalOfficeAdminAdministrationDashboardPage _localOfficeAdminAdministrationDashboardPage;
+        private LocalOfficeAdminAdministrationDealerPage _localOfficeAdminAdministrationDealerPage;
+        private LocalOfficeAdminDealersCreateDealershipPage _localOfficeAdminDealersCreateDealershipPage;
+        private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -64,6 +69,24 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminAgreementStepActions = mpsLocalOfficeAdminAgreementStepActions;
 
         }
+
+        [Given(@"I navigate to the administration page with culture ""(.*)"" from ""(.*)""")]
+        public void GivenINavigateToTheAdministrationPageWithCultureFrom(string culture, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
+            {
+                throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
+            }
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
+            _localOfficeAdminAdministrationDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationPage(_localOfficeAdminDashboardPage);
+        }
+
 
         [StepDefinition(@"a Cloud MPS Local Office Admin navigates to the contract end screen")]
         public void GivenACloudMPSLocalOfficeAdminNavigatesToTheContractEndScreen()
@@ -120,5 +143,25 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _localOfficeAdminReportsProposalSummaryPage = _mpsLocalOfficeAdminContractStepActions.EditProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
             _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
         }
+
+
+        [When(@"I create a new dealer and verify the created dealer details")]
+        public void WhenICreateANewDealerAndVerifyTheCreatedDealerDetails()
+        {
+            _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
+            _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
+            _mpsLocalOfficeAdminAgreementStepActions.SelectBusinessType(_localOfficeAdminDealersCreateDealershipPage);
+            _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.IputDealerDetails(_localOfficeAdminDealersCreateDealershipPage);
+            _mpsLocalOfficeAdminAgreementStepActions.VerifyDealerCreation(_localOfficeAdminAdministrationDealerPage);
+        }
+
+        [When(@"I edit the details for created dealer")]
+        public void WhenIEditTheDetailsForCreatedDealer()
+        {
+            _localOfficeAdminDealersEditDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToEditDealershipPage(_localOfficeAdminAdministrationDealerPage);
+            _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.EditDealerDetails(_localOfficeAdminDealersEditDealershipPage);
+            _mpsLocalOfficeAdminAgreementStepActions.VerifyUpdatedDealerDeatils(_localOfficeAdminAdministrationDealerPage);
+        }
+
     }
 }

@@ -270,5 +270,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.ClickSafety(languageLinkElement);
             return language;
         }
+
+        public void VerifyDashboardOptions()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(CreateProposalLinkElement), true, "Create proposal option is not displayed");
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(ExistingProposalLinkElement), true, "Existing proposal option is not displayed");
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(ExistingContractLinkElement), true, "Existing contract option is not displayed");
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(CreateAgreementLinkElement), true, "Create agreement option is not displayed");
+            TestCheck.AssertIsEqual(SeleniumHelper.IsElementDisplayed(ExistingAgreementLinkElement), true, "Existing agreement option is not displayed");
+        }
     }
 }

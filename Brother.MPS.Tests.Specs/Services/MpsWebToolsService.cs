@@ -167,5 +167,15 @@ namespace Brother.Tests.Specs.Services
                 _loggingService.WriteLog(LoggingLevel.INFO, response.ResponseBody);
             }
         }
+
+        public void RegisterRole(string emailAddress, string role)
+        {
+            _loggingService.WriteLogOnMethodEntry(emailAddress, role);
+
+            string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
+            string url = string.Format(_baseUrlWithoutMps2, actionPath);
+
+            ExecuteWebTool(url);
+        }
     }
 }

@@ -238,6 +238,8 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminAdministrationDealerPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminContractsAdditionalCharges.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminContractsEditEndDatePage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealersCreateDealershipPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealersEditDealershipPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />

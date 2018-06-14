@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/service-request-report\"] .media-heading")]
         public IWebElement ServiceRequestReportElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports/cpp-agreement-report\"] .media-heading")]
-        public IWebElement CPPAgreementReportElement;
+        public IWebElement CppAgreementReportElement;
 
         public void IsReportingPageDisplayed()
         {

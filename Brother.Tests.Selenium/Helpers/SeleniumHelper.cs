@@ -335,7 +335,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }, timeout);
         }
 
-        public IWebElement SetListFilter(IWebElement filterElement, int filterId, string filterName, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
+        public IWebElement SetListFilter(IWebElement filterElement, int? filterId, string filterName, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttributeName= "proposal-id", string waitSelector=null)
         {
             LoggingService.WriteLogOnMethodEntry(filterElement, filterId, rowElementListForExistCheck, timeout, dataAttributeName, waitSelector);
             var defaultMaxTimeout = Math.Max(RuntimeSettings.DefaultFindElementTimeout, RuntimeSettings.DefaultPageLoadTimeout);
@@ -349,7 +349,14 @@ namespace Brother.Tests.Selenium.Lib.Helpers
                     if( isTyped == false)
                     {
                         waitSelectorElement = (waitSelector != null) ? FindElementByCssSelector(waitSelector, timeout) : null;
-                        ClearAndType(filterElement, filterId.ToString() + " " + filterName, IsVerify: true);
+                        if(filterId!=null)
+                        {
+                            ClearAndType(filterElement, filterId.ToString() + " " + filterName, IsVerify: true);
+                        }
+                        else
+                        {
+                            ClearAndType(filterElement, filterName, IsVerify: true);
+                        }
                         isTyped = true;
                     }
                     var count = rowElementListForExistCheck.Count;

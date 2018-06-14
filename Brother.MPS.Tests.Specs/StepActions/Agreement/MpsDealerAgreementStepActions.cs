@@ -13,7 +13,6 @@ using Brother.Tests.Specs.Helpers.ExcelHelpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
-using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device;
@@ -47,6 +46,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly ICppAgreementDevicesExcelHelper _cppAgreementDevicesExcelHelper;
         private readonly IDeviceSimulatorService _deviceSimulatorService;
         private readonly MpsApiCallStepActions _mpsApiStepActions;
+        private readonly IContractShiftService _contractShiftService;
 
         public MpsDealerAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -67,6 +67,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             ICppAgreementDevicesExcelHelper cppAgreementDevicesExcelHelper,
             IUserResolver userResolver,
             IDeviceSimulatorService deviceSimulatorService,
+            IContractShiftService contractShiftService,
             ICPPAgreementExcelHelper cppAgreementHelper,
             MpsApiCallStepActions mpsApiStepActions)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
@@ -87,6 +88,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _cppAgreementHelper = cppAgreementHelper;
             _deviceSimulatorService = deviceSimulatorService;
             _mpsApiStepActions = mpsApiStepActions;
+            _contractShiftService = contractShiftService;
         }
 
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -301,6 +303,24 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public DealerAgreementsListPage NavigateToAgreementsListPage()
         {
             return PageService.LoadUrl<DealerAgreementsListPage>(string.Format("{0}/mps/dealer/agreements/list", UrlResolver.BaseUrl), RuntimeSettings.DefaultPageLoadTimeout, ".mps-dataTables-footer", false, _dealerWebDriver);
+        }
+
+        public void ContractShiftBeforeSwapDeviceInstallationRequest(int days)
+        {
+            LoggingService.WriteLogOnMethodEntry(days);
+            // note: run ConstractTimeShiftCommand before PrintCount > 0. 
+            // see https://brother-bie.atlassian.net/browse/MPS-5923?focusedCommentId=147451&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-147451
+            foreach (var prop in _contextData.AdditionalDeviceProperties)
+            {
+                prop.MonoPrintCount++;
+                _deviceSimulatorService.SetPrintCounts(prop.BocDeviceId, prop.MonoPrintCount, prop.ColorPrintCount); 
+                _deviceSimulatorService.NotifyBocOfDeviceChanges(prop.BocDeviceId);
+            }
+            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+            _runCommandService.RunStartContractCommand();
+
+            _contractShiftService.ContractTimeShiftCommand(_contextData.AgreementId, days, "d", false, false, "Any");
+
         }
 
         public void VerifyCreatedAgreement(DealerAgreementsListPage dealerAgreementsListPage)
@@ -1303,7 +1323,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             // Download excel
             string excelFilePath = _cppAgreementHelper.Download(() =>
             {
-                ClickSafety(dealerReportsDashboardPage.CPPAgreementReportElement, dealerReportsDashboardPage);
+                ClickSafety(dealerReportsDashboardPage.CppAgreementReportElement, dealerReportsDashboardPage);
                 return true;
             });
 
@@ -1312,28 +1332,6 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             
             // Delete excel
             _cppAgreementHelper.DeleteExcelFile(excelFilePath);
-        }
-
-        public void SetCultureInfoAndRegionInfo()
-        {
-            LoggingService.WriteLogOnMethodEntry();
-
-            _contextData.CultureInfo = new CultureInfo(_contextData.Culture);
-            _contextData.RegionInfo = new RegionInfo(_contextData.Culture);
-
-            switch (_contextData.Country.CountryIso)
-            {
-                case CountryIso.Switzerland:
-                    // This is done as currency symbol for Switzerland set in culture settings of Windows 7 & Windows 10 are different
-                    _contextData.CultureInfo.NumberFormat.CurrencySymbol = MpsUtil.GetCurrencySymbol(_contextData.Country.CountryIso);
-
-                    // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
-                    _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
-
-                    break;
-                default:
-                    break;
-            }
         }
 
         #region private methods

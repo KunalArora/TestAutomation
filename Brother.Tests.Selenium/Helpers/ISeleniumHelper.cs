@@ -191,7 +191,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="dataAttibuteName">proposal-id or contract-id. default=null </param>
         /// <param name="waitSelector">Selector to wait for before the Proposals/Contracts/Aggrements List is loaded before entering the Id in filterelement. default=null </param>
         /// <returns>target element when dataAttibuteName != null othewise N/A</returns>
-        IWebElement SetListFilter(IWebElement filterElement, int filterId, string filterName, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttibuteName=null, string waitSelector=null);
+        IWebElement SetListFilter(IWebElement filterElement, int? filterId, string filterName, IList<IWebElement> rowElementListForExistCheck, int timeout = -1, string dataAttibuteName=null, string waitSelector=null);
 
         /// <summary>
         /// Returns true if element with this selector is not present, returns false if its present

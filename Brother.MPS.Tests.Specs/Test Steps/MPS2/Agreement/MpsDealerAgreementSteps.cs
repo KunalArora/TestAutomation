@@ -83,7 +83,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
-            _mpsDealerAgreement.SetCultureInfoAndRegionInfo();
+            _mpsSignIn.SetCultureInfoAndRegionInfo();
 
             _dealerDashboardPage = _mpsDealerAgreement.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _dealerAgreementCreateDescriptionPage = _mpsDealerAgreement.NavigateToCreateAgreementPage(_dealerDashboardPage);
@@ -352,6 +352,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         [When(@"I create and send a ""(.*)"" swap device installation request")]
         public void WhenICreateAndSendASwapDeviceInstallationRequest(string swapDeviceType)
         {
+            _mpsDealerAgreement.ContractShiftBeforeSwapDeviceInstallationRequest(1);
             _contextData.SwapType = swapDeviceType;
             _dealerAgreementDevicesPage = _mpsDealerAgreement.SendSwapDeviceInstallationRequest(_dealerAgreementDevicesPage, swapDeviceType);
         }
