@@ -49,7 +49,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
             _translationService = translationService;
         }
 
-        [Given(@"I Select Admin menu and click on Default Margins")]
+        [Given(@"I select Admin menu and click on Default Margins")]
         public void GivenISelectAdminMenuAndClickOnDefaultMargins()
         {
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
@@ -63,7 +63,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
             _mpsDealerDefaultMarginsStepActions.AssertAreSelectDefaultMarginsTab(_dealerAdminDefaultMarginsPage);
         }
 
-        [When(@"I Overtype default margins HardwareDefaultMargin of ""(.*)"", AccessoriesDefaultMargin of ""(.*)"", DeliveryDefaultMargin of ""(.*)"", InstallationDefaultMargin of ""(.*)"", ServicePackDefaultMargin of ""(.*)"", MonoClickDefaultCommission of ""(.*)"", and ColourClickDefaultCommission of ""(.*)""  with required % and click Save")]
+        [When(@"I overtype default margins HardwareDefaultMargin of ""(.*)"", AccessoriesDefaultMargin of ""(.*)"", DeliveryDefaultMargin of ""(.*)"", InstallationDefaultMargin of ""(.*)"", ServicePackDefaultMargin of ""(.*)"", MonoClickDefaultCommission of ""(.*)"", and ColourClickDefaultCommission of ""(.*)""  with required % and click Save")]
         public void WhenIOvertypeDefaultMarginsWithRequiredAndClickSave(
             double HardwareDefaultMargin,
             double AccessoriesDefaultMargin,
@@ -89,7 +89,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
         }
 
 
-        [Then(@"I am Default margins will be amended")]
+        [Then(@"I verify default margins will be amended")]
         public void ThenIDefaultMarginsWillBeAmended(Table printers)
         {
             // try create proposal for view margins. logic similar as Type1BusinessScenario_1

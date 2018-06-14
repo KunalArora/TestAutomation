@@ -75,7 +75,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
             _mpsDealerDealershipStepActions.VerifySubDealer(_dealerAdminDealershipUsersPage);
         }
 
-        [Given(@"I Select Admin menu and click on Delearship Profile")]
+        [Given(@"I select Admin menu and click on Delearship Profile")]
         public void GivenISelectAdminMenuAndClickOnDelearshipProfile()
         {
             var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
@@ -89,7 +89,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
             _mpsDealerDealershipStepActions.ValidateDealershipProfileTab(_dealerAdminDealershipProfilePage);
         }
 
-        [When(@"I Amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save")]
+        [When(@"I amend Profile description and use the browse function to add a Jpeg as a logo\. Click Save")]
         public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave()
         {
             var filePath = _mpsDealerDealershipStepActions.CreateUploadLogoFile();
@@ -97,7 +97,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
             File.Delete(filePath);
         }
 
-        [Then(@"I 'Dealership profile was updated successfully' will appear at the top of the screen")]
+        [Then(@"I can verify that dealership profile was updated successfully")]
         public void ThenIDealershipProfileWasUpdatedSuccessfullyWillAppearAtTheTopOfTheScreen()
         {
             _mpsDealerDealershipStepActions.VerifyDealershipProfileWasUpdatedSuccessfully(_dealerAdminDealershipProfilePage);

@@ -6,18 +6,18 @@ Feature: Type1DealerAdminCapabilities
 Scenario Outline: Type1DealerAdminCapabilities
 Given Country is "<Country>"
 #Stage: 2 Manage Default Dealer Margins
-Given I Select Admin menu and click on Default Margins
+Given I select Admin menu and click on Default Margins
 Then I will be taken into the Default Margins tab
-When I Overtype default margins HardwareDefaultMargin of "<HardwareDefaultMargin>", AccessoriesDefaultMargin of "<AccessoriesDefaultMargin>", DeliveryDefaultMargin of "<DeliveryDefaultMargin>", InstallationDefaultMargin of "<InstallationDefaultMargin>", ServicePackDefaultMargin of "<ServicePackDefaultMargin>", MonoClickDefaultCommission of "<MonoClickDefaultCommission>", and ColourClickDefaultCommission of "<ColourClickDefaultCommission>"  with required % and click Save
-Then I am Default margins will be amended
+When I overtype default margins HardwareDefaultMargin of "<HardwareDefaultMargin>", AccessoriesDefaultMargin of "<AccessoriesDefaultMargin>", DeliveryDefaultMargin of "<DeliveryDefaultMargin>", InstallationDefaultMargin of "<InstallationDefaultMargin>", ServicePackDefaultMargin of "<ServicePackDefaultMargin>", MonoClickDefaultCommission of "<MonoClickDefaultCommission>", and ColourClickDefaultCommission of "<ColourClickDefaultCommission>"  with required % and click Save
+Then I verify default margins will be amended
 		| Model        | Price   | LowerTrayPrice | InstallationPack     | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour |
 		| DCP-L8450CDW | 1000.00 | 1000.00        | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          |
 
 #Stage: 3 Amend Dealership Profile
-Given I Select Admin menu and click on Delearship Profile
+Given I select Admin menu and click on Delearship Profile
 Then I will be taken into the Dealership Profile tab
-When I Amend Profile description and use the browse function to add a Jpeg as a logo. Click Save
-Then I 'Dealership profile was updated successfully' will appear at the top of the screen 
+When I amend Profile description and use the browse function to add a Jpeg as a logo. Click Save
+Then I can verify that dealership profile was updated successfully
 
 @BUK
 Scenarios: 

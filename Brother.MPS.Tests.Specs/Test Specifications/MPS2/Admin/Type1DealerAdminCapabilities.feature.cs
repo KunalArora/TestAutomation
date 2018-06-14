@@ -89,11 +89,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
 testRunner.Given(string.Format("Country is \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Given("I Select Admin menu and click on Default Margins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("I select Admin menu and click on Default Margins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
 testRunner.Then("I will be taken into the Default Margins tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
-testRunner.When(string.Format(@"I Overtype default margins HardwareDefaultMargin of ""{0}"", AccessoriesDefaultMargin of ""{1}"", DeliveryDefaultMargin of ""{2}"", InstallationDefaultMargin of ""{3}"", ServicePackDefaultMargin of ""{4}"", MonoClickDefaultCommission of ""{5}"", and ColourClickDefaultCommission of ""{6}""  with required % and click Save", hardwareDefaultMargin, accessoriesDefaultMargin, deliveryDefaultMargin, installationDefaultMargin, servicePackDefaultMargin, monoClickDefaultCommission, colourClickDefaultCommission), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format(@"I overtype default margins HardwareDefaultMargin of ""{0}"", AccessoriesDefaultMargin of ""{1}"", DeliveryDefaultMargin of ""{2}"", InstallationDefaultMargin of ""{3}"", ServicePackDefaultMargin of ""{4}"", MonoClickDefaultCommission of ""{5}"", and ColourClickDefaultCommission of ""{6}""  with required % and click Save", hardwareDefaultMargin, accessoriesDefaultMargin, deliveryDefaultMargin, installationDefaultMargin, servicePackDefaultMargin, monoClickDefaultCommission, colourClickDefaultCommission), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
@@ -116,17 +116,16 @@ testRunner.When(string.Format(@"I Overtype default margins HardwareDefaultMargin
                         "20",
                         "250"});
 #line 12
-testRunner.Then("I am Default margins will be amended", ((string)(null)), table1, "Then ");
+testRunner.Then("I verify default margins will be amended", ((string)(null)), table1, "Then ");
 #line 17
-testRunner.Given("I Select Admin menu and click on Delearship Profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("I select Admin menu and click on Delearship Profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
 testRunner.Then("I will be taken into the Dealership Profile tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
-testRunner.When("I Amend Profile description and use the browse function to add a Jpeg as a logo. " +
+testRunner.When("I amend Profile description and use the browse function to add a Jpeg as a logo. " +
                     "Click Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
-testRunner.Then("I \'Dealership profile was updated successfully\' will appear at the top of the scr" +
-                    "een", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I can verify that dealership profile was updated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
