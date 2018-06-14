@@ -12,10 +12,10 @@ Then a newly created Cloud MPS dealer can succesfully login with culture "<Cultu
 And a created Cloud MPS dealer can verify the dashboard icons properly shown
 And I delete the created MPS dealer
 
-#@BSW
-#Scenarios: 
-#		| Country        | Culture | SapVendorId |
-#		| Switzerland    | fr-CH   |             |
+@BSW
+Scenarios: 
+		| Country        | Culture | SapVendorId |
+		| Switzerland    | fr-CH   |             |
 
 @BUK
 Scenarios: 

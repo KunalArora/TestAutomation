@@ -80,6 +80,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CreateDealer")]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "fr-CH", "", new string[] {
+                "BSW"}, Category="BSW")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "0000129120", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void CreateDealer(string country, string culture, string sapVendorId, string[] exampleTags)
