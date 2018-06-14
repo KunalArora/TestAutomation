@@ -80,9 +80,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CreateDealer")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "0000129120", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void CreateDealer(string country, string culture, string[] exampleTags)
+        public virtual void CreateDealer(string country, string culture, string sapVendorId, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateDealer", exampleTags);
 #line 7
@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I navigate to the administration page with culture \"{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("I create a new dealer and verify the created dealer details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I create a new dealer with \"{0}\" and verify the created dealer details", sapVendorId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And("I edit the details for created dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
@@ -98,6 +98,8 @@ testRunner.Then(string.Format("a newly created Cloud MPS dealer can succesfully 
                         "1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
 testRunner.And("a created Cloud MPS dealer can verify the dashboard icons properly shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+testRunner.And("I delete the created MPS dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

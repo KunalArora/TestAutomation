@@ -273,10 +273,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
         }
 
-        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage)
+        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage, int sapVendorId)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
-            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber("0000129120");
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage, sapVendorId);
+            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber(sapVendorId.ToString());
 
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapButtonCheckElement);
             localOfficeAdminDealersCreateDealershipPage = PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
@@ -285,6 +285,12 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapVendorCheckCompleteElement);
             return PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public void DeleteCreatedDealer()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            _mpsWebToolsService.DeleteDealership(_contextData.DealerProperties.Email);
         }
     }
 }

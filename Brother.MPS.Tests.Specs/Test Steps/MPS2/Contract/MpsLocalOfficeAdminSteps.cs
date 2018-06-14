@@ -145,15 +145,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
         }
 
-
-        [When(@"I create a new dealer and verify the created dealer details")]
-        public void WhenICreateANewDealerAndVerifyTheCreatedDealerDetails()
+        [When(@"I create a new dealer with ""(.*)"" and verify the created dealer details")]
+        public void WhenICreateANewDealerWithAndVerifyTheCreatedDealerDetails(int sapVendorId)
         {
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
             _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
-            if(_contextData.Country.CountryIso == CountryIso.UnitedKingdom)
+            if (_contextData.Country.CountryIso == CountryIso.UnitedKingdom)
             {
-                _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.EnterSapVendorNumber(_localOfficeAdminDealersCreateDealershipPage);
+                _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.EnterSapVendorNumber(_localOfficeAdminDealersCreateDealershipPage, sapVendorId);
             }
             _mpsLocalOfficeAdminAgreementStepActions.SelectBusinessType(_localOfficeAdminDealersCreateDealershipPage);
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.IputDealerDetails(_localOfficeAdminDealersCreateDealershipPage);
@@ -168,5 +167,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminAgreementStepActions.VerifyUpdatedDealerDeatils(_localOfficeAdminAdministrationDealerPage);
         }
 
+        [Then(@"I delete the created MPS dealer")]
+        public void ThenIDeleteTheCreatedMPSDealer()
+        {
+            _mpsLocalOfficeAdminAgreementStepActions.DeleteCreatedDealer();
+        }        
     }
 }
