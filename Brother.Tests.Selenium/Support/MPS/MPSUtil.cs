@@ -359,11 +359,9 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         public static string VatNumberGb()
         {
-            String[] companyName = {"GB980780684",
-                                    "GB802311781"
-								};
+            String vatNumberGb = "GB980780684";
 
-            var generatedVatNumber = companyName[new Random().Next(19)];
+            var generatedVatNumber = vatNumberGb;
 
             return generatedVatNumber;
 

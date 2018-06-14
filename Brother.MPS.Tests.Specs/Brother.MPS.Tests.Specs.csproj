@@ -213,10 +213,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\Dealer\CreateBSWDealer.feature.cs">
+    <Compile Include="Test Specifications\MPS2\Dealer\CreateDealer.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreateBSWDealer.feature</DependentUpon>
+      <DependentUpon>CreateDealer.feature</DependentUpon>
     </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1718,9 +1718,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\Dealer\CreateBSWDealer.feature">
+    <None Include="Test Specifications\MPS2\Dealer\CreateDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateBSWDealer.feature.cs</LastGenOutput>
+      <LastGenOutput>CreateDealer.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
