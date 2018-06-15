@@ -171,16 +171,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
                     defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
-                    defaultDealerUsername: AppSettingToStringRegex(@"^RuntimeSettings\..*DealerUsername.*"),
-                    defaultDealerPassword: AppSettingToStringRegex(@"^RuntimeSettings\..*DealerPassword.*"),
-                    defaultType3DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerUsernameBUK"),
-                    defaultType3DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerPasswordBUK"),
-                    defaultType1DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBUK"),
-                    defaultType1DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBUK"),
-                    defaultType1DealerUsernameBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBIG"),
-                    defaultType1DealerPasswordBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBIG"),
-                    defaultType1DealerUsernameBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBSW"),
-                    defaultType1DealerPasswordBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBSW")
+                    defaultDealerUsername: AppSettingToDictionaryRegex(@"^RuntimeSettings\..*DealerUsername.*"),
+                    defaultDealerPassword: AppSettingToDictionaryRegex(@"^RuntimeSettings\..*DealerPassword.*")
             );
 
             return runtimeSettings;
@@ -207,7 +199,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             return System.Configuration.ConfigurationManager.AppSettings.Get(appSettingName);
         }
 
-        private Dictionary<string,string> AppSettingToStringRegex( string regexString)
+        private Dictionary<string,string> AppSettingToDictionaryRegex( string regexString)
         {
             var result = new Dictionary<string, string>();
             var regex = new Regex(regexString);
