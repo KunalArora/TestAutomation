@@ -2,12 +2,12 @@
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.Tests.Specs.StepActions.Dealership;
 using Brother.Tests.Specs.StepActions.Proposal;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
-using Brother.Tests.Specs.MPS2.Dealership;
-using Brother.Tests.Specs.StepActions.Dealership;
 
 namespace Brother.Tests.Specs.MPS2.Dealership
 {
@@ -27,6 +27,7 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         private DealerAdminDashBoardPage _dealerAdminDashboardPage;
         private DealerAdminDealershipUsersPage _dealerAdminDealershipUsersPage;
         private DealerAdminDealershipUsersCreationPage _dealerAdminDealershipUsersCreationPage;
+        private DealerAdminProfileDealershipPage _dealerAdminDealershipProfilePage;
 
         public MpsDealerDealershipSteps(
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -73,5 +74,36 @@ namespace Brother.Tests.Specs.MPS2.Dealership
         {
             _mpsDealerDealershipStepActions.VerifySubDealer(_dealerAdminDealershipUsersPage);
         }
+
+        [Given(@"I select Admin menu and click on Delearship Profile")]
+        public void GivenISelectAdminMenuAndClickOnDelearshipProfile()
+        {
+            var dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var dealerAdminDashboardPage = _mpsDealerDealershipStepActions.NavigateToDealerAdminDashboardPage(dealerDashboardPage);
+            _dealerAdminDealershipProfilePage = _mpsDealerDealershipStepActions.NavigateToDealershipProfilePage(dealerAdminDashboardPage);
+        }
+
+        [Then(@"I will be taken into the Dealership Profile tab")]
+        public void ThenIWillBeTakenIntoTheDealershipProfileTab()
+        {
+            _mpsDealerDealershipStepActions.ValidateDealershipProfileTab(_dealerAdminDealershipProfilePage);
+        }
+
+        [When(@"I amend Profile description and use the browse function to add a Jpeg as a logo, Click Save")]
+        public void WhenIAmendProfileDescriptionAndUseTheBrowseFunctionToAddAJpegAsALogo_ClickSave()
+        {
+            var filePath = _mpsDealerDealershipStepActions.CreateUploadLogoFile();
+            _mpsDealerDealershipStepActions.UploadLogoToProfile(_dealerAdminDealershipProfilePage, filePath);
+            File.Delete(filePath);
+        }
+
+        [Then(@"I can verify that dealership profile was updated successfully")]
+        public void ThenIDealershipProfileWasUpdatedSuccessfullyWillAppearAtTheTopOfTheScreen()
+        {
+            _mpsDealerDealershipStepActions.VerifyDealershipProfileWasUpdatedSuccessfully(_dealerAdminDealershipProfilePage);
+            _mpsDealerDealershipStepActions.RemoveProfileLogo(_dealerAdminDealershipProfilePage); // GC
+        }
+
+
     }
 }

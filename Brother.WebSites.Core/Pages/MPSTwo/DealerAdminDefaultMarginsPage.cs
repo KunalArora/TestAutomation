@@ -1,25 +1,46 @@
-﻿using System;
-using System.Configuration;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class DealerAdminDefaultMarginsPage : BasePage
+    public class DealerAdminDefaultMarginsPage : BasePage, IPageObject
     {
         public static string URL = "/mps/dealer/admin/default-margins/margins";
+        private const string _url = "/mps/dealer/admin/default-margins/margins";
+        private const string _validationElementSelector = "#content_1_ButtonNext";
 
         public override string DefaultTitle
         {
             get { return string.Empty; }
         }
 
+        public string ValidationElementSelector
+        {
+            get
+            {
+                return _validationElementSelector;
+            }
+        }
+
+        public string PageUrl
+        {
+            get
+            {
+                return _url;
+            }
+        }
+
+        [FindsBy(How = How.CssSelector, Using = "a[href='/mps/dealer/admin/default-margins']")]
+        public IWebElement DefaultMarginsElement;
+
+
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputDeviceMargin_Input")]
         public IWebElement HardwareDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputOptionMargin_Input")]
-        public IWebElement AccesoriesDefaultMargin;
+        public IWebElement AccessoriesDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputDeliveryMargin_Input")]
         public IWebElement DeliveryDefaultMargin;
         [FindsBy(How = How.Id, Using = "content_1_DealerMarginTable_InputInstallationMargin_Input")]
@@ -71,7 +92,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
         public void EnterAccesoriesDefaultMarginInAutomatically()
         {
-            EnterMarginInAutomatically(AccesoriesDefaultMargin, AccesoriesDefaultMarginDefault);
+            EnterMarginInAutomatically(AccessoriesDefaultMargin, AccesoriesDefaultMarginDefault);
         }
         public void EnterDeliveryDefaultMarginInAutomatically()
         {
@@ -108,7 +129,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             WaitForElementToExistByCssSelector("#content_1_DealerMarginTable_InputDeviceMargin_Input");
             SpecFlow.SetContext("DealerAdminHardwareDefaultMargin", HardwareDefaultMargin.GetAttribute("value"));
-            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccesoriesDefaultMargin.GetAttribute("value"));
+            SpecFlow.SetContext("DealerAdminAccesoriesDefaultMargin", AccessoriesDefaultMargin.GetAttribute("value"));
             SpecFlow.SetContext("DealerAdminDeliveryDefaultMargin", DeliveryDefaultMargin.GetAttribute("value"));
             SpecFlow.SetContext("DealerAdminInstallationDefaultMargin", InstallationDefaultMargin.GetAttribute("value"));
             SpecFlow.SetContext("DealerAdminServicePackDefaultMargin", ServicePackDefaultMargin.GetAttribute("value"));

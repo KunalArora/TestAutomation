@@ -6,6 +6,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string Model { get; set; }
         public string Price { get; set; }
         public int Quantity { get; set; }
+        public string LowerTrayPrice { get; set; }
         public string InstallationPack { get; set; }
         public string InstallationPackPrice { get; set; }
         public string ServicePack { get; set; }

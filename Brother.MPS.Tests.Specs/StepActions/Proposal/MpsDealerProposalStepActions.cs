@@ -231,7 +231,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var products = _contextData.PrintersProperties;
             foreach (var product in products)
             {
-                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.InstallationPack, product.IncludeDelivery);
+                PopulatePrinterDetails(dealerProposalsCreateProductsPage, product.Model, product.Price, product.LowerTrayPrice, product.InstallationPack, product.IncludeDelivery);
             }
             ClickSafety( dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
             if(_contextData.DriverInstance == UserType.SubDealer)
@@ -1057,6 +1057,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private void PopulatePrinterDetails(DealerProposalsCreateProductsPage dealerProposalsCreateProductsPage,
             string printerName,
             string printerPrice,
+            string lowerTrayPrice,
             string installationPack,
             bool delivery)
         {
@@ -1070,6 +1071,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var addProposalButton = dealerProposalsCreateProductsPage.PopulatePrinterDetails(
                 printerName,
                 printerPrice,
+                lowerTrayPrice,
                 installationPack,
                 delivery,
                 servicePackType,

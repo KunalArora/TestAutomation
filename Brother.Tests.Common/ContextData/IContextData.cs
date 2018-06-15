@@ -64,6 +64,8 @@ namespace Brother.Tests.Common.ContextData
         UserType DriverInstance { get; set; }
         IList<AdditionalChargesItem> AdditionalChargesItemList { get; set; }
         DealerProperties DealerProperties { get; set; }
+        DealerDefaultMargins DealerAdminDefaultMargins { get; set; }
+        DealerDefaultMargins DealerAdminDefaultMarginsOriginal { get; set; }
 
         // Exclusively Type 3
         string AgreementDateCreated { get; set; }
