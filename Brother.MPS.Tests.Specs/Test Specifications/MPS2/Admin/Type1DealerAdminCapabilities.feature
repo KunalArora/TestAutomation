@@ -1,6 +1,7 @@
 ﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN
 Feature: Type1DealerAdminCapabilities
-	Please check the attachment fror Operation that dealer can do on Admin Screen and automate those functionalities
+	In order to test the Cloud MPS dealer Admin capabilities
+	Verify the dealership profile and dealer default margin functionality
 	https://brother-bie.atlassian.net/browse/MPS-5269
 
 Scenario Outline: Type1DealerAdminCapabilities
@@ -23,5 +24,5 @@ Then I can verify that dealership profile was updated successfully
 Scenarios: 
 		| Country        | HardwareDefaultMargin | AccessoriesDefaultMargin | DeliveryDefaultMargin | InstallationDefaultMargin | ServicePackDefaultMargin | MonoClickDefaultCommission | ColourClickDefaultCommission |
 		| United Kingdom | 11.01                 | 22.02                    | 33.03                 | 44.04                     | 55.05                    | 66.06                      | 77.07                        |
-#default value
+#default margins default value
 #		| United Kingdom | 15.00                 | 15.00                    | 19.00                 | 19.00                     | 19.00                    | 19.00                      | 19.00                        |

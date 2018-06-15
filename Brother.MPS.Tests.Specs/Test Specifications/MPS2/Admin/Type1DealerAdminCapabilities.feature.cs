@@ -37,9 +37,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DealerAdminCapabilities", "\tPlease check the attachment fror Operation that dealer can do on Admin Screen an" +
-                    "d automate those functionalities\r\n\thttps://brother-bie.atlassian.net/browse/MPS-" +
-                    "5269", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DealerAdminCapabilities", "\tIn order to test the Cloud MPS dealer Admin capabilities\r\n\tVerify the dealership" +
+                    " profile and dealer default margin functionality\r\n\thttps://brother-bie.atlassian" +
+                    ".net/browse/MPS-5269", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TEST",
@@ -84,15 +84,15 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         public virtual void Type1DealerAdminCapabilities(string country, string hardwareDefaultMargin, string accessoriesDefaultMargin, string deliveryDefaultMargin, string installationDefaultMargin, string servicePackDefaultMargin, string monoClickDefaultCommission, string colourClickDefaultCommission, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1DealerAdminCapabilities", exampleTags);
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 7
+this.ScenarioSetup(scenarioInfo);
+#line 8
 testRunner.Given(string.Format("Country is \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
-testRunner.Given("I select Admin menu and click on Default Margins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-testRunner.Then("I will be taken into the Default Margins tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("I select Admin menu and click on Default Margins", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
+testRunner.Then("I will be taken into the Default Margins tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
 testRunner.When(string.Format(@"I overtype default margins HardwareDefaultMargin of ""{0}"", AccessoriesDefaultMargin of ""{1}"", DeliveryDefaultMargin of ""{2}"", InstallationDefaultMargin of ""{3}"", ServicePackDefaultMargin of ""{4}"", MonoClickDefaultCommission of ""{5}"", and ColourClickDefaultCommission of ""{6}""  with required % and click Save", hardwareDefaultMargin, accessoriesDefaultMargin, deliveryDefaultMargin, installationDefaultMargin, servicePackDefaultMargin, monoClickDefaultCommission, colourClickDefaultCommission), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -115,16 +115,16 @@ testRunner.When(string.Format(@"I overtype default margins HardwareDefaultMargin
                         "1000",
                         "20",
                         "250"});
-#line 12
+#line 13
 testRunner.Then("I verify default margins will be amended", ((string)(null)), table1, "Then ");
-#line 17
-testRunner.Given("I select Admin menu and click on Delearship Profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
-testRunner.Then("I will be taken into the Dealership Profile tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("I select Admin menu and click on Delearship Profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
+testRunner.Then("I will be taken into the Dealership Profile tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
 testRunner.When("I amend Profile description and use the browse function to add a Jpeg as a logo, " +
                     "Click Save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 21
 testRunner.Then("I can verify that dealership profile was updated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

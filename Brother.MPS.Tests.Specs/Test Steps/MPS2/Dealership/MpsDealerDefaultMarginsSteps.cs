@@ -94,7 +94,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Dealership
 
 
         [Then(@"I verify default margins will be amended")]
-        public void ThenIDefaultMarginsWillBeAmended(Table printers)
+        public void ThenIVerifyDefaultMarginsWillBeAmended(Table printers)
         {
             // try create proposal for view margins. logic similar as Type1BusinessScenario_1
             _mpsDealerProposalSteps.GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerFrom(_contextData.Country.Name);
