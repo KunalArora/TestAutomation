@@ -319,6 +319,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BinaryResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingType\BillingType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\CommunicationMethod\CommunicationMethod.en-gb.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommunicationMethod.en-gb.Designer.cs</LastGenOutput>
@@ -350,6 +351,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CsvTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.pl-pl.resx" />
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
@@ -472,6 +474,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
@@ -486,6 +489,7 @@
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -507,6 +511,7 @@
     <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\UsageType\UsageType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UsageType.Designer.cs</LastGenOutput>

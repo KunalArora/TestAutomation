@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -1023,7 +1024,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             int volumeMono,
             int volumeColour,
             string usageType,
-            string resourceUsageTypePayAsYouGo)
+            string resourceUsageTypePayAsYouGo,
+            string countryIso)
         {
             LoggingService.WriteLogOnMethodEntry(printerName, coverageMono, coverageColour, volumeMono, volumeColour, usageType, resourceUsageTypePayAsYouGo);
             var printerContainer = getPrinterElement(printerName);
@@ -1033,7 +1035,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true");
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
-            if (usageType.Equals(resourceUsageTypePayAsYouGo))
+            if (usageType.Equals(resourceUsageTypePayAsYouGo) || countryIso == CountryIso.Poland)
             {
                 ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
             }
@@ -1048,7 +1050,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true");
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
-                if (usageType.Equals(resourceUsageTypePayAsYouGo)) // is dowpdown type
+                if (usageType.Equals(resourceUsageTypePayAsYouGo) || countryIso == CountryIso.Poland) // is dowpdown type
                 {
                     ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
                 }

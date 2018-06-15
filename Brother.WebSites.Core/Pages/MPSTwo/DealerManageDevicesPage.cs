@@ -819,7 +819,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var installationRequestContainer = SeleniumHelper.FindElementByCssSelector(InstallationRequestContainerSelector);
             var IRRowElementsContainer = SeleniumHelper.FindElementByCssSelector(installationRequestContainer, InstallationRequestRowSelector);
             var elements = SeleniumHelper.FindRowElementsWithinTable(IRRowElementsContainer);
-
             foreach(var element in elements)
             {
                 var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector);

@@ -158,10 +158,13 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
             detailInputPage.FillOrganisationDetails(_contextData.Language);
             detailInputPage.FillOrganisationContactDetail(_contextData.Language);
-            _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
-            _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
-            _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
-            _contextData.CustomerLastName = dealerProposalsCreateCustomerInformationPage.GetLastName();
+            if(_contextData.Country.CountryIso != CountryIso.Poland)
+            {
+                _contextData.CustomerEmail = dealerProposalsCreateCustomerInformationPage.GetEmail();
+                _contextData.CustomerInformationName = dealerProposalsCreateCustomerInformationPage.GetCompanyName();
+                _contextData.CustomerFirstName = dealerProposalsCreateCustomerInformationPage.GetFirstName();
+                _contextData.CustomerLastName = dealerProposalsCreateCustomerInformationPage.GetLastName();
+            }
             ClickSafety( detailInputPage.NextButton, detailInputPage ) ;
             if(_contextData.DriverInstance == UserType.SubDealer)
             {
@@ -309,7 +312,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             int proposalId = dealerProposalsCreateSummaryPage.ReturnContractId();
             _contextData.ProposalId = proposalId;
             string resourceServicePackTypeIncludedInClickPrice = _translationService.GetServicePackTypeText(TranslationKeys.ServicePackType.IncludedInClickPrice, _contextData.Culture);
-            if(_contextData.Country.Name.Equals("Germany"))
+            if(_contextData.Country.CountryIso == CountryIso.Germany)
             {
                 AssertSummaryPageForGermany(dealerProposalsCreateSummaryPage);
             }
@@ -633,6 +636,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var resourcePdfFileTotalInstalledPurchasePrice = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.TotalInstalledPurchasePrice, _contextData.Culture);
             var resourcePdfFileMinimumClickCharge = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumClickCharge, _contextData.Culture);
             var resourcePdfFileMinimumVolumePerQuarter = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.MinimumVolumePerQuarter, _contextData.Culture);
+            var resourceBillingType = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.BillingType, _contextData.Culture);
+            var resourceUsageType = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.UsageType, _contextData.Culture);
             Country country = _contextData.Country;
 
             if (_pdfHelper.PdfExists(pdfFile) == false)
@@ -668,11 +673,23 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
                         };
+                        break;
+                case CountryIso.Poland:
+                    string deviceTotalsTotalPriceNet = summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"];
+                    int place = deviceTotalsTotalPriceNet.IndexOf(Convert.ToChar(32));
+                    string result = deviceTotalsTotalPriceNet.Remove(place, 1).Insert(place, Convert.ToChar(160).ToString());
+                    searchTextArray = new string[]
+                        {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, result),                            
+                            string.Format("{0} {1}", resourceBillingType , summaryValue["SummaryTable.UsageBillingFrequency"]),
+                            string.Format("{0} {1}", resourceUsageType, summaryValue["SummaryTable.UsageType"])
+                        };
                     break;
                 default:
                     searchTextArray = new string[]
                         {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
                             string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
@@ -1076,6 +1093,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 delivery,
                 servicePackType,
                 resourceServicePackTypeIncludedInClickPrice,
+                _contextData.Country.CountryIso,
                 out margin,
                 out unitPrice,
                 out printerContainer);
@@ -1121,7 +1139,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 volumeMono,
                 volumeColour,
                 usageType,
-                resourceUsageTypePayAsYouGo
+                resourceUsageTypePayAsYouGo,
+                _contextData.Country.CountryIso
             );
 
             ValidateContentOnClickPricePage(dealerProposalsCreateClickPricePage, printerContainer);
