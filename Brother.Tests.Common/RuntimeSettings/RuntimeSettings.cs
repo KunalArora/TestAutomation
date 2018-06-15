@@ -1,4 +1,6 @@
-﻿namespace Brother.Tests.Common.RuntimeSettings
+﻿using System.Collections.Generic;
+
+namespace Brother.Tests.Common.RuntimeSettings
 {
     public class RuntimeSettings : IRuntimeSettings
     {
@@ -14,15 +16,8 @@
         private int _defaultInvoiceGenerationTimeout = 20;
         private int _defaultElementNotPresentTimeout = 3;
         private int _defaultWaitForItemTimeout = 60;
-        private string _defaultType3DealerUsernameBUK = null;
-        private string _defaultType3DealerPasswordBUK = null;
-        private string _defaultType1DealerUsernameBUK = null;
-        private string _defaultType1DealerPasswordBUK = null;
-        private string _defaultType1DealerUsernameBIG = null;
-        private string _defaultType1DealerPasswordBIG = null;
-        private string _defaultType1DealerUsernameBSW = null;
-        private string _defaultType1DealerPasswordBSW = null;
-
+        private Dictionary<string, string> _defaultDealerUsername = new Dictionary<string, string>();
+        private Dictionary<string, string> _defaultDealerPassword = new Dictionary<string, string>();
 
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
@@ -63,6 +58,8 @@
             int? defaultInvoiceGenerationTimeout,
             int? defaultElementNotPresentTimeout,
             int? defaultWaitForItemTimeout,
+            Dictionary<string, string> defaultDealerUsername,
+            Dictionary<string, string> defaultDealerPassword,
             string defaultType3DealerUsernameBUK,
             string defaultType3DealerPasswordBUK,
             string defaultType1DealerUsernameBUK,
@@ -85,14 +82,8 @@
             DefaultInvoiceGenerationTimeout = defaultInvoiceGenerationTimeout ?? _defaultInvoiceGenerationTimeout;
             DefaultElementNotPresentTimeout = defaultElementNotPresentTimeout ?? _defaultElementNotPresentTimeout;
             DefaultWaitForItemTimeout = defaultWaitForItemTimeout ?? _defaultWaitForItemTimeout;
-            DefaultType3DealerUsernameBUK = defaultType3DealerUsernameBUK ?? _defaultType3DealerUsernameBUK;
-            DefaultType3DealerPasswordBUK = defaultType3DealerPasswordBUK ?? _defaultType3DealerPasswordBUK;
-            DefaultType1DealerUsernameBUK = defaultType1DealerUsernameBUK ?? _defaultType1DealerUsernameBUK;
-            DefaultType1DealerPasswordBUK = defaultType1DealerPasswordBUK ?? _defaultType1DealerPasswordBUK;
-            DefaultType1DealerUsernameBIG = defaultType1DealerUsernameBIG ?? _defaultType1DealerUsernameBIG;
-            DefaultType1DealerPasswordBIG = defaultType1DealerPasswordBIG ?? _defaultType1DealerPasswordBIG;
-            DefaultType1DealerUsernameBSW = defaultType1DealerUsernameBSW ?? _defaultType1DealerUsernameBSW;
-            DefaultType1DealerPasswordBSW = defaultType1DealerPasswordBSW ?? _defaultType1DealerPasswordBSW;
+            DefaultDealerUsername = defaultDealerUsername ?? _defaultDealerUsername;
+            DefaultDealerPassword = defaultDealerPassword ?? _defaultDealerPassword;
         }
 
         public int DefaultPageLoadTimeout { get; set; }
@@ -107,13 +98,7 @@
         public int DefaultInvoiceGenerationTimeout { get; set; }
         public int DefaultElementNotPresentTimeout { get; set; }
         public int DefaultWaitForItemTimeout { get; set; }
-        public string DefaultType3DealerUsernameBUK { get; set; }
-        public string DefaultType3DealerPasswordBUK { get; set; }
-        public string DefaultType1DealerUsernameBUK { get; set; }
-        public string DefaultType1DealerPasswordBUK { get; set; }
-        public string DefaultType1DealerUsernameBIG { get; set; }
-        public string DefaultType1DealerPasswordBIG { get; set; }
-        public string DefaultType1DealerUsernameBSW { get; set; }
-        public string DefaultType1DealerPasswordBSW { get; set; }
+        public Dictionary<string, string> DefaultDealerUsername { get; set; }
+        public Dictionary<string, string> DefaultDealerPassword { get; set; }
     }
 }

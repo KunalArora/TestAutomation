@@ -17,6 +17,7 @@ namespace Brother.Tests.Common.ContextData
         public string Environment { get; set; }
         public string EnvironmentName { get; set; }
         public BusinessType BusinessType { get; set; }
+        public DealerAccountType? DealerAccountType { get; set; }
         public string SpecificDealerUsername { get; set; }
         public string SpecificDealerPassword { get; set; }
         public string SpecificLocalOfficeApproverUsername { get; set; }
@@ -122,13 +123,15 @@ namespace Brother.Tests.Common.ContextData
 
     public class SnapDictionary : Dictionary<string, Dictionary<string, string>>
     {
-        public Dictionary<string, string> this[Type pageClass] {
-            get {
-                if(base.ContainsKey(pageClass.FullName) == false)
+        public Dictionary<string, string> this[Type pageClass]
+        {
+            get
+            {
+                if (base.ContainsKey(pageClass.FullName) == false)
                 {
-                    base.Add(pageClass.FullName, new Dictionary<string, string>() );
+                    base.Add(pageClass.FullName, new Dictionary<string, string>());
                 }
-                return  base[pageClass.FullName]  ;
+                return base[pageClass.FullName];
             }
             set { base[pageClass.FullName] = value; }
         }

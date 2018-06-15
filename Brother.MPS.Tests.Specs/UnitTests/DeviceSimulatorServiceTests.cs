@@ -19,7 +19,7 @@ namespace Brother.Tests.Specs.UnitTests
 
         public DeviceSimulatorServiceTests()
         {
-            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new RuntimeSettings(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), new MpsLoggingConsole(new LoggingServiceSettings()), new MpsContextData());
+            _deviceSimulatorService = new DeviceSimulatorService(new WebRequestService(new MpsLoggingConsole(new LoggingServiceSettings())), new RuntimeSettings(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null), new MpsLoggingConsole(new LoggingServiceSettings()), new MpsContextData());
         }
 
         [Test]

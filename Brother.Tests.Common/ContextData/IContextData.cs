@@ -23,6 +23,7 @@ namespace Brother.Tests.Common.ContextData
         string SpecificLocalOfficeApproverUsername { get; set; }
         string SpecificLocalOfficeApproverPassword { get; set; }
         BusinessType BusinessType { get; set; }
+        DealerAccountType? DealerAccountType { get; set; }
 
         string ProposalName { get; set; }
         int ProposalId { get; set; }

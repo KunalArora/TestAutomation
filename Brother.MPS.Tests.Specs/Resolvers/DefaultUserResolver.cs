@@ -1,5 +1,4 @@
 ﻿using Brother.Tests.Common.ContextData;
-using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.RuntimeSettings;
 using System;
@@ -24,7 +23,7 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return GetDealerUsername(_contextData.BusinessType);
+                return GetDealerUsername(_contextData.BusinessType, _contextData.DealerAccountType);
             }
         }
 
@@ -32,130 +31,56 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return GetDealerPassword(_contextData.BusinessType);
+                return GetDealerPassword(_contextData.BusinessType, _contextData.DealerAccountType);
             }
         }
 
-        public string GetDealerUsername(BusinessType businessType)
+        private string GetDealerUsername(BusinessType businessType, DealerAccountType? dealerAccountType)
         {
-            string loginPatternNumber;
+            //string loginPatternNumber;
 
             if (_contextData.SpecificDealerUsername != null)
             {
                 return _contextData.SpecificDealerUsername;
             }
 
-            if(businessType.Equals(BusinessType.Type1)) // Only Type1
+            // keyName ex. 
+            // DefaultType1DealerUsernameBUK
+            // DefaultType3DealerUsernameBIG
+            // DefaultType1And3DealerUsernameBSW
+            var keyNameTypeX = dealerAccountType != null ? Enum.GetName(typeof(DealerAccountType), dealerAccountType) : Enum.GetName(typeof(BusinessType), businessType);
+            var keyName = string.Format("Default{0}DealerUsername{1}", keyNameTypeX, _contextData.Country.BrotherCode);
+            if (_runtimeSettings.DefaultDealerUsername.ContainsKey(keyName))
             {
-                loginPatternNumber = "1";
-                switch (_contextData.Country.CountryIso)
-                {
-                    case CountryIso.UnitedKingdom:
-                        if (_runtimeSettings.DefaultType1DealerUsernameBUK != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerUsernameBUK;
-                        }
-                        break;
-                    case CountryIso.Germany:
-                        if (_runtimeSettings.DefaultType1DealerUsernameBIG != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerUsernameBIG;
-                        }
-                        break;
-                    case CountryIso.Switzerland:
-                        if (_runtimeSettings.DefaultType1DealerUsernameBSW != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerUsernameBSW;
-                        }
-                        loginPatternNumber = "2";
-                        break;
-                    default:
-                        throw new Exception("The dealer username (Type 1) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
-                }
+                return _runtimeSettings.DefaultDealerUsername[keyName];
             }
-            else if(businessType.Equals(BusinessType.Type3)) // Only Type3
-            {
-                loginPatternNumber = "3";
-                switch (_contextData.Country.CountryIso)
-                {
-                    case CountryIso.UnitedKingdom:
-                        if (_runtimeSettings.DefaultType3DealerUsernameBUK != null)
-                        {
-                            return _runtimeSettings.DefaultType3DealerUsernameBUK;
-                        }
-                        break;
-                    
-                    default:
-                        throw new Exception("The dealer username (Type 3) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
-                }
-            }
-            else
-            {
-                throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerUsername", businessType));
-            }
-
+            // return ex. MPS-BUK-UAT-Dealer1-Auto@brother.co.uk
+            var loginPatternNumber = dealerAccountType != null ? (int)dealerAccountType : (int)businessType;
             return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "Dealer", loginPatternNumber);
+
         }
 
-        public string GetDealerPassword(BusinessType businessType)
+        private string GetDealerPassword(BusinessType businessType, DealerAccountType? dealerAccountType)
         {
-            string loginPatternNumber;
+            //string loginPatternNumber;
 
             if (_contextData.SpecificDealerPassword != null)
             {
                 return _contextData.SpecificDealerPassword;
             }
-
-            if (businessType.Equals(BusinessType.Type1)) // Only Type1
+            // keyName ex. 
+            // DefaultType1DealerPasswordBUK
+            // DefaultType3DealerPasswordBIG
+            // DefaultType1And3DealerPasswordBSW
+            var keyNameTypeX = dealerAccountType != null ? Enum.GetName(typeof(DealerAccountType), dealerAccountType) : Enum.GetName(typeof(BusinessType), businessType);
+            var keyName = string.Format("Default{0}DealerPassword{1}", keyNameTypeX, _contextData.Country.BrotherCode);
+            if (_runtimeSettings.DefaultDealerPassword.ContainsKey(keyName))
             {
-                loginPatternNumber = "1";
-                switch (_contextData.Country.CountryIso)
-                {
-                    case CountryIso.UnitedKingdom:
-                        if (_runtimeSettings.DefaultType1DealerPasswordBUK != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerPasswordBUK;
-                        }
-                        break;
-                    case CountryIso.Germany:
-                        if (_runtimeSettings.DefaultType1DealerPasswordBIG != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerPasswordBIG;
-                        }
-                        break;
-                    case CountryIso.Switzerland:
-                        if (_runtimeSettings.DefaultType1DealerPasswordBSW != null)
-                        {
-                            return _runtimeSettings.DefaultType1DealerPasswordBSW;
-                        }
-                        loginPatternNumber = "2";
-                        break;
-                    default:
-                        throw new Exception("The dealer password (Type 1) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
-                }
+                return _runtimeSettings.DefaultDealerPassword[keyName];
             }
-            else if (businessType.Equals(BusinessType.Type3)) // Only Type3
-            {
-                loginPatternNumber = "3";
-                switch (_contextData.Country.CountryIso)
-                {
-                    case CountryIso.UnitedKingdom:
-                        if (_runtimeSettings.DefaultType3DealerPasswordBUK != null)
-                        {
-                            return _runtimeSettings.DefaultType3DealerPasswordBUK;
-                        }
-                        break;
-
-                    default:
-                        throw new Exception("The dealer password (Type 3) cannot be resolved for this country with countryIso = " + _contextData.Country.CountryIso);
-                }
-            }
-            else
-            {
-                throw new Exception(string.Format("Invalid business type = {0} specifed in DefaultUserResolver.GetDealerPassword", businessType));
-            }
-
+            var loginPatternNumber = (int)businessType; // note: Type1And3 dedicated pass maybe NOTHING. (ex. UKdealer13)
             return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "dealer", loginPatternNumber);
+
         }
 
         public string LocalOfficeAdminUsername
