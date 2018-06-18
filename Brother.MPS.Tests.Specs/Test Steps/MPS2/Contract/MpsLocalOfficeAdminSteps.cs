@@ -145,11 +145,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
         }
 
-        [When(@"I create a new dealer with ""(.*)"" and verify the created dealer details")]
-        public void WhenICreateANewDealerWithAndVerifyTheCreatedDealerDetails(int sapVendorId)
+        [When(@"I create a new dealer with SAP Vendor Id as ""(.*)"" and verify the created dealer details")]
+        public void WhenICreateANewDealerWithSAPVendorIdAsAndVerifyTheCreatedDealerDetails(string sapVendorId)
         {
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
             _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
+            //In case of United kingdom, there is a need to verify sap vendor number before making the dealer 
             if (_contextData.Country.CountryIso == CountryIso.UnitedKingdom)
             {
                 _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.EnterSapVendorNumber(_localOfficeAdminDealersCreateDealershipPage, sapVendorId);

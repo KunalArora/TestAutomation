@@ -92,7 +92,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I navigate to the administration page with culture \"{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When(string.Format("I create a new dealer with \"{0}\" and verify the created dealer details", sapVendorId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I create a new dealer with SAP Vendor Id as \"{0}\" and verify the created dealer d" +
+                        "etails", sapVendorId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And("I edit the details for created dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11

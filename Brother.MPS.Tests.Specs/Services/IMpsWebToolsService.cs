@@ -15,6 +15,6 @@ namespace Brother.Tests.Specs.Services
         SwapRequestDetail GetSwapRequestDetail(int installedPrinterId);
         void DeleteDealership(string dealershipEmail);
         void RemoveProductionSmokeTests();
-        void RegisterRole(string emailAddress, string role);
+        void AddMpsRole(string emailAddress, string role);
     }
 }

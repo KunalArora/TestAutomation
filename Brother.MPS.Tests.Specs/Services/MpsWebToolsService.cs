@@ -132,7 +132,7 @@ namespace Brother.Tests.Specs.Services
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
         }
 
-        public void RegisterRole(string emailAddress, string role)
+        public void AddMpsRole(string emailAddress, string role)
         {
             _loggingService.WriteLogOnMethodEntry(emailAddress, role);
 

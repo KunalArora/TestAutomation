@@ -225,7 +225,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.DealerProperties.BrotherSalesPerson = localOfficeAdminDealersCreateDealershipPage.GetBrotherSalesPerson();
 
             _mpsWebToolsService.RegisterCustomer(_contextData.DealerProperties.Email, _contextData.DealerProperties.Password, _contextData.DealerProperties.FirstName, _contextData.DealerProperties.LastName, _contextData.Country.CountryIso);
-            _mpsWebToolsService.RegisterRole(_contextData.DealerProperties.Email, MpsRoles.Dealer);
+            _mpsWebToolsService.AddMpsRole(_contextData.DealerProperties.Email, MpsRoles.Dealer);
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SaveButtonElement);
             _runCommandService.RunCreateDealershipAndDealerCommand();
             
@@ -273,10 +273,10 @@ namespace Brother.Tests.Specs.StepActions.Agreement
                 _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
         }
 
-        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage, int sapVendorId)
+        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage, string sapVendorId)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage, sapVendorId);
-            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber(sapVendorId.ToString());
+            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber(sapVendorId);
 
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapButtonCheckElement);
             localOfficeAdminDealersCreateDealershipPage = PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
