@@ -181,16 +181,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
         {
             LoggingService.WriteLogOnMethodEntry(device, serviceRequestJson, latestDate);
             var message = " mismatch BOCSim.id=" + device.BocDeviceId;
-            int openRequest = (device.OpenServiceRequest - device.ClosedServiceRequest);
-            string serviceRequestTotal = device.OpenServiceRequest != 0 ? device.TotalServiceRequest.ToString() : null; 
+            int openRequest = (device.OpenServiceRequestCount - device.ClosedServiceRequestCount);
+            string serviceRequestTotal = device.OpenServiceRequestCount != 0 ? device.TotalServiceRequestCount.ToString() : null; 
             TestCheck.AssertIsEqual(openRequest.ToString(), serviceRequestJson["TotalOpen"], "OpenServiceRequest" + message);
-            TestCheck.AssertIsEqual(device.ClosedServiceRequest.ToString(), serviceRequestJson["TotalClosed"], "ClosedServiceRequest" + message);
+            TestCheck.AssertIsEqual(device.ClosedServiceRequestCount.ToString(), serviceRequestJson["TotalClosed"], "ClosedServiceRequest" + message);
             TestCheck.AssertIsEqual(serviceRequestTotal, serviceRequestJson["Total"], "TotalServiceRequestChart" + message);
             if(device.IsMonochrome == false)
             {
                 var TotalServiceRequestsElement = SeleniumHelper.FindElementByCssSelector(TotalServiceRequestsSelector);
                 var MostRecentServiceRequestElement = SeleniumHelper.FindElementByCssSelector(MostRecentServiceRequestSelector);
-                TestCheck.AssertIsEqual(device.TotalServiceRequest.ToString(), TotalServiceRequestsElement.Text, "TotalServiceRequest" + message);
+                TestCheck.AssertIsEqual(device.TotalServiceRequestCount.ToString(), TotalServiceRequestsElement.Text, "TotalServiceRequest" + message);
                 TestCheck.AssertTextContains(latestDate, MostRecentServiceRequestElement.Text, "MostRecentServiceRequest" + message);
             }
         }
@@ -200,11 +200,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             LoggingService.WriteLogOnMethodEntry(device, silentJson, agreementShiftDays);
             var message = " mismatch BOCSim.id=" + device.BocDeviceId;
             TestCheck.AssertIsEqual(agreementShiftDays.ToString(), (string)silentJson["TotalSilentDays"], "TotalSilentDaysChart" + message);
-            if(device.IsMonochrome == false)
-            {
-                var TotalSilentDaysElement = SeleniumHelper.FindElementByCssSelector(TotalSilentDaysSelector);
-                TestCheck.AssertIsEqual(agreementShiftDays.ToString(), TotalSilentDaysElement.Text, "TotalSilentDays" + message);
-            }
+            var TotalSilentDaysElement = SeleniumHelper.FindElementByCssSelector(TotalSilentDaysSelector);
+            TestCheck.AssertIsEqual(agreementShiftDays.ToString(), TotalSilentDaysElement.Text, "TotalSilentDays" + message);
         }
     }
 }

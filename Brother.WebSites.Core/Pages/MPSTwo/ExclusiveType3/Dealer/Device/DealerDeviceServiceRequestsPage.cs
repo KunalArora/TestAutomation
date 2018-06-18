@@ -43,7 +43,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             var serviceRequestsTableBodyElement = SeleniumHelper.FindElementByCssSelector(ServiceRequestsTableBodySelector);
             var serviceRequestsRowElements = SeleniumHelper.FindRowElementsWithinTable(serviceRequestsTableBodyElement);
 
-            TestCheck.AssertIsEqual(serviceRequestsRowElements.ToArray().Length.ToString(), device.TotalServiceRequest.ToString(), "Total count of service requets does not match");
+            TestCheck.AssertIsEqual(serviceRequestsRowElements.ToArray().Length.ToString(), device.TotalServiceRequestCount.ToString(), "Total count of service requets does not match");
 
             foreach(var rowElement in serviceRequestsRowElements)
             {

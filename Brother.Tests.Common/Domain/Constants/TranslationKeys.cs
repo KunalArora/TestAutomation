@@ -180,5 +180,10 @@
             public static string English { get { return "ENGLISH"; } }
             public static string French { get { return "FRENCH"; } }
         }
+
+        public static class CsvTranslations
+        {
+            public static string SerialNumber { get { return "SERIAL_NUMBER"; } }
+        }
     }
 }

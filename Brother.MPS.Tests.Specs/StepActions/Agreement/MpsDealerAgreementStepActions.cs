@@ -913,7 +913,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
 
             foreach (var device in _contextData.AdditionalDeviceProperties)
             {
-                device.OpenServiceRequest++;
+                device.OpenServiceRequestCount++;
                 dealerAgreementDevicesPage.ClickRaiseServiceRequest(device.MpsDeviceId);
 
                 var dealerAgreementServiceRequestsCreatePage = PageService.GetPageObject<DealerAgreementServiceRequestsCreatePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
@@ -1439,25 +1439,26 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry();
 
+            int index = -1;
+            var resourceSerialNumberCsv = _translationService.GetCsvTranslations(TranslationKeys.CsvTranslations.SerialNumber, _contextData.Culture);
             string silentDeviceCsvData = _mpsWebToolsService.DownloadSilentDeviceReport();
             var splitSilentDeviceCsvData = silentDeviceCsvData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            
+
+            //As the header is 2nd row in the csv data so, using a fixed value as 1 to retrieve the index of Serial Number from the header
+            string[] headerParts = splitSilentDeviceCsvData[1].Replace("\"", "").Split(',');
+            index = Array.IndexOf(headerParts, resourceSerialNumberCsv);
+
             foreach(var device in _contextData.AdditionalDeviceProperties)
             {
                 var IsPresent = false;
                 foreach (var line in splitSilentDeviceCsvData)
                 {
-                    try
+                    string[] parts = line.Replace("\"", "").Split(',');
+                    if (parts.Length > index && parts[index].Equals(device.SerialNumber))
                     {
-                        string[] parts = line.Split(',');
-                        var checkString = string.Join(" ", parts);
-                        if (checkString.Contains(device.SerialNumber))
-                        {
-                            IsPresent = true;
-                            break;
-                        }
+                        IsPresent = true;
+                        break;
                     }
-                    catch { }
                 }
                 if(IsPresent == false)
                 {

@@ -141,13 +141,13 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ServiceRequestId { get; set; }
         public string ServiceRequestType { get; set; }
         public string ServiceRequestReplyMessage { get; set; }
-        public int OpenServiceRequest { get; set; }
-        public int ClosedServiceRequest { get; set; }
-        public int TotalServiceRequest
+        public int OpenServiceRequestCount { get; set; }
+        public int ClosedServiceRequestCount { get; set; }
+        public int TotalServiceRequestCount
         {
             get
             {
-                return OpenServiceRequest;
+                return OpenServiceRequestCount;
             }
         }
         public string InstallationPack { get; set; }
