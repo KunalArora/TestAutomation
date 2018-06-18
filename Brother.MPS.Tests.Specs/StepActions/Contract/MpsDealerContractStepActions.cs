@@ -285,7 +285,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
+        public string VerifyIRStatusAndRetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);

@@ -824,7 +824,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var InstallerEmailElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestEmailSelector);
                 var CompanySiteElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestCompanySiteSelector);
                 var IRStatusElement = SeleniumHelper.FindElementByCssSelector(element, InstallationRequestStatusSelector);
-                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted ))
+                TestCheck.AssertIsEqual(InstallerEmailElement.Text, installerEmail, "Installer email does not match");
+                TestCheck.AssertIsEqual(CompanySiteElement.Text, companyLocation, "Company location does not match");
+                TestCheck.AssertIsEqual(IRStatusElement.Text, resourceInstallationStatusNotStarted, "Installation status is not equal to Not Started");
+                if (InstallerEmailElement.Text.Equals(installerEmail) && CompanySiteElement.Text.Equals(companyLocation) && IRStatusElement.Text.Equals(resourceInstallationStatusNotStarted))
                 {
                     var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(element, ActionsButtonSelector);
                     SeleniumHelper.ClickSafety(ActionsButtonElement);

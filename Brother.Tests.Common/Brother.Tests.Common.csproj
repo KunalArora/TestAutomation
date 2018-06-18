@@ -154,6 +154,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgreementStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallationRequestStatus.pl-pl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
       <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -370,6 +375,10 @@
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstallationRequestStatus.pl-pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
