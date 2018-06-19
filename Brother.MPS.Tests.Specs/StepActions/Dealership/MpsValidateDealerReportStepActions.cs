@@ -78,8 +78,8 @@ namespace Brother.Tests.Specs.StepActions.Dealership
                 .Where(kv => kv.Key.StartsWith(SnapNamePrefix))
                 .Select(kv => kv.Value["SummaryTable.DeviceTotalsTotalPriceNet"])
                 .Sum(DeviceTotalsTotalPriceNet => double.Parse(DeviceTotalsTotalPriceNet, numberStyles, ContextData.CultureInfo));
-            var actualToralValueInContracts = double.Parse(dealerReportProp.TotalValueInContracts, ContextData.CultureInfo);
-            Assert.AreEqual(expectedTotalValueInContracts, actualToralValueInContracts, 2, "Incorrect TotalValueInContracts file={0}", excelFilePath);
+            var actualTotalValueInContracts = double.Parse(dealerReportProp.TotalValueInContracts, ContextData.CultureInfo);
+            Assert.AreEqual(expectedTotalValueInContracts, actualTotalValueInContracts, 2, "Incorrect TotalValueInContracts file={0}", excelFilePath);
 
             _dealerReportExcelHelper.DeleteExcelFile(excelFilePath);
         }
