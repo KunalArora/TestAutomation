@@ -381,6 +381,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.pl-pl.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LeasingBillingCycle.de-de.Designer.cs</LastGenOutput>

@@ -146,13 +146,19 @@ namespace Brother.Tests.Specs.StepActions.Contract
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             var products = _contextData.PrintersProperties;
+            int retries = 0;
             foreach (var product in products)
             {
                 var totalPageCount = product.TotalPageCount; 
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
+                    retries++;
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
+                    if(retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        throw new Exception("Error while verifying the updated print counts. Retry count exceeded deafult retry limit");
+                    }
                     continue;
                 }
                 Refresh(dealerManageDevicesPage);
@@ -162,8 +168,20 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
+            int retries = 0;
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber);
+            while (!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber)))
+            {
+                retries++;
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
+                dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception("Error while verifying the updated print counts. Retry count exceeded deafult retry limit");
+                }
+                continue;
+            }
+            Refresh(dealerManageDevicesPage);
         }
 
         //Similar function is already present in this file so, refactor this particular function.
