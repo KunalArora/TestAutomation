@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
+namespace Brother.Tests.Common.Resources.DealerCulture {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DeviceConnectionStatus {
+    internal class DealerCulture {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DeviceConnectionStatus() {
+        internal DealerCulture() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.DeviceConnectionStatus.DeviceConnectionStatus", typeof(DeviceConnectionStatus).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Brother.Tests.Common.Resources.DealerCulture.DealerCulture", typeof(DealerCulture).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,11 @@ namespace Brother.Tests.Common.Resources.DeviceConnectionStatus {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NotConnected.
+        ///   Looks up a localized string similar to English.
         /// </summary>
-        internal static string NOT_CONNECTED {
+        internal static string ENGLISH {
             get {
-                return ResourceManager.GetString("NOT_CONNECTED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Responding.
-        /// </summary>
-        internal static string RESPONDING {
-            get {
-                return ResourceManager.GetString("RESPONDING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Silent.
-        /// </summary>
-        internal static string SILENT {
-            get {
-                return ResourceManager.GetString("SILENT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Swapped.
-        /// </summary>
-        internal static string SWAPPED {
-            get {
-                return ResourceManager.GetString("SWAPPED", resourceCulture);
+                return ResourceManager.GetString("ENGLISH", resourceCulture);
             }
         }
     }

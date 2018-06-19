@@ -58,16 +58,8 @@ namespace Brother.Tests.Common.RuntimeSettings
             int? defaultInvoiceGenerationTimeout,
             int? defaultElementNotPresentTimeout,
             int? defaultWaitForItemTimeout,
-            Dictionary<string,string> defaultDealerUsername,
-            Dictionary<string, string> defaultDealerPassword,
-            string defaultType3DealerUsernameBUK,
-            string defaultType3DealerPasswordBUK,
-            string defaultType1DealerUsernameBUK,
-            string defaultType1DealerPasswordBUK,
-            string defaultType1DealerUsernameBIG,
-            string defaultType1DealerPasswordBIG,
-            string defaultType1DealerUsernameBSW,
-            string defaultType1DealerPasswordBSW
+            Dictionary<string, string> defaultDealerUsername,
+            Dictionary<string, string> defaultDealerPassword
             )
         {
             DefaultPageLoadTimeout = defaultPageLoadTimeout ?? _defaultPageLoadTimeout;
@@ -98,7 +90,7 @@ namespace Brother.Tests.Common.RuntimeSettings
         public int DefaultInvoiceGenerationTimeout { get; set; }
         public int DefaultElementNotPresentTimeout { get; set; }
         public int DefaultWaitForItemTimeout { get; set; }
-        public Dictionary<string,string> DefaultDealerUsername { get; set; }
+        public Dictionary<string, string> DefaultDealerUsername { get; set; }
         public Dictionary<string, string> DefaultDealerPassword { get; set; }
     }
 }

@@ -331,10 +331,16 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsDealerAgreement.VerifyDeviceDetailsOnDashboard(_dealerAgreementDevicesPage);
         }
 
-        [Then(@"I can verify the Print Summary and Consumables on device dashboard page")]
-        public void ThenICanVerifyThePrintSummaryAndConsumablesOnDeviceDashboardPage()
+        [Then(@"I can verify the detailed device information on device dashboard page")]
+        public void ThenICanVerifyTheDetailedDeviceInformationOnDeviceDashboardPage()
         {
-            _mpsDealerAgreement.VerifyPrintSummaryAndConsumablesOnDashboard(_dealerAgreementDevicesPage);
+            _mpsDealerAgreement.VerifyDeviceAndGraphDetails(_dealerAgreementDevicesPage);
+        }
+
+        [Then(@"I can verify the print details, consumable and silent tab information")]
+        public void ThenICanVerifyThePrintDetailsConsumableAndSilentTabInformation()
+        {
+            _mpsDealerAgreement.VerifyInformationOtherThanOverviewOnDeviceDetails(_dealerAgreementDevicesPage);
         }
 
         [Then(@"I can verify the click rate billing invoice")]
@@ -379,6 +385,24 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         {
             var dealerReportsDashboardPage = _mpsDealerAgreement.NavigateToReports(_dealerAgreementDevicesPage);
             _mpsDealerAgreement.DownloadCPPAgreementReportAndVerify(dealerReportsDashboardPage);
+        }
+
+        [Then(@"I can verify the device status being silent")]
+        public void ThenICanVerifyTheDeviceStatusBeingSilent()
+        {
+            string resourceInstalledPrinterStatusInstalled = _translationService.GetInstalledPrinterStatusText(
+                TranslationKeys.InstalledPrinterStatus.InstalledType3, _contextData.Culture);
+            string resourceDeviceConnectionStatusSilent = _translationService.GetDeviceConnectionStatusText(
+                TranslationKeys.DeviceConnectionStatus.Silent, _contextData.Culture);
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyThatDevicesAreSilent(
+                _dealerAgreementDevicesPage, resourceInstalledPrinterStatusInstalled, resourceDeviceConnectionStatusSilent);
+        }
+
+        [Then(@"I can verify the silent device report")]
+        public void ThenICanVerifyTheSilentDeviceReport()
+        {
+            _mpsDealerAgreement.RunSendSilentDevicesReportsCommand();
+            _mpsDealerAgreement.DownloadSilentDeviceReportAndVerifyDevices();
         }
     }
 }

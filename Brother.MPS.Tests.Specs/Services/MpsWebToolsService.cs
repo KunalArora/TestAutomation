@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Text;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -20,6 +21,7 @@ namespace Brother.Tests.Specs.Services
         private readonly ILoggingService _loggingService;
         private string _baseUrl = string.Empty;
         private string _baseUrlWithoutMps2 = string.Empty;
+        private string _baseUrlWithAutomation = string.Empty;
         private string _authTokenName = "X-BROTHER-Auth";
 
         public MpsWebToolsService(IUrlResolver urlResolver, IWebRequestService webRequestService, IContextData contextData, ILoggingService loggingService)
@@ -30,17 +32,19 @@ namespace Brother.Tests.Specs.Services
             _loggingService = loggingService;
             _baseUrl = string.Format("{0}/sitecore/admin/integration/mps2/{{0}}", _urlResolver.CmsUrl);
             _baseUrlWithoutMps2 = string.Format("{0}/sitecore/admin/integration/{{0}}", _urlResolver.CmsUrl).Replace("https://", "http://");
-
+            _baseUrlWithAutomation = string.Format("{0}/sitecore/admin/integration/mps2/automation/{{0}}", _urlResolver.CmsUrl);
         }
 
-        private void ExecuteWebTool(string url, string authToken = null)
+        private string ExecuteWebTool(string url, string authToken = null, Encoding encoding = null)
         {
-            _loggingService.WriteLogOnMethodEntry(url, authToken);
+            _loggingService.WriteLogOnMethodEntry(url, authToken, encoding);
 
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
-            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
+            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders, encoding);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+
+            return response.ResponseBody;
         }
 
         private WebPageResponse GetWebToolResponse(string url, string authToken = null)
@@ -118,6 +122,15 @@ namespace Brother.Tests.Specs.Services
             ExecuteWebTool(url);
         }
 
+        public string DownloadSilentDeviceReport()
+        {
+            string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", _contextData.DealerEmail, _contextData.Country.CountryIso);
+            string url = string.Format(_baseUrl, actionPath);
+
+            //TODO: Replace the hard-coded value for encoding after ticket MPS-6018 is completed
+            return ExecuteWebTool(url, encoding: Encoding.Unicode);
+        }
+
         public SwapRequestDetail GetSwapRequestDetail(int installedPrinterId)
         {
             _loggingService.WriteLogOnMethodEntry(installedPrinterId);
@@ -128,6 +141,26 @@ namespace Brother.Tests.Specs.Services
             var response = GetWebToolResponse(url);
 
             return JsonConvert.DeserializeObject<SwapRequestDetail>(response.ResponseBody);
+        }
+
+        public void AddMpsRole(string emailAddress, string role)
+        {
+            _loggingService.WriteLogOnMethodEntry(emailAddress, role);
+
+            string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
+            string url = string.Format(_baseUrlWithoutMps2, actionPath);
+
+            ExecuteWebTool(url);
+        }
+ 
+        public void DeleteDealership(string dealershipEmail)
+        {
+            _loggingService.WriteLogOnMethodEntry(dealershipEmail);
+
+            string actionPath = string.Format("deletedealership.aspx?dealershipemail={0}", dealershipEmail);
+            string url = string.Format(_baseUrlWithAutomation, actionPath);
+
+            ExecuteWebTool(url);
         }
 
         private string AuthToken()
@@ -165,16 +198,6 @@ namespace Brother.Tests.Specs.Services
             {
                 _loggingService.WriteLog(LoggingLevel.INFO, response.ResponseBody);
             }
-        }
-
-        public void RegisterRole(string emailAddress, string role)
-        {
-            _loggingService.WriteLogOnMethodEntry(emailAddress, role);
-
-            string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
-            string url = string.Format(_baseUrlWithoutMps2, actionPath);
-
-            ExecuteWebTool(url);
         }
 
         public void DeleteT1ContractsForDealership( string emailAddress)

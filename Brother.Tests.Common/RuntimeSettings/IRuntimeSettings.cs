@@ -16,7 +16,7 @@ namespace Brother.Tests.Common.RuntimeSettings
         int DefaultInvoiceGenerationTimeout { get; set; }
         int DefaultElementNotPresentTimeout { get; set; }
         int DefaultWaitForItemTimeout { get; set; }
-        Dictionary<string,string> DefaultDealerUsername { get; set; }
-        Dictionary<string, string> DefaultDealerPassword { get; set; }        
+        Dictionary<string, string> DefaultDealerUsername { get; set; }
+        Dictionary<string, string> DefaultDealerPassword { get; set; }
     }
 }

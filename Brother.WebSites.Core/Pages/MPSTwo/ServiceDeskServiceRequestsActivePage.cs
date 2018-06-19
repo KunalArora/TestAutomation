@@ -12,7 +12,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 {
     public class ServiceDeskServiceRequestsActivePage : BasePage, IPageObject
     {
-        private const string _validationElementSelector = ".js-mps-searchable-row";
+        private const string _validationElementSelector = ".mps-dataTables-footer";
         private const string _url = "/mps/local-office/service-desk/service-requests/active";
 
         public string ValidationElementSelector

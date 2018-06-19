@@ -37,7 +37,6 @@ namespace Brother.Tests.Specs.Resolvers
 
         private string GetDealerUsername(BusinessType businessType, DealerAccountType? dealerAccountType)
         {
-            //string loginPatternNumber;
 
             if (_contextData.SpecificDealerUsername != null)
             {
@@ -62,7 +61,6 @@ namespace Brother.Tests.Specs.Resolvers
 
         private string GetDealerPassword(BusinessType businessType, DealerAccountType? dealerAccountType)
         {
-            //string loginPatternNumber;
 
             if (_contextData.SpecificDealerPassword != null)
             {
@@ -78,7 +76,7 @@ namespace Brother.Tests.Specs.Resolvers
             {
                 return _runtimeSettings.DefaultDealerPassword[keyName];
             }
-            var loginPatternNumber = (int)businessType; // note: Type1And3 dedicated pass maybe NOTHING. (ex. UKdealer13)
+            var loginPatternNumber = (int)businessType; // note: probably there is no password for Type1And3 (ex. UKdealer13)
             return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "dealer", loginPatternNumber);
 
         }

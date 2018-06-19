@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -111,6 +112,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                         device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
                         device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
                         device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
+                        device.UpdateConsumableOrderCount();
                         
                         //Update the consumable order, remaining life and replace count as per specifications
                         _deviceSimulatorService.RaiseConsumableOrder(
@@ -135,6 +137,17 @@ namespace Brother.Tests.Specs.StepActions.Common
             _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, true, "Any");
         }
 
+        public void ShiftAgreementStartDateWithoutGeneratingInvoice(int agreementShiftDays)
+        {
+            LoggingService.WriteLogOnMethodEntry(agreementShiftDays);
+
+            _contextData.AgreementShiftDays = agreementShiftDays;
+            _contextData.AgreementStartDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementStartDate, agreementShiftDays);
+            _contextData.AgreementEndDate = MpsUtil.SubtractDaysFromDate(_contextData.AgreementEndDate, agreementShiftDays);
+
+            _agreementShiftService.ContractTimeShiftCommand(_contextData.AgreementId, agreementShiftDays, "d", false, false, "Any");
+        }
+
         public void UpdateMPSForConsumableOrder()
         {
             LoggingService.WriteLogOnMethodEntry();
@@ -144,6 +157,13 @@ namespace Brother.Tests.Specs.StepActions.Common
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();           
+        }
+
+        public void RunSilentMedioDevicesCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+
+            _runCommandService.RunCheckForSilentCloudDevicesCommand();
         }
     }
 }

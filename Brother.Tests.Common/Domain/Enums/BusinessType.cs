@@ -10,6 +10,6 @@
     {
         Type1 = 1,
         Type3 = 3,
-        Type1And3=13
+        Type1And3 = 13
     }
 }
