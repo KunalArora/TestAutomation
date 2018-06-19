@@ -128,6 +128,7 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", _contextData.DealerEmail, _contextData.Country.CountryIso);
             string url = string.Format(_baseUrl, actionPath);
 
+            //TODO: Replace the hard-coded value for encoding after ticket MPS-6018 is completed
             return ExecuteWebTool(url, encoding: Encoding.Unicode);
         }
 
