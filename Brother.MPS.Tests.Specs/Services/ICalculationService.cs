@@ -18,9 +18,9 @@ namespace Brother.Tests.Specs.Services
         /// <summary>
         /// Verify that the sum of the string values in "prices" parameter is calculated correctly 
         /// </summary>
-        /// <param name="prices"></param>
-        /// <param name="displayedTotalPrice"></param>
-        void VerifySum(List<string> prices, string displayedTotalPrice);
+        /// <param name="invariantPrices">Note: This parameter takes only invariant values</param>
+        /// <param name="invariantDisplayedTotalPrice">Note: This parameter takes only invariant value</param>
+        void VerifySum(List<string> invariantPrices, string invariantDisplayedTotalPrice);
 
         /// <summary>
         /// Verify that gross price is calculated correctly given the net price

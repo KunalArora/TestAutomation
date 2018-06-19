@@ -315,12 +315,12 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
             // Validate calculations on Summary page           
             List<String> deviceTotalsElements = new List<String>();
-            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text.CollectDigitOnly());
-            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text.CollectDigitOnly());
+            deviceTotalsElements.Add(_calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text));
+            deviceTotalsElements.Add(_calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text));
 
             _calculationService.VerifySum(
                 deviceTotalsElements,
-                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text);
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text));
             var SeleniumHelper = dealerProposalsCreateSummaryPage.SeleniumHelper;
             if( SeleniumHelper.IsElementDisplayed(dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement))
             {

@@ -32,17 +32,17 @@ namespace Brother.Tests.Specs.Services
                 RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(cultureNumericDisplayedUnitPrice), "Total Price Calculations did not get validated");
         }
 
-        public void VerifySum(List<string> prices, string displayedTotalPrice)
+        public void VerifySum(List<string> invariantPrices, string invariantDisplayedTotalPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(prices, displayedTotalPrice);
+            LoggingService.WriteLogOnMethodEntry(invariantPrices, invariantDisplayedTotalPrice);
             double expectedTotalPrice = 0.00;
-            foreach(string price in prices)
+            foreach(string price in invariantPrices)
             {
-                expectedTotalPrice = expectedTotalPrice + ConvertCultureNumericStringToInvariantDouble(price);
+                expectedTotalPrice = expectedTotalPrice + double.Parse(price);
             }
 
-            TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedTotalPrice, NumberStyles.Number | NumberStyles.Currency), "Total Line Price Calculations did not get validated");
+            TestCheck.AssertIsEqualDouble(
+                expectedTotalPrice, double.Parse(invariantDisplayedTotalPrice), 2, "Total Line Price Calculations did not get validated");
         }
 
         public void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice)
