@@ -13,7 +13,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
     [Binding]
-    class MpsLocalOfficeApproverContractSteps
+    public class MpsLocalOfficeApproverContractSteps
     {
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;

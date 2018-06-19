@@ -10,7 +10,6 @@ using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -32,8 +31,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IContractShiftService _contractShiftService;
         private readonly IUserResolver _userResolver;
         private readonly IPdfHelper _pdfHelper;
+        private readonly IMpsWebToolsService _webToolsService;
 
-        public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
+        public MpsDealerContractStepActions(
+            IMpsWebToolsService webToolsService,
+            IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
@@ -57,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contractShiftService = contractShiftService;
             _userResolver = userResolver;
             _pdfHelper = pdfHelper;
+            _webToolsService = webToolsService;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -140,6 +143,12 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry();
             string currentUrl = _dealerWebDriver.Url;
             return PageService.LoadUrl<DealerManageDevicesPage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]", true, _dealerWebDriver);
+        }
+
+        public void DeleteT1ContractsForDealership(string dealerUsername)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerUsername);
+            _webToolsService.DeleteT1ContractsForDealership(dealerUsername);
         }
 
         public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)

@@ -1,15 +1,14 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Models;
-using Brother.Tests.Specs.Domain;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Brother.Tests.Common.Domain.Constants;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -175,6 +174,14 @@ namespace Brother.Tests.Specs.Services
             string actionPath = string.Format("addrole.aspx?email={0}&role={1}", emailAddress, role);
             string url = string.Format(_baseUrlWithoutMps2, actionPath);
 
+            ExecuteWebTool(url);
+        }
+
+        public void DeleteT1ContractsForDealership( string emailAddress)
+        {
+            _loggingService.WriteLogOnMethodEntry(emailAddress);
+            string actionPath = string.Format("automation/deletet1contractsfordealership.aspx?dealershipemail={0}", emailAddress);
+            string url = string.Format(_baseUrl, actionPath);
             ExecuteWebTool(url);
         }
     }

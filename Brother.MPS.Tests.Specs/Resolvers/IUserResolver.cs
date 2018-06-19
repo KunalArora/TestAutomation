@@ -1,6 +1,4 @@
-﻿using Brother.Tests.Common.Domain.Enums;
-
-namespace Brother.Tests.Specs.Resolvers
+﻿namespace Brother.Tests.Specs.Resolvers
 {
     public interface IUserResolver
     {
@@ -19,8 +17,5 @@ namespace Brother.Tests.Specs.Resolvers
         string InstallerUsername { get; }
         string FinanceUsername { get; }
         string FinancePassword { get; }
-
-        string GetDealerUsername(BusinessType businessType);
-        string GetDealerPassword(BusinessType businessType);
     }
 }
