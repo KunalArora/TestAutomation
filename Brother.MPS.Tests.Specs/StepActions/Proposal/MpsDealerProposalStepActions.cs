@@ -320,7 +320,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _calculationService.VerifySum(
                 deviceTotalsElements,
-                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text);
+                _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text));
             var SeleniumHelper = dealerProposalsCreateSummaryPage.SeleniumHelper;
             if( SeleniumHelper.IsElementDisplayed(dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement))
             {
