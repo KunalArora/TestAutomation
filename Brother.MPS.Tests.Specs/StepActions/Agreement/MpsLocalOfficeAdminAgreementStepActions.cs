@@ -29,6 +29,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         private readonly IContextData _contextData;
         private readonly IMpsWebToolsService _mpsWebToolsService;
         private readonly IRunCommandService _runCommandService;
+        private readonly ITranslationService _translationService;
 
         public MpsLocalOfficeAdminAgreementStepActions(IWebDriverFactory webDriverFactory,
             IContextData contextData,
@@ -71,6 +72,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData = contextData;
             _mpsWebToolsService = mpsWebToolsService;
             _runCommandService = runCommandService;
+            _translationService = translationService;
         }
 
         public DataQueryPage NavigateToReportsDataQuery(LocalOfficeAdminDashBoardPage localOfficeAdminDashBoardPage)
@@ -198,7 +200,16 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         public LocalOfficeAdminAdministrationDealerPage IputDealerDetails(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage);
-            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso);
+            var resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.English, _contextData.Culture);
+            var postcode = MpsUtil.PostCodeGb();
+            var vatNumber = MpsUtil.VatNumberGb();
+            if(_contextData.Country.CountryIso == CountryIso.Switzerland)
+            {
+                resourceDealerCulture = _translationService.GetDealerCulture(TranslationKeys.DealerCulture.French, _contextData.Culture);
+                postcode = MpsUtil.PostCodeSw();
+                vatNumber = MpsUtil.VatNumber();
+            }
+            localOfficeAdminDealersCreateDealershipPage.InputDealerDetails(_contextData.Country.CountryIso, resourceDealerCulture, postcode, vatNumber);
 
             _contextData.DealerProperties.Email = localOfficeAdminDealersCreateDealershipPage.GetEmail();
             _contextData.DealerProperties.FirstName = localOfficeAdminDealersCreateDealershipPage.GetFirstName();
@@ -214,8 +225,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             _contextData.DealerProperties.BrotherSalesPerson = localOfficeAdminDealersCreateDealershipPage.GetBrotherSalesPerson();
 
             _mpsWebToolsService.RegisterCustomer(_contextData.DealerProperties.Email, _contextData.DealerProperties.Password, _contextData.DealerProperties.FirstName, _contextData.DealerProperties.LastName, _contextData.Country.CountryIso);
-            _mpsWebToolsService.RegisterRole(_contextData.DealerProperties.Email, MpsRoles.Dealer);
-
+            _mpsWebToolsService.AddMpsRole(_contextData.DealerProperties.Email, MpsRoles.Dealer);
             localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SaveButtonElement);
             _runCommandService.RunCreateDealershipAndDealerCommand();
             
@@ -261,6 +271,26 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             localOfficeAdminAdministrationDealerPage.VerifyUpdatedDealerDetails(_contextData.DealerProperties.DealershipName, 
                 _contextData.DealerProperties.Email, _contextData.DealerProperties.SapId, 
                 _contextData.DealerProperties.OwnerName, _contextData.DealerProperties.CeoName);
+        }
+
+        public LocalOfficeAdminDealersCreateDealershipPage EnterSapVendorNumber(LocalOfficeAdminDealersCreateDealershipPage localOfficeAdminDealersCreateDealershipPage, string sapVendorId)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDealersCreateDealershipPage, sapVendorId);
+            localOfficeAdminDealersCreateDealershipPage.EnterSapVendorNumber(sapVendorId);
+
+            localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapButtonCheckElement);
+            localOfficeAdminDealersCreateDealershipPage = PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            
+            localOfficeAdminDealersCreateDealershipPage.VerifySapVendorName();
+
+            localOfficeAdminDealersCreateDealershipPage.SeleniumHelper.ClickSafety(localOfficeAdminDealersCreateDealershipPage.SapVendorCheckCompleteElement);
+            return PageService.GetPageObject<LocalOfficeAdminDealersCreateDealershipPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public void DeleteCreatedDealer()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            _mpsWebToolsService.DeleteDealership(_contextData.DealerProperties.Email);
         }
     }
 }

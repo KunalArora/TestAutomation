@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
@@ -144,12 +145,16 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminContractStepActions.VerifyProposalNotes(_localOfficeAdminReportsProposalSummaryPage);
         }
 
-
-        [When(@"I create a new dealer and verify the created dealer details")]
-        public void WhenICreateANewDealerAndVerifyTheCreatedDealerDetails()
+        [When(@"I create a new dealer with SAP Vendor Id as ""(.*)"" and verify the created dealer details")]
+        public void WhenICreateANewDealerWithSAPVendorIdAsAndVerifyTheCreatedDealerDetails(string sapVendorId)
         {
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.NavigateToAdministrationDealerPage(_localOfficeAdminAdministrationDashboardPage);
             _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.ClickOnAddDealerButton(_localOfficeAdminAdministrationDealerPage);
+            //In case of United kingdom, there is a need to verify sap vendor number before making the dealer 
+            if (_contextData.Country.CountryIso == CountryIso.UnitedKingdom)
+            {
+                _localOfficeAdminDealersCreateDealershipPage = _mpsLocalOfficeAdminAgreementStepActions.EnterSapVendorNumber(_localOfficeAdminDealersCreateDealershipPage, sapVendorId);
+            }
             _mpsLocalOfficeAdminAgreementStepActions.SelectBusinessType(_localOfficeAdminDealersCreateDealershipPage);
             _localOfficeAdminAdministrationDealerPage = _mpsLocalOfficeAdminAgreementStepActions.IputDealerDetails(_localOfficeAdminDealersCreateDealershipPage);
             _mpsLocalOfficeAdminAgreementStepActions.VerifyDealerCreation(_localOfficeAdminAdministrationDealerPage);
@@ -163,5 +168,10 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsLocalOfficeAdminAgreementStepActions.VerifyUpdatedDealerDeatils(_localOfficeAdminAdministrationDealerPage);
         }
 
+        [Then(@"I delete the created MPS dealer")]
+        public void ThenIDeleteTheCreatedMPSDealer()
+        {
+            _mpsLocalOfficeAdminAgreementStepActions.DeleteCreatedDealer();
+        }        
     }
 }

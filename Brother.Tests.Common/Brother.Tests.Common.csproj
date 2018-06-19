@@ -124,6 +124,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsumableOrderMethod.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DealerCulture\DealerCulture.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DealerCulture.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
       <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -328,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.en-gb.resx" />
+    <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DealerCulture.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

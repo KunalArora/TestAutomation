@@ -357,6 +357,18 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 
         }
 
+
+        //TODO: Refactor the call to MpsUtil as per ticket MPS-6016
+        public static string VatNumberGb()
+        {
+            String vatNumberGb = "GB980780684";
+
+            var generatedVatNumber = vatNumberGb;
+
+            return generatedVatNumber;
+
+        }
+
         public static string CreditReformNumber()
         {
             String[] companyName = {"599999998",

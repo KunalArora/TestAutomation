@@ -545,6 +545,5 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _mpsDealerProposalStepActions.VerifyDashboardOptions(_dealerDashboardPage);
         }
-
     }
 }

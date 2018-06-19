@@ -18,7 +18,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateBSWDealer")]
+    [NUnit.Framework.DescriptionAttribute("CreateDealer")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
@@ -26,20 +26,20 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
     [NUnit.Framework.CategoryAttribute("HIGH")]
     [NUnit.Framework.CategoryAttribute("DEALERCREATION")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
-    public partial class CreateBSWDealerFeature
+    public partial class CreateDealerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateBSWDealer.feature"
+#line 1 "CreateDealer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateBSWDealer", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Local Office A" +
-                    "dmin\r\n\tI want to create a dealer for bsw-french", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateDealer", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Local Office A" +
+                    "dmin\r\n\tI want to create a new dealer ", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TYPE1",
@@ -79,18 +79,21 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Dealer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateBSWDealer")]
-        [NUnit.Framework.TestCaseAttribute("Switzerland", "fr-CH", new string[] {
+        [NUnit.Framework.DescriptionAttribute("CreateDealer")]
+        [NUnit.Framework.TestCaseAttribute("Switzerland", "fr-CH", "", new string[] {
                 "BSW"}, Category="BSW")]
-        public virtual void CreateBSWDealer(string country, string culture, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "0000129120", new string[] {
+                "BUK"}, Category="BUK")]
+        public virtual void CreateDealer(string country, string culture, string sapVendorId, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateBSWDealer", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateDealer", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given(string.Format("I navigate to the administration page with culture \"{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("I create a new dealer and verify the created dealer details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I create a new dealer with SAP Vendor Id as \"{0}\" and verify the created dealer d" +
+                        "etails", sapVendorId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
 testRunner.And("I edit the details for created dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
@@ -98,6 +101,8 @@ testRunner.Then(string.Format("a newly created Cloud MPS dealer can succesfully 
                         "1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
 testRunner.And("a created Cloud MPS dealer can verify the dashboard icons properly shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+testRunner.And("I delete the created MPS dealer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

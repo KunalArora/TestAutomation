@@ -131,6 +131,5 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry(element);
             return element.GetAttribute("value");
         }
-
     }
 }
