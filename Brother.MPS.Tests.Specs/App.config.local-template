@@ -10,5 +10,11 @@
   <add key="RuntimeSettings.DefaultType1DealerPasswordBIG" value="DEdealer1" />
   <add key="RuntimeSettings.DefaultType1DealerUsernameBSW" value="xxxx.xxxx-BSW-fr-UAT-type1@brother.co.jp" />
   <add key="RuntimeSettings.DefaultType1DealerPasswordBSW" value="CHdealer1" />
+  <add key="RuntimeSettings.DefaultType1And3DealerUsernameBUK" value="xxxx.xxxx-BUK-UAT-type13@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1And3DealerPasswordBUK" value="UKdealer1" />
+  <add key="RuntimeSettings.DefaultType1And3DealerUsernameBIG" value="xxxx.xxxx-BIG-UAT-type13@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1And3DealerPasswordBIG" value="UKdealer1" />
+  <add key="RuntimeSettings.DefaultType1And3DealerUsernameBSW" value="xxxx.xxxx-BSW-de-UAT-type13@brother.co.jp" />
+  <add key="RuntimeSettings.DefaultType1And3DealerPasswordBSW" value="UKdealer1" />
 -->
 </appSettings>

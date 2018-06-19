@@ -15,6 +15,8 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 using SeleniumHelper = Brother.Tests.Selenium.Lib.Helpers.SeleniumHelper;
 
@@ -169,14 +171,8 @@ namespace Brother.Tests.Specs.AdditionalBindings
                     defaultInvoiceGenerationTimeout: AppSettingToInt("RuntimeSettings.DefaultInvoiceGenerationTimeout"),
                     defaultElementNotPresentTimeout: AppSettingToInt("RuntimeSettings.DefaultElementNotPresentTimeout"),
                     defaultWaitForItemTimeout: AppSettingToInt("RuntimeSettings.DefaultWaitForItemTimeout"),
-                    defaultType3DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerUsernameBUK"),
-                    defaultType3DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType3DealerPasswordBUK"),
-                    defaultType1DealerUsernameBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBUK"),
-                    defaultType1DealerPasswordBUK: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBUK"),
-                    defaultType1DealerUsernameBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBIG"),
-                    defaultType1DealerPasswordBIG: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBIG"),
-                    defaultType1DealerUsernameBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerUsernameBSW"),
-                    defaultType1DealerPasswordBSW: AppSettingToString("RuntimeSettings.DefaultType1DealerPasswordBSW")
+                    defaultDealerUsername: AppSettingToDictionaryRegex(@"^RuntimeSettings\..*DealerUsername.*"),
+                    defaultDealerPassword: AppSettingToDictionaryRegex(@"^RuntimeSettings\..*DealerPassword.*")
             );
 
             return runtimeSettings;
@@ -201,6 +197,19 @@ namespace Brother.Tests.Specs.AdditionalBindings
         private string AppSettingToString(string appSettingName)
         {
             return System.Configuration.ConfigurationManager.AppSettings.Get(appSettingName);
+        }
+
+        private Dictionary<string,string> AppSettingToDictionaryRegex( string regexString)
+        {
+            var result = new Dictionary<string, string>();
+            var regex = new Regex(regexString);
+            var settings = System.Configuration.ConfigurationManager.AppSettings;
+            foreach ( string key in settings)
+            {
+                if( regex.IsMatch(key) == false) { continue; }
+                result.Add(key.Replace("RuntimeSettings.",""), settings[key]);
+            }
+            return result;
         }
 
         private void SetLegacyHelperProperties(string outputPath, string env)
