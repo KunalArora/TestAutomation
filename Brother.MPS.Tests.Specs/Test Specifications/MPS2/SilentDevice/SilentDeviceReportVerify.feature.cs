@@ -78,7 +78,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.SilentDevice
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SilentDeviceReportVerify")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "False", "Cloud", "Bor", "91", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "CPP_AGREEMENT", "False", "MINIMUM_VOLUME", "FOUR_YEARS", "INCLUDED_IN_CLICK_PRICE", "False", "Cloud", "Bor", "6", new string[] {
                 "BUK"}, Category="BUK")]
         public virtual void SilentDeviceReportVerify(string country, string agreementType, string optionalFields_1, string usageType, string contractTerm, string service, string optionalFields_2, string communicationMethod, string installationType, string agreementShiftDays, string[] exampleTags)
         {
@@ -214,6 +214,17 @@ testRunner.Then("I can verify the generation of manual consumable orders alongwi
 testRunner.When("I automatically raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 38
 testRunner.Then("I can verify the generation of automatic consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 39
+testRunner.When(string.Format("the agreement start date gets shifted \"{0}\" days behind without generating invoic" +
+                        "e", agreementShiftDays), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
+testRunner.Then("I can verify the device status being silent", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+testRunner.And("I can verify the detailed device information on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+testRunner.And("I can verify the print details, consumable and silent tab information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+testRunner.And("I can verify the silent device report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

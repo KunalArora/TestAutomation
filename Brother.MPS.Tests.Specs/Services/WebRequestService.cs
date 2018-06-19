@@ -27,10 +27,12 @@ namespace Brother.Tests.Specs.Services
         /// <param name="additionalHeaders">Specific http headers as required</param>
         /// <returns></returns>
         public WebPageResponse GetPageResponse(string url, string method, int timeout, string contentType = null,
-            string body = null, Dictionary<string, string> additionalHeaders = null)
+            string body = null, Dictionary<string, string> additionalHeaders = null, Encoding encoding = null)
         {
-            LoggingService.WriteLogOnMethodEntry(url, method, timeout, contentType, body, additionalHeaders);
+            LoggingService.WriteLogOnMethodEntry(url, method, timeout, contentType, body, additionalHeaders, encoding);
             method = method.ToUpper();
+
+            encoding = encoding ?? Encoding.UTF8;
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls; //protocols need reviewing
             HttpWebRequest webRequest = null;
@@ -79,14 +81,14 @@ namespace Brother.Tests.Specs.Services
                 }
             }
 
-            var pageResponse = PageResponse(webRequest);
+            var pageResponse = PageResponse(webRequest, encoding);
             LoggingService.WriteLog(LoggingLevel.DEBUG, "<< {0}", pageResponse);
             return pageResponse;
         }
 
-        private WebPageResponse PageResponse(WebRequest request)
+        private WebPageResponse PageResponse(WebRequest request, Encoding encoding)
         {
-            LoggingService.WriteLogOnMethodEntry(request);
+            LoggingService.WriteLogOnMethodEntry(request, encoding);
             WebPageResponse webPageResponse = new WebPageResponse
             {
                 ResponseBody = string.Empty,
@@ -120,7 +122,7 @@ namespace Brother.Tests.Specs.Services
 
                 var receiveStream = response.GetResponseStream();
 
-                var readStream = new StreamReader(receiveStream, Encoding.UTF8);
+                var readStream = new StreamReader(receiveStream, encoding);
 
                 webPageResponse.ResponseBody = readStream.ReadToEnd();
                 response.Close();

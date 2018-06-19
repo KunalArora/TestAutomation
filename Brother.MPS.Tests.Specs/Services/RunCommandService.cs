@@ -147,7 +147,7 @@ namespace Brother.Tests.Specs.Services
             string commandName = RunCommands.MpsSystemJobCreateCustomerAndPersonCommand;
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
-           ExecuteRunCommand(commandUrl);
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunRaiseClickRateInvoicesCommand()
@@ -206,6 +206,10 @@ namespace Brother.Tests.Specs.Services
         public void RunCheckForSilentCloudDevicesCommand()
         {
             LoggingService.WriteLogOnMethodEntry();
+            string commandName = RunCommands.MpsCheckForSilentMedioDevicesCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
         }
 
         public void RunCreateConsumableOrderCommand()
@@ -257,6 +261,15 @@ namespace Brother.Tests.Specs.Services
         {
             LoggingService.WriteLogOnMethodEntry();
             string commandName = RunCommands.MpsSystemJobCreateDealershipAndDealerCommand;
+            string commandUrl = string.Format(_commandBaseUrl, commandName);
+
+            ExecuteRunCommand(commandUrl);
+        }
+
+        public void RunSendSilentDevicesReportsCommand()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            string commandName = RunCommands.MpsSendSilentDevicesReportsCommand;
             string commandUrl = string.Format(_commandBaseUrl, commandName);
 
             ExecuteRunCommand(commandUrl);

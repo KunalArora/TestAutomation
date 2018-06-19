@@ -167,10 +167,10 @@ namespace Brother.Tests.Specs.Services
                 id = deviceId,
                 items = new List<SetSupplyRequestItem>
                 {
-                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Black", value = tonerInkBlackReplaceCount},
-                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Cyan", value = tonerInkCyanReplaceCount},
-                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Magenta", value = tonerInkMagentaReplaceCount},
-                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Yellow", value = tonerInkYellowReplaceCount}
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Black", value = Int32.Parse(tonerInkBlackReplaceCount)},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Cyan", value = Int32.Parse(tonerInkCyanReplaceCount)},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Magenta", value = Int32.Parse(tonerInkMagentaReplaceCount)},
+                    new SetSupplyRequestItem {name = "TonerInk_ReplaceCount_Yellow", value = Int32.Parse(tonerInkYellowReplaceCount)}
                 }
 
             };

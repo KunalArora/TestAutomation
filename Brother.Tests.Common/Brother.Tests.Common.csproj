@@ -129,6 +129,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DealerCulture.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CsvTranslations\CsvTranslations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CsvTranslations.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\DisplayMessage\DisplayMessage.de-de.Designer.cs">
       <DependentUpon>DisplayMessage.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -339,6 +344,11 @@
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DealerCulture.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CsvTranslations\CsvTranslations.en-gb.resx" />
+    <EmbeddedResource Include="Resources\CsvTranslations\CsvTranslations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CsvTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

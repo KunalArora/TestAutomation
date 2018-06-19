@@ -5,6 +5,7 @@ using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 {
@@ -28,6 +29,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
 
         private const string ContainerSelector = ".tab-pane.active.container-fluid";
         private const string StatusSelector = "#content_1_DeviceDataSummary_StatusIconCell";
+        private const string TotalSilentDaysSelector = "#totalSilentDays";
+        private const string MostRecentServiceRequestSelector = "#mostRecentServiceRequest";
+        private const string TotalServiceRequestsSelector = "#totalServiceRequests";
 
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_ButtonBack")]
@@ -65,8 +69,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
         [FindsBy(How = How.CssSelector, Using = "span.yellow-date")]
         public IWebElement YellowDateElement;
 
+        [FindsBy(How = How.CssSelector, Using = "#serviceRequestGraphData")]
+        public IWebElement ServiceRequestGraphDataElement;
+
+        [FindsBy(How = How.CssSelector, Using = "#silentGraphData")]
+        public IWebElement SilentGraphDataElement;
 
 
+        // TABs
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/print-detail']")] // ex. /mps/dealer/agreement/173259/print-detail
+        public IWebElement PrintDetailTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/consumable-orders']")]
+        public IWebElement ConsumableOrdersTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/service-requests']")]
+        public IWebElement ServiceRequestsTabElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/silent']")]
+        public IWebElement SilentTabElement;
+        
         public void VerifyDeviceDetails(AdditionalDeviceProperties device, string agreementType, string agreementLength, string usageType)
         {
             LoggingService.WriteLogOnMethodEntry(device, agreementType, agreementLength, usageType);
@@ -118,44 +137,71 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             TestCheck.AssertTextContains(device.IsMonochrome ? "-" : device.ColorPrintCount.ToString(), SeleniumHelper.FindElementByCssSelector("span.colour-month").Text, string.Format("Pages This Month(Colour) = {0} could not be verified", device.ColorPrintCount));
         }
 
-        public void VerifyConsumableCyan(AdditionalDeviceProperties device, string bocTonerInkReplaceCount, string bocTonerInkLife, string actualTonerRemainingLife)
+        public void VerifyConsumableBlack(AdditionalDeviceProperties device, Dictionary<string, string> actualConsumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
         {
-            LoggingService.WriteLogOnMethodEntry(device, bocTonerInkReplaceCount, bocTonerInkLife, actualTonerRemainingLife);
-            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
-            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, CyanReplaceCountElement.Text, "CyanReplaceCountElement"+ message);
-            TestCheck.AssertIsEqual("0", CyanTotalElement.Text, "CyanTotalElement"+ message);
-            TestCheck.AssertIsEqual("", CyanDateElement.Text, "CyanDateElement"+ message);
-            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), actualTonerRemainingLife, "TonerRemainingLife"+ message);
-        }
-
-        public void VerifyConsumableMagenta(AdditionalDeviceProperties device, string bocTonerInkReplaceCount, string bocTonerInkLife, string actualTonerRemainingLife)
-        {
-            LoggingService.WriteLogOnMethodEntry(device, bocTonerInkReplaceCount, bocTonerInkLife, actualTonerRemainingLife);
-            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
-            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, MagentaReplaceCountElement.Text, "MagentaReplaceCountElement" + message);
-            TestCheck.AssertIsEqual("0", MagentaTotalElement.Text, "MagentaTotalElement" + message);
-            TestCheck.AssertIsEqual("", MagentaDateElement.Text, "MagentaDateElement" + message);
-            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), actualTonerRemainingLife, "TonerRemainingLife" + message);
-        }
-
-        public void VerifyConsumableYellow(AdditionalDeviceProperties device, string bocTonerInkReplaceCount, string bocTonerInkLife, string actualTonerRemainingLife)
-        {
-            LoggingService.WriteLogOnMethodEntry(device, bocTonerInkReplaceCount, bocTonerInkLife, actualTonerRemainingLife);
-            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
-            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, YellowReplaceCountElement.Text, "YellowReplaceCountElement" + message);
-            TestCheck.AssertIsEqual("0", YellowTotalElement.Text, "YellowTotalElement" + message);
-            TestCheck.AssertIsEqual("", YellowDateElement.Text, "YellowDateElement" + message);
-            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), actualTonerRemainingLife, "TonerRemainingLife" + message);
-        }
-
-        public void VerifyConsumableBlack(AdditionalDeviceProperties device, string bocTonerInkReplaceCount, string bocTonerInkLife, string actualTonerRemainingLife)
-        {
-            LoggingService.WriteLogOnMethodEntry(device, bocTonerInkReplaceCount, bocTonerInkLife, actualTonerRemainingLife);
+            LoggingService.WriteLogOnMethodEntry(device, actualConsumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
             var message = " mismatch BOCSim.id=" + device.BocDeviceId;
             TestCheck.AssertIsEqual(bocTonerInkReplaceCount, BlackReplaceCountElement.Text, "BlackReplaceCountElement" + message);
-            TestCheck.AssertIsEqual("0", BlackTotalElement.Text, "BlackTotalElement" + message);
-            TestCheck.AssertIsEqual("", BlackDateElement.Text, "BlackDateElement" + message);
-            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %",""), actualTonerRemainingLife, "TonerRemainingLife" + message);
+            TestCheck.AssertIsEqual(device.TonerInkBlackOrderCount.ToString(), BlackTotalElement.Text, "BlackTotalElement" + message);
+            TestCheck.AssertIsEqual((BlackTotalElement.Text != "0" ? latestDate : ""), BlackDateElement.Text, "BlackDateElement" + message);
+            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), actualConsumableJson["BlackTonerRemainingLife"], "TonerRemainingLife" + message);
+        }
+
+        public void VerifyConsumableCyan(AdditionalDeviceProperties device, Dictionary<string, string> consumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
+            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, CyanReplaceCountElement.Text, "CyanReplaceCountElement"+ message);
+            TestCheck.AssertIsEqual(device.TonerInkCyanOrderCount.ToString(), CyanTotalElement.Text, "CyanTotalElement"+ message);
+            TestCheck.AssertIsEqual((CyanTotalElement.Text!="0" ? latestDate: "") , CyanDateElement.Text, "CyanDateElement"+ message);
+            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), consumableJson["CyanTonerRemainingLife"], "TonerRemainingLife"+ message);
+        }
+
+        public void VerifyConsumableMagenta(AdditionalDeviceProperties device,  Dictionary<string, string> consumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
+            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, MagentaReplaceCountElement.Text, "MagentaReplaceCountElement" + message);
+            TestCheck.AssertIsEqual(device.TonerInkMagentaOrderCount.ToString(), MagentaTotalElement.Text, "MagentaTotalElement" + message);
+            TestCheck.AssertIsEqual((MagentaTotalElement.Text != "0" ? latestDate : ""), MagentaDateElement.Text, "MagentaDateElement" + message);
+            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), consumableJson["MagentaTonerRemainingLife"], "TonerRemainingLife" + message);
+        }
+
+        public void VerifyConsumableYellow(AdditionalDeviceProperties device,  Dictionary<string, string> consumableJson, string bocTonerInkReplaceCount, string bocTonerInkLife, string latestDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, consumableJson, bocTonerInkReplaceCount, bocTonerInkLife, latestDate);
+            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
+            TestCheck.AssertIsEqual(bocTonerInkReplaceCount, YellowReplaceCountElement.Text, "YellowReplaceCountElement" + message);
+            TestCheck.AssertIsEqual(device.TonerInkYellowOrderCount.ToString(), YellowTotalElement.Text, "YellowTotalElement" + message);
+            TestCheck.AssertIsEqual((YellowTotalElement.Text != "0" ? latestDate : ""), YellowDateElement.Text, "YellowDateElement" + message);
+            TestCheck.AssertIsEqual(bocTonerInkLife.Replace(" %", ""), consumableJson["YellowTonerRemainingLife"], "TonerRemainingLife" + message);
+        }
+
+        public void VerifyServiceRequest(AdditionalDeviceProperties device, Dictionary<string, string> serviceRequestJson, string latestDate)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, serviceRequestJson, latestDate);
+            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
+            int openRequest = (device.OpenServiceRequestCount - device.ClosedServiceRequestCount);
+            string serviceRequestTotal = device.OpenServiceRequestCount != 0 ? device.TotalServiceRequestCount.ToString() : null; 
+            TestCheck.AssertIsEqual(openRequest.ToString(), serviceRequestJson["TotalOpen"], "OpenServiceRequest" + message);
+            TestCheck.AssertIsEqual(device.ClosedServiceRequestCount.ToString(), serviceRequestJson["TotalClosed"], "ClosedServiceRequest" + message);
+            TestCheck.AssertIsEqual(serviceRequestTotal, serviceRequestJson["Total"], "TotalServiceRequestChart" + message);
+            if(device.IsMonochrome == false)
+            {
+                var TotalServiceRequestsElement = SeleniumHelper.FindElementByCssSelector(TotalServiceRequestsSelector);
+                var MostRecentServiceRequestElement = SeleniumHelper.FindElementByCssSelector(MostRecentServiceRequestSelector);
+                TestCheck.AssertIsEqual(device.TotalServiceRequestCount.ToString(), TotalServiceRequestsElement.Text, "TotalServiceRequest" + message);
+                TestCheck.AssertTextContains(latestDate, MostRecentServiceRequestElement.Text, "MostRecentServiceRequest" + message);
+            }
+        }
+
+        public void VerifySilentDetails(AdditionalDeviceProperties device, Dictionary<string, object> silentJson, int agreementShiftDays)
+        {
+            LoggingService.WriteLogOnMethodEntry(device, silentJson, agreementShiftDays);
+            var message = " mismatch BOCSim.id=" + device.BocDeviceId;
+            TestCheck.AssertIsEqual(agreementShiftDays.ToString(), (string)silentJson["TotalSilentDays"], "TotalSilentDaysChart" + message);
+            var TotalSilentDaysElement = SeleniumHelper.FindElementByCssSelector(TotalSilentDaysSelector);
+            TestCheck.AssertIsEqual(agreementShiftDays.ToString(), TotalSilentDaysElement.Text, "TotalSilentDays" + message);
         }
     }
 }

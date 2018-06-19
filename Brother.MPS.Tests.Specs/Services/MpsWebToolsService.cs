@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Net;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using System.Text;
 
 namespace Brother.Tests.Specs.Services
 {
@@ -35,14 +36,16 @@ namespace Brother.Tests.Specs.Services
             _baseUrlWithAutomation = string.Format("{0}/sitecore/admin/integration/mps2/automation/{{0}}", _urlResolver.CmsUrl);
         }
 
-        private void ExecuteWebTool(string url, string authToken = null)
+        private string ExecuteWebTool(string url, string authToken = null, Encoding encoding = null)
         {
-            _loggingService.WriteLogOnMethodEntry(url, authToken);
+            _loggingService.WriteLogOnMethodEntry(url, authToken, encoding);
 
             var additionalHeaders = new Dictionary<string, string> { { _authTokenName, authToken ?? AuthToken() } };
-            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders);
+            var response = _webRequestService.GetPageResponse(url, "GET", 10, null, null, additionalHeaders, encoding);
 
             Console.WriteLine("Executing web tool {0}: response {1}", url, response.ResponseBody);
+
+            return response.ResponseBody;
         }
 
         private WebPageResponse GetWebToolResponse(string url, string authToken = null)
@@ -118,6 +121,15 @@ namespace Brother.Tests.Specs.Services
             string url = string.Format(_baseUrlWithoutMps2, actionPath);
 
             ExecuteWebTool(url);
+        }
+
+        public string DownloadSilentDeviceReport()
+        {
+            string actionPath = string.Format("automation/downloadsilentdevicereport.aspx?dealerusername={0}&countryiso={1}", _contextData.DealerEmail, _contextData.Country.CountryIso);
+            string url = string.Format(_baseUrl, actionPath);
+
+            //TODO: Replace the hard-coded value for encoding after ticket MPS-6018 is completed
+            return ExecuteWebTool(url, encoding: Encoding.Unicode);
         }
 
         public SwapRequestDetail GetSwapRequestDetail(int installedPrinterId)

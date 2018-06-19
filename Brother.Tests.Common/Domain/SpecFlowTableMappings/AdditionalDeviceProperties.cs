@@ -74,17 +74,40 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanReplaceCount { get; set; }
         public string TonerInkMagentaReplaceCount { get; set; }
         public string TonerInkYellowReplaceCount { get; set; }
+        public int TonerInkBlackOrderCount { get; set; }
+        public int TonerInkCyanOrderCount { get; set; }
+        public int TonerInkMagentaOrderCount { get; set; }
+        public int TonerInkYellowOrderCount { get; set; }
 
+        public void UpdateConsumableOrderCount()
+        {
+            if (TonerInkBlackStatus.ToLower().Equals("empty") || (double.Parse(TonerInkBlackRemLife) < 10))
+            {
+                TonerInkBlackOrderCount = TonerInkBlackOrderCount + 1;
+            }
+            if (TonerInkCyanStatus.ToLower().Equals("empty") || (double.Parse(TonerInkCyanRemLife) < 10))
+            {
+                TonerInkCyanOrderCount = TonerInkCyanOrderCount + 1;
+            }
+            if (TonerInkMagentaStatus.ToLower().Equals("empty") || (double.Parse(TonerInkMagentaRemLife) < 10))
+            {
+                TonerInkMagentaOrderCount = TonerInkMagentaOrderCount + 1;
+            }
+            if (TonerInkYellowStatus.ToLower().Equals("empty") || (double.Parse(TonerInkYellowRemLife) < 10))
+            {
+                TonerInkYellowOrderCount = TonerInkYellowOrderCount + 1;
+            }
+        }
 
         public bool hasEmptyInkToner
         {
             get
             {
                 bool hasEmptyInkToner = false;
-                if (TonerInkBlackStatus.ToLower().Equals("empty") ||
-                    TonerInkCyanStatus.ToLower().Equals("empty") ||
-                    TonerInkMagentaStatus.ToLower().Equals("empty") ||
-                    TonerInkYellowStatus.ToLower().Equals("empty"))
+                if ((TonerInkBlackStatus.ToLower().Equals("empty")) || 
+                    (TonerInkCyanStatus.ToLower().Equals("empty")) ||
+                    (TonerInkMagentaStatus.ToLower().Equals("empty")) ||
+                    (TonerInkYellowStatus.ToLower().Equals("empty"))) 
                 {
                     hasEmptyInkToner = true;
                 }
@@ -106,6 +129,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
                     {
                         hasLowRemLifeInkToner = true;
                     }
+
                 }
                 catch(Exception e) {
                     throw new Exception("Parameter hasLowRemLifeInkToner cannot be determined as the following exception occurred. Exception: " + e);
@@ -117,6 +141,15 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string ServiceRequestId { get; set; }
         public string ServiceRequestType { get; set; }
         public string ServiceRequestReplyMessage { get; set; }
+        public int OpenServiceRequestCount { get; set; }
+        public int ClosedServiceRequestCount { get; set; }
+        public int TotalServiceRequestCount
+        {
+            get
+            {
+                return OpenServiceRequestCount;
+            }
+        }
         public string InstallationPack { get; set; }
         public string ServicePack { get; set; }
         public string InstallationPackPrice { get; set; }
