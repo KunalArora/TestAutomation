@@ -80,6 +80,8 @@ namespace Brother.Tests.Specs.StepActions.Dealership
                 .Sum(DeviceTotalsTotalPriceNet => double.Parse(DeviceTotalsTotalPriceNet, numberStyles, ContextData.CultureInfo));
             var actualToralValueInContracts = double.Parse(dealerReportProp.TotalValueInContracts, ContextData.CultureInfo);
             Assert.AreEqual(expectedTotalValueInContracts, actualToralValueInContracts, 2, "Incorrect TotalValueInContracts file={0}", excelFilePath);
+
+            _dealerReportExcelHelper.DeleteExcelFile(excelFilePath);
         }
     }
 }

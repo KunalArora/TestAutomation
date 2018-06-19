@@ -18,26 +18,26 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Contract
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Type1DownloadDataQueryReportandValidatecontent")]
+    [NUnit.Framework.DescriptionAttribute("Type1DownloadDataQueryReportandValidateContent")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("LOW")]
     [NUnit.Framework.CategoryAttribute("MEDIUM")]
-    public partial class Type1DownloadDataQueryReportandValidatecontentFeature
+    public partial class Type1DownloadDataQueryReportandValidateContentFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DownloadDataQueryReportandValidatecontent.feature"
+#line 1 "DownloadDataQueryReportandValidateContent.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DownloadDataQueryReportandValidatecontent", "\tIn order to verify the finance of Cloud MPS service\r\n\tAs a Cloud MPS Finance\r\n\tI" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DownloadDataQueryReportandValidateContent", "\tIn order to verify the finance of Cloud MPS service\r\n\tAs a Cloud MPS Finance\r\n\tI" +
                     " can generate the financial reports and verify the content", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -77,12 +77,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Contract
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Type1DownloadDataQueryReportandValidatecontent")]
+        [NUnit.Framework.DescriptionAttribute("Type1DownloadDataQueryReportandValidateContent")]
         [NUnit.Framework.TestCaseAttribute("United Kingdom", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void Type1DownloadDataQueryReportandValidatecontent(string country, string[] exampleTags)
+        public virtual void Type1DownloadDataQueryReportandValidateContent(string country, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1DownloadDataQueryReportandValidatecontent", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1DownloadDataQueryReportandValidateContent", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -119,7 +119,7 @@ testRunner.And("I will delete all Type 1 contracts that I have", ((string)(null)
                         "0",
                         "0"});
 #line 10
-testRunner.And("I Create a running contract \"1\" with below devices:", ((string)(null)), table1, "And ");
+testRunner.And("I create a running contract \"1\" with below devices:", ((string)(null)), table1, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Model",
@@ -140,11 +140,11 @@ testRunner.And("I Create a running contract \"1\" with below devices:", ((string
                         "20",
                         "250"});
 #line 14
-testRunner.And("I Create a running contract \"2\" with below devices:", ((string)(null)), table2, "And ");
+testRunner.And("I create a running contract \"2\" with below devices:", ((string)(null)), table2, "And ");
 #line 17
 testRunner.When("I click the \'Report\' tab and click the \'Dealer Contract Report\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
-testRunner.Then("I is downloaded , open the file and ensure the the data are correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I can download, open the file and ensure the data is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

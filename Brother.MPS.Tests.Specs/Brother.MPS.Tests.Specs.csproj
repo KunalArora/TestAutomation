@@ -216,8 +216,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
     </Compile>
-    <Compile Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidatecontent.feature.cs">
-      <DependentUpon>DownloadDataQueryReportandValidatecontent.feature</DependentUpon>
+    <Compile Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidateContent.feature.cs">
+      <DependentUpon>DownloadDataQueryReportandValidateContent.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1727,9 +1727,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
     </None>
-    <None Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidatecontent.feature">
+    <None Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidateContent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DownloadDataQueryReportandValidatecontent.feature.cs</LastGenOutput>
+      <LastGenOutput>DownloadDataQueryReportandValidateContent.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Dealer\CreateBSWDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

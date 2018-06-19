@@ -15,7 +15,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 {
     [Binding]
-    public class MpsDownloadDataQueryReportAndValidateContentSteps :Steps
+    public class MpsDownloadDataQueryReportAndValidateContentSteps 
     {
         private readonly ScenarioContext _context;
         private readonly IWebDriver _driver;
@@ -77,7 +77,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _validateDealerReportStepActions = validateDealerReportStepActions;
         }
 
-        [Given(@"I Create a running contract ""(.*)"" with below devices:")]
+        [Given(@"I create a running contract ""(.*)"" with below devices:")]
         public void GivenCreateARunningContractWithBelowDevices(int innerContractId, Table printers)
         {
             // Partially similar as BusinessScenatio_1.feature
@@ -112,11 +112,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerReportsDashboardPage = _mpsDealerProposalStepActions.NavigateToDealerReportsDashboardPage(dealerDashboardPage);
         }
 
-        [Then(@"I is downloaded , open the file and ensure the the data are correct")]
-        public void ThenIIsDownloadedOpenTheFileAndEnsureTheTheDataAreCorrect()
+        [Then(@"I can download, open the file and ensure the data is correct")]
+        public void ThenICanDownloadOpenTheFileAndEnsureTheDataIsCorrect()
         {
             _validateDealerReportStepActions.DownloadReportAndVerify(_dealerReportsDashboardPage);
         }
+
 
     }
 }
