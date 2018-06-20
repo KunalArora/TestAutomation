@@ -668,7 +668,11 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
                         };
-                        break;
+                    if(minimumVolumePerQuarter == Convert.ToDouble(0))
+                    {
+                        searchTextArray[2] = string.Format("{0} {1}", resourcePdfFileMinimumVolumePerQuarter, '-');
+                    }
+                    break;
                 default:
                     searchTextArray = new string[]
                         {
