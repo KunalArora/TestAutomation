@@ -201,7 +201,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Device
             var message = " mismatch BOCSim.id=" + device.BocDeviceId;
             TestCheck.AssertIsEqual(agreementShiftDays.ToString(), (string)silentJson["TotalSilentDays"], "TotalSilentDaysChart" + message);
             var TotalSilentDaysElement = SeleniumHelper.FindElementByCssSelector(TotalSilentDaysSelector);
-            TestCheck.AssertIsEqual(agreementShiftDays.ToString(), TotalSilentDaysElement.Text, "TotalSilentDays" + message);
+            try
+            {
+                TestCheck.AssertIsEqual(agreementShiftDays.ToString(), TotalSilentDaysElement.Text, "TotalSilentDays" + message);
+            }
+            catch(Exception e)
+            {
+                if(agreementShiftDays != 0) { throw e; }
+                TestCheck.AssertIsEqual(string.Empty, TotalSilentDaysElement.Text, "TotalSilentDays" + message);
+            }
+            
         }
     }
 }
