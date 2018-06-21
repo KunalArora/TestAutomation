@@ -404,5 +404,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsDealerAgreement.RunSendSilentDevicesReportsCommand();
             _mpsDealerAgreement.DownloadSilentDeviceReportAndVerifyDevices();
         }
+
+        [Then(@"I click show service request button from divice tab")]
+        public void ThenIClickShowServiceRequestButtonFromDiviceTab()
+        {
+            _dealerAgreementDevicesPage = _mpsDealerAgreement.ClickShowServiceRequestButtonFromDiviceTab(_dealerAgreementDevicesPage);
+        }
     }
 }

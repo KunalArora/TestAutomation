@@ -45,6 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ShowDeviceDetailsActionsButtonSelector = ".js-mps-view-device-location";
         private const string SwapDeviceActionsButtonSelector = ".js-mps-swap-device";
         private const string ReInstallDeviceActionsButtonSelector = ".js-mps-re-install-device";
+        private const string ShowServiceRequestsActionsButtonSelector = ".js-mps-view-service-requests";
 
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusIconSelector = "[id*=content_1_Devices_StatusIconCell_]";
@@ -123,6 +124,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement DeviceDetailsModalCloseButtonElement;
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"mps/dealer/reports\"]")]
         public IWebElement ReportTabElement;
+        [FindsBy(How = How.CssSelector, Using = ".js-mps-view-service-requests")]
+        public IWebElement ShowServiceRequestsActionsButtonElement;
 
         // TABs
         [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
@@ -1044,6 +1047,17 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             {
                 TestCheck.AssertFailTest("Success Dialog not found after swap request is sent. step="+step+" Error details:" + e);
             }
+        }
+
+        // Click on Show Service Requests button for this particular row index
+        public void ClickOnShowServiceRequests(int rowIndex)
+        {
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+            var ShowServiceRequestsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ShowServiceRequestsButtonElement);
         }
     }
 }
