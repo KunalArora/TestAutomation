@@ -7,7 +7,6 @@ Feature: Type1EnhancedUsageMonitoring
 Scenario Outline: Type1EnhancedUsageMonitoring
 Given a Cloud MPS Local Office Admin has navigated to the Dashboard page
 When a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage Device Order Threshold section
-And a Cloud MPS Local Office Admin selects the country as "<Country>"
 Then a Cloud MPS Local Office Admin can set the threshold value for printer engines types as follows and saves the details
 		| PrinterEngine | SupplyItemType | Threshold | Enabled |
 		| BC2 Step      | Mono           | 14.00     | true    |

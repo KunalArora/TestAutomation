@@ -91,8 +91,6 @@ testRunner.Given("a Cloud MPS Local Office Admin has navigated to the Dashboard 
 #line 9
 testRunner.When("a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage D" +
                     "evice Order Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
-testRunner.And(string.Format("a Cloud MPS Local Office Admin selects the country as \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "PrinterEngine",
@@ -109,16 +107,16 @@ testRunner.And(string.Format("a Cloud MPS Local Office Admin selects the country
                         "Colour",
                         "12.00",
                         "true"});
-#line 11
+#line 10
 testRunner.Then("a Cloud MPS Local Office Admin can set the threshold value for printer engines ty" +
                     "pes as follows and saves the details", ((string)(null)), table1, "Then ");
-#line 15
+#line 14
 testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 16
+#line 15
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 16
 testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
+#line 17
 testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of \"{2}\", Serv" +
                         "ice Pack type of \"{3}\" and Leasing Billing Cycle of \"{4}\"", usageType, contractTerm, billingType, servicePackType, leasingBillingCycle), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -152,59 +150,59 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "100",
                         "9",
                         "100"});
-#line 19
+#line 18
 testRunner.And("I add these printers:", ((string)(null)), table2, "And ");
-#line 22
+#line 21
 testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
+#line 22
 testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 23
 testRunner.And("a Cloud MPS Bank release the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 24
 testRunner.Then("I have navigated to the Approved Proposals page and navigate to the proposal Summ" +
                     "ary page for this proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 26
+#line 25
 testRunner.When("a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold sect" +
                     "ion and ensures correct display of tabs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
+#line 26
 testRunner.Then("a Cloud MPS Local Office Approver can search for the proposal and ensure printer " +
                     "details are not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 27
 testRunner.When("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 28
 testRunner.And("a Cloud MPS Local Office Approver searches for the agreement and ensures correct " +
                     "printer and threshold details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 29
 testRunner.Then("a Cloud MPS Local Office Approver updates the threshold value for printers and sa" +
                     "ves the details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 31
+#line 30
 testRunner.When("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
+#line 31
 testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 32
 testRunner.And("I will be able to see the installation request created above on the Manage Device" +
                     "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 33
 testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
                     "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
+#line 34
 testRunner.And("Enter the serial numbers and complete installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 35
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
+#line 36
 testRunner.And("I will be able to see on the Manage Devices page that all devices for the above c" +
                     "ontract are connected with default Print Counts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 37
 testRunner.And("a Cloud MPS Bank Cloud MPS Bank Summary Accept", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 38
 testRunner.And("a Cloud MPS Bank Populated Maintain Contact", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 39
 testRunner.Then("I set the Contract in the running state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
+#line 40
 testRunner.When("I automatically raise a consumable order for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 42
+#line 41
 testRunner.Then("I can verify the generation of automatic consumable orders alongwith status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

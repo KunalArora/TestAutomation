@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
 using Brother.Tests.Specs.Helpers;
@@ -13,6 +14,8 @@ using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
+
 
 namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
 {
@@ -38,6 +41,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminAdministrationDealerPage _localOfficeAdminAdministrationDealerPage;
         private LocalOfficeAdminDealersCreateDealershipPage _localOfficeAdminDealersCreateDealershipPage;
         private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
+        private LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
+        private LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -72,9 +77,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         }
 
         [Given(@"a Cloud MPS Local Office Admin has navigated to the Dashboard page")]
-        public void GivenACloudMPSLocalOfficeAdminHasNavigatedToTheDashboardPage()
+        public void GivenACloudMPSLocalOfficeAdminHasNavigatedToTheDashboardPage(string country)
         {
-            ScenarioContext.Current.Pending();
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Count != 1)
+            {
+                throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
+            }
+            _contextData.Culture = _contextData.Country.Cultures[0];
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
         }
 
         [Given(@"I navigate to the administration page with culture ""(.*)"" from ""(.*)""")]
@@ -183,20 +198,15 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [When(@"a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage Device Order Threshold section")]
         public void WhenACloudMPSLocalOfficeAdminNavigatesToThePrinterEngineTabUnderManageDeviceOrderThresholdSection()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [When(@"a Cloud MPS Local Office Admin selects the country as ""(.*)""")]
-        public void WhenACloudMPSLocalOfficeAdminSelectsTheCountryAs(string country)
-        {
-            ScenarioContext.Current.Pending();
+            _localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringNewInstalledPrinterPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringNewPrinterEnginePage(_localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
         }
 
         [Then(@"a Cloud MPS Local Office Admin can set the threshold value for printer engines types as follows and saves the details")]
-        public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table table)
+        public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
-            ScenarioContext.Current.Pending();
+            _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
+            _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage);
         }
-
     }
 }

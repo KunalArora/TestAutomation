@@ -44,6 +44,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LOAdminAdministrationLinkElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"] .media-body")]
         public IWebElement LOAdminReportElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/enhanced-usage-monitoring-new/installed-printer\"] .media-body")]
+        public IWebElement ManageDeviceOrderThresholdLink;
         
 
       
