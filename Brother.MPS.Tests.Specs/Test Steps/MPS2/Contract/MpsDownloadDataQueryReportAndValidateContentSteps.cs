@@ -93,7 +93,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _dealerProposalSteps.WhenICreateANewCustomerForTheProposal();
             _dealerProposalSteps.WhenISelectUsageTypeOfContractTermOfBillingTypeOfAndServicePackTypeOf(UsageType, ContractTerm, BillingType, ServicePackType);
             _dealerProposalSteps.WhenIAddThesePrinters(printers);
-            _validateDealerReportStepActions.SnapPrintersForVaridateDealerReport(innerContractId);
+            _validateDealerReportStepActions.SnapPrintersToValidateDealerReport(innerContractId);
             _dealerProposalSteps.WhenIPopulateTheClickPriceForEachOfTheSpecifiedPrinters();
             var dealerProposalsCreateSummaryPage = _dealerProposalSteps.GetDealerProposalsCreateSummaryPage();
             _validateDealerReportStepActions.SnapDealerProposalsCreateSummaryPage(innerContractId, dealerProposalsCreateSummaryPage);

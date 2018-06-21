@@ -37,13 +37,13 @@ namespace Brother.Tests.Specs.StepActions.Dealership
 
         }
 
-        private readonly string SnapNamePrefix = typeof(DealerProposalsCreateSummaryPage) + "-forValidateDealerReport";
+        private readonly string SnapNamePrefix = typeof(DealerProposalsCreateSummaryPage) + "-toValidateDealerReport";
         private readonly IPageParseHelper _pageParseHelper;
         private readonly IDealerReportExcelHelper _dealerReportExcelHelper;
         private readonly IUserResolver _userResolver;
         private Dictionary<int, IEnumerable<PrinterProperties>> _saveprop = new Dictionary<int, IEnumerable<PrinterProperties>>();
 
-        public void SnapPrintersForVaridateDealerReport(int innerContractId)
+        public void SnapPrintersToValidateDealerReport(int innerContractId)
         {
             LoggingService.WriteLogOnMethodEntry(innerContractId);
             _saveprop[innerContractId] = ContextData.PrintersProperties;
