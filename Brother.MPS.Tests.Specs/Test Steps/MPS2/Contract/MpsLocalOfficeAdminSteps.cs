@@ -71,6 +71,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
 
         }
 
+        [Given(@"a Cloud MPS Local Office Admin has navigated to the Dashboard page")]
+        public void GivenACloudMPSLocalOfficeAdminHasNavigatedToTheDashboardPage()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
         [Given(@"I navigate to the administration page with culture ""(.*)"" from ""(.*)""")]
         public void GivenINavigateToTheAdministrationPageWithCultureFrom(string culture, string country)
         {
@@ -172,6 +178,25 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void ThenIDeleteTheCreatedMPSDealer()
         {
             _mpsLocalOfficeAdminAgreementStepActions.DeleteCreatedDealer();
-        }        
+        }
+
+        [When(@"a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage Device Order Threshold section")]
+        public void WhenACloudMPSLocalOfficeAdminNavigatesToThePrinterEngineTabUnderManageDeviceOrderThresholdSection()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"a Cloud MPS Local Office Admin selects the country as ""(.*)""")]
+        public void WhenACloudMPSLocalOfficeAdminSelectsTheCountryAs(string country)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"a Cloud MPS Local Office Admin can set the threshold value for printer engines types as follows and saves the details")]
+        public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

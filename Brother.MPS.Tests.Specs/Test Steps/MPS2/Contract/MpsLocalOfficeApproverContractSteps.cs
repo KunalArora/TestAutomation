@@ -203,5 +203,30 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
                 _mpsLocalOfficeApproverContractStepActions.DeletePdfFile(pdfFile);
             }
         }
+
+        [When(@"a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold section and ensures correct display of tabs")]
+        public void WhenACloudMPSLocalOfficeApproverNavigatesToManageDeviceOrderThresholdSectionAndEnsuresCorrectDisplayOfTabs()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"a Cloud MPS Local Office Approver can search for the proposal and ensure printer details are not displayed")]
+        public void ThenACloudMPSLocalOfficeApproverCanSearchForTheProposalAndEnsurePrinterDetailsAreNotDisplayed()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"a Cloud MPS Local Office Approver searches for the agreement and ensures correct printer and threshold details")]
+        public void WhenACloudMPSLocalOfficeApproverSearchesForTheAgreementAndEnsuresCorrectPrinterAndThresholdDetails()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"a Cloud MPS Local Office Approver updates the threshold value for printers and saves the details")]
+        public void ThenACloudMPSLocalOfficeApproverUpdatesTheThresholdValueForPrintersAndSavesTheDetails()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

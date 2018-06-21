@@ -1,8 +1,8 @@
 ﻿@MPS @UAT @HIGH @TYPE3 @EUM @CI_TestMaintenance
 Feature: Type3EnhancedUsageMonitoring
 	In order to sell Cloud MPS services to customers
-	As a Cloud MPS Dealer
-	I want to ensure the correct working of the default order threshold functionality
+	As a Cloud MPS Dealer with the help of CLoud MPS BIE Admin
+	I want to ensure the correct working of the default order threshold functionality for Type 3
 
 Scenario Outline: Type3EnhancedUsageMonitoring
 Given a Cloud MPS BIE Admin has navigated to the Dashboard page

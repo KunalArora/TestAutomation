@@ -314,6 +314,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
+        [Then(@"I set the Contract in the running state")]
         [When(@"I set the Contract in the running state")]
         public void WhenISetTheContractInTheRunningState()
         {
