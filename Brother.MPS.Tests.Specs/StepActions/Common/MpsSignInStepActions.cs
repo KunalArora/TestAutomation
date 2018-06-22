@@ -288,6 +288,11 @@ namespace Brother.Tests.Specs.StepActions.Common
                     _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 
                     break;
+
+                case CountryIso.Denmark:
+                    _contextData.CultureInfo.NumberFormat.CurrencyPositivePattern = 2; // "$ n"
+                    break;
+
                 default:
                     break;
             }

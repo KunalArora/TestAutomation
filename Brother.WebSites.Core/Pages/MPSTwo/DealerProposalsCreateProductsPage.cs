@@ -2000,11 +2000,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             foreach (var element in bodyRowElements)
             {
                 var textTotalPrice = SeleniumHelper.FindElementByDataAttributeValue(element, printerTotalPriceDataAttributeSelector, "true").Text;
-                totalPriceValues.Add(textTotalPrice.CollectDigitOnly());
+                totalPriceValues.Add(textTotalPrice);
             }
             var tableFootContainer = SeleniumHelper.FindElementByCssSelector(printerContainer, printerTableFootSelector);
             var textFootContainer = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text;
-            expectedTotalPrice = textFootContainer.CollectDigitOnly();
+            expectedTotalPrice = textFootContainer;
             return totalPriceValues;
         }
     }

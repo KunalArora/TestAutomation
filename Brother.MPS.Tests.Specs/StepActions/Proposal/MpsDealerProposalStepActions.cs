@@ -5,7 +5,6 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
-using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -315,18 +314,18 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
             // Validate calculations on Summary page           
             List<String> deviceTotalsElements = new List<String>();
-            deviceTotalsElements.Add(_calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text));
-            deviceTotalsElements.Add(_calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text));
+            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalCostNetElement.Text);
+            deviceTotalsElements.Add(dealerProposalsCreateSummaryPage.DeviceTotalsTotalMarginNetElement.Text);
 
             _calculationService.VerifySum(
                 deviceTotalsElements,
-                _calculationService.ConvertCultureNumericStringToInvariantNumericString(dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text));
+                dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text);
             var SeleniumHelper = dealerProposalsCreateSummaryPage.SeleniumHelper;
             if( SeleniumHelper.IsElementDisplayed(dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement))
             {
                 _calculationService.VerifyGrossPrice(
-                    dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text.CollectDigitOnly(),
-                    dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement.Text.CollectDigitOnly());
+                    dealerProposalsCreateSummaryPage.SummaryGrandDeviceTotalPriceElement.Text,
+                    dealerProposalsCreateSummaryPage.SummaryContractGrandTotalPriceGrossElement.Text);
             }
             else
             {
@@ -639,7 +638,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             {
                 throw new Exception("pdf not exists file=" + pdfFile);
             }
-            var contractTermDigitString = new Regex(@"[^0-9]").Replace(summaryValue["SummaryTable.ContractTerm"],"");
+            var contractTermString = summaryValue["SummaryTable.ContractTerm"];
+            var contractTerm = int.Parse(new Regex(@"[^0-9]").Replace(contractTermString, ""));
 
             string[] searchTextArray;
 
@@ -648,31 +648,46 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 case CountryIso.UnitedKingdom:
                     searchTextArray = new string[] 
                         {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm*12),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
                             string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
                         };
                     break;
                 case CountryIso.Switzerland:
-                    var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
-                    var quarterInterval = (double.Parse(contractTermDigitString)/3);
-                    double minimumVolumePerQuarter = 0;
-                    if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture)))
                     {
-                        minimumVolumePerQuarter =  _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet/quarterInterval, 2);
-                    }
-                    searchTextArray = new string[]
+                        var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
+                        var quarterInterval = ((double)contractTerm) / 3.0;
+                        double minimumVolumePerQuarter = 0;
+                        if (_contextData.UsageType.Equals(_translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture)))
                         {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermDigitString),
+                            minimumVolumePerQuarter = _calculationService.RoundOffUptoDecimalPlaces(consumablesTotalPriceNet / quarterInterval, 2);
+                        }
+                        searchTextArray = new string[]
+                            {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
-                        };
-                    break;
+                            };
+                        break;
+                    }
+                case CountryIso.Denmark:
+                    {
+                        var resourceMinimumVolume = _translationService.GetUsageTypeText(TranslationKeys.UsageType.MinimumVolume, _contextData.Culture);
+                        var consumablesTotalPriceNet = _calculationService.ConvertCultureNumericStringToInvariantDouble(summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"], NumberStyles.Currency);
+                        var minimumVolumePerQuarter = (_contextData.UsageType == resourceMinimumVolume) ? consumablesTotalPriceNet /(double)(4*contractTerm) : 0;
+                        searchTextArray = new string[]
+                            {
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermString),
+                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                            string.Format(ContextData.CultureInfo, "{0} {1:C}", resourcePdfFileMinimumVolumePerQuarter, minimumVolumePerQuarter)
+                            };
+                        break;
+                    }
                 default:
                     searchTextArray = new string[]
                         {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , int.Parse(contractTermDigitString)*12),
+                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm*12),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
                             string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])

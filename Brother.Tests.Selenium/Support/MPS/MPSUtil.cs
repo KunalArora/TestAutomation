@@ -1,12 +1,10 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Globalization;
 using TechTalk.SpecFlow;
-using System.Linq;
-using Brother.Tests.Common.Domain.Constants;
-using System.Text.RegularExpressions;
 
 namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
@@ -15,7 +13,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
-        
+        private const string DATESTRING_BND = "dd-MM-yyyy";
+
 
         /// <summary>
         /// Generates a unique Proposal Name
@@ -78,6 +77,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                     return dateTime.ToString(DATESTRING_BIG);
                 case CountryIso.Switzerland:
                     return dateTime.ToString(DATESTRING_BSW);
+                case CountryIso.Denmark:
+                    return dateTime.ToString(DATESTRING_BND);
                 default:
                     throw new Exception("Date time string of the country with this countryISO cannot be formulated: " + countryIso);
             }

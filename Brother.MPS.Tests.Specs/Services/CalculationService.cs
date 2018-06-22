@@ -1,9 +1,10 @@
-﻿﻿using Brother.Tests.Common.ContextData;
+﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -32,28 +33,28 @@ namespace Brother.Tests.Specs.Services
                 RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(cultureNumericDisplayedUnitPrice), "Total Price Calculations did not get validated");
         }
 
-        public void VerifySum(List<string> invariantPrices, string invariantDisplayedTotalPrice)
+        // TODO OIKE 呼び元invaliant化やめる
+        public void VerifySum(List<string> prices, string displayedTotalPrice)
         {
-            LoggingService.WriteLogOnMethodEntry(invariantPrices, invariantDisplayedTotalPrice);
+            LoggingService.WriteLogOnMethodEntry(prices, displayedTotalPrice);
             double expectedTotalPrice = 0.00;
-            foreach(string price in invariantPrices)
+            foreach(string price in prices)
             {
-                expectedTotalPrice = expectedTotalPrice + double.Parse(price);
+                expectedTotalPrice = expectedTotalPrice + double.Parse(price, NumberStyles.Currency, ContextData.CultureInfo);
             }
 
-            TestCheck.AssertIsEqualDouble(
-                expectedTotalPrice, double.Parse(invariantDisplayedTotalPrice), 2, "Total Line Price Calculations did not get validated");
+            var actualTotalPrice = double.Parse(displayedTotalPrice, NumberStyles.Currency, ContextData.CultureInfo);
+            Assert.AreEqual(expectedTotalPrice, actualTotalPrice, 2, "Total Line Price Calculations did not get validated");
         }
 
         public void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice)
         {
             LoggingService.WriteLogOnMethodEntry(netTotalPrice, displayedGrossTotalPrice);
 
-            FinancialInformation _financialInfo = new FinancialInformation();
-
-            double expectedGrossTotalPrice = ConvertCultureNumericStringToInvariantDouble(netTotalPrice) * _financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
-            TestCheck.AssertIsEqual(
-                RoundOffUptoDecimalPlaces(expectedGrossTotalPrice), ConvertCultureNumericStringToInvariantDouble(displayedGrossTotalPrice), "Gross total price did not get validated");
+            var financialInfo = new FinancialInformation();
+            var expectedGrossTotalPrice = double.Parse(netTotalPrice, NumberStyles.Currency,ContextData.CultureInfo) * financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
+            var actualGrossTotalPrice = double.Parse(displayedGrossTotalPrice, NumberStyles.Currency, ContextData.CultureInfo);
+            Assert.AreEqual(expectedGrossTotalPrice, actualGrossTotalPrice, 2, "Gross total price did not get validated");
         }
 
         public double ConvertCultureNumericStringToInvariantDouble(string variable)
