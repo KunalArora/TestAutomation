@@ -69,8 +69,8 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry(netTotalPrice, displayedGrossTotalPrice);
 
             var financialInfo = new FinancialInformation();
-            var expectedGrossTotalPrice = double.Parse(Adjust(netTotalPrice), NumberStyles.Currency,ContextData.CultureInfo) * financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
-            var actualGrossTotalPrice = double.Parse(Adjust(displayedGrossTotalPrice), NumberStyles.Currency, ContextData.CultureInfo);
+            var expectedGrossTotalPrice = double.Parse(netTotalPrice, NumberStyles.Currency,ContextData.CultureInfo) * financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
+            var actualGrossTotalPrice = double.Parse(displayedGrossTotalPrice, NumberStyles.Currency, ContextData.CultureInfo);
             Assert.AreEqual(expectedGrossTotalPrice, actualGrossTotalPrice, 2, "Gross total price did not get validated");
         }
 

@@ -670,24 +670,23 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         }
                         searchTextArray = new string[]
                             {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
-                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
-                        };
+                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
+                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                                string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
+                            };
                         break;
                     }
                 case CountryIso.Poland:
-                    {
-
-                        string deviceTotalsTotalPriceNet = summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"];
-                        //In the poland proposal pdf, there is a non-breaking space(char 160) present so, the search text which contains a normal space(char 32)
-                        //needs to be converted and replaced as for the assertion to be successful. 
-                        int place = deviceTotalsTotalPriceNet.IndexOf(Convert.ToChar(32));
-                        string result = deviceTotalsTotalPriceNet.Remove(place, 1).Insert(place, Convert.ToChar(160).ToString());
-                        searchTextArray = new string[]
                         {
-                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
-                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, result),
+                            string deviceTotalsTotalPriceNet = summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"];
+                            //In the poland proposal pdf, there is a non-breaking space(char 160) present so, the search text which contains a normal space(char 32)
+                            //needs to be converted and replaced as for the assertion to be successful. 
+                            int place = deviceTotalsTotalPriceNet.IndexOf(Convert.ToChar(32));
+                            string result = deviceTotalsTotalPriceNet.Remove(place, 1).Insert(place, Convert.ToChar(160).ToString());
+                            searchTextArray = new string[]
+                            {
+                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermString),
+                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, result),                            
                                 string.Format("{0} {1}", resourceBillingType , summaryValue["SummaryTable.UsageBillingFrequency"]),
                                 string.Format("{0} {1}", resourceUsageType, summaryValue["SummaryTable.UsageType"])
                         };
