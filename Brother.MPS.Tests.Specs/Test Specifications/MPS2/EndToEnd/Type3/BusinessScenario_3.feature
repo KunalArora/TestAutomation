@@ -28,6 +28,7 @@ And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
 #And I can verify the device details using show device details option
 And I can verify the device details on device dashboard page
+Then I can verify that actions available for a dealer on a device in installed state
 When a Cloud MPS LO Approver can create and send a device reinstallation request
 And a Cloud MPS Installer is able to reinstall devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
 Then I can verify that the reinstalled devices are responding

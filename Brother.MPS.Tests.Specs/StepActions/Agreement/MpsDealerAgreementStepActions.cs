@@ -1467,7 +1467,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
         }
 
-        public DealerAgreementDevicesPage ClickShowServiceRequestButtonFromDiviceTab(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        public DealerAgreementDevicesPage VerifyActionsAvailableForADealerOnADevice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
 
@@ -1476,12 +1476,7 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
-                dealerAgreementDevicesPage.ClickOnShowServiceRequests(rowIndex);
-
-                var dealerAgreementServiceRequestsPage = PageService.GetPageObject<DealerAgreementServiceRequestsPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-
-                ClickSafety(dealerAgreementServiceRequestsPage.DevicesTabElement, dealerAgreementServiceRequestsPage);
-                _dealerAgreementDevicesPage = PageService.GetPageObject<DealerAgreementDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+                dealerAgreementDevicesPage.AssertActionsAvailableForADealerOnADevice(rowIndex);
             }
             return _dealerAgreementDevicesPage;
         }
