@@ -461,6 +461,7 @@
       <LastGenOutput>OrderedConsumable.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.pl-pl.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>

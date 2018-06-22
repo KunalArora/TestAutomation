@@ -1035,7 +1035,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var monoVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeMonoVolume, "true");
 
             ClearAndType(monoCoverageInput, coverageMono.ToString());
-            if (usageType.Equals(resourceUsageTypePayAsYouGo) || countryIso == CountryIso.Poland)
+            if (usageType.Equals(resourceUsageTypePayAsYouGo))
             {
                 ClearAndType(monoVolumeDropdownInput, volumeMono.ToString());
             }
@@ -1050,7 +1050,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 var colourVolumeDropdownInput = SeleniumHelper.FindElementByDataAttributeValue(printerContainer, DataAttributeColourVolume, "true");
 
                 ClearAndType(colourCoverageInput, coverageColour.ToString());
-                if (usageType.Equals(resourceUsageTypePayAsYouGo) || countryIso == CountryIso.Poland) // is dowpdown type
+                if (usageType.Equals(resourceUsageTypePayAsYouGo)) // is dowpdown type
                 {
                     ClearAndType(colourVolumeDropdownInput, volumeColour.ToString());
                 }

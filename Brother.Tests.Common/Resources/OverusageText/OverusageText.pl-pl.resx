@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MINIMUM_VOLUME" xml:space="preserve">
-    <value>Pakiet wydruków</value>
+  <data name="COLOUR_TEXT" xml:space="preserve">
+    <value>Koszt wydruku strony kolorowej poza limitem</value>
   </data>
-  <data name="PAY_AS_YOU_GO" xml:space="preserve">
-    <value>Bez pakietu wydruków</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="MONO_TEXT" xml:space="preserve">
+    <value>Koszt wydruku strony monochromatycznej poza limitem</value>
   </data>
 </root>
