@@ -124,8 +124,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement DeviceDetailsModalCloseButtonElement;
         [FindsBy(How = How.CssSelector, Using = "a[href*=\"mps/dealer/reports\"]")]
         public IWebElement ReportTabElement;
-        [FindsBy(How = How.CssSelector, Using = ".js-mps-view-service-requests")]
-        public IWebElement ShowServiceRequestsActionsButtonElement;
 
         // TABs
         [FindsBy(How = How.CssSelector, Using = "a[href$='/summary']")] // ex. /mps/dealer/agreement/173259/summary
@@ -1049,15 +1047,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             }
         }
 
-        // Click on Show Service Requests button for this particular row index
-        public void ClickOnShowServiceRequests(int rowIndex)
+        public void AssertActionsAvailableForADealerOnADevice(int rowIndex)
         {
             LoggingService.WriteLogOnMethodEntry(rowIndex);
+
             var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector);
             SeleniumHelper.ClickSafety(ActionsButtonElement);
-            var ShowServiceRequestsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector);
-            SeleniumHelper.ClickSafety(ShowServiceRequestsButtonElement);
+
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowPrintCountsActionsButtonSelector).Displayed);
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowDeviceDetailsActionsButtonSelector).Displayed);
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowConsumableOrdersActionsButtonSelector).Displayed);
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector).Displayed);
+            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector).Displayed);
+
+            SeleniumHelper.ClickSafety(ActionsButtonElement);   // for closing action menu
         }
     }
 }
