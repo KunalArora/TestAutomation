@@ -102,7 +102,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
                 // TODO: Replace this with the conventional element finding method after ID/Class of the elements have been fixed
                 serviceRequestRowElement = SeleniumHelper.WaitUntil(
                     d => 
-                        ServiceRequestRowElementList.First(
+                        ServiceRequestRowElementList.FirstOrDefault(
                         element => 
                         element.FindElements(By.TagName("td")).ToList()[1].Text == model &&
                         element.FindElements(By.TagName("td")).ToList()[2].Text == serialNumber &&

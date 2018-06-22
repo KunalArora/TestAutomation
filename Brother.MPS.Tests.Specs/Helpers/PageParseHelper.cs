@@ -685,6 +685,14 @@ namespace Brother.Tests.Specs.Helpers
 
             return value;
         }
+
+        public string ReplaceZeroIfHyphen( string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) { return value; }
+            if (value.Trim() == "-") { return "0"; }
+            return value;
+        }
+
     }
 
     public class SummaryPageValue : Dictionary<string, string>

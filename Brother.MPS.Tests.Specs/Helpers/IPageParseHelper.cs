@@ -16,5 +16,6 @@ namespace Brother.Tests.Specs.Helpers
         DealerAgreementConsumablesValue ParseDealerAgreementConsumablesPage(DealerAgreementConsumablesPage dealerAgreementConsumablesPage);
         List<Dictionary<string, string>> ToList(Dictionary<string, string> dic, string prefix, int count = -1);
         LocalOfficeAdminContractsEditEndDatePageValue ParseLocalOfficeAdminContractsEditEndDatePage(LocalOfficeAdminContractsEditEndDatePage localOfficeAdminContractsEditEndDatePage);
+        string ReplaceZeroIfHyphen(string value);
     }
 }
