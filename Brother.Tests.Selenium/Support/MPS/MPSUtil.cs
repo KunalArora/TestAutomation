@@ -15,8 +15,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
-        private const string DATESTRING_BPL = "00yyyy-MM-dd"; //TODO: rectify the 00  
-
+        private const string DATESTRING_BPL = "yyyyyy-MM-dd"; //Due to either system or chrome bug, the 6 digit input is required for year in the date format of poland
         
 
         /// <summary>
