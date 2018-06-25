@@ -1471,14 +1471,15 @@ namespace Brother.Tests.Specs.StepActions.Agreement
         {
             LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
 
-            DealerAgreementDevicesPage _dealerAgreementDevicesPage = dealerAgreementDevicesPage;
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+            dealerAgreementDevicesPage = Refresh(dealerAgreementDevicesPage);
 
             var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
             for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
             {
                 dealerAgreementDevicesPage.AssertActionsAvailableForADealerOnADevice(rowIndex);
             }
-            return _dealerAgreementDevicesPage;
+            return dealerAgreementDevicesPage;
         }
 
         #region private methods

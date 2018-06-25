@@ -175,13 +175,13 @@ testRunner.When("I export the device data into excel and retrieve installation i
 testRunner.And(string.Format("a Cloud MPS Installer is able to bulk install the devices using \"{0}\" communicati" +
                         "on and \"{1}\" installation", communicationMethod, installationType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
-testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I can verify that actions available for a dealer on a device in installed state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
+testRunner.And("a Cloud MPS Installer resets the devices and reinstalls them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
 testRunner.Then("I can verify that all devices are installed and responding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
-testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 31
-testRunner.Then("I can verify that actions available for a dealer on a device in installed state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("I can verify the device details on device dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
 testRunner.When("a Cloud MPS LO Approver can create and send a device reinstallation request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33

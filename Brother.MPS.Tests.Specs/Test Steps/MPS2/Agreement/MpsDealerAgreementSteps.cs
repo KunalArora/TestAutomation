@@ -405,8 +405,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsDealerAgreement.DownloadSilentDeviceReportAndVerifyDevices();
         }
 
-        [Then(@"I can verify that actions available for a dealer on a device in installed state")]
-        public void ThenICanVerifyThatActionsAvailableForADealerOnADeviceInInstalledState()
+        [When(@"I can verify that actions available for a dealer on a device in installed state")]
+        public void WhenICanVerifyThatActionsAvailableForADealerOnADeviceInInstalledState()
         {
             _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyActionsAvailableForADealerOnADevice(_dealerAgreementDevicesPage);
         }

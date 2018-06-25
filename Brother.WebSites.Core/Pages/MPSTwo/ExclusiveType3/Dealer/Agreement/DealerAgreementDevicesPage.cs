@@ -1055,11 +1055,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector);
             SeleniumHelper.ClickSafety(ActionsButtonElement);
 
-            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowPrintCountsActionsButtonSelector).Displayed);
-            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowDeviceDetailsActionsButtonSelector).Displayed);
-            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowConsumableOrdersActionsButtonSelector).Displayed);
-            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector).Displayed);
-            SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector).Displayed);
+            var showPrintCountsActionsButton = SeleniumHelper.IsElementDisplayed(deviceRowElements[rowIndex], ShowPrintCountsActionsButtonSelector) ? 
+                SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowPrintCountsActionsButtonSelector) : null;
+            var showDeviceDetailsActionsButton = SeleniumHelper.IsElementDisplayed(deviceRowElements[rowIndex], ShowDeviceDetailsActionsButtonSelector) ?
+                SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowDeviceDetailsActionsButtonSelector) : null;
+            var showConsumableOrdersActionsButton = SeleniumHelper.IsElementDisplayed(deviceRowElements[rowIndex], ShowConsumableOrdersActionsButtonSelector) ?
+                SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowConsumableOrdersActionsButtonSelector) : null;
+            var showServiceRequestsActionsButton = SeleniumHelper.IsElementDisplayed(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector) ?
+                SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector) : null;
+            var editDeviceDataButton = SeleniumHelper.IsElementDisplayed(deviceRowElements[rowIndex], EditDeviceDataButtonSelector) ?
+                SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector) : null;
+
+            TestCheck.AssertIsNotNull(showPrintCountsActionsButton, "Show Print Counts Button not found");
+            TestCheck.AssertIsNotNull(showDeviceDetailsActionsButton, "Show Device Details Button not found");
+            TestCheck.AssertIsNotNull(showConsumableOrdersActionsButton, "Show Consumable Orders Button not found");
+            TestCheck.AssertIsNotNull(showServiceRequestsActionsButton, "Show Service Requests Button not found");
+            TestCheck.AssertIsNotNull(editDeviceDataButton, "Edit Device Data Button not found");
 
             SeleniumHelper.ClickSafety(ActionsButtonElement);   // for closing action menu
         }
