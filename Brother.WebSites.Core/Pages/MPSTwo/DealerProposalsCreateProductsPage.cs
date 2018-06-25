@@ -1944,7 +1944,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 ClearAndType(deliveryPriceInput, "1");
             }
  
-            if(string.IsNullOrWhiteSpace(installationPack) == false && countryIso != CountryIso.Poland)
+            if(string.IsNullOrWhiteSpace(installationPack) == false)
             {
                 SeleniumHelper.SelectFromDropdownByText(installationPackInput, installationPack);
             }
