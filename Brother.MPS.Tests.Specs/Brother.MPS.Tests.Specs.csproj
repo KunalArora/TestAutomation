@@ -110,6 +110,7 @@
     <Compile Include="Helpers\ExcelHelpers\CppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\CPPAgreementExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\DealerReportExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\DealerReportProperties.cs" />
     <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IAccrualsDetailExcelHelper.cs" />
