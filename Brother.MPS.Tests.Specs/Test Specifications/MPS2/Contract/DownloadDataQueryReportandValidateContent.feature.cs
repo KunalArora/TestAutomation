@@ -37,8 +37,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Contract
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DownloadDataQueryReportandValidateContent", "\tIn order to verify the finance of Cloud MPS service\r\n\tAs a Cloud MPS Finance\r\n\tI" +
-                    " can generate the financial reports and verify the content", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1DownloadDataQueryReportandValidateContent", "\tIn order to sell high quality Cloud MPS services to customers\r\n\tAs a Cloud MPS D" +
+                    "ealer\r\n\tI want to verify the smooth download of data query report and validate i" +
+                    "ts content\r\n\thttps://brother-bie.atlassian.net/browse/MPS-4962", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
                         "TEST",
@@ -83,12 +84,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Contract
         public virtual void Type1DownloadDataQueryReportandValidateContent(string country, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1DownloadDataQueryReportandValidateContent", exampleTags);
-#line 7
-this.ScenarioSetup(scenarioInfo);
 #line 8
+this.ScenarioSetup(scenarioInfo);
+#line 9
 testRunner.Given(string.Format("I have navigated to the Open Proposals page as a Cloud MPS Dealer with AccountTyp" +
                         "e is \"Type1And3\" from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 10
 testRunner.And("I will delete all Type 1 contracts that I have", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -118,7 +119,7 @@ testRunner.And("I will delete all Type 1 contracts that I have", ((string)(null)
                         "1000",
                         "0",
                         "0"});
-#line 10
+#line 11
 testRunner.And("I create a running contract \"1\" with below devices:", ((string)(null)), table1, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -139,11 +140,11 @@ testRunner.And("I create a running contract \"1\" with below devices:", ((string
                         "1000",
                         "20",
                         "250"});
-#line 14
+#line 15
 testRunner.And("I create a running contract \"2\" with below devices:", ((string)(null)), table2, "And ");
-#line 17
-testRunner.When("I click the \'Report\' tab and click the \'Dealer Contract Report\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
+testRunner.When("I click the \'Report\' tab and click the \'Dealer Contract Report\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
 testRunner.Then("I can download, open the file and ensure the data is correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

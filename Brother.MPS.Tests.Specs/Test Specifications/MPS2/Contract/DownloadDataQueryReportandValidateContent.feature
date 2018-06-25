@@ -1,8 +1,9 @@
 ﻿@MPS @UAT @TEST @TYPE1 @LOW @MEDIUM
 Feature: Type1DownloadDataQueryReportandValidateContent
-	In order to verify the finance of Cloud MPS service
-	As a Cloud MPS Finance
-	I can generate the financial reports and verify the content
+	In order to sell high quality Cloud MPS services to customers
+	As a Cloud MPS Dealer
+	I want to verify the smooth download of data query report and validate its content
+	https://brother-bie.atlassian.net/browse/MPS-4962
 
 Scenario Outline: Type1DownloadDataQueryReportandValidateContent
 Given I have navigated to the Open Proposals page as a Cloud MPS Dealer with AccountType is "Type1And3" from "<Country>"
