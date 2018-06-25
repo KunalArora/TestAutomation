@@ -33,6 +33,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private readonly IProposalHelper _proposalHelper;
         private readonly MpsSignInStepActions _mpsSignInStepActions;
         private readonly ILoggingService _loggingService;
+        private readonly ICalculationService _calculationService;
         private readonly MpsLocalOfficeAdminContractStepActions _mpsLocalOfficeAdminContractStepActions;
         private readonly MpsLocalOfficeAdminAgreementStepActions _mpsLocalOfficeAdminAgreementStepActions;
         private LocalOfficeAdminReportsProposalSummaryPage _localOfficeAdminReportsProposalSummaryPage;
@@ -41,8 +42,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminAdministrationDealerPage _localOfficeAdminAdministrationDealerPage;
         private LocalOfficeAdminDealersCreateDealershipPage _localOfficeAdminDealersCreateDealershipPage;
         private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
-        private LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage;
-        private LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage;
+        private LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage;
+        private LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -58,7 +59,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             ITranslationService translationService,
             IUserResolver userResolver,
             IUrlResolver urlResolver,
-            IProposalHelper proposalHelper)
+            IProposalHelper proposalHelper,
+            ICalculationService calculationService)
         {
             _context = context;
             _driver = driver;
@@ -71,13 +73,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _proposalHelper = proposalHelper;
             _mpsSignInStepActions = mpsSignInStepActions;
             _loggingService = loggingService;
+            _calculationService = calculationService;
             _mpsLocalOfficeAdminContractStepActions = mpsLocalOfficeAdminContractStepActions;
             _mpsLocalOfficeAdminAgreementStepActions = mpsLocalOfficeAdminAgreementStepActions;
 
         }
 
-        [Given(@"a Cloud MPS Local Office Admin has navigated to the Dashboard page")]
-        public void GivenACloudMPSLocalOfficeAdminHasNavigatedToTheDashboardPage(string country)
+        [Given(@"a Cloud MPS Local Office Admin has navigated to the Dashboard page for country ""(.*)""")]
+        public void GivenACloudMPSLocalOfficeAdminHasNavigatedToTheDashboardPageForCountry(string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
@@ -198,15 +201,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         [When(@"a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage Device Order Threshold section")]
         public void WhenACloudMPSLocalOfficeAdminNavigatesToThePrinterEngineTabUnderManageDeviceOrderThresholdSection()
         {
-            _localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringNewInstalledPrinterPage(_localOfficeAdminDashboardPage);
-            _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringNewPrinterEnginePage(_localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
+            _localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringAdminInstalledPrinterPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.NavigateToEnhancedUsageMonitoringAdminPrinterEnginePage(_localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage);
         }
 
         [Then(@"a Cloud MPS Local Office Admin can set the threshold value for printer engines types as follows and saves the details")]
         public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
             _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
-            _localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+            foreach (var printerEngineThresholdDetail in _contextData.PrinterEngineThresholdDetails)
+            {
+                printerEngineThresholdDetail.Threshold = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printerEngineThresholdDetail.Threshold);
+            }
+            _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
         }
     }
 }

@@ -5,7 +5,7 @@ Feature: Type1EnhancedUsageMonitoring
 	I want to ensure the correct working of the default order threshold functionality for Type 1
 
 Scenario Outline: Type1EnhancedUsageMonitoring
-Given a Cloud MPS Local Office Admin has navigated to the Dashboard page
+Given a Cloud MPS Local Office Admin has navigated to the Dashboard page for country "<Country>"
 When a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage Device Order Threshold section
 Then a Cloud MPS Local Office Admin can set the threshold value for printer engines types as follows and saves the details
 		| PrinterEngine | SupplyItemType | Threshold | Enabled |
@@ -17,7 +17,7 @@ And I enter the proposal description
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>", Service Pack type of "<ServicePackType>" and Leasing Billing Cycle of "<LeasingBillingCycle>"
 And I add these printers:
 		| Model        | Price  | InstallationPack | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | MonoThresholdValue | ColourThresholdValue | TonerInkBlackRemLife | TonerInkCyanRemLife | TonerInkMagentaRemLife | TonerInkYellowRemLife |
-		| DCP-L8450CDW | 300.00 |                  | Yes      | 5            | 1000       | 0              | 0            | 12.00              | 10.00                | 11                   | 100                 | 9                      | 100                   |
+		| DCP-L8450CDW | 300.00 |                  | Yes      | 5            | 1000       | 20             | 20           | 12.00              | 10.00                | 11                   | 100                 | 9                      | 100                   |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Bank release the above proposal

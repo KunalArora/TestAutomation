@@ -7,10 +7,10 @@ using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage: BasePage, IPageObject
+    public class LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage: BasePage, IPageObject
     {
         private string _validationElementSelector = "#content_1_InputContractNumber_Input";
-        private const string _url = "/mps/local-office/enhanced-usage-monitoring-new/installed-printer";
+        private const string _url = "/mps/local-office/enhanced-usage-monitoring-admin/installed-printer";
 
         public string ValidationElementSelector
         {
@@ -37,7 +37,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
 
         // TABs
-        [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-new/printer-engine']")]
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-admin/printer-engine']")]
         public IWebElement PrinterEngineTabElement;
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputContractNumber_Input")]
@@ -68,16 +68,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             
             // TODO: Search elements by Id/class when they are fixed
 
-            TestCheck.AssertTextContains(AgreementName, detailRows[0].Text, "Agreement Name validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
-            TestCheck.AssertTextContains(ContractType, detailRows[0].Text, "Contract Type validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
+            TestCheck.AssertTextContains(AgreementName, detailRows[0].Text, "Agreement Name validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
+            TestCheck.AssertTextContains(ContractType, detailRows[0].Text, "Contract Type validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
 
-            TestCheck.AssertTextContains(ContractTerm, detailRows[1].Text, "Contract Term validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
-            TestCheck.AssertTextContains(UsageType, detailRows[1].Text, "Usage Type validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
+            TestCheck.AssertTextContains(ContractTerm, detailRows[1].Text, "Contract Term validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
+            TestCheck.AssertTextContains(UsageType, detailRows[1].Text, "Usage Type validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
 
-            TestCheck.AssertTextContains(LeadCodeReference, detailRows[2].Text, "Lead code reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
-            TestCheck.AssertTextContains(DealerReference, detailRows[2].Text, "Dealer Reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
+            TestCheck.AssertTextContains(LeadCodeReference, detailRows[2].Text, "Lead code reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
+            TestCheck.AssertTextContains(DealerReference, detailRows[2].Text, "Dealer Reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
 
-            TestCheck.AssertTextContains(LeasingFinanceReference, detailRows[3].Text, "Leasing Finance Reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage");
+            TestCheck.AssertTextContains(LeasingFinanceReference, detailRows[3].Text, "Leasing Finance Reference validation failed on LocalOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage");
         }
 
         public void VerifyPrinterDetails(IEnumerable<PrinterEngineThresholdDetails> printerEngineThresholdDetails)

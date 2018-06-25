@@ -338,37 +338,39 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
         }
 
-        public LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage NavigateToEnhancedUsageMonitoringNewInstalledPrinterPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        public LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage NavigateToEnhancedUsageMonitoringAdminInstalledPrinterPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
 
+            ClickSafety(localOfficeAdminDashboardPage.LOAdminAdministrationLinkElement, localOfficeAdminDashboardPage, IsUntilUrlChanges: true);
+            var localOfficeAdminAdministratorDashboardPage = PageService.GetPageObject<LocalOfficeAdminAdministrationDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
             ClickSafety(localOfficeAdminDashboardPage.ManageDeviceOrderThresholdLink, localOfficeAdminDashboardPage, IsUntilUrlChanges: true);
-            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
-        public LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage NavigateToEnhancedUsageMonitoringNewPrinterEnginePage(LocalOfficeEnhancedUsageMonitoringNewInstalledPrinterPage localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage)
+        public LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage NavigateToEnhancedUsageMonitoringAdminPrinterEnginePage(LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage);
 
-            ClickSafety(localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage.PrinterEngineTabElement, localOfficeAdminEnhancedUsageMonitoringNewInstalledPrinterPage, IsUntilUrlChanges: true);
-            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            ClickSafety(localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage.PrinterEngineTabElement, localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage, IsUntilUrlChanges: true);
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
         }
 
-        public LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage UpdatePrinterEngineThresholdDetailsAndSave(LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage)
+        public LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage UpdatePrinterEngineThresholdDetailsAndSave(LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage)
         {
-            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
 
             foreach (var printerEngine in _contextData.PrinterEngineThresholdDetails)
             {
-                localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage.EditPrinterEngineThresholdDetails(printerEngine);
+                localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.EditPrinterEngineThresholdDetails(printerEngine);
             }
 
-            ClickSafety(localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage.SaveButtonElement, localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage);
+            ClickSafety(localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.SaveButtonElement, localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
 
             // Validate success element
-            localOfficeAdminEnhancedUsageMonitoringNewPrinterEnginePage.CloseSuccessElementIfPresent();
+            localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.CloseSuccessElementIfPresent();
 
-            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver); 
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver); 
         }
     }
 }

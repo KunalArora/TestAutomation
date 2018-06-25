@@ -7,10 +7,10 @@ using System;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeEnhancedUsageMonitoringNewPrinterEnginePage: BasePage, IPageObject
+    public class LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage: BasePage, IPageObject
     {
-        private string _validationElementSelector = "#content_1_DropDownListCountry";
-        private const string _url = "/mps/local-office/enhanced-usage-monitoring-new/printer-engine";
+        private string _validationElementSelector = ".js-mps-printer-engine-row";
+        private const string _url = "/mps/local-office/enhanced-usage-monitoring-admin/printer-engine";
 
         public string ValidationElementSelector
         {
@@ -28,7 +28,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string SuccessAlertSelector = ".alert.alert-success.mps-alert.js-mps-alert";
 
         // TABs
-        [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-new/installed-printer']")]
+        [FindsBy(How = How.CssSelector, Using = "a[href$='/enhanced-usage-monitoring-admin/installed-printer']")]
         public IWebElement InstalledPrinterTabElement;
 
         [FindsBy(How = How.CssSelector, Using = "#content_1_DropDownListCountry")]

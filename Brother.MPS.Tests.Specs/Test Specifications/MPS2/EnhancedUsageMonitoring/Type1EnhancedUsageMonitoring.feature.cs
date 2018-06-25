@@ -87,7 +87,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUsageMonitoring
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given("a Cloud MPS Local Office Admin has navigated to the Dashboard page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("a Cloud MPS Local Office Admin has navigated to the Dashboard page for country \"{" +
+                        "0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
 testRunner.When("a Cloud MPS Local Office Admin navigates to the Printer Engine tab under Manage D" +
                     "evice Order Threshold section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -142,8 +143,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Yes",
                         "5",
                         "1000",
-                        "0",
-                        "0",
+                        "20",
+                        "20",
                         "12.00",
                         "10.00",
                         "11",
