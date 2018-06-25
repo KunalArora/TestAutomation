@@ -25,7 +25,7 @@ Then I have navigated to the Approved Proposals page and navigate to the proposa
 When a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold section and ensures correct display of tabs
 Then a Cloud MPS Local Office Approver can search for the proposal and ensure printer details are not displayed
 When I sign the above proposal
-And a Cloud MPS Local Office Approver searches for the agreement and ensures correct printer and threshold details
+And a Cloud MPS Local Office Approver searches for the proposal and ensures correct printer and threshold details
 Then a Cloud MPS Local Office Approver updates the threshold value for printers and saves the details
 When I navigate to the Accepted Contracts page and I locate the above contract and click Manage Devices button
 And I create a "<InstallationType>" installation request for "<CommunicationMethod>" communication

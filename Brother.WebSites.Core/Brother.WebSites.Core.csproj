@@ -288,6 +288,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDataQueryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsProposalSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceAccrualsReportPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeReportsDashboardPage.cs" />

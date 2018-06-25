@@ -171,8 +171,8 @@ testRunner.Then("a Cloud MPS Local Office Approver can search for the proposal a
 #line 27
 testRunner.When("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
-testRunner.And("a Cloud MPS Local Office Approver searches for the agreement and ensures correct " +
-                    "printer and threshold details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a Cloud MPS Local Office Approver searches for the proposal and ensures correct p" +
+                    "rinter and threshold details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
 testRunner.Then("a Cloud MPS Local Office Approver updates the threshold value for printers and sa" +
                     "ves the details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

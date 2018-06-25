@@ -27,6 +27,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
 
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
         private LocalOfficeApproverManageDevicesManagePage _localOfficeApproverManagedevicesManagePage;
+        private LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
        
 
         public MpsLocalOfficeApproverContractSteps(
@@ -207,19 +208,22 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold section and ensures correct display of tabs")]
         public void WhenACloudMPSLocalOfficeApproverNavigatesToManageDeviceOrderThresholdSectionAndEnsuresCorrectDisplayOfTabs()
         {
-            ScenarioContext.Current.Pending();
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage = _mpsLocalOfficeApproverProposalStepActions.NavigateToManageDeviceThresholdSectionAndValidateTabs(localOfficeApproverDashBoardPage);
         }
 
         [Then(@"a Cloud MPS Local Office Approver can search for the proposal and ensure printer details are not displayed")]
         public void ThenACloudMPSLocalOfficeApproverCanSearchForTheProposalAndEnsurePrinterDetailsAreNotDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage = _mpsLocalOfficeApproverProposalStepActions.SearchForProposalAndVerifyPrinterDetailsAreNotPresent(
+                _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage);
         }
 
-        [When(@"a Cloud MPS Local Office Approver searches for the agreement and ensures correct printer and threshold details")]
-        public void WhenACloudMPSLocalOfficeApproverSearchesForTheAgreementAndEnsuresCorrectPrinterAndThresholdDetails()
+        [When(@"a Cloud MPS Local Office Approver searches for the proposal and ensures correct printer and threshold details")]
+        public void WhenACloudMPSLocalOfficeApproverSearchesForTheProposalAndEnsuresCorrectPrinterAndThresholdDetails()
         {
-            ScenarioContext.Current.Pending();
+            _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage = _mpsLocalOfficeApproverProposalStepActions.SearchForProposalAndVerifyPrinterAndThresholdDetails(
+                _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage);
         }
 
         [Then(@"a Cloud MPS Local Office Approver updates the threshold value for printers and saves the details")]
