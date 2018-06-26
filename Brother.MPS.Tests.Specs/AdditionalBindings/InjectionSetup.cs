@@ -66,6 +66,7 @@ namespace Brother.Tests.Specs.AdditionalBindings
             _container.RegisterTypeAs<AccrualsDetailExcelHelper, IAccrualsDetailExcelHelper>();
             _container.RegisterTypeAs<CPPAgreementExcelHelper, ICPPAgreementExcelHelper>();
             _container.RegisterTypeAs<CppAgreementDevicesExcelHelper, ICppAgreementDevicesExcelHelper>();
+            _container.RegisterTypeAs<DealerReportExcelHelper, IDealerReportExcelHelper>();
 
             //necessary in order for 'old' (non-DI) framework to get hold of an ILoggingService instance
             Helper.LoggingService = _container.Resolve<ILoggingService>();

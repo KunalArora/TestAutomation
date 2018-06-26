@@ -10,7 +10,6 @@ using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
-using Brother.WebSites.Core.Pages;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -32,8 +31,11 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IContractShiftService _contractShiftService;
         private readonly IUserResolver _userResolver;
         private readonly IPdfHelper _pdfHelper;
+        private readonly IMpsWebToolsService _webToolsService;
 
-        public MpsDealerContractStepActions(IWebDriverFactory webDriverFactory,
+        public MpsDealerContractStepActions(
+            IMpsWebToolsService webToolsService,
+            IWebDriverFactory webDriverFactory,
             IContextData contextData,
             IPageService pageService,
             ScenarioContext context,
@@ -57,6 +59,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contractShiftService = contractShiftService;
             _userResolver = userResolver;
             _pdfHelper = pdfHelper;
+            _webToolsService = webToolsService;
         }
 
         public DealerContractsPage NavigateToContractsPage(DealerDashBoardPage dealerDashboardPage)
@@ -142,17 +145,29 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.LoadUrl<DealerManageDevicesPage>(currentUrl, RuntimeSettings.DefaultPageLoadTimeout, ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]", true, _dealerWebDriver);
         }
 
+        public void DeleteT1ContractsForDealership(string dealerUsername)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerUsername);
+            _webToolsService.DeleteT1ContractsForDealership(dealerUsername);
+        }
+
         public void CheckForUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             var products = _contextData.PrintersProperties;
+            int retries = 0;
             foreach (var product in products)
             {
                 var totalPageCount = product.TotalPageCount; 
                 while(!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, product.SerialNumber))) 
                 {
+                    retries++;
                     _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
                     dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
+                    if(retries > RuntimeSettings.DefaultRetryCount)
+                    {
+                        throw new Exception("Error while verifying the updated print counts. Retry count exceeded deafult retry limit");
+                    }
                     continue;
                 }
                 Refresh(dealerManageDevicesPage);
@@ -162,8 +177,20 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public void CheckForSwapDeviceUpdatedPrintCount(DealerManageDevicesPage dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
+            int retries = 0;
             var totalPageCount = (_contextData.SwapNewDeviceMonoPrintCount + _contextData.SwapNewDeviceColourPrintCount);
-            dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber);
+            while (!(dealerManageDevicesPage.CheckForUpdatedPrintCount(_dealerWebDriver, totalPageCount, _contextData.SwapNewDeviceSerialNumber)))
+            {
+                retries++;
+                _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
+                dealerManageDevicesPage = Refresh(dealerManageDevicesPage);
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    throw new Exception("Error while verifying the updated print counts. Retry count exceeded deafult retry limit");
+                }
+                continue;
+            }
+            Refresh(dealerManageDevicesPage);
         }
 
         //Similar function is already present in this file so, refactor this particular function.
@@ -285,7 +312,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<DealerManageDevicesPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
-        public string RetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
+        public string VerifyIRStatusAndRetrieveInstallationRequestUrl(DealerManageDevicesPage dealerManageDevicesPage)
         {
             LoggingService.WriteLogOnMethodEntry(dealerManageDevicesPage);
             string resourceInstallationStatusNotStarted = _translationService.GetInstallationStatusText(TranslationKeys.InstallationStatus.NotStarted, _contextData.Culture);

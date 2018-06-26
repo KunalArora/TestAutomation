@@ -1,15 +1,14 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Models;
-using Brother.Tests.Specs.Domain;
 using Brother.Tests.Common.Logging;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Domain;
 using Brother.Tests.Specs.Resolvers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Brother.Tests.Common.Domain.Constants;
-using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using System.Text;
 
 namespace Brother.Tests.Specs.Services
@@ -199,6 +198,14 @@ namespace Brother.Tests.Specs.Services
             {
                 _loggingService.WriteLog(LoggingLevel.INFO, response.ResponseBody);
             }
+        }
+
+        public void DeleteT1ContractsForDealership( string emailAddress)
+        {
+            _loggingService.WriteLogOnMethodEntry(emailAddress);
+            string actionPath = string.Format("automation/deletet1contractsfordealership.aspx?dealershipemail={0}", emailAddress);
+            string url = string.Format(_baseUrl, actionPath);
+            ExecuteWebTool(url);
         }
     }
 }

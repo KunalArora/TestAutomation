@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using TechTalk.SpecFlow.Assist;
 
+
 namespace Brother.Tests.Specs.Helpers.ExcelHelpers
 {
     public class CppAgreementDevicesExcelHelper : ExcelBaseHelper, ICppAgreementDevicesExcelHelper
@@ -90,7 +91,7 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
                 // Colour Click Price
                 Assert.AreEqual((double)expectedDevice.CoverageColour, double.Parse(actualXlsItem.ColourCoverage, numberStyles, ci), 2, messageFormat, "ColourCoverage", actualXlsItem.SerialNumber);
                 Assert.AreEqual(expectedSummaryPageValues[model + ".ColourVolume"], actualXlsItem.ColourMinimumVolume, messageFormat, "ColourMinimumVolume", actualXlsItem.SerialNumber);
-                expectedDouble = double.Parse(expectedSummaryPageValues[model + ".ColourClickRate"], numberStyles, ci);
+                expectedDouble = double.Parse(_pageParseHelper.ReplaceZeroIfHyphen( expectedSummaryPageValues[model + ".ColourClickRate"]), numberStyles, ci);
                 actualDouble = double.Parse(actualXlsItem.ColourClickPrice, numberStyles, ci);
                 Assert.AreEqual(expectedDouble, actualDouble, 2, messageFormat, "ColourClickPrice", actualXlsItem.SerialNumber);
                 // Mono Print Count
@@ -177,4 +178,5 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         public string LatestConsumableOrderDate { get; set; }
         public string Country { get; set; }        
     }
+
 }

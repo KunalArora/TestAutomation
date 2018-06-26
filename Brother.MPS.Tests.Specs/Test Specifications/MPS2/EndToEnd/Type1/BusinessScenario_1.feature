@@ -5,7 +5,7 @@ Feature: Type1BusinessScenario_1
 	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Type1BusinessScenario_1
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
+Given I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture "<Culture>" from "<Country>"
 When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I create a new customer for the proposal
@@ -13,10 +13,10 @@ And I create a new customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
 		| Model        | Price   | InstallationPack     | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 | IsSwap |
-		| DCP-8110DN   | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 0               | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
-		| HL-5450DN    | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 10             | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-		| DCP-L8450CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 3000           | 1500            | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
-		| MFC-L8650CDW | 1000.00 | BROTHER_INSTALLATION | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 10             | 10              | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-8110DN   | 1000.00 | <InstallationPack_1> | Yes      | 5            | 1000       | 0              | 0            | A3P145600    | 23             | 0               | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           | true   |
+		| HL-5450DN    | 1000.00 | <InstallationPack_2> | Yes      | 5            | 1000       | 0              | 0            | A3P145601    | 10             | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| DCP-L8450CDW | 1000.00 | <InstallationPack_3> | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 3000           | 1500            | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
+		| MFC-L8650CDW | 1000.00 | <InstallationPack_4> | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 10             | 10              | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Local Office Approver approves the above proposal
@@ -44,11 +44,10 @@ Then I will be able to see the status of the swap device is set Being Swapped wi
 
 @BUK
 Scenarios: 
-		| Country        | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount |
-		| United Kingdom | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1   | InstallationPack_2   | InstallationPack_3   | InstallationPack_4   |
+		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION |
 
-		
-#@BFR
-#Scenarios:
-#		| Country | ContractType     | UsageType      | ServicePackType | ContractTerm | Customer | PrinterModel_1 | PrinterPrice_1 | PrinterInstallation_1 | PrinterDelivery_1 | PrinterCoverageMono_1 | PrinterVolumeMono_1 | PrinterCoverageColour_1 | PrinterVolumeColour_1 | PrinterModel_2 | PrinterPrice_2 | PrinterInstallation_2 | PrinterDelivery_2 | PrinterCoverageMono_2 | PrinterVolumeMono_2 | PrinterCoverageColour_2 | PrinterVolumeColour_2 | PrinterModel_3 | PrinterPrice_3 | PrinterInstallation_3 | PrinterDelivery_3 | PrinterCoverageMono_3 | PrinterVolumeMono_3 | PrinterCoverageColour_3 | PrinterVolumeColour_3 | PrinterModel_4 | PrinterPrice_4 | PrinterInstallation_4 | PrinterDelivery_4 | PrinterCoverageMono_4 | PrinterVolumeMono_4 | PrinterCoverageColour_4 | PrinterVolumeColour_4 |
-#		| France  | Purchase & Click | Minimum Volume | Upfront         | 3 years      | New      | ABC1234        | 1000.00        | Brother               | Yes               | 5                     | 1000                | 0                       | 0                     |                |                |                       |                   |                       |                     |                         |                       |                |                |                       |                   |                       |                     |                         |                       |                |                |                       |                   |                       |                     |                         |                       |
+@BPL
+Scenarios:
+		| Country | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1 | InstallationPack_2 | InstallationPack_3 | InstallationPack_4 |
+		| Poland  | pl-PL   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |                    |                    |                    |                    |

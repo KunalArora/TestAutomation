@@ -19,6 +19,7 @@ namespace Brother.Tests.Common.RuntimeSettings
         private Dictionary<string, string> _defaultDealerUsername = new Dictionary<string, string>();
         private Dictionary<string, string> _defaultDealerPassword = new Dictionary<string, string>();
 
+
         /// <summary>
         /// Initialise runtime settings. Timeout values are in seconds.
         /// If a null parameter is supplied a default will be used as specified.
