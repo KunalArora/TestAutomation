@@ -178,4 +178,5 @@ namespace Brother.Tests.Specs.Helpers.ExcelHelpers
         public string LatestConsumableOrderDate { get; set; }
         public string Country { get; set; }        
     }
+
 }

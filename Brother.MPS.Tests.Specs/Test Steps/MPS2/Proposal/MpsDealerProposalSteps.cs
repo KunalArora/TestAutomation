@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.ContextData;
 using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.Services;
@@ -7,7 +8,9 @@ using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.Tests.Specs.StepActions.Contract;
 using Brother.Tests.Specs.StepActions.Proposal;
+using Brother.Tests.Specs.Test_Steps.MPS2.Contract;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using OpenQA.Selenium;
 using System;
@@ -55,12 +58,14 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         private DealerReportsDashboardPage _dealerReportsDashboardPage;
         private DealerReportsDataQueryPage _dealerReportsDataqueryPage;
         private DealerReportsProposalsSummaryPage _dealerReportsProposalsSummaryPage;
-        private DealerAdminDashBoardPage _dealerAdminDashboardPage;
 
         // other
         private string _pdfFile;
+        private readonly MpsDealerContractSteps _mpsDealerContractSteps;
+        private readonly MpsDealerContractStepActions _mpsDealerContractStepActions;
 
         public MpsDealerProposalSteps(
+            MpsDealerContractStepActions mpsDealerContractStepActions,
             IPageParseHelper pageParseHelper,
             MpsSignInStepActions mpsSignInStepActions,
             MpsDealerProposalStepActions mpsDealerProposalStepActions,
@@ -90,6 +95,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _loggingService = loggingService;
             _calculationService = calculationService;
             _pageParseHelper = pageParseHelper;
+            _mpsDealerContractStepActions = mpsDealerContractStepActions;
         }
 
         [Given(@"I have navigated to the Create Customer page as a Cloud MPS Dealer from ""(.*)""")]
@@ -107,20 +113,38 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerCustomersExistingPage = _mpsDealerProposalStepActions.NavigateToCustomersExistingPage(_dealerDashboardPage);
         }
 
+        [Given(@"I have navigated to the Open Proposals page as a Cloud MPS Dealer with AccountType is ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsACloudMPSDealerWithAccountTypeIsFrom(DealerAccountType dealerAccountType, string country)
+        {
+            _contextData.DealerAccountType=dealerAccountType;
+            GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(country);
+        }
 
-        [StepDefinition(@"I have navigated to the Open Proposals page as a ""(.*)"" from ""(.*)""")]
+        [Given(@"I will delete all Type 1 contracts that I have")]
+        public void GivenIWillDeleteAllType1ContractsThatIHave()
+        {
+            _mpsDealerContractStepActions.DeleteT1ContractsForDealership(_userResolver.DealerUsername);
+        }
+
+
+        [StepDefinition(@"I have navigated to the Open Proposals page as a Cloud MPS Dealer from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
+        {
+            GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom( _userResolver.DealerUsername, _userResolver.DealerPassword, country);
+        }
+
+        [StepDefinition(@"I have navigated to the Open Proposals page as user name of ""(.*)"" and password of ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string dealerUserName, string dealerPassword, string country)
         {
             _contextData.SetBusinessType("1");
             _contextData.Country = _countryService.GetByName(country);
-            if(_contextData.Country.Cultures.Count != 1)
+            if (_contextData.Country.Cultures.Count != 1)
             {
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
             _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
-            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(dealerUserName, dealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
         [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture ""(.*)"" from ""(.*)""")]
@@ -274,6 +298,11 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void WhenISaveTheProposal()
         {
             _cloudExistingProposalPage = _mpsDealerProposalStepActions.SaveTheProposalAndProceed(_dealerProposalsCreateSummaryPage);
+        }
+
+        public DealerProposalsCreateSummaryPage GetDealerProposalsCreateSummaryPage()
+        {
+            return _dealerProposalsCreateSummaryPage;
         }
 
         [Then(@"I can see the proposal created above in the open proposals list")]

@@ -22,7 +22,7 @@ using TechTalk.SpecFlow;
 namespace Brother.Tests.Specs.StepActions.Contract
 {
     [Binding]
-    class MpsLocalOfficeApproverContractStepActions : MpsLocalOfficeStepActions 
+    public class MpsLocalOfficeApproverContractStepActions : MpsLocalOfficeStepActions 
     {
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;

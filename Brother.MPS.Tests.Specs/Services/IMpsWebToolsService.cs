@@ -17,5 +17,6 @@ namespace Brother.Tests.Specs.Services
         void DeleteDealership(string dealershipEmail);
         void RemoveProductionSmokeTests();
         void AddMpsRole(string emailAddress, string role);
+        void DeleteT1ContractsForDealership(string emailAddress);
     }
 }

@@ -14,6 +14,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/data-query\"] .media-heading")]
         public IWebElement DataQueryElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/reports/dealer-report\"] .media-heading")]
+        public IWebElement DealerContractElement;
 
         public string ValidationElementSelector
         {

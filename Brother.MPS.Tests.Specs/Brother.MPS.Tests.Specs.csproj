@@ -109,12 +109,15 @@
     <Compile Include="Helpers\ExcelHelpers\ClickBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\CppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\CPPAgreementExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\DealerReportExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\DealerReportProperties.cs" />
     <Compile Include="Helpers\ExcelHelpers\DevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IAccrualsDetailExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IClickBillExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ICppAgreementDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\ICPPAgreementExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelHelpers\IDealerReportExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IDevicesExcelHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IExcelBaseHelper.cs" />
     <Compile Include="Helpers\ExcelHelpers\IServiceInstallationBillExcelHelper.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="StepActions\Customer\MpsCustomerStepActions.cs" />
     <Compile Include="StepActions\Customer\MpsDealerCustomerStepActions.cs" />
     <Compile Include="StepActions\Dealership\MpsDealerDefaultMarginsStepActions.cs" />
+    <Compile Include="StepActions\Dealership\MpsValidateDealerReportStepActions.cs" />
     <Compile Include="StepActions\Finance\MpsFinanceStepActions.cs" />
     <Compile Include="StepActions\Dealership\MpsDealerDealershipStepActions.cs" />
     <Compile Include="StepActions\Proposal\MpsBankProposalStepActions.cs" />
@@ -212,6 +216,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CloudMPSDealerCanLogin.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidateContent.feature.cs">
+      <DependentUpon>DownloadDataQueryReportandValidateContent.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Test Specifications\MPS2\Dealer\CreateDealer.feature.cs">
       <AutoGen>True</AutoGen>
@@ -1558,6 +1567,7 @@
     <Compile Include="Test Steps\BrotherOnline\Purchasing\SavedPaymentDetailsSteps.cs" />
     <Compile Include="Test Steps\BrotherOnline\SiteAccess\SiteAccessSteps.cs" />
     <Compile Include="Test Steps\MPS2\Agreement\MpsDealerAgreementSteps.cs" />
+    <Compile Include="Test Steps\MPS2\Contract\MpsDownloadDataQueryReportAndValidateContentSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsInstallerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsDealerContractSteps.cs" />
     <Compile Include="Test Steps\MPS2\Contract\MpsLocalOfficeApproverContractSteps.cs" />
@@ -1717,6 +1727,10 @@
     <None Include="Test Specifications\MPS2\Common\CloudMPSDealerCanLogin.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CloudMPSDealerCanLogin.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Contract\DownloadDataQueryReportandValidateContent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DownloadDataQueryReportandValidateContent.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Dealer\CreateDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -2753,7 +2767,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test Specifications\MPS2\Agreement\" />
-    <Folder Include="Test Specifications\MPS2\Contract\" />
     <Folder Include="Test Specifications\MPS2\Customer\" />
     <Folder Include="Test Specifications\MPS2\Installation\" />
     <Folder Include="Test Specifications\MPS2\Proposal\" />
