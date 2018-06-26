@@ -1,4 +1,5 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -1918,11 +1919,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             bool delivery,
             string servicePackType,
             string resourceServicePackTypeIncludedInClickPrice,
+            string countryIso,
             out string margin,
             out string unitPrice,
             out IWebElement printerContainer)
         {
-            LoggingService.WriteLogOnMethodEntry(printerName, printerPrice, installationPack, delivery, servicePackType, resourceServicePackTypeIncludedInClickPrice);
+            LoggingService.WriteLogOnMethodEntry(printerName, printerPrice, installationPack, delivery, servicePackType, resourceServicePackTypeIncludedInClickPrice, countryIso);
             // Filter the product
             ClearAndType(FilterProductElement, printerName);
 

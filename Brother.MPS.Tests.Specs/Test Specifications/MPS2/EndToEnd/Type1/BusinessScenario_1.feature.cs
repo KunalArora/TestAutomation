@@ -76,15 +76,37 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Type1BusinessScenario_1")]
-        [NUnit.Framework.TestCaseAttribute("United Kingdom", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145604", "100", "0", new string[] {
+        [NUnit.Framework.TestCaseAttribute("United Kingdom", "", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145604", "100", "0", "BROTHER_INSTALLATION", "BROTHER_INSTALLATION", "BROTHER_INSTALLATION", "BROTHER_INSTALLATION", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void Type1BusinessScenario_1(string country, string contractType, string usageType, string billingType, string servicePackType, string contractTerm, string customer, string communicationMethod, string installationType, string swapType, string swapNewDeviceSerialNumber, string swapNewDeviceMonoPrintCount, string swapNewDeviceColorPrintCount, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145604", "100", "0", "", "", "", "", new string[] {
+                "BPL"}, Category="BPL")]
+        public virtual void Type1BusinessScenario_1(
+                    string country, 
+                    string culture, 
+                    string contractType, 
+                    string usageType, 
+                    string billingType, 
+                    string servicePackType, 
+                    string contractTerm, 
+                    string customer, 
+                    string communicationMethod, 
+                    string installationType, 
+                    string swapType, 
+                    string swapNewDeviceSerialNumber, 
+                    string swapNewDeviceMonoPrintCount, 
+                    string swapNewDeviceColorPrintCount, 
+                    string installationPack_1, 
+                    string installationPack_2, 
+                    string installationPack_3, 
+                    string installationPack_4, 
+                    string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1BusinessScenario_1", exampleTags);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture \"" +
+                        "{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
 testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
@@ -120,7 +142,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "1000.00",
-                        "BROTHER_INSTALLATION",
+                        string.Format("{0}", installationPack_1),
                         "Yes",
                         "5",
                         "1000",
@@ -142,7 +164,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             table1.AddRow(new string[] {
                         "HL-5450DN",
                         "1000.00",
-                        "BROTHER_INSTALLATION",
+                        string.Format("{0}", installationPack_2),
                         "Yes",
                         "5",
                         "1000",
@@ -164,7 +186,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "1000.00",
-                        "BROTHER_INSTALLATION",
+                        string.Format("{0}", installationPack_3),
                         "Yes",
                         "5",
                         "1000",
@@ -186,7 +208,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "1000.00",
-                        "BROTHER_INSTALLATION",
+                        string.Format("{0}", installationPack_4),
                         "Yes",
                         "5",
                         "1000",

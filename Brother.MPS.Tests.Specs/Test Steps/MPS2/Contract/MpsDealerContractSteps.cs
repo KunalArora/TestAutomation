@@ -150,14 +150,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         [When(@"I will be able to see the installation request created above on the Manage Devices page for the above proposal")]
         public void ThenIWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
-            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
+            var url = _mpsDealerContractStepActions.VerifyIRStatusAndRetrieveInstallationRequestUrl(_dealerManageDevicesPage);
             _contextData.WebInstallUrl = url;
         }
 
         [When(@"a Sub dealer will be able to see the installation request created above on the Manage Devices page for the above proposal")]
         public void WhenASubDealerWillBeAbleToSeeTheInstallationRequestCreatedAboveOnTheManageDevicesPageForTheAboveProposal()
         {
-            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
+            var url = _mpsDealerContractStepActions.VerifyIRStatusAndRetrieveInstallationRequestUrl(_dealerManageDevicesPage);
             _contextData.WebInstallUrl = url;
         }
 
@@ -218,7 +218,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         public void ThenIWillBeAbleToSeeTheStatusOfTheInstalledDeviceIsSetBeingReplacedOnTheManageDevicesPageForTheAboveProposal()
         {
             _mpsDealerContractStepActions.VerifySwappedDeviceStatusAction(_dealerManageDevicesPage);
-            var url = _mpsDealerContractStepActions.RetrieveInstallationRequestUrl(_dealerManageDevicesPage);
+            var url = _mpsDealerContractStepActions.VerifyIRStatusAndRetrieveInstallationRequestUrl(_dealerManageDevicesPage);
             _contextData.WebSwapInstallUrl = url;
         }
         

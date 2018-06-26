@@ -154,6 +154,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgreementStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallationRequestStatus.pl-pl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.Designer.cs">
       <DependentUpon>LeasingBillingCycle.de-de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -319,6 +324,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BinaryResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingType\BillingType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\CommunicationMethod\CommunicationMethod.en-gb.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommunicationMethod.en-gb.Designer.cs</LastGenOutput>
@@ -350,6 +356,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CsvTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.pl-pl.resx" />
     <EmbeddedResource Include="Resources\DisplayMessage\DisplayMessage.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayMessage.de-de.Designer.cs</LastGenOutput>
@@ -368,8 +375,13 @@
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstallationRequestStatus.pl-pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.pl-pl.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LeasingBillingCycle.de-de.Designer.cs</LastGenOutput>
@@ -449,6 +461,7 @@
       <LastGenOutput>OrderedConsumable.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.pl-pl.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OverusageText.Designer.cs</LastGenOutput>
@@ -472,6 +485,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.resx">
@@ -486,6 +500,7 @@
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -507,6 +522,7 @@
     <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\UsageType\UsageType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UsageType.Designer.cs</LastGenOutput>

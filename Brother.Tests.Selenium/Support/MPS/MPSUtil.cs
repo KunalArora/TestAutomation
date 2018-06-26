@@ -15,6 +15,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
+        private const string DATESTRING_BPL = "yyyyyy-MM-dd"; //Due to either system or chrome bug, the 6 digit input is required for year in the date format of poland
         
 
         /// <summary>
@@ -78,6 +79,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                     return dateTime.ToString(DATESTRING_BIG);
                 case CountryIso.Switzerland:
                     return dateTime.ToString(DATESTRING_BSW);
+                case CountryIso.Poland:
+                    return dateTime.ToString(DATESTRING_BPL);
                 default:
                     throw new Exception("Date time string of the country with this countryISO cannot be formulated: " + countryIso);
             }

@@ -104,6 +104,8 @@
             public static string PagePriceBlackWhitePrint { get {return "PAGE_PRICE_BLACK_WHITE_PRINT"; }}
             public static string PagePriceColorPrint { get { return "PAGE_PRICE_COLOR_PRINT"; } }
             public static string MinimumVolumePerQuarter { get { return "MINIMUM_VOLUME_PER_QUARTER"; } }
+            public static string BillingType { get { return "BILLING_TYPE"; } }
+            public static string UsageType { get { return "USAGE_TYPE"; } }
         }
 
         public static class DeviceConnectionStatus
