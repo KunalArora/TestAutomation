@@ -22,8 +22,8 @@ namespace Brother.Tests.Specs.StepActions.Contract
 {
     public class MpsDealerContractStepActions: StepActionBase
     {
-        private readonly IWebDriver _dealerWebDriver;
-        private readonly IWebDriver _subDealerWebDriver;
+        private IWebDriver _dealerWebDriver { get { return WebDriverFactory.GetWebDriverInstance(UserType.Dealer); } }
+        private IWebDriver _subDealerWebDriver { get { return WebDriverFactory.GetWebDriverInstance(UserType.SubDealer); } }
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
@@ -50,8 +50,6 @@ namespace Brother.Tests.Specs.StepActions.Contract
             IPdfHelper pdfHelper)            
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
-            _dealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.Dealer);
-            _subDealerWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.SubDealer);
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
