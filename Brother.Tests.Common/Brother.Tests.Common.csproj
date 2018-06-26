@@ -321,6 +321,7 @@
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BillingType\BillingType.da-dk.resx" />
+    <EmbeddedResource Include="Resources\BillingType\BillingType.it-it.resx" />
     <EmbeddedResource Include="Resources\Binary\BinaryResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BinaryResource.Designer.cs</LastGenOutput>
@@ -349,6 +350,7 @@
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.it-it.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.en-gb.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.fr-ch.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.resx">
@@ -380,6 +382,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.da-dk.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.it-it.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallationRequestStatus.pl-pl.Designer.cs</LastGenOutput>
@@ -477,6 +480,7 @@
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.de-de.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\PaymentType\PaymentType.it-it.resx" />
     <EmbeddedResource Include="Resources\PaymentType\PaymentType.resx">
       <LastGenOutput>PaymentType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -509,6 +513,7 @@
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.da-dk.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.it-it.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.resx">
       <LastGenOutput>ServicePackType.Designer.cs</LastGenOutput>
@@ -532,6 +537,7 @@
     <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\UsageType\UsageType.it-it.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.resx">
       <Generator>ResXFileCodeGenerator</Generator>
