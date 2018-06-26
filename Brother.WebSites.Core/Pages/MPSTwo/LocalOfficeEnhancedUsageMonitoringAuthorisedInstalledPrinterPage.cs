@@ -1,4 +1,6 @@
-﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+﻿using Brother.Tests.Common.Domain.Constants;
+using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Common.Services;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
@@ -60,10 +62,10 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         }
 
         public void ValidateProposalDetails(string ProposalName, string ContractTerm,
-            string LeadCodeReference, string CustomerName, string ContractType,
+            string LeadCodeReference, string ContractType,
             string UsageType)
         {
-            LoggingService.WriteLogOnMethodEntry(ProposalName, ContractTerm, LeadCodeReference, CustomerName, ContractType, UsageType);
+            LoggingService.WriteLogOnMethodEntry(ProposalName, ContractTerm, LeadCodeReference, ContractType, UsageType);
 
             var detailRows = SeleniumHelper.FindRowElementsWithinTable(SeleniumHelper.FindElementByCssSelector(".mps-table-proposal-details > tbody"));
 
@@ -75,8 +77,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             TestCheck.AssertTextContains(ContractTerm, detailRows[1].Text, "Contract Term validation failed on LocalOfficeApproverEnhancedUsageMonitoringAuthorisedInstalledPrinterPage");
             TestCheck.AssertTextContains(UsageType, detailRows[1].Text, "Usage Type validation failed on LocalOfficeApproverEnhancedUsageMonitoringAuthorisedInstalledPrinterPage");
 
-            TestCheck.AssertTextContains(LeadCodeReference, detailRows[2].Text, "Lead code reference validation failed on LocalOfficeApproverEnhancedUsageMonitoringAuthorisedInstalledPrinterPage");
-            TestCheck.AssertTextContains(CustomerName, detailRows[2].Text, "Customer Name validation failed on LocalOfficeApproverEnhancedUsageMonitoringAuthorisedInstalledPrinterPage");
+            TestCheck.AssertTextContains(LeadCodeReference == null ? "" : LeadCodeReference, detailRows[2].Text, "Lead code reference validation failed on LocalOfficeApproverEnhancedUsageMonitoringAuthorisedInstalledPrinterPage");
         }
 
         public void ValidateAgreementDetails(string AgreementName, string ContractTerm,
@@ -105,9 +106,21 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(printerEngineThresholdDetails);
 
+            ExpectedTranslationService translationService = new ExpectedTranslationService();
+
             var eumRowElements = SeleniumHelper.FindElementsByCssSelector(EUMRowSelector);
+
             foreach (var thresholdDetails in printerEngineThresholdDetails)
             {
+                if (thresholdDetails.SupplyItemType.ToLower().Equals("mono"))
+                {
+                    thresholdDetails.SupplyItemType = translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Mono, CultureInfo.Name);
+                }
+                else if (thresholdDetails.SupplyItemType.ToLower().Equals("colour") || thresholdDetails.SupplyItemType.ToLower().Equals("color"))
+                {
+                    thresholdDetails.SupplyItemType = translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Colour, CultureInfo.Name);
+                }
+
                 TestCheck.AssertIsNotNull(eumRowElements.Find(
                     d =>
                         d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == thresholdDetails.SupplyItemType &&

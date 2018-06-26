@@ -23,7 +23,7 @@ And I save the above proposal and submit it for approval
 And a Cloud MPS Bank release the above proposal
 Then I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal
 When a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold section and ensures correct display of tabs
-Then a Cloud MPS Local Office Approver can search for the proposal and ensure printer details are not displayed
+Then a Cloud MPS Local Office Approver can search for the proposal, verify proposal details and ensure printer details are not displayed
 When I sign the above proposal
 And a Cloud MPS Local Office Approver searches for the proposal and ensures correct printer and threshold details
 Then a Cloud MPS Local Office Approver updates the threshold value for printers and saves the details

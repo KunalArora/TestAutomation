@@ -209,10 +209,12 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
             _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
+            
             foreach (var printerEngineThresholdDetail in _contextData.PrinterEngineThresholdDetails)
             {
                 printerEngineThresholdDetail.Threshold = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printerEngineThresholdDetail.Threshold);
             }
+
             _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
         }
     }

@@ -105,6 +105,11 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.CsvTranslations.CsvTranslations.ResourceManager, name, culture);
         }
 
+        public string GetSupplyItemType(string name, string culture)
+        {
+            return GetText(Resources.SupplyItemType.SupplyItemType.ResourceManager, name, culture);
+        }
+
         
         #region Exclusively Type 3
 

@@ -191,5 +191,11 @@
         {
             public static string SerialNumber { get { return "SERIAL_NUMBER"; } }
         }
+
+        public static class SupplyItemType
+        {
+            public static string Mono { get { return "MONO"; } }
+            public static string Colour { get { return "COLOUR"; } }
+        }
     }
 }

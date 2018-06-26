@@ -166,8 +166,8 @@ testRunner.Then("I have navigated to the Approved Proposals page and navigate to
 testRunner.When("a Cloud MPS Local Office Approver navigates to Manage Device Order Threshold sect" +
                     "ion and ensures correct display of tabs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
-testRunner.Then("a Cloud MPS Local Office Approver can search for the proposal and ensure printer " +
-                    "details are not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("a Cloud MPS Local Office Approver can search for the proposal, verify proposal de" +
+                    "tails and ensure printer details are not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 27
 testRunner.When("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 28
