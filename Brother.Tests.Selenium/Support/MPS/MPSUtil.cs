@@ -13,8 +13,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
-        private const string DATESTRING_BPL = "dd.MM.yyyy";
-        
+        private static string DATESTRING_BPL { get { return System.Environment.OSVersion.Version.Major < 10 ? "yyyyyy-MM-dd" : "dd.MM.yyyy"; } }
+                
 
         /// <summary>
         /// Generates a unique Proposal Name
