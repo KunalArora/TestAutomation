@@ -7,7 +7,6 @@ namespace Brother.Tests.Common.Domain.Constants
     {
         private readonly Dictionary<string, double> Country2Vat = new Dictionary<string, double>()
         {
-            { CountryIso.Poland, 1.23},
             { CountryIso.Denmark, 1.25 }, // 25% see https://en.wikipedia.org/wiki/Taxation_in_Denmark
             { CountryIso.Poland, 1.23 },
             { CountryIso.Germany, 1.19},
