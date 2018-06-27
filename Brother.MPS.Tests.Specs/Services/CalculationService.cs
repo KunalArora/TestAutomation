@@ -4,6 +4,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Selenium.Lib.Support.MPS;
+using Brother.Tests.Specs.Helpers;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,13 @@ namespace Brother.Tests.Specs.Services
     {
         private ILoggingService LoggingService { get; set; }
         public IContextData ContextData { get; private set; }
+        public IPageParseHelper PageParseHelper { get; private set; }
 
-        public CalculationService(ILoggingService loggingService, IContextData contextData)
+        public CalculationService(ILoggingService loggingService, IContextData contextData, IPageParseHelper pageParseHelper)
         {
             LoggingService = loggingService;
             ContextData = contextData;
+            PageParseHelper = pageParseHelper;
         }
 
         public void VerifyTotalPrice(string cultureNumericUnitCost, string cultureNumericMargin, string cultureNumericDisplayedUnitPrice)
@@ -33,18 +36,32 @@ namespace Brother.Tests.Specs.Services
                 RoundOffUptoDecimalPlaces(expectedPrice), ConvertCultureNumericStringToInvariantDouble(cultureNumericDisplayedUnitPrice), "Total Price Calculations did not get validated");
         }
 
-        // TODO OIKE 呼び元invaliant化やめる
         public void VerifySum(List<string> prices, string displayedTotalPrice)
         {
             LoggingService.WriteLogOnMethodEntry(prices, displayedTotalPrice);
             double expectedTotalPrice = 0.00;
             foreach(string price in prices)
             {
-                expectedTotalPrice = expectedTotalPrice + double.Parse(price, NumberStyles.Currency, ContextData.CultureInfo);
+                expectedTotalPrice = expectedTotalPrice + double.Parse(Adjust(PageParseHelper.ReplaceZeroIfHyphen(price)), NumberStyles.Currency, ContextData.CultureInfo);
             }
 
-            var actualTotalPrice = double.Parse(displayedTotalPrice, NumberStyles.Currency, ContextData.CultureInfo);
+            var actualTotalPrice = double.Parse(Adjust(PageParseHelper.ReplaceZeroIfHyphen(displayedTotalPrice)), NumberStyles.Currency, ContextData.CultureInfo);
             Assert.AreEqual(expectedTotalPrice, actualTotalPrice, 2, "Total Line Price Calculations did not get validated");
+        }
+
+        private string Adjust( string currencyString)
+        {
+            if ( ContextData.CultureInfo.NumberFormat.CurrencySymbol == "CHF")
+            {
+                var currencySymbol = ContextData.CultureInfo.NumberFormat.CurrencySymbol;
+                var plainCurrencyGroupSeparator = " ";
+                var adjustCurrencyGroupSeparator = ContextData.CultureInfo.NumberFormat.CurrencyGroupSeparator; // "'"
+                // ex. "CHF 2 297.22" => "CHF 2'297.22"
+                return currencyString
+                    .Replace(plainCurrencyGroupSeparator, adjustCurrencyGroupSeparator)
+                    .Replace(currencySymbol+ adjustCurrencyGroupSeparator, currencySymbol+" "); 
+            }
+            return currencyString;
         }
 
         public void VerifyGrossPrice(string netTotalPrice, string displayedGrossTotalPrice)
@@ -52,8 +69,8 @@ namespace Brother.Tests.Specs.Services
             LoggingService.WriteLogOnMethodEntry(netTotalPrice, displayedGrossTotalPrice);
 
             var financialInfo = new FinancialInformation();
-            var expectedGrossTotalPrice = double.Parse(netTotalPrice, NumberStyles.Currency,ContextData.CultureInfo) * financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
-            var actualGrossTotalPrice = double.Parse(displayedGrossTotalPrice, NumberStyles.Currency, ContextData.CultureInfo);
+            var expectedGrossTotalPrice = double.Parse(Adjust(netTotalPrice), NumberStyles.Currency,ContextData.CultureInfo) * financialInfo.GetVatRateMultiplyingFactor(ContextData.Country.CountryIso);
+            var actualGrossTotalPrice = double.Parse(Adjust(displayedGrossTotalPrice), NumberStyles.Currency, ContextData.CultureInfo);
             Assert.AreEqual(expectedGrossTotalPrice, actualGrossTotalPrice, 2, "Gross total price did not get validated");
         }
 
