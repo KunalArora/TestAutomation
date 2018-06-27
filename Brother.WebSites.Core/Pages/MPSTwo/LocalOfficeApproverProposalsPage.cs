@@ -13,7 +13,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
     {
         public static string Url = "/";
 
-        //private const string _validationElementSelector = "table.dataTable";
         private const string _validationElementSelector = "div.js-mps-proposal-list-container";
         private const string _url = "/mps/local-office/approval/proposals/awaiting-approval";
 
