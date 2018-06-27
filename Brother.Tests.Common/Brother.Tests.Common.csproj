@@ -390,6 +390,7 @@
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.da-dk.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.it-it.resx" />
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.pl-pl.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -471,6 +472,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.da-dk.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.it-it.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.pl-pl.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -497,6 +499,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.it-it.resx" />
     <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.pl-pl.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ProposalDeclineReason\ProposalDeclineReason.en-gb.resx" />

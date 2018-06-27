@@ -705,6 +705,21 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             };
                         break;
                     }
+                case CountryIso.Italy:
+                    {
+                        var resourceClientName = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.ClientName, _contextData.Culture);
+                        var resourceDealershipName = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.DealershipName, _contextData.Culture);
+                        var resourceDate = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.Date, _contextData.Culture);
+                        var resourceProposalId = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.ProposalId, _contextData.Culture);
+                        searchTextArray = new string[]
+                            {
+                            string.Format("{0} {1}", resourceClientName , summaryValue["SummaryTable.CustomerName"]),
+                            string.Format("{0} {1}", resourceDealershipName, summaryValue["SummaryTable.DealershipName"]),
+                            string.Format("{0} {1}", resourceDate, _contextData.AgreementDateCreated),
+                            string.Format("{0} {1}", resourceProposalId, _contextData.ProposalId)
+                            };
+                        break;
+                    }
                 default:
                     searchTextArray = new string[]
                         {

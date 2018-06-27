@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Brother.Tests.Selenium.Lib.Support.MPS;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -37,11 +38,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement FinalDeclineButtonElement;
 
         private const string InputReasonSelector = "#content_1_InputProposalDeclineReason_Input";
+        private const string InputProposalApprovalValidUntilSelector = "#content_1_InputProposalApproveValidUntil_Input";
 
         public void ClickOnAccept()
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
+
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector);
+            if(InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
+            {
+                InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
+            }
             SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout + 10, true); // Add 10 sec extra to timeout as approval processing takes time
         }
 

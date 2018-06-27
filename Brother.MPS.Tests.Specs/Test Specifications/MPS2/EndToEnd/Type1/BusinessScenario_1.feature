@@ -42,17 +42,17 @@ And a Brother installer has navigated to the Web Swap Installation page and veri
 And Enter the serial number for new device "<SwapNewDeviceSerialNumber>" with new Mono "<SwapNewDeviceMonoPrintCount>" and color "<SwapNewDeviceColorPrintCount>" print count and complete Installation 
 Then I will be able to see the status of the swap device is set Being Swapped with updated print counts on the Manage Devices page for the above proposal
 
-#@BUK
-#Scenarios: 
-#		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1   | InstallationPack_2   | InstallationPack_3   | InstallationPack_4   |
-#		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION |
+@BUK
+Scenarios: 
+		| Country        | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1   | InstallationPack_2   | InstallationPack_3   | InstallationPack_4   |
+		| United Kingdom |         | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION | BROTHER_INSTALLATION |
 
 @BPL
 Scenarios:
 		| Country | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1 | InstallationPack_2 | InstallationPack_3 | InstallationPack_4 |
 		| Poland  | pl-PL   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |                    |                    |                    |                    |
 
-#@BIT
-#Scenarios:
-#		| Country | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1 | InstallationPack_2 | InstallationPack_3 | InstallationPack_4 |
-#		| Italy   | it-IT   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |                    |                    |                    |                    |
+@BIT
+Scenarios:
+		| Country | Culture | ContractType       | UsageType      | BillingType          | ServicePackType | ContractTerm | Customer | CommunicationMethod | InstallationType | SwapType                | SwapNewDeviceSerialNumber | SwapNewDeviceMonoPrintCount | SwapNewDeviceColorPrintCount | InstallationPack_1 | InstallationPack_2 | InstallationPack_3 | InstallationPack_4 |
+		| Italy   | it-IT   | PURCHASE_AND_CLICK | MINIMUM_VOLUME | QUARTERLY_IN_ARREARS | PAY_UPFRONT     | THREE_YEARS  | New      | Cloud               | Web              | REPLACE_WITH_SAME_MODEL | A3P145604                 | 100                         | 0                            |                    |                    |                    |                    |

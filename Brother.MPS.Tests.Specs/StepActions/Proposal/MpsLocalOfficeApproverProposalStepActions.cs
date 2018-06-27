@@ -76,6 +76,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         public LocalOfficeApproverApprovalProposalsApprovedPage ApproveProposal(LocalOfficeApproverApprovalProposalsSummaryPage localOfficeApproverAprovalProposalsSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverAprovalProposalsSummaryPage);
+
             localOfficeApproverAprovalProposalsSummaryPage.ClickOnAccept();
             return PageService.GetPageObject<LocalOfficeApproverApprovalProposalsApprovedPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
         }

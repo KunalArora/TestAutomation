@@ -106,6 +106,10 @@
             public static string MinimumVolumePerQuarter { get { return "MINIMUM_VOLUME_PER_QUARTER"; } }
             public static string BillingType { get { return "BILLING_TYPE"; } }
             public static string UsageType { get { return "USAGE_TYPE"; } }
+            public static string ClientName { get { return "CLIENT_NAME"; } }
+            public static string Date { get { return "DATE"; } }
+            public static string DealershipName { get { return "DEALERSHIP_NAME"; } }
+            public static string ProposalId { get { return "PROPOSAL_ID"; } }
         }
 
         public static class DeviceConnectionStatus
