@@ -29,7 +29,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         //                        "Page Count: 0 \r\n" + 
         //                        "Drum Count: 355 \r\n";
 
-        private const string _validationElementSelector = ".active a[href=\"/mps/dealer/contracts/manage-devices/manage\"]";
+        private const string _validationElementSelector = "#content_1_DeviceListFilter_btnShowPrintCounts";
         private const string _url = "/mps/dealer/contracts/manage-devices/manage";
 
         public string ValidationElementSelector

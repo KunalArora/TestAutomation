@@ -130,6 +130,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         [StepDefinition(@"I have navigated to the Open Proposals page as a Cloud MPS Dealer from ""(.*)""")]
         public void GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom(string country)
         {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
             GivenIHaveNavigatedToTheOpenProposalsPageAsAFrom( _userResolver.DealerUsername, _userResolver.DealerPassword, country);
         }
 
