@@ -1,5 +1,6 @@
 ﻿using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Microsoft.Win32;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -13,9 +14,17 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
-        private static string DATESTRING_BPL { get { return System.Environment.OSVersion.Version.Major < 10 ? "yyyyyy-MM-dd" : "dd.MM.yyyy"; } }
+        private static string DATESTRING_BPL { get { return IsWindows10() == false ? "yyyyyy-MM-dd" : "dd.MM.yyyy"; } }
         private const string DATESTRING_BND = "dd-MM-yyyy";
-                
+
+        private static bool IsWindows10()
+        {
+            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            string productName = (string)reg.GetValue("ProductName");
+
+            return productName.StartsWith("Windows 10");
+        }
 
         /// <summary>
         /// Generates a unique Proposal Name
