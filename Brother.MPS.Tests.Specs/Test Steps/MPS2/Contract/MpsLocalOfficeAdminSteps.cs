@@ -44,6 +44,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
         private LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage;
         private LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage;
+        private LocalOfficeAdminProgramPage _localOfficeAdminProgramPage;
+        private LocalOfficeAdminProgramLeaseAndClickPage _localOfficeAdminProgramLeaseAndClickPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -92,6 +94,22 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
+        }
+        
+        [Given(@"I have navigated to the dashboard page as a Cloud MPS Local office admin with culture ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheDashboardPageAsACloudMPSLocalOfficeAdminWithCultureFrom(string culture, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
+            {
+                throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
+            }
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, "PLadmin1", string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
         }
 
@@ -209,13 +227,27 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
             _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
-            
+
             foreach (var printerEngineThresholdDetail in _contextData.PrinterEngineThresholdDetails)
             {
                 printerEngineThresholdDetail.Threshold = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printerEngineThresholdDetail.Threshold);
             }
 
             _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
+        }
+
+        [When(@"I navigate to the lease and click program settings page and enable the program")]
+        public void WhenINavigateToTheLeaseAndClickProgramSettingsPageAndEnableTheProgram()
+        {
+            _localOfficeAdminProgramPage = _mpsLocalOfficeAdminContractStepActions.NavigateToProgramPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.NavigateToLeaseAndClickProgramSettingsPage(_localOfficeAdminProgramPage);
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.ClickOnProgramEnabledButtonAndSave(_localOfficeAdminProgramLeaseAndClickPage);
+        }
+
+        [Then(@"I disable the program that was previously enabled")]
+        public void ThenIDisableTheProgramThatWasPreviouslyEnabled()
+        {
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DisableProgramAndSave(_localOfficeAdminProgramLeaseAndClickPage);
         }
     }
 }

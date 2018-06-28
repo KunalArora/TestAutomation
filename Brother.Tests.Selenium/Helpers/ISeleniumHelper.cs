@@ -130,6 +130,8 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <param name="element"></param>
         /// <returns></returns>
         bool IsReadOnly(IWebElement element);
+
+        bool IsElementSelected(IWebElement element);
         
         /// <summary>
         /// Return true if all the elements exist else false

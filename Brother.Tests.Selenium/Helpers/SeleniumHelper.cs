@@ -267,6 +267,16 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             return true;
         }
 
+        public bool IsElementSelected(IWebElement element)
+        {
+            LoggingService.WriteLogOnMethodEntry(element);
+            if(element.GetAttribute("Selected") == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // Check if all of the elements are present or not
         public bool IsExistAllElements(params IWebElement[] elements)
         {

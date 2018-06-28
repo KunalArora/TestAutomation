@@ -356,6 +356,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.it-it.resx" />
+    <EmbeddedResource Include="Resources\ContractType\ContractType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.en-gb.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.fr-ch.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.resx">

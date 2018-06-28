@@ -207,6 +207,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Customer Account.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\Admin\LocalOfficeAdminCapabilities.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalOfficeAdminCapabilities.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\Admin\Type1DealerAdminCapabilities.feature.cs">
       <DependentUpon>Type1DealerAdminCapabilities.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1729,6 +1734,10 @@
     <None Include="Test Specifications\BrotherOnline\SiteAccess\SitesAccess_TestEnvironment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SitesAccess_TestEnvironment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\Admin\LocalOfficeAdminCapabilities.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LocalOfficeAdminCapabilities.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\Admin\Type1DealerAdminCapabilities.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
