@@ -45,6 +45,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         private const string ShowDeviceDetailsActionsButtonSelector = ".js-mps-view-device-location";
         private const string SwapDeviceActionsButtonSelector = ".js-mps-swap-device";
         private const string ReInstallDeviceActionsButtonSelector = ".js-mps-re-install-device";
+        private const string ShowServiceRequestsActionsButtonSelector = ".js-mps-view-service-requests";
 
         private const string StatusToolTipSelector = ".js-mps-tooltip";
         private const string StatusIconSelector = "[id*=content_1_Devices_StatusIconCell_]";
@@ -1044,6 +1045,36 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
             {
                 TestCheck.AssertFailTest("Success Dialog not found after swap request is sent. step="+step+" Error details:" + e);
             }
+        }
+
+        public void AssertActionsAvailableForADealerOnADevice(int rowIndex)
+        {
+            LoggingService.WriteLogOnMethodEntry(rowIndex);
+
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(DeviceContainerElement);
+            var ActionsButtonElement = SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(ActionsButtonElement);
+
+            string targetselector = "";
+            try
+            {
+                targetselector = "ShowPrintCountsActionsButtonSelector";
+                SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowPrintCountsActionsButtonSelector).Displayed);
+                targetselector = "ShowDeviceDetailsActionsButtonSelector";
+                SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowDeviceDetailsActionsButtonSelector).Displayed);
+                targetselector = "ShowConsumableOrdersActionsButtonSelector";
+                SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowConsumableOrdersActionsButtonSelector).Displayed);
+                targetselector = "ShowServiceRequestsActionsButtonSelector";
+                SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], ShowServiceRequestsActionsButtonSelector).Displayed);
+                targetselector = "EditDeviceDataButtonSelector";
+                SeleniumHelper.WaitUntil(d => SeleniumHelper.FindElementByCssSelector(deviceRowElements[rowIndex], EditDeviceDataButtonSelector).Displayed);
+            }
+            catch (Exception e)
+            {
+                TestCheck.AssertFailTest("AssertActionsAvailableForADealerOnADevice() error rowIndex=" + rowIndex + ", selector=" + targetselector);
+            }
+
+            SeleniumHelper.ClickSafety(ActionsButtonElement);   // for closing action menu
         }
     }
 }

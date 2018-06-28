@@ -1467,6 +1467,21 @@ namespace Brother.Tests.Specs.StepActions.Agreement
             }
         }
 
+        public DealerAgreementDevicesPage VerifyActionsAvailableForADealerOnADevice(DealerAgreementDevicesPage dealerAgreementDevicesPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerAgreementDevicesPage);
+
+            _dealerWebDriver.SwitchTo().Window(_contextData.WindowHandles[UserType.Dealer]);
+            dealerAgreementDevicesPage = Refresh(dealerAgreementDevicesPage);
+
+            var deviceRowCount = dealerAgreementDevicesPage.DeviceTableRowsCount();
+            for (int rowIndex = 0; rowIndex < deviceRowCount; rowIndex++)
+            {
+                dealerAgreementDevicesPage.AssertActionsAvailableForADealerOnADevice(rowIndex);
+            }
+            return dealerAgreementDevicesPage;
+        }
+
         #region private methods
 
         private void PopulateAgreementDescription(DealerAgreementCreateDescriptionPage dealerAgreementCreateDescriptionPage,

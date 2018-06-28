@@ -24,6 +24,7 @@ And a Cloud MPS LO Approver applies special pricing using relative values(+/- w.
 Then a Cloud MPS LO Approver can verify that special pricing is correctly applied
 When I export the device data into excel and retrieve installation information
 And a Cloud MPS Installer is able to bulk install the devices using "<CommunicationMethod>" communication and "<InstallationType>" installation
+And I can verify that actions available for a dealer on a device in installed state
 And a Cloud MPS Installer resets the devices and reinstalls them
 Then I can verify that all devices are installed and responding
 #And I can verify the device details using show device details option
