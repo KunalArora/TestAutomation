@@ -332,6 +332,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
         }
 
+        [Then(@"I update the consumable order and verify it on the dataquery page")]
         [When(@"I update the consumable order and verify it on the dataquery page")]
         public void WhenIUpdateTheConsumableOrderAndVerifyItOnTheDataqueryPage()
         {
@@ -369,6 +370,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             {
                 _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(invoicePdfFile);
             }
+        }
+
+        public void ThenICanVerifyAutomaticConsumableOrderIsRaisedUsingRemainingLife(string resourceConsumableOrderMethodAutomatic)
+        {
+            string resourceConsumableOrderStatusInProcessing = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProcessing, _contextData.Culture);
+
+            WhenINavigateToTheContractSummaryPageInTheReportsSection();
+            _mpsDealerProposalStepActions.VerifyConsumableOrderIsRaisedUsingRemainingLife(_dealerReportsProposalsSummaryPage, resourceConsumableOrderMethodAutomatic, resourceConsumableOrderStatusInProcessing);
         }
 
     }

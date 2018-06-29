@@ -134,13 +134,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(printerProperties);
 
+            ExpectedTranslationService translationService = new ExpectedTranslationService();
+
             var eumRowElements = SeleniumHelper.FindElementsByCssSelector(EUMRowSelector);
             foreach (var printer in printerProperties)
             {
                 var targetEumRow = eumRowElements.Find(
                     d =>
                         d.FindElement(By.CssSelector(EUMRowModelSelector)).Text == printer.Model &&
-                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == "Mono");
+                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Mono, CultureInfo.Name));
 
                 TestCheck.AssertIsNotNull(targetEumRow, "Printer engine mono threshold details not found for printer = " + printer.Model);
 
@@ -153,7 +155,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     targetEumRow = eumRowElements.Find(
                     d =>
                         d.FindElement(By.CssSelector(EUMRowModelSelector)).Text == printer.Model &&
-                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == "Colour");
+                        d.FindElement(By.CssSelector(EUMRowSupplyItemTypeSelector)).Text == translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Colour, CultureInfo.Name));
 
                     TestCheck.AssertIsNotNull(targetEumRow, "Printer engine colour threshold details not found for printer = " + printer.Model);
 

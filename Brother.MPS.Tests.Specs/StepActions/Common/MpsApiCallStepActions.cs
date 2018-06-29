@@ -95,33 +95,45 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             foreach (var product in products)
             {
-                foreach (var device in devices)
+                if(_contextData.ProposalId != 0) // Proposal
                 {
-                    if (device.Model.Equals(product.Model))
+                    //Update the consumable order, remaining life and replace count as per specifications
+                    _deviceSimulatorService.RaiseConsumableOrder(
+                        product.DeviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
+                    _deviceSimulatorService.SetRemainingLife(
+                        product.DeviceId, product.TonerInkBlackRemLife, product.TonerInkCyanRemLife, product.TonerInkMagentaRemLife, product.TonerInkYellowRemLife);
+                    _deviceSimulatorService.NotifyBocOfDeviceChanges(product.DeviceId);
+                }
+                else // Agreement
+                {
+                    foreach (var device in devices)
                     {
-                        // Save consumable order status to Additional Device Properties as well for convenience
-                        device.TonerInkBlackStatus = product.TonerInkBlackStatus;
-                        device.TonerInkCyanStatus = product.TonerInkCyanStatus;
-                        device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
-                        device.TonerInkYellowStatus = product.TonerInkYellowStatus;
-                        device.TonerInkBlackRemLife = product.TonerInkBlackRemLife;
-                        device.TonerInkCyanRemLife = product.TonerInkCyanRemLife;
-                        device.TonerInkMagentaRemLife = product.TonerInkMagentaRemLife;
-                        device.TonerInkYellowRemLife = product.TonerInkYellowRemLife;
-                        device.TonerInkBlackReplaceCount = product.TonerInkBlackReplaceCount;
-                        device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
-                        device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
-                        device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
-                        device.UpdateConsumableOrderCount();
-                        
-                        //Update the consumable order, remaining life and replace count as per specifications
-                        _deviceSimulatorService.RaiseConsumableOrder(
-                            device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
-                        _deviceSimulatorService.SetRemainingLife(
-                            device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
-                        _deviceSimulatorService.SetReplaceCount(
-                            device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
-                        _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
+                        if (device.Model.Equals(product.Model))
+                        {
+                            // Save consumable order status to Additional Device Properties as well for convenience
+                            device.TonerInkBlackStatus = product.TonerInkBlackStatus;
+                            device.TonerInkCyanStatus = product.TonerInkCyanStatus;
+                            device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
+                            device.TonerInkYellowStatus = product.TonerInkYellowStatus;
+                            device.TonerInkBlackRemLife = product.TonerInkBlackRemLife;
+                            device.TonerInkCyanRemLife = product.TonerInkCyanRemLife;
+                            device.TonerInkMagentaRemLife = product.TonerInkMagentaRemLife;
+                            device.TonerInkYellowRemLife = product.TonerInkYellowRemLife;
+                            device.TonerInkBlackReplaceCount = product.TonerInkBlackReplaceCount;
+                            device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
+                            device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
+                            device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
+                            device.UpdateConsumableOrderCount();
+
+                            //Update the consumable order, remaining life and replace count as per specifications
+                            _deviceSimulatorService.RaiseConsumableOrder(
+                                device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
+                            _deviceSimulatorService.SetRemainingLife(
+                                device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
+                            _deviceSimulatorService.SetReplaceCount(
+                                device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
+                            _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
+                        }
                     }
                 }
             }
@@ -151,10 +163,13 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void UpdateMPSForConsumableOrder()
         {
             LoggingService.WriteLogOnMethodEntry();
+            _runCommandService.RunMeterReadCloudSyncCommand(
+                _contextData.AgreementId == 0 ? _contextData.ProposalId : _contextData.AgreementId, _contextData.Country.CountryIso);
 
             // Sets the agreement status to "Running"
             _runCommandService.RunStartContractCommand();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+            _runCommandService.RunMeterReadCloudSyncCommand(
+                _contextData.AgreementId == 0 ? _contextData.ProposalId : _contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();           
         }

@@ -135,7 +135,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "TonerInkBlackRemLife",
                         "TonerInkCyanRemLife",
                         "TonerInkMagentaRemLife",
-                        "TonerInkYellowRemLife"});
+                        "TonerInkYellowRemLife",
+                        "SerialNumber"});
             table2.AddRow(new string[] {
                         "DCP-L8450CDW",
                         "300.00",
@@ -150,7 +151,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "11",
                         "100",
                         "9",
-                        "100"});
+                        "100",
+                        "A3P145600"});
 #line 18
 testRunner.And("I add these printers:", ((string)(null)), table2, "And ");
 #line 21

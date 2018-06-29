@@ -16,8 +16,8 @@ When I create a "<ContractType>" proposal
 And I enter the proposal description
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>", Service Pack type of "<ServicePackType>" and Leasing Billing Cycle of "<LeasingBillingCycle>"
 And I add these printers:
-		| Model        | Price  | InstallationPack | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | MonoThresholdValue | ColourThresholdValue | TonerInkBlackRemLife | TonerInkCyanRemLife | TonerInkMagentaRemLife | TonerInkYellowRemLife |
-		| DCP-L8450CDW | 300.00 |                  | Yes      | 5            | 1000       | 20             | 20           | 12.00              | 10.00                | 11                   | 100                 | 9                      | 100                   |
+		| Model        | Price  | InstallationPack | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | MonoThresholdValue | ColourThresholdValue | TonerInkBlackRemLife | TonerInkCyanRemLife | TonerInkMagentaRemLife | TonerInkYellowRemLife | SerialNumber |
+		| DCP-L8450CDW | 300.00 |                  | Yes      | 5            | 1000       | 20             | 20           | 12.00              | 10.00                | 11                   | 100                 | 9                      | 100                   | A3P145600    |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval
 And a Cloud MPS Bank release the above proposal
@@ -39,7 +39,6 @@ And a Cloud MPS Bank Populated Maintain Contact
 Then I set the Contract in the running state
 When I automatically raise a consumable order for above devices
 Then I can verify the generation of automatic consumable orders alongwith status
-
 
 @BIG
 Scenarios: 
