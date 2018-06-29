@@ -655,8 +655,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm*12),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
                         };
                     break;
                 case CountryIso.Switzerland:
