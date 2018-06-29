@@ -15,6 +15,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";
         private static string DATESTRING_BPL { get { return IsWindows10() == false ? "yyyyyy-MM-dd" : "dd.MM.yyyy"; } }
+        private const string DATESTRING_BND = "dd-MM-yyyy";
 
         private static bool IsWindows10()
         {
@@ -88,6 +89,8 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
                     return dateTime.ToString(DATESTRING_BSW);
                 case CountryIso.Poland:
                     return dateTime.ToString(DATESTRING_BPL);
+                case CountryIso.Denmark:
+                    return dateTime.ToString(DATESTRING_BND);
                 default:
                     throw new Exception("Date time string of the country with this countryISO cannot be formulated: " + countryIso);
             }

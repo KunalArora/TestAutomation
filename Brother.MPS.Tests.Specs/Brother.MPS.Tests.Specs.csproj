@@ -227,6 +227,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateDealer.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_7.feature.cs">
+      <DependentUpon>BusinessScenario_7.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1735,6 +1740,10 @@
     <None Include="Test Specifications\MPS2\Dealer\CreateDealer.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateDealer.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_7.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BusinessScenario_7.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EndToEnd\Type1\BusinessScenario_1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

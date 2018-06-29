@@ -287,7 +287,14 @@ namespace Brother.Tests.Specs.StepActions.Common
                     // This is done as decimal separator for Switzerland set in culture settings of Windows 7 & Windows 10 are different
                     _contextData.CultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 
+                    _contextData.CultureInfo.NumberFormat.CurrencyGroupSeparator = "'";
+                    _contextData.CultureInfo.NumberFormat.CurrencyPositivePattern = 2; // "$ n"
                     break;
+
+                case CountryIso.Denmark:
+                    _contextData.CultureInfo.NumberFormat.CurrencyPositivePattern = 2; // "$ n"
+                    break;
+
                 default:
                     break;
             }

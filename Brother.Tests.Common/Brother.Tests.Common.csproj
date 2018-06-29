@@ -320,6 +320,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingType\BillingType.da-dk.resx" />
     <EmbeddedResource Include="Resources\Binary\BinaryResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BinaryResource.Designer.cs</LastGenOutput>
@@ -340,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ConsumableOrderStatus\ConsumableOrderStatus.de-de.resx" />
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.de-ch.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.da-dk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.fr-ch.resx">
@@ -374,12 +378,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AgreementStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.da-dk.resx" />
     <EmbeddedResource Include="Resources\InstallationPack\InstallationPack.fr-ch.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.pl-pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallationRequestStatus.pl-pl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.de-ch.resx" />
+    <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.da-dk.resx" />
     <EmbeddedResource Include="Resources\InstallationRequestStatus\InstallationRequestStatus.fr-ch.resx" />
     <EmbeddedResource Include="Resources\InstalledPrinterStatus\InstalledPrinterStatus.pl-pl.resx" />
     <EmbeddedResource Include="Resources\LeasingBillingCycle\LeasingBillingCycle.de-de.resx">
@@ -460,6 +466,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>OrderedConsumable.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OverusageText\OverusageText.da-dk.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.en-gb.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.pl-pl.resx" />
     <EmbeddedResource Include="Resources\OverusageText\OverusageText.resx">
@@ -477,6 +484,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.de-ch.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.da-dk.resx" />
     <EmbeddedResource Include="Resources\PdfTranslations\PdfTranslations.fr-ch.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PdfTranslations.fr-ch.Designer.cs</LastGenOutput>
@@ -498,6 +506,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.de-de.resx" />
+    <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.da-dk.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.en-gb.resx" />
     <EmbeddedResource Include="Resources\ServicePackType\ServicePackType.pl-pl.resx" />
@@ -519,6 +528,7 @@
       <LastGenOutput>SwapType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-ch.resx" />
+    <EmbeddedResource Include="Resources\UsageType\UsageType.da-dk.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.fr-ch.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.de-de.resx" />
     <EmbeddedResource Include="Resources\UsageType\UsageType.en-gb.resx" />
