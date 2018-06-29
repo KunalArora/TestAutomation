@@ -13,11 +13,11 @@ And I enter the proposal description
 And I select an existing customer for the proposal
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>" and Service Pack type of "<ServicePackType>"
 And I add these printers:
-		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | TonerInkBlackStatus | TonerInkCyanStatus | TonerInkMagentaStatus | TonerInkYellowStatus | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 |
-		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145600    | 10             | 0               | Empty               | Normal             | Normal                | Normal               | Normal    | Empty     | Normal           | Normal           | Normal           |
-		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145601    | 10             | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
-		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 250          | A3P145602    | 1000           | 250             | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
-		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 200          | A3P145603    | 10             | 10              | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           |
+		| Model        | Price   | InstallationPack          | Delivery | CoverageMono | VolumeMono | CoverageColour | VolumeColour | SerialNumber | MonoPrintCount | ColorPrintCount | ManualConsumableOrder | LaserUnit | FuserUnit | PaperFeedingKit1 | PaperFeedingKit2 | PaperFeedingKit3 |
+		| DCP-8110DN   | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145600    | 10             | 0               | true                  | Normal    | Empty     | Normal           | Normal           | Normal           |
+		| HL-5450DN    | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 0              | 0            | A3P145601    | 10             | 0               | false                 | Normal    | Normal    | Normal           | Normal           | Normal           |
+		| DCP-L8450CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 250          | A3P145602    | 1000           | 250             | false                 | Normal    | Normal    | Normal           | Normal           | Normal           |
+		| MFC-L8650CDW | 1000.00 | DEALER_INSTALLATION_TYPE1 | No       | 5            | 1000       | 20             | 200          | A3P145603    | 10             | 10              | false                 | Normal    | Normal    | Normal           | Normal           | Normal           |
 And I calculate the click price for each of the above printers
 And I save the above proposal and submit it for approval for existing customer
 And a Cloud MPS Local Office Approver declines the above proposal
@@ -37,7 +37,8 @@ And I navigate to the Accepted Contracts page and I locate the above contract an
 And I will be able to see on the Manage Devices page that all devices for the above contract are connected with default Print Counts
 And I update the print count and verify it on the Manage devices page
 And a Cloud MPS Local Office Approver apply and verify the Overusage
-And I will raise consumable order and service request for above devices
+And I will raise automatic service request for above devices
+And a Cloud MPS Local Office Approver raises a manual consumable order for above devices
 Then a Customer has navigated to the Consumables Devices page to verify that above device have updated Ink Status and Service Request is raised
 Given a Cloud MPS Local Office Admin navigates to the contract end screen 
 When a Cloud MPS Local Office Admin set the New additional charges , Charge Type of "Consumables_Return_Management_Fee", Cost Price of "10.00", and Margin Percent of "3.00" and save  

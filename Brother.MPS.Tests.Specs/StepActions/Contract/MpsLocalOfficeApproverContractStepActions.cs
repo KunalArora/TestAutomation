@@ -443,5 +443,19 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
+
+        public LocalOfficeApproverReportsProposalSummaryPage RaiseManualConsumableOrder(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
+
+            foreach(var printer in _contextData.PrintersProperties)
+            {
+                localOfficeApproverReportsProposalSummaryPage.ClickRaiseManualConsumableOrder(printer);
+                
+                //TODO:  Fill consumable order page
+            }
+
+            return localOfficeApproverReportsProposalSummaryPage;
+        }
     }
 }

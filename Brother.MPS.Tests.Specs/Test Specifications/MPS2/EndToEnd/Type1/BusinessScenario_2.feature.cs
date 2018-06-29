@@ -111,10 +111,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "SerialNumber",
                         "MonoPrintCount",
                         "ColorPrintCount",
-                        "TonerInkBlackStatus",
-                        "TonerInkCyanStatus",
-                        "TonerInkMagentaStatus",
-                        "TonerInkYellowStatus",
+                        "ManualConsumableOrder",
                         "LaserUnit",
                         "FuserUnit",
                         "PaperFeedingKit1",
@@ -132,10 +129,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145600",
                         "10",
                         "0",
-                        "Empty",
-                        "Normal",
-                        "Normal",
-                        "Normal",
+                        "true",
                         "Normal",
                         "Empty",
                         "Normal",
@@ -153,10 +147,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145601",
                         "10",
                         "0",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
+                        "false",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -174,10 +165,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145602",
                         "1000",
                         "250",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
+                        "false",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -195,10 +183,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "A3P145603",
                         "10",
                         "10",
-                        "Normal",
-                        "Normal",
-                        "Normal",
-                        "Normal",
+                        "false",
                         "Normal",
                         "Normal",
                         "Normal",
@@ -252,20 +237,23 @@ testRunner.And("I update the print count and verify it on the Manage devices pag
 #line 39
 testRunner.And("a Cloud MPS Local Office Approver apply and verify the Overusage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-testRunner.And("I will raise consumable order and service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I will raise automatic service request for above devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
+testRunner.And("a Cloud MPS Local Office Approver raises a manual consumable order for above devi" +
+                    "ces", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
 testRunner.Then("a Customer has navigated to the Consumables Devices page to verify that above dev" +
                     "ice have updated Ink Status and Service Request is raised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
-testRunner.Given("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 43
+testRunner.Given("a Cloud MPS Local Office Admin navigates to the contract end screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
 testRunner.When("a Cloud MPS Local Office Admin set the New additional charges , Charge Type of \"C" +
                     "onsumables_Return_Management_Fee\", Cost Price of \"10.00\", and Margin Percent of " +
                     "\"3.00\" and save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 44
+#line 45
 testRunner.And("a Cloud MPS Local Office Admin sets the cancellation date and reason and cancels " +
                     "the contract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 46
 testRunner.Then("a Cloud MPS Local Office Admin can validate the final bill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

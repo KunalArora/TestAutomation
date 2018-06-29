@@ -207,6 +207,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
+        [When(@"I will raise automatic service request for above devices")]
+        public void WhenIWillRaiseAutomaticServiceRequestForAboveDevices()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForServiceRequest();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+        }
+
         [When(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
         {

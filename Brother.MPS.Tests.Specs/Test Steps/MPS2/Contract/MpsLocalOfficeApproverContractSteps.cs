@@ -167,6 +167,17 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsLocalOfficeApproverContractStepActions.CheckForSwapDeviceUpdatedPrintCount(_localOfficeApproverManagedevicesManagePage);
         }
 
+        [When(@"a Cloud MPS Local Office Approver raises a manual consumable order for above devices")]
+        public void WhenACloudMPSLocalOfficeApproverRaisesAManualConsumableOrderForAboveDevices()
+        {
+            var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            var localOfficeApproverReportsDashboardPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDashboardPage(localOfficeApproverDashBoardPage);
+            var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDataQueryPage(localOfficeApproverReportsDashboardPage);
+            var localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
+            localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.RaiseManualConsumableOrder(localOfficeApproverReportsProposalSummaryPage);
+
+        }
+
         [When(@"a Cloud MPS Local Office Approver apply and verify the Overusage")]
         public void WhenACloudMPSLocalOfficeApproverApplyAndVerifyTheOverusage()
         {

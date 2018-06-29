@@ -65,6 +65,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string BocModel { get; set; }
         public string ReInstallDevice { get; set; }
         public string ConsumableCreatedDate { get; set; }
+        public bool ManualConsumableOrder { get; set; }
 
         // apply special price for type3
         public bool _IsApplySpecialPriceInstall { get; set; }
