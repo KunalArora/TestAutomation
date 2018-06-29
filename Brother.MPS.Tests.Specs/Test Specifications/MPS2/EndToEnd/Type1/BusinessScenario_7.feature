@@ -1,5 +1,4 @@
-﻿#@MPS @UAT @TYPE1 @SMOKE @CI_TestMaintenance
-@MPS @TYPE1 @MEDIUM
+﻿@MPS @UAT @TYPE1 @MEDIUM @CI_TestMaintenance
 Feature: Type1BusinessScenario_7
 	In order to sell Cloud MPS services to customers
 	As a Cloud MPS Dealer
