@@ -655,8 +655,6 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         {
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm*12),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            //TODO need to change the hard coded strings according to values of the Proposal. E.g:- Total Half Yearly Minimum Click Charge for UJ2
-                            string.Format("{0} {1}", resourcePdfFileMinimumClickCharge, summaryValue["SummaryTable.ConsumableTotalsTotalPriceNet"])
                         };
                     break;
                 case CountryIso.Switzerland:
@@ -670,24 +668,23 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                         }
                         searchTextArray = new string[]
                             {
-                            string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
-                            string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
-                            string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
-                        };
+                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
+                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
+                                string.Format("{0} {1} {2}", resourcePdfFileMinimumVolumePerQuarter, _contextData.CultureInfo.NumberFormat.CurrencySymbol, minimumVolumePerQuarter)
+                            };
                         break;
                     }
                 case CountryIso.Poland:
-                    {
-
-                        string deviceTotalsTotalPriceNet = summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"];
-                        //In the poland proposal pdf, there is a non-breaking space(char 160) present so, the search text which contains a normal space(char 32)
-                        //needs to be converted and replaced as for the assertion to be successful. 
-                        int place = deviceTotalsTotalPriceNet.IndexOf(Convert.ToChar(32));
-                        string result = deviceTotalsTotalPriceNet.Remove(place, 1).Insert(place, Convert.ToChar(160).ToString());
-                        searchTextArray = new string[]
                         {
-                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTerm),
-                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, result),
+                            string deviceTotalsTotalPriceNet = summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"];
+                            //In the poland proposal pdf, there is a non-breaking space(char 160) present so, the search text which contains a normal space(char 32)
+                            //needs to be converted and replaced as for the assertion to be successful. 
+                            int place = deviceTotalsTotalPriceNet.IndexOf(Convert.ToChar(32));
+                            string result = deviceTotalsTotalPriceNet.Remove(place, 1).Insert(place, Convert.ToChar(160).ToString());
+                            searchTextArray = new string[]
+                            {
+                                string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermString),
+                                string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, result),                            
                                 string.Format("{0} {1}", resourceBillingType , summaryValue["SummaryTable.UsageBillingFrequency"]),
                                 string.Format("{0} {1}", resourceUsageType, summaryValue["SummaryTable.UsageType"])
                         };
@@ -703,6 +700,21 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                             string.Format("{0} {1}", resourcePdfFileAgreementPeriod , contractTermString),
                             string.Format("{0} {1}", resourcePdfFileTotalInstalledPurchasePrice, summaryValue["SummaryTable.DeviceTotalsTotalPriceNet"]),
                             string.Format(ContextData.CultureInfo, "{0} {1:C}", resourcePdfFileMinimumVolumePerQuarter, minimumVolumePerQuarter)
+                            };
+                        break;
+                    }
+                case CountryIso.Italy:
+                    {
+                        var resourceClientName = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.ClientName, _contextData.Culture);
+                        var resourceDealershipName = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.DealershipName, _contextData.Culture);
+                        var resourceDate = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.Date, _contextData.Culture);
+                        var resourceProposalId = _translationService.GetPdfTranslationsText(TranslationKeys.PdfTranslations.ProposalId, _contextData.Culture);
+                        searchTextArray = new string[]
+                            {
+                            string.Format("{0} {1}", resourceClientName , summaryValue["SummaryTable.CustomerName"]),
+                            string.Format("{0} {1}", resourceDealershipName, summaryValue["SummaryTable.DealershipName"]),
+                            string.Format("{0} {1}", resourceDate, _contextData.AgreementDateCreated),
+                            string.Format("{0} {1}", resourceProposalId, _contextData.ProposalId)
                             };
                         break;
                     }

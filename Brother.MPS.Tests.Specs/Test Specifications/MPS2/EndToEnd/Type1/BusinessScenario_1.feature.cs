@@ -80,6 +80,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
                 "BUK"}, Category="BUK")]
         [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145604", "100", "0", "", "", "", "", new string[] {
                 "BPL"}, Category="BPL")]
+        [NUnit.Framework.TestCaseAttribute("Italy", "it-IT", "PURCHASE_AND_CLICK", "MINIMUM_VOLUME", "QUARTERLY_IN_ARREARS", "PAY_UPFRONT", "THREE_YEARS", "New", "Cloud", "Web", "REPLACE_WITH_SAME_MODEL", "A3P145604", "100", "0", "", "", "", "", new string[] {
+                "BIT"}, Category="BIT")]
         public virtual void Type1BusinessScenario_1(
                     string country, 
                     string culture, 
