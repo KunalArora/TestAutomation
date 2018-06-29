@@ -82,9 +82,9 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("LocalOfficeAdminCapabilities")]
-        [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "LEASE_AND_CLICK", new string[] {
+        [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "LEASE_AND_CLICK", "MONTHLY", "MINIMUM_VOLUME", "RECURRING", new string[] {
                 "BUK"}, Category="BUK")]
-        public virtual void LocalOfficeAdminCapabilities(string country, string culture, string contractType, string[] exampleTags)
+        public virtual void LocalOfficeAdminCapabilities(string country, string culture, string contractType, string billingType, string billingUsageType, string billingPaymentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("LocalOfficeAdminCapabilities", exampleTags);
 #line 6
@@ -92,16 +92,21 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
 testRunner.Given(string.Format("I have navigated to the dashboard page as a Cloud MPS Local office admin with cul" +
                         "ture \"{0}\" from \"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
-testRunner.When("I navigate to the lease and click program settings page and enable the program", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+testRunner.When("I navigate to the lease and click program settings page and enable the program", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
 testRunner.And(string.Format("a Cloud MPS Dealer navigated to the create proposal page with culture \"{0}\" from " +
                         "\"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 11
 testRunner.Then(string.Format("a Cloud MPS Dealer can verify the program \"{0}\" is being displayed as contract ty" +
                         "pe", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
+#line 12
 testRunner.And("I disable the program that was previously enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.When("I navigate to the purchase and click program settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+testRunner.And(string.Format("I create a billing cycle with billing type as \"{0}\", billing usage type as \"{1}\" " +
+                        "and billing payment type as \"{2}\"", billingType, billingUsageType, billingPaymentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -46,6 +46,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage;
         private LocalOfficeAdminProgramPage _localOfficeAdminProgramPage;
         private LocalOfficeAdminProgramLeaseAndClickPage _localOfficeAdminProgramLeaseAndClickPage;
+        private LocalOfficeAdminProgramPurchaseAndClickPage _localOfficeAdminProgramPurchaseAndClickPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -249,5 +250,29 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         {
             _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DisableProgramAndSave(_localOfficeAdminProgramLeaseAndClickPage);
         }
+
+        [When(@"I navigate to the purchase and click program settings page")]
+        public void WhenINavigateToThePurchaseAndClickProgramSettingsPage()
+        {
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, "PLadmin1", string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramPage = _mpsLocalOfficeAdminContractStepActions.NavigateToProgramPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.NavigateToPurchaseAndClickProgramSettingsPage(_localOfficeAdminProgramPage);
+        }
+
+        [When(@"I create a billing cycle with billing type as ""(.*)"", billing usage type as ""(.*)"" and billing payment type as ""(.*)""")]
+        public void WhenICreateABillingCycleWithBillingTypeAsBillingUsageTypeAsAndBillingPaymentTypeAs(string billingType, string billingUsageType, string billingPaymentType)
+        {
+            var billingTypeValue = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
+            var billingUsageTypeValue = _translationService.GetUsageTypeText(billingUsageType, _contextData.Culture);
+            var billingPaymentTypeValue = _translationService.GetBillingPaymentTypeText(billingPaymentType, _contextData.Culture);
+
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.AddANewBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.EnableTheCreatedBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
@@ -280,6 +281,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
+        public LocalOfficeAdminProgramPurchaseAndClickPage NavigateToPurchaseAndClickProgramSettingsPage(LocalOfficeAdminProgramPage localOfficeAdminProgramPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPage);
+            localOfficeAdminProgramPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPage.PurchaseAndClickLinkElement);
+            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
         public LocalOfficeAdminProgramLeaseAndClickPage ClickOnProgramEnabledButtonAndSave(LocalOfficeAdminProgramLeaseAndClickPage localOfficeAdminProgramLeaseAndClickPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
@@ -294,6 +302,24 @@ namespace Brother.Tests.Specs.StepActions.Contract
             localOfficeAdminProgramLeaseAndClickPage.DisableProgram();
             localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
             return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramPurchaseAndClickPage AddANewBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage,
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            localOfficeAdminProgramPurchaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPurchaseAndClickPage.AddBillingCycleButtonElement);
+            localOfficeAdminProgramPurchaseAndClickPage.CreateANewBillingCycleDetails(billingType, billingUsageType, billingPaymentType);
+            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramPurchaseAndClickPage EnableTheCreatedBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage,
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            var resourceBillingCysleStatusDisabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Disabled, _contextData.Culture);
+            localOfficeAdminProgramPurchaseAndClickPage.VerifyAndEnableNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusDisabled);
+            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)
