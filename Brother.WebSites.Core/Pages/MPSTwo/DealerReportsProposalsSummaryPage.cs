@@ -122,17 +122,23 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 if (displayedSerialNumber.Equals(product.SerialNumber))
                 {
                     var ShowConsumableOrderElement = ShowConsumableOrderActionElement(row);
-                    SeleniumHelper.ClickSafety(ShowConsumableOrderElement, 10);
+                    SeleniumHelper.ClickSafety(ShowConsumableOrderElement);
                     try
                     {
-                        var ConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderModalSelector, 10);
-                        var ConsumableOrderTableElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderElement, ConsumableOrderModalTableBodySelector, 10);
+                        var ConsumableOrderElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderModalSelector);
+                        var ConsumableOrderTableElement = SeleniumHelper.FindElementByCssSelector(ConsumableOrderElement, ConsumableOrderModalTableBodySelector);
                         var ConsumableOrderRowElements = SeleniumHelper.FindRowElementsWithinTable(ConsumableOrderTableElement);
 
+                        string containingString = "";
 
-                        TestCheck.AssertTextContains(product.ConsumableCreatedDate, ConsumableOrderRowElements[1].Text, string.Format("Consumable Date = {0} cannot be verified", product.ConsumableCreatedDate));
-                        TestCheck.AssertTextContains(orderedConsumable, ConsumableOrderRowElements[1].Text, string.Format("Ordered cosumable name = {0} cannot be verified", orderedConsumable));
-                        TestCheck.AssertTextContains(orderStatus, ConsumableOrderRowElements[1].Text, string.Format("Order Status is not in processing state for consumable = {0}", product.Model));
+                        for ( int i = 1; i < ConsumableOrderRowElements.Count; i++ )
+                        {
+                            containingString = containingString + " " + ConsumableOrderRowElements[i].Text;
+                        }
+
+                        TestCheck.AssertTextContains(product.ConsumableCreatedDate, containingString, string.Format("Consumable Date = {0} cannot be verified", product.ConsumableCreatedDate));
+                        TestCheck.AssertTextContains(orderedConsumable, containingString, string.Format("Ordered cosumable name = {0} cannot be verified", orderedConsumable));
+                        TestCheck.AssertTextContains(orderStatus, containingString, string.Format("Order Status is not in processing state for consumable = {0}", product.Model));
 
                         // Close Modal
                         SeleniumHelper.ClickSafety(

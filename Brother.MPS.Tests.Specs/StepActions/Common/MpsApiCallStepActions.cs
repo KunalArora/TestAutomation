@@ -103,6 +103,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                     _deviceSimulatorService.SetRemainingLife(
                         product.DeviceId, product.TonerInkBlackRemLife, product.TonerInkCyanRemLife, product.TonerInkMagentaRemLife, product.TonerInkYellowRemLife);
                     _deviceSimulatorService.NotifyBocOfDeviceChanges(product.DeviceId);
+                    product.ConsumableCreatedDate = DateTime.Now.ToString("dd/MM/yyyy");
                 }
                 else // Agreement
                 {
@@ -163,8 +164,6 @@ namespace Brother.Tests.Specs.StepActions.Common
         public void UpdateMPSForConsumableOrder()
         {
             LoggingService.WriteLogOnMethodEntry();
-            _runCommandService.RunMeterReadCloudSyncCommand(
-                _contextData.AgreementId == 0 ? _contextData.ProposalId : _contextData.AgreementId, _contextData.Country.CountryIso);
 
             // Sets the agreement status to "Running"
             _runCommandService.RunStartContractCommand();

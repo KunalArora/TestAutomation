@@ -1102,22 +1102,22 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 string orderedConsumable;
 
                 //Translation for Ordered Consumable text
-                if (double.Parse(product.TonerInkBlackRemLife) <= double.Parse(product.MonoThresholdValue))
+                if (double.Parse(product.TonerInkBlackRemLife, _contextData.CultureInfo) <= double.Parse(product.MonoThresholdValue, _contextData.CultureInfo))
                 {
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture);
                     dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
                 }
-                if (double.Parse(product.TonerInkCyanRemLife) <= double.Parse(product.ColourThresholdValue))
+                if (double.Parse(product.TonerInkCyanRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
                 {
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
                     dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
                 }
-                if (double.Parse(product.TonerInkMagentaRemLife) <= double.Parse(product.ColourThresholdValue))
+                if (double.Parse(product.TonerInkMagentaRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
                 {
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.MagentaToner, _contextData.Culture);
                     dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
                 }
-                if (double.Parse(product.TonerInkYellowRemLife) <= double.Parse(product.ColourThresholdValue))
+                if (double.Parse(product.TonerInkYellowRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
                 {
                     orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
                     dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
