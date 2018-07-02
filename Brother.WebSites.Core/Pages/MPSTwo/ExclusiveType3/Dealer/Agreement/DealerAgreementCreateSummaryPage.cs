@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement
         public IWebElement ContractTypeElement;
         [FindsBy(How = How.Id, Using = "content_1_SummaryTable_UsageType2")]
         public IWebElement UsageTypeElement;
-        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_DealerReference")]
+        [FindsBy(How = How.Id, Using = "content_1_SummaryTable_ThirdPartyReference")]
         public IWebElement DealerReferenceElement;
 
         // Dealer details
