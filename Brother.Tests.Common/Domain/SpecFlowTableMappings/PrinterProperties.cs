@@ -58,6 +58,7 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string PaperFeedingKit2 { get; set; }
         public string PaperFeedingKit3 { get; set; }
         public bool IsSwap { get; set; }
+        public bool IsRemove { get; set; }
         public int monoOverusage { get; set; }
         public int colorOverusage { get; set; }
         public string ResetDevice { get; set; }

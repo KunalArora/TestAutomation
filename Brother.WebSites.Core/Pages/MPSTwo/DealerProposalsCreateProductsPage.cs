@@ -100,7 +100,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         private const string printerTotalLinePriceDataAttributeSelector = "total-line-price";
         private const string alertSuccessContinueSelector = "a.alert-link.js-mps-trigger-next";
         private const string PreloaderSelector = ".js-mps-preloader";
-        private const string AddToProposalButtonSelector = ".js-mps-product-configuration-submit";
+        private const string productAddedToProposalSelector = ".alert-info.fade.in.mps-alert.js-mps-alert";
+        private const string addButtonSelector = ".js-mps-product-open-add";
 
         public override string DefaultTitle
         {
@@ -2008,6 +2009,42 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var textFootContainer = SeleniumHelper.FindElementByDataAttributeValue(tableFootContainer, printerTotalLinePriceDataAttributeSelector, "true").Text;
             expectedTotalPrice = textFootContainer;
             return totalPriceValues;
+        }
+
+        public void VerifyAddPrinterToProposal(string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            var productAddedToProposal = SeleniumHelper.FindElementByCssSelector(productAddedToProposalSelector);
+            TestCheck.AssertTextContains(printerName, productAddedToProposal.Text, string.Format("This product isn't displayed as added to Proposal:{0}",printerName));
+        }
+
+        public void RemoveTheProduct(string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            string containerSelector = string.Format("li#pc-{0}", printerName);
+            string removeButtonSelector = ".js-mps-product-configuration-remove";
+
+            var printerContainer = SeleniumHelper.FindElementByCssSelector(containerSelector);
+            var editButtonElement = SeleniumHelper.FindElementByCssSelector(printerContainer, addButtonSelector);
+
+            SeleniumHelper.ClickSafety(editButtonElement);
+
+            var removeButtonElement = SeleniumHelper.FindElementByCssSelector(removeButtonSelector);
+            SeleniumHelper.ClickSafety(removeButtonElement);
+            AcceptJavascriptPopupOnCompleteSetup();
+        }
+
+        public void verifyRemovePrinterToProposal(string printerName)
+        {
+            LoggingService.WriteLogOnMethodEntry(printerName);
+            var productAddedToProposal = SeleniumHelper.FindElementByCssSelector(productAddedToProposalSelector);
+            TestCheck.AssertIsEqual(false, productAddedToProposal.Text.Contains(printerName), string.Format("This product isn't removed from the proposal"));
+        }
+
+        public void AcceptJavascriptPopupOnCompleteSetup()
+        {
+            LoggingService.WriteLogOnMethodEntry();
+            SeleniumHelper.AcceptJavascriptAlert();
         }
     }
 }
