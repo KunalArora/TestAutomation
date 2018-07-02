@@ -193,7 +193,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(_contextData.CustomerEmail);
             ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
+            ContextData.IsCustomerSelectedToProposal = true;
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public TPage SelectExistingCustomerForProposal<TPage>(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage) where TPage : BasePage, IPageObject, new()
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.SelectExistingCustomerElement, dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(_contextData.CustomerEmail);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
+            return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsCreateProductsPage PopulateAgreementTermAndTypeAndProceed(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage,
@@ -338,7 +350,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Validate content on Summary page 
             dealerProposalsCreateSummaryPage.VerifyProposalName(_contextData.ProposalName);
             // For the German environment, CustomerInformationName has not been entered yet (IsNullOrWhiteSpace=true)
-            if ( string.IsNullOrWhiteSpace(_contextData.CustomerInformationName) == false)   
+            if ( string.IsNullOrWhiteSpace(_contextData.CustomerInformationName) == false
+                && ContextData.IsCustomerSelectedToProposal == true)   
             {
                 dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
             }
@@ -355,6 +368,20 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
             }
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsConvertSummaryPage ClickNext(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertClickPricePage);
+            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage); // next
+            return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsConvertTermAndTypePage ClickOnNext(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         private void AssertSummaryPageForGermany(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
@@ -450,6 +477,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public TPage SubmitForTheApproval<TPage>(CloudExistingProposalPage _cloudExistingProposalPage) where TPage : BasePage, IPageObject, new()
+        {
+            LoggingService.WriteLogOnMethodEntry(_cloudExistingProposalPage);
+            int proposalId = _contextData.ProposalId;
+            string proposalName = _contextData.ProposalName;
+
+            _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _dealerWebDriver);
+            return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsCreateDescriptionPage ClickOnEditActionButton(CloudExistingProposalPage _cloudExistingProposalPage)
