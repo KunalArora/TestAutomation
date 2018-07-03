@@ -83,7 +83,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("LocalOfficeAdminCapabilities")]
         [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "LEASE_AND_CLICK", "MONTHLY", "MINIMUM_VOLUME", "RECURRING", new string[] {
-                "BUK"}, Category="BUK")]
+                "BPL"}, Category="BPL")]
         public virtual void LocalOfficeAdminCapabilities(string country, string culture, string contractType, string billingType, string billingUsageType, string billingPaymentType, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("LocalOfficeAdminCapabilities", exampleTags);

@@ -19,9 +19,7 @@ Then a Cloud MPS Dealer can skip customer creation and verify the billing type a
 And I delete the newly created billing type as "<BillingType>", billing usage type as "<BillingUsageType>" and billing payment type as "<BillingPaymentType>"
 
 
-
-
-@BUK
+@BPL
 Scenarios: 
 		| Country | Culture | ContractType    | BillingType | BillingUsageType | BillingPaymentType |
 		| Poland  | pl-PL   | LEASE_AND_CLICK | MONTHLY     | MINIMUM_VOLUME   | RECURRING          |

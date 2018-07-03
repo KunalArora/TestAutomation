@@ -281,12 +281,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             var billingUsageTypeValue = _translationService.GetUsageTypeText(billingUsageType, _contextData.Culture);
             var billingPaymentTypeValue = _translationService.GetBillingPaymentTypeText(billingPaymentType, _contextData.Culture);
 
-
             _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DeleteTheCreatedBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
                 billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
 
         }
-
-
     }
 }
