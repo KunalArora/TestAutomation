@@ -14,6 +14,11 @@ And I disable the program that was previously enabled
 # Create a billing profile, verify and then delete it
 When I navigate to the purchase and click program settings page
 And I create a billing cycle with billing type as "<BillingType>", billing usage type as "<BillingUsageType>" and billing payment type as "<BillingPaymentType>"
+And a Cloud MPS Dealer navigated to the create proposal page with culture "<Culture>" from "<Country>"
+Then a Cloud MPS Dealer can skip customer creation and verify the billing type as "<BillingType>" is being displayed
+And I delete the newly created billing type as "<BillingType>", billing usage type as "<BillingUsageType>" and billing payment type as "<BillingPaymentType>"
+
+
 
 
 @BUK

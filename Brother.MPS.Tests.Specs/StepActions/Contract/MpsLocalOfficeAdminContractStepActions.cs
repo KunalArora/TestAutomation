@@ -322,6 +322,15 @@ namespace Brother.Tests.Specs.StepActions.Contract
             return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
+        public LocalOfficeAdminProgramPurchaseAndClickPage DeleteTheCreatedBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage, 
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            var resourceBillingCysleStatusEnabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Enabled, _contextData.Culture);
+            localOfficeAdminProgramPurchaseAndClickPage.DeleteNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusEnabled);
+            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
         private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)
         {
             LoggingService.WriteLogOnMethodEntry(startDate, endDate);

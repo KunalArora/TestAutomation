@@ -107,6 +107,15 @@ testRunner.When("I navigate to the purchase and click program settings page", ((
 #line 16
 testRunner.And(string.Format("I create a billing cycle with billing type as \"{0}\", billing usage type as \"{1}\" " +
                         "and billing payment type as \"{2}\"", billingType, billingUsageType, billingPaymentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+testRunner.And(string.Format("a Cloud MPS Dealer navigated to the create proposal page with culture \"{0}\" from " +
+                        "\"{1}\"", culture, country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+testRunner.Then(string.Format("a Cloud MPS Dealer can skip customer creation and verify the billing type as \"{0}" +
+                        "\" is being displayed", billingType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+testRunner.And(string.Format("I delete the newly created billing type as \"{0}\", billing usage type as \"{1}\" and" +
+                        " billing payment type as \"{2}\"", billingType, billingUsageType, billingPaymentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -599,5 +599,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         {
             _mpsDealerProposalStepActions.VerifyContractType(_dealerProposalsCreateDescriptionPage, contractType);
         }
+
+        [Then(@"a Cloud MPS Dealer can skip customer creation and verify the billing type as ""(.*)"" is being displayed")]
+        public void ThenACloudMPSDealerCanSkipCustomerCreationAndVerifyTheBillingTypeAsIsBeingDisplayed(string billingType)
+        {
+            string proposalName = _proposalHelper.GenerateProposalName();
+            _contextData.ProposalName = proposalName;
+            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateCustomerInformationPage>(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            WhenISkipCustomerCreationForTheProposal();
+            _mpsDealerProposalStepActions.VerifyBillingType(_dealerProposalsCreateTermAndTypePage, billingType);
+        }
     }
 }

@@ -274,5 +274,19 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
                 billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
         }
 
+        [Then(@"I delete the newly created billing type as ""(.*)"", billing usage type as ""(.*)"" and billing payment type as ""(.*)""")]
+        public void ThenIDeleteTheNewlyCreatedBillingTypeAsBillingUsageTypeAsAndBillingPaymentTypeAs(string billingType, string billingUsageType, string billingPaymentType)
+        {
+            var billingTypeValue = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
+            var billingUsageTypeValue = _translationService.GetUsageTypeText(billingUsageType, _contextData.Culture);
+            var billingPaymentTypeValue = _translationService.GetBillingPaymentTypeText(billingPaymentType, _contextData.Culture);
+
+
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DeleteTheCreatedBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+
+        }
+
+
     }
 }

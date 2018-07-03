@@ -33,13 +33,14 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         
         //Billing cycle list selectors
         private const string BillingCycleListBodySelector = ".js-mps-searchable";
-        private const string BillingCycleListNameSelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldName_";
-        private const string BillingCycleListUsageTypeSelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldUsageType_";
-        private const string BillingCycleListPaymentTypeSelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldPaymentType_";
-        private const string BillingCycleListFequencySelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldFrequency_";
-        private const string BillingCycleListStatusSelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldStatus_";
-        private const string BillingCycleListActionsSelector = "#content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldActions_";
+        private const string BillingCycleListNameSelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldName_]";
+        private const string BillingCycleListUsageTypeSelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldUsageType_]";
+        private const string BillingCycleListPaymentTypeSelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldPaymentType_]";
+        private const string BillingCycleListFequencySelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldFrequency_]";
+        private const string BillingCycleListStatusSelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldStatus_]";
+        private const string BillingCycleListActionsSelector = "[id*=content_1_PrintAndConsumablesBillingCyclesList_BillingCyclesList_FieldActions_]";
         private const string BillingCycleListActionsShowSelector = ".js-mps-show-billing-cycle";
+        private const string BillingCycleListActionsDeleteSelector = ".js-mps-delete-billing-cycle";
 
         public void CreateANewBillingCycleDetails(string billingName, string billingUsage, string billingPattern)
         {
@@ -49,9 +50,11 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var BillingPaymentTypeElement = SeleniumHelper.FindElementByCssSelector(BillingPaymentTypetSelector);
             var BillingFrequencyInputElement = SeleniumHelper.FindElementByCssSelector(BillingFrequencyInputSelector);
 
-            if(SeleniumHelper.IsElementDisplayed(BillingCycleNameInputElement))
+   //         SeleniumHelper.WaitUntil(d => BillingCycleNameInputElement.Text == string.Empty);
+
+            if(SeleniumHelper.WaitUntil( d => SeleniumHelper.IsElementDisplayed(BillingCycleNameInputElement)))
             {
-                ClearAndType(BillingCycleNameInputElement, billingName);
+                ClearAndType(BillingCycleNameInputElement, billingName, true);
                 SeleniumHelper.SelectFromDropdownByText(BillingUsageTypeInputElement, billingUsage);
                 SeleniumHelper.SelectFromDropdownByText(BillingPaymentTypeElement, billingPattern);
                 SeleniumHelper.SelectFromDropdownByText(BillingFrequencyInputElement, "1");
@@ -68,36 +71,73 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var BillingCycleListBodyElement = SeleniumHelper.FindElementByCssSelector(BillingCycleListBodySelector);
             var BillingCycleListRows = SeleniumHelper.FindRowElementsWithinTable(BillingCycleListBodyElement);
 
-            foreach(var row in BillingCycleListRows)
+            if (SeleniumHelper.WaitUntil(d => SeleniumHelper.IsElementDisplayed(BillingCycleListBodyElement)))
             {
-                var BillingCycleListNameElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListNameSelector);
-                var BillingCycleListUsageTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListUsageTypeSelector);
-                var BillingCycleListPaymentTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListPaymentTypeSelector);
-                var BillingCycleListFequencyElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListFequencySelector);
-
-                TestCheck.AssertIsEqual(billingName, BillingCycleListNameElement.Text, "Billing name does not match");
-                TestCheck.AssertIsEqual(billingUsage, BillingCycleListUsageTypeElement.Text, "Billing usage type does not match");
-                TestCheck.AssertIsEqual(billingPaymentType, BillingCycleListPaymentTypeElement.Text, "Billing pattern does not match");
-                TestCheck.AssertIsEqual("1", BillingCycleListFequencyElement.Text, "Billing frequency does not match");
-
-                if(BillingCycleListNameElement.Text.Equals(billingName) && BillingCycleListUsageTypeElement.Text.Equals(billingUsage) &&
-                    BillingCycleListPaymentTypeElement.Text.Equals(billingPaymentType) && BillingCycleListFequencyElement.Text.Equals("1"))
+                foreach (var row in BillingCycleListRows)
                 {
-                    IsPresent = true;
-                    var BillingCycleListStatusElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListStatusSelector);
-                    if(BillingCycleListFequencyElement.Text.Equals(resourceBillingCysleStatusDisabled))
+                    var BillingCycleListNameElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListNameSelector);
+                    var BillingCycleListUsageTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListUsageTypeSelector);
+                    var BillingCycleListPaymentTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListPaymentTypeSelector);
+                    var BillingCycleListFequencyElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListFequencySelector);
+
+                    if (BillingCycleListNameElement.Text.Equals(billingName) && BillingCycleListUsageTypeElement.Text.Equals(billingUsage) &&
+                        BillingCycleListPaymentTypeElement.Text.Equals(billingPaymentType) && BillingCycleListFequencyElement.Text.Equals("1"))
                     {
-                        SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(BillingCycleListActionsSelector));
-                        SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(BillingCycleListActionsShowSelector));
+                        IsPresent = true;
+                        var BillingCycleListStatusElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListStatusSelector);
+                        if (BillingCycleListStatusElement.Text.Equals(resourceBillingCysleStatusDisabled))
+                        {
+                            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsSelector));
+                            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsShowSelector));
+                            break;
+                        }
+                        else
+                        {
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "The newly created billing cycle is already enabled when it should be disabled");
+                            break;
+                        }
                     }
-                    else
-                    {
-                        LoggingService.WriteLog(LoggingLevel.WARNING, "The newly created billing cycle is already enabled when it should be disabled");
-                        break;
-                    }
-                }    
+                }
+                TestCheck.AssertIsEqual(IsPresent, true, "Newly created billing cycle is not present in the billing cycles list");
             }
-            TestCheck.AssertIsEqual(IsPresent, true, "Newly created billing cycle is not present in the billing cycles list");
+        }
+
+        public void DeleteNewlyCreatedBillingCycle(string billingName, string billingUsage, string billingPaymentType, string resourceBillingCysleStatusEnabled)
+        {
+            LoggingService.WriteLogOnMethodEntry(billingName, billingUsage, billingPaymentType, resourceBillingCysleStatusEnabled);
+            var IsPresent = false;
+            var BillingCycleListBodyElement = SeleniumHelper.FindElementByCssSelector(BillingCycleListBodySelector);
+            var BillingCycleListRows = SeleniumHelper.FindRowElementsWithinTable(BillingCycleListBodyElement);
+
+            if (SeleniumHelper.WaitUntil(d => SeleniumHelper.IsElementDisplayed(BillingCycleListBodyElement)))
+            {
+                foreach (var row in BillingCycleListRows)
+                {
+                    var BillingCycleListNameElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListNameSelector);
+                    var BillingCycleListUsageTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListUsageTypeSelector);
+                    var BillingCycleListPaymentTypeElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListPaymentTypeSelector);
+                    var BillingCycleListFequencyElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListFequencySelector);
+
+                    if (BillingCycleListNameElement.Text.Equals(billingName) && BillingCycleListUsageTypeElement.Text.Equals(billingUsage) &&
+                        BillingCycleListPaymentTypeElement.Text.Equals(billingPaymentType) && BillingCycleListFequencyElement.Text.Equals("1"))
+                    {
+                        IsPresent = true;
+                        var BillingCycleListStatusElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListStatusSelector);
+                        if (BillingCycleListStatusElement.Text.Equals(resourceBillingCysleStatusEnabled))
+                        {
+                            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsSelector));
+                            SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsDeleteSelector));
+                            break;
+                        }
+                        else
+                        {
+                            LoggingService.WriteLog(LoggingLevel.WARNING, "The newly created billing cycle is already diabled when it should be enabled");
+                            break;
+                        }
+                    }
+                }
+                TestCheck.AssertIsEqual(IsPresent, true, "Newly created billing cycle is not present in the billing cycles list");
+            }
         }
     }
 }
