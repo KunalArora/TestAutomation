@@ -110,7 +110,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
-                _userResolver.LocalOfficeAdminUsername, "PLadmin1", string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
         }
 
@@ -255,7 +255,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void WhenINavigateToThePurchaseAndClickProgramSettingsPage()
         {
             _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
-                _userResolver.LocalOfficeAdminUsername, "PLadmin1", string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
             _localOfficeAdminProgramPage = _mpsLocalOfficeAdminContractStepActions.NavigateToProgramPage(_localOfficeAdminDashboardPage);
             _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.NavigateToPurchaseAndClickProgramSettingsPage(_localOfficeAdminProgramPage);
