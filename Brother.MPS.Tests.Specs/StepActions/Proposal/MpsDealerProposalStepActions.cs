@@ -254,8 +254,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 if (product.IsRemove)
                 {
                     dealerProposalsCreateProductsPage.RemoveTheProduct(product.Model);
-                    _dealerWebDriver.Navigate().Refresh();
-                    dealerProposalsCreateProductsPage.verifyRemovePrinterToProposal(product.Model);
+                    dealerProposalsCreateProductsPage.VerifyRemovePrinterToProposal(product.Model);
                     // Add the product again
                     PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
                 }

@@ -2015,7 +2015,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(printerName);
             var productAddedToProposal = SeleniumHelper.FindElementByCssSelector(productAddedToProposalSelector);
-            TestCheck.AssertTextContains(printerName, productAddedToProposal.Text, string.Format("This product isn't displayed as added to Proposal:{0}",printerName));
+            TestCheck.AssertTextContains(printerName, productAddedToProposal.Text, string.Format("This product isn't displayed as added to Proposal:{0}", printerName));
         }
 
         public void RemoveTheProduct(string printerName)
@@ -2034,11 +2034,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AcceptJavascriptPopupOnCompleteSetup();
         }
 
-        public void verifyRemovePrinterToProposal(string printerName)
+        public void VerifyRemovePrinterToProposal(string printerName)
         {
             LoggingService.WriteLogOnMethodEntry(printerName);
-            var productAddedToProposal = SeleniumHelper.FindElementByCssSelector(productAddedToProposalSelector);
-            TestCheck.AssertIsEqual(false, productAddedToProposal.Text.Contains(printerName), string.Format("This product isn't removed from the proposal"));
+
+            try
+            {
+                SeleniumHelper.WaitUntil(d => !SeleniumHelper.FindElementByCssSelector(productAddedToProposalSelector).Text.Contains(printerName));
+            }
+            catch (Exception e)
+            {
+                TestCheck.AssertFailTest(string.Format("This product isn't removed from the proposal:{0}", printerName));
+            }
         }
 
         public void AcceptJavascriptPopupOnCompleteSetup()
