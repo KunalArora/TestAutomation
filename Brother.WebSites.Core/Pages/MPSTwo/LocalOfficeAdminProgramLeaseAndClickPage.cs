@@ -33,20 +33,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var ProgramEnabledInputButtonElement = SeleniumHelper.FindElementByCssSelector(ProgramEnabledInputButtonSelector);
             if((SeleniumHelper.IsElementSelected(ProgramEnabledInputButtonElement)))
             {
-                LoggingService.WriteLog(LoggingLevel.WARNING, "Program enabled checkbox is already enabled when it should be disabled");
                 return;
             }
             SeleniumHelper.ClickSafety(ProgramEnabledInputButtonElement);
         }
 
-        public void DisableProgram()
+        public void ClickOnProgramDisableButton()
         {
             LoggingService.WriteLogOnMethodEntry();
 
             var ProgramEnabledInputButtonElement = SeleniumHelper.FindElementByCssSelector(ProgramEnabledInputButtonSelector);
             if(!(SeleniumHelper.IsElementSelected(ProgramEnabledInputButtonElement)))
             {
-                LoggingService.WriteLog(LoggingLevel.WARNING, "Program enabled checkbox is already disabled when it should be enabled");
                 return;
             }
             SeleniumHelper.ClickSafety(ProgramEnabledInputButtonElement);

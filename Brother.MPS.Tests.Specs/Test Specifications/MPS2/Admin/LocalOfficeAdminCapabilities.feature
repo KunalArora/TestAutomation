@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN @BPL @CI_TestMaintenance
+﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN @CI_TestMaintenance
 Feature: LocalOfficeAdminCapabilities
 	In order to test the Cloud MPS local office Admin capabilities
 	Verify the different options of local office admin

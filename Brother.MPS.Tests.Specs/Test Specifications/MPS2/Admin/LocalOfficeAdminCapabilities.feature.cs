@@ -25,7 +25,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("LOW")]
     [NUnit.Framework.CategoryAttribute("ADMIN")]
-    [NUnit.Framework.CategoryAttribute("BPL")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class LocalOfficeAdminCapabilitiesFeature
     {
@@ -47,7 +46,6 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
                         "TYPE1",
                         "LOW",
                         "ADMIN",
-                        "BPL",
                         "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }

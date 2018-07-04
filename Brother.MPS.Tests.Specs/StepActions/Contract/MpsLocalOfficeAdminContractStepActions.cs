@@ -299,7 +299,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeAdminProgramLeaseAndClickPage DisableProgramAndSave(LocalOfficeAdminProgramLeaseAndClickPage localOfficeAdminProgramLeaseAndClickPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
-            localOfficeAdminProgramLeaseAndClickPage.DisableProgram();
+            localOfficeAdminProgramLeaseAndClickPage.ClickOnProgramDisableButton();
             localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
             return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
