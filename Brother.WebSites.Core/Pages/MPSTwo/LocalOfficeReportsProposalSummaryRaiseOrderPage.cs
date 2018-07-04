@@ -1,4 +1,5 @@
-﻿using Brother.WebSites.Core.Pages.Base;
+﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -39,6 +40,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public void SelectConsumables(
             string tonerInkBlackStatus, string tonerInkCyanStatus, string tonerInkMagentaStatus, string tonerInkYellowStatus)
         {
+            LoggingService.WriteLogOnMethodEntry(tonerInkBlackStatus, tonerInkCyanStatus, tonerInkMagentaStatus, tonerInkYellowStatus);
+
             if (tonerInkBlackStatus.ToLower().Equals("empty"))
             {
                 SelectConsumableCheckBox("Black Toner");
@@ -62,6 +65,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         public void VerifySuccessfulOrderCreation()
         {
+            LoggingService.WriteLogOnMethodEntry();
+
             // Verify success & close modal alert
             var alertSuccessElement = SeleniumHelper.FindElementByCssSelector(AlertSuccessSelector);
             SeleniumHelper.ClickSafety(alertSuccessElement.FindElement(By.ClassName("close")));
@@ -70,17 +75,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private void SelectConsumableCheckBox(string DataItemTypeValue)
         {
+            LoggingService.WriteLogOnMethodEntry(DataItemTypeValue);
+
             var element = SeleniumHelper.FindElementByDataAttributeValue(DataItemTypeSelector, DataItemTypeValue);
             if (element != null || !element.Enabled)
             {
-                if (!element.Selected)
-                {
-                    SeleniumHelper.ClickSafety(element);
-                }
+                SeleniumHelper.SetCheckBox(element, true);
             }
             else
             {
-                throw new Exception(string.Format("Checkbox for {0} Consumable could not be selected", DataItemTypeValue));
+                TestCheck.AssertFailTest(string.Format("Checkbox for {0} Consumable could not be selected", DataItemTypeValue));
             }
         }
     }

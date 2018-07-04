@@ -468,9 +468,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
                     ClickSafety(localOfficeReportsProposalSummaryRaiseOrderPage.BackButtonElement, localOfficeReportsProposalSummaryRaiseOrderPage, true);
 
                     localOfficeApproverReportsProposalSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
-                }
-
-                
+                }   
             }
 
             return localOfficeApproverReportsProposalSummaryPage;
