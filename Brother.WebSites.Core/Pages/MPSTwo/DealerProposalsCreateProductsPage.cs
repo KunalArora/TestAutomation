@@ -2044,7 +2044,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             }
             catch (Exception e)
             {
-                TestCheck.AssertFailTest(string.Format("This product isn't removed from the proposal:{0}", printerName));
+                TestCheck.AssertFailTest(string.Format("This product isn't removed from the proposal:{0} due to the error:{1}", printerName, e));
             }
         }
 
