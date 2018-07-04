@@ -112,8 +112,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.MonoThresholdValue, true);
                 var checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
-                if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
-
+                SeleniumHelper.SetCheckBox(checkBox, true);
+                
                 if(!printer.IsMonochrome)
                 {
                     targetEumRow = eumRowElements.Find(
@@ -125,7 +125,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                     ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.ColourThresholdValue, true);
                     checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
-                    if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
+                    SeleniumHelper.SetCheckBox(checkBox, true);
                 }
             }
 

@@ -116,7 +116,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 {
                     thresholdDetails.SupplyItemType = translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Mono, CultureInfo.Name);
                 }
-                else if (thresholdDetails.SupplyItemType.ToLower().Equals("colour") || thresholdDetails.SupplyItemType.ToLower().Equals("color"))
+                else if (thresholdDetails.SupplyItemType.ToLower().Equals("colour"))
                 {
                     thresholdDetails.SupplyItemType = translationService.GetSupplyItemType(TranslationKeys.SupplyItemType.Colour, CultureInfo.Name);
                 }
@@ -148,7 +148,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                 ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.MonoThresholdValue, true);
                 var checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
-                if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
+                SeleniumHelper.SetCheckBox(checkBox, true);
 
                 if (!printer.IsMonochrome)
                 {
@@ -161,7 +161,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
                     ClearAndType(SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputThresholdSelector), printer.ColourThresholdValue, true);
                     checkBox = SeleniumHelper.FindElementByCssSelector(targetEumRow, EUMRowInputEnabledCheckboxSelector);
-                    if (!checkBox.Selected) { SeleniumHelper.ClickSafety(checkBox); }
+                    SeleniumHelper.SetCheckBox(checkBox, true);
                 }
             }
 

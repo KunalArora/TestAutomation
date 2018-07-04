@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EnhancedUsageMonitoring
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type3EnhancedUsageMonitoring", "\tIn order to sell Cloud MPS services to customers\r\n\tAs a Cloud MPS Dealer with th" +
-                    "e help of CLoud MPS BIE Admin\r\n\tI want to ensure the correct working of the defa" +
+                    "e help of Cloud MPS BIE Admin\r\n\tI want to ensure the correct working of the defa" +
                     "ult order threshold functionality for Type 3", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
