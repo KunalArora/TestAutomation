@@ -450,9 +450,27 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             foreach(var printer in _contextData.PrintersProperties)
             {
-                localOfficeApproverReportsProposalSummaryPage.ClickRaiseManualConsumableOrder(printer);
+                if (printer.hasEmptyInkToner)
+                {
+                    localOfficeApproverReportsProposalSummaryPage.ClickRaiseManualConsumableOrder(printer);
+                    var localOfficeReportsProposalSummaryRaiseOrderPage =
+                                            PageService.GetPageObject<LocalOfficeReportsProposalSummaryRaiseOrderPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+                    // Select consumables
+                    localOfficeReportsProposalSummaryRaiseOrderPage.SelectConsumables(
+                        printer.TonerInkBlackStatus, printer.TonerInkCyanStatus, printer.TonerInkMagentaStatus, printer.TonerInkYellowStatus);
+
+                    ClickSafety(
+                        localOfficeReportsProposalSummaryRaiseOrderPage.SubmitOrderButtonElement, localOfficeReportsProposalSummaryRaiseOrderPage);
+                    localOfficeReportsProposalSummaryRaiseOrderPage.SeleniumHelper.AcceptJavascriptAlert();
+
+                    // Verify success alert
+                    localOfficeReportsProposalSummaryRaiseOrderPage.VerifySuccessfulOrderCreation();
+                    ClickSafety(localOfficeReportsProposalSummaryRaiseOrderPage.BackButtonElement, localOfficeReportsProposalSummaryRaiseOrderPage, true);
+
+                    localOfficeApproverReportsProposalSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+                }
+
                 
-                //TODO:  Fill consumable order page
             }
 
             return localOfficeApproverReportsProposalSummaryPage;

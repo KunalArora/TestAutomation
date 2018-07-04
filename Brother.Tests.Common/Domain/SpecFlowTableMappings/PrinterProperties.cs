@@ -44,6 +44,21 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanStatus { get; set; }
         public string TonerInkMagentaStatus { get; set; }
         public string TonerInkYellowStatus { get; set; }
+        public bool hasEmptyInkToner
+        {
+            get
+            {
+                bool hasEmptyInkToner = false;
+                if ((TonerInkBlackStatus.ToLower().Equals("empty")) ||
+                    (TonerInkCyanStatus.ToLower().Equals("empty")) ||
+                    (TonerInkMagentaStatus.ToLower().Equals("empty")) ||
+                    (TonerInkYellowStatus.ToLower().Equals("empty")))
+                {
+                    hasEmptyInkToner = true;
+                }
+                return hasEmptyInkToner;
+            }
+        }
         public string TonerInkBlackRemLife { get; set; }
         public string TonerInkCyanRemLife { get; set; }
         public string TonerInkMagentaRemLife { get; set; }
@@ -65,7 +80,6 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string BocModel { get; set; }
         public string ReInstallDevice { get; set; }
         public string ConsumableCreatedDate { get; set; }
-        public bool ManualConsumableOrder { get; set; }
 
         // apply special price for type3
         public bool _IsApplySpecialPriceInstall { get; set; }
