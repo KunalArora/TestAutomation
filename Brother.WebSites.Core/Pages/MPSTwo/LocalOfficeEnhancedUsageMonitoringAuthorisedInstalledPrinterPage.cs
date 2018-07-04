@@ -5,6 +5,7 @@ using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.WebSites.Core.Pages.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 using System.Collections.Generic;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
@@ -55,10 +56,18 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry(agreementId);
 
-            ClearAndType(ContractNumberInputElement, agreementId.ToString(), true);
-            SeleniumHelper.ClickSafety(GoButtonElement);
+            try
+                {
+                    ClearAndType(ContractNumberInputElement, agreementId.ToString(), true);
+                    SeleniumHelper.ClickSafety(GoButtonElement);
 
-            SeleniumHelper.FindElementByCssSelector(".mps-table-proposal-details"); // Wait until proposal/agreement details are loaded
+                    SeleniumHelper.FindElementByCssSelector(".mps-table-proposal-details"); // Wait until proposal/agreement details are loaded
+                }
+            catch (Exception e)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Some problem occurred when searching for contract/agreement on LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage for agreement/contract ID = {0}. Error details  = {1}", agreementId, e));
+                }
         }
 
         public void ValidateProposalDetails(string ProposalName, string ContractTerm,
