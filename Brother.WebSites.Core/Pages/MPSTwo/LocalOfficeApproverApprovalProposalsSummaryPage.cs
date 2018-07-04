@@ -39,16 +39,22 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string InputReasonSelector = "#content_1_InputProposalDeclineReason_Input";
         private const string InputProposalApprovalValidUntilSelector = "#content_1_InputProposalApproveValidUntil_Input";
+        private const string InputProposalApprovalInfomationSelector = ".js-mps-panel";
 
         public void ClickOnAccept()
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
+            var InputProposalApprovalInfomationElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationSelector);
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.IsElementDisplayed(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector) ?
+                SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector) : null;
 
-            var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector);
-            if(InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
+            if (InputProposalApprovalValidUntilElement != null)
             {
-                InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
+                if (InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
+                {
+                    InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
+                }
             }
             SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout + 10, true); // Add 10 sec extra to timeout as approval processing takes time
         }
