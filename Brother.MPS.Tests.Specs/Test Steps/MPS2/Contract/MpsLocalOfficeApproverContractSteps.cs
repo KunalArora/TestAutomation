@@ -28,6 +28,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
         private LocalOfficeApproverApprovalContractsAcceptedPage _localOfficeApproverApprovalContractsAcceptedPage;
         private LocalOfficeApproverManageDevicesManagePage _localOfficeApproverManagedevicesManagePage;
         private LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage _localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
+        private LocalOfficeApproverReportsProposalSummaryPage _localOfficeApproverReportsProposalSummaryPage;
        
 
         public MpsLocalOfficeApproverContractSteps(
@@ -173,8 +174,8 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             var localOfficeApproverDashBoardPage = _mpsSignInStepActions.SignInAsLocalOfficeApprover(_userResolver.LocalOfficeApproverUsername, _userResolver.LocalOfficeApproverPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
             var localOfficeApproverReportsDashboardPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDashboardPage(localOfficeApproverDashBoardPage);
             var localOfficeApproverReportsDataQueryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToReportsDataQueryPage(localOfficeApproverReportsDashboardPage);
-            var localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
-            localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.RaiseManualConsumableOrder(localOfficeApproverReportsProposalSummaryPage);
+            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.NavigateToContractsSummaryPage(localOfficeApproverReportsDataQueryPage);
+            _localOfficeApproverReportsProposalSummaryPage = _mpsLocalOfficeApproverContractStepActions.RaiseManualConsumableOrder(_localOfficeApproverReportsProposalSummaryPage);
         }
 
         [When(@"a Cloud MPS Local Office Approver apply and verify the Overusage")]
