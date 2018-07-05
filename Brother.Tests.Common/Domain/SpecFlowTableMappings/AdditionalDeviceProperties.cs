@@ -103,15 +103,12 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         {
             get
             {
-                bool hasEmptyInkToner = false;
-                if ((TonerInkBlackStatus.ToLower().Equals("empty")) || 
-                    (TonerInkCyanStatus.ToLower().Equals("empty")) ||
-                    (TonerInkMagentaStatus.ToLower().Equals("empty")) ||
-                    (TonerInkYellowStatus.ToLower().Equals("empty"))) 
-                {
-                    hasEmptyInkToner = true;
-                }
-                return hasEmptyInkToner;
+                return new List<string>() {
+                    TonerInkBlackStatus,
+                    TonerInkCyanStatus,
+                    TonerInkMagentaStatus,
+                    TonerInkYellowStatus
+                }.Exists(s => s.ToLower().Equals("empty"));
             }
         }
 
