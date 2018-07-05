@@ -250,10 +250,17 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             foreach(var product in products)
             {
                 PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
+
+                if (product.IsRemove)
+                {
+                    dealerProposalsCreateProductsPage.RemoveTheProduct(product.Model);
+                    dealerProposalsCreateProductsPage.VerifyRemovePrinterToProposal(product.Model);
+                    // Add the product again
+                    PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
+                }
             }
             ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-
         }
 
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
@@ -1155,6 +1162,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             dealerProposalsCreateProductsPage.ClickAddProposalButton(
                 printerContainer, addProposalButton);
+
+            dealerProposalsCreateProductsPage.VerifyAddPrinterToProposal(printerName);
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,

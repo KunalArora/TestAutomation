@@ -114,7 +114,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "PaperFeedingKit1",
                         "PaperFeedingKit2",
                         "PaperFeedingKit3",
-                        "IsSwap"});
+                        "IsSwap",
+                        "IsRemove"});
             table1.AddRow(new string[] {
                         "DCP-8110DN",
                         "300.00",
@@ -136,6 +137,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
+                        "false",
                         "false"});
             table1.AddRow(new string[] {
                         "HL-5450DN",
@@ -158,6 +160,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
+                        "false",
                         "false"});
             table1.AddRow(new string[] {
                         "DCP-L8450CDW",
@@ -180,7 +183,8 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
-                        "false"});
+                        "false",
+                        "true"});
             table1.AddRow(new string[] {
                         "MFC-L8650CDW",
                         "300.00",
@@ -202,6 +206,7 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "Normal",
                         "Normal",
+                        "false",
                         "false"});
 #line 12
 testRunner.And("I add these printers for EPP:", ((string)(null)), table1, "And ");
