@@ -46,8 +46,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
             var InputProposalApprovalInfomationElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationSelector);
-            var InputProposalApprovalValidUntilElement = SeleniumHelper.IsElementDisplayed(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector) ?
-                SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector) : null;
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector, true);
 
             if (InputProposalApprovalValidUntilElement != null)
             {
