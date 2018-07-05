@@ -5,8 +5,10 @@ Feature: Type1BusinessScenario_5
 	I want to create a new contract and complete the installation of all devices
 
 Scenario Outline: Type1BusinessScenario_5
-Given I have navigated to the Create Proposal page as a Cloud MPS Dealer from "<Country>"
-When I create a "<ContractType>" proposal
+Given I have navigated to the Create Customer page as a Cloud MPS Dealer from "<Country>"
+When I create a new customer by clicking on Create Customer button
+And I have navigated to the Create Proposal page 
+And I create a "<ContractType>" proposal
 And I enter the proposal description
 And I select Usage Type of "<UsageType>", Contract Term of "<ContractTerm>", Billing Type of "<BillingType>", Service Pack type of "<ServicePackType>" and Leasing Billing Cycle of "<LeasingBillingCycle>"
 And I add these printers for EPP:
@@ -16,7 +18,7 @@ And I add these printers for EPP:
 		| DCP-L8450CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 250          | A3P145602    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  | true     |
 		| MFC-L8650CDW | 300.00 |                           | Yes      | 5            | 1000       | 20             | 200          | A3P145603    | 0              | 0               | Normal              | Normal             | Normal                | Normal               | Normal    | Normal    | Normal           | Normal           | Normal           | false  | false    |
 And I calculate the click price for each of the above printers
-And I save the above proposal and submit it for approval
+And I save the above proposal and submit it for approval (include customer selection)
 And I have navigated to the Approved Proposals page and verify the proposal is displayed
 And I sign the above proposal
 And a Cloud MPS Local Office Approver accepts the above proposal

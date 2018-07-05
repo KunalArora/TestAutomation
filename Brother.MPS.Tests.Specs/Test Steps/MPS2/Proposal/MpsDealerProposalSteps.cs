@@ -361,6 +361,21 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
         }
 
+        [When(@"I save the above proposal and submit it for approval \(include customer selection\)")]
+        public void WhenISaveTheAboveProposalAndSubmitItForApprovalIncludeCustomerSelection()
+        {
+            WhenISaveTheProposal();
+            _mpsDealerProposalStepActions.VerifySavedProposalInOpenProposalsList(_cloudExistingProposalPage);
+            var dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.SubmitForTheApproval<DealerProposalsCreateCustomerInformationPage>(_cloudExistingProposalPage);
+            dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.SelectExistingCustomerForProposal<DealerProposalsCreateCustomerInformationPage>(dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsConvertTermAndTypePage = _mpsDealerProposalStepActions.ClickOnNext(dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsConvertProductsPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertTermAndTypePage);
+            var dealerProposalsConvertClickPricePage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertProductsPage);
+            var dealerProposalsConvertSummaryPage = _mpsDealerProposalStepActions.ClickNext(dealerProposalsConvertClickPricePage);
+            _dealerProposalsAwaitingApprovalPage = _mpsDealerProposalStepActions.SubmitForApproval(dealerProposalsConvertSummaryPage);
+        }
+
+
         [When(@"I submit it for approval for existing customer")]
         public void WhenISubmitItForApprovalForExistingCustomer()
         {

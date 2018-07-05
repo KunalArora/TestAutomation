@@ -84,12 +84,16 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.EndToEnd.Type1
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given(string.Format("I have navigated to the Create Proposal page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given(string.Format("I have navigated to the Create Customer page as a Cloud MPS Dealer from \"{0}\"", country), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("I create a new customer by clicking on Create Customer button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I have navigated to the Create Proposal page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
+testRunner.And(string.Format("I create a \"{0}\" proposal", contractType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+testRunner.And("I enter the proposal description", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
 testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \"{1}\", Billing Type of \"{2}\", Serv" +
                         "ice Pack type of \"{3}\" and Leasing Billing Cycle of \"<LeasingBillingCycle>\"", usageType, contractTerm, billingType, servicePackType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -208,36 +212,37 @@ testRunner.And(string.Format("I select Usage Type of \"{0}\", Contract Term of \
                         "Normal",
                         "false",
                         "false"});
-#line 12
+#line 14
 testRunner.And("I add these printers for EPP:", ((string)(null)), table1, "And ");
-#line 18
-testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
-testRunner.And("I save the above proposal and submit it for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
+testRunner.And("I calculate the click price for each of the above printers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+testRunner.And("I save the above proposal and submit it for approval (include customer selection)" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
 testRunner.And("I have navigated to the Approved Proposals page and verify the proposal is displa" +
                     "yed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
-testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
-testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
+testRunner.And("I sign the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+testRunner.And("a Cloud MPS Local Office Approver accepts the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 26
 testRunner.And(string.Format("I create a \"{0}\" installation request for \"{1}\" communication", installationType, communicationMethod), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 27
 testRunner.And("I will be able to see the installation request created above on the Manage Device" +
                     "s page for the above proposal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 28
 testRunner.And("a Brother installer has navigated to the Web Installation page and verify Contrac" +
                     "t Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 27
+#line 29
 testRunner.And("Enter the serial numbers and complete email installation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 30
 testRunner.And("I navigate to the Accepted Contracts page and I locate the above contract and cli" +
                     "ck Manage Devices button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
+#line 31
 testRunner.And("I verify that the email installation is completed successfuly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
