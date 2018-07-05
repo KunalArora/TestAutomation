@@ -91,6 +91,8 @@ namespace Brother.Tests.Specs.Resolvers
             }
         }
 
+        // Workaround for corrupted user.
+        // See MPS-6101.
         private readonly Dictionary<string, string> LocalOfficeAdminUsernameReplaceMap = new Dictionary<string, string>()
         {
             {"MPS-BSW-UAT-LOAdmin-Auto@brother.co.uk", "MPS-BSW-UAT-LOAdmin-Auto2@brother.co.uk" },
