@@ -2,6 +2,7 @@
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.RuntimeSettings;
 using System;
+using System.Collections.Generic;
 
 namespace Brother.Tests.Specs.Resolvers
 {
@@ -85,20 +86,22 @@ namespace Brother.Tests.Specs.Resolvers
         {
             get
             {
-                return string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOAdmin", "");
+                var userName =  string.Format(USERNAME_PATTERN, _contextData.Country.BrotherCode, _contextData.Environment, "LOAdmin", "");
+                return LocalOfficeAdminUsernameReplaceMap.ContainsKey(userName) ? LocalOfficeAdminUsernameReplaceMap[userName] : userName;
             }
         }
+
+        private readonly Dictionary<string, string> LocalOfficeAdminUsernameReplaceMap = new Dictionary<string, string>()
+        {
+            {"MPS-BSW-UAT-LOAdmin-Auto@brother.co.uk", "MPS-BSW-UAT-LOAdmin-Auto2@brother.co.uk" },
+            {"MPS-BSW-TEST-LOAdmin-Auto@brother.co.uk", "MPS-BSW-TEST-LOAdmin-Auto2@brother.co.uk" }
+        };
+
         public string LocalOfficeAdminPassword 
         {
             get
             {
-                switch (_contextData.Environment.ToUpper())
-                {
-                    case "UAT":
-                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,"loadmin", 1);
-                    default:
-                        return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation,"admin", 1);
-                }
+                return string.Format(PASSWORD_PATTERN, _contextData.Country.PasswordCountryAbbreviation, "admin", 1);
             }
         }
 
