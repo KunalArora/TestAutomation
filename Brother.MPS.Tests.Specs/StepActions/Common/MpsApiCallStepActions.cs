@@ -93,8 +93,7 @@ namespace Brother.Tests.Specs.StepActions.Common
             LoggingService.WriteLogOnMethodEntry();
 
             var products = _contextData.PrintersProperties;
-            var devices = _contextData.AdditionalDeviceProperties;
-
+            
             foreach (var product in products)
             {
                 if(_contextData.ProposalId != 0) // Proposal
@@ -105,36 +104,40 @@ namespace Brother.Tests.Specs.StepActions.Common
                     _deviceSimulatorService.SetRemainingLife(
                         product.DeviceId, product.TonerInkBlackRemLife, product.TonerInkCyanRemLife, product.TonerInkMagentaRemLife, product.TonerInkYellowRemLife);
                     _deviceSimulatorService.NotifyBocOfDeviceChanges(product.DeviceId);
-                    product.ConsumableCreatedDate = DateTime.Now.ToString(MpsUtil.DATESTRING_STANDARD);
+                    product.ConsumableCreatedDate = DateTime.Now.ToString(MpsUtil.DATESTRING_INVARIANT);
                 }
                 else // Agreement
                 {
-                    var device = devices.FirstOrDefault(d => d.Model == product.Model);
-                    TestCheck.AssertIsNotNull(device, "Device could not be found in Additional device properties. Printer properties Product model = " + product.Model);
+                    var targetDevices = _contextData.AdditionalDeviceProperties.Where(d => d.Model == product.Model);
+                    TestCheck.AssertIsNotNull(targetDevices, "Device could not be found in Additional device properties. Printer properties Product model = " + product.Model);
 
-                    // Save consumable order status to Additional Device Properties as well for convenience
-                    device.TonerInkBlackStatus = product.TonerInkBlackStatus;
-                    device.TonerInkCyanStatus = product.TonerInkCyanStatus;
-                    device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
-                    device.TonerInkYellowStatus = product.TonerInkYellowStatus;
-                    device.TonerInkBlackRemLife = product.TonerInkBlackRemLife;
-                    device.TonerInkCyanRemLife = product.TonerInkCyanRemLife;
-                    device.TonerInkMagentaRemLife = product.TonerInkMagentaRemLife;
-                    device.TonerInkYellowRemLife = product.TonerInkYellowRemLife;
-                    device.TonerInkBlackReplaceCount = product.TonerInkBlackReplaceCount;
-                    device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
-                    device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
-                    device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
-                    device.UpdateConsumableOrderCount();
+                    foreach(var device in targetDevices)
+                    {
 
-                    //Update the consumable order, remaining life and replace count as per specifications
-                    _deviceSimulatorService.RaiseConsumableOrder(
-                        device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
-                    _deviceSimulatorService.SetRemainingLife(
-                        device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
-                    _deviceSimulatorService.SetReplaceCount(
-                        device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
-                    _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);                    
+                        // Save consumable order status to Additional Device Properties as well for convenience
+                        device.TonerInkBlackStatus = product.TonerInkBlackStatus;
+                        device.TonerInkCyanStatus = product.TonerInkCyanStatus;
+                        device.TonerInkMagentaStatus = product.TonerInkMagentaStatus;
+                        device.TonerInkYellowStatus = product.TonerInkYellowStatus;
+                        device.TonerInkBlackRemLife = product.TonerInkBlackRemLife;
+                        device.TonerInkCyanRemLife = product.TonerInkCyanRemLife;
+                        device.TonerInkMagentaRemLife = product.TonerInkMagentaRemLife;
+                        device.TonerInkYellowRemLife = product.TonerInkYellowRemLife;
+                        device.TonerInkBlackReplaceCount = product.TonerInkBlackReplaceCount;
+                        device.TonerInkCyanReplaceCount = product.TonerInkCyanReplaceCount;
+                        device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
+                        device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
+                        device.UpdateConsumableOrderCount();
+
+                        //Update the consumable order, remaining life and replace count as per specifications
+                        _deviceSimulatorService.RaiseConsumableOrder(
+                            device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
+                        _deviceSimulatorService.SetRemainingLife(
+                            device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
+                        _deviceSimulatorService.SetReplaceCount(
+                            device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
+                        _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);                    
+                    }
                 }
             }
         }
