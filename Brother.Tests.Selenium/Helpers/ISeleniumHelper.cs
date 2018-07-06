@@ -27,17 +27,6 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
         IWebElement FindElementByCssSelector(ISearchContext context, string selector, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
         /// <summary>
-        /// find element by css selector when the element is displayed
-        /// </summary>
-        /// <param name="context">search root element</param>
-        /// <param name="selector">css selector</param>
-        /// <param name="judgeElementDisplay">Call Function(IsElementDisplay) Flag</param>
-        /// <param name="timeout">in sec. -1=use default value</param>
-        /// <param name="isWaitforDisplayed">T= wait for element.displayed == true</param>
-        /// <param name="isWaitforEnabled">T= wait for element.enabled == true</param>
-        /// <returns>element if exist (and displayed,enabled), otherwise throw exception</returns>
-        IWebElement FindElementByCssSelector(ISearchContext context, string selector, bool judgeElementDisplay, int timeout = -1, bool isWaitforDisplayed = false, bool isWaitforEnabled = false);
-        /// <summary>
         /// Attempts to find an element which has a data-* attribute of dataAttributeName
         /// and value dataAttributeValue
         /// </summary>
