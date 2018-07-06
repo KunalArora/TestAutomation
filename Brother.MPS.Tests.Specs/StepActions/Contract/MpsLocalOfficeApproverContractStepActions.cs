@@ -443,5 +443,35 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(pdfFile);
             _pdfHelper.DeletePdfErrorIgnored(pdfFile);
         }
+
+        public LocalOfficeApproverReportsProposalSummaryPage RaiseManualConsumableOrder(LocalOfficeApproverReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
+
+            foreach(var printer in _contextData.PrintersProperties)
+            {
+                if (printer.hasEmptyInkToner)
+                {
+                    localOfficeApproverReportsProposalSummaryPage.ClickRaiseManualConsumableOrder(printer);
+                    var localOfficeReportsProposalSummaryRaiseOrderPage =
+                                            PageService.GetPageObject<LocalOfficeReportsProposalSummaryRaiseOrderPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+                    // Select consumables
+                    localOfficeReportsProposalSummaryRaiseOrderPage.SelectConsumables(
+                        printer.TonerInkBlackStatus, printer.TonerInkCyanStatus, printer.TonerInkMagentaStatus, printer.TonerInkYellowStatus);
+
+                    ClickSafety(
+                        localOfficeReportsProposalSummaryRaiseOrderPage.SubmitOrderButtonElement, localOfficeReportsProposalSummaryRaiseOrderPage);
+                    localOfficeReportsProposalSummaryRaiseOrderPage.SeleniumHelper.AcceptJavascriptAlert();
+
+                    // Verify success alert
+                    localOfficeReportsProposalSummaryRaiseOrderPage.VerifySuccessfulOrderCreation();
+                    ClickSafety(localOfficeReportsProposalSummaryRaiseOrderPage.BackButtonElement, localOfficeReportsProposalSummaryRaiseOrderPage, true);
+
+                    localOfficeApproverReportsProposalSummaryPage = PageService.GetPageObject<LocalOfficeApproverReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+                }   
+            }
+
+            return localOfficeApproverReportsProposalSummaryPage;
+        }
     }
 }

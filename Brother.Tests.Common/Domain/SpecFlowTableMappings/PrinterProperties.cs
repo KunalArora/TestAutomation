@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
 {
     public class PrinterProperties
@@ -44,6 +45,18 @@ namespace Brother.Tests.Common.Domain.SpecFlowTableMappings
         public string TonerInkCyanStatus { get; set; }
         public string TonerInkMagentaStatus { get; set; }
         public string TonerInkYellowStatus { get; set; }
+        public bool hasEmptyInkToner
+        {
+            get
+            {
+                return new List<string>() {
+                    TonerInkBlackStatus,
+                    TonerInkCyanStatus,
+                    TonerInkMagentaStatus,
+                    TonerInkYellowStatus
+                }.Exists(s => s.ToLower().Equals("empty"));
+            }
+        }
         public string TonerInkBlackRemLife { get; set; }
         public string TonerInkCyanRemLife { get; set; }
         public string TonerInkMagentaRemLife { get; set; }

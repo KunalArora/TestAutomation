@@ -317,6 +317,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverDeviceManagementPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerSendForApproverPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeReportsProposalSummaryRaiseOrderPage.cs" />
     <Compile Include="Pages\MPSTwo\MultipleLanguageSwitcher.cs" />
     <Compile Include="Pages\MPSTwo\ProposalSpecialPricingPage.cs" />
     <Compile Include="Pages\MPSTwo\ReportProposalSummaryPage.cs" />
