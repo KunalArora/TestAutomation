@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminProgramPurchaseAndClickPage : BasePage, IPageObject
+    public class LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage : BasePage, IPageObject
     {
         private const string _validationElementSelector = "#content_1_ButtonSave";
         private const string _url = "/mps/local-office/programs/purchase-and-click/program-settings";
@@ -50,8 +50,6 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             var BillingPaymentTypeElement = SeleniumHelper.FindElementByCssSelector(BillingPaymentTypetSelector);
             var BillingFrequencyInputElement = SeleniumHelper.FindElementByCssSelector(BillingFrequencyInputSelector);
 
-   //         SeleniumHelper.WaitUntil(d => BillingCycleNameInputElement.Text == string.Empty);
-
             if(SeleniumHelper.WaitUntil( d => SeleniumHelper.IsElementDisplayed(BillingCycleNameInputElement)))
             {
                 ClearAndType(BillingCycleNameInputElement, billingName, true);
@@ -64,9 +62,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 SeleniumHelper.FindElementByCssSelector(NextButtonSelector));
         }
 
-        public void VerifyAndEnableNewlyCreatedBillingCycle(string billingName, string billingUsage, string billingPaymentType, string resourceBillingCysleStatusDisabled)
+        public void VerifyAndEnableNewlyCreatedBillingCycle(string billingName, string billingUsage, string billingPaymentType, string resourceBillingCycleStatusDisabled)
         {
-            LoggingService.WriteLogOnMethodEntry(billingName, billingUsage, billingPaymentType, resourceBillingCysleStatusDisabled);
+            LoggingService.WriteLogOnMethodEntry(billingName, billingUsage, billingPaymentType, resourceBillingCycleStatusDisabled);
             var IsPresent = false;
             var BillingCycleListBodyElement = SeleniumHelper.FindElementByCssSelector(BillingCycleListBodySelector);
             var BillingCycleListRows = SeleniumHelper.FindRowElementsWithinTable(BillingCycleListBodyElement);
@@ -85,7 +83,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                     {
                         IsPresent = true;
                         var BillingCycleListStatusElement = SeleniumHelper.FindElementByCssSelector(row, BillingCycleListStatusSelector);
-                        if (BillingCycleListStatusElement.Text.Equals(resourceBillingCysleStatusDisabled))
+                        if (BillingCycleListStatusElement.Text.Equals(resourceBillingCycleStatusDisabled))
                         {
                             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsSelector));
                             SeleniumHelper.ClickSafety(SeleniumHelper.FindElementByCssSelector(row, BillingCycleListActionsShowSelector));

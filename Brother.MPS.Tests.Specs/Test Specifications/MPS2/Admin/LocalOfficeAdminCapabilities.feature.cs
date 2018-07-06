@@ -18,7 +18,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("LocalOfficeAdminCapabilities")]
+    [NUnit.Framework.DescriptionAttribute("Type1LocalOfficeAdminCapabilities")]
     [NUnit.Framework.CategoryAttribute("MPS")]
     [NUnit.Framework.CategoryAttribute("UAT")]
     [NUnit.Framework.CategoryAttribute("TEST")]
@@ -26,7 +26,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
     [NUnit.Framework.CategoryAttribute("LOW")]
     [NUnit.Framework.CategoryAttribute("ADMIN")]
     [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
-    public partial class LocalOfficeAdminCapabilitiesFeature
+    public partial class Type1LocalOfficeAdminCapabilitiesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -38,7 +38,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LocalOfficeAdminCapabilities", "\tIn order to test the Cloud MPS local office Admin capabilities\r\n\tVerify the diff" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Type1LocalOfficeAdminCapabilities", "\tIn order to test the Cloud MPS local office Admin capabilities\r\n\tVerify the diff" +
                     "erent options of local office admin", ProgrammingLanguage.CSharp, new string[] {
                         "MPS",
                         "UAT",
@@ -79,12 +79,12 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("LocalOfficeAdminCapabilities")]
+        [NUnit.Framework.DescriptionAttribute("Type1LocalOfficeAdminCapabilities")]
         [NUnit.Framework.TestCaseAttribute("Poland", "pl-PL", "LEASE_AND_CLICK", "MONTHLY", "MINIMUM_VOLUME", "RECURRING", new string[] {
                 "BPL"}, Category="BPL")]
-        public virtual void LocalOfficeAdminCapabilities(string country, string culture, string contractType, string billingType, string billingUsageType, string billingPaymentType, string[] exampleTags)
+        public virtual void Type1LocalOfficeAdminCapabilities(string country, string culture, string contractType, string billingType, string billingUsageType, string billingPaymentType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("LocalOfficeAdminCapabilities", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Type1LocalOfficeAdminCapabilities", exampleTags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7

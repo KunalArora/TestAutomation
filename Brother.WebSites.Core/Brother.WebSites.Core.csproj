@@ -248,8 +248,8 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealersEditDealershipPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminDealershipUsersCreationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminExistingDealershipUsersPage.cs" />
-    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramLeaseAndClickPage.cs" />
-    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerManageDevicesPage.cs" />
     <Compile Include="Pages\MPSTwo\DealerProposalsCreateNavTabs.cs" />
     <Compile Include="Pages\MPSTwo\DealerContractsPage.cs" />
@@ -269,7 +269,7 @@
     <Compile Include="Pages\MPSTwo\DealerSetInstallationTypePage.cs" />
     <Compile Include="Pages\MPSTwo\InstallerDeviceInstallationPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminLeasingBanks.cs" />
-    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramPurchaseAndClickPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminReportsProposalSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeAdminSystemSettingsGeneralSettingsPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApprovalCustomerInformationPage.cs" />

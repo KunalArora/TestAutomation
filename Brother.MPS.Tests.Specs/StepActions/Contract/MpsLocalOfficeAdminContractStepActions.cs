@@ -267,68 +267,68 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
         }
 
-        public LocalOfficeAdminProgramPage NavigateToProgramPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        public LocalOfficeAdminProgramsDashboardPage NavigateToProgramPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
             localOfficeAdminDashboardPage.SeleniumHelper.ClickSafety(localOfficeAdminDashboardPage.LOAdminProgramElement);
-            return PageService.GetPageObject<LocalOfficeAdminProgramPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramLeaseAndClickPage NavigateToLeaseAndClickProgramSettingsPage(LocalOfficeAdminProgramPage localOfficeAdminProgramPage)
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage NavigateToLeaseAndClickProgramSettingsPage(LocalOfficeAdminProgramsDashboardPage localOfficeAdminProgramPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPage);
             localOfficeAdminProgramPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPage.LeasingContractLinkElement);
-            return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramPurchaseAndClickPage NavigateToPurchaseAndClickProgramSettingsPage(LocalOfficeAdminProgramPage localOfficeAdminProgramPage)
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage NavigateToPurchaseAndClickProgramSettingsPage(LocalOfficeAdminProgramsDashboardPage localOfficeAdminProgramPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPage);
             localOfficeAdminProgramPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPage.PurchaseAndClickLinkElement);
-            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramLeaseAndClickPage ClickOnProgramEnabledButtonAndSave(LocalOfficeAdminProgramLeaseAndClickPage localOfficeAdminProgramLeaseAndClickPage)
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage ClickOnProgramEnabledButtonAndSave(LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage localOfficeAdminProgramLeaseAndClickPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
             localOfficeAdminProgramLeaseAndClickPage.ClickOnProgramEnabledButton();
             localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
-            return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramLeaseAndClickPage DisableProgramAndSave(LocalOfficeAdminProgramLeaseAndClickPage localOfficeAdminProgramLeaseAndClickPage)
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage DisableProgramAndSave(LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage localOfficeAdminProgramLeaseAndClickPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
             localOfficeAdminProgramLeaseAndClickPage.ClickOnProgramDisableButton();
             localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
-            return PageService.GetPageObject<LocalOfficeAdminProgramLeaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramPurchaseAndClickPage AddANewBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage,
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage AddANewBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage,
             string billingType, string billingUsageType, string billingPaymentType)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
             localOfficeAdminProgramPurchaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPurchaseAndClickPage.AddBillingCycleButtonElement);
             localOfficeAdminProgramPurchaseAndClickPage.CreateANewBillingCycleDetails(billingType, billingUsageType, billingPaymentType);
-            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramPurchaseAndClickPage EnableTheCreatedBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage,
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage EnableTheCreatedBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage,
             string billingType, string billingUsageType, string billingPaymentType)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
             var resourceBillingCysleStatusDisabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Disabled, _contextData.Culture);
             localOfficeAdminProgramPurchaseAndClickPage.VerifyAndEnableNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusDisabled);
-            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
-        public LocalOfficeAdminProgramPurchaseAndClickPage DeleteTheCreatedBillingCycle(LocalOfficeAdminProgramPurchaseAndClickPage localOfficeAdminProgramPurchaseAndClickPage, 
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage DeleteTheCreatedBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage, 
             string billingType, string billingUsageType, string billingPaymentType)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
             var resourceBillingCysleStatusEnabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Enabled, _contextData.Culture);
             localOfficeAdminProgramPurchaseAndClickPage.DeleteNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusEnabled);
-            return PageService.GetPageObject<LocalOfficeAdminProgramPurchaseAndClickPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)

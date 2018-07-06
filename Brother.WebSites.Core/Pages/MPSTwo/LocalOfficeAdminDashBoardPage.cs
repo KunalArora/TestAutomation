@@ -70,13 +70,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             AssertElementPresent(DealerDefaultsElement, "Create Dealer Defaults Link");
         }
 
-        public LocalOfficeAdminProgramPage NavigateToLoProgramPage()
+        public LocalOfficeAdminProgramsDashboardPage NavigateToLoProgramPage()
         {
             LoggingService.WriteLogOnMethodEntry();
             if (LOAdminProgramElement == null)
                 throw new NullReferenceException("EPP link is not LOAdmin Dashboard");
             LOAdminProgramElement.Click();
-            return GetTabInstance<LocalOfficeAdminProgramPage>(Driver);
+            return GetTabInstance<LocalOfficeAdminProgramsDashboardPage>(Driver);
         }
 
         public LocalOfficeReportsDashboardPage NavigateToReportPage()

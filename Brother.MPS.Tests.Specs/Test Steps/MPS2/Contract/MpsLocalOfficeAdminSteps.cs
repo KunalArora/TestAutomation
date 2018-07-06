@@ -44,9 +44,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
         private LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage;
         private LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage;
-        private LocalOfficeAdminProgramPage _localOfficeAdminProgramPage;
-        private LocalOfficeAdminProgramLeaseAndClickPage _localOfficeAdminProgramLeaseAndClickPage;
-        private LocalOfficeAdminProgramPurchaseAndClickPage _localOfficeAdminProgramPurchaseAndClickPage;
+        private LocalOfficeAdminProgramsDashboardPage _localOfficeAdminProgramPage;
+        private LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage _localOfficeAdminProgramLeaseAndClickPage;
+        private LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage _localOfficeAdminProgramPurchaseAndClickPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,

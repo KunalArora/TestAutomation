@@ -51,7 +51,7 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         {
 
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
-            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramsDashboardPage>().NavigateToPurchaseAndClickPage();
         }
 
         [Given(@"I navigate to Lease And Click page")]
@@ -59,14 +59,14 @@ namespace Brother.Tests.Specs.MPSTwo.Proposal
         public void WhenINavigateToLeaseAndClickPage()
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
-            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramsDashboardPage>().NavigateToLeaseAndClickPage();
         }
 
         [When(@"I navigate to All In Click Page")]
         public void WhenINavigateToAllInClickPage()
         {
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
-            NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToAllInClickPage();
+            NextPage = CurrentPage.As<LocalOfficeAdminProgramsDashboardPage>().NavigateToAllInClickPage();
         }
 
         [When(@"I tick Dispaly Product as List Button")]

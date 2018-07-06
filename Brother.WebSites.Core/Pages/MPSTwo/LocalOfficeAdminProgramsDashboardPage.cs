@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminProgramPage : BasePage, IPageObject
+    public class LocalOfficeAdminProgramsDashboardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/local-office/dashboard";
 

@@ -1,9 +1,9 @@
 ﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN @CI_TestMaintenance
-Feature: LocalOfficeAdminCapabilities
+Feature: Type1LocalOfficeAdminCapabilities
 	In order to test the Cloud MPS local office Admin capabilities
 	Verify the different options of local office admin
 
-Scenario Outline: LocalOfficeAdminCapabilities
+Scenario Outline: Type1LocalOfficeAdminCapabilities
 Given I have navigated to the dashboard page as a Cloud MPS Local office admin with culture "<Culture>" from "<Country>"  
 # Enable Lease & Click program, verify and then disable it
 When I navigate to the lease and click program settings page and enable the program

@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminProgramLeaseAndClickPage : BasePage, IPageObject
+    public class LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage : BasePage, IPageObject
     {
         private const string _validationElementSelector = "#content_1_ButtonSave";
         private const string _url = "/mps/local-office/programs/lease-and-click/program-settings";
@@ -31,11 +31,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
 
             var ProgramEnabledInputButtonElement = SeleniumHelper.FindElementByCssSelector(ProgramEnabledInputButtonSelector);
-            if((SeleniumHelper.IsElementSelected(ProgramEnabledInputButtonElement)))
-            {
-                return;
-            }
-            SeleniumHelper.ClickSafety(ProgramEnabledInputButtonElement);
+            SeleniumHelper.SetCheckBox(ProgramEnabledInputButtonElement, true);
         }
 
         public void ClickOnProgramDisableButton()
@@ -43,11 +39,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             LoggingService.WriteLogOnMethodEntry();
 
             var ProgramEnabledInputButtonElement = SeleniumHelper.FindElementByCssSelector(ProgramEnabledInputButtonSelector);
-            if(!(SeleniumHelper.IsElementSelected(ProgramEnabledInputButtonElement)))
-            {
-                return;
-            }
-            SeleniumHelper.ClickSafety(ProgramEnabledInputButtonElement);
+            SeleniumHelper.SetCheckBox(ProgramEnabledInputButtonElement, false);
         }
     }
 }
