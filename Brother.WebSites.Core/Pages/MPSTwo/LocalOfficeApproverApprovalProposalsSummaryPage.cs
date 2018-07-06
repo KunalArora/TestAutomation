@@ -44,11 +44,15 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.IsElementDisplayed(InputProposalApprovalValidUntilSelector) ?
+                SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector) : null;
 
-            var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector);
-            if(InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
+            if (InputProposalApprovalValidUntilElement != null)
             {
-                InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
+                if (InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
+                {
+                    InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
+                }
             }
             SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout + 10, true); // Add 10 sec extra to timeout as approval processing takes time
         }
