@@ -25,6 +25,8 @@
         string GetDealerCulture(string name, string culture);
         string GetCsvTranslations(string name, string culture);
         string GetSupplyItemType(string name, string culture);
+        string GetBillingPaymentTypeText(string name, string culture);
+        string GetBillingCycleStatusText(string name, string culture);
         // Exclusively Type 3
         string GetAgreementTypeText(string name, string culture);
         string GetAgreementStatusText(string name, string culture);

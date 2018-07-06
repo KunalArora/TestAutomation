@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MONTHLY" xml:space="preserve">
-    <value>Monthly</value>
+  <data name="LEASE_AND_CLICK" xml:space="preserve">
+    <value>Lease + Click</value>
   </data>
-  <data name="QUARTERLY_IN_ARREARS" xml:space="preserve">
-    <value>Quarterly in Arrears</value>
+  <data name="PURCHASE_AND_CLICK" xml:space="preserve">
+    <value>Buy + Click</value>
   </data>
 </root>

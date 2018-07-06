@@ -1,4 +1,4 @@
-﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN
+﻿@MPS @UAT @TEST @TYPE1 @LOW @ADMIN @CI_TestMaintenance
 Feature: Type1DealerAdminCapabilities
 	In order to test the Cloud MPS dealer Admin capabilities
 	Verify the dealership profile and dealer default margin functionality

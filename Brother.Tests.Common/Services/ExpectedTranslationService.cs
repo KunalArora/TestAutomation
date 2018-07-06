@@ -110,6 +110,18 @@ namespace Brother.Tests.Common.Services
             return GetText(Resources.SupplyItemType.SupplyItemType.ResourceManager, name, culture);
         }
 
+        public string GetBillingPaymentTypeText(string name, string culture)
+        {
+            return GetText(Resources.BillingPaymentType.BillingPaymentType.ResourceManager, name, culture);
+        }
+
+        public string GetBillingCycleStatusText(string name, string culture)
+        {
+            return GetText(Resources.BillingCycleStatus.BillingCycleStatus.ResourceManager, name, culture);
+        }
+
+
+
         
         #region Exclusively Type 3
 

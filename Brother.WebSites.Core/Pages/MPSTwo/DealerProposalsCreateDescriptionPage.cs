@@ -44,7 +44,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement PromptText;
         [FindsBy(How = How.Id, Using = "content_1_InputLeadCodeReference_Input")]
         public IWebElement LeadCodeRef;
-        [FindsBy(How = How.CssSelector, Using = "#content_1_InputContractType_Input")]
+        [FindsBy(How = How.CssSelector, Using = "#content_1_InputContractType_Input")] 
         public IWebElement ContractTypeSelector;
         [FindsBy(How = How.CssSelector, Using = "#content_1_InputUsageType_Input")]
         public IWebElement UsageTypeSelector;
@@ -58,10 +58,9 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IList<IWebElement> ProposalCreationTabs;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/dealer/proposals/create/click-price\"] span")]
         public IWebElement ProposalClickPriceTab;
-        
-        
 
-        
+
+        private const string ContractTypeInputSelector = "#content_1_InputContractType_Input";      
 
 
         public void IsPromptTextDisplayed()
@@ -301,5 +300,12 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             return proposalName;
         }
 
+        public void VerifyContractType(string resourceContractType)
+        {
+            LoggingService.WriteLogOnMethodEntry(resourceContractType);
+
+            var contractTypeInputElement = SeleniumHelper.FindElementByCssSelector(ContractTypeInputSelector);
+            TestCheck.AssertTextContains(resourceContractType, contractTypeInputElement.Text, "The contract type is not displayed on the dealer portal");
+        }
     }
 }

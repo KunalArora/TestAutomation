@@ -1169,6 +1169,20 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
         }
 
+        public void VerifyContractType(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage, string contractType)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateDescriptionPage, contractType);
+            var resourceContractType = _translationService.GetContractTypeText(contractType, _contextData.Culture);
+            dealerProposalsCreateDescriptionPage.VerifyContractType(resourceContractType);
+        }
+
+        public void VerifyBillingType(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage, string billingType)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateTermAndTypePage, billingType);
+            var resourceBillingType = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
+            dealerProposalsCreateTermAndTypePage.VerifyBillingType(resourceBillingType);
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,

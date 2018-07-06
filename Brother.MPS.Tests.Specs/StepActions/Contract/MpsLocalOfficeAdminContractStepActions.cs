@@ -1,4 +1,5 @@
 ﻿using Brother.Tests.Common.ContextData;
+using Brother.Tests.Common.Domain.Constants;
 using Brother.Tests.Common.Domain.Enums;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
@@ -26,7 +27,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
         private readonly IContextData _contextData;
         private readonly DeviceSimulatorService _deviceSimulatorService;
         private readonly RunCommandService _runCommandService;
-        private readonly IWebDriver _webDriver;
+        private readonly IWebDriver _loAdminWebDriver;
         private readonly ITranslationService _translationService;
         private readonly IPdfHelper _pdfHelper;
         private readonly MpsSignInStepActions _mpsSignIn;
@@ -54,7 +55,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _contextData = contextData;
             _deviceSimulatorService = deviceSimulatorService;
             _runCommandService = runCommandService;
-            _webDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
+            _loAdminWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeAdmin);
             _translationService = translationService;
             _pdfHelper = pdfHelper;
             _mpsSignIn = mpsSignIn;
@@ -68,16 +69,16 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(dataQueryPage, proposalId);
 
             dataQueryPage.FilterAndClickAgreement(proposalId);
-            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout,_webDriver);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         public LocalOfficeAdminContractsEditEndDatePage ClickOnCancelContract(LocalOfficeAdminReportsProposalSummaryPage localOfficeApproverReportsProposalSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeApproverReportsProposalSummaryPage);
 
-            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
-            ActionsModule.NavigateToCancelContractActionButton(_webDriver, localOfficeApproverReportsProposalSummaryPage.SeleniumHelper);
-            return PageService.GetPageObject<LocalOfficeAdminContractsEditEndDatePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _loAdminWebDriver);
+            ActionsModule.NavigateToCancelContractActionButton(_loAdminWebDriver, localOfficeApproverReportsProposalSummaryPage.SeleniumHelper);
+            return PageService.GetPageObject<LocalOfficeAdminContractsEditEndDatePage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         public LocalOfficeAdminReportsProposalSummaryPage EnterContractCancellationDetailsAndSave(LocalOfficeAdminContractsEditEndDatePage localOfficeAdminContractsEditEndDatePage, string billingType)
@@ -93,7 +94,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonSaveElement, localOfficeAdminContractsEditEndDatePage);
             ClickSafety(localOfficeAdminContractsEditEndDatePage.ButtonApplyContractCancellationElement, localOfficeAdminContractsEditEndDatePage,true);
-            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
 
         }
 
@@ -122,7 +123,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
 
             localOfficeAdminReportsProposalSummaryPage.EditProposalNotes();
             ClickSafety(localOfficeAdminReportsProposalSummaryPage.SaveButtonElement, localOfficeAdminReportsProposalSummaryPage);
-            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         public void AssertTheContractStatusIsClosed(DataQueryPage dataQueryPage)
@@ -143,9 +144,9 @@ namespace Brother.Tests.Specs.StepActions.Contract
         public LocalOfficeAdminContractsAdditionalCharges ClickOnAdditionalCharges(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
         {
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminReportsProposalSummaryPage);
-            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _webDriver);
-            ActionsModule.NavigateToAdditionalChargesActionButton(_webDriver, localOfficeAdminReportsProposalSummaryPage.SeleniumHelper);
-            return PageService.GetPageObject<LocalOfficeAdminContractsAdditionalCharges>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            ActionsModule.ClickOnTheActionsDropdown(-1/* =contract end  9,4 */, _loAdminWebDriver);
+            ActionsModule.NavigateToAdditionalChargesActionButton(_loAdminWebDriver, localOfficeAdminReportsProposalSummaryPage.SeleniumHelper);
+            return PageService.GetPageObject<LocalOfficeAdminContractsAdditionalCharges>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         public void AddAdditionalCharges(LocalOfficeAdminContractsAdditionalCharges localOfficeAdminContractsAdditionalCharges, LocalOfficeAdminContractsAdditionalCharges.ChargeTypeSelectorElementValue chargeType, double costPrice, double marginPercent)
@@ -162,7 +163,7 @@ namespace Brother.Tests.Specs.StepActions.Contract
             LoggingService.WriteLogOnMethodEntry(localOfficeAdminContractsAdditionalCharges);
             var SeleniumHelper = localOfficeAdminContractsAdditionalCharges.SeleniumHelper;
             SeleniumHelper.ClickSafety(localOfficeAdminContractsAdditionalCharges.BackElement,IsUntilUrlChanges:true);
-            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            return PageService.GetPageObject<LocalOfficeAdminReportsProposalSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
         }
 
         public void VerifyProposalNotes(LocalOfficeAdminReportsProposalSummaryPage localOfficeAdminReportsProposalSummaryPage)
@@ -194,13 +195,13 @@ namespace Brother.Tests.Specs.StepActions.Contract
             // Generate Final Invoice
             _contractShiftService.ContractTimeShiftCommand(_contextData.ProposalId, 0, "d", false, true, "Any");
             _runCommandService.RunContractClosingMonitorCommand();
-            _webDriver.Navigate().Refresh();
+            _loAdminWebDriver.Navigate().Refresh();
             // download Final Invoice
             IWebElement startDateElement=null;
             var pdfName = _pdfHelper.Download(ph =>
             {
                 var endDate = MpsUtil.DateTimeString(DateTime.Today.AddDays(-1), _contextData.Country.CountryIso);
-                var trlist = _webDriver
+                var trlist = _loAdminWebDriver
                     .FindElement(By.CssSelector("table.table-striped.mps-billing-dates-container"))
                     .FindElement(By.TagName("tbody"))
                     .FindElements(By.TagName("tr"));
@@ -266,6 +267,69 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _pdfHelper.AssertAreEqualAdditionalCharges(pdfFinalInvoice, expectedSnapValues.GetExistingChargesList(_pageParseHelper), _contextData.CultureInfo);
         }
 
+        public LocalOfficeAdminProgramsDashboardPage NavigateToProgramPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
+            localOfficeAdminDashboardPage.SeleniumHelper.ClickSafety(localOfficeAdminDashboardPage.LOAdminProgramElement);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage NavigateToLeaseAndClickProgramSettingsPage(LocalOfficeAdminProgramsDashboardPage localOfficeAdminProgramPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPage);
+            localOfficeAdminProgramPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPage.LeasingContractLinkElement);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage NavigateToPurchaseAndClickProgramSettingsPage(LocalOfficeAdminProgramsDashboardPage localOfficeAdminProgramPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPage);
+            localOfficeAdminProgramPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPage.PurchaseAndClickLinkElement);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage ClickOnProgramEnabledButtonAndSave(LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage localOfficeAdminProgramLeaseAndClickPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
+            localOfficeAdminProgramLeaseAndClickPage.ClickOnProgramEnabledButton();
+            localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage DisableProgramAndSave(LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage localOfficeAdminProgramLeaseAndClickPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramLeaseAndClickPage);
+            localOfficeAdminProgramLeaseAndClickPage.ClickOnProgramDisableButton();
+            localOfficeAdminProgramLeaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramLeaseAndClickPage.SaveButton);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage AddANewBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage,
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            localOfficeAdminProgramPurchaseAndClickPage.SeleniumHelper.ClickSafety(localOfficeAdminProgramPurchaseAndClickPage.AddBillingCycleButtonElement);
+            localOfficeAdminProgramPurchaseAndClickPage.CreateANewBillingCycleDetails(billingType, billingUsageType, billingPaymentType);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage EnableTheCreatedBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage,
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            var resourceBillingCysleStatusDisabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Disabled, _contextData.Culture);
+            localOfficeAdminProgramPurchaseAndClickPage.VerifyAndEnableNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusDisabled);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
+
+        public LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage DeleteTheCreatedBillingCycle(LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage localOfficeAdminProgramPurchaseAndClickPage, 
+            string billingType, string billingUsageType, string billingPaymentType)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminProgramPurchaseAndClickPage, billingType, billingUsageType, billingPaymentType);
+            var resourceBillingCysleStatusEnabled = _translationService.GetBillingCycleStatusText(TranslationKeys.BillingCycleStatus.Enabled, _contextData.Culture);
+            localOfficeAdminProgramPurchaseAndClickPage.DeleteNewlyCreatedBillingCycle(billingType, billingUsageType, billingPaymentType, resourceBillingCysleStatusEnabled);
+            return PageService.GetPageObject<LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage>(RuntimeSettings.DefaultPageObjectTimeout, _loAdminWebDriver);
+        }
 
         private double CalculateFilnalInvoiceMinimumVolume(DateTime startDate, DateTime endDate)
         {

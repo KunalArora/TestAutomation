@@ -9,9 +9,22 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
-    public class LocalOfficeAdminProgramPage : BasePage
+    public class LocalOfficeAdminProgramsDashboardPage : BasePage, IPageObject
     {
         public static string Url = "/mps/local-office/dashboard";
+
+        private const string _validationElementSelector = ".mps-dashboard"; 
+        private const string _url = "/mps/local-office/programs/dashboard";
+
+        public string ValidationElementSelector
+        {
+            get { return _validationElementSelector; }
+        }
+
+        public string PageUrl
+        {
+            get { return _url; }
+        }
 
         public override string DefaultTitle
         {

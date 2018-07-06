@@ -250,5 +250,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
             SeleniumHelper.SelectFromDropdownByText(billingTypeElement, billingType);
             SeleniumHelper.SelectFromDropdownByText(servicePackOptionElement, servicePackOption);
         }
+
+        public void VerifyBillingType(string resourceBillingType)
+        {
+            LoggingService.WriteLogOnMethodEntry(resourceBillingType);
+
+            var billingTypeInputElement = SeleniumHelper.FindElementByCssSelector(billingTypeSelector);
+            TestCheck.AssertTextContains(resourceBillingType, billingTypeInputElement.Text, "The billing type is not displayed on the dealer portal");
+        }
     }
 }

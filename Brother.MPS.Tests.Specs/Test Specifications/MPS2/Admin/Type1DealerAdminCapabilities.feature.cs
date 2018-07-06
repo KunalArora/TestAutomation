@@ -25,6 +25,7 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
     [NUnit.Framework.CategoryAttribute("TYPE1")]
     [NUnit.Framework.CategoryAttribute("LOW")]
     [NUnit.Framework.CategoryAttribute("ADMIN")]
+    [NUnit.Framework.CategoryAttribute("CI_TestMaintenance")]
     public partial class Type1DealerAdminCapabilitiesFeature
     {
         
@@ -45,7 +46,8 @@ namespace Brother.Tests.Specs.TestSpecifications.MPS2.Admin
                         "TEST",
                         "TYPE1",
                         "LOW",
-                        "ADMIN"});
+                        "ADMIN",
+                        "CI_TestMaintenance"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

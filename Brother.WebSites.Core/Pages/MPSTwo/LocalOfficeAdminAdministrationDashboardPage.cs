@@ -39,6 +39,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement LOAdminAdminTabElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/admin/system-settings\"]")]
         public IWebElement SystemSettingsElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/admin/profiles-and-users\"]")]
+        public IWebElement ProfilesAndUsersElement;
 
 
         public void IsAdministrationPageDisplayed()

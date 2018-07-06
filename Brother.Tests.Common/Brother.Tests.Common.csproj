@@ -104,6 +104,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\BillingCycleStatus\BillingCycleStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillingCycleStatus.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BillingPaymentType\BillingPaymentType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillingPaymentType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Binary\BinaryResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -327,6 +337,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BillingType\BillingType.da-dk.resx" />
     <EmbeddedResource Include="Resources\BillingType\BillingType.it-it.resx" />
+    <EmbeddedResource Include="Resources\BillingCycleStatus\BillingCycleStatus.pl-pl.resx" />
+    <EmbeddedResource Include="Resources\BillingCycleStatus\BillingCycleStatus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BillingCycleStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BillingPaymentType\BillingPaymentType.pl-pl.resx" />
+    <EmbeddedResource Include="Resources\BillingPaymentType\BillingPaymentType.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BillingPaymentType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Binary\BinaryResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BinaryResource.Designer.cs</LastGenOutput>
@@ -356,6 +376,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ContractTerm\ContractTerm.it-it.resx" />
+    <EmbeddedResource Include="Resources\ContractType\ContractType.pl-pl.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.en-gb.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.fr-ch.resx" />
     <EmbeddedResource Include="Resources\DealerCulture\DealerCulture.resx">

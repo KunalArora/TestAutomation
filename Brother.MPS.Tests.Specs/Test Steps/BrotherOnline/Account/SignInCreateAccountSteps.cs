@@ -412,12 +412,12 @@ namespace Brother.Tests.Specs.BrotherOnline.Account
             NextPage = CurrentPage.As<LocalOfficeAdminDashBoardPage>().NavigateToLoProgramPage();
             if (contractType.Equals("Lease & Click with Service") || contractType.Equals("Leasing & Service"))
             {
-                NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToLeaseAndClickPage();
+                NextPage = CurrentPage.As<LocalOfficeAdminProgramsDashboardPage>().NavigateToLeaseAndClickPage();
             }
             else if (contractType.Equals("Purchase & Click with Service") || contractType.Equals("Easy Print Pro & Service") ||
                 contractType.Equals("Buy + Click"))
             {
-                NextPage = CurrentPage.As<LocalOfficeAdminProgramPage>().NavigateToPurchaseAndClickPage();
+                NextPage = CurrentPage.As<LocalOfficeAdminProgramsDashboardPage>().NavigateToPurchaseAndClickPage();
             }
             
             CurrentPage.As<LocalOfficeAdminProgramSettingPage>().SetProposalByPassOption();

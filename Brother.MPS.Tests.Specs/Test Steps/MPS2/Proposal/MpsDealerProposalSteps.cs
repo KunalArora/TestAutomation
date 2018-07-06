@@ -149,6 +149,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(dealerUserName, dealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
         }
 
+
+        [When(@"a Cloud MPS Dealer navigated to the create proposal page with culture ""(.*)"" from ""(.*)""")]
         [Given(@"I have navigated to the Create Proposal page as a Cloud MPS Dealer with culture ""(.*)"" from ""(.*)""")]
         public void GivenIHaveNavigatedToTheCreateProposalPageAsACloudMPSDealerWithCultureFrom(string culture, string country)
         {
@@ -161,7 +163,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _dealerDashboardPage = _mpsDealerProposalStepActions.SignInAsDealerAndNavigateToDashboard(_userResolver.DealerUsername, _userResolver.DealerPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
-             _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage);
+            _dealerDashboardPage = _mpsDealerProposalStepActions.SelectLanguageGivenCulture(_dealerDashboardPage);
             _dealerProposalsCreateDescriptionPage = _mpsDealerProposalStepActions.NavigateToCreateProposalPage(_dealerDashboardPage);
         }
 
@@ -590,6 +592,22 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
         public void ThenACreatedCloudMPSDealerCanVerifyTheDashboardIconsProperlyShown()
         {
             _mpsDealerProposalStepActions.VerifyDashboardOptions(_dealerDashboardPage);
+        }
+
+        [Then(@"a Cloud MPS Dealer can verify the program ""(.*)"" is being displayed as contract type")]
+        public void ThenACloudMPSDealerCanVerifyTheProgramIsBeingDisplayedAsContractType(string contractType)
+        {
+            _mpsDealerProposalStepActions.VerifyContractType(_dealerProposalsCreateDescriptionPage, contractType);
+        }
+
+        [Then(@"a Cloud MPS Dealer can skip customer creation and verify the billing type as ""(.*)"" is being displayed")]
+        public void ThenACloudMPSDealerCanSkipCustomerCreationAndVerifyTheBillingTypeAsIsBeingDisplayed(string billingType)
+        {
+            string proposalName = _proposalHelper.GenerateProposalName();
+            _contextData.ProposalName = proposalName;
+            _dealerProposalsCreateCustomerInformationPage = _mpsDealerProposalStepActions.PopulateProposalDescriptionAndProceed<DealerProposalsCreateCustomerInformationPage>(_dealerProposalsCreateDescriptionPage, proposalName, "", "");
+            WhenISkipCustomerCreationForTheProposal();
+            _mpsDealerProposalStepActions.VerifyBillingType(_dealerProposalsCreateTermAndTypePage, billingType);
         }
     }
 }

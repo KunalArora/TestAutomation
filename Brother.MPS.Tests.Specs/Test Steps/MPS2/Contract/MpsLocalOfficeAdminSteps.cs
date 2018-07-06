@@ -44,6 +44,9 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         private LocalOfficeAdminDealersEditDealershipPage _localOfficeAdminDealersEditDealershipPage;
         private LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage _localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage;
         private LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage;
+        private LocalOfficeAdminProgramsDashboardPage _localOfficeAdminProgramPage;
+        private LocalOfficeAdminProgramsLeaseAndClickProgramSettingsPage _localOfficeAdminProgramLeaseAndClickPage;
+        private LocalOfficeAdminProgramsPurchaseAndClickProgramSettingsPage _localOfficeAdminProgramPurchaseAndClickPage;
 
         public LocalOfficeAdminSteps(
             IPageParseHelper pageParseHelper,
@@ -89,6 +92,22 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
                 throw new ArgumentException("Cannot Auto select Culture. Please call Alternate gherkin or specify culture");
             }
             _contextData.Culture = _contextData.Country.Cultures[0];
+            _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
+        }
+        
+        [Given(@"I have navigated to the dashboard page as a Cloud MPS Local office admin with culture ""(.*)"" from ""(.*)""")]
+        public void GivenIHaveNavigatedToTheDashboardPageAsACloudMPSLocalOfficeAdminWithCultureFrom(string culture, string country)
+        {
+            _contextData.SetBusinessType("1");
+            _contextData.Country = _countryService.GetByName(country);
+            if (_contextData.Country.Cultures.Contains(culture) == false && culture != string.Empty)
+            {
+                throw new ArgumentException("Does not support this culture for this country.Please check arguments provided from feature file. country=" + country + " culture=" + culture);
+            }
+            _contextData.Culture = culture != string.Empty ? culture : _contextData.Country.Cultures[0];
             _mpsSignInStepActions.SetCultureInfoAndRegionInfo();
             _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
                 _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
@@ -209,13 +228,62 @@ namespace Brother.Tests.Specs.Test_Steps.MPSTwo.Contract
         public void ThenACloudMPSLocalOfficeAdminCanSetTheThresholdValueForPrinterEnginesTypesAsFollowsAndSavesTheDetails(Table printerEngineThresholdDetails)
         {
             _contextData.PrinterEngineThresholdDetails = printerEngineThresholdDetails.CreateSet<PrinterEngineThresholdDetails>();
-            
+
             foreach (var printerEngineThresholdDetail in _contextData.PrinterEngineThresholdDetails)
             {
                 printerEngineThresholdDetail.Threshold = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printerEngineThresholdDetail.Threshold);
             }
 
             _localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage = _mpsLocalOfficeAdminContractStepActions.UpdatePrinterEngineThresholdDetailsAndSave(_localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
+        }
+
+        [When(@"I navigate to the lease and click program settings page and enable the program")]
+        public void WhenINavigateToTheLeaseAndClickProgramSettingsPageAndEnableTheProgram()
+        {
+            _localOfficeAdminProgramPage = _mpsLocalOfficeAdminContractStepActions.NavigateToProgramPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.NavigateToLeaseAndClickProgramSettingsPage(_localOfficeAdminProgramPage);
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.ClickOnProgramEnabledButtonAndSave(_localOfficeAdminProgramLeaseAndClickPage);
+        }
+
+        [Then(@"I disable the program that was previously enabled")]
+        public void ThenIDisableTheProgramThatWasPreviouslyEnabled()
+        {
+            _localOfficeAdminProgramLeaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DisableProgramAndSave(_localOfficeAdminProgramLeaseAndClickPage);
+        }
+
+        [When(@"I navigate to the purchase and click program settings page")]
+        public void WhenINavigateToThePurchaseAndClickProgramSettingsPage()
+        {
+            _localOfficeAdminDashboardPage = _mpsSignInStepActions.SignInAsLocalOfficeAdmin(
+                _userResolver.LocalOfficeAdminUsername, _userResolver.LocalOfficeAdminPassword, string.Format("{0}/sign-in", _urlResolver.BaseUrl));
+            _localOfficeAdminDashboardPage = _mpsLocalOfficeAdminAgreementStepActions.SelectLanguageGivenCulture(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramPage = _mpsLocalOfficeAdminContractStepActions.NavigateToProgramPage(_localOfficeAdminDashboardPage);
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.NavigateToPurchaseAndClickProgramSettingsPage(_localOfficeAdminProgramPage);
+        }
+
+        [When(@"I create a billing cycle with billing type as ""(.*)"", billing usage type as ""(.*)"" and billing payment type as ""(.*)""")]
+        public void WhenICreateABillingCycleWithBillingTypeAsBillingUsageTypeAsAndBillingPaymentTypeAs(string billingType, string billingUsageType, string billingPaymentType)
+        {
+            var billingTypeValue = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
+            var billingUsageTypeValue = _translationService.GetUsageTypeText(billingUsageType, _contextData.Culture);
+            var billingPaymentTypeValue = _translationService.GetBillingPaymentTypeText(billingPaymentType, _contextData.Culture);
+
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.AddANewBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.EnableTheCreatedBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+        }
+
+        [Then(@"I delete the newly created billing type as ""(.*)"", billing usage type as ""(.*)"" and billing payment type as ""(.*)""")]
+        public void ThenIDeleteTheNewlyCreatedBillingTypeAsBillingUsageTypeAsAndBillingPaymentTypeAs(string billingType, string billingUsageType, string billingPaymentType)
+        {
+            var billingTypeValue = _translationService.GetBillingTypeText(billingType, _contextData.Culture);
+            var billingUsageTypeValue = _translationService.GetUsageTypeText(billingUsageType, _contextData.Culture);
+            var billingPaymentTypeValue = _translationService.GetBillingPaymentTypeText(billingPaymentType, _contextData.Culture);
+
+            _localOfficeAdminProgramPurchaseAndClickPage = _mpsLocalOfficeAdminContractStepActions.DeleteTheCreatedBillingCycle(_localOfficeAdminProgramPurchaseAndClickPage,
+                billingTypeValue, billingUsageTypeValue, billingPaymentTypeValue);
+
         }
     }
 }

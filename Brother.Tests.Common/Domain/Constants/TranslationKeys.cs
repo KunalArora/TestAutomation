@@ -197,5 +197,11 @@
             public static string Mono { get { return "MONO"; } }
             public static string Colour { get { return "COLOUR"; } }
         }
+
+        public static class BillingCycleStatus
+        {
+            public static string Enabled { get { return "ENABLED"; } }
+            public static string Disabled { get { return "DISABLED"; } }
+        }
     }
 }
