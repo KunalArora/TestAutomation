@@ -39,14 +39,13 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string InputReasonSelector = "#content_1_InputProposalDeclineReason_Input";
         private const string InputProposalApprovalValidUntilSelector = "#content_1_InputProposalApproveValidUntil_Input";
-        private const string InputProposalApprovalInfomationSelector = ".js-mps-panel";
 
         public void ClickOnAccept()
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
-            var InputProposalApprovalInfomationElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationSelector);
-            var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalInfomationElement, InputProposalApprovalValidUntilSelector, true);
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.IsElementDisplayed(InputProposalApprovalValidUntilSelector) ?
+                SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector) : null;
 
             if (InputProposalApprovalValidUntilElement != null)
             {
