@@ -316,6 +316,20 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
+        public bool IsElementDisplayed(string selector)
+        {
+            LoggingService.WriteLogOnMethodEntry(selector);
+            try
+            {
+                return _webDriver.FindElement(By.CssSelector(selector)).Displayed;
+            }
+            catch
+            {
+                // ex. NoSuchElementException,StaleElementReferenceException
+                return false;
+            }
+        }
+
         public void ClickRadioButtonSafely(IWebElement radioButtonElement, int timeout)
         {
             LoggingService.WriteLogOnMethodEntry(radioButtonElement, timeout);

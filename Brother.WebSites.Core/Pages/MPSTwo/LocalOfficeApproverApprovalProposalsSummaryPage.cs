@@ -44,17 +44,16 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         {
             LoggingService.WriteLogOnMethodEntry();
             SeleniumHelper.ClickSafety( ApproveButtonElement);
+            var InputProposalApprovalValidUntilElement = SeleniumHelper.IsElementDisplayed(InputProposalApprovalValidUntilSelector) ?
+                SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector) : null;
 
-            try
+            if (InputProposalApprovalValidUntilElement != null)
             {
-                var InputProposalApprovalValidUntilElement = SeleniumHelper.FindElementByCssSelector(InputProposalApprovalValidUntilSelector,1);
                 if (InputProposalApprovalValidUntilElement.GetAttribute("value") == string.Empty)
                 {
                     InputProposalApprovalValidUntilElement.SendKeys(MpsUtil.SomeDaysFromToday(RegionInfo.TwoLetterISORegionName));
                 }
-
             }
-            catch { /* InputProposalApprovalValidUntilSelector is not found (CH site) */}
             SeleniumHelper.ClickSafety( AcceptButtonElement, RuntimeSettings.DefaultFindElementTimeout + 10, true); // Add 10 sec extra to timeout as approval processing takes time
         }
 

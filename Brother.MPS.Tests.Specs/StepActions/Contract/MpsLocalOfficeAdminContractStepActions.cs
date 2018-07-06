@@ -337,5 +337,40 @@ namespace Brother.Tests.Specs.StepActions.Contract
             _runCommandService.RunMeterReadCloudSyncCommand(_contextData.ProposalId, _contextData.Country.CountryIso);
 
         }
+
+        public LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage NavigateToEnhancedUsageMonitoringAdminInstalledPrinterPage(LocalOfficeAdminDashBoardPage localOfficeAdminDashboardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminDashboardPage);
+
+            ClickSafety(localOfficeAdminDashboardPage.LOAdminAdministrationLinkElement, localOfficeAdminDashboardPage, IsUntilUrlChanges: true);
+            var localOfficeAdminAdministratorDashboardPage = PageService.GetPageObject<LocalOfficeAdminAdministrationDashboardPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+            ClickSafety(localOfficeAdminDashboardPage.ManageDeviceOrderThresholdLink, localOfficeAdminDashboardPage, IsUntilUrlChanges: true);
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage NavigateToEnhancedUsageMonitoringAdminPrinterEnginePage(LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage);
+
+            ClickSafety(localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage.PrinterEngineTabElement, localOfficeAdminEnhancedUsageMonitoringAdminInstalledPrinterPage, IsUntilUrlChanges: true);
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver);
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage UpdatePrinterEngineThresholdDetailsAndSave(LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
+
+            foreach (var printerEngine in _contextData.PrinterEngineThresholdDetails)
+            {
+                localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.EditPrinterEngineThresholdDetails(printerEngine);
+            }
+
+            ClickSafety(localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.SaveButtonElement, localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage);
+
+            // Validate success element
+            localOfficeAdminEnhancedUsageMonitoringAdminPrinterEnginePage.CloseSuccessElementIfPresent();
+
+            return PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage>(RuntimeSettings.DefaultPageObjectTimeout, _webDriver); 
+        }
     }
 }

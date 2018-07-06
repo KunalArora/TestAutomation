@@ -90,5 +90,6 @@ namespace Brother.Tests.Common.ContextData
         double InstallationPackTotal { get; set; }
         IEnumerable<PrinterEngineThresholdDetails> PrinterEngineThresholdDetails { get; set; }
         int AgreementShiftDays { get; set; }
+        bool IsCustomerSelectedToProposal { get; set; }
     }
 }

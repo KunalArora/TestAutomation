@@ -28,6 +28,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly IWebDriver _localOfficeApproverWebDriver;
         private readonly IContextData _contextData;
         private readonly ITranslationService _translationService;
+        private readonly ICalculationService _calculationService;
 
         public MpsLocalOfficeApproverProposalStepActions(IWebDriverFactory webDriverFactory,
             IPageService pageService,
@@ -37,13 +38,15 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             ITranslationService translationService,
             ILoggingService loggingService,
             MpsContextData contextData,
-            MpsSignInStepActions mpsSignIn)
+            MpsSignInStepActions mpsSignIn,
+            ICalculationService calculationService)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
             _contextData = contextData;
             _localOfficeApproverWebDriver = WebDriverFactory.GetWebDriverInstance(UserType.LocalOfficeApprover);
             _translationService = translationService;
+            _calculationService = calculationService;
         }
 
         public LocalOfficeApproverDashBoardPage SignInAsLocalOfficeApproverAndNavigateToDashboard(string email, string password, string url)
@@ -330,6 +333,75 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             }
 
             return localOfficeApproverDashBoardPage;
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage NavigateToManageDeviceThresholdSectionAndValidateTabs(LocalOfficeApproverDashBoardPage localOfficeApproverDashBoardPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeApproverDashBoardPage);
+            ClickSafety(localOfficeApproverDashBoardPage.ManageDeviceOrderThresholdElement, localOfficeApproverDashBoardPage, IsUntilUrlChanges: true);
+            var localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage =
+                PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            Assert.IsFalse(localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.SeleniumHelper.IsElementDisplayed(
+                localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.PrinterEngineTabElement));
+            Assert.IsTrue(localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.InstalledPrinterTabElement.Displayed);
+
+            return localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage SearchForProposalAndVerifyPrinterDetailsAreNotPresent(LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.SearchAgreementAndLoadDetails(_contextData.ProposalId);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage =
+                PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            Assert.IsTrue(
+                localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.SeleniumHelper.IsElementNotPresent(
+                localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.EUMRowSelector));
+
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.ValidateProposalDetails(
+                _contextData.ProposalName,
+                _contextData.ContractTerm,
+                _contextData.LeadCodeReference,
+                _contextData.ContractType,
+                _contextData.UsageType);
+
+            return localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage SearchForProposalAndVerifyPrinterAndThresholdDetails(LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.SearchAgreementAndLoadDetails(_contextData.ProposalId);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage =
+                PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+
+            Assert.IsTrue(
+                localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.SeleniumHelper.IsElementPresent(
+                localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.EUMRowSelector));
+            
+
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.VerifyPrinterDetails(_contextData.PrinterEngineThresholdDetails);
+
+            return localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
+        }
+
+        public LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage UpdatePrinterEngineThresholdDetailsAndSave(LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage);
+
+            foreach(var printer in _contextData.PrintersProperties)
+            {
+                printer.MonoThresholdValue = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printer.MonoThresholdValue);
+                printer.ColourThresholdValue = _calculationService.ConvertInvariantNumericStringToCultureNumericString(printer.ColourThresholdValue);
+            }
+
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.UpdateThresholdValuesAndSave(_contextData.PrintersProperties);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage = PageService.GetPageObject<LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage>(RuntimeSettings.DefaultPageObjectTimeout, _localOfficeApproverWebDriver);
+            localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.CloseSuccessElementIfPresent();
+
+            return localOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage;
         }
     }
 }

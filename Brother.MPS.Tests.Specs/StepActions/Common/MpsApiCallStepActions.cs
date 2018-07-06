@@ -8,6 +8,8 @@ using Brother.Tests.Specs.Services;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
+using System.Linq;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 
 namespace Brother.Tests.Specs.StepActions.Common
 {
@@ -91,14 +93,27 @@ namespace Brother.Tests.Specs.StepActions.Common
             LoggingService.WriteLogOnMethodEntry();
 
             var products = _contextData.PrintersProperties;
-            var devices = _contextData.AdditionalDeviceProperties;
-
+            
             foreach (var product in products)
             {
-                foreach (var device in devices)
+                if(_contextData.ProposalId != 0) // Proposal
                 {
-                    if (device.Model.Equals(product.Model))
+                    //Update the consumable order, remaining life and replace count as per specifications
+                    _deviceSimulatorService.RaiseConsumableOrder(
+                        product.DeviceId, product.TonerInkBlackStatus, product.TonerInkCyanStatus, product.TonerInkMagentaStatus, product.TonerInkYellowStatus);
+                    _deviceSimulatorService.SetRemainingLife(
+                        product.DeviceId, product.TonerInkBlackRemLife, product.TonerInkCyanRemLife, product.TonerInkMagentaRemLife, product.TonerInkYellowRemLife);
+                    _deviceSimulatorService.NotifyBocOfDeviceChanges(product.DeviceId);
+                    product.ConsumableCreatedDate = DateTime.Now.ToString(MpsUtil.DATESTRING_INVARIANT);
+                }
+                else // Agreement
+                {
+                    var targetDevices = _contextData.AdditionalDeviceProperties.Where(d => d.Model == product.Model);
+                    TestCheck.AssertIsNotNull(targetDevices, "Device could not be found in Additional device properties. Printer properties Product model = " + product.Model);
+
+                    foreach(var device in targetDevices)
                     {
+
                         // Save consumable order status to Additional Device Properties as well for convenience
                         device.TonerInkBlackStatus = product.TonerInkBlackStatus;
                         device.TonerInkCyanStatus = product.TonerInkCyanStatus;
@@ -113,7 +128,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                         device.TonerInkMagentaReplaceCount = product.TonerInkMagentaReplaceCount;
                         device.TonerInkYellowReplaceCount = product.TonerInkYellowReplaceCount;
                         device.UpdateConsumableOrderCount();
-                        
+
                         //Update the consumable order, remaining life and replace count as per specifications
                         _deviceSimulatorService.RaiseConsumableOrder(
                             device.BocDeviceId, device.TonerInkBlackStatus, device.TonerInkCyanStatus, device.TonerInkMagentaStatus, device.TonerInkYellowStatus);
@@ -121,7 +136,7 @@ namespace Brother.Tests.Specs.StepActions.Common
                             device.BocDeviceId, device.TonerInkBlackRemLife, device.TonerInkCyanRemLife, device.TonerInkMagentaRemLife, device.TonerInkYellowRemLife);
                         _deviceSimulatorService.SetReplaceCount(
                             device.BocDeviceId, device.TonerInkBlackReplaceCount, device.TonerInkCyanReplaceCount, device.TonerInkMagentaReplaceCount, device.TonerInkYellowReplaceCount);
-                        _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);
+                        _deviceSimulatorService.NotifyBocOfDeviceChanges(device.BocDeviceId);                    
                     }
                 }
             }
@@ -154,7 +169,8 @@ namespace Brother.Tests.Specs.StepActions.Common
 
             // Sets the agreement status to "Running"
             _runCommandService.RunStartContractCommand();
-            _runCommandService.RunMeterReadCloudSyncCommand(_contextData.AgreementId, _contextData.Country.CountryIso);
+            _runCommandService.RunMeterReadCloudSyncCommand(
+                _contextData.AgreementId == 0 ? _contextData.ProposalId : _contextData.AgreementId, _contextData.Country.CountryIso);
             _runCommandService.RunConsumableOrderRequestsCommand();
             _runCommandService.RunCreateConsumableOrderCommand();           
         }

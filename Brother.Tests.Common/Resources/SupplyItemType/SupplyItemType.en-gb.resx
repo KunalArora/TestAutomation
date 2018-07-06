@@ -117,16 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BLACK_TONER" xml:space="preserve">
-    <value>Schwarzer Toner</value>
+  <data name="COLOUR" xml:space="preserve">
+    <value>Colour</value>
   </data>
-  <data name="CYAN_TONER" xml:space="preserve">
-    <value>Cyan Toner</value>
-  </data>
-  <data name="MAGENTA_TONER" xml:space="preserve">
-    <value>Magenta Toner</value>
-  </data>
-  <data name="YELLOW_TONER" xml:space="preserve">
-    <value>Yellow Toner</value>
+  <data name="MONO" xml:space="preserve">
+    <value>Mono</value>
   </data>
 </root>

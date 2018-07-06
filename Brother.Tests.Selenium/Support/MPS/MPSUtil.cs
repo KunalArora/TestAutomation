@@ -11,6 +11,7 @@ namespace Brother.Tests.Selenium.Lib.Support.MPS
 {
     public static class MpsUtil
     {
+        public const string DATESTRING_INVARIANT = "dd/MM/yyyy";
         private const string DATESTRING_BUK = "dd/MM/yyyy";
         private const string DATESTRING_BIG = "dd/MM/yyyy";
         private const string DATESTRING_BSW = "dd.MM.yyyy";

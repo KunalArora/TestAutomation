@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly ITranslationService _translationService;
         private readonly IPageParseHelper _pageParseHelper;
         private DealerProposalsCreateCustomerInformationPage detailInputPage;
+        private readonly MpsApiCallStepActions _mpsApiCallStepActions;
 
         public MpsDealerProposalStepActions(
             IPageParseHelper pageParseHelper,
@@ -51,7 +53,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             IMpsWebToolsService webToolService,
             ILoggingService loggingService,
             ITranslationService translationService,
-            MpsSignInStepActions mpsSignIn)
+            MpsSignInStepActions mpsSignIn,
+            MpsApiCallStepActions mpsApiCallStepActions)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -62,6 +65,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _loggingService = loggingService;
             _translationService = translationService;
             _pageParseHelper = pageParseHelper;
+            _mpsApiCallStepActions = mpsApiCallStepActions;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -193,7 +197,19 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
             dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(_contextData.CustomerEmail);
             ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
+            ContextData.IsCustomerSelectedToProposal = true;
             return PageService.GetPageObject<DealerProposalsCreateTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public TPage SelectExistingCustomerForProposal<TPage>(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage) where TPage : BasePage, IPageObject, new()
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.SelectExistingCustomerElement, dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            var dealerProposalsCreateCustomerInformationPage2 = PageService.GetPageObject<DealerProposalsCreateCustomerInformationPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+            dealerProposalsCreateCustomerInformationPage2.SelectExistingCustomer(_contextData.CustomerEmail);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage2.NextButton, dealerProposalsCreateCustomerInformationPage2);
+            return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsCreateProductsPage PopulateAgreementTermAndTypeAndProceed(DealerProposalsCreateTermAndTypePage dealerProposalsCreateTermAndTypePage,
@@ -250,10 +266,17 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             foreach(var product in products)
             {
                 PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
+
+                if (product.IsRemove)
+                {
+                    dealerProposalsCreateProductsPage.RemoveTheProduct(product.Model);
+                    dealerProposalsCreateProductsPage.VerifyRemovePrinterToProposal(product.Model);
+                    // Add the product again
+                    PopulatePrinterDetailsforEPP(dealerProposalsCreateProductsPage, product.Model);
+                }
             }
             ClickSafety(dealerProposalsCreateProductsPage.NextButtonElement, dealerProposalsCreateProductsPage, true);
             return PageService.GetPageObject<DealerProposalsCreateClickPricePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
-
         }
 
         public DealerProposalsCreateSummaryPage CalculateClickPriceAndProceed(DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage)
@@ -338,7 +361,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             // Validate content on Summary page 
             dealerProposalsCreateSummaryPage.VerifyProposalName(_contextData.ProposalName);
             // For the German environment, CustomerInformationName has not been entered yet (IsNullOrWhiteSpace=true)
-            if ( string.IsNullOrWhiteSpace(_contextData.CustomerInformationName) == false)   
+            if ( string.IsNullOrWhiteSpace(_contextData.CustomerInformationName) == false
+                && ContextData.IsCustomerSelectedToProposal == true)   
             {
                 dealerProposalsCreateSummaryPage.VerifyCustomerOrgName(_contextData.CustomerInformationName);
             }
@@ -355,6 +379,20 @@ namespace Brother.Tests.Specs.StepActions.Proposal
                 return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _subDealerWebDriver);
             }
             return PageService.GetPageObject<CloudExistingProposalPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsConvertSummaryPage ClickNext(DealerProposalsConvertClickPricePage dealerProposalsConvertClickPricePage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsConvertClickPricePage);
+            ClickSafety(dealerProposalsConvertClickPricePage.ProceedOnClickPricePageElement, dealerProposalsConvertClickPricePage); // next
+            return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public DealerProposalsConvertTermAndTypePage ClickOnNext(DealerProposalsCreateCustomerInformationPage dealerProposalsCreateCustomerInformationPage)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateCustomerInformationPage);
+            ClickSafety(dealerProposalsCreateCustomerInformationPage.NextButton, dealerProposalsCreateCustomerInformationPage);
+            return PageService.GetPageObject<DealerProposalsConvertTermAndTypePage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         private void AssertSummaryPageForGermany(DealerProposalsCreateSummaryPage dealerProposalsCreateSummaryPage)
@@ -450,6 +488,16 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _dealerWebDriver);
             return PageService.GetPageObject<DealerProposalsConvertSummaryPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
+        }
+
+        public TPage SubmitForTheApproval<TPage>(CloudExistingProposalPage _cloudExistingProposalPage) where TPage : BasePage, IPageObject, new()
+        {
+            LoggingService.WriteLogOnMethodEntry(_cloudExistingProposalPage);
+            int proposalId = _contextData.ProposalId;
+            string proposalName = _contextData.ProposalName;
+
+            _cloudExistingProposalPage.ClickOnSubmitForApproval(proposalId, proposalName, _dealerWebDriver);
+            return PageService.GetPageObject<TPage>(RuntimeSettings.DefaultPageObjectTimeout, _dealerWebDriver);
         }
 
         public DealerProposalsCreateDescriptionPage ClickOnEditActionButton(CloudExistingProposalPage _cloudExistingProposalPage)
@@ -1088,6 +1136,39 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerDashboardPage.VerifyDashboardOptions();
         }
 
+        public void VerifyConsumableOrderIsRaisedUsingRemainingLife(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string resourceConsumableOrderMethod, string resourceOrderStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage, resourceConsumableOrderMethod);
+            string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+
+            foreach (var product in _contextData.PrintersProperties)
+            {
+                string orderedConsumable;
+
+                //Translation for Ordered Consumable text
+                if (double.Parse(product.TonerInkBlackRemLife, _contextData.CultureInfo) <= double.Parse(product.MonoThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkCyanRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkMagentaRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.MagentaToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkYellowRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+            }
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
@@ -1155,6 +1236,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
 
             dealerProposalsCreateProductsPage.ClickAddProposalButton(
                 printerContainer, addProposalButton);
+
+            dealerProposalsCreateProductsPage.VerifyAddPrinterToProposal(printerName);
         }
 
         private void PopulatePrinterCoverageAndVolume( DealerProposalsCreateClickPricePage dealerProposalsCreateClickPricePage,
@@ -1201,6 +1284,30 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateClickPricePage);
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
+        }
+
+        private DealerReportsProposalsSummaryPage VerifyConsumableOrderOnReportsSummaryPage(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string orderedConsumable, PrinterProperties product, string resourceOrderStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage, orderedConsumable);
+            int retries = 0;
+
+            
+            //Verification process
+            while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, resourceOrderStatus))
+            {
+                _mpsApiCallStepActions.UpdateMPSForConsumableOrder();
+                dealerReportsProposalsSummaryPage = Refresh(dealerReportsProposalsSummaryPage);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
+                }
+            }
+            
+
+            return dealerReportsProposalsSummaryPage;
         }
         #endregion
     }

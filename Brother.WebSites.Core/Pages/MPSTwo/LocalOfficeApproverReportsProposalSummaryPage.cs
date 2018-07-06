@@ -1,7 +1,9 @@
-﻿using Brother.Tests.Selenium.Lib.Support.HelperClasses;
+﻿using Brother.Tests.Common.Domain.SpecFlowTableMappings;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brother.WebSites.Core.Pages.MPSTwo
 {
@@ -50,6 +52,7 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
 
         private const string ActionsButtonSelector = "button.btn.btn-primary.btn-xs.dropdown-toggle";
         private const string PrintCountsModalSelector = ".js-mps-print-counts-list";
+        private const string RaiseConsumableOrderButtonSelector = ".js-mps-raise-consumable-order";
 
         public void ClickOnBillAction()
         {
@@ -143,6 +146,19 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
                 result.Add(tdList[2].Text);
             }
             return result;
+        }
+
+        public void ClickRaiseManualConsumableOrder(PrinterProperties printer)
+        {
+            LoggingService.WriteLogOnMethodEntry(printer);
+
+            var deviceRowElements = SeleniumHelper.FindRowElementsWithinTable(PrintersContainerElement);
+            var targetRow = deviceRowElements.FirstOrDefault(d => d.FindElement(By.CssSelector(DeviceSerialNumberSelector)).Text.Equals(printer.SerialNumber));
+            TestCheck.AssertIsNotNull(targetRow, "Could not find printer row on summary page. Printer serial number = " + printer.SerialNumber);
+            var actionsButton = SeleniumHelper.FindElementByCssSelector(targetRow, ActionsButtonSelector);
+            SeleniumHelper.ClickSafety(actionsButton);
+            var raiseConsumableOrder = SeleniumHelper.FindElementByCssSelector(targetRow, RaiseConsumableOrderButtonSelector);
+            SeleniumHelper.ClickSafety(raiseConsumableOrder);
         }
     }
 }

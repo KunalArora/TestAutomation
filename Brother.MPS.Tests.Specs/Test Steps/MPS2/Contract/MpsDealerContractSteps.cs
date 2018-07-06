@@ -207,6 +207,13 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.RunCommandServicesRequests();
         }
 
+        [When(@"I will raise automatic service request for above devices")]
+        public void WhenIWillRaiseAutomaticServiceRequestForAboveDevices()
+        {
+            _mpsDealerContractStepActions.UpdateAndNotifyBOCForServiceRequest();
+            _mpsDealerContractStepActions.RunCommandServicesRequests();
+        }
+
         [When(@"I will be able to see on the Manage Devices page that above devices have updated Print Counts")]
         public void ThenIWillBeAbleToSeeOnTheManageDevicesPageThatAboveDevicesHaveUpdatedPrintCounts()
         {
@@ -314,6 +321,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _runCommandService.RunCreateCustomerAndPersonCommand();
         }
 
+        [Then(@"I set the Contract in the running state")]
         [When(@"I set the Contract in the running state")]
         public void WhenISetTheContractInTheRunningState()
         {
@@ -331,6 +339,7 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             _mpsDealerContractStepActions.VerifyUpdatedPrintCounts(_dealerReportsProposalsSummaryPage);
         }
 
+        [Then(@"I update the consumable order and verify it on the dataquery page")]
         [When(@"I update the consumable order and verify it on the dataquery page")]
         public void WhenIUpdateTheConsumableOrderAndVerifyItOnTheDataqueryPage()
         {
@@ -368,6 +377,14 @@ namespace Brother.Tests.Specs.Test_Steps.MPS2.Contract
             {
                 _mpsDealerContractStepActions.DeletePdfFileErrorIgnored(invoicePdfFile);
             }
+        }
+
+        public void ThenICanVerifyAutomaticConsumableOrderIsRaisedUsingRemainingLife(string resourceConsumableOrderMethodAutomatic)
+        {
+            string resourceConsumableOrderStatusInProcessing = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProcessing, _contextData.Culture);
+
+            WhenINavigateToTheContractSummaryPageInTheReportsSection();
+            _mpsDealerProposalStepActions.VerifyConsumableOrderIsRaisedUsingRemainingLife(_dealerReportsProposalsSummaryPage, resourceConsumableOrderMethodAutomatic, resourceConsumableOrderStatusInProcessing);
         }
 
     }

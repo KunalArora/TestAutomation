@@ -166,6 +166,13 @@ namespace Brother.Tests.Selenium.Lib.Helpers
         bool IsElementDisplayed(ISearchContext context, string selector);
 
         /// <summary>
+        /// Return true if element with this selector exists within the WebDriver, otherwise false
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        bool IsElementDisplayed(string selector);
+
+        /// <summary>
         /// Clicks the radio button & ensures that it has been clicked properly
         /// </summary>
         /// <param name="radioButtonElement"></param>
