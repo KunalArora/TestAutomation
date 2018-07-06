@@ -55,6 +55,27 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             }
         }
 
+        public IWebElement FindElementByCssSelector(ISearchContext context, string selector, bool judgeElementDisplay, int timeout, bool isWaitforDisplayed = false, bool isWaitforEnabled = false)
+        {
+            LoggingService.WriteLogOnMethodEntry(context, selector, judgeElementDisplay, timeout, isWaitforDisplayed, isWaitforEnabled);
+            if (judgeElementDisplay)
+            {
+                if (IsElementDisplayed(context, selector))
+                {
+                    return FindElementByCssSelector(selector, timeout, isWaitforDisplayed, isWaitforEnabled);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return FindElementByCssSelector(selector, timeout, isWaitforDisplayed, isWaitforEnabled);
+            }
+
+        }
+
         public IWebElement FindElementByDataAttributeValue(string dataAttributeName,
             string dataAttributeValue, int timeout)
         {
@@ -307,7 +328,7 @@ namespace Brother.Tests.Selenium.Lib.Helpers
             LoggingService.WriteLogOnMethodEntry(context, selector);
             try
             {
-                return context.FindElement(By.CssSelector(selector)).Displayed;
+                return (context ?? _webDriver).FindElement(By.CssSelector(selector)).Displayed;
             }
             catch
             {
