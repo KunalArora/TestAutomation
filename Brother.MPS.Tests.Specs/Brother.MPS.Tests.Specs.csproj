@@ -287,6 +287,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessScenario_5.feature</DependentUpon>
     </Compile>
+    <Compile Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type1EnhancedUsageMonitoring.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Type1EnhancedUsageMonitoring.feature</DependentUpon>
+    </Compile>
     <Compile Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1788,6 +1793,10 @@
     <None Include="Test Specifications\MPS2\EndToEnd\Type3\BusinessScenario_5.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BusinessScenario_5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type1EnhancedUsageMonitoring.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Type1EnhancedUsageMonitoring.feature.cs</LastGenOutput>
     </None>
     <None Include="Test Specifications\MPS2\EnhancedUsageMonitoring\Type3EnhancedUsageMonitoring.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

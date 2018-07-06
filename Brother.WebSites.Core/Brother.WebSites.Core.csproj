@@ -155,6 +155,8 @@
     <Compile Include="Pages\MPSTwo\BankProposalsAwaitingApprovalPage.cs" />
     <Compile Include="Pages\MPSTwo\BaseSummaryPage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminDashboardPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeEnhancedUsageMonitoringAdminInstalledPrinterPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeEnhancedUsageMonitoringAdminPrinterEnginePage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminEnhancedUsageMonitoringNewPrinterEnginePage.cs" />
     <Compile Include="Pages\MPSTwo\BieAdminEnhancedUsageMonitoringNewInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\CalculationEngineModule.cs" />
@@ -286,6 +288,7 @@
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDashboardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsDataQueryPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeApproverReportsProposalSummaryPage.cs" />
+    <Compile Include="Pages\MPSTwo\LocalOfficeEnhancedUsageMonitoringAuthorisedInstalledPrinterPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceAccrualsReportPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeFinanceDashBoardPage.cs" />
     <Compile Include="Pages\MPSTwo\LocalOfficeReportsDashboardPage.cs" />

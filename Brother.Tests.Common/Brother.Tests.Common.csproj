@@ -294,6 +294,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StaffAccessPermission.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\SupplyItemType\SupplyItemType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupplyItemType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SwapType\SwapType.Designer.cs">
       <DependentUpon>SwapType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -530,6 +535,12 @@
     <EmbeddedResource Include="Resources\StaffAccessPermission\StaffAccessPermission.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StaffAccessPermission.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SupplyItemType\SupplyItemType.de-de.resx" />
+    <EmbeddedResource Include="Resources\SupplyItemType\SupplyItemType.en-gb.resx" />
+    <EmbeddedResource Include="Resources\SupplyItemType\SupplyItemType.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SupplyItemType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SwapType\SwapType.en-gb.resx" />
     <EmbeddedResource Include="Resources\SwapType\SwapType.resx">

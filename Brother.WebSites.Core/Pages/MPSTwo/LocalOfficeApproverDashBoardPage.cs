@@ -50,6 +50,8 @@ namespace Brother.WebSites.Core.Pages.MPSTwo
         public IWebElement SwitchedLanguageIdentifierElement;
         [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/reports\"] .media-heading")]
         public IWebElement LocalApprovalReportingElement;
+        [FindsBy(How = How.CssSelector, Using = "a[href=\"/mps/local-office/enhanced-usage-monitoring-authorised/installed-printer\"] .media-heading")]
+        public IWebElement ManageDeviceOrderThresholdElement;
         
 
 

@@ -415,7 +415,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Proposal
             string servicePack = _translationService.GetServicePackTypeText("SERVICE_PACK_TYPE3", _contextData.Culture);
         }
 
-
+        [Then(@"I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal")]
         [When(@"I have navigated to the Approved Proposals page and navigate to the proposal Summary page for this proposal")]
         public void WhenIHaveNavigatedToTheApprovedProposalsPageAndNavigateToTheProposalSummaryPageForThisProposal()
         {

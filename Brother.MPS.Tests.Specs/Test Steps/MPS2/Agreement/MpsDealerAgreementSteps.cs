@@ -9,10 +9,10 @@ using Brother.Tests.Specs.Resolvers;
 using Brother.Tests.Specs.Services;
 using Brother.Tests.Specs.StepActions.Agreement;
 using Brother.Tests.Specs.StepActions.Common;
+using Brother.Tests.Specs.Test_Steps.MPS2.Contract;
 using Brother.WebSites.Core.Pages.MPSTwo;
 using Brother.WebSites.Core.Pages.MPSTwo.ExclusiveType3.Dealer.Agreement;
 using System;
-using System.Globalization;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -34,6 +34,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         private readonly IRuntimeSettings _runtimeSettings;
         private readonly MpsSignInStepActions _mpsSignIn;
         private readonly MpsDealerAgreementStepActions _mpsDealerAgreement;
+        private readonly MpsDealerContractSteps _mpsDealerContractSteps;
 
         //page objects used by these steps
         private DealerDashBoardPage _dealerDashboardPage;
@@ -57,7 +58,8 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             IUserResolver userResolver,
             IUrlResolver urlResolver,
             IAgreementHelper agreementHelper,
-            IRuntimeSettings runtimeSettings)
+            IRuntimeSettings runtimeSettings,
+            MpsDealerContractSteps mpsDealerContractSteps)
         {
             _context = context;
             _contextData = contextData;
@@ -69,6 +71,7 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
             _mpsSignIn = mpsSignIn;
             _mpsDealerAgreement = mpsDealerAgreement;
             _runtimeSettings = runtimeSettings;
+            _mpsDealerContractSteps = mpsDealerContractSteps;
         }
 
 
@@ -304,7 +307,15 @@ namespace Brother.MPS.Tests.Specs.MPS2.Agreement
         public void ThenICanVerifyTheGenerationOfAutomaticConsumableOrdersAlongwithStatus()
         {
             string resourceConsumableOrderMethodAutomatic = _translationService.GetConsumableOrderMethodText(TranslationKeys.ConsumableOrderMethod.Automatic, _contextData.Culture);
-            _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodAutomatic);
+            
+            if(_contextData.AgreementId != 0) // For Agreement, i.e, Type 3
+            {
+                _dealerAgreementDevicesPage = _mpsDealerAgreement.VerifyConsumableOrders(_dealerAgreementDevicesPage, resourceConsumableOrderMethodAutomatic);
+            }
+            else // For proposal, i.e, Type 1
+            {
+                _mpsDealerContractSteps.ThenICanVerifyAutomaticConsumableOrderIsRaisedUsingRemainingLife(resourceConsumableOrderMethodAutomatic);
+            }
         }
 
         [When(@"I manually raise a service request for above devices")]

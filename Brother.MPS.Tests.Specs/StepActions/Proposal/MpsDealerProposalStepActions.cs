@@ -5,6 +5,7 @@ using Brother.Tests.Common.Domain.SpecFlowTableMappings;
 using Brother.Tests.Common.Logging;
 using Brother.Tests.Common.RuntimeSettings;
 using Brother.Tests.Common.Services;
+using Brother.Tests.Selenium.Lib.Support.HelperClasses;
 using Brother.Tests.Specs.Factories;
 using Brother.Tests.Specs.Helpers;
 using Brother.Tests.Specs.Resolvers;
@@ -37,6 +38,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         private readonly ITranslationService _translationService;
         private readonly IPageParseHelper _pageParseHelper;
         private DealerProposalsCreateCustomerInformationPage detailInputPage;
+        private readonly MpsApiCallStepActions _mpsApiCallStepActions;
 
         public MpsDealerProposalStepActions(
             IPageParseHelper pageParseHelper,
@@ -51,7 +53,8 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             IMpsWebToolsService webToolService,
             ILoggingService loggingService,
             ITranslationService translationService,
-            MpsSignInStepActions mpsSignIn)
+            MpsSignInStepActions mpsSignIn,
+            MpsApiCallStepActions mpsApiCallStepActions)
             : base(webDriverFactory, contextData, pageService, context, urlResolver, loggingService, runtimeSettings)
         {
             _mpsSignIn = mpsSignIn;
@@ -62,6 +65,7 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             _loggingService = loggingService;
             _translationService = translationService;
             _pageParseHelper = pageParseHelper;
+            _mpsApiCallStepActions = mpsApiCallStepActions;
         }
         
         public DealerDashBoardPage SignInAsDealerAndNavigateToDashboard(string email, string password, string url)
@@ -1132,6 +1136,39 @@ namespace Brother.Tests.Specs.StepActions.Proposal
             dealerDashboardPage.VerifyDashboardOptions();
         }
 
+        public void VerifyConsumableOrderIsRaisedUsingRemainingLife(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string resourceConsumableOrderMethod, string resourceOrderStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage, resourceConsumableOrderMethod);
+            string resourceConsumableOrderStatusInProgress = _translationService.GetConsumableOrderStatusText(TranslationKeys.ConsumableOrderStatus.InProgress, _contextData.Culture);
+
+            foreach (var product in _contextData.PrintersProperties)
+            {
+                string orderedConsumable;
+
+                //Translation for Ordered Consumable text
+                if (double.Parse(product.TonerInkBlackRemLife, _contextData.CultureInfo) <= double.Parse(product.MonoThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.BlackToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkCyanRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.CyanToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkMagentaRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.MagentaToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+                if (double.Parse(product.TonerInkYellowRemLife, _contextData.CultureInfo) <= double.Parse(product.ColourThresholdValue, _contextData.CultureInfo))
+                {
+                    orderedConsumable = _translationService.GetOrderedConsumable(TranslationKeys.OrderedConsumable.YellowToner, _contextData.Culture);
+                    dealerReportsProposalsSummaryPage = VerifyConsumableOrderOnReportsSummaryPage(dealerReportsProposalsSummaryPage, orderedConsumable, product, resourceOrderStatus);
+                }
+            }
+        }
+
         #region private methods
 
         private void PopulateProposalDescription(DealerProposalsCreateDescriptionPage dealerProposalsCreateDescriptionPage,
@@ -1247,6 +1284,30 @@ namespace Brother.Tests.Specs.StepActions.Proposal
         {
             LoggingService.WriteLogOnMethodEntry(dealerProposalsCreateClickPricePage);
             return dealerProposalsCreateClickPricePage.VerifyClickPriceValues();
+        }
+
+        private DealerReportsProposalsSummaryPage VerifyConsumableOrderOnReportsSummaryPage(DealerReportsProposalsSummaryPage dealerReportsProposalsSummaryPage, string orderedConsumable, PrinterProperties product, string resourceOrderStatus)
+        {
+            LoggingService.WriteLogOnMethodEntry(dealerReportsProposalsSummaryPage, orderedConsumable);
+            int retries = 0;
+
+            
+            //Verification process
+            while (!dealerReportsProposalsSummaryPage.VerifyConsumableOrderOfDevice(product, orderedConsumable, resourceOrderStatus))
+            {
+                _mpsApiCallStepActions.UpdateMPSForConsumableOrder();
+                dealerReportsProposalsSummaryPage = Refresh(dealerReportsProposalsSummaryPage);
+
+                retries++;
+                if (retries > RuntimeSettings.DefaultRetryCount)
+                {
+                    TestCheck.AssertFailTest(
+                        string.Format("Number of retries exceeded the default limit during verification of consumable order for proposal {0}", _contextData.ProposalId));
+                }
+            }
+            
+
+            return dealerReportsProposalsSummaryPage;
         }
         #endregion
     }
